@@ -93,6 +93,6 @@
 	  <version>[0.4, 0.5)</version>
 	</dependency>	
   </dependencies>  
-  <description>혼밥인의 만찬 웹 서비스</description>
+  <description>DE2P</description>
   <url>https://de2p.com</url>
 </project>
