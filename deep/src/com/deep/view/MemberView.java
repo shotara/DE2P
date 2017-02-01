@@ -32,14 +32,18 @@ public class MemberView extends HttpServlet {
 			String action = req.getParameter("action") != null ? CommonUtil.commonCleanXSS(req.getParameter("action").toString()) : "";
 			
 			switch(action) {
-				case "loginMember":
-					map.put("ACTION", "loginMember");
-					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
-					MemberController.loginMember(req,res);
-				case "checkMember":
-					map.put("ACTION", "checkMember");
-					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
-					MemberController.checkMember(req,res);
+			case "checkMember":
+				map.put("ACTION", "checkMember");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				MemberController.checkMember(req,res);
+			case "loginMember":
+				map.put("ACTION", "loginMember");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				MemberController.loginMember(req,res);
+			case "joinMember":
+				map.put("ACTION", "joinMember");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				MemberController.JoinMember(req,res);
 			}
 			
 			

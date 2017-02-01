@@ -9,4 +9,18 @@
 		SELECT count(*) FROM deep_member WHERE deepMemberEmail=#{memberEmail}
 	</select>
 		
+	<!-- MemberController.loginMember() -->
+    <select id="getMemberByMemberMail" parameterType="java.util.HashMap" resultType="com.deep.model.domain.Member">
+		SELECT * FROM deep_member WHERE deepMemberEmail=#{memberEmail} AND deepMemberPassword=#{memberPassword}
+	</select>
+	
+	<select id="getMemberUid" parameterType="int" resultType="com.deep.model.domain.MemberUid">
+		SELECT * FROM deep_member WHERE deepMemberNo=#{inputMemberNo}
+	</select>
+	
+	<!-- MemberController.joinMember() -->
+    <select id="joinMember" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO deep_member(deepMemberNo, deepMemberStatus, deepMemberLevel, deepMemberMajor, deepMemberCareer, deepMemberEmail, deepMemberName, deepMemberPassword, deepMemberImage)
+		VALUES(#{memberStatus}, #{memberLevel}, #{memberMajor}, #{memberCareer}, #{memberEmail}, #{memberName}, #{memberPassword}, #{memberImage})
+	</select>
 </mapper>
