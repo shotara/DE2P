@@ -5,8 +5,14 @@
 <mapper namespace="member">
 
 	<!-- MemberController.checkMember() -->
-    <select id="checkMember" parameterType="String" resultType="int">
-		SELECT count(*) FROM deep_member WHERE deepMemberEmail=#{memberEmail}
+    <select id="checkMember" parameterType="java.util.HashMap" resultType="int">
+		SELECT count(*) FROM deep_member 
+		<if test="mode == 1" >
+			WHERE deepMemberEmail=#{memberParam}
+		</if>
+		<if test="mode == 2">
+			WHERE deepMemberName=#{memberParam}
+		</if>
 	</select>
 		
 	<!-- MemberController.loginMember() -->
@@ -19,8 +25,24 @@
 	</select>
 	
 	<!-- MemberController.joinMember() -->
-    <select id="joinMember" parameterType="java.util.HashMap" resultType="int">
-		INSERT INTO deep_member(deepMemberNo, deepMemberStatus, deepMemberLevel, deepMemberMajor, deepMemberCareer, deepMemberEmail, deepMemberName, deepMemberPassword, deepMemberImage)
-		VALUES(#{memberStatus}, #{memberLevel}, #{memberMajor}, #{memberCareer}, #{memberEmail}, #{memberName}, #{memberPassword}, #{memberImage})
+    <select id="addMember" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO deep_member(deepMemberStatus, deepMemberLevel, deepMemberCreateDate, deepMemberMajor, deepMemberCareer, deepMemberEmail, deepMemberName, deepMemberPassword, deepMemberImage)
+		VALUES(#{memberStatus}, #{memberLevel}, #{inputCurrentDate}, #{memberMajor}, #{memberCareer}, #{memberEmail}, #{memberName}, #{memberPassword}, #{memberImage})
+	</select>
+
+    <select id="addMemberUid" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO deep_member_uid(deepMemberNo, deepMemberUid)
+		VALUES((SELECT deepMemberNo FROM deep_member WHERE deepMemberEmail=#{memberEmail}), #{memberUid})
+	</select>	
+	
+	<!-- CommonController.setProfile -->
+	<select id="setMember" parameterType="java.util.HashMap" resultType="int">
+		UPDATE deep_member SET deepMemberMajor=#{memberMajor}, deepMemberCareer=#{memberCareer}, deepMemberName=#{memberName}, deepMemberPassword=#{memberPassword})
+		WHERE deepMemberNo=#{memberNo}
+	</select>
+	
+	<!-- CommonMethod -->
+	<select id="getMemberByMemberNo" parameterType="int" resultType="com.deep.model.domain.Member">
+		SELECT * FROM deep_member WHERE deepMemberNo=#{inputMemberNo}
 	</select>
 </mapper>

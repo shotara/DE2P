@@ -5,6 +5,7 @@ import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,15 +29,17 @@ public class MemberController {
 		try {
 			HttpSession session = req.getSession();
 
-			String inputMemberEmail = req.getParameter("inputMemberEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberEmail").toString()) : null;				
+			int mode = req.getParameter("mode") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("mode").toString())) : 0;				
+			String inputMemberParam = req.getParameter("inputMemberParam") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberParam").toString()) : null;				
 	
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 			
-			// 파라미터 체크
+			// Parameter check
 			ArrayList<Object> parameterList = new ArrayList<Object>();
-			parameterList.add(inputMemberEmail);
+			parameterList.add(mode);	
+			parameterList.add(inputMemberParam);
 			if(!CommonUtil.commonParameterCheck(parameterList)) {
 				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
 				jObject.put("outputResult", "-1");
@@ -44,7 +47,7 @@ public class MemberController {
 				return;
 			}
 			
-			// 개인키 가져오기
+			// Get Private key
 			PrivateKey privateKey = null;
 			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
 			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
@@ -56,16 +59,17 @@ public class MemberController {
 				return;
 			}			
 
-//			// RSA 복호화
-//			String decryptMemberEmail = EncryptUtil.RSA_Decode(privateKey, inputMemberEmail);
+//			// RSA Decrypt
+//			String decryptMemberParam = EncryptUtil.RSA_Decode(privateKey, inputMemberParam);
 //				
-//			// AES 암호화
-//			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
-//			String encryptMemberEmail = EncryptUtil.AES_Encode(decryptMemberEmail, aesKey);
+			// AES Encrypt
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+//			String encryptMemberParam = EncryptUtil.AES_Encode(decryptMemberParam, aesKey);
+			String encryptMemberParam = EncryptUtil.AES_Encode(inputMemberParam, aesKey);
 
-			// 입력받은 이메일이 DB에 있는지 확인		    			
-			if(!(MemberDAO.checkMember(inputMemberEmail)>0)) {
-				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+			// Check Member Email, Name    			
+			if(MemberDAO.checkMember(mode, encryptMemberParam)>0) {
+				CommonUtil.commonPrintLog("FAIL", className, "Already Member Name/Email Exist", map);
 				jObject.put("outputResult", "-2");
 				res.getWriter().write(jObject.toString());
 				return;
@@ -95,7 +99,7 @@ public class MemberController {
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 			
-			// 파라미터 체크
+			// Parameter check
 			ArrayList<Object> parameterList = new ArrayList<Object>();
 			parameterList.add(inputMemberEmail);
 			parameterList.add(inputMemberPassword);
@@ -106,7 +110,7 @@ public class MemberController {
 				return;
 			}
 			
-//			// 개인키 가져오기
+//			// Get Private key
 //			PrivateKey privateKey = null;
 //			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
 //			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
@@ -118,39 +122,37 @@ public class MemberController {
 //				return;
 //			}			
 //
-//			// RSA 복호화
+//			// RSA Decrypt
 //			String decryptMemberEmail = EncryptUtil.RSA_Decode(privateKey, inputMemberEmail);
 //			String decryptMemberPassword = EncryptUtil.RSA_Decode(privateKey, inputMemberPassword);
 //				
-			// AES 암호화
+			// AES Encrypt
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 //			String encryptMemberEmail = EncryptUtil.AES_Encode(decryptMemberEmail, aesKey);
 			String encryptMemberEmail = EncryptUtil.AES_Encode(inputMemberEmail, aesKey);
 
-			
-			// 입력받은 이메일이 DB에 있는지 확인
-			if(!(MemberDAO.checkMember(inputMemberEmail)>0)) {
+			if(!(MemberDAO.checkMember(1, encryptMemberEmail)>0)) {
 				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
 				jObject.put("outputResult", "-3");
 				res.getWriter().write(jObject.toString());
 				return;
 			}
 			
-			// SHA-256 암호화
+			// SHA-256 Encrypt
 //			String encryptMemberPassword = EncryptUtil.SHA256_Encode(decryptMemberPassword);
 			String encryptMemberPassword = EncryptUtil.SHA256_Encode(inputMemberPassword);
-			
+
 			Member member = MemberDAO.getMemberByMemberMail(encryptMemberEmail, encryptMemberPassword);
 			
-			// 비밀번호가 일치하지 않는 경우
-			if(member != null) {
+			// Password not correct
+			if(member == null) {
 				CommonUtil.commonPrintLog("FAIL", className, "Password Not Correct!", map);
 				jObject.put("outputResult", "-4");
 				res.getWriter().write(jObject.toString());
 				return;
 			}
 			
-			// 허가된 회원인지 확인
+			// check member permit
 			if(member.getDeepMemberStatus() != 1) {
 				CommonUtil.commonPrintLog("FAIL", className, "No Member Permit!", map);
 				jObject.put("outputResult", "-5");
@@ -158,12 +160,13 @@ public class MemberController {
 				return;
 			}
 			
-			// 회원 UID 가져오기
+			// Get MemberUID
 			MemberUid outputMemberUid = MemberDAO.getMemberUid(member.getDeepMemberNo());
 			
-			// 완료
-	//		MemberController.setMemberSession(session, checkMember, outputMemberUid, aesKey);
+			// Success
+			MemberController.setMemberSession(session, member, outputMemberUid.getDeepMemberUid(), aesKey);
 			
+			System.out.println(session.getAttribute("deepMemberNo"));
 			map.put("USER-NO", "0");
 			CommonUtil.commonPrintLog("SUCCESS", className, "User Login OK", map);			
 			res.getWriter().write(jObject.toString());
@@ -176,32 +179,26 @@ public class MemberController {
 	}
 	
 	
-	// 회원 세션 할당
+	// Set member session
 	public static void setMemberSession(HttpSession session, Member member, String inputMemberUid, String aesKey) {
 
 		try {
-//			session.setMaxInactiveInterval(3600);
-//			session.setAttribute("hbiMemberNo", member.getHbiMemberNo());
-//			session.setAttribute("hbiMemberUid", inputMemberUid);	
-//			session.setAttribute("hbiMemberCategory", member.getHbiMemberCategory());
-//			session.setAttribute("hbiMemberAgeGroup", member.getHbiMemberAgeGroup());
-//			session.setAttribute("hbiMemberHomePlace", member.getHbiMemberHomePlace());
-//			session.setAttribute("hbiMemberFrequencyPlace", member.getHbiMemberFrequencyPlace());
-//			session.setAttribute("hbiMemberFacebookId", EncryptUtil.AES_Decode(member.getHbiMemberFacebookId(), aesKey));
-//			session.setAttribute("hbiMemberChatId", member.getHbiMemberChatId());
-//			session.setAttribute("hbiMemberName", EncryptUtil.AES_Decode(member.getHbiMemberName(), aesKey));
-//			session.setAttribute("hbiMemberEmail", EncryptUtil.AES_Decode(member.getHbiMemberEmail(), aesKey));
-//			session.setAttribute("hbiMemberPhone", EncryptUtil.AES_Decode(member.getHbiMemberPhone(), aesKey));
-//			session.setAttribute("hbiMemberProfileImg", MemberController.getMemberProfileImg(member.getHbiMemberProfileImg()));
-//			session.setAttribute("hbiMemberProfileText", member.getHbiMemberProfileText());	    
-//			session.setAttribute("hbiMemberIsChatUser", ChatController.checkIsChatMember(member.getHbiMemberNo()));
-//			
+			session.setMaxInactiveInterval(3600);
+			session.setAttribute("deepMemberNo", member.getDeepMemberNo());
+			session.setAttribute("deepMemberUid", inputMemberUid);	
+			session.setAttribute("deepMemberLever", member.getDeepMemberLevel());
+			session.setAttribute("deepMemberName", EncryptUtil.AES_Decode(member.getDeepMemberName(), aesKey));
+			session.setAttribute("deepMemberEmail", EncryptUtil.AES_Decode(member.getDeepMemberEmail(), aesKey));
+			session.setAttribute("deepMemberMajor", EncryptUtil.AES_Decode(member.getDeepMemberMajor(), aesKey));
+			session.setAttribute("deepMemberCareer", EncryptUtil.AES_Decode(member.getDeepMemberCareer(), aesKey));
+//			session.setAttribute("deepMemberImage", MemberController.getMemberProfileImg(member.getDeepMemberImage();	    
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	// 회원가입 
+	// join 
 	public static void JoinMember(HttpServletRequest req, HttpServletResponse res) {
 
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -211,6 +208,7 @@ public class MemberController {
 
 			int inputMemberStatus = 1;
 			int inputMemberLevel = 1;
+			long inputCurrentDate = System.currentTimeMillis()/1000;
 			String inputMemberMajor = req.getParameter("inputMemberMajor") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberMajor").toString()) : null;
 			String inputMemberCareer = req.getParameter("inputMemberCareer") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberCareer").toString()) : null;
 			String inputMemberEmail = req.getParameter("inputMemberEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberEmail").toString()) : null;
@@ -218,12 +216,12 @@ public class MemberController {
 			String inputMemberPassword = req.getParameter("inputMemberPassword") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberPassword").toString()) : null;
 			String inputMemberPasswordConfirm = req.getParameter("inputMemberPasswordConfirm") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberPasswordConfirm").toString()) : null;
 			int inputMemberImage = -1;
-			
+
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 			
-			// 파라미터 체크
+			// Parameter check
 			ArrayList<Object> parameterList = new ArrayList<Object>();
 			parameterList.add(inputMemberMajor);
 			parameterList.add(inputMemberCareer);
@@ -237,7 +235,7 @@ public class MemberController {
 				return;
 			}
 //			
-//			// 개인키 가져오기
+//			// Get Private key
 //			PrivateKey privateKey = null;
 //			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
 //			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
@@ -248,15 +246,15 @@ public class MemberController {
 //				res.getWriter().write(jObject.toString());
 //				return;
 //			}			
-//
-//			// RSA 복호화
+//         
+//			// RSA Decrypt
 //			String decryptMemberMajor = EncryptUtil.RSA_Decode(privateKey, inputMemberMajor);
 //			String decryptMemberCareer = EncryptUtil.RSA_Decode(privateKey, inputMemberCareer);
 //			String decryptMemberEmail = EncryptUtil.RSA_Decode(privateKey, inputMemberEmail);
 //			String decryptMemberName = EncryptUtil.RSA_Decode(privateKey, inputMemberName);
 //			String decryptMemberPassword = EncryptUtil.RSA_Decode(privateKey, inputMemberPassword);
 //				
-			// AES 암호화
+			// AES Encrypt
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 //			String encryptMemberMajor = EncryptUtil.AES_Encode(decryptMemberMajor, aesKey);
 //			String encryptMemberCareer = EncryptUtil.AES_Encode(decryptMemberCareer, aesKey);
@@ -268,45 +266,82 @@ public class MemberController {
 			String encryptMemberEmail = EncryptUtil.AES_Encode(inputMemberEmail, aesKey);
 			String encryptMemberName = EncryptUtil.AES_Encode(inputMemberName, aesKey);
 			
-			// 입력받은 이메일이 DB에 있는지 확인
-			if((MemberDAO.checkMember(inputMemberEmail)>0)) {
+			// Check the email in the database
+			if((MemberDAO.checkMember(1, encryptMemberEmail)>0)) {
 				CommonUtil.commonPrintLog("FAIL", className, "Alredy Exist Mail", map);
 				jObject.put("outputResult", "-3");
 				res.getWriter().write(jObject.toString());
 				return;
 			}
 			
-			// SHA-256 암호화
+			// Check the name in the database
+			if((MemberDAO.checkMember(2, encryptMemberName)>0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Alredy Exist Name", map);
+				jObject.put("outputResult", "-4");
+				res.getWriter().write(jObject.toString());
+				return;
+			}			
+			
+			// SHA-256 Encrypt
 //			String encryptMemberPassword = EncryptUtil.SHA256_Encode(decryptMemberPassword);
 			String encryptMemberPassword = EncryptUtil.SHA256_Encode(inputMemberPassword);
 			
 			Member member = MemberDAO.getMemberByMemberMail(encryptMemberEmail, encryptMemberPassword);
 			
-			// 비밀번호와 비밀번호 확인 일치하지 않는 경우
-			if(inputMemberPassword != inputMemberPasswordConfirm) {
+			// Password and passwordConfirm is not correct
+			if(!inputMemberPassword.equals(inputMemberPasswordConfirm)) {
 				CommonUtil.commonPrintLog("FAIL", className, "Password Not Correct!", map);
-				jObject.put("outputResult", "-4");
+				jObject.put("outputResult", "-5");
 				res.getWriter().write(jObject.toString());
 				return;
 			}
 			
-			// 회원가입 
-			int check = MemberDAO.addMember(inputMemberStatus, inputMemberLevel, encryptMemberMajor, encryptMemberCareer, encryptMemberEmail, encryptMemberName, encryptMemberPassword, inputMemberImage);
+			// Join member 
+			int check = MemberDAO.addMember(inputMemberStatus, inputMemberLevel, inputCurrentDate, encryptMemberMajor, encryptMemberCareer, encryptMemberEmail, encryptMemberName, encryptMemberPassword, inputMemberImage);
 
 			if(check != 1) {
 				CommonUtil.commonPrintLog("FAIL", className, "Add Member Fail", map);
-				jObject.put("outputResult", "-5");
+				jObject.put("outputResult", "-6");
 				res.getWriter().write(jObject.toString());
 				return;
 			}			
 			
+			// Create MemberUid
+			String memberUid = encryptMemberEmail.substring(0,6) + encryptMemberName.substring(0,6) + Long.toString(inputCurrentDate).substring(0,4);
+			System.out.println(memberUid);
+			int createMemberUid = MemberDAO.addMemberUid(encryptMemberEmail, memberUid);
+			
 			// 완료 
-			CommonUtil.commonPrintLog("SUCCESS", className, "User Login OK", map);			
+			CommonUtil.commonPrintLog("SUCCESS", className, "User Join OK", map);			
 			res.getWriter().write(jObject.toString());
 			return;
 			
 			
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void logoutMember(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+				
+		try {
+			HttpSession session = req.getSession(false);
+			
+			// 세션이 없는 경우
+			if(session == null) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				res.getWriter().write("-1");
+				return;
+			}
+			
+			session.invalidate();
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "User Logout OK", map);
+			res.getWriter().write("1");
+
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}

@@ -36,14 +36,22 @@ public class MemberView extends HttpServlet {
 				map.put("ACTION", "checkMember");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				MemberController.checkMember(req,res);
+				break;
 			case "loginMember":
 				map.put("ACTION", "loginMember");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				MemberController.loginMember(req,res);
+				break;
 			case "joinMember":
 				map.put("ACTION", "joinMember");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				MemberController.JoinMember(req,res);
+				break;
+			case "logoutMember":
+				map.put("ACTION", "logoutMember");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				MemberController.logoutMember(req,res);
+				break;				
 			}
 			
 			

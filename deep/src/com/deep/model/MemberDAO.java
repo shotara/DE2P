@@ -12,13 +12,14 @@ public class MemberDAO {
 	
 	private static final String namespace = "member";
 	
-	public static int checkMember(String inputMemberEmail) {
+	public static int checkMember(int mode, String inputMemberParam) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);
 		
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("memberEmail", inputMemberEmail);
+			map.put("mode", mode);
+			map.put("memberParam", inputMemberParam);
 
 			return (int)sqlSession.selectOne(namespace + ".checkMember", map);
 			
@@ -27,6 +28,18 @@ public class MemberDAO {
 		}
 	}
 
+	public static Member getMemberByMemberNo(int inputMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (Member)sqlSession.selectOne(namespace + ".getMemberByMemberNo", inputMemberNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 	public static Member getMemberByMemberMail(String encryptMemberEmail, String encryptMemberPassword) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);
@@ -58,6 +71,7 @@ public class MemberDAO {
 	public static int addMember(
 			int inputMemberStatus, 
 			int inputMemberLevel, 
+			long inputCurrentDate,
 			String encryptMemberMajor,
 			String encryptMemberCareer, 
 			String encryptMemberEmail, 
@@ -70,8 +84,9 @@ public class MemberDAO {
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("memberStatus", inputMemberStatus);
-			map.put("memberLevel", inputMemberLevel);			
-			map.put("memberMajor", encryptMemberMajor);
+			map.put("memberLevel", inputMemberLevel);	
+			map.put("inputCurrentDate", inputCurrentDate);
+			map.put("memberMajor", encryptMemberMajor);			
 			map.put("memberCareer", encryptMemberCareer);			
 			map.put("memberEmail", encryptMemberEmail);
 			map.put("memberName", encryptMemberName);			
@@ -84,4 +99,46 @@ public class MemberDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static int addMemberUid(String encryptMemberEmail, String memberUid) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();		
+			map.put("memberEmail", encryptMemberEmail);
+			map.put("memberUid", memberUid);			
+
+			return (int)sqlSession.insert(namespace + ".addMemberUid", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public static int setMember(
+			int inputMemberNo, 
+			int inputMemberLevel, 
+			String encryptMemberMajor,
+			String encryptMemberCareer, 
+			String encryptMemberName,
+			String encryptMemberPassword) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberNo", inputMemberNo);
+			map.put("memberMajor", encryptMemberMajor);			
+			map.put("memberCareer", encryptMemberCareer);			
+			map.put("memberName", encryptMemberName);			
+			map.put("memberPassword", encryptMemberPassword);
+
+			return (int)sqlSession.insert(namespace + ".setMember", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 }
