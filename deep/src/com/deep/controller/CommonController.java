@@ -24,14 +24,23 @@ public class CommonController {
 	private static final int KEY_SIZE = 1024;
 	
 	public static void initMain(HttpServletRequest req, HttpServletResponse res) {
-		// TODO Auto-generated method stub
-		
+	
+		HashMap<String, String> map = new HashMap<String, String>();
+	
+		try{
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Init Main OK", map);
+			req.getRequestDispatcher("/index.jsp").forward(req, res);
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void getRSAPublicKey(HttpServletRequest req, HttpServletResponse res) {
 
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("USER-IP", req.getRemoteAddr());
 		
 		try {			
 			// 키 생성
