@@ -8,31 +8,25 @@ public class Follow {
 		super();
 	}
 	
-	public int getdeepFollowing()
-	{
+	public int getdeepFollowing() {
 		return deepFollowing;
 	}
 	
-	public void setdeepFollowing(int deepFollowing)
-	{
+	public void setdeepFollowing(int deepFollowing)	{
 		this.deepFollowing = deepFollowing;
 	}
 	
-	public int getdeepFollower()
-	{
+	public int getdeepFollower() {
 		return deepFollower;
 	}
 	
-	public void setdeepFollower(int deepFollower)
-	{
+	public void setdeepFollower(int deepFollower) {
 		this.deepFollower = deepFollower;
 	}
 	
-	public Follow(int deepFollowing, int deepFollower)
-	{
+	public Follow(int deepFollowing, int deepFollower) {
 		super();
 		this.deepFollowing = deepFollowing;
 		this.deepFollower = deepFollower;
 	}
-
 }
