@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+			
+<mapper namespace="upload">
+
+	<select id="addUpload" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO deep_upload(deepMemberNo, deepUploadCategory, deepUploadStatus, deepUploadThumbnail, deepUploadCreateDate, deepUploadDeleteDate, deepUploadFileSize, deepUploadFileExtension, deepUploadOriginalFileName, deepUploadEncrytFileName)
+		VALUES (#{memberNo}, #{uploadCategory}, #{uploadStatus}, #{uploadThumbnail}, #{uploadCreateDate}, #{uploadDeleteDate}, #{uploadFileSize}, #{uploadFileExtension}, #{uploadOriginalFileName}, #{uploadEncrytFileName})
+	</select>
+	
+	<select id="getUploadLastInsertKey" resultType="int">
+		SELECT max(deepUploadNo) FROM deep_upload
+	</select>
+
+	<select id="getUploadByUploadNo" parameterType="int" resultType="com.deep.model.domain.Upload">
+		SELECT * FROM deep_upload WHERE deepUploadNo=#{uploadNo}
+	</select>
+	
+	<select id="setUpload" parameterType="java.util.HashMap" resultType="int">
+	    UPDATE deep_upload SET deepUploadStatus=#{uploadStatus}, deepUploadDeleteDate=#{uploadDeleteDate} WHERE deepUploadNo=#{uploadNo} AND deepMemberNo=#{memberNo}
+	</select>	
+</mapper>

@@ -79,7 +79,7 @@ public class MemberDAO {
 			String encryptMemberPassword, 
 			int inputMemberImage) {
 		
-		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
@@ -93,8 +93,15 @@ public class MemberDAO {
 			map.put("memberPassword", encryptMemberPassword);
 			map.put("memberImage", inputMemberImage);
 
-			return (int)sqlSession.insert(namespace + ".addMember", map);
+			int check = (int)sqlSession.insert(namespace + ".addMember", map);
 			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
 		} finally {
 			sqlSession.close();
 		}
@@ -102,14 +109,22 @@ public class MemberDAO {
 
 	public static int addMemberUid(String encryptMemberEmail, String memberUid) {
 		
-		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();		
 			map.put("memberEmail", encryptMemberEmail);
 			map.put("memberUid", memberUid);			
 
-			return (int)sqlSession.insert(namespace + ".addMemberUid", map);
+			int check = (int)sqlSession.insert(namespace + ".addMemberUid", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
 			
 		} finally {
 			sqlSession.close();
@@ -124,7 +139,7 @@ public class MemberDAO {
 			String encryptMemberName,
 			String encryptMemberPassword) {
 		
-		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
@@ -134,11 +149,42 @@ public class MemberDAO {
 			map.put("memberName", encryptMemberName);			
 			map.put("memberPassword", encryptMemberPassword);
 
-			return (int)sqlSession.insert(namespace + ".setMember", map);
+			int check = (int)sqlSession.update(namespace + ".setMember", map);
 			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
 		} finally {
 			sqlSession.close();
 		}
 	}
 
+	public static boolean setMemberImg(int inputMemberNo, int inputUploadNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberNo", inputMemberNo);
+			map.put("uploadNo", inputUploadNo);			
+
+			int check = (int)sqlSession.update(namespace + ".setMemberImg", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return true;
+			} else {
+				sqlSession.rollback();
+				return false;
+			}
+			
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

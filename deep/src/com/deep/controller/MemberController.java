@@ -1,4 +1,4 @@
-package com.deep.controller;
+ package com.deep.controller;
 
 import java.io.File;
 import java.security.PrivateKey;
@@ -12,11 +12,21 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
+import com.deep.config.GlobalValue;
 import com.deep.model.MemberDAO;
+import com.deep.model.UploadDAO;
 import com.deep.model.domain.Member;
 import com.deep.model.domain.MemberUid;
+import com.deep.model.domain.Upload;
 import com.deep.util.CommonUtil;
 import com.deep.util.EncryptUtil;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.oreilly.servlet.multipart.FilePart;
+import com.oreilly.servlet.multipart.MultipartParser;
+import com.oreilly.servlet.multipart.Part;
+
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.name.Rename;
 
 public class MemberController {
 
@@ -322,6 +332,7 @@ public class MemberController {
 		}
 	}
 
+	// Logout Member
 	public static void logoutMember(HttpServletRequest req, HttpServletResponse res) {
 		
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -344,5 +355,167 @@ public class MemberController {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// Set Member Image
+	public static void changeMemberImg(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			HttpSession session = req.getSession();
+			
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+			String sessionMemberUid = session.getAttribute("deepMemberUid") != null ? session.getAttribute("deepMemberUid").toString() : "";
+			
+
+			// 회원인지 확인
+			if(!(sessionMemberNo > 0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				return;
+			}
+			
+			Part part = null;
+			int check = 0;
+			
+			MultipartParser mRequest = new MultipartParser(req, GlobalValue.MAX_FILE_SIZE);
+			mRequest.setEncoding("UTF-8");
+
+			// 파일 업로드
+			while((part = mRequest.readNextPart()) != null) {
+				String paramName = part.getName();
+				
+				if(part.isFile()) {
+					FilePart filePart = (FilePart)part;
+					String fileName = filePart.getFileName();
+	
+					filePart.setRenamePolicy(new DefaultFileRenamePolicy()); //중복 파일 이름 정의    
+			
+					if((fileName != null)) {
+						
+						String filePath = req.getRealPath("") + File.separator + GlobalValue.UPLOAD_DIRECTORY + File.separator + fileName;	
+						File file = new File(filePath);
+						long fileSize = filePart.writeTo(file);
+						
+						Thumbnails.of(new File(filePath)).size(400, 400).outputFormat("jpg").outputQuality(0.8).toFiles(Rename.NO_CHANGE);
+						
+						if(!file.isFile() || fileSize == 0) {
+							map.put("USER-NO", Integer.toString(sessionMemberNo));
+							CommonUtil.commonPrintLog("ERROR", className, "File Make Fail", map);
+							res.getWriter().write("-2");
+							return;
+						}
+						
+						HashMap<String, Object> uploadMap = new HashMap<String, Object>();
+						uploadMap.put("deepMemberNo", sessionMemberNo);
+						uploadMap.put("deepMemberUid", MemberDAO.getMemberUid(sessionMemberNo));
+	
+						check = UploadController.uploadFile(uploadMap, className, fileName, filePath);
+						if(!(check > 0)) {
+							map.put("USER-NO", Integer.toString(sessionMemberNo));
+							CommonUtil.commonPrintLog("ERROR", className, "File Upload Fail", map);
+							res.getWriter().write("-3");
+							return;
+						}
+	
+						// 임시 파일 지우기
+						if(!file.delete()) {
+							map.put("USER-NO", Integer.toString(sessionMemberNo));
+							CommonUtil.commonPrintLog("ERROR", className, "File Delete Fail", map);
+							res.getWriter().write("-4");
+							return;
+						}						
+					}
+				}
+			}
+			
+			// 회원 DB 수정
+			if(!MemberDAO.setMemberImg(sessionMemberNo, check)) {
+				map.put("USER-NO", Integer.toString(sessionMemberNo));
+				CommonUtil.commonPrintLog("ERROR", className, "DB Fail - Update", map);
+				res.getWriter().write("-5");
+				return;
+			}
+
+			// 세션에 저장
+			Member member = MemberDAO.getMemberByMemberNo(sessionMemberNo);
+			session.setAttribute("DeepMemberImage", getMemberProfileImg(member.getDeepMemberImage()));
+
+			// 업로드한 이미지 URL
+			String uploadedImage = MemberController.getMemberProfileImg(member.getDeepMemberImage());
+				
+			// AES키 가져오기
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+							
+			map.put("USER-NO", Integer.toString(sessionMemberNo));
+			CommonUtil.commonPrintLog("SUCCESS", className, "Change Member Profile Image OK", map);
+			
+			// page redirect
+			res.sendRedirect(req.getContextPath() + "/main?action=getMyPage");							
+
+			return;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 회원 프로필 사진 초기화하기
+	public static void resetMemberProfileImg(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			HttpSession session = req.getSession();
+			
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;		
+
+			// 회원인지 확인
+			if(!(sessionMemberNo > 0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				res.getWriter().write("-1");
+				return;
+			}
+			
+			// 프로필 사진 초기화
+			if(!MemberDAO.setMemberImg(sessionMemberNo, -1)) {
+				map.put("USER-NO", Integer.toString(sessionMemberNo));
+				CommonUtil.commonPrintLog("FAIL", className, "DB Fail - Update (setMember)", map);
+				res.getWriter().write("-2");
+				return;				
+			}
+
+			// 세션에 저장
+			session.setAttribute("deepMemberProfileImg", GlobalValue.imgNoProfile);
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Reset Member Profile Image OK", map);
+			res.getWriter().write("1");
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 회원 프로필 사진 가져오기
+	public static String getMemberProfileImg(int inputMemberProfileImg) {
+
+		try {
+			if(inputMemberProfileImg == -1) {
+				return GlobalValue.imgNoProfile;
+			}
+			
+			Upload upload = UploadDAO.getUploadByUploadNo(inputMemberProfileImg);
+
+			HashMap<String, Object> uploadMap = new HashMap<String, Object>();
+			uploadMap.put("deepMemberUid", MemberDAO.getMemberUid(upload.getDeepMemberNo()));
+
+			return UploadController.getAWSKeyName(1, uploadMap, upload.getDeepUploadCategory(), true) + upload.getDeepUploadEncrytFileName() + "." + upload.getDeepUploadFileExtension();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "";
 	}
 }

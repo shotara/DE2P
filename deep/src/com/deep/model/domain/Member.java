@@ -10,7 +10,7 @@ public class Member {
 	private String deepMemberEmail;
 	private String deepMemberName;
 	private String deepMemberPassword;
-	private String deepMemberImage;
+	private int deepMemberImage;
 	
 	public Member() {
 		super();
@@ -81,17 +81,17 @@ public class Member {
 		this.deepMemberPassword = deepMemberPassword;
 	}
 
-	public String getDeepMemberImage() {
+	public int getDeepMemberImage() {
 		return deepMemberImage;
 	}
 
-	public void setDeepMemberImage(String deepMemberImage) {
+	public void setDeepMemberImage(int deepMemberImage) {
 		this.deepMemberImage = deepMemberImage;
 	}
 
 	public Member(int deepMemberNo, int deepMemberStatus, int deepMemberLevel, String deepMemberMajor,
 			String deepMemberCareer, String deepMemberEmail, String deepMemberName, String deepMemberPassword,
-			String deepMemberImage) {
+			int deepMemberImage) {
 		super();
 		this.deepMemberNo = deepMemberNo;
 		this.deepMemberStatus = deepMemberStatus;
