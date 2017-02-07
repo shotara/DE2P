@@ -4,4 +4,27 @@
 			
 <mapper namespace="follow">
 
+<select id="getFollower" parameterType="int" resultType="int">
+	select deepFollower 
+	from deep_follow
+	where deepFollower=#{deepFollower}
+</select>
+
+<select id="getFollowing" parameterType="int" resultType="int" >
+	select deepFollowing
+	from deep_follow
+	where deepFollower=#{deepFollower}
+</select>
+
+<insert id="addFollow" parameterType="int" >
+	insert into deep_follow(deepFollowing)
+	values(#{DeepFollowing})
+</insert>
+
+<delete id="setFollow" parameterType="int" >
+	delete from deep_follow
+	where deepFollowing =#{DeepFollowing}
+</delete>
+
+
 </mapper>
