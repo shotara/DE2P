@@ -51,7 +51,12 @@ public class MemberView extends HttpServlet {
 				map.put("ACTION", "logoutMember");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				MemberController.logoutMember(req,res);
-				break;				
+				break;		
+			case "changeMemberImg":
+				map.put("ACTION", "changeMemberImg");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				MemberController.changeMemberImg(req,res);
+				break;					
 			}
 			
 			

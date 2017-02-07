@@ -26,7 +26,7 @@ public class UploadController {
 			long inputUploadFileSize = 0;
 			String inputUploadFileExtension = "";
 			String inputUploadOriginalFileName = "";
-			String inputUploadEncrytFileName = "";
+			String inputUploadEncryptFileName = "";
 			
 			// AWS S3 업로드 키네임 설정
 			switch(location) {
@@ -48,7 +48,7 @@ public class UploadController {
 			
 			// 업로드할 파일 이름 암호화
 			inputUploadOriginalFileName = fileName;
-			inputUploadEncrytFileName = EncryptUtil.MD5_Encode(fileName + System.currentTimeMillis()); // 32 bytes
+			inputUploadEncryptFileName = EncryptUtil.MD5_Encode(fileName + System.currentTimeMillis()); // 32 bytes
 					
 			// 파일 사이즈 구하기
 			File file = new File(filePath);
@@ -59,12 +59,12 @@ public class UploadController {
 			}
 			
 			// 업로드 테이블에 삽입
-			if(!UploadDAO.addUpload(Integer.parseInt(uploadMap.get("deepMemberNo").toString()), inputUploadCategory, inputUploadStatus, inputUploadThumbnail, inputUploadCreateDate, inputUploadDeleteDate, inputUploadFileSize, inputUploadFileExtension, inputUploadOriginalFileName, inputUploadEncrytFileName)) {
+			if(!UploadDAO.addUpload(Integer.parseInt(uploadMap.get("deepMemberNo").toString()), inputUploadCategory, inputUploadStatus, inputUploadThumbnail, inputUploadCreateDate, inputUploadDeleteDate, inputUploadFileSize, inputUploadFileExtension, inputUploadOriginalFileName, inputUploadEncryptFileName)) {
 				return -3;
 			}
 			
 			// AWS S3 업로드
-			String keyName = inputUploadKeyName + inputUploadEncrytFileName + "." + inputUploadFileExtension;
+			String keyName = inputUploadKeyName + inputUploadEncryptFileName + "." + inputUploadFileExtension;
 			if(!AmazonSSS.singleFileUpload(keyName, filePath)) {
 				return -4;
 			}
@@ -94,7 +94,7 @@ public class UploadController {
 						return -1;
 					}
 					
-					if(!AmazonSSS.singleFileDelete(getAWSKeyName(2, uploadMap, upload.getDeepUploadCategory(), false) + upload.getDeepUploadEncrytFileName() + "." + upload.getDeepUploadFileExtension())) {
+					if(!AmazonSSS.singleFileDelete(getAWSKeyName(2, uploadMap, upload.getDeepUploadCategory(), false) + upload.getDeepUploadEncryptFileName() + "." + upload.getDeepUploadFileExtension())) {
 						return -2;
 					}					
 				}

@@ -21,7 +21,7 @@
 	</select>
 	
 	<select id="getMemberUid" parameterType="int" resultType="com.deep.model.domain.MemberUid">
-		SELECT * FROM deep_member WHERE deepMemberNo=#{inputMemberNo}
+		SELECT * FROM deep_member_uid WHERE deepMemberNo=#{inputMemberNo}
 	</select>
 	
 	<!-- MemberController.joinMember() -->
@@ -37,10 +37,14 @@
 	
 	<!-- CommonController.setProfile -->
 	<select id="setMember" parameterType="java.util.HashMap" resultType="int">
-		UPDATE deep_member SET deepMemberMajor=#{memberMajor}, deepMemberCareer=#{memberCareer}, deepMemberName=#{memberName}, deepMemberPassword=#{memberPassword})
+		UPDATE deep_member SET deepMemberMajor=#{memberMajor}, deepMemberCareer=#{memberCareer}, deepMemberName=#{memberName}, deepMemberPassword=#{memberPassword}
 		WHERE deepMemberNo=#{memberNo}
 	</select>
 	
+	<select id="setMemberImg" parameterType="java.util.HashMap" resultType="int">
+		UPDATE deep_member SET deepMemberImage=#{uploadNo}
+		WHERE deepMemberNo=#{memberNo}
+	</select>
 	<!-- CommonMethod -->
 	<select id="getMemberByMemberNo" parameterType="int" resultType="com.deep.model.domain.Member">
 		SELECT * FROM deep_member WHERE deepMemberNo=#{inputMemberNo}

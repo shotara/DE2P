@@ -30,7 +30,7 @@ import net.coobird.thumbnailator.name.Rename;
 
 public class MemberController {
 
-	public static final String className = "MemberContorller";
+	public static final String className = "MemberController";
 
 	public static void checkMember(HttpServletRequest req, HttpServletResponse res) {
 
@@ -176,9 +176,9 @@ public class MemberController {
 			// Success
 			MemberController.setMemberSession(session, member, outputMemberUid.getDeepMemberUid(), aesKey);
 			
-			System.out.println(session.getAttribute("deepMemberNo"));
 			map.put("USER-NO", "0");
-			CommonUtil.commonPrintLog("SUCCESS", className, "User Login OK", map);			
+			CommonUtil.commonPrintLog("SUCCESS", className, "User Login OK", map);		
+			jObject.put("outputResult", "1");
 			res.getWriter().write(jObject.toString());
 			return;
 			
@@ -318,7 +318,6 @@ public class MemberController {
 			
 			// Create MemberUid
 			String memberUid = encryptMemberEmail.substring(0,6) + encryptMemberName.substring(0,6) + Long.toString(inputCurrentDate).substring(0,4);
-			System.out.println(memberUid);
 			int createMemberUid = MemberDAO.addMemberUid(encryptMemberEmail, memberUid);
 			
 			// 완료 
@@ -408,9 +407,10 @@ public class MemberController {
 						
 						HashMap<String, Object> uploadMap = new HashMap<String, Object>();
 						uploadMap.put("deepMemberNo", sessionMemberNo);
-						uploadMap.put("deepMemberUid", MemberDAO.getMemberUid(sessionMemberNo));
-	
+						uploadMap.put("deepMemberUid", MemberDAO.getMemberUid(sessionMemberNo).getDeepMemberUid());
+						
 						check = UploadController.uploadFile(uploadMap, className, fileName, filePath);
+						
 						if(!(check > 0)) {
 							map.put("USER-NO", Integer.toString(sessionMemberNo));
 							CommonUtil.commonPrintLog("ERROR", className, "File Upload Fail", map);
@@ -451,7 +451,7 @@ public class MemberController {
 			CommonUtil.commonPrintLog("SUCCESS", className, "Change Member Profile Image OK", map);
 			
 			// page redirect
-			res.sendRedirect(req.getContextPath() + "/main?action=getMyPage");							
+			res.sendRedirect(req.getContextPath() + "/");							
 
 			return;
 
@@ -510,7 +510,7 @@ public class MemberController {
 			HashMap<String, Object> uploadMap = new HashMap<String, Object>();
 			uploadMap.put("deepMemberUid", MemberDAO.getMemberUid(upload.getDeepMemberNo()));
 
-			return UploadController.getAWSKeyName(1, uploadMap, upload.getDeepUploadCategory(), true) + upload.getDeepUploadEncrytFileName() + "." + upload.getDeepUploadFileExtension();
+			return UploadController.getAWSKeyName(1, uploadMap, upload.getDeepUploadCategory(), true) + upload.getDeepUploadEncryptFileName() + "." + upload.getDeepUploadFileExtension();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

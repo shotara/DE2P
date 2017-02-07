@@ -12,7 +12,7 @@ public class UploadDAO {
 	public static final String namespace = "upload";
 	
 	public static boolean addUpload(int inputMemberNo, int inputUploadCategory, int inputUploadStatus, int inputUploadThumbnail, long inputUploadCreateDate,
-			long inputUploadDeleteDate, long inputUploadFileSize, String inputUploadFileExtension, String inputUploadOriginalFileName, String inputUploadEncrytFileName) {
+			long inputUploadDeleteDate, long inputUploadFileSize, String inputUploadFileExtension, String inputUploadOriginalFileName, String inputUploadEncryptFileName) {
 	
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		int check = 0;
@@ -28,7 +28,7 @@ public class UploadDAO {
 			map.put("uploadFileSize", inputUploadFileSize);
 		    map.put("uploadFileExtension", inputUploadFileExtension);
 		    map.put("uploadOriginalFileName", inputUploadOriginalFileName);
-		    map.put("uploadEncrytFileName", inputUploadEncrytFileName);
+		    map.put("uploadEncryptFileName", inputUploadEncryptFileName);
 			
 			check = (Integer)sqlSession.insert(namespace + ".addUpload", map);
 

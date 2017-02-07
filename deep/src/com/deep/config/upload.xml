@@ -5,8 +5,8 @@
 <mapper namespace="upload">
 
 	<select id="addUpload" parameterType="java.util.HashMap" resultType="int">
-		INSERT INTO deep_upload(deepMemberNo, deepUploadCategory, deepUploadStatus, deepUploadThumbnail, deepUploadCreateDate, deepUploadDeleteDate, deepUploadFileSize, deepUploadFileExtension, deepUploadOriginalFileName, deepUploadEncrytFileName)
-		VALUES (#{memberNo}, #{uploadCategory}, #{uploadStatus}, #{uploadThumbnail}, #{uploadCreateDate}, #{uploadDeleteDate}, #{uploadFileSize}, #{uploadFileExtension}, #{uploadOriginalFileName}, #{uploadEncrytFileName})
+		INSERT INTO deep_upload(deepMemberNo, deepUploadCategory, deepUploadStatus, deepUploadThumbnail, deepUploadCreateDate, deepUploadDeleteDate, deepUploadFileSize, deepUploadFileExtension, deepUploadOriginalFileName, deepUploadEncryptFileName)
+		VALUES (#{memberNo}, #{uploadCategory}, #{uploadStatus}, #{uploadThumbnail}, #{uploadCreateDate}, #{uploadDeleteDate}, #{uploadFileSize}, #{uploadFileExtension}, #{uploadOriginalFileName}, #{uploadEncryptFileName})
 	</select>
 	
 	<select id="getUploadLastInsertKey" resultType="int">

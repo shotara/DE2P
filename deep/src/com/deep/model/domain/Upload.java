@@ -12,7 +12,7 @@ public class Upload {
 	private long deepUploadFileSize;
 	private String deepUploadFileExtension;
 	private String deepUploadOriginalFileName;
-	private String deepUploadEncrytFileName;
+	private String deepUploadEncryptFileName;
 	public Upload() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -77,15 +77,15 @@ public class Upload {
 	public void setDeepUploadOriginalFileName(String deepUploadOriginalFileName) {
 		this.deepUploadOriginalFileName = deepUploadOriginalFileName;
 	}
-	public String getDeepUploadEncrytFileName() {
-		return deepUploadEncrytFileName;
+	public String getDeepUploadEncryptFileName() {
+		return deepUploadEncryptFileName;
 	}
-	public void setDeepUploadEncrytFileName(String deepUploadEncrytFileName) {
-		this.deepUploadEncrytFileName = deepUploadEncrytFileName;
+	public void setDeepUploadEncryptFileName(String deepUploadEncryptFileName) {
+		this.deepUploadEncryptFileName = deepUploadEncryptFileName;
 	}
 	public Upload(int deepUploadNo, int deepMemberNo, int deepUploadCategory, int deepUploadStatus,
 			int deepUploadThumbnail, long deepUploadCreateDate, long deepUploadDeleteDate, long deepUploadFileSize,
-			String deepUploadFileExtension, String deepUploadOriginalFileName, String deepUploadEncrytFileName) {
+			String deepUploadFileExtension, String deepUploadOriginalFileName, String deepUploadEncryptFileName) {
 		super();
 		this.deepUploadNo = deepUploadNo;
 		this.deepMemberNo = deepMemberNo;
@@ -97,6 +97,6 @@ public class Upload {
 		this.deepUploadFileSize = deepUploadFileSize;
 		this.deepUploadFileExtension = deepUploadFileExtension;
 		this.deepUploadOriginalFileName = deepUploadOriginalFileName;
-		this.deepUploadEncrytFileName = deepUploadEncrytFileName;
+		this.deepUploadEncryptFileName = deepUploadEncryptFileName;
 	}
 }
