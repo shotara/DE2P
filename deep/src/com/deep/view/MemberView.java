@@ -56,9 +56,13 @@ public class MemberView extends HttpServlet {
 				map.put("ACTION", "changeMemberImg");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				MemberController.changeMemberImg(req,res);
-				break;					
+				break;		
+			case "resetMemberProfileImg":
+				map.put("ACTION", "resetMemberProfileImg");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				MemberController.resetMemberProfileImg(req,res);
+				break;						
 			}
-			
 			
 		} catch (Exception e) {
 			

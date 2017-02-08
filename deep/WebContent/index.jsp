@@ -54,7 +54,11 @@
 
 	<form action="member?action=changeMemberImg" method="post" enctype="multipart/form-data">
 		<input type="file" name="inputMemberImage">
-		<input type="submit" />
+		<input type="submit" value="changeProfile" />
+	</form>
+		<br/>
+	<form action="member?action=resetMemberProfileImg" method="post">
+		<input type="submit" value="resetProfileImg" />
 	</form>
 </body>
 </html>

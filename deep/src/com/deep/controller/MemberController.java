@@ -201,8 +201,8 @@ public class MemberController {
 			session.setAttribute("deepMemberEmail", EncryptUtil.AES_Decode(member.getDeepMemberEmail(), aesKey));
 			session.setAttribute("deepMemberMajor", EncryptUtil.AES_Decode(member.getDeepMemberMajor(), aesKey));
 			session.setAttribute("deepMemberCareer", EncryptUtil.AES_Decode(member.getDeepMemberCareer(), aesKey));
-//			session.setAttribute("deepMemberImage", MemberController.getMemberProfileImg(member.getDeepMemberImage();	    
-			
+			session.setAttribute("deepMemberImage", MemberController.getMemberProfileImg(member.getDeepMemberImage()));	    
+		
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -498,17 +498,17 @@ public class MemberController {
 	}
 	
 	// 회원 프로필 사진 가져오기
-	public static String getMemberProfileImg(int inputMemberProfileImg) {
+	public static String getMemberProfileImg(int inputMemberImage) {
 
 		try {
-			if(inputMemberProfileImg == -1) {
+			if(inputMemberImage == -1) {
 				return GlobalValue.imgNoProfile;
 			}
 			
-			Upload upload = UploadDAO.getUploadByUploadNo(inputMemberProfileImg);
+			Upload upload = UploadDAO.getUploadByUploadNo(inputMemberImage);
 
 			HashMap<String, Object> uploadMap = new HashMap<String, Object>();
-			uploadMap.put("deepMemberUid", MemberDAO.getMemberUid(upload.getDeepMemberNo()));
+			uploadMap.put("deepMemberUid", MemberDAO.getMemberUid(upload.getDeepMemberNo()).getDeepMemberUid());
 
 			return UploadController.getAWSKeyName(1, uploadMap, upload.getDeepUploadCategory(), true) + upload.getDeepUploadEncryptFileName() + "." + upload.getDeepUploadFileExtension();
 			
