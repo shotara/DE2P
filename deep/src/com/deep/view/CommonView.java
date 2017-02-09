@@ -32,7 +32,7 @@ public class CommonView extends HttpServlet {
 		map.put("USER-IP", req.getRemoteAddr());
 
 		try {
-//			// 점검 페이지 이동
+//			// 점검 페이지 이동 give me the donation z
 //			if(!Boolean.parseBoolean(AdminDAO.getAdminFlag(1).getHbiAdminFlagValue())) {
 //				req.setAttribute("outputDowntimeTime", AdminDAO.getAdminVariable(1).getHbiAdminVariableValue());
 //				req.setAttribute("outputDowntimeContent", AdminDAO.getAdminVariable(2).getHbiAdminVariableValue());

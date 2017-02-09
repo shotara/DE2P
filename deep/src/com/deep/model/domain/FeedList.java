@@ -1,7 +1,7 @@
 package com.deep.model.domain;
 
-public class Feed {
-
+public class FeedList {
+	
 	private int deepFeedNo;
 	private int deepMemberNo;
 	private int deepCategoryNo;
@@ -9,10 +9,12 @@ public class Feed {
 	private int deepFeedType;
 	private long deepFeedCreateDate;
 	private String deepFeedTitle;
-	private String deepMemberName;
 	private String deepFeedImages;
 	private String deepFeedContent;
-	public Feed() {
+	private int deepFeedLikeCount;
+	private int deepFeedCommentCount;
+	private int deepFeedShareCount;
+	public FeedList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -58,12 +60,6 @@ public class Feed {
 	public void setDeepFeedTitle(String deepFeedTitle) {
 		this.deepFeedTitle = deepFeedTitle;
 	}
-	public String getDeepMemberName() {
-		return deepMemberName;
-	}
-	public void setDeepMemberName(String deepMemberName) {
-		this.deepMemberName = deepMemberName;
-	}
 	public String getDeepFeedImages() {
 		return deepFeedImages;
 	}
@@ -76,9 +72,27 @@ public class Feed {
 	public void setDeepFeedContent(String deepFeedContent) {
 		this.deepFeedContent = deepFeedContent;
 	}
-	public Feed(int deepFeedNo, int deepMemberNo, int deepCategoryNo, int deepFeedStatus, int deepFeedType,
+	public int getDeepFeedLikeCount() {
+		return deepFeedLikeCount;
+	}
+	public void setDeepFeedLikeCount(int deepFeedLikeCount) {
+		this.deepFeedLikeCount = deepFeedLikeCount;
+	}
+	public int getDeepFeedCommentCount() {
+		return deepFeedCommentCount;
+	}
+	public void setDeepFeedCommentCount(int deepFeedCommentCount) {
+		this.deepFeedCommentCount = deepFeedCommentCount;
+	}
+	public int getDeepFeedShareCount() {
+		return deepFeedShareCount;
+	}
+	public void setDeepFeedShareCount(int deepFeedShareCount) {
+		this.deepFeedShareCount = deepFeedShareCount;
+	}
+	public FeedList(int deepFeedNo, int deepMemberNo, int deepCategoryNo, int deepFeedStatus, int deepFeedType,
 			long deepFeedCreateDate, String deepFeedTitle, String deepMemberName, String deepFeedImages,
-			String deepFeedContent) {
+			String deepFeedContent, int deepFeedLikeCount, int deepFeedCommentCount, int deepFeedShareCount) {
 		super();
 		this.deepFeedNo = deepFeedNo;
 		this.deepMemberNo = deepMemberNo;
@@ -87,9 +101,11 @@ public class Feed {
 		this.deepFeedType = deepFeedType;
 		this.deepFeedCreateDate = deepFeedCreateDate;
 		this.deepFeedTitle = deepFeedTitle;
-		this.deepMemberName = deepMemberName;
 		this.deepFeedImages = deepFeedImages;
 		this.deepFeedContent = deepFeedContent;
+		this.deepFeedLikeCount = deepFeedLikeCount;
+		this.deepFeedCommentCount = deepFeedCommentCount;
+		this.deepFeedShareCount = deepFeedShareCount;
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.apache.ibatis.session.SqlSession;
 
 import com.deep.model.domain.Member;
+import com.deep.model.domain.MemberFavorite;
 import com.deep.model.domain.MemberUid;
 import com.deep.util.DAOFactory;
 
@@ -186,5 +187,10 @@ public class MemberDAO {
 		} finally {
 			sqlSession.close();
 		}
+	}
+
+	public static MemberFavorite getMemberFavorite(int sessionMemberNo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

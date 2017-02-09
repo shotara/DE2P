@@ -201,7 +201,7 @@ public class MemberController {
 			session.setAttribute("deepMemberEmail", EncryptUtil.AES_Decode(member.getDeepMemberEmail(), aesKey));
 			session.setAttribute("deepMemberMajor", EncryptUtil.AES_Decode(member.getDeepMemberMajor(), aesKey));
 			session.setAttribute("deepMemberCareer", EncryptUtil.AES_Decode(member.getDeepMemberCareer(), aesKey));
-			session.setAttribute("deepMemberImage", MemberController.getMemberProfileImg(member.getDeepMemberImage()));	    
+			session.setAttribute("deepMemberImage", MemberController.getMemberImage(member.getDeepMemberImage()));	    
 		
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -439,10 +439,10 @@ public class MemberController {
 
 			// 세션에 저장
 			Member member = MemberDAO.getMemberByMemberNo(sessionMemberNo);
-			session.setAttribute("DeepMemberImage", getMemberProfileImg(member.getDeepMemberImage()));
+			session.setAttribute("DeepMemberImage", getMemberImage(member.getDeepMemberImage()));
 
 			// 업로드한 이미지 URL
-			String uploadedImage = MemberController.getMemberProfileImg(member.getDeepMemberImage());
+			String uploadedImage = MemberController.getMemberImage(member.getDeepMemberImage());
 				
 			// AES키 가져오기
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
@@ -498,7 +498,7 @@ public class MemberController {
 	}
 	
 	// 회원 프로필 사진 가져오기
-	public static String getMemberProfileImg(int inputMemberImage) {
+	public static String getMemberImage(int inputMemberImage) {
 
 		try {
 			if(inputMemberImage == -1) {
