@@ -13,62 +13,7 @@ public class MemberDAO {
 	
 	private static final String namespace = "member";
 	
-	public static int checkMember(int mode, String inputMemberParam) {
-		
-		SqlSession sqlSession = DAOFactory.getSqlSession(true);
-		
-		try {	
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("mode", mode);
-			map.put("memberParam", inputMemberParam);
-
-			return (int)sqlSession.selectOne(namespace + ".checkMember", map);
-			
-		} finally {
-			sqlSession.close();
-		}
-	}
-
-	public static Member getMemberByMemberNo(int inputMemberNo) {
-		
-		SqlSession sqlSession = DAOFactory.getSqlSession(true);
-		
-		try {	
-			return (Member)sqlSession.selectOne(namespace + ".getMemberByMemberNo", inputMemberNo);
-			
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
-	public static Member getMemberByMemberMail(String encryptMemberEmail, String encryptMemberPassword) {
-		
-		SqlSession sqlSession = DAOFactory.getSqlSession(true);
-		
-		try {	
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("memberEmail", encryptMemberEmail);
-			map.put("memberPassword", encryptMemberPassword);
-
-			return (Member)sqlSession.selectOne(namespace + ".getMemberByMemberMail", map);
-			
-		} finally {
-			sqlSession.close();
-		}
-	}
-
-	public static MemberUid getMemberUid(int inputMemberNo) {
-		
-		SqlSession sqlSession = DAOFactory.getSqlSession(true);
-		
-		try {	
-			return (MemberUid)sqlSession.selectOne(namespace + ".getMemberUid", inputMemberNo);
-			
-		} finally {
-			sqlSession.close();
-		}
-	}
-
+	// Insert Method
 	public static int addMember(
 			int inputMemberStatus, 
 			int inputMemberLevel, 
@@ -132,6 +77,8 @@ public class MemberDAO {
 		}
 	}
 	
+	
+	// Update Method
 	public static int setMember(
 			int inputMemberNo, 
 			int inputMemberLevel, 
@@ -188,9 +135,76 @@ public class MemberDAO {
 			sqlSession.close();
 		}
 	}
+	
+	
+	
+	// Select Method
+	public static int checkMember(int mode, String inputMemberParam) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("mode", mode);
+			map.put("memberParam", inputMemberParam);
 
-	public static MemberFavorite getMemberFavorite(int sessionMemberNo) {
-		// TODO Auto-generated method stub
-		return null;
+			return (int)sqlSession.selectOne(namespace + ".checkMember", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static Member getMemberByMemberNo(int inputMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (Member)sqlSession.selectOne(namespace + ".getMemberByMemberNo", inputMemberNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public static Member getMemberByMemberMail(String encryptMemberEmail, String encryptMemberPassword) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberEmail", encryptMemberEmail);
+			map.put("memberPassword", encryptMemberPassword);
+
+			return (Member)sqlSession.selectOne(namespace + ".getMemberByMemberMail", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static MemberUid getMemberUid(int inputMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (MemberUid)sqlSession.selectOne(namespace + ".getMemberUid", inputMemberNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	
+	public static MemberFavorite getMemberFavorite(int inputMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (MemberFavorite)sqlSession.selectOne(namespace + ".getMemberFavorite", inputMemberNo);
+			
+		} finally {
+			sqlSession.close();
+		}
 	}
 }

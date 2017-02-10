@@ -204,6 +204,22 @@ public class CommonUtil {
 			case 15:
 				sdf = new SimpleDateFormat("yy.MM.dd");
 				break;
+			case 16:
+				long currentDate = System.currentTimeMillis()/1000;
+				long compareDate = currentDate - unixTime;
+				
+				Date date2 = new Date(compareDate * 1000L);
+				SimpleDateFormat sdf2 = null;
+				
+				if(compareDate <= 60) {
+					return compareDate + "초 전";
+				} else if(compareDate <= 60*60) {
+					return compareDate/60 + "분 전";
+				} else if(compareDate <= 60*60*24) {
+					return compareDate/(60*60) + "시간 전";	
+				} else {
+					return compareDate/(60*60*24) + "일 전";
+				}
 		}
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT+9"));
 		

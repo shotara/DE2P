@@ -45,8 +45,14 @@
 		UPDATE deep_member SET deepMemberImage=#{uploadNo}
 		WHERE deepMemberNo=#{memberNo}
 	</select>
+	
+	
 	<!-- CommonMethod -->
 	<select id="getMemberByMemberNo" parameterType="int" resultType="com.deep.model.domain.Member">
 		SELECT * FROM deep_member WHERE deepMemberNo=#{inputMemberNo}
+	</select>
+	
+	<select id="getMemberFavorite" parameterType="int" resultType="com.deep.model.domain.MemberFavorite">
+		SELECT * FROM deep_member_favorite WHERE deepMemberNo=#{inputMemberNo}
 	</select>
 </mapper>

@@ -55,20 +55,19 @@ public class CommonController {
 				inputFeedCategory = memberFavorite.getDeepCategoryNo();
 			}
 			
-			// 새로운 피드 리스트를 띄워준다. Param = All  DAO로 가져온다.
+			// 새로운 피드 리스트를 띄워준다. Param =inputFeedCategory  DAO로 가져온다.
 			JSONArray jNewFeedArray = new JSONArray();
 			listMode = 1;
-			ArrayList<FeedList> newFeedList = FeedDAO.getFeedList(listMode, inputFeedCategory, inputNextFeedNo);
+			ArrayList<FeedList> newFeedList = FeedDAO.getFeedList(listMode, inputFeedCategory, inputNextFeedNo, inputCurrentDate);
 			
 			for(int i=0; i>newFeedList.size();i++) {
 				JSONObject jTempObject = new JSONObject();
 				
 				// 인덱스  - jSON은 순서가 없다.
-				jTempObject.put("outputNewFeedListNo", i+1);
+				jTempObject.put("outputNewFeedNo", i+1);
 				
 				// Writer
 				Member member = MemberDAO.getMemberByMemberNo(newFeedList.get(i).getDeepMemberNo());
-				
 				jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(newFeedList.get(i).getDeepMemberNo()).getDeepMemberUid());
 				jTempObject.put("outputMemberName", EncryptUtil.AES_Decode(member.getDeepMemberName(), aesKey));
 				jTempObject.put("outputMemberImage", MemberController.getMemberImage(member.getDeepMemberImage()));
@@ -79,10 +78,10 @@ public class CommonController {
 				jTempObject.put("outputCategoryName", CommonUtil.getCategoryName(newFeedList.get(i).getDeepCategoryNo()));
 				jTempObject.put("outputFeedType", newFeedList.get(i).getDeepFeedType());
 				jTempObject.put("outputFeedTypeName", CommonUtil.getFeedTypeName(newFeedList.get(i).getDeepFeedType()));
-				jTempObject.put("outputFeedCreateDate", inputCurrentDate - newFeedList.get(i).getDeepFeedNo() + "분전");
+				jTempObject.put("outputFeedCreateDate", CommonUtil.convertUnixTime(newFeedList.get(i).getDeepFeedCreateDate(), 16));
 				jTempObject.put("outputFeedTitle", newFeedList.get(i).getDeepFeedNo());
 				
-				//사진들의 썸네일 가져오는 컨트롤러 필요
+				//사진가져오기 1개 or 2개 
 				jTempObject.put("outputFeedImages", newFeedList.get(i).getDeepFeedNo());
 				
 				jTempObject.put("outputFeedContent", newFeedList.get(i).getDeepFeedNo());
@@ -121,13 +120,13 @@ public class CommonController {
 			listMode = 2;
 			if(!(sessionMemberNo>0)) {
 				inputHotFeedCount = 20;
-				ArrayList<FeedList> hotFeedList = FeedDAO.getFeedList(listMode, inputFeedCategory, inputHotFeedCount);
+				ArrayList<FeedList> hotFeedList = FeedDAO.getFeedList(listMode, inputFeedCategory, inputHotFeedCount, inputCurrentDate);
 				
 				for(int i=0; i>hotFeedList.size();i++) {
 					JSONObject jTempObject = new JSONObject();
 					
 					// 인덱스
-					jTempObject.put("outpuHotFeedListNo", i+1);
+					jTempObject.put("outpuHotFeedNo", i+1);
 					
 					// Writer
 					Member member = MemberDAO.getMemberByMemberNo(hotFeedList.get(i).getDeepMemberNo());
@@ -154,13 +153,13 @@ public class CommonController {
 				
 			} else { //로그인 되있는 경우 hotFeedList와 hotFeedListByCategory를 둘 다 가져온다.
 				inputHotFeedCount = 10;
-				ArrayList<FeedList> hotFeedList = FeedDAO.getFeedList(listMode, inputFeedCategory, inputHotFeedCount);
+				ArrayList<FeedList> hotFeedList = FeedDAO.getFeedList(listMode, inputFeedCategory, inputHotFeedCount, inputCurrentDate);
 				
 				for(int i=0; i>hotFeedList.size();i++) {
 					JSONObject jTempObject = new JSONObject();
 					
 					// 인덱스
-					jTempObject.put("outpuHotFeedListNo", i+1);
+					jTempObject.put("outpuHotFeedNo", i+1);
 					
 					// Writer
 					Member member = MemberDAO.getMemberByMemberNo(hotFeedList.get(i).getDeepMemberNo());
@@ -185,17 +184,17 @@ public class CommonController {
 				// MainObject에 hotFeedList 더한다.
 				jMainObject.put("outputHotFeedList", jHotFeedArray);
 				
-				// Category hotFeedList
+				// Category hotFeedListByCategory
 				JSONArray jHotFeedArrayByCategory = new JSONArray();
 
 				listMode = 3;
-				ArrayList<FeedList> hotFeedListByCategory = FeedDAO.getFeedList(listMode, inputFeedCategory, inputHotFeedCount);
+				ArrayList<FeedList> hotFeedListByCategory = FeedDAO.getFeedList(listMode, inputFeedCategory, inputHotFeedCount, inputCurrentDate);
 				
 				for(int i=0; i>hotFeedList.size();i++) {
 					JSONObject jTempObject = new JSONObject();
 					
 					// 인덱스
-					jTempObject.put("outpuHotFeedListByCategoryNo", i+1);
+					jTempObject.put("outpuHotFeedByCategoryNo", i+1);
 					
 					// Writer
 					Member member = MemberDAO.getMemberByMemberNo(hotFeedList.get(i).getDeepMemberNo());

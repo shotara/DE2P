@@ -4,5 +4,22 @@
 			
 <mapper namespace="feed">
 
-
+	<!-- Common -->
+    <select id="getFeedList" parameterType="java.util.HashMap" resultType="com.deep.model.domain.FeedList">
+		SELECT *  
+		<if test="mode == 1" >
+			FROM deep_feed WHERE deepFeedStatus=1 AND deepCategoyNo=#{categoryNo] AND deepFeedCreateDate <![CDATA[>]]> #{currentDate} - 60*60*24*31 ORDER BY deepFeedCreateDate DESC LIMIT #{inputParam}, 15
+		</if>
+		<if test="mode == 2">
+			<!--  준비중 FROM deep_feed df, (SELECT * FROM deep_feed_view GROUP BY deepFeedNo)dfv WHERE deepFeedStatus=1 AND deepCategoyNo=#{categoryNo] ORDER BY deepFeedCreateDate DESC LIMIT #{inputParam}, 15 -->
+		</if>
+	</select>
+	
+	<select id="getFeedSeries" parameterType="int" resultType="com.deep.model.domain.FeedSeries">
+		SELECT * FROM deep_feed_series WHERE deepFeedNo=#{inputDeepFeedNo}
+	</select>
+	
+	<select id="getFeedHashtag" parameterType="int" resultType="com.deep.model.domain.FeedHashtag">
+		SELECT * FROM deep_feed_hashtag WHERE deepFeedNo=#{inputDeepFeedNo}
+	</select>
 </mapper>
