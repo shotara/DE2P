@@ -6,12 +6,24 @@
 
 	<!-- Common -->
     <select id="getFeedList" parameterType="java.util.HashMap" resultType="com.deep.model.domain.FeedList">
-		SELECT *  
 		<if test="mode == 1" >
-			FROM deep_feed WHERE deepFeedStatus=1 AND deepCategoyNo=#{categoryNo] AND deepFeedCreateDate <![CDATA[>]]> #{currentDate} - 60*60*24*31 ORDER BY deepFeedCreateDate DESC LIMIT #{inputParam}, 15
+			SELECT * FROM deep_feed WHERE deepFeedStatus=1 AND deepCategoyNo=#{categoryNo] AND deepFeedCreateDate <![CDATA[>]]> #{currentDate} - 60*60*24*31 ORDER BY deepFeedCreateDate DESC LIMIT #{inputParam}, 15
 		</if>
 		<if test="mode == 2">
-			<!--  준비중 FROM deep_feed df, (SELECT * FROM deep_feed_view GROUP BY deepFeedNo)dfv WHERE deepFeedStatus=1 AND deepCategoyNo=#{categoryNo] ORDER BY deepFeedCreateDate DESC LIMIT #{inputParam}, 15 -->
+			SELECT a.*, sum(a.rate) as rating
+			FROM 
+			(
+				(SELECT df.* , 50 as rate FROM deep_feed df, (SELECT * , count(deepFeedNo) as viewCount FROM deep_feed_view WHERE deepFeedViewDate <![CDATA[>]]> #{currentDate} - 60*60*24*14 GROUP BY deepFeedNo) dfv 
+				WHERE dfv.deepFeedNo=df.deepFeedNo AND df.deepFeedStatus=1 ORDER BY dfv.viewCount DESC)
+				UNION
+				(SELECT df.* , 30 as rate FROM deep_feed df, (SELECT * , count(deepFeedNo) as shareCount FROM deep_feed_share WHERE deepFeedShareDate <![CDATA[>]]> #{currentDate} - 60*60*24*14 GROUP BY deepFeedNo) dfs 
+				WHERE dfs.deepFeedNo=df.deepFeedNo AND df.deepFeedStatus=1 ORDER BY dfs.shareCount DESC)
+				UNION
+				(SELECT df.* , 20 as rate FROM deep_feed df, (SELECT * , count(deepFeedNo) as likeCount FROM deep_feed_like WHERE deepFeedLikeStatus=1 AND deepFeedLikeDate <![CDATA[>]]> #{currentDate} - 60*60*24*14 GROUP BY deepFeedNo) dfl 
+				WHERE dfl.deepFeedNo=df.deepFeedNo AND df.deepFeedStatus=1 ORDER BY dfl.likeCount DESC)
+			) as a
+			GROUP BY a.deepFeedNo
+			ORDER BY rating DESC
 		</if>
 	</select>
 	

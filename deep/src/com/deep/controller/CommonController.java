@@ -18,13 +18,16 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.deep.config.GlobalValue;
 import com.deep.model.FeedDAO;
 import com.deep.model.MemberDAO;
+import com.deep.model.UploadDAO;
 import com.deep.model.domain.FeedHashtag;
 import com.deep.model.domain.FeedList;
 import com.deep.model.domain.FeedSeries;
 import com.deep.model.domain.Member;
 import com.deep.model.domain.MemberFavorite;
+import com.deep.model.domain.Upload;
 import com.deep.util.CommonUtil;
 import com.deep.util.EncryptUtil;
 
@@ -81,9 +84,22 @@ public class CommonController {
 				jTempObject.put("outputFeedCreateDate", CommonUtil.convertUnixTime(newFeedList.get(i).getDeepFeedCreateDate(), 16));
 				jTempObject.put("outputFeedTitle", newFeedList.get(i).getDeepFeedNo());
 				
-				//사진가져오기 1개 or 2개 
-				jTempObject.put("outputFeedImages", newFeedList.get(i).getDeepFeedNo());
-				
+				//사진가져오기
+				ArrayList<HashMap<String, Object>> outputFeedImageList = new ArrayList<HashMap<String, Object>>(); 
+				if(!(newFeedList.get(i).getDeepFeedImages().equals(""))) {
+
+					String bucketName = GlobalValue.AWS_CLOUDFRONT_USER_BUCKET_URL + "/feed/" + newFeedList.get(i).getDeepFeedNo() + "/";
+					ArrayList<String> imgList = CommonUtil.commonSpiltBySemicolon(newFeedList.get(i).getDeepFeedImages());
+					for(int j=0; j<imgList.size(); j++) {
+						HashMap<String, Object> outputFeedImgMap = new HashMap<String, Object>();		
+						Upload upload = UploadDAO.getUploadByUploadNo(Integer.parseInt(imgList.get(j)));
+						outputFeedImgMap.put("outputFeedImage", bucketName + upload.getDeepUploadEncryptFileName() +"." + upload.getDeepUploadFileExtension());
+						outputFeedImageList.add(outputFeedImgMap);
+					}
+				}
+				jTempObject.put("outputFeedImage", outputFeedImageList.get(0).get("outputMeetingImage")); // 대표 이미지
+				jTempObject.put("outputFeedImageList", outputFeedImageList);
+
 				jTempObject.put("outputFeedContent", newFeedList.get(i).getDeepFeedNo());
 				jTempObject.put("outputFeedLikeCount", newFeedList.get(i).getDeepFeedNo());
 				jTempObject.put("outputFeedCommentCount", newFeedList.get(i).getDeepFeedNo());
