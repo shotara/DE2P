@@ -55,4 +55,8 @@
 	<select id="getMemberFavorite" parameterType="int" resultType="com.deep.model.domain.MemberFavorite">
 		SELECT * FROM deep_member_favorite WHERE deepMemberNo=#{inputMemberNo}
 	</select>
+	
+	<select id="getMemberNoByMemberUid" parameterType="String" resultType="int">
+		SELECT deepMemberNo FROM deep_member_uid WHERE deepMemberUid=#{inputMemberUid}
+	</select>
 </mapper>

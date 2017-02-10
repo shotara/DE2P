@@ -4,7 +4,17 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee" 
          xmlns:web="http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
-         
+
+	<servlet>
+		<servlet-name>BlogView</servlet-name>
+		<servlet-class>com.deep.view.BlogView</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>BlogView</servlet-name>
+		<url-pattern>/blog</url-pattern>
+	</servlet-mapping>
+	         
 	<servlet>
 		<servlet-name>CommonView</servlet-name>
 		<servlet-class>com.deep.view.CommonView</servlet-class>

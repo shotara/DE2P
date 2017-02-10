@@ -194,7 +194,6 @@ public class MemberDAO {
 			sqlSession.close();
 		}
 	}
-
 	
 	public static MemberFavorite getMemberFavorite(int inputMemberNo) {
 		
@@ -202,6 +201,18 @@ public class MemberDAO {
 		
 		try {	
 			return (MemberFavorite)sqlSession.selectOne(namespace + ".getMemberFavorite", inputMemberNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int getMemberNoByMemberUid(String inputMemberUid) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (int)sqlSession.selectOne(namespace + ".getMemberNoByMemberUid", inputMemberUid);
 			
 		} finally {
 			sqlSession.close();

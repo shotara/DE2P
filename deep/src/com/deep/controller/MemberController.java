@@ -209,7 +209,7 @@ public class MemberController {
 	}
 
 	// join 
-	public static void JoinMember(HttpServletRequest req, HttpServletResponse res) {
+	public static void joinMember(HttpServletRequest req, HttpServletResponse res) {
 
 		HashMap<String, String> map = new HashMap<String, String>();
 
@@ -296,8 +296,6 @@ public class MemberController {
 //			String encryptMemberPassword = EncryptUtil.SHA256_Encode(decryptMemberPassword);
 			String encryptMemberPassword = EncryptUtil.SHA256_Encode(inputMemberPassword);
 			
-			Member member = MemberDAO.getMemberByMemberMail(encryptMemberEmail, encryptMemberPassword);
-			
 			// Password and passwordConfirm is not correct
 			if(!inputMemberPassword.equals(inputMemberPasswordConfirm)) {
 				CommonUtil.commonPrintLog("FAIL", className, "Password Not Correct!", map);
@@ -324,7 +322,6 @@ public class MemberController {
 			CommonUtil.commonPrintLog("SUCCESS", className, "User Join OK", map);			
 			res.getWriter().write(jObject.toString());
 			return;
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -407,7 +404,7 @@ public class MemberController {
 						
 						HashMap<String, Object> uploadMap = new HashMap<String, Object>();
 						uploadMap.put("deepMemberNo", sessionMemberNo);
-						uploadMap.put("deepMemberUid", MemberDAO.getMemberUid(sessionMemberNo).getDeepMemberUid());
+						uploadMap.put("deepMemberUid", sessionMemberUid);
 						
 						check = UploadController.uploadFile(uploadMap, className, fileName, filePath);
 						
@@ -441,9 +438,6 @@ public class MemberController {
 			Member member = MemberDAO.getMemberByMemberNo(sessionMemberNo);
 			session.setAttribute("DeepMemberImage", getMemberImage(member.getDeepMemberImage()));
 
-			// 업로드한 이미지 URL
-			String uploadedImage = MemberController.getMemberImage(member.getDeepMemberImage());
-				
 			// AES키 가져오기
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 							
