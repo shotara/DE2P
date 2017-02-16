@@ -5,13 +5,13 @@
 <mapper namespace="follow">
 
 <select id="getFollower" parameterType="int" resultType="int">
-	select deepFollower 
+	select * 
 	from deep_follow
 	where deepFollower=#{deepFollower}
 </select>
 
 <select id="getFollowing" parameterType="int" resultType="int" >
-	select deepFollowing
+	select *
 	from deep_follow
 	where deepFollower=#{deepFollower}
 </select>

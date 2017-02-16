@@ -53,7 +53,7 @@ public class FollowDAO {
 		}
 	}
 	
-	public static int setFollow(int deepFollowing) {
+	public static boolean setFollow(int deepFollowing) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
@@ -62,10 +62,10 @@ public class FollowDAO {
 			
 			if(setFo == 1) { //여러명 삭제할수 있나?
 				sqlSession.commit();
-				return setFo;
+				return true;
 			} else {
 				sqlSession.rollback();
-				return setFo;
+				return false;
 			}
 			
 		} finally {
