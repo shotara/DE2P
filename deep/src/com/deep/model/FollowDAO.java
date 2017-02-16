@@ -1,5 +1,7 @@
 package com.deep.model;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.deep.model.domain.Follow;
@@ -34,12 +36,17 @@ public class FollowDAO {
 		}
 	}
 	
-	public static int addFollow(int deepFollowing) {
+	public static int addFollow(int inputFollower, int inputFollowing) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try {
-			int addFo = (int)sqlSession.insert(namespace + " .addFollow", deepFollowing);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("follower", inputFollower);
+			map.put("following", inputFollowing);
+			
+			int addFo = (int)sqlSession.insert(namespace + " .addFollow", map);
+			
 			if(addFo == 1) { //2명한꺼번에 add가능한가...?
 				sqlSession.commit();
 				return addFo;

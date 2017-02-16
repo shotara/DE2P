@@ -92,7 +92,7 @@ public class FollowContorller {
 		
 			// Parameter check
 			ArrayList<Object> parameterList = new ArrayList<Object>();
-			//parameterList.add(inputFollowing);
+		    //parameterList.add(inputFollowing);
 			parameterList.add(sessionMemberNo);
 			if(!CommonUtil.commonParameterCheck(parameterList)) {
 				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
@@ -171,7 +171,6 @@ public class FollowContorller {
 				return;				
 			}
 			
-			//DAO true여도 DAO가 실행 되는 건가.
 			CommonUtil.commonPrintLog("SUCCESS", className, "Delete Following OK", map);
 			res.getWriter().write("1");
 			return;
@@ -191,6 +190,7 @@ public class FollowContorller {
 		try{
 			HttpSession session = req.getSession();
 			int inputFollowing = req.getParameter("inputFollowingUid") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFollowingUid").toString())) : 0;				
+			int inputFollower = req.getParameter("inputFollowerUid") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFollowerUid").toString())) : 0;
 			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
 			
 			JSONObject jObject = new JSONObject();
@@ -200,6 +200,7 @@ public class FollowContorller {
 			// Parameter check
 			ArrayList<Object> parameterList = new ArrayList<Object>();
 			parameterList.add(inputFollowing);
+			parameterList.add(inputFollower);
 			parameterList.add(sessionMemberNo);
 			if(!CommonUtil.commonParameterCheck(parameterList)) {
 				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
@@ -225,7 +226,15 @@ public class FollowContorller {
 				res.getWriter().write("-2");
 				return;				
 			}
+			
+			if(!(MemberDAO.getMemberNoByMemberUid(Integer.toString(inputFollower))>0)) {
+				map.put("USER-NO", Integer.toString(inputFollowing));
+				CommonUtil.commonPrintLog("FAIL", className, "DB Fail - Update (deleteFollowing)", map);
+				res.getWriter().write("-2");
+				return;				
+			}
 			int followingMemberNo = MemberDAO.getMemberNoByMemberUid(Integer.toString(inputFollowing));
+			int followerMemberNo = MemberDAO.getMemberNoByMemberUid(Integer.toString(inputFollower));
 			
 			//이미 팔로우가 되어 있으면 예외처리
 			if(followingMemberNo == FollowDAO.getFollowing(sessionMemberNo)){
@@ -234,7 +243,7 @@ public class FollowContorller {
 				res.getWriter().write("-2");
 				return;				
 			}
-			FollowDAO.addFollow(followingMemberNo);
+			FollowDAO.addFollow(followerMemberNo, followingMemberNo);
 		}
 		catch(Exception e){
 			e.printStackTrace();

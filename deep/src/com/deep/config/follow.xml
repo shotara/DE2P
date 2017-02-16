@@ -17,8 +17,8 @@
 </select>
 
 <insert id="addFollow" parameterType="int" >
-	insert into deep_follow(deepFollowing)
-	values(#{DeepFollowing})
+	insert into deep_follow(deepFollower, deepFollowing)
+	values(#{DeepFollower}, #{DeepFollowing})
 </insert>
 
 <delete id="setFollow" parameterType="int" >
