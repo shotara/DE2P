@@ -35,17 +35,17 @@ public class NoticeView extends HttpServlet {
 			case "listNotice":
 				map.put("ACTION", "listNotice");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
-				MemberController.listNotice(req,res);
+				//MemberController.listNotice(req,res);
 				break;
 			case "setNotice":
 				map.put("ACTION", "setNotice");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
-				MemberController.setNotice(req,res);
+				//MemberController.setNotice(req,res);
 				break;
 			case "getNotice":
 				map.put("ACTION", "getNotice");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
-				MemberController.getNotice(req,res);
+				//MemberController.getNotice(req,res);
 				break;
 				
 			}
