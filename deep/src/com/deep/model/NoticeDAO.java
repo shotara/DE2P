@@ -11,24 +11,47 @@ public class NoticeDAO {
 	
 	private static final String namespace = "notice";
 
-	public static int getNoticelist(){
-		return 0;
-	}
-	
-	public static int getNotice() {  //공지 도메인 하나가져오기(먼말이지)
-		return 0;
-	}
-	
-	// default 1 - 미확인, 삭제 3도 해야하듯. 삭제는 언제? set은 읽을때만 해당되는 메서드로 코딩함.
-	public static int setNotice(int inputNoticeNo){ //공지 상태 바꾸기(확인, 미확인, 삭제)
+	public static int getNoticelist(int inputMemberNo){
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try{
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("memberNo", inputNoticeNo);
+			map.put("MemberNo", inputMemberNo);
+			
+			return (int)sqlSession.selectOne(namespace + ".getNoticeList", map);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public static int getNotice(int inputNoticeNo) {  
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try{
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("NoticeNo", inputNoticeNo);
+			
+			return (int)sqlSession.selectOne(namespace + ".getNotice", map);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	// default(1) : addFollow시 / 확인(2) : getNotice 시, 삭제(3) : Feed에만 해당?? 아님 setFollo?
+	public static int setNotice(int inputNoticeNo, int inputNoticeStatus, long inputConfirmDate){ //공지 상태 바꾸기(확인, 미확인, 삭제). 모드가 아니라 스테터스 넘기면됨(컨트롤러에서)
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try{
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("NoticeNo", inputNoticeNo);
+			map.put("NoticeStatus", inputNoticeStatus);
+			map.put("ConfirmDate", inputConfirmDate);
 			
 			int setNotice = (int)sqlSession.update(namespace + ".setNotice", map);
-			//읽은 날짜도set해줘야?
+
 			if(setNotice == 1) {
 				sqlSession.commit();
 				return setNotice;
@@ -44,24 +67,18 @@ public class NoticeDAO {
 		
 	}
 	
-	public static int addNotice(
-			int inputNoticeNo, 
-			int intputNoticeCategory, 
-			int inputMemberNo,
-			int NoticeTarget1,
-			int NoticeTarget2,
-			int inputNoticeStatus
-			) {
+	public static int addNotice(int inputNoticeCategory, int inputFollower, int inputFollowing, int inputNoticeStatus, long inputCurrentDate){ //일단 Follow입장만 짜놈.
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try{
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("NoticeNo", inputNoticeNo);
-			map.put("NoticeCategory", intputNoticeCategory);
-			map.put("NoticeTarget1", inputMemberNo);
-			map.put("NoticeTarget2", NoticeTarget2);
-			map.put("inputNoticeStatus", inputNoticeStatus);
-
+			map.put("NoticeCategory", inputNoticeCategory); // follow(4or 5)쪽일때. 커멘트는 1~3. 시스템은 0.
+			map.put("MemberNo", inputFollower); //알림 주는 사람? 만든 사람?
+			map.put("NoticeTarget1", inputFollower); //알림 주는 주체
+			map.put("NoticeTarget2", inputFollowing); // 알림 받는 주체
+			map.put("NoticeStatus", inputNoticeStatus); //status . 안읽음 default
+			map.put("NoticeCreateDate", inputCurrentDate);
+			
 			int addNotice = (int)sqlSession.insert(namespace + ".addNotice", map);
 			
 			if(addNotice == 1) {

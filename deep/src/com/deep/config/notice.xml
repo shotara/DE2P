@@ -3,14 +3,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
 			
 <mapper namespace="notice">
+	<!-- NoticeController.listNotice : 멤버넘버에 대한 전체 Notice가져오기-->
+	<select id="getNoticeList" parameterType="int">
+		SELECT * 
+		FROM deep_notice
+		WHERE deepMemberNo = #{MemberNo}
+	</select>	
 	
+	<!-- NoticeController.getNotice() : 공지넘버에 따른 공지 가져오기. 읽은 날짜 바꾼후 가져옴 -->
+	<select id="getNotice" parameterType="int" resultType="int">
+		SELECT * 
+		FROM deep_notice
+		WHERE deepNoticeNo = #{NoticeNo}
+	</select>
+	
+	<!-- NoticeController.setNotice() : 노티스에 겟시에도 실행됨.-->
 	<update id = "setNotice"  parameterType="int" >
-		UPDATE deep_notice SET deepNoticeStatus = 2
-		WHERE deepNoticeNo = #{memberNo}
+		UPDATE deep_notice 
+		<if test="NoticeStatus==1">
+			SET deepNoticeStatus = 1
+			WHERE deepNoticeNo = #{memberNo}
+		</if>
+		<if test="NoticeStatus==2">
+			SET deepNoticeStatus = 2, deepNoticeCofirmDate = #{ConfirmDate}
+			WHERE deepNoticeNo = #{memberNo}
+		</if>
+		<if test="NoticeStatus==3">
+			SET deepNoticeStatus = 3, deepNoticeDelete = #{DeleteDate}
+			WHERE deepNoticeNo = #{memberNo}
+		</if>
 	</update>
 	
+	<!-- NoticeController.addNotice() -->
 	<insert id = "addNotice"  parameterType="int" >
-		INSERT INTO deep_notice(deepNoticeNo, deepNoticeCategory, deepMemberNo, deepNoticeTarget1, deepNoticeTarget2, deepNoticeStatus)
-		VALUES (#{NoticeNo}, #{NoticeCategory}, #{NoticeTarget1}, #{NoticeTarget2}, #{inputNoticeStatus})
+		INSERT INTO deep_notice(deepNoticeCategory, deepMemberNo, deepNoticeTarget1, deepNoticeTarget2, deepNoticeStatus, deepNoticeCreateDate)
+		VALUES (#{NoticeCategory}, #{MemberNo}, #{NoticeTarget1}, #{NoticeTarget2}, #{NoticeStatus}, {NoticeCreateDate})
 	</insert>
 </mapper>
