@@ -47,7 +47,6 @@ public class NoticeView extends HttpServlet {
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				//MemberController.getNotice(req,res);
 				break;
-				
 			}
 			
 		} catch (Exception e) {

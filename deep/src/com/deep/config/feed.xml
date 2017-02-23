@@ -7,7 +7,7 @@
 	<!-- Common -->
     <select id="getFeedList" parameterType="java.util.HashMap" resultType="com.deep.model.domain.FeedList">
 		<if test="mode == 1" >
-			SELECT * FROM deep_feed WHERE deepFeedStatus=1 AND deepCategoyNo=#{categoryNo] AND deepFeedCreateDate <![CDATA[>]]> #{currentDate} - 60*60*24*31 ORDER BY deepFeedCreateDate DESC LIMIT #{inputParam}, 15
+			SELECT * FROM deep_feed WHERE deepFeedStatus=1 AND deepCategoryNo=#{categoryNo] AND deepFeedCreateDate <![CDATA[>]]> #{currentDate} - 60*60*24*31 ORDER BY deepFeedCreateDate DESC LIMIT #{inputParam}, 15
 		</if>
 		<if test="mode == 2">
 			SELECT a.*, sum(a.rate) as rating
