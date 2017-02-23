@@ -53,7 +53,7 @@ public class CommonController {
 			
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 
-			if(!(sessionMemberNo>0)) {
+			if(sessionMemberNo>0) {
 				MemberFavorite memberFavorite = MemberDAO.getMemberFavorite(sessionMemberNo);
 				inputFeedCategory = memberFavorite.getDeepCategoryNo();
 			}
