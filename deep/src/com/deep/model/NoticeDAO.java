@@ -92,7 +92,7 @@ public class NoticeDAO {
 			sqlSession.close();
 		}
 	}
-
+//
 	
 	
 	public NoticeDAO() {

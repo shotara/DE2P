@@ -33,7 +33,7 @@ public class NoticeController {
 	
 	public static final String className = "NoticeController";
 
-	
+
 	//addDAO는 어디로 넣어야?
 	public static int listNotice(HttpServletRequest req, HttpServletResponse res){
 		
