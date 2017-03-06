@@ -4,26 +4,29 @@
 			
 <mapper namespace="follow">
 
-<select id="getFollower" parameterType="int" resultType="int">
-	select * 
-	from deep_follow
-	where deepFollower=#{deepFollower}
+<!-- FollowContorller.getFollower() -->
+<select id="getFollower" parameterType="int" resultType="com.deep.model.domain.Follow">
+	SELECT *  FROM deep_follow
+	WHERE deepFollower=#{deepFollower}
 </select>
 
-<select id="getFollowing" parameterType="int" resultType="int" >
-	select *
-	from deep_follow
-	where deepFollower=#{deepFollower}
+
+<!-- FollowContorller.getFollowing() -->
+<select id="getFollowing" parameterType="int" resultType="com.deep.model.domain.Follow" >
+	SELECT *	FROM deep_follow
+	WHERE deepFollowing=#{deepFollowing}
 </select>
 
+<!-- FollowContorller.addFollow() -->
 <insert id="addFollow" parameterType="int" >
-	insert into deep_follow(deepFollower, deepFollowing)
-	values(#{DeepFollower}, #{DeepFollowing})
+	INSERT INTO deep_follow(deepFollower, deepFollowing)
+	VALUES(#{DeepFollower}, #{DeepFollowing})
 </insert>
 
+<!-- FollowContorller.setFollow() -->
 <delete id="setFollow" parameterType="int" >
-	delete from deep_follow
-	where deepFollowing =#{DeepFollowing}
+	DELETE FROM deep_follow
+	WHERE deepFollowing =#{DeepFollowing}
 </delete>
 
 

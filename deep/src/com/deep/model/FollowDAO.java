@@ -11,24 +11,24 @@ import com.deep.util.DAOFactory;
 public class FollowDAO {
 	private static final String namespace = "Follow";
 	
-	public static int getFollower(int deepFollower){ // 로그인했다는 전제니까. 매개변수x?
+	public static Follow getFollower(int deepFollower){ 
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);
 		
 		try {
-			return (int)sqlSession.selectOne(namespace +" .getFollower", deepFollower);
+			return (Follow)sqlSession.selectOne(namespace +" .getFollower", deepFollower);
 			
 		} finally {
 			sqlSession.close();
 		}
 	}
 	
-	public static int getFollowing(int deepFollower) { // 팔로워에 따른 팔로잉
+	public static Follow getFollowing(int deepFollower) { // 팔로워에 따른 팔로잉
 	
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);
 		
 		try {
-			return (int)sqlSession.selectOne(namespace +" .getFollowing", deepFollower);
+			return (Follow)sqlSession.selectOne(namespace +" .getFollowing", deepFollower);
 			//set List??
 			
 		} finally {
