@@ -60,4 +60,4 @@ public class FollowView extends HttpServlet {
 			}
 		
 		}
-	} //proecess의 끝
+	} 

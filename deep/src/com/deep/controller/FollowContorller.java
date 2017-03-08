@@ -142,10 +142,9 @@ public class FollowContorller {
 				res.getWriter().write(jObject.toString());
 				return;
 			}
-			
-			
+
 		// DAO
-			// �����댁�몄�
+			// Member or not?
 			if(!(sessionMemberNo>0)) {
 			CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
 			jObject.put("outputResult", "-1");
@@ -153,19 +152,8 @@ public class FollowContorller {
 			return;
 			}
 			
-			//UID -> No. 바꿀필요 없어서 주석
-			// int followingMemberNo = MemberDAO.getMemberNoByMemberUid(Integer.toString(inputFollowing));
-			/*
-			if(followingMemberNo == 0) {
-				map.put("USER-NO", Integer.toString(inputFollowing));
-				CommonUtil.commonPrintLog("FAIL", className, "DB Fail - Update (deleteFollowing)", map);
-				res.getWriter().write("-2");
-				return;				
-			}
-			*/
-			
-			//��濡��� ����. . delete following
-			if(!FollowDAO.setFollow(inputFollowing)) { //false일때 실행
+			//Delete following
+			if(!FollowDAO.setFollow(inputFollowing)) { 
 				map.put("USER-NO", Integer.toString(inputFollowing));
 				CommonUtil.commonPrintLog("FAIL", className, "DB Fail - Update (deleteFollowing)", map);
 				res.getWriter().write("-2");
@@ -191,9 +179,9 @@ public class FollowContorller {
 		try{
 			HttpSession session = req.getSession();
 			//when add follow, let set notice
-			int inputNoticeCategory = 4;  //temp
-			int inputNoticeStatus = 1; // 誘명����
-			long inputCurrentDate = System.currentTimeMillis()/1000;
+			int inputNoticeCategory = 4;  // temp
+			int inputNoticeStatus = 1; // unconfirmed 
+			long inputCurrentDate = System.currentTimeMillis()/1000; 
 			int inputFollowing = req.getParameter("inputFollowingUid") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFollowingUid").toString())) : 0;				
 			int inputFollower = req.getParameter("inputFollowerUid") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFollowerUid").toString())) : 0;
 			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
@@ -202,7 +190,7 @@ public class FollowContorller {
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 		
-			// Parameter check
+			// Parameter check(Attack Defense)
 			ArrayList<Object> parameterList = new ArrayList<Object>();
 			parameterList.add(inputNoticeCategory);
 			parameterList.add(inputFollowing);
@@ -219,7 +207,7 @@ public class FollowContorller {
 			
 			
 		// DAO
-			// �����댁�몄�
+			//1.  Member or not??
 			if(!(sessionMemberNo>0)) {
 				CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
 				jObject.put("outputResult", "-1");
@@ -228,8 +216,8 @@ public class FollowContorller {
 			}
 			
 			
-			//UID -> No濡� . MemberUID change to MemberNo
-			//1) following
+		//2. UID -> Number, after Check(loginMember equal Follower?)
+			// following(change No)
 			int followingMemberNo = MemberDAO.getMemberNoByMemberUid(Integer.toString(inputFollowing));
 			if(followingMemberNo==0) {
 				map.put("USER-NO", Integer.toString(inputFollowing));
@@ -237,10 +225,9 @@ public class FollowContorller {
 				res.getWriter().write("-2");
 				return;				
 			}
-			//2) follower
+			// follower(change No)
 			int followerMemberNo = MemberDAO.getMemberNoByMemberUid(Integer.toString(inputFollower));
-			//a) UID->No로 바꿔졌나? b) 로그인 한사람과 팔로워가 같은가?
-			//�대�� ��濡��곌� ���� ���쇰㈃ ���몄�由�. (01, 10)?
+		    // UID->No change && loginMember is follower?
 			if((followerMemberNo==0) && (sessionMemberNo != followerMemberNo)) {
 				map.put("USER-NO", Integer.toString(inputFollower));
 				CommonUtil.commonPrintLog("FAIL", className, "No change FollowerMemberNo or FollowerMemberNo and sessionNo is not equal", map);
@@ -248,8 +235,13 @@ public class FollowContorller {
 				return;				
 			}
 			
-			//이미 follow가 되어있는지 확인하기
-			
+		// 3. check, already follow 
+			if(FollowDAO.getFollowing(inputFollowing).getDeepFollowing() < 0){
+				map.put("USER-NO", Integer.toString(inputFollowing));
+				CommonUtil.commonPrintLog("FAIL", className, "already Following exist", map);
+				res.getWriter().write("-2");
+				return;				
+			}
 			FollowDAO.addFollow(inputFollower, inputFollowing); //uid로 넘김
 			NoticeDAO.addNotice(inputNoticeCategory, followerMemberNo, followingMemberNo, inputNoticeStatus, inputCurrentDate); //No로 넘김
 					

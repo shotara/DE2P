@@ -9,7 +9,7 @@ import com.deep.util.DAOFactory;
 
 
 public class FollowDAO {
-	private static final String namespace = "Follow";
+	private static final String namespace = "follow";
 	
 	public static Follow getFollower(int deepFollower){ 
 		
@@ -23,12 +23,12 @@ public class FollowDAO {
 		}
 	}
 	
-	public static Follow getFollowing(int deepFollower) { // 팔로워에 따른 팔로잉
+	public static Follow getFollowing(int deepFollowing) { // 팔로워에 따른 팔로잉
 	
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);
 		
 		try {
-			return (Follow)sqlSession.selectOne(namespace +" .getFollowing", deepFollower);
+			return (Follow)sqlSession.selectOne(namespace +" .getFollowing", deepFollowing);
 			//set List??
 			
 		} finally {

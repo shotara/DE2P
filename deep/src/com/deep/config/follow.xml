@@ -29,5 +29,4 @@
 	WHERE deepFollowing =#{DeepFollowing}
 </delete>
 
-
 </mapper>
