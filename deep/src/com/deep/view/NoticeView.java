@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.deep.controller.MemberController;
+import com.deep.controller.NoticeController;
 import com.deep.util.CommonUtil;
 
 public class NoticeView extends HttpServlet {
@@ -35,17 +35,17 @@ public class NoticeView extends HttpServlet {
 			case "listNotice":
 				map.put("ACTION", "listNotice");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
-				//MemberController.listNotice(req,res);
+				NoticeController.listNotice(req,res);
 				break;
 			case "setNotice":
 				map.put("ACTION", "setNotice");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
-				//MemberController.setNotice(req,res);
+				NoticeController.setNotice(req,res);
 				break;
 			case "getNotice":
 				map.put("ACTION", "getNotice");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
-				//MemberController.getNotice(req,res);
+				NoticeController.getNotice(req,res);
 				break;
 			}
 			

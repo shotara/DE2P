@@ -10,31 +10,31 @@
 		WHERE deepMemberNo = #{MemberNo}
 	</select>	
 	
-	<!-- NoticeController.getNotice() : 공지넘버에 따른 공지 가져오기. 읽은 날짜 바꾼후 가져옴 -->
+	<!-- NoticeController.getNotice() : 공지넘버에 따른 공지 가져오기. 읽은 날짜 바꾼후 가져옴? -->
 	<select id="getNotice" parameterType="int" resultType="com.deep.model.domain.Notice">
 		SELECT * 
 		FROM deep_notice
 		WHERE deepNoticeNo = #{NoticeNo}
 	</select>
 	
-	<!-- NoticeController.setNotice() : 노티스에 겟시에도 실행됨.-->
+	<!-- NoticeController.setNotice() : 노티스에 겟시에도 실행되나? 미정.->
 	<update id = "setNotice"  parameterType="int" >
 		UPDATE deep_notice 
-		<if test="NoticeStatus==1">
-			SET deepNoticeStatus = 1
-			WHERE deepNoticeNo = #{memberNo}
+		<if test="mode==1">
+			SET deepNoticeStatus = 1,  deepNoticeCreateDate = #{CurrentDate}
+			WHERE deepNoticeNo = #{NoticeNo}
 		</if>
-		<if test="NoticeStatus==2">
-			SET deepNoticeStatus = 2, deepNoticeCofirmDate = #{ConfirmDate}
-			WHERE deepNoticeNo = #{memberNo}
+		<if test="mode==2">
+			SET deepNoticeStatus = 2, deepNoticeCofirmDate = #{CurrentDate}
+			WHERE deepNoticeNo = #{NoticeNo}
 		</if>
-		<if test="NoticeStatus==3">
-			SET deepNoticeStatus = 3, deepNoticeDelete = #{DeleteDate}
-			WHERE deepNoticeNo = #{memberNo}
+		<if test="mode==3">
+			SET deepNoticeStatus = 3, deepNoticeDeleteDate = #{CurrentDate}
+			WHERE deepNoticeNo = #{NoticeNo}
 		</if>
 	</update>
 	
-	<!-- NoticeController.addNotice() -->
+	<!-- NoticeController.addNotice() : 팔로우 부분만 구현함. feed, blog 등 부분 업데이트 요망-->
 	<insert id = "addNotice"  parameterType="int" >
 		INSERT INTO deep_notice(deepNoticeCategory, deepMemberNo, deepNoticeTarget1, deepNoticeTarget2, deepNoticeStatus, deepNoticeCreateDate)
 		VALUES (#{NoticeCategory}, #{MemberNo}, #{NoticeTarget1}, #{NoticeTarget2}, #{NoticeStatus}, {NoticeCreateDate})

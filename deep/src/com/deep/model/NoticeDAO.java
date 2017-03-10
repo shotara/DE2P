@@ -38,14 +38,14 @@ public class NoticeDAO {
 	}
 	
 	// default(1) : addFollow시 / 확인(2) : getNotice 시, 삭제(3) : Feed에만 해당?? 아님 setFollo?
-	public static int setNotice(int inputNoticeNo, int inputNoticeStatus, long inputConfirmDate){ //공지 상태 바꾸기(확인, 미확인, 삭제). 모드가 아니라 스테터스 넘기면됨(컨트롤러에서)
+	public static int setNotice(int inputNoticeNo, int mode, long inputCurrentDate){ //공지 상태 바꾸기(확인, 미확인, 삭제). 
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try{
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("NoticeNo", inputNoticeNo);
-			map.put("NoticeStatus", inputNoticeStatus);
-			map.put("ConfirmDate", inputConfirmDate);
+			map.put("mode", mode);
+			map.put("CurrentDate", inputCurrentDate);
 			
 			int setNotice = (int)sqlSession.update(namespace + ".setNotice", map);
 
@@ -89,7 +89,7 @@ public class NoticeDAO {
 			sqlSession.close();
 		}
 	}
-//
+
 	
 	
 	public NoticeDAO() {
