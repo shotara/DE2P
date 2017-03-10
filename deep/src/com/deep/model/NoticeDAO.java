@@ -11,33 +11,30 @@ public class NoticeDAO {
 	
 	private static final String namespace = "notice";
 
-	public static int getNoticelist(int inputMemberNo){
+	public static Notice getNoticelist(int inputMemberNo){
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try{
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("MemberNo", inputMemberNo);
 			
-			return (int)sqlSession.selectOne(namespace + ".getNoticeList", map);
-		}catch(Exception e){
-			e.printStackTrace();
+			return (Notice)sqlSession.selectList(namespace + ".getNoticeList", map);
+		}finally{
+			sqlSession.close();
 		}
-		return 0;
 	}
 	
-	public static int getNotice(int inputNoticeNo) {  
+	public static Notice getNotice(int inputNoticeNo) {  
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try{
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("NoticeNo", inputNoticeNo);
 			
-			return (int)sqlSession.selectOne(namespace + ".getNotice", map);
+			return (Notice)sqlSession.selectOne(namespace + ".getNotice", map);
+		}finally{
+			sqlSession.close();
 		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		return 0;
 	}
 	
 	// default(1) : addFollow시 / 확인(2) : getNotice 시, 삭제(3) : Feed에만 해당?? 아님 setFollo?

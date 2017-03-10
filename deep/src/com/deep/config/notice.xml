@@ -4,14 +4,14 @@
 			
 <mapper namespace="notice">
 	<!-- NoticeController.listNotice : 멤버넘버에 대한 전체 Notice가져오기-->
-	<select id="getNoticeList" parameterType="int">
+	<select id="getNoticeList" parameterType="int" resultType="com.deep.model.domain.Notice">
 		SELECT * 
 		FROM deep_notice
 		WHERE deepMemberNo = #{MemberNo}
 	</select>	
 	
 	<!-- NoticeController.getNotice() : 공지넘버에 따른 공지 가져오기. 읽은 날짜 바꾼후 가져옴 -->
-	<select id="getNotice" parameterType="int" resultType="int">
+	<select id="getNotice" parameterType="int" resultType="com.deep.model.domain.Notice">
 		SELECT * 
 		FROM deep_notice
 		WHERE deepNoticeNo = #{NoticeNo}

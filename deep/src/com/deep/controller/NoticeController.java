@@ -25,143 +25,152 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FilePart;
 import com.oreilly.servlet.multipart.MultipartParser;
 import com.oreilly.servlet.multipart.Part;
+import java.util.List;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.name.Rename;
 
 public class NoticeController {
-	
+
 	public static final String className = "NoticeController";
 
+	// addDAO는 어디로 넣어야?
+	public static int listNotice(HttpServletRequest req, HttpServletResponse res) {
 
-	//addDAO는 어디로 넣어야?
-	public static int listNotice(HttpServletRequest req, HttpServletResponse res){
-		
 		HashMap<String, String> map = new HashMap<String, String>();
-		
-		try{
+
+		try {
 			HttpSession session = req.getSession();
-			int inputMemberNo = req.getParameter("inputMemberNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputMemberNo").toString())) : 0;
-			
+			int inputMemberNo = req.getParameter("inputMemberNo") != null
+					? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputMemberNo").toString())) : 0;
+
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
-			
+
 			// Parameter check
 			ArrayList<Object> parameterList = new ArrayList<Object>();
 			parameterList.add(inputMemberNo);
-			
-			if(!CommonUtil.commonParameterCheck(parameterList)) {
-			CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
-			jObject.put("outputResult", "-1");
-			res.getWriter().write(jObject.toString());
-			return 1;
-			}
-			
-				
-			//DAO
-			if( NoticeDAO.getNoticelist(inputMemberNo)== 0){ // 알림 리스트가 없을때
-				CommonUtil.commonPrintLog("FAIL", className, "No NoticeList", map);
-				jObject.put("outputResult", "-3");
-				res.getWriter().write(jObject.toString());
-				return 0;
-			}
 
-		}
-		
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		
-		return 1; // 임시.  나중에 list를 반환해야 할 듯.
-	}
-	
-	public static void setNotice(HttpServletRequest req, HttpServletResponse res) {//상태 바꾸기. Feed에서 뭘 보내줘야 하지 않나? 
-		// 수정요망.
-		
-		HashMap<String, String> map = new HashMap<String, String>();
-		
-		try{
-			HttpSession session = req.getSession();
-
-			int inputNoticeNo = req.getParameter("inputNoticeNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputNoticeNo").toString())) : 0;
-			//int mode = 1;  //Feed에서 wirte일때 미확인(1), get일때 확인(2), delete읽때 삭제(3)
-			JSONObject jObject = new JSONObject();
-			res.setContentType("application/json");
-			res.setCharacterEncoding("UTF-8");
-			
-			// Parameter check
-			ArrayList<Object> parameterList = new ArrayList<Object>();
-			parameterList.add(inputNoticeNo);
-			//parameterList.add(mode);
-			
-			if(!CommonUtil.commonParameterCheck(parameterList)) {
+			if (!CommonUtil.commonParameterCheck(parameterList)) {
 				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
 				jObject.put("outputResult", "-1");
 				res.getWriter().write(jObject.toString());
-				return;
+				return 1;
 			}
-			
-			
-			//DAO
-			/*if( NoticeDAO.setNotice(inputNoticeNo, mode) == 0){ //하나도 상태바뀐게 없음, bool타입으로 바꿔야하나?
-				CommonUtil.commonPrintLog("FAIL", className, "No Update Notice Status", map);
+
+			// 로그인한 사람이 회원인지 아닌지 체크해야하나?
+
+			// DAO
+			Notice Noticelist = NoticeDAO.getNoticelist(inputMemberNo);
+
+			if (Noticelist == null) { // when no Notice
+				CommonUtil.commonPrintLog("FAIL", className, "No NoticeList", map);
 				jObject.put("outputResult", "-3");
 				res.getWriter().write(jObject.toString());
-				return;
+				return 1;
 			}
-			*/
-			
+
+			return (int) Noticelist.getDeepMemberNo();
 		}
-		catch(Exception e){
+
+		catch (Exception e) {
 			e.printStackTrace();
 		}
-	// 확인날짜, 상태 바꿔야 할듯.
+
+		return 1;
+
 	}
-	
-	
-	public static int getNotice(HttpServletRequest req, HttpServletResponse res){ //도메인을 하나를 가져온다??
+
+	public static int getNotice(HttpServletRequest req, HttpServletResponse res) { 
 		HashMap<String, String> map = new HashMap<String, String>();
-		
-		try{
+
+		try {
 			HttpSession session = req.getSession();
-			//프론트에서 요청한 알림넘버를 가져온다.
-			int inputNoticeNo = req.getParameter("inputNoticeNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputNoticeNo").toString())) : 0;
-			int inputNoticeStatus = 2; // 확인
-			long inputConfirmDate = System.currentTimeMillis()/1000;
+			int inputNoticeNo = req.getParameter("inputNoticeNo") != null
+					? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputNoticeNo").toString())) : 0;
+			int inputNoticeStatus = 2; // confirm
+			long inputConfirmDate = System.currentTimeMillis() / 1000;
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
-			
+
 			// Parameter check
 			ArrayList<Object> parameterList = new ArrayList<Object>();
 			parameterList.add(inputNoticeNo);
 			parameterList.add(inputNoticeStatus);
 			parameterList.add(inputConfirmDate);
-						
-			if(!CommonUtil.commonParameterCheck(parameterList)) {
-			CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
-			jObject.put("outputResult", "-1");
-			res.getWriter().write(jObject.toString());
-			return 1;
+
+			if (!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return 1;
 			}
+
 			
-			
-			//checkNotice(알림의 유무) 메서드 확인 후 있으면 아래 실행
-			NoticeDAO.setNotice(inputNoticeNo, inputNoticeStatus, inputConfirmDate);
-			
-			if( NoticeDAO.getNotice(inputNoticeNo) == 0){ //하나도 상태바뀐게 없음, bool타입으로 바꿔야하나?
+			Notice noticeOne = NoticeDAO.getNotice(inputNoticeNo);
+			if (noticeOne==null) { 
 				CommonUtil.commonPrintLog("FAIL", className, "No Notice", map);
 				jObject.put("outputResult", "-3");
 				res.getWriter().write(jObject.toString());
-				return 0;
+				return 1;
 			}
-	
-		}
+			//공지 읽음은 어디서 실행??? get할때 하나?
+//			NoticeDAO.setNotice(inputNoticeNo, inputNoticeStatus, inputConfirmDate);
+			return noticeOne.getDeepNoticeNo();
 		
-		catch(Exception e){
+		}
+
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		return 0;
 	}
+
+	public static void setNotice(HttpServletRequest req, HttpServletResponse res) {
+		// set Status. Please update feed part.
+		// only implement follow part.
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			HttpSession session = req.getSession();
+
+			int inputNoticeNo = req.getParameter("inputNoticeNo") != null
+					? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputNoticeNo").toString())) : 0;
+			// int mode = 1; //Feed에서 wirte일때 미확인(1), get일때 확인(2), delete읽때
+			// 삭제(3)
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputNoticeNo);
+			// parameterList.add(mode);
+
+			if (!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			// DAO
+			/*
+			 * if( NoticeDAO.setNotice(inputNoticeNo, mode) == 0){ //�ϳ���
+			 * ���¹ٲ�� ����, boolŸ������ �ٲ���ϳ�?
+			 * CommonUtil.commonPrintLog("FAIL", className,
+			 * "No Update Notice Status", map); jObject.put("outputResult",
+			 * "-3"); res.getWriter().write(jObject.toString()); return; }
+			 */
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// Ȯ�γ�¥, ���� �ٲ�� �ҵ�.
+	}
+
 }
