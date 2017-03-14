@@ -17,7 +17,7 @@
 		WHERE deepNoticeNo = #{NoticeNo}
 	</select>
 	
-	<!-- NoticeController.setNotice() : 노티스에 겟시에도 실행되나? 미정.->
+	<!-- NoticeController.setNotice() : 노티스에 겟시에도 실행되나? 미정.-->
 	<update id = "setNotice"  parameterType="int" >
 		UPDATE deep_notice 
 		<if test="mode==1">

@@ -65,8 +65,7 @@ public class MemberView extends HttpServlet {
 			}
 			
 		} catch (Exception e) {
-			
+//			에러처리 
 		}
-		
 	}
 }

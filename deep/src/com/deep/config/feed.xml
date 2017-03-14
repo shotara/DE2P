@@ -3,7 +3,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
 			
 <mapper namespace="feed">
-
+	<!-- Insert -->
+	<select id="addFeed" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO deep_feed(deepMemberNo, deepCategoryNo, deepFeedStatus, deepFeedType, deepFeedCreateDate, deepFeedTitle, deepFeedImages, deepFeedContent)
+		VALUES(#{memberNo}. #{categoryNo}, #{feedStatus}, #{feedType}, #{inputCurrentDate}, #{feedTitle}, #{feedIamges}, #{feedContent})
+	</select>	
+	
+	<!-- Update -->
+	<select id="setFeed" parameterType="java.util.HashMap" resultType="int">
+		UPDATE deep_feed SET deepCategoryNo=#{categoryNo}, deepFeedStatus=#{feedStatus}, deepFeedType=#{feedType}, deepFeedUpdateDate=#{inputCurrentDate}, deepFeedTitle=#{feedTitle}, deepFeedImages=#{feedImages}, deepFeedContent=#{feedContent}
+		WHERE deepFeedNo=#{feedNo} AND deepMemberNo=#{memberNo}
+	</select>
+	
 	<!-- Common -->
     <select id="getFeedList" parameterType="java.util.HashMap" resultType="com.deep.model.domain.FeedList">
 		<if test="mode == 1" >
@@ -28,10 +39,16 @@
 	</select>
 	
 	<select id="getFeedSeries" parameterType="int" resultType="com.deep.model.domain.FeedSeries">
-		SELECT * FROM deep_feed_series WHERE deepFeedNo=#{inputDeepFeedNo}
+		SELECT * FROM deep_feed_series WHERE deepFeedNo=#{inputFeedNo}
 	</select>
 	
 	<select id="getFeedHashtag" parameterType="int" resultType="com.deep.model.domain.FeedHashtag">
-		SELECT * FROM deep_feed_hashtag WHERE deepFeedNo=#{inputDeepFeedNo}
+		SELECT * FROM deep_feed_hashtag WHERE deepFeedNo=#{inputFeedNo}
 	</select>
+	
+	<select id="getFeed" parameterType="int" resultType="com.deep.model.domain.Feed">
+		SELECT * FROM deep_feed WHERE deepFeedNo=#{inputFeedNo}
+	</select>
+	
+	
 </mapper>

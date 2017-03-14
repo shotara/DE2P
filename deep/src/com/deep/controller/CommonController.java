@@ -43,8 +43,8 @@ public class CommonController {
 		try{
 			HttpSession session = req.getSession();
 
-			int sessionMemberNo = session.getAttribute("hbiMemberNo") != null ? Integer.parseInt(session.getAttribute("hbiMemberNo").toString()) : 0;
-			int inputFeedCategory = 1;
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+			int inputCategoryNo = 1;
 			int inputNextFeedNo = 0;
 			int listMode = 0; 	// FeedList Mode  1 : newFeedList , 2 : bestFeedListByALl, 3 : bestFeedListByCategory
 			int inputHotFeedCount = 0; 	// HotFeed를 가져올 갯수  - 멤버면 10개, 방문자면 20개.
@@ -55,79 +55,14 @@ public class CommonController {
 
 			if(sessionMemberNo>0) {
 				MemberFavorite memberFavorite = MemberDAO.getMemberFavorite(sessionMemberNo);
-				inputFeedCategory = memberFavorite.getDeepCategoryNo();
+				inputCategoryNo = memberFavorite.getDeepCategoryNo();
 			}
 			
-			// 새로운 피드 리스트를 띄워준다. Param =inputFeedCategory  DAO로 가져온다.
+			// 새로운 피드 리스트를 띄워준다. Param =inputCategoryNo  DAO로 가져온다.
 			JSONArray jNewFeedArray = new JSONArray();
 			listMode = 1;
-			ArrayList<FeedList> newFeedList = FeedDAO.getFeedList(listMode, inputFeedCategory, inputNextFeedNo, inputCurrentDate);
-			
-			for(int i=0; i>newFeedList.size();i++) {
-				JSONObject jTempObject = new JSONObject();
-				
-				// 인덱스  - jSON은 순서가 없다.
-				jTempObject.put("outputNewFeedNo", i+1);
-				
-				// Writer
-				Member member = MemberDAO.getMemberByMemberNo(newFeedList.get(i).getDeepMemberNo());
-				jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(newFeedList.get(i).getDeepMemberNo()).getDeepMemberUid());
-				jTempObject.put("outputMemberName", EncryptUtil.AES_Decode(member.getDeepMemberName(), aesKey));
-				jTempObject.put("outputMemberImage", MemberController.getMemberImage(member.getDeepMemberImage()));
-					
-				// Feed
-				jTempObject.put("outputFeedNo", newFeedList.get(i).getDeepFeedNo());
-				jTempObject.put("outputCategoryNo", newFeedList.get(i).getDeepCategoryNo());
-				jTempObject.put("outputCategoryName", CommonUtil.getCategoryName(newFeedList.get(i).getDeepCategoryNo()));
-				jTempObject.put("outputFeedType", newFeedList.get(i).getDeepFeedType());
-				jTempObject.put("outputFeedTypeName", CommonUtil.getFeedTypeName(newFeedList.get(i).getDeepFeedType()));
-				jTempObject.put("outputFeedCreateDate", CommonUtil.convertUnixTime(newFeedList.get(i).getDeepFeedCreateDate(), 16));
-				jTempObject.put("outputFeedTitle", newFeedList.get(i).getDeepFeedNo());
-				
-				//사진가져오기
-				ArrayList<HashMap<String, Object>> outputFeedImageList = new ArrayList<HashMap<String, Object>>(); 
-				if(!(newFeedList.get(i).getDeepFeedImages().equals(""))) {
+			jNewFeedArray = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, inputCurrentDate, aesKey);
 
-					String bucketName = GlobalValue.AWS_CLOUDFRONT_USER_BUCKET_URL + "/feed/" + newFeedList.get(i).getDeepFeedNo() + "/";
-					ArrayList<String> imgList = CommonUtil.commonSpiltBySemicolon(newFeedList.get(i).getDeepFeedImages());
-					for(int j=0; j<imgList.size(); j++) {
-						HashMap<String, Object> outputFeedImgMap = new HashMap<String, Object>();		
-						Upload upload = UploadDAO.getUploadByUploadNo(Integer.parseInt(imgList.get(j)));
-						outputFeedImgMap.put("outputFeedImage", bucketName + upload.getDeepUploadEncryptFileName() +"." + upload.getDeepUploadFileExtension());
-						outputFeedImageList.add(outputFeedImgMap);
-					}
-				}
-				jTempObject.put("outputFeedImage", outputFeedImageList.get(0).get("outputMeetingImage")); // 대표 이미지
-				jTempObject.put("outputFeedImageList", outputFeedImageList);
-
-				jTempObject.put("outputFeedContent", newFeedList.get(i).getDeepFeedNo());
-				jTempObject.put("outputFeedLikeCount", newFeedList.get(i).getDeepFeedNo());
-				jTempObject.put("outputFeedCommentCount", newFeedList.get(i).getDeepFeedNo());
-				jTempObject.put("outputFeedShareCount", newFeedList.get(i).getDeepFeedNo());
-
-				// 해쉬태그 
-				JSONArray jHashtagArray = new JSONArray();
-				ArrayList<FeedHashtag> feedHashtag = FeedDAO.getFeedHashtag(newFeedList.get(i).getDeepFeedNo());
-				for(int j=0;j<feedHashtag.size();j++) {
-					JSONObject jTempHashtag = new JSONObject();
-					jTempHashtag.put("outputFeedHashtag", feedHashtag.get(j).getDeepFeedHashtag());
-					jHashtagArray.add(jTempHashtag);
-				}
-				jTempObject.put("outputFeedHashtag", jHashtagArray);
-				
-				// 시리즈인지 
-				FeedSeries feedSeries = FeedDAO.getFeedSeries(newFeedList.get(i).getDeepFeedNo());
-				if(feedSeries!=null) {
-					jTempObject.put("outputIsSeries", "1");
-					jTempObject.put("outputFeedSeriesId", feedSeries.getDeepFeedSeriesId());
-					jTempObject.put("outputFeedSeriesOrder", feedSeries.getDeepFeedSeriesOrder());
-					jTempObject.put("outputFeedSeriesName", feedSeries.getDeepFeedSeriesName());
-				} else {
-					jTempObject.put("outputIsSeries", "-1");
-				}
-				// newFeedArray에 더한다.
-				jNewFeedArray.add(jTempObject);
-			}
 			// MainObject에 newFeedList 더한다.
 			jMainObject.put("outputNewFeedList", jNewFeedArray);
 			
@@ -136,102 +71,23 @@ public class CommonController {
 			listMode = 2;
 			if(!(sessionMemberNo>0)) {
 				inputHotFeedCount = 20;
-				ArrayList<FeedList> hotFeedList = FeedDAO.getFeedList(listMode, inputFeedCategory, inputHotFeedCount, inputCurrentDate);
+				jHotFeedArray = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, inputCurrentDate, aesKey);
 				
-				for(int i=0; i>hotFeedList.size();i++) {
-					JSONObject jTempObject = new JSONObject();
-					
-					// 인덱스
-					jTempObject.put("outpuHotFeedNo", i+1);
-					
-					// Writer
-					Member member = MemberDAO.getMemberByMemberNo(hotFeedList.get(i).getDeepMemberNo());
-					
-					jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(hotFeedList.get(i).getDeepMemberNo()).getDeepMemberUid());
-					jTempObject.put("outputMemberName", EncryptUtil.AES_Decode(member.getDeepMemberName(), aesKey));
-					jTempObject.put("outputMemberImage", MemberController.getMemberImage(member.getDeepMemberImage()));
-						
-					// Feed
-					jTempObject.put("outputFeedNo", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputCategoryNo", hotFeedList.get(i).getDeepCategoryNo());
-					jTempObject.put("outputCategoryName", CommonUtil.getCategoryName(hotFeedList.get(i).getDeepCategoryNo()));
-					jTempObject.put("outputFeedType", hotFeedList.get(i).getDeepFeedType());
-					jTempObject.put("outputFeedTypeName", CommonUtil.getFeedTypeName(hotFeedList.get(i).getDeepFeedType()));
-					jTempObject.put("outputFeedTitle", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedLikeCount", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedCommentCount", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedShareCount", hotFeedList.get(i).getDeepFeedNo());
-				
-					jHotFeedArray.add(jTempObject);
-				}
 				// MainObject에 hotFeedList 더한다.
 				jMainObject.put("outputHotFeedList", jHotFeedArray);
 				
 			} else { //로그인 되있는 경우 hotFeedList와 hotFeedListByCategory를 둘 다 가져온다.
 				inputHotFeedCount = 10;
-				ArrayList<FeedList> hotFeedList = FeedDAO.getFeedList(listMode, inputFeedCategory, inputHotFeedCount, inputCurrentDate);
+				jHotFeedArray = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, inputCurrentDate, aesKey);
 				
-				for(int i=0; i>hotFeedList.size();i++) {
-					JSONObject jTempObject = new JSONObject();
-					
-					// 인덱스
-					jTempObject.put("outpuHotFeedNo", i+1);
-					
-					// Writer
-					Member member = MemberDAO.getMemberByMemberNo(hotFeedList.get(i).getDeepMemberNo());
-					
-					jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(hotFeedList.get(i).getDeepMemberNo()).getDeepMemberUid());
-					jTempObject.put("outputMemberName", EncryptUtil.AES_Decode(member.getDeepMemberName(), aesKey));
-					jTempObject.put("outputMemberImage", MemberController.getMemberImage(member.getDeepMemberImage()));
-						
-					// Feed
-					jTempObject.put("outputFeedNo", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputCategoryNo", hotFeedList.get(i).getDeepCategoryNo());
-					jTempObject.put("outputCategoryName", CommonUtil.getCategoryName(hotFeedList.get(i).getDeepCategoryNo()));
-					jTempObject.put("outputFeedType", hotFeedList.get(i).getDeepFeedType());
-					jTempObject.put("outputFeedTypeName", CommonUtil.getFeedTypeName(hotFeedList.get(i).getDeepFeedType()));
-					jTempObject.put("outputFeedTitle", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedLikeCount", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedCommentCount", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedShareCount", hotFeedList.get(i).getDeepFeedNo());
-				
-					jHotFeedArray.add(jTempObject);
-				}
-				// MainObject에 hotFeedList 더한다.
 				jMainObject.put("outputHotFeedList", jHotFeedArray);
 				
 				// Category hotFeedListByCategory
 				JSONArray jHotFeedArrayByCategory = new JSONArray();
 
 				listMode = 3;
-				ArrayList<FeedList> hotFeedListByCategory = FeedDAO.getFeedList(listMode, inputFeedCategory, inputHotFeedCount, inputCurrentDate);
-				
-				for(int i=0; i>hotFeedList.size();i++) {
-					JSONObject jTempObject = new JSONObject();
-					
-					// 인덱스
-					jTempObject.put("outpuHotFeedByCategoryNo", i+1);
-					
-					// Writer
-					Member member = MemberDAO.getMemberByMemberNo(hotFeedList.get(i).getDeepMemberNo());
-					
-					jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(hotFeedList.get(i).getDeepMemberNo()).getDeepMemberUid());
-					jTempObject.put("outputMemberName", EncryptUtil.AES_Decode(member.getDeepMemberName(), aesKey));
-					jTempObject.put("outputMemberImage", MemberController.getMemberImage(member.getDeepMemberImage()));
-						
-					// Feed
-					jTempObject.put("outputFeedNo", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputCategoryNo", hotFeedList.get(i).getDeepCategoryNo());
-					jTempObject.put("outputCategoryName", CommonUtil.getCategoryName(hotFeedList.get(i).getDeepCategoryNo()));
-					jTempObject.put("outputFeedType", hotFeedList.get(i).getDeepFeedType());
-					jTempObject.put("outputFeedTypeName", CommonUtil.getFeedTypeName(hotFeedList.get(i).getDeepFeedType()));
-					jTempObject.put("outputFeedTitle", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedLikeCount", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedCommentCount", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedShareCount", hotFeedList.get(i).getDeepFeedNo());
-				
-					jHotFeedArrayByCategory.add(jTempObject);
-				}
+				jHotFeedArrayByCategory = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, inputCurrentDate, aesKey);
+
 				// MainObject에 hotFeedList 더한다.
 				jMainObject.put("outputHotFeedByCategoryList", jHotFeedArrayByCategory);
 			}

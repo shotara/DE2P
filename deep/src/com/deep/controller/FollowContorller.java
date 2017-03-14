@@ -21,11 +21,10 @@ public class FollowContorller {
 
 	public static final String className = "FollowController";
 	
-	public static int getFollower(HttpServletRequest req, HttpServletResponse res)
-	{
+	public static int getFollower(HttpServletRequest req, HttpServletResponse res) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		
-		try{
+		try {
 			HttpSession session = req.getSession();
 			int inputFollower = req.getParameter("inputFollowerUid") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFollowerUid").toString())) : null;
 			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
@@ -69,13 +68,13 @@ public class FollowContorller {
 		int followerMemberNo = FollowDAO.getFollower(inputFollower).getDeepFollower();
 		return followerMemberNo;
 		
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return 0;
 	}
 
-	public static int getFollowing(HttpServletRequest req, HttpServletResponse res){
+	public static int getFollowing(HttpServletRequest req, HttpServletResponse res) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		
 		try	{
@@ -181,10 +180,10 @@ public class FollowContorller {
 			//when add follow, let set notice
 			int inputNoticeCategory = 4;  // temp
 			int inputNoticeStatus = 1; // unconfirmed 
-			long inputCurrentDate = System.currentTimeMillis()/1000; 
 			int inputFollowing = req.getParameter("inputFollowingUid") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFollowingUid").toString())) : 0;				
 			int inputFollower = req.getParameter("inputFollowerUid") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFollowerUid").toString())) : 0;
 			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+			long inputCurrentDate = System.currentTimeMillis()/1000; 
 			
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
@@ -192,12 +191,8 @@ public class FollowContorller {
 		
 			// Parameter check(Attack Defense)
 			ArrayList<Object> parameterList = new ArrayList<Object>();
-			parameterList.add(inputNoticeCategory);
 			parameterList.add(inputFollowing);
 			parameterList.add(inputFollower);
-			parameterList.add(inputNoticeStatus);
-			parameterList.add(inputCurrentDate);
-			parameterList.add(sessionMemberNo);
 			if(!CommonUtil.commonParameterCheck(parameterList)) {
 				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
 				jObject.put("outputResult", "-1");
@@ -219,7 +214,7 @@ public class FollowContorller {
 		//2. UID -> Number, after Check(loginMember equal Follower?)
 			// following(change No)
 			int followingMemberNo = MemberDAO.getMemberNoByMemberUid(Integer.toString(inputFollowing));
-			if(followingMemberNo==0) {
+			if(!(followingMemberNo>0)) {
 				map.put("USER-NO", Integer.toString(inputFollowing));
 				CommonUtil.commonPrintLog("FAIL", className, "No change FollowingMemberNo", map);
 				res.getWriter().write("-2");
@@ -228,10 +223,10 @@ public class FollowContorller {
 			// follower(change No)
 			int followerMemberNo = MemberDAO.getMemberNoByMemberUid(Integer.toString(inputFollower));
 		    // UID->No change && loginMember is follower?
-			if((followerMemberNo==0) && (sessionMemberNo != followerMemberNo)) {
+			if((!(followerMemberNo>0)) && (sessionMemberNo != followerMemberNo)) {
 				map.put("USER-NO", Integer.toString(inputFollower));
 				CommonUtil.commonPrintLog("FAIL", className, "No change FollowerMemberNo or FollowerMemberNo and sessionNo is not equal", map);
-				res.getWriter().write("-2");
+				res.getWriter().write("-3");
 				return;				
 			}
 			
@@ -239,7 +234,7 @@ public class FollowContorller {
 			if(FollowDAO.getFollowing(inputFollowing).getDeepFollowing() < 0){
 				map.put("USER-NO", Integer.toString(inputFollowing));
 				CommonUtil.commonPrintLog("FAIL", className, "already Following exist", map);
-				res.getWriter().write("-2");
+				res.getWriter().write("-4");
 				return;				
 			}
 			FollowDAO.addFollow(inputFollower, inputFollowing); //uid로 넘김
