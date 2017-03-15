@@ -8,6 +8,7 @@ public class Feed {
 	private int deepFeedStatus;
 	private int deepFeedType;
 	private long deepFeedCreateDate;
+	private long deepFeedUpdateDate;
 	private String deepFeedTitle;
 	private String deepMemberName;
 	private String deepFeedImages;
@@ -52,6 +53,12 @@ public class Feed {
 	public void setDeepFeedCreateDate(long deepFeedCreateDate) {
 		this.deepFeedCreateDate = deepFeedCreateDate;
 	}
+	public long getDeepFeedUpdateDate() {
+		return deepFeedUpdateDate;
+	}
+	public void setDeepFeedUpdateDate(long deepFeedUpdateDate) {
+		this.deepFeedUpdateDate = deepFeedUpdateDate;
+	}
 	public String getDeepFeedTitle() {
 		return deepFeedTitle;
 	}
@@ -77,8 +84,8 @@ public class Feed {
 		this.deepFeedContent = deepFeedContent;
 	}
 	public Feed(int deepFeedNo, int deepMemberNo, int deepCategoryNo, int deepFeedStatus, int deepFeedType,
-			long deepFeedCreateDate, String deepFeedTitle, String deepMemberName, String deepFeedImages,
-			String deepFeedContent) {
+			long deepFeedCreateDate, long deepFeedUpdateDate, String deepFeedTitle, String deepMemberName,
+			String deepFeedImages, String deepFeedContent) {
 		super();
 		this.deepFeedNo = deepFeedNo;
 		this.deepMemberNo = deepMemberNo;
@@ -86,10 +93,11 @@ public class Feed {
 		this.deepFeedStatus = deepFeedStatus;
 		this.deepFeedType = deepFeedType;
 		this.deepFeedCreateDate = deepFeedCreateDate;
+		this.deepFeedUpdateDate = deepFeedUpdateDate;
 		this.deepFeedTitle = deepFeedTitle;
 		this.deepMemberName = deepMemberName;
 		this.deepFeedImages = deepFeedImages;
 		this.deepFeedContent = deepFeedContent;
 	}
-	
+
 }

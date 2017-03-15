@@ -36,7 +36,12 @@ public class FeedView extends HttpServlet{
 				map.put("ACTION", "getFeed");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				FeedController.getFeed(req,res);
-				break;		
+				break;	
+			case "getFeedReadyList":
+				map.put("ACTION", "getFeedReadyList");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				FeedController.getFeedReadyList(req,res);
+				break;					
 			case "writeFeed":
 				map.put("ACTION", "writeFeed");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
@@ -51,7 +56,17 @@ public class FeedView extends HttpServlet{
 				map.put("ACTION", "searchFeed");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				FeedController.searchFeed(req,res);
-				break;					
+				break;	
+			case "writeFeedComment":
+				map.put("ACTION", "writeFeedComment");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				FeedController.writeFeedComment(req,res);
+				break;
+			case "getFeedCommentList":
+				map.put("ACTION", "getFeedCommentList");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				FeedController.getFeedCommentList(req,res);
+				break;
 			}
 			
 		} catch (Exception e) {

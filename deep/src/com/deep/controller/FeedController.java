@@ -23,6 +23,8 @@ import com.deep.model.FeedDAO;
 import com.deep.model.MemberDAO;
 import com.deep.model.UploadDAO;
 import com.deep.model.domain.Feed;
+import com.deep.model.domain.FeedComment;
+import com.deep.model.domain.FeedCount;
 import com.deep.model.domain.FeedHashtag;
 import com.deep.model.domain.FeedList;
 import com.deep.model.domain.FeedSeries;
@@ -41,6 +43,8 @@ public class FeedController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		
 		try {
+			// mode 1 : 임시저장, 2 : 정상등록 
+			int mode = req.getParameter("mode") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("mode").toString())) : 0;
 			int inputFeedNo = req.getParameter("inputFeedNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFeedNo").toString())) : 0;
 
 			JSONObject jObject = new JSONObject();
@@ -56,8 +60,13 @@ public class FeedController {
 				res.getWriter().write(jObject.toString());
 				return;
 			}
-
-			Feed feed = FeedDAO.getFeed(inputFeedNo);
+			
+			Feed feed;
+			
+			if(mode==2)
+				feed = FeedDAO.getFeed(inputFeedNo);
+			else 
+				feed = FeedDAO.getFeedReady(inputFeedNo); 
 			
 			if(feed==null) {
 				CommonUtil.commonPrintLog("fail", className, "No Feed", map);
@@ -68,7 +77,7 @@ public class FeedController {
 			
 			// feed 뿌려주기.
 			jObject.put("outputFeedNo", feed.getDeepFeedNo());
-			jObject.put("outputMemberNo", feed.getDeepMemberNo());
+			jObject.put("outputMemberUid", MemberDAO.getMemberUid(feed.getDeepMemberNo()));
 			jObject.put("outputCategorydNo", feed.getDeepCategoryNo());
 			jObject.put("outputFeedType", feed.getDeepFeedType());
 			jObject.put("outputFeedCreateDate", feed.getDeepFeedCreateDate());
@@ -78,7 +87,85 @@ public class FeedController {
 			jObject.put("outputFeedImages", feed.getDeepFeedImages());
 			jObject.put("outputFeedContent", feed.getDeepFeedContent());
 
+			// Hashtag 
+			
+			// Series
+			FeedSeries feedSeries = FeedDAO.getFeedSeries(inputFeedNo);
+			
+			if(feedSeries!=null) {
+				jObject.put("outputFeedSeriesId", feedSeries.getDeepFeedSeriesId());
+				jObject.put("outputFeedSeriesOrder", feedSeries.getDeepFeedSeriesOrder());
+				jObject.put("outputFeedSeriesName", feedSeries.getDeepFeedSeriesName());
+			}
+			
+			if(mode==2) {
+				FeedCount feedCount = FeedDAO.getFeedCount(feed.getDeepFeedNo());
+				jObject.put("outputFeedLikeCount", feedCount.getDeepLikeCount());
+				jObject.put("outputFeedCommentCount", feedCount.getDeepCommentCount());
+				jObject.put("outputFeedShareCount", feedCount.getDeepShareCount());
+			}
 			CommonUtil.commonPrintLog("SUCCESS", className, "Get Feed OK", map);
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void getFeedReadyList(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			JSONArray jFeedReadyArray = new JSONArray();
+			ArrayList<Feed> feedList = FeedDAO.getFeedReadyList(sessionMemberNo, System.currentTimeMillis()/1000);
+			
+			for(int i=0; i>feedList.size();i++) {
+				JSONObject jTempObject = new JSONObject();
+				
+				// Feed
+				jTempObject.put("outputFeedNo", feedList.get(i).getDeepFeedNo());
+				jTempObject.put("outputCategoryNo", feedList.get(i).getDeepCategoryNo());
+				jTempObject.put("outputCategoryName", CommonUtil.getCategoryName(feedList.get(i).getDeepCategoryNo()));
+				jTempObject.put("outputFeedType", feedList.get(i).getDeepFeedType());
+				jTempObject.put("outputFeedTypeName", CommonUtil.getFeedTypeName(feedList.get(i).getDeepFeedType()));
+				jTempObject.put("outputFeedCreateDate", CommonUtil.convertUnixTime(feedList.get(i).getDeepFeedCreateDate(), 16));
+				jTempObject.put("outputFeedTitle", feedList.get(i).getDeepFeedTitle());
+				
+				// 시리즈인지 
+				FeedSeries feedSeries = FeedDAO.getFeedSeries(feedList.get(i).getDeepFeedNo());
+				if(feedSeries!=null) {
+					jTempObject.put("outputIsSeries", "1");
+					jTempObject.put("outputFeedSeriesId", feedSeries.getDeepFeedSeriesId());
+					jTempObject.put("outputFeedSeriesOrder", feedSeries.getDeepFeedSeriesOrder());
+					jTempObject.put("outputFeedSeriesName", feedSeries.getDeepFeedSeriesName());
+				} else {
+					jTempObject.put("outputIsSeries", "-1");
+				}
+
+				jFeedReadyArray.add(jTempObject);
+			}
+			
+			jObject.put("outputFeedReadyList", jFeedReadyArray);
+
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get Feed Ready List OK", map);
 			res.getWriter().write(jObject.toString());
 			return;
 			
@@ -105,6 +192,16 @@ public class FeedController {
 			String inputFeedImages = req.getParameter("inputFeedImages") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputFeedImages").toString()) : "";
 			String inputFeedContent = req.getParameter("inputFeedContent") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputFeedContent").toString()) : "";
 
+			// Hashtag
+			String inputFeedHashtag = req.getParameter("inputFeedHashtag") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputFeedHashtag").toString()) : "";
+
+			// Series
+			int isSeries = req.getParameter("isSeries") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("isSeries").toString())) : 0;
+			int inputFeedSeriesId = req.getParameter("inputFeedSeriesId") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFeedSeriesId").toString())) : 0;
+			int inputFeedSeriesOrder = req.getParameter("inputFeedSeriesOrder") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFeedSeriesOrder").toString())) : 0;
+			String inputFeedSeriesName = req.getParameter("inputFeedSeriesName") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputFeedSeriesName").toString()) : "";
+
+			
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
@@ -132,21 +229,70 @@ public class FeedController {
 				return;
 			}
 			
-			int check = 0;
+			int checkFeed = 0, checkSeries = 0;
 			
-			if(mode == 1) {
-				inputFeedStatus = 1;
-				FeedDAO.addFeed(sessionMemberNo, inputCategoryNo, inputFeedStatus, inputFeedType, inputCurrentDate, inputFeedTitle, inputFeedImages, inputFeedContent);
-			} else {
+			if(mode == 1) {	// 임시저장 
 				inputFeedStatus = 3;
-				FeedDAO.addFeed(sessionMemberNo, inputCategoryNo, inputFeedStatus, inputFeedType, inputCurrentDate, inputFeedTitle, inputFeedImages, inputFeedContent);
-			}
+				checkFeed = FeedDAO.addFeedReady(sessionMemberNo, inputCategoryNo, inputFeedStatus, inputFeedType, inputCurrentDate, inputFeedTitle, inputFeedImages, inputFeedContent);
+				if(checkFeed!=1) {
+					CommonUtil.commonPrintLog("ERROR", className, "Add Feed Fail!!!", map);
+					jObject.put("outputResult", "-3");
+					res.getWriter().write(jObject.toString());
+					return;
+				}
 				
-			if(check!=1) {
-				CommonUtil.commonPrintLog("ERROR", className, "Add Feed Fail!!!", map);
-				jObject.put("outputResult", "-3");
-				res.getWriter().write(jObject.toString());
-				return;
+				int inputFeedNo = 0;
+				
+				if(!inputFeedHashtag.equals("")) {
+					
+				//hashtag split method	
+					
+					
+				}
+				
+				if(isSeries==1) {
+					inputFeedNo = FeedDAO.getFeedReadyLastOne(sessionMemberNo);
+					if(inputFeedSeriesId==0) inputFeedSeriesId = inputFeedNo;
+					
+					checkSeries = FeedDAO.addFeedSeriesReady(inputFeedNo, sessionMemberNo, inputFeedStatus, inputFeedSeriesId, inputFeedSeriesOrder, inputCurrentDate, inputFeedSeriesName);
+					if(checkSeries!=1) {
+						CommonUtil.commonPrintLog("ERROR", className, "Add Feed Series Fail!!!", map);
+						jObject.put("outputResult", "-5");
+						res.getWriter().write(jObject.toString());
+						return;
+					}
+				}
+				
+			} else { // 정상등록 
+				inputFeedStatus = 1;
+				checkFeed = FeedDAO.addFeed(sessionMemberNo, inputCategoryNo, inputFeedStatus, inputFeedType, inputCurrentDate, inputFeedTitle, inputFeedImages, inputFeedContent);
+				if(checkFeed!=1) {
+					CommonUtil.commonPrintLog("ERROR", className, "Add Feed Fail!!!", map);
+					jObject.put("outputResult", "-3");
+					res.getWriter().write(jObject.toString());
+					return;
+				}
+				
+				int inputFeedNo = 0;
+				
+				if(!inputFeedHashtag.equals("")) {
+					
+				//hashtag split method	
+					
+					
+				}
+				if(isSeries==1) {
+					inputFeedNo = FeedDAO.getFeedLastOne(sessionMemberNo);
+					if(inputFeedSeriesId==0) inputFeedSeriesId = inputFeedNo;
+					
+					checkSeries = FeedDAO.addFeedSeries(inputFeedNo, sessionMemberNo, inputFeedStatus, inputFeedSeriesId, inputFeedSeriesOrder, inputCurrentDate, inputFeedSeriesName);
+					if(checkSeries!=1) {
+						CommonUtil.commonPrintLog("ERROR", className, "Add Feed Series Fail!!!", map);
+						jObject.put("outputResult", "-5");
+						res.getWriter().write(jObject.toString());
+						return;
+					}
+				}
 			}
 			
 			CommonUtil.commonPrintLog("SUCCESS", className, "Add Feed OK", map);
@@ -282,9 +428,11 @@ public class FeedController {
 					jTempObject.put("outputFeedImageList", outputFeedImageList);
 		
 					jTempObject.put("outputFeedContent", newFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedLikeCount", newFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedCommentCount", newFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedShareCount", newFeedList.get(i).getDeepFeedNo());
+		
+					FeedCount feedCount = FeedDAO.getFeedCount(newFeedList.get(i).getDeepFeedNo());
+					jTempObject.put("outputFeedLikeCount", feedCount.getDeepLikeCount());
+					jTempObject.put("outputFeedCommentCount", feedCount.getDeepCommentCount());
+					jTempObject.put("outputFeedShareCount", feedCount.getDeepShareCount());
 		
 					// 해쉬태그 
 					JSONArray jHashtagArray = new JSONArray();
@@ -336,10 +484,12 @@ public class FeedController {
 					jTempObject.put("outputCategoryName", CommonUtil.getCategoryName(hotFeedList.get(i).getDeepCategoryNo()));
 					jTempObject.put("outputFeedType", hotFeedList.get(i).getDeepFeedType());
 					jTempObject.put("outputFeedTypeName", CommonUtil.getFeedTypeName(hotFeedList.get(i).getDeepFeedType()));
+					jTempObject.put("outputFeedCreateDate", CommonUtil.convertUnixTime(hotFeedList.get(i).getDeepFeedCreateDate(), 16));
 					jTempObject.put("outputFeedTitle", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedLikeCount", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedCommentCount", hotFeedList.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedShareCount", hotFeedList.get(i).getDeepFeedNo());
+					FeedCount feedCount = FeedDAO.getFeedCount(hotFeedList.get(i).getDeepFeedNo());
+					jTempObject.put("outputFeedLikeCount", feedCount.getDeepLikeCount());
+					jTempObject.put("outputFeedCommentCount", feedCount.getDeepCommentCount());
+					jTempObject.put("outputFeedShareCount", feedCount.getDeepShareCount());
 				
 					jHotFeedArray.add(jTempObject);
 				}
@@ -372,9 +522,12 @@ public class FeedController {
 					jTempObject.put("outputFeedType", hotFeedListByCategory.get(i).getDeepFeedType());
 					jTempObject.put("outputFeedTypeName", CommonUtil.getFeedTypeName(hotFeedListByCategory.get(i).getDeepFeedType()));
 					jTempObject.put("outputFeedTitle", hotFeedListByCategory.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedLikeCount", hotFeedListByCategory.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedCommentCount", hotFeedListByCategory.get(i).getDeepFeedNo());
-					jTempObject.put("outputFeedShareCount", hotFeedListByCategory.get(i).getDeepFeedNo());
+					jTempObject.put("outputFeedCreateDate", CommonUtil.convertUnixTime(hotFeedListByCategory.get(i).getDeepFeedCreateDate(), 16));
+
+					FeedCount feedCount = FeedDAO.getFeedCount(hotFeedListByCategory.get(i).getDeepFeedNo());
+					jTempObject.put("outputFeedLikeCount", feedCount.getDeepLikeCount());
+					jTempObject.put("outputFeedCommentCount", feedCount.getDeepCommentCount());
+					jTempObject.put("outputFeedShareCount", feedCount.getDeepShareCount());
 				
 					jHotFeedArrayByCategory.add(jTempObject);
 				}
@@ -427,7 +580,7 @@ public class FeedController {
 			}
 
 			JSONArray jSearchFeedArray = new JSONArray();
-			ArrayList<FeedList> searchFeedList = FeedDAO.searchFeed(mode, inputSearch);
+			ArrayList<Feed> searchFeedList = FeedDAO.searchFeed(mode, inputSearch);
 
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 
@@ -507,4 +660,151 @@ public class FeedController {
 			e.printStackTrace();
 		}
 	}
+
+	public static void writeFeedComment(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+
+			int inputFeedNo = req.getParameter("inputFeedNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFeedNo").toString())) : 0;
+			int inputFeedCommentStatus = 1;
+			int inputFeedParentCommentNo = req.getParameter("inputFeedParentCommentNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFeedParentCommentNo").toString())) : 0;
+			int inputFeedCommentDepth = req.getParameter("inputFeedCommentDepth") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFeedCommentDepth").toString())) : 0;
+			int inputFeedCommentNotify = req.getParameter("inputFeedCommentNotify") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFeedCommentNotify").toString())) : 0;
+			long inputCurrentDate = System.currentTimeMillis()/1000;
+			String inputFeedCommentContent = req.getParameter("inputFeedCommentContent") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputFeedCommentContent").toString()) : "";
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputFeedNo);	
+			parameterList.add(inputFeedParentCommentNo);	
+			parameterList.add(inputFeedCommentDepth);	
+			parameterList.add(inputFeedCommentNotify);	
+			parameterList.add(inputFeedCommentContent);	
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			// Member check
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			int check = FeedDAO.addFeedComment(inputFeedNo, sessionMemberNo, inputFeedCommentStatus, inputFeedParentCommentNo, 
+					inputFeedCommentDepth, inputFeedCommentNotify, inputCurrentDate,inputFeedCommentContent);
+			if(check!=1) {
+				CommonUtil.commonPrintLog("FAIL", className, "Add Feed Comment Fail !!!", map);
+				jObject.put("outputResult", "-3");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Add Feed Comment OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void getFeedCommentList(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			int inputFeedNo = req.getParameter("inputFeedNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFeedNo").toString())) : 0;
+
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputFeedNo);	
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			JSONArray jFeedCommentList = new JSONArray();
+			ArrayList<FeedComment> feedCommentList = FeedDAO.getFeedCommentList(inputFeedNo);
+			if(feedCommentList!=null) {
+				ArrayList<FeedComment> getCommentList = initGetComment(feedCommentList);
+				
+				String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+
+				for(int i=0; i>getCommentList.size();i++) {
+					JSONObject jTempObject = new JSONObject();
+	
+					Member member = MemberDAO.getMemberByMemberNo(getCommentList.get(i).getDeepMemberNo());
+					jTempObject.put("outputMemberProfileImg", MemberController.getMemberImage(member.getDeepMemberImage()));
+					jTempObject.put("outputMemberName", EncryptUtil.AES_Decode(member.getDeepMemberName(), aesKey));
+					
+					jTempObject.put("outputFeedCommentNo", getCommentList.get(i).getDeepFeedCommentNo());
+					jTempObject.put("outputFeedNo", getCommentList.get(i).getDeepFeedNo());
+					jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(getCommentList.get(i).getDeepMemberNo()));
+					jTempObject.put("outputFeedParrentCommentNo", getCommentList.get(i).getDeepFeedParentCommentNo());
+					jTempObject.put("outputFeedCommentDepth", getCommentList.get(i).getDeepFeedCommentDepth());
+					jTempObject.put("outputFeedCommentNotify", getCommentList.get(i).getDeepFeedCommentNotify());
+					jTempObject.put("outputFeedCommentCreateDate", CommonUtil.convertUnixTime(getCommentList.get(i).getDeepFeedCommentCreateDate(), 16));
+					jTempObject.put("outputFeedCommentContent", getCommentList.get(i).getDeepFeedCommentContent());
+
+					jFeedCommentList.add(jTempObject);
+				}
+			}
+			jObject.put("outputFeedCommentList", jFeedCommentList);
+
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get Feed Comment List OK", map);
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static ArrayList<FeedComment> initGetComment(ArrayList<FeedComment> commentList){
+		
+		ArrayList<FeedComment> tempList = new ArrayList<FeedComment>();
+		
+		// 패런트가 0인 코멘트의 자식 코멘트들 찾기
+		for(int i =0; i < commentList.size(); i++){
+			if(commentList.get(i).getDeepFeedParentCommentNo() == 0){
+				tempList.add(commentList.get(i));
+				getComment(commentList, commentList.get(i).getDeepFeedCommentNo(), tempList);
+			}	
+		}
+		return tempList;
+	}
+	
+	private static void getComment(ArrayList<FeedComment> commentList, int commentNo, ArrayList<FeedComment> tempList){
+		
+		for(int i =0; i < commentList.size(); i++){
+			if(commentList.get(i).getDeepFeedParentCommentNo() == commentNo){
+				tempList.add(commentList.get(i));
+				getComment(commentList, commentList.get(i).getDeepFeedCommentNo(), tempList);
+			}
+		}
+	}
+
 }
