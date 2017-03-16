@@ -28,11 +28,35 @@
 		INSERT INTO deep_feed_comment(deepFeedNo, deepMemberNo, deepFeedCommentStatus, deepFeedParentCommentNo, deepFeedCommentDepth, deepFeedCommentNotify, , deepFeedCommentCreateDate, deepFeedCommentContent)
 		VALUES(#{feedNo}. #{memberNo}, #{feedCommentStatus}, #{feedParentCommentNo}, #{feedCommentDepth}, #{feddCommentNotify}, #{inputCurrentDate}, #{feedCommentContent})
 	</select>	
+	
+	<select id="addFeedLike" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO deep_feed_like(deepFeedNo, deepMemberNo, deepFeedLikeDate)
+		VALUES(#{feedNo}. #{memberNo}, #{inputCurrentDate})
+	</select>				
+	
+	<select id="addFeedCommentLike" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO deep_feed_comment_like(deepFeedCommentNo, deepMemberNo, deepFeedCommentLikeDate)
+		VALUES(#{feedCommentNo}. #{memberNo}, #{inputCurrentDate})
+	</select>				
+	
+	<select id="addFeedShare" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO deep_feed_share(deepFeedNo, deepMemberNo, deepFeedShareDate)
+		VALUES(#{feedCommentNo}. #{memberNo}, #{inputCurrentDate})
+	</select>				
 				
 	<!-- Update -->
 	<select id="setFeed" parameterType="java.util.HashMap" resultType="int">
 		UPDATE deep_feed SET deepCategoryNo=#{categoryNo}, deepFeedStatus=#{feedStatus}, deepFeedType=#{feedType}, deepFeedUpdateDate=#{inputCurrentDate}, deepFeedTitle=#{feedTitle}, deepFeedImages=#{feedImages}, deepFeedContent=#{feedContent}
 		WHERE deepFeedNo=#{feedNo} AND deepMemberNo=#{memberNo}
+	</select>
+	
+	<!-- Delete -->
+	<select id="deleteFeedLike" parameterType="java.util.HashMap" resultType="int">
+		DELETE FROM deep_feed_like WHERE deepFeedNo=#{feedNo} AND deepMemberNo=#{memberNo}
+	</select>
+	
+	<select id="deleteFeedCommentLike" parameterType="java.util.HashMap" resultType="int">
+		DELETE FROM deep_feed_comment_like WHERE deepFeedCommentNo=#{feedCommentNo} AND deepMemberNo=#{memberNo}
 	</select>
 	
 	<!-- Common -->
@@ -98,5 +122,21 @@
 	
 	<select id="getFeedCommentList" parameterType="int" resultType="com.deep.model.domain.FeedComment">
 		SELECT * FROM deep_feed_comment WHERE deepFeedNo=#{inputFeedNo} AND deepFeedCommentStatus=1
+	</select>
+	
+	<select id="checkFeedLike" parameterType="java.util.HashMap" resultType="int">
+		SELECT * FROM deep_feed_like WHERE deepFeedNo=#{inputFeedNo} AND deepMemberNo=#{memberNo}
 	</select>	
+		
+	<select id="checkFeedCommentLike" parameterType="java.util.HashMap" resultType="int">
+		SELECT * FROM deep_feed_comment_like WHERE deepFeedCommentNo=#{inputFeedCommentNo} AND deepMemberNo=#{memberNo}
+	</select>	
+	
+	<select id="checkFeedShare" parameterType="java.util.HashMap" resultType="int">
+		SELECT * FROM deep_feed_share WHERE deepFeedNo=#{inputFeedNo} AND deepMemberNo=#{memberNo}
+	</select>				
+		
+	<select id="countFeedCommentLike" parameterType="java.util.HashMap" resultType="int">
+		SELECT count(*) FROM deep_feed_comment_like WHERE deepFeedCommentNo=#{inputFeedCommentNo}
+	</select>
 </mapper>

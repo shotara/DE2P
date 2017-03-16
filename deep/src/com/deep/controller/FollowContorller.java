@@ -1,5 +1,6 @@
 package com.deep.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,27 +8,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.deep.model.FollowDAO;
 import com.deep.model.MemberDAO;
 import com.deep.model.NoticeDAO;
 import com.deep.model.domain.Follow;
+import com.deep.model.domain.FollowMember;
 import com.deep.model.domain.Member;
 import com.deep.util.CommonUtil;
+import com.deep.util.EncryptUtil;
 
 
 public class FollowContorller {
 
 	public static final String className = "FollowController";
 	
-	public static int getFollower(HttpServletRequest req, HttpServletResponse res) {
+	public static void getFollower(HttpServletRequest req, HttpServletResponse res) {
+		
 		HashMap<String, String> map = new HashMap<String, String>();
 		
 		try {
 			HttpSession session = req.getSession();
-			int inputFollower = req.getParameter("inputFollowerUid") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFollowerUid").toString())) : null;
+
 			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+			String inputMemberUid = req.getParameter("inputMemberUid") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberUid").toString()) : "";
 			
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
@@ -35,106 +41,7 @@ public class FollowContorller {
 			
 			//Attack defense(Parameter Check)
 			ArrayList<Object> parameterList = new ArrayList<Object>();
-			parameterList.add(inputFollower);
-			parameterList.add(sessionMemberNo);
-			
-			if(!CommonUtil.commonParameterCheck(parameterList)) {
-				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
-				jObject.put("outputResult", "-1");
-				res.getWriter().write(jObject.toString());
-				return 1;
-			}
-		
-		
-	//DAO
-		// loginPerson is Member? (로그인한 사람이 회원이니?)
-		if(!(sessionMemberNo>0)) {
-			CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
-			jObject.put("outputResult", "-1");
-			res.getWriter().write(jObject.toString());
-			return 1;
-		}
-		
-		//loginPerson is Follower ? (로그인 한사람과 팔로워가 같은가?)
-		int tempFollowerMemberNo = MemberDAO.getMemberNoByMemberUid(Integer.toString(inputFollower)); //MemberUID change to MemberNo
-		if((tempFollowerMemberNo==0) && (sessionMemberNo != tempFollowerMemberNo) ) {
-			map.put("USER-NO", Integer.toString(tempFollowerMemberNo));
-			CommonUtil.commonPrintLog("FAIL", className, "No change FollowerMemberNo or FollowerMemberNo and sessionNo is not equal", map);
-			res.getWriter().write("-2");
-			return 1;				
-		}
-		
-		// 위 두가지 조건이 맞으면 DAO실행
-		int followerMemberNo = FollowDAO.getFollower(inputFollower).getDeepFollower();
-		return followerMemberNo;
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return 0;
-	}
-
-	public static int getFollowing(HttpServletRequest req, HttpServletResponse res) {
-		HashMap<String, String> map = new HashMap<String, String>();
-		
-		try	{
-			HttpSession session = req.getSession();
-			
-			int inputFollowing = req.getParameter("inputFollowingUid") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFollowingUid").toString())) : 0;				
-			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
-			
-			JSONObject jObject = new JSONObject();
-			res.setContentType("application/json");
-			res.setCharacterEncoding("UTF-8");
-		
-			// Attack defense(Parameter check)
-			ArrayList<Object> parameterList = new ArrayList<Object>();
-		    parameterList.add(inputFollowing);
-			parameterList.add(sessionMemberNo);
-			if(!CommonUtil.commonParameterCheck(parameterList)) {
-				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
-				jObject.put("outputResult", "-1");
-				res.getWriter().write(jObject.toString());
-				return 1;
-			}
-			
-	// DAO
-			// loginPerson is Member? 
-			if(!(sessionMemberNo>0)) {
-				CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
-				jObject.put("outputResult", "-1");
-				res.getWriter().write(jObject.toString());
-				return 1;
-			}
-			
-			int followingMemberNo = FollowDAO.getFollowing(inputFollowing).getDeepFollowing();
-			return followingMemberNo;
-			//CommonUtil.commonPrintLog("SUCCESS", className, "get Following OK", map);
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		return 0;
-	
-	}
-
-	//delete
-	public static void setFollow(HttpServletRequest req, HttpServletResponse res){
-		HashMap<String, String> map = new HashMap<String, String>();
-		
-		try{
-			HttpSession session = req.getSession();
-			int inputFollowing = req.getParameter("inputFollowingUid") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFollowingUid").toString())) : 0;				
-			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
-			
-			JSONObject jObject = new JSONObject();
-			res.setContentType("application/json");
-			res.setCharacterEncoding("UTF-8");
-		
-			// Parameter check
-			ArrayList<Object> parameterList = new ArrayList<Object>();
-			parameterList.add(inputFollowing);
-			parameterList.add(sessionMemberNo);
+			parameterList.add(inputMemberUid);
 			if(!CommonUtil.commonParameterCheck(parameterList)) {
 				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
 				jObject.put("outputResult", "-1");
@@ -142,48 +49,113 @@ public class FollowContorller {
 				return;
 			}
 
-		// DAO
-			// Member or not?
 			if(!(sessionMemberNo>0)) {
-			CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
-			jObject.put("outputResult", "-1");
+				CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			int inputMemberNo = MemberDAO.getMemberNoByMemberUid(inputMemberUid);
+			
+			ArrayList<FollowMember> followList = new ArrayList<FollowMember>();
+			followList = FollowDAO.getFollower(inputMemberNo);
+			
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+
+			JSONArray jFollowerList = new JSONArray(); 
+			for(int i=0; i<followList.size(); i++) {
+				JSONObject tempFollower = new JSONObject();
+								
+				tempFollower.put("outputFollowerName", EncryptUtil.AES_Decode(followList.get(i).getDeepMemberName(),aesKey));
+				tempFollower.put("outputFollowerImage", followList.get(i).getDeepMemberImage());
+				tempFollower.put("outputFollowerUid", followList.get(i).getDeepMemberUid());
+				
+				jFollowerList.add(tempFollower);
+			}
+			
+			jObject.put("outputFollowerCount", jFollowerList.size());
+			jObject.put("outputFollowerList", jFollowerList);
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get Follower OK", map);
 			res.getWriter().write(jObject.toString());
 			return;
-			}
 			
-			//Delete following
-			if(!FollowDAO.setFollow(inputFollowing)) { 
-				map.put("USER-NO", Integer.toString(inputFollowing));
-				CommonUtil.commonPrintLog("FAIL", className, "DB Fail - Update (deleteFollowing)", map);
-				res.getWriter().write("-2");
-				return;				
-			}
-			
-			CommonUtil.commonPrintLog("SUCCESS", className, "Delete Following OK", map);
-			res.getWriter().write("1");
-			return;
-			
-			
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
-	
-	
+
+	public static void getFollowing(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+			String inputMemberUid = req.getParameter("inputMemberUid") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberUid").toString()) : "";
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			//Attack defense(Parameter Check)
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputMemberUid);
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			int inputMemberNo = MemberDAO.getMemberNoByMemberUid(inputMemberUid);
+			
+			ArrayList<FollowMember> followList = new ArrayList<FollowMember>();
+			followList = FollowDAO.getFollowing(inputMemberNo);
+			
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+
+			JSONArray jFollowingList = new JSONArray(); 
+			for(int i=0; i<followList.size(); i++) {
+				JSONObject tempFollowing = new JSONObject();
+								
+				tempFollowing.put("outputFollowingName", EncryptUtil.AES_Decode(followList.get(i).getDeepMemberName(),aesKey));
+				tempFollowing.put("outputFollowingImage", followList.get(i).getDeepMemberImage());
+				tempFollowing.put("outputFollowingUid", followList.get(i).getDeepMemberUid());
+				
+				jFollowingList.add(tempFollowing);
+			}
+			
+			jObject.put("outputFollowingCount", jFollowingList.size());
+			jObject.put("outputFollowingList", jFollowingList);
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get Following OK", map);
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static void addFollow(HttpServletRequest req, HttpServletResponse res){
+		
 		HashMap<String, String> map = new HashMap<String, String>();
 		
 		try{
 			HttpSession session = req.getSession();
-			//when add follow, let set notice
-			int inputNoticeCategory = 4;  // temp
-			int inputNoticeStatus = 1; // unconfirmed 
-			int inputFollowing = req.getParameter("inputFollowingUid") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFollowingUid").toString())) : 0;				
-			int inputFollower = req.getParameter("inputFollowerUid") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFollowerUid").toString())) : 0;
+
 			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
-			long inputCurrentDate = System.currentTimeMillis()/1000; 
+			String inputMemberUid = req.getParameter("inputMemberUid") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberUid").toString()) : "";
 			
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
@@ -191,8 +163,7 @@ public class FollowContorller {
 		
 			// Parameter check(Attack Defense)
 			ArrayList<Object> parameterList = new ArrayList<Object>();
-			parameterList.add(inputFollowing);
-			parameterList.add(inputFollower);
+			parameterList.add(inputMemberUid);
 			if(!CommonUtil.commonParameterCheck(parameterList)) {
 				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
 				jObject.put("outputResult", "-1");
@@ -200,52 +171,143 @@ public class FollowContorller {
 				return;
 			}
 			
-			
-		// DAO
-			//1.  Member or not??
 			if(!(sessionMemberNo>0)) {
-				CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			// check follow 
+			int check=0;
+			int inputMemberNo = MemberDAO.getMemberNoByMemberUid(inputMemberUid);
+			
+			check = FollowDAO.checkFollow(sessionMemberNo, inputMemberNo);
+			if(check!=0) {
+				CommonUtil.commonPrintLog("FAIL", className, "Already Follow !!!", map);
+				jObject.put("outputResult", "-3");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// add Follow
+			int check2=0;
+			check2 = FollowDAO.addFollow(sessionMemberNo, inputMemberNo);
+			if(check2!=0) {
+				CommonUtil.commonPrintLog("ERROR", className, "Add Follow Fail !!!", map);
+				jObject.put("outputResult", "-4");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Add Follow OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void cancelFollow(HttpServletRequest req, HttpServletResponse res){
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try{
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+			String inputMemberUid = req.getParameter("inputMemberUid") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberUid").toString()) : "";
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+		
+			// Parameter check(Attack Defense)
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputMemberUid);
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
 				jObject.put("outputResult", "-1");
 				res.getWriter().write(jObject.toString());
-				return;	
+				return;
 			}
 			
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			// check follow 
+			int check=0;
+			int inputMemberNo = MemberDAO.getMemberNoByMemberUid(inputMemberUid);
 			
-		//2. UID -> Number, after Check(loginMember equal Follower?)
-			// following(change No)
-			int followingMemberNo = MemberDAO.getMemberNoByMemberUid(Integer.toString(inputFollowing));
-			if(!(followingMemberNo>0)) {
-				map.put("USER-NO", Integer.toString(inputFollowing));
-				CommonUtil.commonPrintLog("FAIL", className, "No change FollowingMemberNo", map);
-				res.getWriter().write("-2");
-				return;				
-			}
-			// follower(change No)
-			int followerMemberNo = MemberDAO.getMemberNoByMemberUid(Integer.toString(inputFollower));
-		    // UID->No change && loginMember is follower?
-			if((!(followerMemberNo>0)) && (sessionMemberNo != followerMemberNo)) {
-				map.put("USER-NO", Integer.toString(inputFollower));
-				CommonUtil.commonPrintLog("FAIL", className, "No change FollowerMemberNo or FollowerMemberNo and sessionNo is not equal", map);
-				res.getWriter().write("-3");
-				return;				
+			check = FollowDAO.checkFollow(sessionMemberNo, inputMemberNo);
+			if(check!=1) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Follow !!!", map);
+				jObject.put("outputResult", "-3");
+				res.getWriter().write(jObject.toString());
+				return;
 			}
 			
-		// 3. check, already follow 
-			if(FollowDAO.getFollowing(inputFollowing).getDeepFollowing() < 0){
-				map.put("USER-NO", Integer.toString(inputFollowing));
-				CommonUtil.commonPrintLog("FAIL", className, "already Following exist", map);
-				res.getWriter().write("-4");
-				return;				
+			// delete Follow
+			int check2=0;
+			check2 = FollowDAO.deleteFollow(sessionMemberNo, inputMemberNo);
+			if(check2!=0) {
+				CommonUtil.commonPrintLog("ERROR", className, "Cancel Follow Fail !!!", map);
+				jObject.put("outputResult", "-4");
+				res.getWriter().write(jObject.toString());
+				return;
 			}
-			FollowDAO.addFollow(inputFollower, inputFollowing); //uid로 넘김
-			NoticeDAO.addNotice(inputNoticeCategory, followerMemberNo, followingMemberNo, inputNoticeStatus, inputCurrentDate); //No로 넘김
-					
-		}
-		catch(Exception e){
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Cancel Follow OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;			
+			
+		} catch(Exception e) {
 			e.printStackTrace();
-			
 		}
-		
 	}
-	
+
+	public static void countFollow(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+
+			String inputMemberUid = req.getParameter("inputMemberUid") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberUid").toString()) : "";
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			//Attack defense(Parameter Check)
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputMemberUid);
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			int inputMemberNo = MemberDAO.getMemberNoByMemberUid(inputMemberUid);
+			
+			Follow follow = FollowDAO.countFollow(inputMemberNo);
+			
+			
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get Following OK", map);
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

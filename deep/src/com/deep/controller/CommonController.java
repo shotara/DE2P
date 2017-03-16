@@ -61,7 +61,7 @@ public class CommonController {
 			// 새로운 피드 리스트를 띄워준다. Param =inputCategoryNo  DAO로 가져온다.
 			JSONArray jNewFeedArray = new JSONArray();
 			listMode = 1;
-			jNewFeedArray = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, inputCurrentDate, aesKey);
+			jNewFeedArray = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, sessionMemberNo, inputCurrentDate, aesKey);
 
 			// MainObject에 newFeedList 더한다.
 			jMainObject.put("outputNewFeedList", jNewFeedArray);
@@ -71,14 +71,14 @@ public class CommonController {
 			listMode = 2;
 			if(!(sessionMemberNo>0)) {
 				inputHotFeedCount = 20;
-				jHotFeedArray = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, inputCurrentDate, aesKey);
+				jHotFeedArray = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, sessionMemberNo, inputCurrentDate, aesKey);
 				
 				// MainObject에 hotFeedList 더한다.
 				jMainObject.put("outputHotFeedList", jHotFeedArray);
 				
 			} else { //로그인 되있는 경우 hotFeedList와 hotFeedListByCategory를 둘 다 가져온다.
 				inputHotFeedCount = 10;
-				jHotFeedArray = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, inputCurrentDate, aesKey);
+				jHotFeedArray = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, sessionMemberNo, inputCurrentDate, aesKey);
 				
 				jMainObject.put("outputHotFeedList", jHotFeedArray);
 				
@@ -86,7 +86,7 @@ public class CommonController {
 				JSONArray jHotFeedArrayByCategory = new JSONArray();
 
 				listMode = 3;
-				jHotFeedArrayByCategory = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, inputCurrentDate, aesKey);
+				jHotFeedArrayByCategory = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, sessionMemberNo, inputCurrentDate, aesKey);
 
 				// MainObject에 hotFeedList 더한다.
 				jMainObject.put("outputHotFeedByCategoryList", jHotFeedArrayByCategory);

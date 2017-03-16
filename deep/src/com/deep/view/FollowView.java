@@ -41,15 +41,20 @@ public class FollowView extends HttpServlet {
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				FollowContorller.getFollowing(req,res);
 				break;
-			case "setFollow":
-				map.put("ACTION", "setFollow");
+			case "countFollow":
+				map.put("ACTION", "countFollow");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
-				FollowContorller.setFollow(req,res);
-				break;
+				FollowContorller.countFollow(req,res);
+				break;				
 			case "addFollow":
 				map.put("ACTION", "addFollow");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				FollowContorller.addFollow(req,res);
+				break;
+			case "cancelFollow":
+				map.put("ACTION", "cancelFollow");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				FollowContorller.cancelFollow(req,res);
 				break;
 			default:
 				CommonUtil.commonPrintLog("ERROR", this.getClass().getSimpleName(), "Incorrect Action Parameter (action : " + action + ")", map);
@@ -57,7 +62,7 @@ public class FollowView extends HttpServlet {
 			}
 		} catch (Exception e) {
 				
-			}
-		
 		}
-	} 
+		
+	}
+} 

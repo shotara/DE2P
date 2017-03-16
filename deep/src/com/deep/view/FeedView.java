@@ -67,6 +67,31 @@ public class FeedView extends HttpServlet{
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				FeedController.getFeedCommentList(req,res);
 				break;
+			case "addFeedLike":
+				map.put("ACTION", "addFeedLike");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				FeedController.addFeedLike(req,res);
+				break;
+			case "cancelFeedLike":
+				map.put("ACTION", "cancelFeedLike");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				FeedController.cancelFeedLike(req,res);
+				break;
+			case "addFeedCommentLike":
+				map.put("ACTION", "addFeedCommentLike");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				FeedController.addFeedCommentLike(req,res);
+				break;	
+			case "cancelFeedCommentLike":
+				map.put("ACTION", "cancelFeedCommentLike");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				FeedController.cancelFeedCommentLike(req,res);
+				break;				
+			case "addFeedShare":
+				map.put("ACTION", "addFeedShare");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				FeedController.addFeedShare(req,res);
+				break;				
 			}
 			
 		} catch (Exception e) {

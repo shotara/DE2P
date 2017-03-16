@@ -193,6 +193,81 @@ public class FeedDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static int addFeedLike(int inputFeedNo, int inputMemberNo, long inputCurrentDate) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("feedNo", inputFeedNo);	
+			map.put("memberNo", inputMemberNo);		
+			map.put("inputCurrentDate", inputCurrentDate);			
+	
+	
+			int check = (int)sqlSession.insert(namespace + ".addFeedLike", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int addFeedCommentLike(int inputFeedCommentNo, int inputMemberNo, long inputCurrentDate) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("feedCommentNo", inputFeedCommentNo);	
+			map.put("memberNo", inputMemberNo);		
+			map.put("inputCurrentDate", inputCurrentDate);			
+	
+	
+			int check = (int)sqlSession.insert(namespace + ".addFeedCommentLike", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public static int addFeedShare(int inputFeedNo, int inputMemberNo, long inputCurrentDate) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("feedNo", inputFeedNo);	
+			map.put("memberNo", inputMemberNo);		
+			map.put("inputCurrentDate", inputCurrentDate);			
+	
+	
+			int check = (int)sqlSession.insert(namespace + ".addFeedShare", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
 	
 	// Update Method
 	public static int setFeed(
@@ -220,6 +295,53 @@ public class FeedDAO {
 			map.put("feedImages", inputFeedImages);			
 			map.put("feedContent", inputFeedContent);			
 			int check = (int)sqlSession.update(namespace + ".setFeed", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	// Delete Method
+	public static int deleteFeedLike(int inputFeedNo, int inputMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("feedNo", inputFeedNo);
+			map.put("memberNo", inputMemberNo);			
+		
+			int check = (int)sqlSession.delete(namespace + ".deleteFeedLike", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int deleteFeedCommentLike(int inputFeedCommentNo, int inputMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("feedCommentNo", inputFeedCommentNo);
+			map.put("memberNo", inputMemberNo);			
+		
+			int check = (int)sqlSession.delete(namespace + ".deleteFeedCommentLike", map);
 			
 			if(check == 1) {
 				sqlSession.commit();
@@ -375,6 +497,66 @@ public class FeedDAO {
 		
 		try {	
 			return (ArrayList)sqlSession.selectList(namespace + ".getFeedCommentList", inputFeedNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int checkFeedLike(int inputFeedNo, int inputMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("feedNo", inputFeedNo);
+			map.put("memberNo", inputMemberNo);
+
+			return (int)sqlSession.selectOne(namespace + ".checkFeedLike", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int checkFeedCommentLike(int inputFeedCommentNo, int inputMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("feedCommentNo", inputFeedCommentNo);
+			map.put("memberNo", inputMemberNo);
+
+			return (int)sqlSession.selectOne(namespace + ".checkFeedCommentLike", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int checkFeedShare(int inputFeedNo, int inputMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("feedNo", inputFeedNo);
+			map.put("memberNo", inputMemberNo);
+
+			return (int)sqlSession.selectOne(namespace + ".checkFeedShare", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int countFeedCommentLike(int inputFeedCommentNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			return (int)sqlSession.selectOne(namespace + ".countFeedCommentLike", inputFeedCommentNo);
 			
 		} finally {
 			sqlSession.close();

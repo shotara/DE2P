@@ -5,28 +5,31 @@
 <mapper namespace="follow">
 
 <!-- FollowContorller.getFollower() -->
-<select id="getFollower" parameterType="int" resultType="com.deep.model.domain.Follow">
-	SELECT *  FROM deep_follow
-	WHERE deepFollower=#{deepFollower}
+<select id="getFollower" parameterType="int" resultType="com.deep.model.domain.FollowMember">
+	SELECT dm.deepMemberNo, dm.deepMemberName, dm.deepMemberImage, dmu.deepMemberUid FROM deep_member dm, (SELECT * FROM deep_follow WHERE deepFollowing=#{inputMemberNo}) follower, deep_member_uid dmu
+	WHERE follower.deepFollower=dm.deepMemberNo AND follower.deepFollower=dmu.deepMemberNo AND dm.deepMemberNo=dmu.deepMemberNo
 </select>
 
 
 <!-- FollowContorller.getFollowing() -->
-<select id="getFollowing" parameterType="int" resultType="com.deep.model.domain.Follow" >
-	SELECT *	FROM deep_follow
-	WHERE deepFollowing=#{deepFollowing}
+<select id="getFollowing" parameterType="int" resultType="com.deep.model.domain.FollowMember" >
+	SELECT dm.deepMemberNo, dm.deepMemberName, dm.deepMemberImage, dmu.deepMemberUid FROM deep_member dm, (SELECT * FROM deep_follow WHERE deepFollower=#{inputMemberNo}) following, deep_member_uid dmu
+	WHERE following.deepFollowing=dm.deepMemberNo AND following.deepFollowing=dmu.deepMemberNo AND dm.deepMemberNo=dmu.deepMemberNo
+</select>
+
+<!-- FollowContorller.getFollowing() -->
+<select id="countFollow" parameterType="int" resultType="com.deep.model.domain.FollowMember" >
+	SELECT (SELECT count(*) FROM deep_follow WHERE follower=#{inputMemberNo}) as deepFollowing, (SELECT count(*) FROM deep_follow WHERE deepFollowing=#{inputMemberNo}) 
 </select>
 
 <!-- FollowContorller.addFollow() -->
 <insert id="addFollow" parameterType="int" >
-	INSERT INTO deep_follow(deepFollower, deepFollowing)
-	VALUES(#{DeepFollower}, #{DeepFollowing})
+	INSERT INTO deep_follow(deepFollowing, deepFollower) VALUES(#{following}, #{follower})
 </insert>
 
 <!-- FollowContorller.setFollow() -->
 <delete id="setFollow" parameterType="int" >
-	DELETE FROM deep_follow
-	WHERE deepFollowing =#{DeepFollowing}
+	DELETE FROM deep_follow WHERE deepFollowing=#{following} AND deepFollower=#{follower}
 </delete>
 
 </mapper>

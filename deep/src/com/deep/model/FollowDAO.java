@@ -1,79 +1,115 @@
 package com.deep.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.deep.model.domain.Follow;
+import com.deep.model.domain.FollowMember;
 import com.deep.util.DAOFactory;
 
 
 public class FollowDAO {
+	
 	private static final String namespace = "follow";
 	
-	public static Follow getFollower(int deepFollower){ 
-		
-		SqlSession sqlSession = DAOFactory.getSqlSession(true);
-		
-		try {
-			return (Follow)sqlSession.selectOne(namespace +" .getFollower", deepFollower);
-			
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
-	public static Follow getFollowing(int deepFollowing) { // 팔로워에 따른 팔로잉
-	
-		SqlSession sqlSession = DAOFactory.getSqlSession(true);
-		
-		try {
-			return (Follow)sqlSession.selectOne(namespace +" .getFollowing", deepFollowing);
-			//set List??
-			
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
+	// insert
 	public static int addFollow(int inputFollower, int inputFollowing) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
-		try {
+		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("follower", inputFollower);
-			map.put("following", inputFollowing);
+			map.put("follower", inputFollower);	
+			map.put("following", inputFollowing);			
+	
+			int check = (int)sqlSession.insert(namespace + ".addFollow", map);
 			
-			int addFo = (int)sqlSession.insert(namespace + " .addFollow", map);
-			
-			if(addFo == 1) { //2명한꺼번에 add가능한가...?
+			if(check == 1) {
 				sqlSession.commit();
-				return addFo;
+				return check;
 			} else {
 				sqlSession.rollback();
-				return addFo;
+				return check;
 			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	// delete
+	public static int deleteFollow(int inputFollower, int inputFollowing) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("follower", inputFollower);
+			map.put("following", inputFollowing);			
+		
+			int check = (int)sqlSession.delete(namespace + ".deleteFollow", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	// select
+	public static ArrayList<FollowMember> getFollower(int inputMemberNo){ 
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			return (ArrayList)sqlSession.selectList(namespace +" .getFollower", inputMemberNo);
 			
 		} finally {
 			sqlSession.close();
 		}
 	}
 	
-	public static boolean setFollow(int deepFollowing) {
-		
-		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+	public static ArrayList<FollowMember> getFollowing(int inputMemberNo) {
+	
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
 		
 		try {
-			int setFo = (int)sqlSession.delete(namespace + " .setFollow", deepFollowing);
+			return (ArrayList)sqlSession.selectList(namespace +" .getFollowing", inputMemberNo);
 			
-			if(setFo == 1) { //여러명 삭제할수 있나?
-				sqlSession.commit();
-				return true;
-			} else {
-				sqlSession.rollback();
-				return false;
-			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+
+	public static int checkFollow(int inputFollower, int inputFollowing) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("follower", inputFollower);
+			map.put("following", inputFollowing);
+
+			return (int)sqlSession.selectOne(namespace + ".checkFollow", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static Follow countFollow(int inputMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			return (Follow)sqlSession.selectList(namespace +" .countFollow", inputMemberNo);
 			
 		} finally {
 			sqlSession.close();

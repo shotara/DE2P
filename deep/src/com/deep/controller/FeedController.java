@@ -378,7 +378,7 @@ public class FeedController {
 		}
 	}
 
-	public static JSONArray getFeedList(int listMode, int inputCategoryNo, int inputParameter, long inputCurrentDate, String aesKey) {
+	public static JSONArray getFeedList(int listMode, int inputCategoryNo, int inputParameter, int inputMemberNo, long inputCurrentDate, String aesKey) {
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 
@@ -433,6 +433,10 @@ public class FeedController {
 					jTempObject.put("outputFeedLikeCount", feedCount.getDeepLikeCount());
 					jTempObject.put("outputFeedCommentCount", feedCount.getDeepCommentCount());
 					jTempObject.put("outputFeedShareCount", feedCount.getDeepShareCount());
+		
+					// 이 피드를 좋아요, 공유 했는지 
+					jTempObject.put("outputIsFeedLike", FeedDAO.checkFeedLike(newFeedList.get(i).getDeepFeedNo(), inputMemberNo));
+					jTempObject.put("outputIsFeedShare", FeedDAO.checkFeedShare(newFeedList.get(i).getDeepFeedNo(), inputMemberNo));
 		
 					// 해쉬태그 
 					JSONArray jHashtagArray = new JSONArray();
@@ -490,7 +494,11 @@ public class FeedController {
 					jTempObject.put("outputFeedLikeCount", feedCount.getDeepLikeCount());
 					jTempObject.put("outputFeedCommentCount", feedCount.getDeepCommentCount());
 					jTempObject.put("outputFeedShareCount", feedCount.getDeepShareCount());
-				
+					
+					// 이 피드를 좋아요, 공유 했는지 
+					jTempObject.put("outputIsFeedLike", FeedDAO.checkFeedLike(hotFeedList.get(i).getDeepFeedNo(), inputMemberNo));
+					jTempObject.put("outputIsFeedShare", FeedDAO.checkFeedShare(hotFeedList.get(i).getDeepFeedNo(), inputMemberNo));
+
 					jHotFeedArray.add(jTempObject);
 				}
 				// MainObject에 hotFeedList 더한다.
@@ -528,7 +536,11 @@ public class FeedController {
 					jTempObject.put("outputFeedLikeCount", feedCount.getDeepLikeCount());
 					jTempObject.put("outputFeedCommentCount", feedCount.getDeepCommentCount());
 					jTempObject.put("outputFeedShareCount", feedCount.getDeepShareCount());
-				
+					
+					// 이 피드를 좋아요, 공유 했는지 
+					jTempObject.put("outputIsFeedLike", FeedDAO.checkFeedLike(hotFeedListByCategory.get(i).getDeepFeedNo(), inputMemberNo));
+					jTempObject.put("outputIsFeedShare", FeedDAO.checkFeedShare(hotFeedListByCategory.get(i).getDeepFeedNo(), inputMemberNo));
+
 					jHotFeedArrayByCategory.add(jTempObject);
 				}
 				// MainObject에 hotFeedList 더한다.
@@ -728,6 +740,9 @@ public class FeedController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		
 		try {
+			HttpSession session = req.getSession();
+			
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
 			int inputFeedNo = req.getParameter("inputFeedNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFeedNo").toString())) : 0;
 
 			// Parameter check
@@ -768,6 +783,9 @@ public class FeedController {
 					jTempObject.put("outputFeedCommentCreateDate", CommonUtil.convertUnixTime(getCommentList.get(i).getDeepFeedCommentCreateDate(), 16));
 					jTempObject.put("outputFeedCommentContent", getCommentList.get(i).getDeepFeedCommentContent());
 
+					jTempObject.put("outputIsFeedCommentLike", FeedDAO.checkFeedCommentLike(getCommentList.get(i).getDeepFeedCommentNo(), sessionMemberNo));
+					jTempObject.put("outputFeedCommentLikeCount", FeedDAO.countFeedCommentLike(getCommentList.get(i).getDeepFeedCommentNo()));
+
 					jFeedCommentList.add(jTempObject);
 				}
 			}
@@ -807,4 +825,311 @@ public class FeedController {
 		}
 	}
 
+	public static void addFeedLike(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+
+			int inputFeedNo = req.getParameter("inputFeedNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFeedNo").toString())) : 0;
+			long inputCurrentDate = System.currentTimeMillis()/1000;
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputFeedNo);	
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			// Member check
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// check feed like 
+			int check = FeedDAO.checkFeedLike(inputFeedNo, sessionMemberNo);
+			if(check!=0) {
+				CommonUtil.commonPrintLog("FAIL", className, "Already Feed Like !!!", map);
+				jObject.put("outputResult", "-3");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// add feed like
+			int check2 = FeedDAO.addFeedLike(inputFeedNo, sessionMemberNo, inputCurrentDate);
+			if(check2!=1) {
+				CommonUtil.commonPrintLog("FAIL", className, "Add Feed Like Fail !!!", map);
+				jObject.put("outputResult", "-4");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Add Feed Like OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void cancelFeedLike(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+
+			int inputFeedNo = req.getParameter("inputFeedNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFeedNo").toString())) : 0;
+			long inputCurrentDate = System.currentTimeMillis()/1000;
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputFeedNo);	
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			// Member check
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// check feed like 
+			int check = FeedDAO.checkFeedLike(inputFeedNo, sessionMemberNo);
+			if(check!=1) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Feed Like !!!", map);
+				jObject.put("outputResult", "-3");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			int check2 = FeedDAO.deleteFeedLike(inputFeedNo, sessionMemberNo);
+			if(check2!=1) {
+				CommonUtil.commonPrintLog("FAIL", className, "Cancel Feed Like Fail !!!", map);
+				jObject.put("outputResult", "-4");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Cancel Feed Like OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void addFeedCommentLike(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+
+			int inputFeedCommentNo = req.getParameter("inputFeedCommentNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFeedCommentNo").toString())) : 0;
+			long inputCurrentDate = System.currentTimeMillis()/1000;
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputFeedCommentNo);	
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			// Member check
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// check feed comment like 
+			int check = FeedDAO.checkFeedCommentLike(inputFeedCommentNo, sessionMemberNo);
+			if(check!=0) {
+				CommonUtil.commonPrintLog("FAIL", className, "Already FeedComment Like !!!", map);
+				jObject.put("outputResult", "-3");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// add feed like
+			int check2 = FeedDAO.addFeedCommentLike(inputFeedCommentNo, sessionMemberNo, inputCurrentDate);
+			if(check2!=1) {
+				CommonUtil.commonPrintLog("FAIL", className, "Add Feed Comment Like Fail !!!", map);
+				jObject.put("outputResult", "-4");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Add Feed Comment Like OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void cancelFeedCommentLike(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+
+			int inputFeedCommentNo = req.getParameter("inputFeedCommentNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFeedCommentNo").toString())) : 0;
+			long inputCurrentDate = System.currentTimeMillis()/1000;
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputFeedCommentNo);	
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			// Member check
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// check feed like 
+			int check = FeedDAO.checkFeedCommentLike(inputFeedCommentNo, sessionMemberNo);
+			if(check!=1) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Feed Comment Like !!!", map);
+				jObject.put("outputResult", "-3");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			int check2 = FeedDAO.deleteFeedCommentLike(inputFeedCommentNo, sessionMemberNo);
+			if(check2!=1) {
+				CommonUtil.commonPrintLog("FAIL", className, "Cancel Feed Comment Like Fail !!!", map);
+				jObject.put("outputResult", "-4");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Cancel Feed Comment Like OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void addFeedShare(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+
+			int inputFeedNo = req.getParameter("inputFeedNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputFeedNo").toString())) : 0;
+			long inputCurrentDate = System.currentTimeMillis()/1000;
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputFeedNo);	
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			// Member check
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// check feed share
+			int check = FeedDAO.checkFeedShare(inputFeedNo, sessionMemberNo);
+			if(check!=0) {
+				CommonUtil.commonPrintLog("FAIL", className, "Already Feed Share !!!", map);
+				jObject.put("outputResult", "-3");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// add feed share
+			int check2 = FeedDAO.addFeedShare(inputFeedNo, sessionMemberNo, inputCurrentDate);
+			if(check2!=1) {
+				CommonUtil.commonPrintLog("FAIL", className, "Add Feed Share Fail !!!", map);
+				jObject.put("outputResult", "-4");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Add Feed Share OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
