@@ -328,4 +328,21 @@ public class CommonUtil {
 			return "일반문서";
 		}
 	}
+	
+	public static String splitString(String str, int mode) {
+		
+		switch(mode) {
+		case 1:
+			if(str.length() > 10) return str.substring(0,10)+"...";
+			else return str;
+		case 2:
+			if(str.length() > 15) return str.substring(0,10)+"...";
+			else return str;		
+		case 3:
+			if(str.length() > 20) return str.substring(0,10)+"...";
+			else return str;
+		default:
+			return null;
+		}
+	}
 }

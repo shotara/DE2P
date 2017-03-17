@@ -37,6 +37,11 @@ public class NoticeView extends HttpServlet {
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				NoticeController.listNotice(req,res);
 				break;
+			case "addNotice":
+				map.put("ACTION", "addNotice");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				NoticeController.addNotice(req,res);
+				break;				
 			case "setNotice":
 				map.put("ACTION", "setNotice");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
@@ -47,6 +52,11 @@ public class NoticeView extends HttpServlet {
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				NoticeController.getNotice(req,res);
 				break;
+			case "countNotice":
+				map.put("ACTION", "countNotice");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				NoticeController.countNotice(req,res);
+				break;				
 			}
 			
 		} catch (Exception e) {

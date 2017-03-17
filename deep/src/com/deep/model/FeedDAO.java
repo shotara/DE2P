@@ -562,4 +562,16 @@ public class FeedDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static String getFeedComment(int inputFeedCommentNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			return (String)sqlSession.selectOne(namespace + ".getFeedComment", inputFeedCommentNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

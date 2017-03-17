@@ -1,5 +1,6 @@
 package com.deep.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
@@ -11,89 +12,108 @@ public class NoticeDAO {
 	
 	private static final String namespace = "notice";
 
-	public static Notice getNoticelist(int inputMemberNo){
-		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+	// insert
+	public static int addNotice(int inputNoticeCategory, int inputMemberNo, int inputNoticeTarget1,
+			int inputNoticeTarget2, int inputNoticeStatus, long inputCurrentDate) {
 		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+				
 		try{
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("MemberNo", inputMemberNo);
+			map.put("noticeCategory", inputNoticeCategory);
+			map.put("memberNo", inputMemberNo);
+			map.put("noticeTarget1", inputNoticeTarget1);
+			map.put("noticeTarget2", inputNoticeTarget2);
+			map.put("noticeStatus", inputNoticeStatus);
+			map.put("inputCurrentDate", inputCurrentDate);
 			
-			return (Notice)sqlSession.selectList(namespace + ".getNoticeList", map);
-		}finally{
-			sqlSession.close();
-		}
-	}
-	
-	public static Notice getNotice(int inputNoticeNo) {  
-		SqlSession sqlSession = DAOFactory.getSqlSession(false);
-		
-		try{
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("NoticeNo", inputNoticeNo);
-			
-			return (Notice)sqlSession.selectOne(namespace + ".getNotice", map);
-		}finally{
-			sqlSession.close();
-		}
-	}
-	
-	// default(1) : addFollow시 / 확인(2) : getNotice 시, 삭제(3) : Feed에만 해당?? 아님 setFollo?
-	public static int setNotice(int inputNoticeNo, int mode, long inputCurrentDate){ //공지 상태 바꾸기(확인, 미확인, 삭제). 
-		SqlSession sqlSession = DAOFactory.getSqlSession(false);
-		
-		try{
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("NoticeNo", inputNoticeNo);
-			map.put("mode", mode);
-			map.put("CurrentDate", inputCurrentDate);
-			
-			int setNotice = (int)sqlSession.update(namespace + ".setNotice", map);
+			int check = (int)sqlSession.insert(namespace + ".addNotice", map);
 
-			if(setNotice == 1) {
+			if(check == 1) {
 				sqlSession.commit();
-				return setNotice;
+				return check;
 			} else {
 				sqlSession.rollback();
-				return setNotice;
+				return check;
 			}
 			
 		} finally {
 			sqlSession.close();
 		}
-		
-		
 	}
 	
-	public static int addNotice(int inputNoticeCategory, int inputFollower, int inputFollowing, int inputNoticeStatus, long inputCurrentDate){ //일단 Follow입장만 짜놈.
+	// update
+	public static int setNotice(int inputNoticeNo, int inputNoticeStatus, long inputCurrentDate) {
+		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try{
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("NoticeCategory", inputNoticeCategory); // follow(4or 5)쪽일때. 커멘트는 1~3. 시스템은 0.
-			map.put("MemberNo", inputFollower); //알림 주는 사람? 만든 사람?
-			map.put("NoticeTarget1", inputFollower); //알림 주는 주체
-			map.put("NoticeTarget2", inputFollowing); // 알림 받는 주체
-			map.put("NoticeStatus", inputNoticeStatus); //status . 안읽음 default
-			map.put("NoticeCreateDate", inputCurrentDate);
+			map.put("noticeNo", inputNoticeNo);
+			map.put("noticeStatus", inputNoticeStatus);
+			map.put("inputCurrentDate", inputCurrentDate);
 			
-			int addNotice = (int)sqlSession.insert(namespace + ".addNotice", map);
-			
-			if(addNotice == 1) {
+			int check = (int)sqlSession.update(namespace + ".setNotice", map);
+
+			if(check == 1) {
 				sqlSession.commit();
-				return addNotice;
+				return check;
 			} else {
 				sqlSession.rollback();
-				return addNotice;
+				return check;
 			}
-		} finally{
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	// select 
+	public static int checkNotice(int inputNoticeNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try{
+			return (int)sqlSession.selectOne(namespace + ".checkNotice", inputNoticeNo);
+			
+		} finally {
 			sqlSession.close();
 		}
 	}
 
-	
-	
-	public NoticeDAO() {
-		// TODO Auto-generated constructor stub
+	public static ArrayList<Notice> getNoticeList(int inputMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try{
+			return (ArrayList)sqlSession.selectList(namespace + ".getNoticeList", inputMemberNo);
+			
+		} finally {
+			sqlSession.close();
+		}
 	}
 
+	public static int countNotice(int inputMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try{
+			return (int)sqlSession.selectOne(namespace + ".countNotice", inputMemberNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static Notice getNotice(int inputNoticeNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try{
+			return (Notice)sqlSession.selectOne(namespace + ".getNotice", inputNoticeNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
 }
