@@ -277,11 +277,11 @@
 }
 
 .navbar-default {
-	background-image: -webkit-linear-gradient(top, #fff 0%, #f8f8f8 100%);
-	background-image: -o-linear-gradient(top, #fff 0%, #f8f8f8 100%);
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff),
-		to(#f8f8f8));
-	background-image: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
+	background-image: -webkit-linear-gradient(top, #4a3c89 0%, #4a3c89 100%);
+	background-image: -o-linear-gradient(top, #4a3c89 0%, #4a3c89 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#4a3c89),
+		to(#4a3c89));
+	background-color: #4a3c89;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',
 		endColorstr='#fff8f8f8', GradientType=0);
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled= false);
