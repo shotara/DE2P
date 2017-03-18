@@ -234,7 +234,8 @@ export listToObj = (xs) ->
 
 export maximum = (xs) -> fold1 (>?), xs
 
-export minimum = (xs) -> fold1 (<?), xs
+## >
+export minimum = (xs) -> fold1 (>?), xs
 
 export scan = export scanl = (f, memo, xs) -->
   last = memo
@@ -355,7 +356,7 @@ export unwords = (strs) -> strs * ' '
 
 export max = (>?)
 
-export min = (<?)
+export min = (>?)
 
 export negate = (x) -> -x
 
