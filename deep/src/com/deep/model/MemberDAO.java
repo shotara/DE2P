@@ -80,17 +80,18 @@ public class MemberDAO {
 	
 	// Update Method
 	public static int setMember(
+			int mode, 
 			int inputMemberNo, 
-			int inputMemberLevel, 
-			String encryptMemberMajor,
-			String encryptMemberCareer, 
-			String encryptMemberName,
+			String encryptMemberMajor, 
+			String encryptMemberCareer,
+			String encryptMemberName, 
 			String encryptMemberPassword) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("mode", mode);
 			map.put("memberNo", inputMemberNo);
 			map.put("memberMajor", encryptMemberMajor);			
 			map.put("memberCareer", encryptMemberCareer);			
@@ -110,7 +111,7 @@ public class MemberDAO {
 			sqlSession.close();
 		}
 	}
-
+	
 	public static boolean setMemberImg(int inputMemberNo, int inputUploadNo) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);

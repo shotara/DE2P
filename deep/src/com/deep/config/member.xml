@@ -10,7 +10,7 @@
 		<if test="mode == 1" >
 			WHERE deepMemberEmail=#{memberParam}
 		</if>
-		<if test="mode == 2">
+		<if test="mode == 3">
 			WHERE deepMemberName=#{memberParam}
 		</if>
 	</select>
@@ -37,8 +37,15 @@
 	
 	<!-- CommonController.setProfile -->
 	<select id="setMember" parameterType="java.util.HashMap" resultType="int">
-		UPDATE deep_member SET deepMemberMajor=#{memberMajor}, deepMemberCareer=#{memberCareer}, deepMemberName=#{memberName}, deepMemberPassword=#{memberPassword}
-		WHERE deepMemberNo=#{memberNo}
+		UPDATE deep_member 
+		<if test="mode==1">
+			SET deepMemberMajor=#{memberMajor}, deepMemberCareer=#{memberCareer}, deepMemberName=#{memberName}, deepMemberPassword=#{memberPassword}
+			WHERE deepMemberNo=#{memberNo}
+		</if>
+		<if test="mode==2">
+			SET deepMemberMajor=#{memberMajor}, deepMemberCareer=#{memberCareer}, deepMemberName=#{memberName}
+			WHERE deepMemberNo=#{memberNo}
+		</if>
 	</select>
 	
 	<select id="setMemberImg" parameterType="java.util.HashMap" resultType="int">

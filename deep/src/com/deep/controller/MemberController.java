@@ -38,7 +38,7 @@ public class MemberController {
 
 		try {
 			HttpSession session = req.getSession();
-
+			// mode = 1 : mail , 3 : name
 			int mode = req.getParameter("mode") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("mode").toString())) : 0;				
 			String inputMemberParam = req.getParameter("inputMemberParam") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberParam").toString()) : null;				
 	
@@ -233,11 +233,10 @@ public class MemberController {
 			
 			// Parameter check
 			ArrayList<Object> parameterList = new ArrayList<Object>();
-			parameterList.add(inputMemberMajor);
-			parameterList.add(inputMemberCareer);
 			parameterList.add(inputMemberEmail);
 			parameterList.add(inputMemberName);
 			parameterList.add(inputMemberPassword);
+			parameterList.add(inputMemberPasswordConfirm);
 			if(!CommonUtil.commonParameterCheck(parameterList)) {
 				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
 				jObject.put("outputResult", "-1");
@@ -511,5 +510,109 @@ public class MemberController {
 		}
 
 		return "";
+	}
+
+	public static void setMember(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+			String inputMemberMajor = req.getParameter("inputMemberMajor") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberMajor").toString()) : null;
+			String inputMemberCareer = req.getParameter("inputMemberCareer") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberCareer").toString()) : null;
+			String inputMemberName = req.getParameter("inputMemberName") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberName").toString()) : null;
+			String inputMemberPassword = req.getParameter("inputMemberPassword") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberPassword").toString()) : null;
+			String inputMemberPasswordConfirm = req.getParameter("inputMemberPasswordConfirm") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberPasswordConfirm").toString()) : null;
+			int inputMemberImage = -1;
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+//			// Get Private key
+//			PrivateKey privateKey = null;
+//			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+//			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+//			
+//			if(privateKey == null) {
+//				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
+//				jObject.put("outputResult", "-2");
+//				res.getWriter().write(jObject.toString());
+//				return;
+//			}			
+//         
+//			// RSA Decrypt
+//			String decryptMemberMajor = EncryptUtil.RSA_Decode(privateKey, inputMemberMajor);
+//			String decryptMemberCareer = EncryptUtil.RSA_Decode(privateKey, inputMemberCareer);
+//			String decryptMemberEmail = EncryptUtil.RSA_Decode(privateKey, inputMemberEmail);
+//			String decryptMemberName = EncryptUtil.RSA_Decode(privateKey, inputMemberName);
+//			String decryptMemberPassword = EncryptUtil.RSA_Decode(privateKey, inputMemberPassword);
+
+			
+			// AES Encrypt
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+//			String encryptMemberMajor = EncryptUtil.AES_Encode(decryptMemberMajor, aesKey);
+//			String encryptMemberCareer = EncryptUtil.AES_Encode(decryptMemberCareer, aesKey);
+//			String encryptMemberEmail = EncryptUtil.AES_Encode(decryptMemberEmail, aesKey);
+//			String encryptMemberName = EncryptUtil.AES_Encode(decryptMemberName, aesKey);
+			
+			String encryptMemberMajor = EncryptUtil.AES_Encode(inputMemberMajor, aesKey);
+			String encryptMemberCareer = EncryptUtil.AES_Encode(inputMemberCareer, aesKey);
+			String encryptMemberName = EncryptUtil.AES_Encode(inputMemberName, aesKey);
+			
+			// Check the email in the database
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				jObject.put("outputResult", "-3");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// Check the name in the database
+			if((MemberDAO.checkMember(2, encryptMemberName)>0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Alredy Exist Name", map);
+				jObject.put("outputResult", "-4");
+				res.getWriter().write(jObject.toString());
+				return;
+			}			
+			
+			
+			// SHA-256 Encrypt
+//			String encryptMemberPassword = EncryptUtil.SHA256_Encode(decryptMemberPassword);
+			String encryptMemberPassword = EncryptUtil.SHA256_Encode(inputMemberPassword);
+			
+			
+			// Set member 
+			int mode; 	// mode 1 : password change  2 : not change
+			if(!inputMemberPassword.equals("")) {
+				mode = 1;
+				// Password and passwordConfirm is not correct
+				if(!inputMemberPassword.equals(inputMemberPasswordConfirm)) {
+					CommonUtil.commonPrintLog("FAIL", className, "Password Not Correct!", map);
+					jObject.put("outputResult", "-5");
+					res.getWriter().write(jObject.toString());
+					return;
+				}
+			} else mode = 2; 
+			
+			int check = MemberDAO.setMember(mode, sessionMemberNo, encryptMemberMajor, encryptMemberCareer, encryptMemberName, encryptMemberPassword);
+
+			if(check != 1) {
+				CommonUtil.commonPrintLog("FAIL", className, "Add Member Fail", map);
+				jObject.put("outputResult", "-6");
+				res.getWriter().write(jObject.toString());
+				return;
+			}			
+
+			// 완료 
+			CommonUtil.commonPrintLog("SUCCESS", className, "User Join OK", map);			
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
