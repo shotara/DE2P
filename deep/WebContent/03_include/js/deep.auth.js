@@ -16,7 +16,7 @@ Auth.checkValue = function(mode){
 	switch(mode){
 	
 	case 1: //email check
-		var email = $("inputMemberEmail").val();
+		var email = $("#inputMemberEmail").val();
 		
 		if(!validateEmail(email)){  //valid email check
 			$("div.msgRow.malfunMsg").text("올바른  이메일이 아닙니다");
@@ -26,11 +26,11 @@ Auth.checkValue = function(mode){
 		break;
 		
 	case 2: //pw check
-		var password1 = $("inputMemberPasswordPre").val();
-		var password2 = $("inputMemberPassword").val();
+		var password1 = $("#inputMemberPasswordPre").val();
+		var password2 = $("#inputMemberPassword").val();
 		
 		if(password1.length < 6){
-			alret("패스워드는 6글자 이상으로 해주세요");
+			alert("패스워드는 6글자 이상으로 해주세요");
 			$("div.msgRow.malfunMsg").text("비밀번호는 6글자 이상 가능합니다");
 			return false;
 		}
@@ -213,9 +213,9 @@ Auth.join = function(){
 	
 	action = "/member?action = joinMember";
 	
-	memberEmail = protectXSS($("inputMemberEmail").val().trim());
-	memberPassword = protectXSS($("inputMemberPassword").val().trim());
-	memberName = protectXSS($("inputMemberName").val().trim());
+	memberEmail = protectXSS($("#inputMemberEmail").val().trim());
+	memberPassword = protectXSS($("#inputMemberPassword").val().trim());
+	memberName = protectXSS($("#inputMemberName").val().trim());
 	
 	
 	//암호화
