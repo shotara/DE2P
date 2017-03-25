@@ -20,6 +20,7 @@ Auth.checkValue = function(mode){
 		
 		if(!validateEmail(email)){  //valid email check
 			$("div.msgRow.malfunMsg").text("올바른  이메일이 아닙니다");
+			alert("asdfasdf");
 			return false;
 		}
 		break;
@@ -84,13 +85,17 @@ Auth.joinCheck = function(mode){
 	var paramtype;
 	var param;
 	
+	alert("1");
+	
 	if(mode == 1){ //eamil check
 		paramType = "Email";
-		param = checkWhitespace($("inputMemberEmail").val());
+		param = checkWhitespace($("#inputMemberEmail").val());
 		param = param.toLowerCase();
 		$("#inputMemberEmail").val(param);
 		
 		if(!Auth.checkValue(1)){
+			alert("임일병신");
+
 			return false;
 		}
 	}else if(mode == 2){//password check

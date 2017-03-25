@@ -7,9 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<script type ="text/javascript" src="/../03_include/js/deep.auth.js"></script>
-<script type ="text/javascript" src="/../03_include/js/deep.Common.js"></script>
-
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
 
 </head>
