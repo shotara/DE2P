@@ -1,3 +1,4 @@
+<%@ page import="com.deep.config.GlobalValue" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -13,7 +14,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-text" href="/02_page/index.jsp">DE2P-깊은 블로그의 시작</a>
+			<a class="navbar-text" href="/index.jsp">DE2P-깊은 블로그의 시작</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -59,7 +60,7 @@
 						aria-haspopup="true" aria-expanded="false"><i
 							class="fa fa-user-circle-o fa-2x"></i> </a>
 						<ul class="dropdown-menu">
-							<li><a href="<%=request.getContextPath()%>/main?action=getLogIn">LOG-IN</a></li>
+							<li><a href="/02_page/Auth/join.jsp">LOG-IN</a></li>
 						</ul></li>
 
 				</c:if>

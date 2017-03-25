@@ -1,15 +1,23 @@
+<%@ page import="com.deep.config.GlobalValue" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!-- CSS -->
 <link type="text/css" href="/03_include/css/commonCSS.css" rel="stylesheet" />
 
-<!-- Js -->
+
 <!-- JQuery -->
 <script type ="text/javascript" src="/03_include/js/jquery-2.1.4.js"></script>
+<script type ="text/javascript" src="/03_include/js/deep.auth.js"></script>
+<script type ="text/javascript" src="/03_include/js/deep.Common.js"></script>
+
+<!-- Js -->
+
+
 <!--  -->
+
+
 <!-- Bootstraps -->
 <!-- js -->
-
 <script type ="text/javascript" src="/03_include/js/bootstrap.min.js"></script>
 
 <!-- css -->
