@@ -115,7 +115,7 @@ Auth.joinCheck = function(mode){
 	
 	var publicKeyModulus = "";
 	var publicKeyExponent = "";
-	
+
 	$.ajax({
 		type : "POST",
 		url : "/main?action=getRSAPublicKey",
@@ -128,12 +128,13 @@ Auth.joinCheck = function(mode){
 			alert(error);
 		}
 	});
-	
+	alert("1231");
+
 	var rsa = new RSAKey();
 	rsa.setPublic(publicKeyModulus, publicKeyExponent);
-	
+	alert("dee");
 	var encryptParam = rsa.encrypt(param);
-	
+	alert(encryptParam);
 	var form_data = {
 			inputParamType : paramType,
 			inputEncryptParam : encryptParam
@@ -143,24 +144,26 @@ Auth.joinCheck = function(mode){
 		type:"POST",
 		url: "/member?action=checkMember",
 		data:form_data,
-		dataType: "text",
+		dataType: "json",
 		async : false,
 		success: function(response){
-			if(response == "-3"){
+			
+			alert("xxx");
+			if(respone.outputResult != 1){
 				//가입 불가능
-				if(mode == 1){
+				if(response.outputResult == -1){
 					alert("이미 가입된 이메일 주소입니다.");
 					$("div.msgRow.malfunMsg").text("이미 가입된 이메일입니다.");
 				
 					check = false;
-				}else if(mode == 3){
+				}else if(response.outputResult == -3){
 					alert("이미 사용중인 닉네임입니다.");
 					$("div.msgRow.malfunMsg").text("이미 사용중인 이메일입니다.");
 					
 					check = false;
 				}
 				
-			}else if(response == 1){
+			} else if(response.outputResult == 1){
 				alert("가입가능")
 				
 				check = true;
@@ -193,6 +196,9 @@ Auth.join = function(){
 	var publicKeyModulus = "";
 	var publicKeyExponent = "";
 	
+	alert(publicKeyModulus);
+	alert("sdfa");
+	alert(publicKeyExponent);
 	$.ajax({
 		type : "POST",
 		url : "/main?action=getRSAPublicKey",
@@ -206,6 +212,8 @@ Auth.join = function(){
 		}
 	});
 	
+	alert(publicKeyModulus);
+	alert(publicKeyExponent);
 	var rsa = new RSAKey();
 	rsa.setPublic(publicKeyModulus, publicKeyExponent);
 	

@@ -132,8 +132,8 @@ public class CommonController {
 			
 			// JSON 오브젝트에 저장한 후 리턴
 			JSONObject jObject = new JSONObject();
-			jObject.put("hbiPublicKeyModulus", publicKeyModulus);
-			jObject.put("hbiPublicKeyExponent", publicKeyExponent);
+			jObject.put("deepPublicKeyModulus", publicKeyModulus);
+			jObject.put("deepPublicKeyExponent", publicKeyExponent);
 
 			HttpSession session = req.getSession();
 			session.setAttribute("PrivateKey", privateKey);				
@@ -143,6 +143,7 @@ public class CommonController {
 
 			CommonUtil.commonPrintLog("SUCCESS", className, "PublicKey Generation OK", map);
 			res.getWriter().write(jObject.toString());
+			return;
 			
 		} catch(Exception e) {
 			e.printStackTrace();

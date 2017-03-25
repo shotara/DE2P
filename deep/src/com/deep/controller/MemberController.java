@@ -69,18 +69,17 @@ public class MemberController {
 				return;
 			}			
 
-//			// RSA Decrypt
-//			String decryptMemberParam = EncryptUtil.RSA_Decode(privateKey, inputMemberParam);
-//				
+			// RSA Decrypt
+			String decryptMemberParam = EncryptUtil.RSA_Decode(privateKey, inputMemberParam);
+				
 			// AES Encrypt
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
-//			String encryptMemberParam = EncryptUtil.AES_Encode(decryptMemberParam, aesKey);
-			String encryptMemberParam = EncryptUtil.AES_Encode(inputMemberParam, aesKey);
+			String encryptMemberParam = EncryptUtil.AES_Encode(decryptMemberParam, aesKey);
 
 			// Check Member Email, Name    			
 			if(MemberDAO.checkMember(mode, encryptMemberParam)>0) {
 				CommonUtil.commonPrintLog("FAIL", className, "Already Member Name/Email Exist", map);
-				jObject.put("outputResult", "-2");
+				jObject.put("outputResult", "-3");
 				res.getWriter().write(jObject.toString());
 				return;
 			}
@@ -243,37 +242,32 @@ public class MemberController {
 				res.getWriter().write(jObject.toString());
 				return;
 			}
-//			
-//			// Get Private key
-//			PrivateKey privateKey = null;
-//			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
-//			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
-//			
-//			if(privateKey == null) {
-//				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
-//				jObject.put("outputResult", "-2");
-//				res.getWriter().write(jObject.toString());
-//				return;
-//			}			
-//         
-//			// RSA Decrypt
-//			String decryptMemberMajor = EncryptUtil.RSA_Decode(privateKey, inputMemberMajor);
-//			String decryptMemberCareer = EncryptUtil.RSA_Decode(privateKey, inputMemberCareer);
-//			String decryptMemberEmail = EncryptUtil.RSA_Decode(privateKey, inputMemberEmail);
-//			String decryptMemberName = EncryptUtil.RSA_Decode(privateKey, inputMemberName);
-//			String decryptMemberPassword = EncryptUtil.RSA_Decode(privateKey, inputMemberPassword);
-//				
+			
+			// Get Private key
+			PrivateKey privateKey = null;
+			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+			
+			if(privateKey == null) {
+				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}			
+         
+			// RSA Decrypt
+			String decryptMemberMajor = EncryptUtil.RSA_Decode(privateKey, inputMemberMajor);
+			String decryptMemberCareer = EncryptUtil.RSA_Decode(privateKey, inputMemberCareer);
+			String decryptMemberEmail = EncryptUtil.RSA_Decode(privateKey, inputMemberEmail);
+			String decryptMemberName = EncryptUtil.RSA_Decode(privateKey, inputMemberName);
+			String decryptMemberPassword = EncryptUtil.RSA_Decode(privateKey, inputMemberPassword);
+				
 			// AES Encrypt
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
-//			String encryptMemberMajor = EncryptUtil.AES_Encode(decryptMemberMajor, aesKey);
-//			String encryptMemberCareer = EncryptUtil.AES_Encode(decryptMemberCareer, aesKey);
-//			String encryptMemberEmail = EncryptUtil.AES_Encode(decryptMemberEmail, aesKey);
-//			String encryptMemberName = EncryptUtil.AES_Encode(decryptMemberName, aesKey);
-			
-			String encryptMemberMajor = EncryptUtil.AES_Encode(inputMemberMajor, aesKey);
-			String encryptMemberCareer = EncryptUtil.AES_Encode(inputMemberCareer, aesKey);
-			String encryptMemberEmail = EncryptUtil.AES_Encode(inputMemberEmail, aesKey);
-			String encryptMemberName = EncryptUtil.AES_Encode(inputMemberName, aesKey);
+			String encryptMemberMajor = EncryptUtil.AES_Encode(decryptMemberMajor, aesKey);
+			String encryptMemberCareer = EncryptUtil.AES_Encode(decryptMemberCareer, aesKey);
+			String encryptMemberEmail = EncryptUtil.AES_Encode(decryptMemberEmail, aesKey);
+			String encryptMemberName = EncryptUtil.AES_Encode(decryptMemberName, aesKey);
 			
 			// Check the email in the database
 			if((MemberDAO.checkMember(1, encryptMemberEmail)>0)) {
@@ -292,8 +286,7 @@ public class MemberController {
 			}			
 			
 			// SHA-256 Encrypt
-//			String encryptMemberPassword = EncryptUtil.SHA256_Encode(decryptMemberPassword);
-			String encryptMemberPassword = EncryptUtil.SHA256_Encode(inputMemberPassword);
+			String encryptMemberPassword = EncryptUtil.SHA256_Encode(decryptMemberPassword);
 			
 			// Password and passwordConfirm is not correct
 			if(!inputMemberPassword.equals(inputMemberPasswordConfirm)) {
