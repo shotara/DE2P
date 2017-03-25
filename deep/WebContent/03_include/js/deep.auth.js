@@ -20,7 +20,6 @@ Auth.checkValue = function(mode){
 		
 		if(!validateEmail(email)){  //valid email check
 			$("div.msgRow.malfunMsg").text("올바른  이메일이 아닙니다");
-			alert("asdfasdf");
 			return false;
 		}
 		break;
@@ -84,33 +83,27 @@ Auth.joinCheck = function(mode){
 	var check;
 	var paramtype;
 	var param;
-	
-	alert("1");
-	
+		
 	if(mode == 1){ //eamil check
-		paramType = "Email";
 		param = checkWhitespace($("#inputMemberEmail").val());
 		param = param.toLowerCase();
 		$("#inputMemberEmail").val(param);
 		
 		if(!Auth.checkValue(1)){
-			alert("임일병신");
-
 			return false;
 		}
-	}else if(mode == 2){//password check
+	} else if(mode == 2){//password check
 		
 		if(!Auth.checkValue(2)){
 			return false;
 		}else {
 			return true;
 		}
-	}else if(mode == 3){//name check
-		if(!Auth.checkValue(3)){
+	} else if(mode == 3){//name check
+		param = $("#inputMemberName").val();		
+		
+		if(!Auth.checkValue(3))
 			return false;
-		}else{
-			return true;
-		}
 	}
 	
 	var publicKeyModulus = "";
@@ -128,16 +121,15 @@ Auth.joinCheck = function(mode){
 			alert(error);
 		}
 	});
-	alert("1231");
 
 	var rsa = new RSAKey();
 	rsa.setPublic(publicKeyModulus, publicKeyExponent);
-	alert("dee");
+
 	var encryptParam = rsa.encrypt(param);
-	alert(encryptParam);
+
 	var form_data = {
-			inputParamType : paramType,
-			inputEncryptParam : encryptParam
+			mode : mode,
+			inputMemberParam : encryptParam
 	};
 	
 	$.ajax({
@@ -146,30 +138,20 @@ Auth.joinCheck = function(mode){
 		data:form_data,
 		dataType: "json",
 		async : false,
-		success: function(response){
+		success: function(response) {
 			
-			alert("xxx");
-			if(respone.outputResult != 1){
-				//가입 불가능
-				if(response.outputResult == -1){
-					alert("이미 가입된 이메일 주소입니다.");
-					$("div.msgRow.malfunMsg").text("이미 가입된 이메일입니다.");
-				
-					check = false;
-				}else if(response.outputResult == -3){
-					alert("이미 사용중인 닉네임입니다.");
-					$("div.msgRow.malfunMsg").text("이미 사용중인 이메일입니다.");
-					
-					check = false;
-				}
-				
-			} else if(response.outputResult == 1){
-				alert("가입가능")
-				
+			if(response.outputResult == "1") {
 				check = true;
+			} else if(response.outputResult == "-3") {
+				alert("이미 사용중인 메일/이름입니다.");
+				
+				check = false;
+			} else {
+				alert(response.outputResult);
+				alert("알수없는 문제가 발생했습니다.");
+				check = false;
 			}
 		}
-		
 	});
 	
 	return check;
@@ -181,24 +163,18 @@ Auth.join = function(){
 	if(!Auth.joinCheck(1)){
 		return false;
 	}// email check
-	
 	if(!Auth.joinCheck(2)){
 		return false;
 	} // password check
-	
 	if(!Auth.joinCheck(3)){
 		return false;
 	}//name check
-	
 	//deep.waiting(true);
 	
 	//2. 공개키 요청
 	var publicKeyModulus = "";
 	var publicKeyExponent = "";
-	
-	alert(publicKeyModulus);
-	alert("sdfa");
-	alert(publicKeyExponent);
+
 	$.ajax({
 		type : "POST",
 		url : "/main?action=getRSAPublicKey",
@@ -211,30 +187,30 @@ Auth.join = function(){
 			alert(error);
 		}
 	});
-	
-	alert(publicKeyModulus);
-	alert(publicKeyExponent);
+
 	var rsa = new RSAKey();
 	rsa.setPublic(publicKeyModulus, publicKeyExponent);
 	
 	var memberEmail, memberPassword, memberName;
 	
-	action = "/member?action = joinMember";
+	action = "/member?action=joinMember";
 	
 	memberEmail = protectXSS($("#inputMemberEmail").val().trim());
 	memberPassword = protectXSS($("#inputMemberPassword").val().trim());
+	memberPasswordConfirm = protectXSS($("#inputMemberPasswordPre").val().trim());
 	memberName = protectXSS($("#inputMemberName").val().trim());
-	
-	
+
 	//암호화
 	var encryptMemberEmail = rsa.encrypt(memberEmail);
 	var encryptMemberPassword = rsa.encrypt(memberPassword);
+	var encryptMemberPasswordConfirm = rsa.encrypt(memberPasswordConfirm);
 	var encryptMemberName = rsa.encrypt(memberName);
 	
 	form_data = {
 			inputMemberName : encryptMemberName,
 			inputMemberPassword : encryptMemberPassword,
-			inputMemberEamil : encryptMemberEmail
+			inputMemberPasswordConfirm : encryptMemberPasswordConfirm,
+			inputMemberEmail : encryptMemberEmail
 	};
 	
 	
@@ -242,13 +218,13 @@ Auth.join = function(){
 		type : "POST",
 		url : action,
 		data : form_data,
-		dataType : "text",
+		dataType : "json",
 		success: function(response){
 			
-			if(response == "1"){
+			if(response.outputResult == "1"){
 				alert("회원가입 완료");
 				location.href = "/joinPermit";
-			}else if(response == "-3" ||response == "-4"){
+			}else if(response.outputResult == "-3" ||response.outputResult == "-4"){
 				$("div.msgRow.malfunMsg").text("이미 가입된 이메일 또는 사용중인 닉네임입니다.");
 			}else {
 				alert("알 수 없는 문제가 발생하였습니다. \n 문제가 지속된다면 전 혼이 나겠네요. \n 고객센터로 조용히 문의바랍니다.");

@@ -229,7 +229,7 @@ public class MemberController {
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
-			
+
 			// Parameter check
 			ArrayList<Object> parameterList = new ArrayList<Object>();
 			parameterList.add(inputMemberEmail);
@@ -256,16 +256,16 @@ public class MemberController {
 			}			
          
 			// RSA Decrypt
-			String decryptMemberMajor = EncryptUtil.RSA_Decode(privateKey, inputMemberMajor);
-			String decryptMemberCareer = EncryptUtil.RSA_Decode(privateKey, inputMemberCareer);
+//			String decryptMemberMajor = EncryptUtil.RSA_Decode(privateKey, inputMemberMajor);
+//			String decryptMemberCareer = EncryptUtil.RSA_Decode(privateKey, inputMemberCareer);
 			String decryptMemberEmail = EncryptUtil.RSA_Decode(privateKey, inputMemberEmail);
 			String decryptMemberName = EncryptUtil.RSA_Decode(privateKey, inputMemberName);
 			String decryptMemberPassword = EncryptUtil.RSA_Decode(privateKey, inputMemberPassword);
 				
 			// AES Encrypt
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
-			String encryptMemberMajor = EncryptUtil.AES_Encode(decryptMemberMajor, aesKey);
-			String encryptMemberCareer = EncryptUtil.AES_Encode(decryptMemberCareer, aesKey);
+//			String encryptMemberMajor = EncryptUtil.AES_Encode(decryptMemberMajor, aesKey);
+//			String encryptMemberCareer = EncryptUtil.AES_Encode(decryptMemberCareer, aesKey);
 			String encryptMemberEmail = EncryptUtil.AES_Encode(decryptMemberEmail, aesKey);
 			String encryptMemberName = EncryptUtil.AES_Encode(decryptMemberName, aesKey);
 			
@@ -276,9 +276,9 @@ public class MemberController {
 				res.getWriter().write(jObject.toString());
 				return;
 			}
-			
+
 			// Check the name in the database
-			if((MemberDAO.checkMember(2, encryptMemberName)>0)) {
+			if((MemberDAO.checkMember(3, encryptMemberName)>0)) {
 				CommonUtil.commonPrintLog("FAIL", className, "Alredy Exist Name", map);
 				jObject.put("outputResult", "-4");
 				res.getWriter().write(jObject.toString());
@@ -286,10 +286,11 @@ public class MemberController {
 			}			
 			
 			// SHA-256 Encrypt
-			String encryptMemberPassword = EncryptUtil.SHA256_Encode(decryptMemberPassword);
-			
+			String encryptMemberPassword = EncryptUtil.SHA256_Encode(decryptMemberPassword);			
+			String decryptMemberPasswordConfirm = EncryptUtil.RSA_Decode(privateKey, inputMemberPasswordConfirm);
+
 			// Password and passwordConfirm is not correct
-			if(!inputMemberPassword.equals(inputMemberPasswordConfirm)) {
+			if(!(decryptMemberPassword.equals(decryptMemberPasswordConfirm))) {
 				CommonUtil.commonPrintLog("FAIL", className, "Password Not Correct!", map);
 				jObject.put("outputResult", "-5");
 				res.getWriter().write(jObject.toString());
@@ -297,7 +298,8 @@ public class MemberController {
 			}
 			
 			// Join member 
-			int check = MemberDAO.addMember(inputMemberStatus, inputMemberLevel, inputCurrentDate, encryptMemberMajor, encryptMemberCareer, encryptMemberEmail, encryptMemberName, encryptMemberPassword, inputMemberImage);
+//			int check = MemberDAO.addMember(inputMemberStatus, inputMemberLevel, inputCurrentDate, encryptMemberMajor, encryptMemberCareer, encryptMemberEmail, encryptMemberName, encryptMemberPassword, inputMemberImage);
+			int check = MemberDAO.addMember(inputMemberStatus, inputMemberLevel, inputCurrentDate, inputMemberMajor, inputMemberCareer, encryptMemberEmail, encryptMemberName, encryptMemberPassword, inputMemberImage);
 
 			if(check != 1) {
 				CommonUtil.commonPrintLog("FAIL", className, "Add Member Fail", map);
@@ -311,7 +313,8 @@ public class MemberController {
 			int createMemberUid = MemberDAO.addMemberUid(encryptMemberEmail, memberUid);
 			
 			// 완료 
-			CommonUtil.commonPrintLog("SUCCESS", className, "User Join OK", map);			
+			CommonUtil.commonPrintLog("SUCCESS", className, "User Join OK", map);
+			jObject.put("outputResult", "1");
 			res.getWriter().write(jObject.toString());
 			return;
 			
