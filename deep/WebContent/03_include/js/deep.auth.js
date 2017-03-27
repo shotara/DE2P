@@ -24,7 +24,7 @@ Auth.checkValue = function(mode){
 		}
 		break;
 		
-	case 2: //pw check
+	case 2: //pw check - join
 		var password1 = $("#inputMemberPasswordPre").val();
 		var password2 = $("#inputMemberPassword").val();
 		
@@ -68,6 +68,17 @@ Auth.checkValue = function(mode){
 				return false;
 			}
 		}
+		break;
+		
+	case 4:
+		var password = $("#inputMemberPassword").val();
+		
+		//less than 6 letters
+		if(password.length < 6){
+			alert("비밀번호는 6글자 이상이어야합니다.");
+			return false;
+		}
+		
 		break;
 		
 	default :
@@ -232,4 +243,139 @@ Auth.join = function(){
 		}	
 	});
 	
+}
+
+
+
+Auth.login = function(){
+	
+	//email check regular expression
+	
+	if(!Auth.checkValue(1)){
+		return false;
+	}
+	
+	//pw check more than 6 letters
+	
+	if(!Auth.checkValue(4)){
+		return false;
+	}
+	
+	var publicKeyModulus = "";
+	var publicKeyExponent = "";
+	var action = "/main?action=getRSAPublicKey";
+	
+	$ajax({
+		type : "POST",
+		url : action,
+		dataType : "json",
+		aysnc : false,
+		success : function(response){
+			publicKeyModulus = response.deepPublicKeyModulus;
+			publicKeyExponent = response.deepPublicKeyExponent;
+		}, error : function(xhr, status, error){
+			alert(error);
+		}
+		
+	});
+	
+	var rsa = new RSAKey();
+	rsa.setPublic(publicKeyModulus, publicKeyExponent);
+	
+	var memberEmail, memberPassword;
+	var action, form_data;
+	
+	action = "/member?action=loginMember";
+	memberEmail = $("#inputMemberEmail").val();
+	memberPassword = $("#inputMemberPassword").val();
+	
+	//encryption
+	
+	var encryptMemberEmail  = rsa.encrypt(memberEmail);
+	var encryptMemberPassword = rsa.encrypt(memberPassword);
+	
+	form_data = {
+			inputMemberEmail : encryptMemberEmail,
+			inputMemberPassword : encryptMemberPassword
+	};
+	
+	$.ajax({
+		type:"POST",
+		url : action,
+		data : form_data,
+		dataType : "json",
+		async : false,
+		success :  function(response){
+			if(response.outputResult == "1"){
+				location.href = "/";
+			}else{
+				alert("등록되지 않은 이메일이거나, \n 이메일 또는 비밀번호가 잘못되었습니다.");
+			}
+		}, error(xhr, status, error){
+			alert("알 수 없는 문제가 발생하였습니다. \n 문제가 지속된다면 전 혼이 나겠네요. \n 고객센터로 조용히 문의바랍니다.");
+		}
+	});
+	
+	return false;
+}
+
+Auth.loginCheck = function(){
+	
+	var check1 = false;
+	
+	$.ajax({
+		type :  "POST",
+		url : "/member?action=loginCheck",
+		dataType : "text",
+		async : false,
+		success : function(response){
+			if(resonese.outputResult == "1"){
+				check1 = true; //Status - login
+			}else if(response.outputResult == "-1"){
+				//login needed
+				if(mode == 1){
+					var check2 = confirm("로그인이 필요합니다.\n로그인하시겠습니까?");
+					
+					if(!check2){//don't want to login
+						check1 = false;
+					}else{//Move to login page
+						location.href="/main?action=goPage&page=login";
+						check1 = false;
+					}
+				}else {
+					check1 = false;
+				}
+			}
+		}, error : function(xhr, status, error){
+			alert(error);
+		}	
+	});
+	
+	return check1;
+}
+
+Auth.logout = function(){
+	
+	var action = "/member?action=logoutMember";
+	
+	$.ajax({
+		type : "POST",
+		url : action,
+		dataType : "text",
+		async : false,
+		success : function(response){
+			if(response.outputResult == "1"){
+				alert("정상적으로 로그아웃 되었습니다.");
+				location.reload(true);
+			}else if(response.outputResult == "-1"){
+				alert("이미 로그아웃 되었거나 로그인된 상태가 아닙니다.");
+			}else {
+				alert("알 수 없는 에러가 발생했습니다");
+			}
+			
+		}, error: function(xhr, status, error){
+			alert(error);
+		}
+		
+	});
 }

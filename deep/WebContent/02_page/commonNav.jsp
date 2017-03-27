@@ -60,7 +60,8 @@
 						aria-haspopup="true" aria-expanded="false"><i
 							class="fa fa-user-circle-o fa-2x"></i> </a>
 						<ul class="dropdown-menu">
-							<li><a href="/02_page/Auth/join.jsp">LOG-IN</a></li>
+							<li><a href="/02_page/Auth/login.jsp">LOG-IN</a></li>
+							<li><a href="/02_page/Auth/join.jsp">JOIN</a></li>
 						</ul></li>
 
 				</c:if>
