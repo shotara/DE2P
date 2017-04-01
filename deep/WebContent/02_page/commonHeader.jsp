@@ -7,10 +7,7 @@
 
 <!-- JQuery -->
 <script type ="text/javascript" src="/03_include/js/jquery-2.1.4.js"></script>
--->
 
-
-<!--  -->
 
 
 <!-- Bootstraps -->

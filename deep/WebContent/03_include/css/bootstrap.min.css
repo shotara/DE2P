@@ -4528,13 +4528,12 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 .navbar {
 	position: relative;
 	min-height: 50px;
-	margin-bottom: 20px;
-	border: 1px solid transparent
+	border: 1px solid transparent;
 }
 
 @media ( min-width :768px) {
 	.navbar {
-		border-radius: 4px
+		border-radius: 0px;
 	}
 }
 
@@ -4862,7 +4861,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 
 .navbar-text {
 	margin-top: 15px;
-	margin-bottom: 15px
+	margin-bottom: 15px;
 }
 
 @media ( min-width :768px) {
@@ -5227,7 +5226,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 
 .pager {
 	padding-left: 0;
-	margin: 20px 0;
+	margin: 10px 0;
 	text-align: center;
 	list-style: none
 }

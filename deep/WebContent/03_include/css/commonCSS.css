@@ -13,6 +13,18 @@ body{
 	border-top:10px;
 }
 
+.navbar-form input, .form-inline input {
+	width:auto;
+}
+
+/**********************************/
+/*  subnav  */
+/*********************************/
+
+.subnav {
+	background-color:rgba(255,255,255,1) !important;
+}
+
 
 /**********************************/
 /*  join  */
@@ -60,6 +72,14 @@ body{
 	color:#fff !important;
 }
 
-.fa-user-circle-of{
+.fa-user-circle-o{
+	color:#fff !important;
+}
+
+.fa-commenting-o{
+	color:#fff !important;
+}
+
+.fa-pencil{
 	color:#fff !important;
 }

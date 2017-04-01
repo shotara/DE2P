@@ -3,6 +3,15 @@
  */
 
 
+var SubNav = {};
+
+SubNav.fix = function(){
+	$('.subnav').affix({
+		offset: {
+			top: $('#navtop').height()
+		}
+	});
+}
 
 
 function validateEmail(email){
