@@ -10,13 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.deep.config.GlobalValue;
 import com.deep.model.MemberDAO;
+import com.deep.model.NoticeDAO;
 import com.deep.model.UploadDAO;
 import com.deep.model.domain.Member;
 import com.deep.model.domain.MemberUid;
+import com.deep.model.domain.Notice;
 import com.deep.model.domain.Upload;
 import com.deep.util.CommonUtil;
 import com.deep.util.EncryptUtil;
@@ -604,6 +607,36 @@ public class MemberController {
 
 			// 완료 
 			CommonUtil.commonPrintLog("SUCCESS", className, "User Join OK", map);			
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void loginCheck(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Login Check OK", map);
+			jObject.put("outputResult", "1");
 			res.getWriter().write(jObject.toString());
 			return;
 			
