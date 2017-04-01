@@ -319,7 +319,7 @@ Auth.login = function(){
 	return false;
 }
 
-Auth.loginCheck = function(){
+Auth.loginCheck = function(mode){
 	
 	var check1 = false;
 	
