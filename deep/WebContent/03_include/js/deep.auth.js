@@ -260,37 +260,36 @@ Auth.login = function(){
 	if(!Auth.checkValue(4)){
 		return false;
 	}
-	
+
 	var publicKeyModulus = "";
 	var publicKeyExponent = "";
 	var action = "/main?action=getRSAPublicKey";
 	
-	$ajax({
+	$.ajax({
 		type : "POST",
-		url : action,
+		url : "/main?action=getRSAPublicKey",
 		dataType : "json",
-		aysnc : false,
-		success : function(response){
+		async: false,
+		success: function(response) {
 			publicKeyModulus = response.deepPublicKeyModulus;
 			publicKeyExponent = response.deepPublicKeyExponent;
-		}, error : function(xhr, status, error){
+		}, error: function(xhr,status,error) {
 			alert(error);
 		}
-		
 	});
-	
+
 	var rsa = new RSAKey();
 	rsa.setPublic(publicKeyModulus, publicKeyExponent);
-	
-	var memberEmail, memberPassword;
+		
+	var memberEmail = "";
+	var memberPassword = "";
 	var action, form_data;
 	
 	action = "/member?action=loginMember";
 	memberEmail = $("#inputMemberEmail").val();
 	memberPassword = $("#inputMemberPassword").val();
-	
+
 	//encryption
-	
 	var encryptMemberEmail  = rsa.encrypt(memberEmail);
 	var encryptMemberPassword = rsa.encrypt(memberPassword);
 	

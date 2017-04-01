@@ -55,7 +55,10 @@ public class CommonController {
 
 			if(sessionMemberNo>0) {
 				MemberFavorite memberFavorite = MemberDAO.getMemberFavorite(sessionMemberNo);
-				inputCategoryNo = memberFavorite.getDeepCategoryNo();
+				if(memberFavorite!=null)
+					inputCategoryNo = memberFavorite.getDeepCategoryNo();
+				else 
+					inputCategoryNo = 1;
 			}
 			
 			// 새로운 피드 리스트를 띄워준다. Param =inputCategoryNo  DAO로 가져온다.

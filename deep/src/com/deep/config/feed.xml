@@ -62,7 +62,12 @@
 	<!-- Common -->
     <select id="getFeedList" parameterType="java.util.HashMap" resultType="com.deep.model.domain.FeedList">
 		<if test="mode == 1" >
-			SELECT *, 0 as rating FROM deep_feed WHERE deepFeedStatus=1 AND deepCategoryNo=#{categoryNo] AND deepFeedCreateDate <![CDATA[>]]> #{currentDate} - 60*60*24*31 ORDER BY deepFeedCreateDate DESC LIMIT #{inputParam}, 15
+			<if test="categoryNo == 1" >
+				SELECT *, 0 as rating FROM deep_feed WHERE deepFeedStatus=1 AND deepFeedCreateDate <![CDATA[>]]> #{currentDate} - 60*60*24*31 ORDER BY deepFeedCreateDate DESC LIMIT #{inputParam}, 15
+			</if>
+			<if test="categoryNo != 1" >
+				SELECT *, 0 as rating FROM deep_feed WHERE deepFeedStatus=1 AND deepCategoryNo=#{categoryNo] AND deepFeedCreateDate <![CDATA[>]]> #{currentDate} - 60*60*24*31 ORDER BY deepFeedCreateDate DESC LIMIT #{inputParam}, 15
+			</if>
 		</if>
 		<if test="mode == 2">
 			SELECT a.*, sum(a.rate) as rating
@@ -79,6 +84,14 @@
 			) as a
 			GROUP BY a.deepFeedNo
 			ORDER BY rating DESC
+		</if>
+		<if test="mode == 3" >
+			<if test="categoryNo == 1" >
+				SELECT *, 0 as rating FROM deep_feed WHERE deepFeedStatus=1 AND deepFeedCreateDate <![CDATA[>]]> #{currentDate} - 60*60*24*31 ORDER BY deepFeedCreateDate DESC LIMIT #{inputParam}, 15
+			</if>
+			<if test="categoryNo != 1" >
+				SELECT *, 0 as rating FROM deep_feed WHERE deepFeedStatus=1 AND deepCategoryNo=#{categoryNo] AND deepFeedCreateDate <![CDATA[>]]> #{currentDate} - 60*60*24*31 ORDER BY deepFeedCreateDate DESC LIMIT #{inputParam}, 15
+			</if>
 		</if>
 	</select>
 	

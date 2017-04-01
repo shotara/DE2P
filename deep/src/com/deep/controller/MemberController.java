@@ -122,26 +122,26 @@ public class MemberController {
 				return;
 			}
 			
-//			// Get Private key
-//			PrivateKey privateKey = null;
-//			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
-//			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
-//			
-//			if(privateKey == null) {
-//				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
-//				jObject.put("outputResult", "-2");
-//				res.getWriter().write(jObject.toString());
-//				return;
-//			}			
-//
-//			// RSA Decrypt
-//			String decryptMemberEmail = EncryptUtil.RSA_Decode(privateKey, inputMemberEmail);
-//			String decryptMemberPassword = EncryptUtil.RSA_Decode(privateKey, inputMemberPassword);
-//				
+			// Get Private key
+			PrivateKey privateKey = null;
+			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+			
+			if(privateKey == null) {
+				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}			
+
+			// RSA Decrypt
+			String decryptMemberEmail = EncryptUtil.RSA_Decode(privateKey, inputMemberEmail);
+			String decryptMemberPassword = EncryptUtil.RSA_Decode(privateKey, inputMemberPassword);
+				
 			// AES Encrypt
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
-//			String encryptMemberEmail = EncryptUtil.AES_Encode(decryptMemberEmail, aesKey);
-			String encryptMemberEmail = EncryptUtil.AES_Encode(inputMemberEmail, aesKey);
+			String encryptMemberEmail = EncryptUtil.AES_Encode(decryptMemberEmail, aesKey);
+//			String encryptMemberEmail = EncryptUtil.AES_Encode(inputMemberEmail, aesKey);
 
 			if(!(MemberDAO.checkMember(1, encryptMemberEmail)>0)) {
 				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
@@ -151,8 +151,8 @@ public class MemberController {
 			}
 			
 			// SHA-256 Encrypt
-//			String encryptMemberPassword = EncryptUtil.SHA256_Encode(decryptMemberPassword);
-			String encryptMemberPassword = EncryptUtil.SHA256_Encode(inputMemberPassword);
+			String encryptMemberPassword = EncryptUtil.SHA256_Encode(decryptMemberPassword);
+//			String encryptMemberPassword = EncryptUtil.SHA256_Encode(inputMemberPassword);
 
 			Member member = MemberDAO.getMemberByMemberMail(encryptMemberEmail, encryptMemberPassword);
 			
