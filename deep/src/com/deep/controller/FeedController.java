@@ -378,6 +378,47 @@ public class FeedController {
 		}
 	}
 
+	public static void listFeed(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
+			int listMode = 1;
+			int inputCategoryNo = req.getParameter("inputCategoryNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputCategoryNo").toString())) : 0;
+			long inputCurrentDate = System.currentTimeMillis()/1000;
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputCategoryNo);	
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+
+			JSONArray feedList = new JSONArray();
+			feedList = getFeedList(listMode, inputCategoryNo, 15, sessionMemberNo, inputCurrentDate, aesKey);
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "list Feed OK", map);
+			jObject.put("outputFeedList", feedList);
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}	
+	}
+	
 	public static JSONArray getFeedList(int listMode, int inputCategoryNo, int inputParameter, int inputMemberNo, long inputCurrentDate, String aesKey) {
 		
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -386,7 +427,7 @@ public class FeedController {
 		
 		try {
 			if(listMode==1) {
-				// 새로운 피드 리스트를 띄워준다. Param =inputCategoryNo  DAO로 가져온다.
+				// 새로운 피드 리스트를 띄워준다. inputParameter - 가져올 피드 갯수   DAO로 가져온다.
 				JSONArray jNewFeedArray = new JSONArray();
 				ArrayList<FeedList> newFeedList = FeedDAO.getFeedList(listMode, inputCategoryNo, inputParameter, inputCurrentDate);
 				

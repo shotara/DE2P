@@ -47,6 +47,11 @@ public class FeedView extends HttpServlet{
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				FeedController.writeFeed(req,res);
 				break;		
+			case "listFeed":
+				map.put("ACTION", "listFeed");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				FeedController.listFeed(req,res);
+				break;					
 			case "setFeed":
 				map.put("ACTION", "setFeed");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
