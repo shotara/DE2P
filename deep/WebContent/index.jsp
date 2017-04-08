@@ -15,14 +15,20 @@
 <jsp:include page="/02_page/commonNav.jsp" flush="false" />
 <jsp:include page="/02_page/commonSubNav.jsp" flush="false" />
 
-<section class="indexFeed">
-<div class="">
-</div>
+	<section id="indexFeed" class="section" data-type="feed">
+	<div class="container">
+		<div class="list" data-type="feed">
+			<c:forEach var="i" items="${requestScope.outputFeedList}">
+			<div class="row<c:if test="${i.outputPostType == 1}"> notice</c:if>" onclick="Feed.goView('${i.outputFeedNo}')">
+			</div>
+			</c:forEach>
+		</div>
+	</div>
 
+	</section>
+
+	<section class="indexRecommend">
 </section>
-
-<section class="indexRecommend">
-</section>/
 
 </body>
 </html>
