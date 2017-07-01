@@ -4,6 +4,11 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
+	config.extraPlugins = 'codesnippet';
+	config.extraPlugins = 'codesnippetgeshi';
+	config.extraPlugins = 'widget';
+	config.extraPlugins = 'widgetselection';
+	config.extraPlugins = 'lineutils';
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';

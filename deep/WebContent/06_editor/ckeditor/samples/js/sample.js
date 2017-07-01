@@ -30,7 +30,12 @@ var initSample = ( function() {
 
 		// Depending on the wysiwygare plugin availability initialize classic or inline editor.
 		if ( wysiwygareaAvailable ) {
-			CKEDITOR.replace( 'editor' );
+			var config = {
+				extraPlugins: 'codesnippet',
+				codeSnippet_theme: 'monokai_sublime',
+			};
+
+			CKEDITOR.replace( 'editor', config );
 		} else {
 			editorElement.setAttribute( 'contenteditable', 'true' );
 			CKEDITOR.inline( 'editor' );
