@@ -1,6 +1,8 @@
-@CHARSET "EUC-KR";
+@CHARSET "UTF-8";
 
 @import url("//fonts.googleapis.com/earlyaccess/nanumgothic.css" ) ;
+
+*{box-sizing:border-box !important;}
 
 body{
 	background-color:#f1f1f1 !important;
@@ -159,25 +161,26 @@ position: absolute;
 z-index: 1;
 }
 
-.feed-top {
+.feed {
 	width:100%;
-	height:300px;
+	height:302px;
+	border : 1px #e2e2e2 solid;
+	border-bottom: 2px #e2e2e2 solid;
+}
+
+/* .feed-bottom {
+	width:100%;
+	height:48px;
 	border : 1px #e2e2e2 solid;
 }
-
-.feed-bottom {
-	width:100%;
-	height:50px;
-	 border : 1px #e2e2e2 solid;
-}
-
+ */
 .list {
 	text-align:center;
   margin-top : 20px;
   width:100%;
-  min-height: 300px;s
+  min-height: 300px;
   background-color: #fff;
-   box-shadow: 1px 1px 1px #e2e2e2;
+  box-shadow: 1px 1px 1px #e2e2e2;
 }
 
 .list .left {
@@ -196,15 +199,47 @@ z-index: 1;
 
 .list .title {
   color:rgb(240,240,240);
-  font-size : 1.1em;
+  font-size : 1.3em;
   text-align: center;
-  padding-top : 25%;
+  padding-top : 50%;
 }
 
 .list .right {
   height: 300px;
   background-color: #fff;
 }
+
+.list .content {
+	padding: 10%;
+	height: 250px;
+}
+
+.list .name{
+	height: 25px;
+	font-size : 0.8em;
+	border-bottom: 1px #e2e2e2 solid;
+	margin-bottom:5px;
+	
+}
+
+.list .like {
+	float:left;
+	width:70px;
+	height:20px;
+}
+
+.list .comment {
+	float:left;
+	width:70px;
+	height:20px;
+}
+
+.list .share {
+	float:left;
+	width:70px;
+	height:20px;
+}
+
 
 .deepFeed .title-Black {
   

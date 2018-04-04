@@ -21,22 +21,26 @@
 		<div class="col-xs-2 col-md-3"></div>
 		<div class="col-xs-8 col-md-6">
 			<div class="list" data-type="feed">
-				<div class="feed-top">
-				<div class="left col-xs-5 col-md-5">
-				 <div class="coverPic">
-					 <div class="title">
-						 <span class="char">sample feed title</span>
+				<div class="feed">
+					<div class="left col-xs-5 col-md-5">
+					 <div class="coverPic">
+						 <div class="title">
+							 <span class="char">여기가 타이틀 입니다.</span>
+						 </div>
+					  </div>
 					 </div>
-				  </div>
-				 </div>
-				 <div class="right col-xs-7 col-md-7">
-					 <div class="content-top">
-						 <span class="title-black">여기에 바로 이렇게 본문이 들어가는 부분입니다 여러분!</span>
+					 <div class="right col-xs-7 col-md-7">
+						<div class="content">
+							<span class="title-black">여기에 바로 이렇게 본문이 들어가는 부분입니다 여러분!</span>
+						</div>
+						<div class="name">
+							BY 누구누구누구
+						</div> 
+						<div class="like fa fa-heart-o">&nbsp좋아요</div>
+						<div class="comment fa fa-comment-o">&nbsp댓글</div>
+						<div class="share fa fa-share-alt">&nbsp공유</div>						
 					 </div>
 				 </div>
-				 </div>
-				 <div class="feed-bottom">
-			     </div>
 			</div>
 			
 			

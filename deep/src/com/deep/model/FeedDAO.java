@@ -366,7 +366,6 @@ public class FeedDAO {
 			map.put("categoryNo", inputCategoryNo);
 			map.put("inputParam", inputParameter);
 			map.put("currentDate", inputCurrentDate);
-
 			return (ArrayList)sqlSession.selectList(namespace + ".getFeedList", map);
 			
 		} finally {

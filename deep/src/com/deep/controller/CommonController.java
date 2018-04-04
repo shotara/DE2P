@@ -65,7 +65,7 @@ public class CommonController {
 			JSONArray jNewFeedArray = new JSONArray();
 			listMode = 1;
 			jNewFeedArray = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, sessionMemberNo, inputCurrentDate, aesKey);
-
+			System.out.println(jNewFeedArray);
 			// MainObject에 newFeedList 더한다.
 			jMainObject.put("outputNewFeedList", jNewFeedArray);
 			
