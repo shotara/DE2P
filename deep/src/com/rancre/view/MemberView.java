@@ -1,4 +1,4 @@
-package com.deep.view;
+package com.rancre.view;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.deep.controller.MemberController;
-import com.deep.util.CommonUtil;
+import com.rancre.controller.MemberController;
+import com.rancre.util.CommonUtil;
 
 public class MemberView extends HttpServlet {
 	

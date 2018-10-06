@@ -7,7 +7,7 @@
 
 	<servlet>
 		<servlet-name>BlogView</servlet-name>
-		<servlet-class>com.deep.view.BlogView</servlet-class>
+		<servlet-class>com.rancre.view.BlogView</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -17,7 +17,7 @@
 	         
 	<servlet>
 		<servlet-name>CommonView</servlet-name>
-		<servlet-class>com.deep.view.CommonView</servlet-class>
+		<servlet-class>com.rancre.view.CommonView</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -27,7 +27,7 @@
 	
 	<servlet>
 		<servlet-name>FeedView</servlet-name>
-		<servlet-class>com.deep.view.FeedView</servlet-class>
+		<servlet-class>com.rancre.view.FeedView</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -37,7 +37,7 @@
 	
 	<servlet>
 		<servlet-name>FollowView</servlet-name>
-		<servlet-class>com.deep.view.FollowView</servlet-class>
+		<servlet-class>com.rancre.view.FollowView</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -47,7 +47,7 @@
 	
 	<servlet>
 		<servlet-name>NoticeView</servlet-name>
-		<servlet-class>com.deep.view.NoticeView</servlet-class>
+		<servlet-class>com.rancre.view.NoticeView</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -57,7 +57,7 @@
 
 	<servlet>
 		<servlet-name>MemberView</servlet-name>
-		<servlet-class>com.deep.view.MemberView</servlet-class>
+		<servlet-class>com.rancre.view.MemberView</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -70,7 +70,7 @@
 	</welcome-file-list>
 
 	<listener>
-		<listener-class>com.deep.util.UrlPath</listener-class>
+		<listener-class>com.rancre.util.UrlPath</listener-class>
 	</listener>
 	
 </web-app>

@@ -1,11 +1,11 @@
-package com.deep.model;
+package com.rancre.model;
 
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.deep.model.domain.Upload;
-import com.deep.util.DAOFactory;
+import com.rancre.model.domain.Upload;
+import com.rancre.util.DAOFactory;
 
 public class UploadDAO {
 

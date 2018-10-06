@@ -1,4 +1,4 @@
-package com.deep.util;
+package com.rancre.util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.deep.config.GlobalValue;
+import com.rancre.config.GlobalValue;
 
 public class DAOFactory {
 	private static SqlSessionFactory factory = null;

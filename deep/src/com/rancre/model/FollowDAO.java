@@ -1,13 +1,13 @@
-package com.deep.model;
+package com.rancre.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.deep.model.domain.Follow;
-import com.deep.model.domain.FollowMember;
-import com.deep.util.DAOFactory;
+import com.rancre.model.domain.Follow;
+import com.rancre.model.domain.FollowMember;
+import com.rancre.util.DAOFactory;
 
 
 public class FollowDAO {

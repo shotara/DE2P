@@ -1,4 +1,4 @@
-package com.deep.util;
+package com.rancre.util;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

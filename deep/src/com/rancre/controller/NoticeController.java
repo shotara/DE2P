@@ -1,4 +1,4 @@
-package com.deep.controller;
+package com.rancre.controller;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,14 +11,14 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.deep.model.FeedDAO;
-import com.deep.model.FollowDAO;
-import com.deep.model.MemberDAO;
-import com.deep.model.NoticeDAO;
-import com.deep.model.domain.FollowMember;
-import com.deep.model.domain.Notice;
-import com.deep.util.CommonUtil;
-import com.deep.util.EncryptUtil;
+import com.rancre.model.FeedDAO;
+import com.rancre.model.FollowDAO;
+import com.rancre.model.MemberDAO;
+import com.rancre.model.NoticeDAO;
+import com.rancre.model.domain.FollowMember;
+import com.rancre.model.domain.Notice;
+import com.rancre.util.CommonUtil;
+import com.rancre.util.EncryptUtil;
 
 import java.util.List;
 

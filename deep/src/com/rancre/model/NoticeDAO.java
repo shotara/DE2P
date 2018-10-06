@@ -1,12 +1,12 @@
-package com.deep.model;
+package com.rancre.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.deep.model.domain.Notice;
-import com.deep.util.DAOFactory;
+import com.rancre.model.domain.Notice;
+import com.rancre.util.DAOFactory;
 
 public class NoticeDAO {
 	

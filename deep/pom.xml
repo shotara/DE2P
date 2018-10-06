@@ -1,10 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.deep</groupId>
-  <artifactId>deep</artifactId>
+  <groupId>com.rancre</groupId>
+  <artifactId>rancre</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>deep_web</name>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -93,6 +92,7 @@
 	  <version>[0.4, 0.5)</version>
 	</dependency>	
   </dependencies>  
-  <description>DE2P</description>
+  <description>rancre</description>
   <url>https://de2p.com</url>
+  <name>rancre</name>
 </project>

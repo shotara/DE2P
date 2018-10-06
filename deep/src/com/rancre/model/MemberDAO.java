@@ -1,13 +1,13 @@
-package com.deep.model;
+package com.rancre.model;
 
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.deep.model.domain.Member;
-import com.deep.model.domain.MemberFavorite;
-import com.deep.model.domain.MemberUid;
-import com.deep.util.DAOFactory;
+import com.rancre.model.domain.Member;
+import com.rancre.model.domain.MemberFavorite;
+import com.rancre.model.domain.MemberUid;
+import com.rancre.util.DAOFactory;
 
 public class MemberDAO {
 	

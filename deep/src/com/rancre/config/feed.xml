@@ -60,7 +60,7 @@
 	</select>
 	
 	<!-- Common -->
-    <select id="getFeedList" parameterType="java.util.HashMap" resultType="com.deep.model.domain.FeedList">
+    <select id="getFeedList" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.FeedList">
 		<if test="mode == 1" >
 			<if test="categoryNo == 1" >
 				SELECT *, 0 as rating FROM deep_feed WHERE deepFeedStatus=1 AND deepFeedCreateDate <![CDATA[>]]> #{currentDate} - 60*60*24*31 ORDER BY deepFeedCreateDate DESC LIMIT #{inputParam}, 15
@@ -95,23 +95,23 @@
 		</if>
 	</select>
 	
-	<select id="getFeedSeries" parameterType="int" resultType="com.deep.model.domain.FeedSeries">
+	<select id="getFeedSeries" parameterType="int" resultType="com.rancre.model.domain.FeedSeries">
 		SELECT * FROM deep_feed_series WHERE deepFeedNo=#{inputFeedNo}
 	</select>
 	
-	<select id="getFeedHashtag" parameterType="int" resultType="com.deep.model.domain.FeedHashtag">
+	<select id="getFeedHashtag" parameterType="int" resultType="com.rancre.model.domain.FeedHashtag">
 		SELECT * FROM deep_feed_hashtag WHERE deepFeedNo=#{inputFeedNo}
 	</select>
 	
-	<select id="getFeed" parameterType="int" resultType="com.deep.model.domain.Feed">
+	<select id="getFeed" parameterType="int" resultType="com.rancre.model.domain.Feed">
 		SELECT * FROM deep_feed WHERE deepFeedNo=#{inputFeedNo}
 	</select>
 	
-	<select id="getFeedReady" parameterType="int" resultType="com.deep.model.domain.Feed">
+	<select id="getFeedReady" parameterType="int" resultType="com.rancre.model.domain.Feed">
 		SELECT * FROM deep_feed_ready WHERE deepFeedNo=#{inputFeedNo}
 	</select>
 		
-	<select id="searchFeed" parameterType="java.util.HashMap" resultType="com.deep.model.domain.Feed">
+	<select id="searchFeed" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Feed">
 		
 	</select>
 	
@@ -123,17 +123,17 @@
 		SELECT deepFeedNo FROM deep_feed_ready WHERE deepMemberNo=#{inputMemberNo} ORDER BY deepFeedCreateDate DESC LIMIT 1
 	</select>
 		
-	<select id="getFeedReadyList" parameterType="java.util.HashMap" resultType="com.deep.model.domain.Feed">
+	<select id="getFeedReadyList" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Feed">
 		SELECT * FROM deep_feed_ready WHERE deepMemberNo=#{memberNo} AND deepFeedCreateDate <![CDATA[>]]> #{inputCurrentDate}-60*60*24*7 ORDER BY deepFeedCreateDate DESC
 	</select>
 	
-	<select id="getFeedCount" parameterType="int" resultType="com.deep.model.domain.FeedCount">
+	<select id="getFeedCount" parameterType="int" resultType="com.rancre.model.domain.FeedCount">
 		SELECT (SELECT count(*) FROM deep_feed_like WHERE deepFeedNo=#{inputFeedNo} AND deepFeedLikeStatus=1) as deepLikdeCount,
 				 (SELECT count(*) FROM deep_feed_comment WHERE deepFeedNo=#{inputFeedNo} AND deepFeedCommentStatus=1) as deepCommentCount, 
 				 (SELECT count(*) FROM deep_feed_share WHERE deepFeedNo=#{inputFeedNo}) as deepShareCount
 	</select>
 	
-	<select id="getFeedCommentList" parameterType="int" resultType="com.deep.model.domain.FeedComment">
+	<select id="getFeedCommentList" parameterType="int" resultType="com.rancre.model.domain.FeedComment">
 		SELECT * FROM deep_feed_comment WHERE deepFeedNo=#{inputFeedNo} AND deepFeedCommentStatus=1
 	</select>
 	

@@ -1,4 +1,4 @@
-package com.deep.controller;
+package com.rancre.controller;
 
 import java.io.File;
 import java.security.PrivateKey;
@@ -13,20 +13,20 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.deep.config.GlobalValue;
-import com.deep.model.MemberDAO;
-import com.deep.model.NoticeDAO;
-import com.deep.model.UploadDAO;
-import com.deep.model.domain.Member;
-import com.deep.model.domain.MemberUid;
-import com.deep.model.domain.Notice;
-import com.deep.model.domain.Upload;
-import com.deep.util.CommonUtil;
-import com.deep.util.EncryptUtil;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FilePart;
 import com.oreilly.servlet.multipart.MultipartParser;
 import com.oreilly.servlet.multipart.Part;
+import com.rancre.config.GlobalValue;
+import com.rancre.model.MemberDAO;
+import com.rancre.model.NoticeDAO;
+import com.rancre.model.UploadDAO;
+import com.rancre.model.domain.Member;
+import com.rancre.model.domain.MemberUid;
+import com.rancre.model.domain.Notice;
+import com.rancre.model.domain.Upload;
+import com.rancre.util.CommonUtil;
+import com.rancre.util.EncryptUtil;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.name.Rename;

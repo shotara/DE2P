@@ -13,7 +13,7 @@
 		SELECT max(deepUploadNo) FROM deep_upload
 	</select>
 
-	<select id="getUploadByUploadNo" parameterType="int" resultType="com.deep.model.domain.Upload">
+	<select id="getUploadByUploadNo" parameterType="int" resultType="com.rancre.model.domain.Upload">
 		SELECT * FROM deep_upload WHERE deepUploadNo=#{uploadNo}
 	</select>
 	

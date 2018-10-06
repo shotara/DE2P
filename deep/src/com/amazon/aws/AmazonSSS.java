@@ -12,8 +12,8 @@ import com.amazonaws.services.s3.model.CopyObjectRequest;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.Upload;
-import com.deep.config.GlobalValue;
-import com.deep.util.CommonUtil;
+import com.rancre.config.GlobalValue;
+import com.rancre.util.CommonUtil;
 
 public class AmazonSSS {
 	

@@ -1,4 +1,4 @@
-package com.deep.controller;
+package com.rancre.controller;
 
 import java.io.File;
 import java.security.KeyFactory;
@@ -18,18 +18,18 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.deep.config.GlobalValue;
-import com.deep.model.FeedDAO;
-import com.deep.model.MemberDAO;
-import com.deep.model.UploadDAO;
-import com.deep.model.domain.FeedHashtag;
-import com.deep.model.domain.FeedList;
-import com.deep.model.domain.FeedSeries;
-import com.deep.model.domain.Member;
-import com.deep.model.domain.MemberFavorite;
-import com.deep.model.domain.Upload;
-import com.deep.util.CommonUtil;
-import com.deep.util.EncryptUtil;
+import com.rancre.config.GlobalValue;
+import com.rancre.model.FeedDAO;
+import com.rancre.model.MemberDAO;
+import com.rancre.model.UploadDAO;
+import com.rancre.model.domain.FeedHashtag;
+import com.rancre.model.domain.FeedList;
+import com.rancre.model.domain.FeedSeries;
+import com.rancre.model.domain.Member;
+import com.rancre.model.domain.MemberFavorite;
+import com.rancre.model.domain.Upload;
+import com.rancre.util.CommonUtil;
+import com.rancre.util.EncryptUtil;
 
 public class CommonController {
 	

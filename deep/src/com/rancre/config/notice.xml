@@ -24,7 +24,7 @@
 		SELECT count(*) FROM deep_notice WHERE deepNoticeNo = #{noticeNo}
 	</select>	
 	
-	<select id="getNoticeList" parameterType="int" resultType="com.deep.model.domain.Notice">
+	<select id="getNoticeList" parameterType="int" resultType="com.rancre.model.domain.Notice">
 		SELECT * FROM deep_notice WHERE deepMemberNo = #{memberNo}
 	</select>
 	
@@ -32,7 +32,7 @@
 		SELECT count(*) FROM deep_notice WHERE deepMemberNo = #{memberNo} AND deepNoticeStatus=1;
 	</select>
 	
-	<select id="getNotice" parameterType="int" resultType="com.deep.model.domain.Notice">
+	<select id="getNotice" parameterType="int" resultType="com.rancre.model.domain.Notice">
 		SELECT * FROM deep_notice WHERE deepNoticeNo = #{noticeNo}
 	</select>	
 

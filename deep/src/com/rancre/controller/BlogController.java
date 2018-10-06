@@ -1,4 +1,4 @@
-package com.deep.controller;
+package com.rancre.controller;
 
 import java.io.File;
 import java.util.HashMap;
@@ -10,10 +10,10 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.deep.model.MemberDAO;
-import com.deep.model.domain.MemberFavorite;
-import com.deep.util.CommonUtil;
-import com.deep.util.EncryptUtil;
+import com.rancre.model.MemberDAO;
+import com.rancre.model.domain.MemberFavorite;
+import com.rancre.util.CommonUtil;
+import com.rancre.util.EncryptUtil;
 
 public class BlogController {
 

@@ -1,4 +1,4 @@
-package com.deep.config;
+package com.rancre.config;
 
 public class GlobalValue {
 	
@@ -19,7 +19,7 @@ public class GlobalValue {
 	public static final String imgNoProfile = AWS_CLOUDFRONT_USER_BUCKET_URL + "/common/image/no_profile.png";
 	
 	public static String selectSqlMapConfig() {
-		return (isLiveMode ? "com/deep/config/SqlMapConfig_AWS.xml" : "com/deep/config/SqlMapConfig_Staging.xml");
+		return (isLiveMode ? "com/rancre/config/SqlMapConfig_AWS.xml" : "com/rancre/config/SqlMapConfig_Staging.xml");
 	}	
 }
 		

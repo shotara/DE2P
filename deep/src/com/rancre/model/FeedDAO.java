@@ -1,17 +1,17 @@
-package com.deep.model;
+package com.rancre.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.deep.model.domain.Feed;
-import com.deep.model.domain.FeedComment;
-import com.deep.model.domain.FeedCount;
-import com.deep.model.domain.FeedHashtag;
-import com.deep.model.domain.FeedList;
-import com.deep.model.domain.FeedSeries;
-import com.deep.util.DAOFactory;
+import com.rancre.model.domain.Feed;
+import com.rancre.model.domain.FeedComment;
+import com.rancre.model.domain.FeedCount;
+import com.rancre.model.domain.FeedHashtag;
+import com.rancre.model.domain.FeedList;
+import com.rancre.model.domain.FeedSeries;
+import com.rancre.util.DAOFactory;
 
 public class FeedDAO {
 

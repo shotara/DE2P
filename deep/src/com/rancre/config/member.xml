@@ -16,11 +16,11 @@
 	</select>
 		
 	<!-- MemberController.loginMember() -->
-    <select id="getMemberByMemberMail" parameterType="java.util.HashMap" resultType="com.deep.model.domain.Member">
+    <select id="getMemberByMemberMail" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Member">
 		SELECT * FROM deep_member WHERE deepMemberEmail=#{memberEmail} AND deepMemberPassword=#{memberPassword}
 	</select>
 	
-	<select id="getMemberUid" parameterType="int" resultType="com.deep.model.domain.MemberUid">
+	<select id="getMemberUid" parameterType="int" resultType="com.rancre.model.domain.MemberUid">
 		SELECT * FROM deep_member_uid WHERE deepMemberNo=#{inputMemberNo}
 	</select>
 	
@@ -55,11 +55,11 @@
 	
 	
 	<!-- CommonMethod -->
-	<select id="getMemberByMemberNo" parameterType="int" resultType="com.deep.model.domain.Member">
+	<select id="getMemberByMemberNo" parameterType="int" resultType="com.rancre.model.domain.Member">
 		SELECT * FROM deep_member WHERE deepMemberNo=#{inputMemberNo}
 	</select>
 	
-	<select id="getMemberFavorite" parameterType="int" resultType="com.deep.model.domain.MemberFavorite">
+	<select id="getMemberFavorite" parameterType="int" resultType="com.rancre.model.domain.MemberFavorite">
 		SELECT * FROM deep_member_favorite WHERE deepMemberNo=#{inputMemberNo}
 	</select>
 	

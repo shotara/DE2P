@@ -1,16 +1,16 @@
-package com.deep.controller;
+package com.rancre.controller;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.amazon.aws.AmazonSSS;
-import com.deep.config.GlobalValue;
-import com.deep.model.MemberDAO;
-import com.deep.model.UploadDAO;
-import com.deep.model.domain.Member;
-import com.deep.model.domain.Upload;
-import com.deep.util.EncryptUtil;
+import com.rancre.config.GlobalValue;
+import com.rancre.model.MemberDAO;
+import com.rancre.model.UploadDAO;
+import com.rancre.model.domain.Member;
+import com.rancre.model.domain.Upload;
+import com.rancre.util.EncryptUtil;
 
 public class UploadController {
 

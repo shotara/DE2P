@@ -1,4 +1,4 @@
-package com.deep.model.domain;
+package com.rancre.model.domain;
 
 public class FeedList {
 	
