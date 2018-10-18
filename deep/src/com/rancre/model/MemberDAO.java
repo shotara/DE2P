@@ -1,5 +1,6 @@
 package com.rancre.model;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,28 +17,18 @@ public class MemberDAO {
 	// Insert Method
 	public static int addMember(
 			int inputMemberStatus, 
-			int inputMemberLevel, 
-			long inputCurrentDate,
-			String encryptMemberMajor,
-			String encryptMemberCareer, 
+			Timestamp inputCurrentDate,
 			String encryptMemberEmail, 
-			String encryptMemberName,
-			String encryptMemberPassword, 
-			int inputMemberImage) {
+			String encryptMemberPassword) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("memberStatus", inputMemberStatus);
-			map.put("memberLevel", inputMemberLevel);	
 			map.put("inputCurrentDate", inputCurrentDate);
-			map.put("memberMajor", encryptMemberMajor);			
-			map.put("memberCareer", encryptMemberCareer);			
 			map.put("memberEmail", encryptMemberEmail);
-			map.put("memberName", encryptMemberName);			
 			map.put("memberPassword", encryptMemberPassword);
-			map.put("memberImage", inputMemberImage);
 
 			int check = (int)sqlSession.insert(namespace + ".addMember", map);
 			

@@ -27,7 +27,7 @@ public class BlogController {
 			HttpSession session = req.getSession();
 
 			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
-			int inputCategoryNo = 1;
+			int inputCategoryNo = 1; 
 			int inputNextFeedNo = 0;
 			int listMode = 0; 	// FeedList Mode  1 : newFeedList , 2 : bestFeedListByALl, 3 : bestFeedListByCategory
 			int inputHotFeedCount = 0; 	// HotFeed를 가져올 갯수  - 멤버면 10개, 방문자면 20개.

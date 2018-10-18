@@ -175,15 +175,15 @@ public class CommonController {
 			}
 			
 			// 회정정보를 가져온다
-			Member memberNo = MemberDAO.getMemberByMemberNo(sessionMemberNo);
-			jObject.put("outputMemberLevel", memberNo.getDeepMemberLevel());
-			jObject.put("outputMemberMajor", memberNo.getDeepMemberMajor());
-			jObject.put("outputMemberCareer", memberNo.getDeepMemberCareer());
-			jObject.put("outputMemberEmail", memberNo.getDeepMemberEmail());
-			jObject.put("outputMemberName", memberNo.getDeepMemberName());
-			jObject.put("outputMemberImage", MemberController.getMemberImage(memberNo.getDeepMemberImage()));
-
-			// Blog/Feed 정보
+//			Member memberNo = MemberDAO.getMemberByMemberNo(sessionMemberNo);
+//			jObject.put("outputMemberLevel", memberNo.getDeepMemberLevel());
+//			jObject.put("outputMemberMajor", memberNo.getDeepMemberMajor());
+//			jObject.put("outputMemberCareer", memberNo.getDeepMemberCareer());
+//			jObject.put("outputMemberEmail", memberNo.getDeepMemberEmail());
+//			jObject.put("outputMemberName", memberNo.getDeepMemberName());
+//			jObject.put("outputMemberImage", MemberController.getMemberImage(memberNo.getDeepMemberImage()));
+//
+//			// Blog/Feed 정보
 			
 			// 팔로우 수			
 			

@@ -84,28 +84,28 @@ public class UploadController {
 
 	public static int deleteUpload(ArrayList<String> uploadList, HashMap<String, Object> uploadMap, int inputMemberNo) {
 
-		try {
-			for(int i=0; i<uploadList.size(); i++) {
-				Upload upload = UploadDAO.getUploadByUploadNo(Integer.parseInt(uploadList.get(i)));
-				
-				Member member = MemberDAO.getMemberByMemberNo(inputMemberNo);
-				if(member.getDeepMemberImage() != -1) {
-					if(!UploadDAO.setUpload(upload.getDeepUploadNo(), inputMemberNo, -1, System.currentTimeMillis()/1000)) {
-						return -1;
-					}
-					
-					if(!AmazonSSS.singleFileDelete(getAWSKeyName(2, uploadMap, upload.getDeepUploadCategory(), false) + upload.getDeepUploadEncryptFileName() + "." + upload.getDeepUploadFileExtension())) {
-						return -2;
-					}					
-				}
-			}
-			
-			return 1;
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
+//		try {
+//			for(int i=0; i<uploadList.size(); i++) {
+//				Upload upload = UploadDAO.getUploadByUploadNo(Integer.parseInt(uploadList.get(i)));
+//				
+//				Member member = MemberDAO.getMemberByMemberNo(inputMemberNo);
+//				if(member.getDeepMemberImage() != -1) {
+//					if(!UploadDAO.setUpload(upload.getDeepUploadNo(), inputMemberNo, -1, System.currentTimeMillis()/1000)) {
+//						return -1;
+//					}
+//					
+//					if(!AmazonSSS.singleFileDelete(getAWSKeyName(2, uploadMap, upload.getDeepUploadCategory(), false) + upload.getDeepUploadEncryptFileName() + "." + upload.getDeepUploadFileExtension())) {
+//						return -2;
+//					}					
+//				}
+//			}
+//			
+//			return 1;
+//			
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		
 		return -3;
 	}
 	

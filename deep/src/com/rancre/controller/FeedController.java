@@ -439,9 +439,7 @@ public class FeedController {
 					
 					// Writer
 					Member member = MemberDAO.getMemberByMemberNo(newFeedList.get(i).getDeepMemberNo());
-					jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(newFeedList.get(i).getDeepMemberNo()).getDeepMemberUid());
-					jTempObject.put("outputMemberName", EncryptUtil.AES_Decode(member.getDeepMemberName(), aesKey));
-					jTempObject.put("outputMemberImage", MemberController.getMemberImage(member.getDeepMemberImage()));
+					jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(newFeedList.get(i).getDeepMemberNo()).getRacMemberUid());
 						
 					// Feed
 					jTempObject.put("outputFeedNo", newFeedList.get(i).getDeepFeedNo());
@@ -519,10 +517,8 @@ public class FeedController {
 					// Writer
 					Member member = MemberDAO.getMemberByMemberNo(hotFeedList.get(i).getDeepMemberNo());
 					
-					jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(hotFeedList.get(i).getDeepMemberNo()).getDeepMemberUid());
-					jTempObject.put("outputMemberName", EncryptUtil.AES_Decode(member.getDeepMemberName(), aesKey));
-					jTempObject.put("outputMemberImage", MemberController.getMemberImage(member.getDeepMemberImage()));
-						
+					jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(hotFeedList.get(i).getDeepMemberNo()).getRacMemberUid());
+
 					// Feed
 					jTempObject.put("outputFeedNo", hotFeedList.get(i).getDeepFeedNo());
 					jTempObject.put("outputCategoryNo", hotFeedList.get(i).getDeepCategoryNo());
@@ -560,9 +556,8 @@ public class FeedController {
 					// Writer
 					Member member = MemberDAO.getMemberByMemberNo(hotFeedListByCategory.get(i).getDeepMemberNo());
 					
-					jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(hotFeedListByCategory.get(i).getDeepMemberNo()).getDeepMemberUid());
-					jTempObject.put("outputMemberName", EncryptUtil.AES_Decode(member.getDeepMemberName(), aesKey));
-					jTempObject.put("outputMemberImage", MemberController.getMemberImage(member.getDeepMemberImage()));
+					jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(hotFeedListByCategory.get(i).getDeepMemberNo()).getRacMemberUid());
+
 						
 					// Feed
 					jTempObject.put("outputFeedNo", hotFeedListByCategory.get(i).getDeepFeedNo());
@@ -645,9 +640,8 @@ public class FeedController {
 				
 				// Writer
 				Member member = MemberDAO.getMemberByMemberNo(searchFeedList.get(i).getDeepMemberNo());
-				jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(searchFeedList.get(i).getDeepMemberNo()).getDeepMemberUid());
-				jTempObject.put("outputMemberName", EncryptUtil.AES_Decode(member.getDeepMemberName(), aesKey));
-				jTempObject.put("outputMemberImage", MemberController.getMemberImage(member.getDeepMemberImage()));
+				jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(searchFeedList.get(i).getDeepMemberNo()).getRacMemberUid());
+
 					
 				// Feed
 				jTempObject.put("outputFeedNo", searchFeedList.get(i).getDeepFeedNo());
@@ -812,9 +806,6 @@ public class FeedController {
 					JSONObject jTempObject = new JSONObject();
 	
 					Member member = MemberDAO.getMemberByMemberNo(getCommentList.get(i).getDeepMemberNo());
-					jTempObject.put("outputMemberProfileImg", MemberController.getMemberImage(member.getDeepMemberImage()));
-					jTempObject.put("outputMemberName", EncryptUtil.AES_Decode(member.getDeepMemberName(), aesKey));
-					
 					jTempObject.put("outputFeedCommentNo", getCommentList.get(i).getDeepFeedCommentNo());
 					jTempObject.put("outputFeedNo", getCommentList.get(i).getDeepFeedNo());
 					jTempObject.put("outputMemberUid", MemberDAO.getMemberUid(getCommentList.get(i).getDeepMemberNo()));

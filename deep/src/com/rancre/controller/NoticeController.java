@@ -305,30 +305,30 @@ public class NoticeController {
 		
 		try {
 			String notice = null;
-			
-			switch(noticeCategory) {
-			case 1:
-				notice = EncryptUtil.AES_Decode(MemberDAO.getMemberByMemberNo(noticeTarget1).getDeepMemberName(),aesKey) + 
-					"님이 회원님을 팔로우하기 시작했습니다.";
-				break;
-			case 2:
-				notice = EncryptUtil.AES_Decode(MemberDAO.getMemberByMemberNo(noticeTarget1).getDeepMemberName(),aesKey) + 
-					"님이 " + CommonUtil.splitString(FeedDAO.getFeed(noticeTarget2).getDeepFeedTitle(), 1) + "글에 댓글을 달았습니다.";
-				break;
-			case 3:				
-				notice = EncryptUtil.AES_Decode(MemberDAO.getMemberByMemberNo(noticeTarget1).getDeepMemberName(),aesKey) + 
-					"님이 " + CommonUtil.splitString(FeedDAO.getFeedComment(noticeTarget2), 1) + "댓글에 댓글을 달았습니다.";
-				break;
-			case 4:
-				notice = EncryptUtil.AES_Decode(MemberDAO.getMemberByMemberNo(noticeTarget1).getDeepMemberName(),aesKey) + 
-					"님이 " + CommonUtil.splitString(FeedDAO.getFeed(noticeTarget2).getDeepFeedTitle(), 1) + "글을 좋아합니다.";
-				break;
-			case 5:
-				notice = "회원님이 팔로우하는 " + EncryptUtil.AES_Decode(MemberDAO.getMemberByMemberNo(noticeTarget1).getDeepMemberName(),aesKey) + 
-					"님이 " + CommonUtil.splitString(FeedDAO.getFeed(noticeTarget2).getDeepFeedTitle(), 1) + "글을 작성했습니다.";
-				break;
-			}
-			
+//			
+//			switch(noticeCategory) {
+//			case 1:
+//				notice = EncryptUtil.AES_Decode(MemberDAO.getMemberByMemberNo(noticeTarget1).getDeepMemberName(),aesKey) + 
+//					"님이 회원님을 팔로우하기 시작했습니다.";
+//				break;
+//			case 2:
+//				notice = EncryptUtil.AES_Decode(MemberDAO.getMemberByMemberNo(noticeTarget1).getDeepMemberName(),aesKey) + 
+//					"님이 " + CommonUtil.splitString(FeedDAO.getFeed(noticeTarget2).getDeepFeedTitle(), 1) + "글에 댓글을 달았습니다.";
+//				break;
+//			case 3:				
+//				notice = EncryptUtil.AES_Decode(MemberDAO.getMemberByMemberNo(noticeTarget1).getDeepMemberName(),aesKey) + 
+//					"님이 " + CommonUtil.splitString(FeedDAO.getFeedComment(noticeTarget2), 1) + "댓글에 댓글을 달았습니다.";
+//				break;
+//			case 4:
+//				notice = EncryptUtil.AES_Decode(MemberDAO.getMemberByMemberNo(noticeTarget1).getDeepMemberName(),aesKey) + 
+//					"님이 " + CommonUtil.splitString(FeedDAO.getFeed(noticeTarget2).getDeepFeedTitle(), 1) + "글을 좋아합니다.";
+//				break;
+//			case 5:
+//				notice = "회원님이 팔로우하는 " + EncryptUtil.AES_Decode(MemberDAO.getMemberByMemberNo(noticeTarget1).getDeepMemberName(),aesKey) + 
+//					"님이 " + CommonUtil.splitString(FeedDAO.getFeed(noticeTarget2).getDeepFeedTitle(), 1) + "글을 작성했습니다.";
+//				break;
+//			}
+//			
 			return notice;
 		
 		} catch(Exception e) {			

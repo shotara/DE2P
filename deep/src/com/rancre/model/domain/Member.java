@@ -1,107 +1,73 @@
 package com.rancre.model.domain;
 
+import java.sql.Timestamp;
+
 public class Member {
 
-	private int deepMemberNo;
-	private int deepMemberStatus;
-	private int deepMemberLevel;
-	private String deepMemberMajor;
-	private String deepMemberCareer;
-	private String deepMemberEmail;
-	private String deepMemberName;
-	private String deepMemberPassword;
-	private int deepMemberImage;
-	
+	private int racMemberNo;
+	private int racMemberStatus;
+	private int racMemberType;
+	private int racMemberFreeCoupon;
+	private String racMemberEmail;
+	private String racMemberPassword;
+	private Timestamp racMemberCreateDate;
+	public int getRacMemberNo() {
+		return racMemberNo;
+	}
+	public void setRacMemberNo(int racMemberNo) {
+		this.racMemberNo = racMemberNo;
+	}
+	public int getRacMemberStatus() {
+		return racMemberStatus;
+	}
+	public void setRacMemberStatus(int racMemberStatus) {
+		this.racMemberStatus = racMemberStatus;
+	}
+	public int getRacMemberType() {
+		return racMemberType;
+	}
+	public void setRacMemberType(int racMemberType) {
+		this.racMemberType = racMemberType;
+	}
+	public int getRacMemberFreeCoupon() {
+		return racMemberFreeCoupon;
+	}
+	public void setRacMemberFreeCoupon(int racMemberFreeCoupon) {
+		this.racMemberFreeCoupon = racMemberFreeCoupon;
+	}
+	public String getRacMemberEmail() {
+		return racMemberEmail;
+	}
+	public void setRacMemberEmail(String racMemberEmail) {
+		this.racMemberEmail = racMemberEmail;
+	}
+	public String getRacMemberPassword() {
+		return racMemberPassword;
+	}
+	public void setRacMemberPassword(String racMemberPassword) {
+		this.racMemberPassword = racMemberPassword;
+	}
+	public Timestamp getRacMemberCreateDate() {
+		return racMemberCreateDate;
+	}
+	public void setRacMemberCreateDate(Timestamp racMemberCreateDate) {
+		this.racMemberCreateDate = racMemberCreateDate;
+	}
+	public Member(int racMemberNo, int racMemberStatus, int racMemberType, int racMemberFreeCoupon,
+			String racMemberEmail, String racMemberPassword, Timestamp racMemberCreateDate) {
+		super();
+		this.racMemberNo = racMemberNo;
+		this.racMemberStatus = racMemberStatus;
+		this.racMemberType = racMemberType;
+		this.racMemberFreeCoupon = racMemberFreeCoupon;
+		this.racMemberEmail = racMemberEmail;
+		this.racMemberPassword = racMemberPassword;
+		this.racMemberCreateDate = racMemberCreateDate;
+	}
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public int getDeepMemberNo() {
-		return deepMemberNo;
-	}
-
-	public void setDeepMemberNo(int deepMemberNo) {
-		this.deepMemberNo = deepMemberNo;
-	}
-
-	public int getDeepMemberStatus() {
-		return deepMemberStatus;
-	}
-
-	public void setDeepMemberStatus(int deepMemberStatus) {
-		this.deepMemberStatus = deepMemberStatus;
-	}
-
-	public int getDeepMemberLevel() {
-		return deepMemberLevel;
-	}
-
-	public void setDeepMemberLevel(int deepMemberLevel) {
-		this.deepMemberLevel = deepMemberLevel;
-	}
-
-	public String getDeepMemberMajor() {
-		return deepMemberMajor;
-	}
-
-	public void setDeepMemberMajor(String deepMemberMajor) {
-		this.deepMemberMajor = deepMemberMajor;
-	}
-
-	public String getDeepMemberCareer() {
-		return deepMemberCareer;
-	}
-
-	public void setDeepMemberCareer(String deepMemberCareer) {
-		this.deepMemberCareer = deepMemberCareer;
-	}
-
-	public String getDeepMemberEmail() {
-		return deepMemberEmail;
-	}
-
-	public void setDeepMemberEmail(String deepMemberEmail) {
-		this.deepMemberEmail = deepMemberEmail;
-	}
-
-	public String getDeepMemberName() {
-		return deepMemberName;
-	}
-
-	public void setDeepMemberName(String deepMemberName) {
-		this.deepMemberName = deepMemberName;
-	}
-
-	public String getDeepMemberPassword() {
-		return deepMemberPassword;
-	}
-
-	public void setDeepMemberPassword(String deepMemberPassword) {
-		this.deepMemberPassword = deepMemberPassword;
-	}
-
-	public int getDeepMemberImage() {
-		return deepMemberImage;
-	}
-
-	public void setDeepMemberImage(int deepMemberImage) {
-		this.deepMemberImage = deepMemberImage;
-	}
-
-	public Member(int deepMemberNo, int deepMemberStatus, int deepMemberLevel, String deepMemberMajor,
-			String deepMemberCareer, String deepMemberEmail, String deepMemberName, String deepMemberPassword,
-			int deepMemberImage) {
-		super();
-		this.deepMemberNo = deepMemberNo;
-		this.deepMemberStatus = deepMemberStatus;
-		this.deepMemberLevel = deepMemberLevel;
-		this.deepMemberMajor = deepMemberMajor;
-		this.deepMemberCareer = deepMemberCareer;
-		this.deepMemberEmail = deepMemberEmail;
-		this.deepMemberName = deepMemberName;
-		this.deepMemberPassword = deepMemberPassword;
-		this.deepMemberImage = deepMemberImage;
-	}
+	
 
 }

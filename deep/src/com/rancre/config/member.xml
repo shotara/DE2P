@@ -6,33 +6,33 @@
 
 	<!-- MemberController.checkMember() -->
     <select id="checkMember" parameterType="java.util.HashMap" resultType="int">
-		SELECT count(*) FROM deep_member 
+		SELECT count(*) FROM rac_member 
 		<if test="mode == 1" >
-			WHERE deepMemberEmail=#{memberParam}
+			WHERE racMemberEmail=#{memberParam}
 		</if>
 		<if test="mode == 3">
-			WHERE deepMemberName=#{memberParam}
+			WHERE racMemberEmail=#{memberParam}
 		</if>
 	</select>
 		
 	<!-- MemberController.loginMember() -->
     <select id="getMemberByMemberMail" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Member">
-		SELECT * FROM deep_member WHERE deepMemberEmail=#{memberEmail} AND deepMemberPassword=#{memberPassword}
+		SELECT * FROM rac_member WHERE racMemberEmail=#{memberEmail} AND racMemberPassword=#{memberPassword}
 	</select>
 	
 	<select id="getMemberUid" parameterType="int" resultType="com.rancre.model.domain.MemberUid">
-		SELECT * FROM deep_member_uid WHERE deepMemberNo=#{inputMemberNo}
+		SELECT * FROM rac_member_uid WHERE racMemberNo=#{inputMemberNo}
 	</select>
 	
 	<!-- MemberController.joinMember() -->
     <select id="addMember" parameterType="java.util.HashMap" resultType="int">
-		INSERT INTO deep_member(deepMemberStatus, deepMemberLevel, deepMemberCreateDate, deepMemberMajor, deepMemberCareer, deepMemberEmail, deepMemberName, deepMemberPassword, deepMemberImage)
-		VALUES(#{memberStatus}, #{memberLevel}, #{inputCurrentDate}, #{memberMajor}, #{memberCareer}, #{memberEmail}, #{memberName}, #{memberPassword}, #{memberImage})
+		INSERT INTO rac_member(racMemberStatus, racMemberCreateDate, racMemberEmail, racMemberPassword)
+		VALUES(#{memberStatus}, #{inputCurrentDate}, #{memberEmail}, #{memberPassword})
 	</select>
 
     <select id="addMemberUid" parameterType="java.util.HashMap" resultType="int">
-		INSERT INTO deep_member_uid(deepMemberNo, deepMemberUid)
-		VALUES((SELECT deepMemberNo FROM deep_member WHERE deepMemberEmail=#{memberEmail}), #{memberUid})
+		INSERT INTO rac_member_uid(racMemberNo, racMemberUid)
+		VALUES((SELECT racMemberNo FROM rac_member WHERE racMemberEmail=#{memberEmail}), #{memberUid})
 	</select>	
 	
 	<!-- CommonController.setProfile -->
