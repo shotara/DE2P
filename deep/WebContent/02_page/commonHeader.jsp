@@ -22,9 +22,8 @@
 <script type ="text/javascript" src="/03_include/js/encrypt.prng4.js"></script>
 <script type ="text/javascript" src="/03_include/js/encrypt.rng.js"></script>
 
-<!-- Js 
+<!-- Js -->
 <!-- css -->
-<link type="text/css" href="/03_include/css/bootstrap-theme.css" rel="stylesheet" />
 <link type="text/css" href="/03_include/css/bootstrap.css" rel="stylesheet" />
 <link type="text/css" href="/03_include/css/font-awesome.css" rel="stylesheet" />
-<link type="text/css" href="/03_include/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">

@@ -1,170 +1,100 @@
 @CHARSET "UTF-8";
 
-@import url("//fonts.googleapis.com/earlyaccess/nanumgothic.css" ) ;
+@import url("//fonts.googleapis.com/earlyaccess/nanumgothic.css" );
 
-*{box-sizing:border-box !important;}
-
-body{
-	background-color:#f1f1f1 !important;
+* {
+	box-sizing: border-box !important;
 }
 
-.space{
-	border-top:20px;
+.space {
+	border-top: 20px;
 }
 
-.space-hs{
-	border-top:10px;
+.space-hs {
+	border-top: 10px;
 }
-
 
 .li-right {
-	float :right;
+	float: right;
 }
 
 /**********************************/
 /*  subnav  */
 /*********************************/
-
 .subnav {
-	background-color:rgba(255,255,255,1) !important;
+	background-color: rgba(255, 255, 255, 1) !important;
 }
-
 
 /**********************************/
 /*  join  */
 /*********************************/
-
-
-.deepInfo{
-	width:30%;
-	height:100px;
-	text-align:center;
-	background-image:url('/01_image/commonImg/logo-main.png');
-	background-size: contain;
+.join {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
 }
 
-.inputJoin{
-	width:100%;
-	height:40px;
+.inputJoin {
+	width: 100%;
+	height: 40px;
 }
 
-.joinBox{
-	margin:0 0 20px;
-	width:100%;
-	height:40px;
+.joinBox {
+	margin: 0 0 20px;
+	width: 100%;
+	height: 40px;
 }
 
-.deepFont{
-	font-size:2.5em;
-	color:#fff;
+.deepFont {
+	font-size: 2.5em;
+	color: #fff;
 }
 
-.inputJoinBtn{
+.inputJoinBtn {
 	background-color: #4a3c89;
-	border:0;
-	width:100%;
-	height:40px;
-	font-size:1.25em;
-	color:#fff;
+	border: 0;
+	width: 100%;
+	height: 40px;
+	font-size: 1.25em;
+	color: #fff;
 }
 
 /**********************************/
 /*  font awesome customize  */
 /*********************************/
-
-.fa-home {
-	color:#fff !important;
+.fa-user-circle-o {
+	color: #000 !important;
 }
 
-.fa-user-circle-o{
-	color:#fff !important;
+.fa-commenting-o {
+	color: #000 !important;
 }
 
-.fa-commenting-o{
-	color:#fff !important;
+.fa-pencil {
+	color: #000 !important;
 }
-
-.fa-pencil{
-	color:#fff !important;
-}
-
-
-
 
 a {
-  text-decoration:none !important;
+	text-decoration: none !important;
 }
 
-.text-center{
-  text-align: center;
-}
-
-.subnav {
-  margin-bottom:0;
-  margin:0;
-  top: 0px;
-  z-index: 920;
-  background-color: white;
-  border-bottom: 1px solid #E1E1E1;
-}
-
-.subnav ul{
-  list-style: none;
-  display: inline-block;
-  padding-left: 0;
-  margin-bottom: 0;
-}
-
-.subnav ul li{
-  border : none;
-  float : left;
-  vertical-align: middle;
-}
-
-.subnav.affix {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index:1;
-}
-
-.subnav .subA {
-    display:-moz-inline-stack;  /*FF2*/
-    float : inherit;
-    font-size: 1.2em;
-    text-align:center;
-    text-decoration:none;
-}
-
-.subnav .subA : now {
-  color:#fff !important;
-  background-color:#4a3c89 !important;
-}
-
-.subnav .subA : hover, .subnav .subA : focus {
-  color:#fff !important;
-  background-color:#4a3c89 !important;
+.text-center {
+	text-align: center;
 }
 
 .title-text {
-  color:white;
-}
-
-.icon {
-  border: 1px solid #ccc;
-  border-radius : 0 15px 15px 0;
-  background: #fff;
-  height: 34px;
-  width: 34px;
-color: #4f5b66;
-position: absolute;
-z-index: 1;
+	color: white;
 }
 
 .feed {
-	width:100%;
-	height:302px;
-	border : 1px #e2e2e2 solid;
+	width: 100%;
+	height: 302px;
+	border: 1px #e2e2e2 solid;
 	border-bottom: 2px #e2e2e2 solid;
 }
 
@@ -175,38 +105,39 @@ z-index: 1;
 }
  */
 .list {
-	text-align:center;
-  margin-top : 20px;
-  width:100%;
-  min-height: 300px;
-  background-color: #fff;
-  box-shadow: 1px 1px 1px #e2e2e2;
+	text-align: center;
+	margin-top: 20px;
+	width: 100%;
+	min-height: 300px;
+	background-color: #fff;
+	box-shadow: 1px 1px 1px #e2e2e2;
 }
 
 .list .left {
-  background-image: url('https://s3-ap-northeast-1.amazonaws.com/deep-test2/member/w5FlVzIbbwMM1496/2rAOq504wPHVmGZW');
-  background-size : cover;
-  height: 300px;
-  padding : 0;
+	background-image:
+		url('https://s3-ap-northeast-1.amazonaws.com/deep-test2/member/w5FlVzIbbwMM1496/2rAOq504wPHVmGZW');
+	background-size: cover;
+	height: 300px;
+	padding: 0;
 }
 
-.list .coverPic{
-  background-color : rgba(0, 0, 0, 0.4);
-  height: 300px;
-  padding : 0;
-  margin: 0;
+.list .coverPic {
+	background-color: rgba(0, 0, 0, 0.4);
+	height: 300px;
+	padding: 0;
+	margin: 0;
 }
 
 .list .title {
-  color:rgb(240,240,240);
-  font-size : 1.3em;
-  text-align: center;
-  padding-top : 50%;
+	color: rgb(240, 240, 240);
+	font-size: 1.3em;
+	text-align: center;
+	padding-top: 50%;
 }
 
 .list .right {
-  height: 300px;
-  background-color: #fff;
+	height: 300px;
+	background-color: #fff;
 }
 
 .list .content {
@@ -214,56 +145,66 @@ z-index: 1;
 	height: 250px;
 }
 
-.list .name{
+.list .name {
 	height: 25px;
-	font-size : 0.8em;
+	font-size: 0.8em;
 	border-bottom: 1px #e2e2e2 solid;
-	margin-bottom:5px;
-	
+	margin-bottom: 5px;
 }
 
 .list .like {
-	float:left;
-	width:70px;
-	height:20px;
+	float: left;
+	width: 70px;
+	height: 20px;
 }
 
 .list .comment {
-	float:left;
-	width:70px;
-	height:20px;
+	float: left;
+	width: 70px;
+	height: 20px;
 }
 
 .list .share {
-	float:left;
-	width:70px;
-	height:20px;
+	float: left;
+	width: 70px;
+	height: 20px;
 }
-
 
 .deepFeed .title-Black {
-  
+	
 }
 
-.logo {
-	width: 100%;
-	height :60px;
-	text-align : center;
-	vertical-align : middle;
-	margin:0;
+
+/**********************************/
+/*  login  */
+/*********************************/
+
+.login {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
 }
 
-.logo .title {
-	margin:0;
-	list-style : none;
-	padding: 15px 0px 0px 0px;
-	font-color: #fff !important;
-	font-size:1.3em;
-	font-weight :bold;
-	text-align : center;
-	vertical-align : middle;
+.login .brand {
+  display: inline-block;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-right: 1rem;
+  font-size: 3.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+  font-weight: bold;
+  color: #F11834 !important;
 }
 
-.deep {
-	color: #fff;
+.login-Form {
+	width: 480px;
+	height: 480px;
+	padding-top : 50px;
+	background-color : #fff;
 }

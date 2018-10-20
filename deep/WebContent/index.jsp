@@ -14,7 +14,6 @@
 <body>
 
 	<jsp:include page="/02_page/commonNav.jsp" flush="false" />
-	<jsp:include page="/02_page/commonSubNav.jsp" flush="false" />
 
 	<section id="indexFeed" class="section" data-type="feed">
 	<div class="container-fluid">

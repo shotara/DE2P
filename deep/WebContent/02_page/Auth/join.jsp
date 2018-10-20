@@ -14,11 +14,10 @@
 
 <jsp:include page="/02_page/commonNav.jsp" flush="false" />
 
-<section class="joinDeep">
-<div class="row">
+<section class="join">
+<div class="container">
 	<div class="col-xs-3"></div>
 	<div class="col-xs-6">
-		<div class="deepInfo"></div>
 		<div class="col-xs-3"></div>
 			<div class="col-xs-6">
 
