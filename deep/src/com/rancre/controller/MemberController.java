@@ -198,9 +198,9 @@ public class MemberController {
 
 		try {
 			session.setMaxInactiveInterval(3600);
-			session.setAttribute("deepMemberNo", member.getRacMemberNo());
-			session.setAttribute("deepMemberUid", inputMemberUid);	
-			session.setAttribute("deepMemberEmail", EncryptUtil.AES_Decode(member.getRacMemberEmail(), aesKey));
+			session.setAttribute("racMemberNo", member.getRacMemberNo());
+			session.setAttribute("racMemberUid", inputMemberUid);	
+			session.setAttribute("racMemberEmail", EncryptUtil.AES_Decode(member.getRacMemberEmail(), aesKey));
 		
 		} catch(Exception e) {
 			e.printStackTrace();

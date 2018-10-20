@@ -6,6 +6,16 @@
          version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
 
 	<servlet>
+		<servlet-name>AdminView</servlet-name>
+		<servlet-class>com.rancre.view.AdminView</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdminView</servlet-name>
+		<url-pattern>/admin</url-pattern>
+	</servlet-mapping>
+	         
+	<servlet>
 		<servlet-name>BlogView</servlet-name>
 		<servlet-class>com.rancre.view.BlogView</servlet-class>
 	</servlet>

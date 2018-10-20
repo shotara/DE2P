@@ -1,0 +1,62 @@
+package com.rancre.view;
+
+import java.io.IOException;
+import java.util.HashMap;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.rancre.controller.AdminController;
+import com.rancre.controller.FeedController;
+import com.rancre.util.CommonUtil;
+
+public class AdminView extends HttpServlet{
+	
+	private static final String className = "AdminView";
+
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		process(req,res);
+	}
+	
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		process(req,res);
+	}
+	
+	public void process(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		
+		req.setCharacterEncoding("UTF-8");
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			String action = req.getParameter("action") != null ? CommonUtil.commonCleanXSS(req.getParameter("action").toString()) : "";
+			
+			switch(action) {
+			case "getChannelList":
+				map.put("ACTION", "getChannelList");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				AdminController.getChannelList(req,res);
+				break;	
+			case "addChannelCost":
+				map.put("ACTION", "addChannelCost");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				AdminController.addChannelCost(req,res);
+				break;	
+			case "addChannelAdUrl":
+				map.put("ACTION", "addChannelAdUrl");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				AdminController.addChannelAdUrl(req,res);
+				break;	
+			case "addChannelInfo":
+				map.put("ACTION", "addChannelInfo");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				AdminController.addChannelInfo(req,res);
+				break;					
+			}
+			
+		} catch (Exception e) {
+			//에러처리
+		}
+	}
+}
