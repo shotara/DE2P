@@ -23,7 +23,8 @@ public class AdminDAO {
 	// Insert Method
 	public static int addChannelCost(
 			int inputChannelNo, 
-			int inputChannelCostPrice, 
+			int inputChannelCostCategory,
+			int inputChannelCostPrice,
 			Timestamp inputCurrentDate) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
@@ -31,6 +32,7 @@ public class AdminDAO {
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("channelNo", inputChannelNo);
+			map.put("channelCostCategory", inputChannelCostCategory);	
 			map.put("channelCostPrice", inputChannelCostPrice);	
 			map.put("inputCurrentDate", inputCurrentDate);			
 
@@ -215,6 +217,18 @@ public class AdminDAO {
 		
 		try {
 			return (int)sqlSession.selectOne(namespace + ".getChannelCostPrice", racChannelNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static Channel getChannel(int inputChannelNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			return (Channel)sqlSession.selectOne(namespace + ".getChannel", inputChannelNo);
 			
 		} finally {
 			sqlSession.close();

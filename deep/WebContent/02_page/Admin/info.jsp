@@ -8,21 +8,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
+
 </head>
-<body>
 <script type="text/javascript">
-	function addCost(no, price, category) {
+	function addInfo(no, mcn, category) {
 		
 		var action, form_data;
 		
-		action = "/admin?action=addChannelCost";
+		action = "/admin?action=addChannelInfo";
 
 		//encryption
 
 		form_data = {
 				inputChannelNo : no,
-				inputChannelCostPrice : price,
-				inputChannelCostCategory : category
+				inputMcnNo : mcn,
+				inputCategoryNo : category
 		};
 		
 		$.ajax({
@@ -46,32 +46,39 @@
 	}
 </script>
 
-<section class="rancre-admin-cost">
+<body>
+
+<section class="rancre-admin-info">
 	<div class="content">
-		<h1>채널 단가 등록</h1>
-		<div class="cost-channel-title">
+		<h1>채널 정보 등록</h1>
+		<div class="info-channel-title">
 			<div class="left">채널명</div>
 			<div class="right">${result.outputChannelTitle}</div>
 		</div>
-		<div class="cost-channel-url">
+		<div class="info-channel-url">
 			<div class="left">채널아이디</div>
 			<div class="right">${result.outputChannelUrl}</div>
 		</div>
-		<div class="cost-channel-price">
-			<div class="left">광고 단가</div>
-			<input type="text" id="costPrice"/>
-			<div class="right">원</div>
+		<div class="info-channel-mcn">
+			<div class="left">소속</div>
+			<input type="text" id="mcnNo"/>
 		</div>
-		<div class="cost-channel-category">
-			<div class="left">광고 종류</div>
-			<input type="text" id="costCategory"/>
+		<div class="info-channel-category">
+			<select name="category" id="category">
+			    <option value="1">카테고리 선택</option>
+			    <option value="2">뷰티</option>
+			    <option value="3">먹방</option>
+			    <option value="4">BJ</option>
+			</select>
 		</div>
 	</div>
 	
 	<div class="btn">
-		<button onclick="addCost(${result.outputChannelNo},$('#costPrice').val(),$('#costCategory').val())">단가입력</button>
+		<button onclick="addInfo(${result.outputChannelNo},$('#mcnNo').val(),$('#category').val())">정보입력</button>
 		<button>취소</button>
 	</div>
 </section>
+
+
 </body>
 </html>

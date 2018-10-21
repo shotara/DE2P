@@ -42,17 +42,32 @@ public class AdminView extends HttpServlet{
 				map.put("ACTION", "addChannelCost");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				AdminController.addChannelCost(req,res);
+				break;				
+			case "getChannelCost":
+				map.put("ACTION", "getChannelCost");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				AdminController.getChannelCost(req,res);
 				break;	
 			case "addChannelAdUrl":
 				map.put("ACTION", "addChannelAdUrl");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				AdminController.addChannelAdUrl(req,res);
 				break;	
+			case "getChannelAdUrl":
+				map.put("ACTION", "getChannelAdUrl");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				AdminController.getChannelAdUrl(req,res);
+				break;	
 			case "addChannelInfo":
 				map.put("ACTION", "addChannelInfo");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				AdminController.addChannelInfo(req,res);
-				break;					
+				break;	
+			case "getChannelInfo":
+				map.put("ACTION", "getChannelInfo");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				AdminController.getChannelInfo(req,res);
+				break;	
 			}
 			
 		} catch (Exception e) {
