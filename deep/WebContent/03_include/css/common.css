@@ -208,3 +208,20 @@ a {
 	padding-top : 50px;
 	background-color : #fff;
 }
+
+
+/**********************************/
+/*  main  */
+/*********************************/
+
+.mainList {
+	padding-top : 20px;
+	width: 100%;
+	min-height: 850px;
+	color : #ffffff !important;
+}
+
+.listHeader {
+	padding : 0 30 0 30px;
+	display : inline;
+}

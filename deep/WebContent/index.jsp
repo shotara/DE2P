@@ -15,36 +15,24 @@
 
 	<jsp:include page="/02_page/commonNav.jsp" flush="false" />
 
-	<section id="indexFeed" class="section" data-type="feed">
-	<div class="container-fluid">
-		<div class="col-xs-2 col-md-3"></div>
-		<div class="col-xs-8 col-md-6">
-			<div class="list" data-type="feed">
-				<div class="feed">
-					<div class="left col-xs-5 col-md-5">
-					 <div class="coverPic">
-						 <div class="title">
-							 <span class="char">여기가 타이틀 입니다.</span>
-						 </div>
-					  </div>
-					 </div>
-					 <div class="right col-xs-7 col-md-7">
-						<div class="content">
-							<span class="title-black">여기에 바로 이렇게 본문이 들어가는 부분입니다 여러분!</span>
-						</div>
-						<div class="name">
-							BY 누구누구누구
-						</div> 
-						<div class="like fa fa-heart-o">&nbsp좋아요</div>
-						<div class="comment fa fa-comment-o">&nbsp댓글</div>
-						<div class="share fa fa-share-alt">&nbsp공유</div>						
-					 </div>
-				 </div>
+	<section class="section" data-type="feed">
+	<div class="container">
+		<div class="row">
+			<div class="col pt-3">
+				<div class="w-auto ml-auto"><h3>Top 100</h3></div>
+				<div><span>채널 종합 순위입니다.</span></div>
+				<div class="pt-4">
+					<ul class="nav nav-pills nav-fill">
+						<li class="nav-item">순위</li>
+						<li class="nav-item">채널명</li>
+						<li class="nav-item">총구독자수</li>
+						<li class="nav-item">총조회수</li>
+						<li class="nav-item">업로드한 영상수</li>
+					</ul>
+				</div>
+				<div class="hr"></div>
 			</div>
-			
-			
 		</div>
-		<div class="col-xs-2 col-md-3"></div>
 	</div>
 
 	</section>
