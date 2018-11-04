@@ -19,18 +19,20 @@
 	<div class="container">
 		<div class="row">
 			<div class="col pt-3">
-				<div class="w-auto ml-auto"><h3>Top 100</h3></div>
+				<div class="w-auto ml-auto"><h3>채널100</h3></div>
 				<div><span>채널 종합 순위입니다.</span></div>
 				<div class="pt-4">
 					<ul class="nav nav-pills nav-fill">
 						<li class="nav-item">순위</li>
 						<li class="nav-item">채널명</li>
+						<li class="nav-item">카테고리</li>
 						<li class="nav-item">총구독자수</li>
 						<li class="nav-item">총조회수</li>
 						<li class="nav-item">업로드한 영상수</li>
 					</ul>
 				</div>
-				<div class="hr"></div>
+				<hr>
+				<div></div>
 			</div>
 		</div>
 	</div>

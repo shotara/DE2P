@@ -173,6 +173,18 @@ a:hover {
   text-decoration: underline;
 }
 
+a .nav-link2 {
+  color: #495057 !important;
+  text-decoration : none;
+  background-color: #transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+a:hover .nav-link2 {
+  color: #0056b3;
+  text-decoration: none;
+}
+
 a:not([href]):not([tabindex]) {
   color: inherit;
   text-decoration: none;
@@ -425,7 +437,8 @@ hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.4);
+  border-top: 1px solid #eeeeee;
+  box-shadow: 0 0px 2px 0px #eeeeee;
 }
 
 small,
@@ -3842,7 +3855,7 @@ input[type="button"].btn-block {
 
 .nav-link {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
 }
 
 .nav-link:hover, .nav-link:focus {
@@ -3896,8 +3909,9 @@ input[type="button"].btn-block {
 
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #007bff;
+  color: #495057 !important;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
 }
 
 .nav-fill .nav-item {

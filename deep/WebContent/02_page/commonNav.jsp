@@ -14,15 +14,16 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Top100
+				<li class="nav-item active"><a class="nav-link" href="/index.jsp">채널100
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">All</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">New</a></li>
+				<li class="nav-item"><a class="nav-link" href="/02_page/Channel/allChannel.jsp">모든채널</a></li>
+				<li class="nav-item"><a class="nav-link" href="/02_page/Channel/newChannel.jsp">새로운채널</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">검색</a></li>
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active"><a class="nav-link"
-						href="#">검색</a></li>
+						href="#">리뷰등록</a></li>
 				<c:if test="${empty sessionScope.deepMemberNo}">
 					<li class="nav-item active"><a class="nav-link"
 						href="/02_page/Auth/login.jsp">로그인</a></li>
