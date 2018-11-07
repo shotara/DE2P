@@ -32,7 +32,17 @@
 					</ul>
 				</div>
 				<hr>
-				<div></div>
+				<div class="pt-3">
+					<ul class="nav nav-pills nav-fill">
+						<li class=""><img style="width:48px; border-radius:48px;" src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no"></li>
+						<li class=""><span class="fntRank">1위</span></li>
+						<li class="">WassupMan</li>
+						<li class="">#스튜디</li>
+						<li class="">1,232</li>
+						<li class="">총조회수</li>
+						<li class="">업로드한 영상수</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -19,29 +19,76 @@
 	<div class="container">
 		<div class="row">
 			<div class="col pt-3">
-				<div class="w-auto ml-auto"><h3>새로운 채널</h3></div>
-				<div><span>랭크리에서 새롭게 수집한 채널입니다.</span></div>
-				<div class="pt-4">
-					<ul class="nav nav-pills nav-fill">
-						<li class="nav-item">채널명</li>
-						<li class="nav-item">카테고리</li>
-						<li class="nav-item">총구독자수</li>
-						<li class="nav-item">총조회수</li>
-						<li class="nav-item">업로드한 영상수</li>
-					</ul>
+				<div class="w-auto ml-auto">
+					<h3>새로운 채널</h3>
 				</div>
+				<div>
+					<span>랭크리에서 새롭게 수집한 채널입니다.</span>
+				</div>
+				<div class="pt-4"></div>
+				<div class="rankRowImg"></div>
+				<div class="rankRow">채널명</div>
+				<div class="rankRow">카테고리</div>
+				<div class="rankRow">총구독자수</div>
+				<div class="rankRow">총조회수</div>
+				<div class="rankRow2">영상수</div>
+				<div class="rankRowBtn"></div>
+
 				<hr>
-				<div></div>
+				<div class="pt-2"></div>
+
+				<div id="newChnContents" class="w-auto ml-auto">
+					<div class="rankRowImg">
+						<img style="width: 48px; border-radius: 48px;"
+							src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
+					</div>
+					<div class="rankRow">WassupMan</div>
+					<div class="rankRow">#스튜디오</div>
+					<div class="rankRow">1,232,232</div>
+					<div class="rankRow">232,232,213</div>
+					<div class="rankRow2">20</div>
+					<div class="rankRowBtn"><button class="btnChnGo">채널정보 보기</button></div>
+				</div>
+				<hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+				<div class="pt-2"></div>
+				<div id="newChnContents" class="w-auto ml-auto">
+					<div class="rankRowImg">
+						<img style="width: 48px; border-radius: 48px;"
+							src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
+					</div>
+					<div class="rankRow">WassupMan</div>
+					<div class="rankRow">#스튜디오</div>
+					<div class="rankRow">1,232,232</div>
+					<div class="rankRow">232,232,213</div>
+					<div class="rankRow2">20</div>
+					<div class="rankRowBtn"><button class="btnChnGo">채널정보 보기</button></div>
+				</div>
+				<hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+				<div class="pt-2"></div>
+				<div id="newChnContents" class="w-auto ml-auto">
+					<div class="rankRowImg">
+						<img style="width: 48px; border-radius: 48px;"
+							src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
+					</div>
+					<div class="rankRow">WassupMan</div>
+					<div class="rankRow">#스튜디오</div>
+					<div class="rankRow">1,232,232</div>
+					<div class="rankRow">232,232,213</div>
+					<div class="rankRow2">20</div>
+					<div class="rankRowBtn"><button class="btnChnGo">채널정보 보기</button></div>
+				</div>
+
 			</div>
 		</div>
+
 	</div>
 
 	</section>
 
 	<section class="indexRecommend"> </section>
-   <c:forEach var="i" items="${requestScope.outputFeedList}">
-			        <div class="row<c:if test="${i.outputPostType == 1}"> notice</c:if>" onclick="Feed.goView('${i.outputFeedNo}')">
-			         </div>
+	<c:forEach var="i" items="${requestScope.outputFeedList}">
+		<div class="row<c:if test="${i.outputPostType == 1}"> notice</c:if>"
+			onclick="Feed.goView('${i.outputFeedNo}')"></div>
 	</c:forEach>
 </body>
 </html>
