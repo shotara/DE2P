@@ -47,9 +47,12 @@
 					<div class="rankRow">1,232,232</div>
 					<div class="rankRow">232,232,213</div>
 					<div class="rankRow2">20</div>
-					<div class="rankRowBtn"><button class="btnChnGo">채널정보 보기</button></div>
+					<div class="rankRowBtn">
+						<button class="btnChnGo">채널정보 보기</button>
+					</div>
 				</div>
-				<hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+				<hr
+					style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 				<div class="pt-2"></div>
 				<div id="newChnContents" class="w-auto ml-auto">
 					<div class="rankRowImg">
@@ -61,9 +64,12 @@
 					<div class="rankRow">1,232,232</div>
 					<div class="rankRow">232,232,213</div>
 					<div class="rankRow2">20</div>
-					<div class="rankRowBtn"><button class="btnChnGo">채널정보 보기</button></div>
+					<div class="rankRowBtn">
+						<button class="btnChnGo">채널정보 보기</button>
+					</div>
 				</div>
-				<hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+				<hr
+					style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 				<div class="pt-2"></div>
 				<div id="newChnContents" class="w-auto ml-auto">
 					<div class="rankRowImg">
@@ -75,7 +81,49 @@
 					<div class="rankRow">1,232,232</div>
 					<div class="rankRow">232,232,213</div>
 					<div class="rankRow2">20</div>
-					<div class="rankRowBtn"><button class="btnChnGo">채널정보 보기</button></div>
+					<div class="rankRowBtn">
+						<button class="btnChnGo">채널정보 보기</button>
+					</div>
+				</div>
+				<hr
+					style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+				<div class="pt-2"></div>
+				<div id="newChnContents" class="w-auto ml-auto">
+					<div class="rankRowImg">
+						<img style="width: 48px; border-radius: 48px;"
+							src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
+					</div>
+					<div class="rankRow">WassupMan</div>
+					<div class="rankRow">#스튜디오</div>
+					<div class="rankRow">1,232,232</div>
+					<div class="rankRow">232,232,213</div>
+					<div class="rankRow2">20</div>
+					<div class="rankRowBtn">
+						<button class="btnChnGo">채널정보 보기</button>
+					</div>
+				</div>
+				<hr
+					style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+				<div class="pt-2"></div>
+				<div id="newChnContents" class="w-auto ml-auto">
+					<div class="rankRowImg">
+						<img style="width: 48px; border-radius: 48px;"
+							src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
+					</div>
+					<div class="rankRow">WassupMan</div>
+					<div class="rankRow">#스튜디오</div>
+					<div class="rankRow">1,232,232</div>
+					<div class="rankRow">232,232,213</div>
+					<div class="rankRow2">20</div>
+					<div class="rankRowBtn">
+						<button class="btnChnGo">채널정보 보기</button>
+					</div>
+				</div>
+				<hr
+					style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+				<div class="pt-4"></div>
+				<div class="rankBottom text-center">
+					<button class="btnListGo">더보기</button>
 				</div>
 
 			</div>
@@ -84,6 +132,8 @@
 	</div>
 
 	</section>
+	
+	<jsp:include page="/02_page/commonFooter.jsp" flush="false" />
 
 	<section class="indexRecommend"> </section>
 	<c:forEach var="i" items="${requestScope.outputFeedList}">

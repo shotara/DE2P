@@ -174,11 +174,9 @@ a {
 	
 }
 
-
 /**********************************/
 /*  login  */
 /*********************************/
-
 .login {
 	display: -ms-flexbox;
 	display: flex;
@@ -191,94 +189,137 @@ a {
 }
 
 .login .brand {
-  display: inline-block;
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
-  margin-right: 1rem;
-  font-size: 3.25rem;
-  line-height: inherit;
-  white-space: nowrap;
-  font-weight: bold;
-  color: #F11834 !important;
+	display: inline-block;
+	padding-top: 0.3125rem;
+	padding-bottom: 0.3125rem;
+	margin-right: 1rem;
+	font-size: 3.25rem;
+	line-height: inherit;
+	white-space: nowrap;
+	font-weight: bold;
+	color: #F11834 !important;
 }
 
 .login-Form {
 	width: 480px;
 	height: 480px;
-	padding-top : 50px;
-	background-color : #fff;
+	padding-top: 50px;
+	background-color: #fff;
 }
-
 
 /**********************************/
 /*  main  */
 /*********************************/
-
 .mainList {
-	padding-top : 20px;
+	padding-top: 20px;
 	width: 100%;
 	min-height: 850px;
-	color : #ffffff !important;
+	color: #ffffff !important;
 }
 
 .listHeader {
-	padding : 0 30 0 30px;
-	display : inline;
+	padding: 0 30 0 30px;
+	display: inline;
 }
 
 .imgChnList {
 	display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-height: 80px !important;
-    max-width: 80px !important;
-    border-radius: 80px !important;
+	margin-left: auto;
+	margin-right: auto;
+	max-height: 80px !important;
+	max-width: 80px !important;
+	border-radius: 80px !important;
 }
 
 .rankRow {
-	display : inline-block;
-	width : 180px;
-	float:lfet;
+	display: inline-block;
+	width: 180px;
+	float: lfet;
 }
 
 .rankRow2 {
-	display : inline-block;
-	width : 120px;
-	float:lfet;
+	display: inline-block;
+	width: 120px;
+	float: lfet;
 }
 
 .rankRowImg {
-	display : inline-block;
+	display: inline-block;
 	width: 48px;
 	padding-right: 80px;
-	padding-left : 10px;
+	padding-left: 10px;
 }
 
 .rankRowName {
-	display : inline-block;
-	padding-left : 70px;
+	display: inline-block;
+	padding-left: 70px;
 	max-width: 180px;
 }
 
-.rankRowBtn{
-	display : inline-block;
+.rankRowBtn {
+	display: inline-block;
 }
 
-.btnChnGo{
+.btnChnGo {
 	width: 120px;
-	border-radius : 8px;
-	border : 1px solid #f11834;
+	border-radius: 8px;
+	border: 1px solid #f11834;
 	font-size: 1em;
-	height : 36px;
+	height: 36px;
 	color: #f11834;
 }
 
+.rankBottom {
+	margin: auto;
+	width: 50%;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-align: center;
+}
 
+.btnListGo {
+	width: 120px;
+	border-radius: 8px;
+	border: 1px solid #f11834;
+	font-size: 1em;
+	height: 36px;
+	color: #f11834;
+}
 
-.txt-align-right{
-	text-align:right;
+.txt-align-right {
+	text-align: right;
 }
 
 .fntRank {
-	font-weight : 1.2em;
+	font-weight: 1.2em;
+}
+
+/**********************************/
+/*  footer  */
+/*********************************/
+.ranFooter {
+	margin-top: 70px;
+	background-color: #f11834;
+	width: 100%;
+	background-color: #f11834;
+	width: 100%;
+	height: 200px;
+}
+
+.footer-brand {
+	display: inline-block;
+	padding-top: 0.3125rem;
+	padding-bottom: 0.3125rem;
+	margin-right: 1rem;
+	font-size: 1.25rem;
+	line-height: inherit;
+	white-space: nowrap;
+	font-weight: bold;
+	color: #fff;
+	text-decoration: none;
+}
+
+.footer-brand:hover, .footer-brand:focus {
+	color: #fff;
+	text-decoration: none;
 }
