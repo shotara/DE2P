@@ -19,13 +19,19 @@
 	<div class="container">
 		<div class="row">
 			<div class="col pt-3">
+			
+			<!-- 채널 100 페이지 상단 설명영역 -->
 				<div class="w-auto ml-auto">
 					<h3>채널 100</h3>
 				</div>
 				<div>
 					<span>채널 종합 순위입니다.</span>
 				</div>
+				
+			<!--컬럼 구분 영 -->
+				
 				<div class="w-auto pt-4"></div>
+				
 				<div class="rankMainRowCnt">순위</div>
 				<div class="rankMainRowImg"></div>
 				<div class="rankMainRow">채널명</div>
@@ -36,8 +42,11 @@
 				<div class="rankMainRowBtn"></div>
 
 				<hr>
+				
 				<div class="pt-2"></div>
-
+				
+			<!-- 채널별 스탯 영역1 -->
+				
 				<div id="newChnContents" class="w-auto ml-auto">
 					<div class="rankMainRowCnt">
 						<div class="d-inline-block rankMainCnt">1위</div><div class="d-inline-block rankMainDif">-</div>
@@ -57,6 +66,9 @@
 				</div>
 				<hr
 					style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+	
+			<!-- 채널별 스탯 영역1 -->	
+					
 				<div class="pt-2"></div>
 				<div id="newChnContents" class="w-auto ml-auto">
 					<div class="rankMainRowCnt">
