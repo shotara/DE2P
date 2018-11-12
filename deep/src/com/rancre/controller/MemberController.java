@@ -11,7 +11,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -485,7 +492,8 @@ public class MemberController {
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int inputNumber = req.getParameter("inputNumber") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputNumber").toString())) : 0;				
 			String inputCompany = req.getParameter("inputCompany") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputCompany").toString()) : null;
-
+			String key = "zrmMgIa4mQMssyPY1Y%2Fao0z7Xr6i7i9YOdn%2B0sISrGUHkdbMsay3aU6ov%2BH5wo9%2BEBzXfCQ0teCQn1Jz45YoGg%3D%3D";
+			
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
@@ -502,13 +510,13 @@ public class MemberController {
 //			}	
 			
 			String urlStr = "http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/getBassInfoSearch?bzowr_rgst_no="
-					+ inputNumber + "&wkpl_nm="+ inputCompany+"&numOfRows=1&serviceKey=zrmMgIa4mQMssyPY1Y%2Fao0z7Xr6i7i9YOdn%2B0sISrGUHkdbMsay3aU6ov%2BH5wo9%2BEBzXfCQ0teCQn1Jz45YoGg%3D%3D"; // 요청 할 주소
+					+ inputNumber + "&wkpl_nm="+ inputCompany+"&numOfRows=1&serviceKey="+key; // 요청 할 주소
 
 			System.out.println(urlStr);
 			URL url = new URL(urlStr);
 			HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
 			urlconnection.setRequestMethod("GET");
-			br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(),"UTF-8"));
+			br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(),"utf-8"));
 			String result="";
 			String line;
 			while((line = br.readLine()) != null)  {
@@ -528,6 +536,75 @@ public class MemberController {
 			
 	        System.out.println(objsct.getJSONObject("response").getJSONObject("header").getString("resultCode"));
 			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Login Check OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void checkEmail(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+			
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			int inputNumber = req.getParameter("inputNumber") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputNumber").toString())) : 0;				
+			String inputEmail = req.getParameter("inputEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputEmail").toString()) : null;
+			String key = "zrmMgIa4mQMssyPY1Y%2Fao0z7Xr6i7i9YOdn%2B0sISrGUHkdbMsay3aU6ov%2BH5wo9%2BEBzXfCQ0teCQn1Jz45YoGg%3D%3D";
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+			PrivateKey privateKey = null;
+			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+			
+//			if(privateKey == null) {
+//				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
+//				jObject.put("outputResult", "-2");
+//				res.getWriter().write(jObject.toString());
+//				return;
+//			}	
+			
+
+			String host = "smtp.naver.com";
+			final String user = "shotzara";
+			final String password = "rmlarmla12!";
+			
+		    // Get the session object
+		    Properties props = new Properties();
+		    props.put("mail.smtp.host", host);
+		    props.put("mail.smtp.auth", "true");
+		  
+		    Session sessionMail = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			   protected PasswordAuthentication getPasswordAuthentication() {
+			    return new PasswordAuthentication(user, password);
+			   }
+		    });
+		  
+		    MimeMessage message = new MimeMessage(sessionMail);
+		    message.setFrom(new InternetAddress(user));
+		    message.addRecipient(Message.RecipientType.TO, new InternetAddress(inputEmail));
+
+		    String randomNum = "123123123";
+		    // Subject
+		    message.setSubject("안녕하세요. 크리에이터 광고의 모든것, 랭크리입니다.");
+			   
+		    // Text
+		    message.setText("가입 인증 번호입니다.\n 인증번호 : "+randomNum);
+
+		    // send the message
+		    Transport.send(message);
+		    System.out.println("message sent successfully...");
+			jObject.put("outputAuthNo", randomNum);
+
 			CommonUtil.commonPrintLog("SUCCESS", className, "Login Check OK", map);
 			jObject.put("outputResult", "1");
 			res.getWriter().write(jObject.toString());
