@@ -1,6 +1,11 @@
 package com.rancre.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.security.PrivateKey;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -12,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONException;
+import org.json.XML;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -438,7 +445,7 @@ public class MemberController {
 	}
 
 	public static void loginCheck(HttpServletRequest req, HttpServletResponse res) {
-		
+
 		HashMap<String, String> map = new HashMap<String, String>();
 		
 		try {
@@ -466,4 +473,69 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
+
+	public static void checkCompany(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+			
+			BufferedReader br = null; 
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			int inputNumber = req.getParameter("inputNumber") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputNumber").toString())) : 0;				
+			String inputCompany = req.getParameter("inputCompany") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputCompany").toString()) : null;
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+			PrivateKey privateKey = null;
+			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+			
+//			if(privateKey == null) {
+//				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
+//				jObject.put("outputResult", "-2");
+//				res.getWriter().write(jObject.toString());
+//				return;
+//			}	
+			
+			String urlStr = "http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/getBassInfoSearch?bzowr_rgst_no="
+					+ inputNumber + "&wkpl_nm="+ inputCompany+"&numOfRows=1&serviceKey=zrmMgIa4mQMssyPY1Y%2Fao0z7Xr6i7i9YOdn%2B0sISrGUHkdbMsay3aU6ov%2BH5wo9%2BEBzXfCQ0teCQn1Jz45YoGg%3D%3D"; // 요청 할 주소
+
+			System.out.println(urlStr);
+			URL url = new URL(urlStr);
+			HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
+			urlconnection.setRequestMethod("GET");
+			br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(),"UTF-8"));
+			String result="";
+			String line;
+			while((line = br.readLine()) != null)  {
+				result = result + line + "\n";
+			}
+			System.out.println(result);
+			org.json.JSONObject objsct = null;
+	        try {
+	            org.json.JSONObject xmlJSONObj = XML.toJSONObject(result);
+	            String jsonPrettyPrintString = xmlJSONObj.toString(4);
+	            result = jsonPrettyPrintString;
+	            objsct = xmlJSONObj;
+	            System.out.println(jsonPrettyPrintString);
+	        } catch (JSONException je) {
+	            System.out.println(je.toString());
+	        }
+			
+	        System.out.println(objsct.getJSONObject("response").getJSONObject("header").getString("resultCode"));
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Login Check OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
