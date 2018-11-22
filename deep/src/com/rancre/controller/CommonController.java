@@ -19,6 +19,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.rancre.config.GlobalValue;
+import com.rancre.model.ChannelDAO;
 import com.rancre.model.FeedDAO;
 import com.rancre.model.MemberDAO;
 import com.rancre.model.UploadDAO;
@@ -27,6 +28,7 @@ import com.rancre.model.domain.FeedList;
 import com.rancre.model.domain.FeedSeries;
 import com.rancre.model.domain.Member;
 import com.rancre.model.domain.MemberFavorite;
+import com.rancre.model.domain.RankTop;
 import com.rancre.model.domain.Upload;
 import com.rancre.util.CommonUtil;
 import com.rancre.util.EncryptUtil;
@@ -53,54 +55,41 @@ public class CommonController {
 			
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 
-			if(sessionMemberNo>0) {
+			if(sessionMemberNo>0) {        
 				MemberFavorite memberFavorite = MemberDAO.getMemberFavorite(sessionMemberNo);
 				if(memberFavorite!=null)
 					inputCategoryNo = memberFavorite.getDeepCategoryNo();
 				else 
 					inputCategoryNo = 1;
 			}
-			
-			// 새로운 피드 리스트를 띄워준다. Param =inputCategoryNo  DAO로 가져온다.
-			JSONArray jNewFeedArray = new JSONArray();
-			listMode = 1;
-			jNewFeedArray = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, sessionMemberNo, inputCurrentDate, aesKey);
-			System.out.println(jNewFeedArray);
-			// MainObject에 newFeedList 더한다.
-			jMainObject.put("outputNewFeedList", jNewFeedArray);
-			
-			// 인기있는 피드 리스트 - 제목 분야 글쓴이
-			JSONArray jHotFeedArray = new JSONArray();
-			listMode = 2;
-			if(!(sessionMemberNo>0)) {
-				inputHotFeedCount = 20;
-				jHotFeedArray = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, sessionMemberNo, inputCurrentDate, aesKey);
+		
+			// 순위 리스트
+			ArrayList<RankTop> ranking = ChannelDAO.getRankingList();
+			JSONArray rankingList = new JSONArray();
+			for(int i=0; i<ranking.size(); i++) {
+				JSONObject tempObject = new JSONObject();
+				tempObject.put("outputRankTopNo", ranking.get(i).getRacRankTopNo());
+				tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
+				tempObject.put("outputCategoryNo", ranking.get(i).getRacCategoryNo());
+				tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
+				tempObject.put("outputChannelTitle", ranking.get(i).getRacChannelTitle());
+				tempObject.put("outputChannelFollowers", ranking.get(i).getRacChannelFollowers());
+				tempObject.put("outputChannelViews", ranking.get(i).getRacChannelViews());
+				tempObject.put("outputChannelVideoCount", ranking.get(i).getRacChannelVideoCount());
+				tempObject.put("outputChannelThumbnail", ranking.get(i).getRacChannelThumbnail());
 				
-				// MainObject에 hotFeedList 더한다.
-				jMainObject.put("outputHotFeedList", jHotFeedArray);
-				
-			} else { //로그인 되있는 경우 hotFeedList와 hotFeedListByCategory를 둘 다 가져온다.
-				inputHotFeedCount = 10;
-				jHotFeedArray = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, sessionMemberNo, inputCurrentDate, aesKey);
-				
-				jMainObject.put("outputHotFeedList", jHotFeedArray);
-				
-				// Category hotFeedListByCategory
-				JSONArray jHotFeedArrayByCategory = new JSONArray();
-
-				listMode = 3;
-				jHotFeedArrayByCategory = FeedController.getFeedList(listMode, inputCategoryNo, inputHotFeedCount, sessionMemberNo, inputCurrentDate, aesKey);
-
-				// MainObject에 hotFeedList 더한다.
-				jMainObject.put("outputHotFeedByCategoryList", jHotFeedArrayByCategory);
+				rankingList.add(tempObject);
 			}
+			
+			jMainObject.put("rankingList", rankingList);
+			
 			
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 			
 			CommonUtil.commonPrintLog("SUCCESS", className, "Init Main OK", map);
 			res.getWriter().write(jMainObject.toString());
-			req.getRequestDispatcher("/index.jsp").forward(req, res);
+//			req.getRequestDispatcher("/index.jsp").forward(req, res);
 			return;
 			
 		} catch(Exception e) {
