@@ -18,6 +18,14 @@
 	float: right;
 }
 
+.pTop {
+	padding-top: 10px;
+}
+
+.pTop2 {
+	padding-top: 20px;
+}
+
 /**********************************/
 /*  subnav  */
 /*********************************/
@@ -25,27 +33,35 @@
 	background-color: rgba(255, 255, 255, 1) !important;
 }
 
-.subNavRow {
+.subNav-tab {
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
 	-ms-flex-align: center;
 }
 
-.subnav-link {
+div a.subnav-link {
 	text-decoration: none;
 	color: #b4b4b4;
-	font-weight:bold;
+	font-weight: bold;
 }
 
-.subnav-link.active {
+a.subnav-link.active {
 	text-decoration: none;
 	color: #707070;
-	font-weight:bold;
+	font-weight: bold;
 }
 
-.subnav-link:hover {
+a.subnav-link:hover {
 	text-decoration: none;
 	color: #707070;
+}
+
+.subNav-content {
+	display: none;
+}
+
+.subNav-content.active {
+	display: block;
 }
 
 /**********************************/
@@ -112,89 +128,6 @@ a {
 
 .title-text {
 	color: white;
-}
-
-.feed {
-	width: 100%;
-	height: 302px;
-	border: 1px #e2e2e2 solid;
-	border-bottom: 2px #e2e2e2 solid;
-}
-
-/* .feed-bottom {
-	width:100%;
-	height:48px;
-	border : 1px #e2e2e2 solid;
-}
- */
-.list {
-	text-align: center;
-	margin-top: 20px;
-	width: 100%;
-	min-height: 300px;
-	background-color: #fff;
-	box-shadow: 1px 1px 1px #e2e2e2;
-}
-
-.list .left {
-	background-image:
-		url('https://s3-ap-northeast-1.amazonaws.com/deep-test2/member/w5FlVzIbbwMM1496/2rAOq504wPHVmGZW');
-	background-size: cover;
-	height: 300px;
-	padding: 0;
-}
-
-.list .coverPic {
-	background-color: rgba(0, 0, 0, 0.4);
-	height: 300px;
-	padding: 0;
-	margin: 0;
-}
-
-.list .title {
-	color: rgb(240, 240, 240);
-	font-size: 1.3em;
-	text-align: center;
-	padding-top: 50%;
-}
-
-.list .right {
-	height: 300px;
-	background-color: #fff;
-}
-
-.list .content {
-	padding: 10%;
-	height: 250px;
-}
-
-.list .name {
-	height: 25px;
-	font-size: 0.8em;
-	border-bottom: 1px #e2e2e2 solid;
-	margin-bottom: 5px;
-}
-
-.list .like {
-	float: left;
-	width: 70px;
-	height: 20px;
-}
-
-.list .comment {
-	float: left;
-	width: 70px;
-	height: 20px;
-}
-
-.list .share {
-	float: left;
-	width: 70px;
-	height: 20px;
-}
-
-.deepFeed .title-Black {
-	
 }
 
 /**********************************/
@@ -287,12 +220,12 @@ a {
 }
 
 .chnDtlGo {
-	text-decoration :none;
+	text-decoration: none;
 	color: #f11834;
 }
 
 .chnDtlGo:hover {
-	text-decoration :none;
+	text-decoration: none;
 	color: #f11834;
 }
 
@@ -391,22 +324,61 @@ a {
 /**********************************/
 /*  Channel Detail page  */
 /*********************************/
-
-.chnDtlTop{
-	display : flex;
+.chnDtlTop {
+	display: flex;
 }
 
 .chnDtlImg {
 	display: inline-block;
-	width : 80px;
-	margin-right : 40px;
+	width: 80px;
+	margin-right: 40px;
 }
 
 .chnDtlName {
-	font-weight : bold;
-	font-size : 1.5em;
+	font-weight: bold;
+	font-size: 1.5em;
 }
 
-.chnDtlRow {
-	
+/* 채널 디테일 sub tabs*/
+
+.sub-tabs {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+/* Float the list items side by side */
+
+.sub-tabs li {
+	float: left;
+}
+
+/* Style the links inside the list items */
+
+.sub-tabs li a{
+	display: inline-block;
+	color: #b4b4b4;
+	text-align: center;
+	text-decoration: none;
+	padding: 10px 16px;
+	font-size: 1.2em;
+	transition: 0.3s;
+}
+
+/* Style the tab content */
+
+.sub-tabcontent {
+	display: none;
+	background-color: rgb(0, 154, 200);
+	padding: 6px 12px;
+	color: #fff;
+}
+
+ul.sub-tabs li a.active {
+	color:#707070;
+}
+
+.sub-tabcontent.active {
+	display: block;
 }

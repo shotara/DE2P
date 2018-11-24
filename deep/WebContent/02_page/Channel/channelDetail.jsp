@@ -31,12 +31,13 @@
 
 					<!-- 채널 이름 및 카테고리 시작 -->
 
-					<div class="d-inline-block">
+					<div class="pTop d-inline-block">
 						<div class="w-auto ml-auto">
 							<span class="chnDtlName">WassupMan</span>
 						</div>
 						<div class="chnDtlCategory w-auto ml-auto">
-							<span>#스튜디오</span>
+
+							<span class="chnCategory">#스튜디오</span>
 						</div>
 					</div>
 					<!-- 채널 이름 및 카테고리 끝 -->
@@ -54,13 +55,21 @@
 				<!-- 채널 스텟 - 종합순위/총구독자수/차주대비/총조회수/최근평균조회수 시작 -->
 
 				<div class="row w-auto ml-auto">
-					<div class="col w-auto d-inline-block text-center">종합 순위</div>
-					<div class="col w-auto d-inline-block text-center">총 구독자 수</div>
-					<div class="col w-auto d-inline-block text-center">지난주 대비
-						구독자수</div>
-					<div class="col w-auto d-inline-block text-center">총 조회수</div>
-					<div class="col w-auto d-inline-block text-center">최근 영상 평균
-						조회수</div>
+					<div class="col w-auto d-inline-block text-center">
+						<span class="font-weight-bold">종합 순위</span>
+					</div>
+					<div class="col w-auto d-inline-block text-center">
+						<span class="font-weight-bold">총 구독자 수</span>
+					</div>
+					<div class="col w-auto d-inline-block text-center">
+						<span class="font-weight-bold">지난주 대비 구독자수</span>
+					</div>
+					<div class="col w-auto d-inline-block text-center">
+						<span class="font-weight-bold">총 조회수</span>
+					</div>
+					<div class="col w-auto d-inline-block text-center">
+						<span class="font-weight-bold">최근 영상 평균 조회수</span>
+					</div>
 				</div>
 				<div class="pt-3"></div>
 
@@ -78,17 +87,26 @@
 
 				<!-- 채널 스탯 - 광고만족도/광고평균조회수/단가/카테고리 시작 -->
 
-				<div class="pt-3"></div>
 
 				<hr
 					style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 
 				<div class="row chnDtlRow w-auto ml-auto">
-					<div class="col w-auto d-inline-block text-center"><span>광고 만족도</span></div>
-					<div class="col w-auto d-inline-block text-center"><span>광고 영상 평균 조회수</span></div>
-					<div class="col w-auto d-inline-block text-center"><span>최저 광고 단가</span></div>
-					<div class="col w-auto d-inline-block text-center"><span>평균 광고 단가</span></div>
-					<div class="col w-auto d-inline-block text-center"><span>최고 광고 단가</span></div>
+					<div class="col w-auto d-inline-block text-center">
+						<span class="font-weight-bold">광고 만족도</span>
+					</div>
+					<div class="col w-auto d-inline-block text-center">
+						<span class="font-weight-bold">광고 영상 평균 조회수</span>
+					</div>
+					<div class="col w-auto d-inline-block text-center">
+						<span class="font-weight-bold">최저 광고 단가</span>
+					</div>
+					<div class="col w-auto d-inline-block text-center">
+						<span class="font-weight-bold">평균 광고 단가</span>
+					</div>
+					<div class="col w-auto d-inline-block text-center">
+						<span class="font-weight-bold">최고 광고 단가</span>
+					</div>
 				</div>
 
 				<div class="pt-3"></div>
@@ -103,8 +121,6 @@
 					<div class="col w-auto d-inline-block text-center">12,232,232</div>
 				</div>
 
-				<div class="pt-3"></div>
-
 				<!-- 채널 스탯 - 광고만족도/광고평균조회수/단가/카테고리 끝 -->
 
 
@@ -115,31 +131,30 @@
 
 				<!-- 채널 상세 탭 영역 -->
 
-				<div class="w-auto ml-auto">
-					<div class="col d-inline">
-						<a href="#">최근 업로드 영상</a>
+				<ul id="myTab" class="sub-tabs">
+					<li><a data-tab="upload" href="#upload" class="active">최근
+							업로드 영상</a></li>
+					<li><a data-tab="comercial" href="#comercial">이 채널의 광고 영상</a></li>
+					<li><a data-tab="review" href="#review">이 채널의 광고 리뷰</a></li>
+					<li><a data-tab="price" href="#price">이 채널의 광고 단가</a></li>
+				</ul>
+
+				<!-- rancre.common.js sub-nav -->
+
+				<div id="myTabContent" class="row tab-content">
+					<div class="sub-tabcontent active" id="upload">
+						<p>Content 1.</p>
 					</div>
-					<div class="col d-inline">
-						<a href="#">이 채널의 광고 영상</a>
+					<div class="sub-tabcontent" id="comercial">
+						<p>Content 2.</p>
 					</div>
-					<div class="col d-inline">
-						<a href="#">이 채널의 광고 리뷰</a>
+					<div class="sub-tabcontent" id="review">
+						<p>Content 3.</p>
 					</div>
-					<div class="col d-inline">
-						<a href="#">이 채널의 광고 단가</a>
+					<div class="sub-tabcontent" id="price">
+						<p>Content 4.</p>
 					</div>
 				</div>
-
-				<div class="pt-4"></div>
-
-				<!-- 탭별 콘텐츠 영역 -->
-				<div>
-					<iframe width="560" height="315"
-						src="https://www.youtube.com/embed/dN44xpHjNxE" frameborder="0"
-						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen></iframe>
-				</div>
-
 
 			</div>
 		</div>

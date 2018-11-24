@@ -23,4 +23,4 @@
 <script type ="text/javascript" src="/03_include/js/encrypt.prng4.js"></script>
 <script type ="text/javascript" src="/03_include/js/encrypt.rng.js"></script>
 
-
+<script type ="text/javascript" src="/03_include/js/rancre.Common.js"></script>
