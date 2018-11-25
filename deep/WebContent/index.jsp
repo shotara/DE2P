@@ -250,7 +250,7 @@
 				<hr
 					style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 				<div class="pt-4"></div>
-				<div class="rankBottom text-center">
+				<div class="rankBottom txt-center">
 					<button class="btnListGo">더보기</button>
 				</div>
 

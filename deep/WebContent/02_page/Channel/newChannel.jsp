@@ -3467,7 +3467,7 @@
 
 				<div class="pt-4"></div>
 
-				<div class="rankBottom text-center">
+				<div class="rankBottom txt-center">
 					<button class="btnListGo">더보기</button>
 				</div>
 			</div>

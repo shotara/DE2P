@@ -2,8 +2,17 @@
 
 @import url("//fonts.googleapis.com/earlyaccess/nanumgothic.css" );
 
+/**********************************/
+/*  rancre common CSS  */
+/*********************************/
+
+
 * {
 	box-sizing: border-box !important;
+}
+
+a {
+	text-decoration: none !important;
 }
 
 .space {
@@ -26,9 +35,145 @@
 	padding-top: 20px;
 }
 
+.pTop3 {
+	padding-top: 30px;
+}
+
+.pRight {
+	padding-right : 10px;
+}
+
+.pBottom {
+	padding-bottom : 10px;
+}
+
+.pBottom2 {
+	padding-bottom : 20px;
+}
+
+.pBottom3{
+	padding-bottom : 30px;
+}
+
+.txt-center {
+	text-align : center;
+}
+
+.txt-vertical{
+	height : 50%;
+}
+
+.display-flex{
+	display: flex;
+}
+
+.display-block {
+	display : block;
+}
+
+.inline-flex {
+	display : inline-flex;
+}
+
+.float-right{
+	float : right;
+}
+
+.float-left{
+	float : left;
+}
+
+.v10 {
+	height: 10%;
+}
+
+.v20{
+	height:20%;
+}
+
+.v30{
+	height:30%;
+}
+.v40{
+	height:40%;
+}
+
+.v50{
+	height:50%;
+}
+
+.commonA{
+	text-decoration: none !important;
+	color: #f11834 !important;
+}
+
+.commonA:hover {
+	text-decoration: none !important;
+	color: #f11834 !important;
+}
+
+/**********************************/
+/*  button collection  */
+/*********************************/
+
+.commonBtn {
+	width: auto;
+	border-radius: 8px;
+	border: 1px solid #f11834;
+	font-size: 1em;
+	height: 36px;
+	color: #f11834;
+}
+
+.commonBtn a{
+	text-decoration: none !important;
+	color: #f11834 !important;
+}
+
+.commonBtn a:hover {
+	text-decoration: none !important;
+	color: #f11834 !important;
+}
+
+.inputJoinBtn {
+	background-color: #4a3c89;
+	border: 0;
+	width: 100%;
+	height: 40px;
+	font-size: 1.25em;
+	color: #fff;
+}
+
+.rankRowBtn {
+	display: inline-block;
+}
+
+.btnChnGo {
+	width: 120px;
+	border-radius: 8px;
+	border: 1px solid #f11834;
+	font-size: 1em;
+	height: 36px;
+	color: #f11834;
+}
+
+.btnListGo {
+	width: 120px;
+	border-radius: 8px;
+	border: 1px solid #f11834;
+	font-size: 1em;
+	height: 36px;
+	color: #f11834;
+}
+
+.rankMainRowBtn {
+	display: inline-block;
+}
+
 /**********************************/
 /*  subnav  */
 /*********************************/
+
 .subnav {
 	background-color: rgba(255, 255, 255, 1) !important;
 }
@@ -94,14 +239,7 @@ a.subnav-link:hover {
 	color: #fff;
 }
 
-.inputJoinBtn {
-	background-color: #4a3c89;
-	border: 0;
-	width: 100%;
-	height: 40px;
-	font-size: 1.25em;
-	color: #fff;
-}
+
 
 /**********************************/
 /*  font awesome customize  */
@@ -116,14 +254,6 @@ a.subnav-link:hover {
 
 .fa-pencil {
 	color: #000 !important;
-}
-
-a {
-	text-decoration: none !important;
-}
-
-.text-center {
-	text-align: center;
 }
 
 .title-text {
@@ -164,8 +294,9 @@ a {
 }
 
 /**********************************/
-/*  main  */
+/*  main - list type using CSS */
 /*********************************/
+
 .mainList {
 	padding-top: 20px;
 	width: 100%;
@@ -206,19 +337,6 @@ a {
 	padding-left: 10px;
 }
 
-.rankRowBtn {
-	display: inline-block;
-}
-
-.btnChnGo {
-	width: 120px;
-	border-radius: 8px;
-	border: 1px solid #f11834;
-	font-size: 1em;
-	height: 36px;
-	color: #f11834;
-}
-
 .chnDtlGo {
 	text-decoration: none;
 	color: #f11834;
@@ -237,14 +355,6 @@ a {
 	-ms-flex-align: center;
 }
 
-.btnListGo {
-	width: 120px;
-	border-radius: 8px;
-	border: 1px solid #f11834;
-	font-size: 1em;
-	height: 36px;
-	color: #f11834;
-}
 
 .txt-align-right {
 	text-align: right;
@@ -278,9 +388,6 @@ a {
 	padding-right: 80px;
 }
 
-.rankMainRowBtn {
-	display: inline-block;
-}
 
 .rankMainCnt {
 	width: 60%;
@@ -289,6 +396,7 @@ a {
 /**********************************/
 /*  footer  */
 /*********************************/
+
 .ranFooter {
 	margin-top: 70px;
 	background-color: #f11834;
@@ -321,9 +429,11 @@ a {
 	font-weight: bold;
 }
 
+
 /**********************************/
 /*  Channel Detail page  */
 /*********************************/
+
 .chnDtlTop {
 	display: flex;
 }
@@ -361,8 +471,9 @@ a {
 	color: #b4b4b4;
 	text-align: center;
 	text-decoration: none;
-	padding: 10px 16px;
-	font-size: 1.2em;
+	padding-right: 16px;
+	font-size: 1.1em;
+	font-weight : bold;
 	transition: 0.3s;
 }
 
@@ -376,9 +487,75 @@ a {
 }
 
 ul.sub-tabs li a.active {
-	color:#707070;
+	color:#000;
 }
 
 .sub-tabcontent.active {
 	display: block;
 }
+
+.uploadVideo {
+	margin:0 auto;
+	width : auto;
+	padding-right:16px;
+}
+
+.uploadVideo-right {
+	margin:0 auto;
+	width : auto;
+}
+
+.comercialVideo {
+	margin:0 auto;
+	width : auto;
+	padding-right:16px;
+}
+
+.comercialVideo-right {
+	margin:0 auto;
+	width : auto;
+}
+
+.non-comercials{
+	height : 260px;
+}
+
+.non-reviews{
+	height : 260px;
+}
+
+.review {
+	padding : 10px 20px 10px 20px;
+	border : 1px solid #eeeeee;	
+	box-shadow : 1px 1px #eeeeee;
+	min-height : 200px;
+}
+
+.review-top {
+	padding-bottom : 10px;
+}
+
+.review-row {
+	font-weight : bold;
+	padding-right : 30px;
+}
+
+.review-stat {
+	padding-right : 30px;
+	min-wdith : 150px;
+}
+
+.bottom-text .recommend{
+	padding-right : 30px;
+}
+
+.review-text .txt {
+	min-height : 120px;
+	min-width : 780px;
+	
+}
+
+
+
+
+
