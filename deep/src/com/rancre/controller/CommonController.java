@@ -28,6 +28,7 @@ import com.rancre.model.domain.FeedList;
 import com.rancre.model.domain.FeedSeries;
 import com.rancre.model.domain.Member;
 import com.rancre.model.domain.MemberFavorite;
+import com.rancre.model.domain.RankCategory;
 import com.rancre.model.domain.RankTop;
 import com.rancre.model.domain.Upload;
 import com.rancre.util.CommonUtil;
@@ -166,23 +167,44 @@ public class CommonController {
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 
 			// 순위 리스트
-			ArrayList<RankTop> ranking = ChannelDAO.getRankingList(mode, startNo, categoryNo);
 			JSONArray rankingList = new JSONArray();
-			for(int i=0; i<ranking.size(); i++) {
-				JSONObject tempObject = new JSONObject();
-				tempObject.put("outputRankTopNo", ranking.get(i).getRacRankTopNo());
-				tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
-				tempObject.put("outputCategoryNo", ranking.get(i).getRacCategoryNo());
-				tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
-				tempObject.put("outputChannelTitle", ranking.get(i).getRacChannelTitle());
-				tempObject.put("outputChannelFollowers", ranking.get(i).getRacChannelFollowers());
-				tempObject.put("outputChannelViews", ranking.get(i).getRacChannelViews());
-				tempObject.put("outputChannelVideoCount", ranking.get(i).getRacChannelVideoCount());
-				tempObject.put("outputChannelThumbnail", ranking.get(i).getRacChannelThumbnail());
-				
-				rankingList.add(tempObject);
+			if(mode == 1) {
+				ArrayList<RankTop> ranking = ChannelDAO.getRankingList(categoryNo);
+				for(int i=0; i<ranking.size(); i++) {
+					JSONObject tempObject = new JSONObject();
+					tempObject.put("outputRankTopNo", ranking.get(i).getRacRankTopNo());
+					tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
+					tempObject.put("outputCategoryNo", ranking.get(i).getRacCategoryNo());
+					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
+					tempObject.put("outputChannelTitle", ranking.get(i).getRacChannelTitle());
+					tempObject.put("outputChannelFollowers", ranking.get(i).getRacChannelFollowers());
+					tempObject.put("outputChannelViews", ranking.get(i).getRacChannelViews());
+					tempObject.put("outputChannelVideoCount", ranking.get(i).getRacChannelVideoCount());
+					tempObject.put("outputChannelThumbnail", ranking.get(i).getRacChannelThumbnail());
+					
+					rankingList.add(tempObject);
+				}
 			}
-			
+			else {
+				ArrayList<RankCategory> ranking = ChannelDAO.getRankingList2(mode, startNo, categoryNo);
+				int rankingNo = startNo++;
+				for(int i=0; i<ranking.size(); i++) {
+					JSONObject tempObject = new JSONObject();
+					tempObject.put("outputRankTopNo", startNo++);
+					tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
+					tempObject.put("outputCategoryNo", ranking.get(i).getRacCategoryNo());
+					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
+					tempObject.put("outputChannelTitle", ranking.get(i).getRacChannelTitle());
+					tempObject.put("outputChannelFollowers", ranking.get(i).getRacChannelFollowers());
+					tempObject.put("outputChannelViews", ranking.get(i).getRacChannelViews());
+					tempObject.put("outputChannelVideoCount", ranking.get(i).getRacChannelVideoCount());
+					tempObject.put("outputChannelThumbnail", ranking.get(i).getRacChannelThumbnail());
+					
+					rankingList.add(tempObject);
+				}
+			}
+
+
 			jMainObject.put("rankingList", rankingList);
 			
 			

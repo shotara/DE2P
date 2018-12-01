@@ -5,9 +5,11 @@
 <mapper namespace="channel">
 
 	<select id="getRankingList"  resultType="com.rancre.model.domain.RankTop">
-		<if test="mode == 1" >
 			SELECT * FROM rac_rank_top Limit #{startNo}, 10
-		</if>
+	</select>
+	
+	<select id="getRankingList2" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.RankCategory">
+
 		<if test="mode == 2" >
 			SELECT * FROM rac_channel WHERE racCategoryNo = #{categoryNo} ORDER BY racChannelInsertDate DESC LIMIT #{startNo}, 20
 		</if>

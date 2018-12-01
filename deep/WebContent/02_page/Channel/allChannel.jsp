@@ -31,50 +31,50 @@
 
 				<div class="subNav-tabs w-auto ml-auto">
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link active" data-tab="studio" href="#studio">스튜디오</a>
+						<a class="subnav-link active" data-tab="studio" href="#studio" onclick="initList(1)">스튜디오</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="entertain" href="#entertain">엔터</a>
+						<a class="subnav-link" data-tab="entertain" href="#entertain" onclick="initList(2)">엔터</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="travel" href="#travel">여행</a>
+						<a class="subnav-link" data-tab="travel" href="#travel" onclick="initList(3)">여행</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="singdance" href="#singdance">노래
+						<a class="subnav-link" data-tab="singdance" href="#singdance" onclick="initList(4)">노래
 							댄스</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="tech" href="#tech">테크</a>
+						<a class="subnav-link" data-tab="tech" href="#tech" onclick="initList(5)">테크</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="education" href="#education">교육(어학)</a>
+						<a class="subnav-link" data-tab="education" href="#education" onclick="initList(6)">교육(어학)</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="beauty" href="#beauty">뷰티</a>
+						<a class="subnav-link" data-tab="beauty" href="#beauty" onclick="initList(7)">뷰티</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="daylife" href="#daylife">일상</a>
+						<a class="subnav-link" data-tab="daylife" href="#daylife" onclick="initList(8)">일상</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="game" href="#game">게임</a>
+						<a class="subnav-link" data-tab="game" href="#game" onclick="initList(9)">게임</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="sports" href="#sports">스포츠</a>
+						<a class="subnav-link" data-tab="sports" href="#sports" onclick="initList(10)">스포츠</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="food" href="#food">먹방</a>
+						<a class="subnav-link" data-tab="food" href="#food" onclick="initList(11)">먹방</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="kids" href="#kids">키즈</a>
+						<a class="subnav-link" data-tab="kids" href="#kids" onclick="initList(12)">키즈</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="pet" href="#pet">반려동물</a>
+						<a class="subnav-link" data-tab="pet" href="#pet" onclick="initList(13)">반려동물</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="exercise" href="#exercise">운동</a>
+						<a class="subnav-link" data-tab="exercise" href="#exercise" onclick="initList(14)">운동</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="habbit" href="#habbit">취미</a>
+						<a class="subnav-link" data-tab="habbit" href="#habbit" onclick="initList(15)">취미</a>
 					</div>
 				</div>
 
@@ -102,232 +102,16 @@
 				<div class="subNav-content active" id="studio">
 
 					<div class="chnContents">
-
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow"><span class="txt">WassupManddddddddddddddddddddd</span></div>
-							<div class="rankRow">#스튜디오</div>
-							<div class="rankRow">1,232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">20</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">WassupMan</div>
-							<div class="rankRow">#스튜디오</div>
-							<div class="rankRow">1,232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">20</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">WassupMan</div>
-							<div class="rankRow">#스튜디오</div>
-							<div class="rankRow">1,232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">20</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">WassupMan</div>
-							<div class="rankRow">#스튜디오</div>
-							<div class="rankRow">1,232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">20</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">WassupMan</div>
-							<div class="rankRow">#스튜디오</div>
-							<div class="rankRow">1,232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">20</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">WassupMan</div>
-							<div class="rankRow">#스튜디오</div>
-							<div class="rankRow">1,232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">20</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">WassupMan</div>
-							<div class="rankRow">#스튜디오</div>
-							<div class="rankRow">1,232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">20</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">WassupMan</div>
-							<div class="rankRow">#스튜디오</div>
-							<div class="rankRow">1,232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">20</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">WassupMan</div>
-							<div class="rankRow">#스튜디오</div>
-							<div class="rankRow">1,232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">20</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">WassupMan</div>
-							<div class="rankRow">#스튜디오</div>
-							<div class="rankRow">1,232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">20</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+					
 					</div>
 
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(1)">더보기</button>
 					</div>
-
 				</div>
-
-
-
 				<!--  스튜디오 콘텐츠 영역 끝  -->
 
 
@@ -337,237 +121,12 @@
 				<div class="subNav-content" id="entertain">
 
 					<div class="chnContents">
-
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzl5zlOedULGISAO-Mqluanu5FMbdVX3JV-qg=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">와우엔터테인먼트</div>
-							<div class="rankRow">#엔터</div>
-							<div class="rankRow">332,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">15</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzl5zlOedULGISAO-Mqluanu5FMbdVX3JV-qg=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">와우엔터테인먼트</div>
-							<div class="rankRow">#엔터</div>
-							<div class="rankRow">332,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">15</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzl5zlOedULGISAO-Mqluanu5FMbdVX3JV-qg=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">와우엔터테인먼트</div>
-							<div class="rankRow">#엔터</div>
-							<div class="rankRow">332,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">15</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzl5zlOedULGISAO-Mqluanu5FMbdVX3JV-qg=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">와우엔터테인먼트</div>
-							<div class="rankRow">#엔터</div>
-							<div class="rankRow">332,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">15</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzl5zlOedULGISAO-Mqluanu5FMbdVX3JV-qg=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">와우엔터테인먼트</div>
-							<div class="rankRow">#엔터</div>
-							<div class="rankRow">332,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">15</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzl5zlOedULGISAO-Mqluanu5FMbdVX3JV-qg=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">와우엔터테인먼트</div>
-							<div class="rankRow">#엔터</div>
-							<div class="rankRow">332,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">15</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzl5zlOedULGISAO-Mqluanu5FMbdVX3JV-qg=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">와우엔터테인먼트</div>
-							<div class="rankRow">#엔터</div>
-							<div class="rankRow">332,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">15</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzl5zlOedULGISAO-Mqluanu5FMbdVX3JV-qg=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">와우엔터테인먼트</div>
-							<div class="rankRow">#엔터</div>
-							<div class="rankRow">332,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">15</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzl5zlOedULGISAO-Mqluanu5FMbdVX3JV-qg=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">와우엔터테인먼트</div>
-							<div class="rankRow">#엔터</div>
-							<div class="rankRow">332,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">15</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzl5zlOedULGISAO-Mqluanu5FMbdVX3JV-qg=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">와우엔터테인먼트</div>
-							<div class="rankRow">#엔터</div>
-							<div class="rankRow">332,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">15</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-
 					</div>
-
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(2)">더보기</button>
 					</div>
 
 				</div>
@@ -583,226 +142,13 @@
 				<div class="subNav-content" id="travel">
 
 					<div class="chnContents">
-
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
 					</div>
 
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(3)">더보기</button>
 					</div>
 
 				</div>
@@ -818,237 +164,12 @@
 				<div class="subNav-content" id="singdance">
 
 					<div class="chnContents">
-
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAybqQh4LMsA0mS2cOhLyW5PR3lQh62zUgmXWw=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">JFlaMusic</div>
-							<div class="rankRow">#노래 댄스</div>
-							<div class="rankRow">10,232,232</div>
-							<div class="rankRow">1,232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAybqQh4LMsA0mS2cOhLyW5PR3lQh62zUgmXWw=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">JFlaMusic</div>
-							<div class="rankRow">#노래 댄스</div>
-							<div class="rankRow">10,232,232</div>
-							<div class="rankRow">1,232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAybqQh4LMsA0mS2cOhLyW5PR3lQh62zUgmXWw=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">JFlaMusic</div>
-							<div class="rankRow">#노래 댄스</div>
-							<div class="rankRow">10,232,232</div>
-							<div class="rankRow">1,232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAybqQh4LMsA0mS2cOhLyW5PR3lQh62zUgmXWw=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">JFlaMusic</div>
-							<div class="rankRow">#노래 댄스</div>
-							<div class="rankRow">10,232,232</div>
-							<div class="rankRow">1,232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAybqQh4LMsA0mS2cOhLyW5PR3lQh62zUgmXWw=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">JFlaMusic</div>
-							<div class="rankRow">#노래 댄스</div>
-							<div class="rankRow">10,232,232</div>
-							<div class="rankRow">1,232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAybqQh4LMsA0mS2cOhLyW5PR3lQh62zUgmXWw=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">JFlaMusic</div>
-							<div class="rankRow">#노래 댄스</div>
-							<div class="rankRow">10,232,232</div>
-							<div class="rankRow">1,232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAybqQh4LMsA0mS2cOhLyW5PR3lQh62zUgmXWw=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">JFlaMusic</div>
-							<div class="rankRow">#노래 댄스</div>
-							<div class="rankRow">10,232,232</div>
-							<div class="rankRow">1,232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAybqQh4LMsA0mS2cOhLyW5PR3lQh62zUgmXWw=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">JFlaMusic</div>
-							<div class="rankRow">#노래 댄스</div>
-							<div class="rankRow">10,232,232</div>
-							<div class="rankRow">1,232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAybqQh4LMsA0mS2cOhLyW5PR3lQh62zUgmXWw=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">JFlaMusic</div>
-							<div class="rankRow">#노래 댄스</div>
-							<div class="rankRow">10,232,232</div>
-							<div class="rankRow">1,232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAybqQh4LMsA0mS2cOhLyW5PR3lQh62zUgmXWw=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">JFlaMusic</div>
-							<div class="rankRow">#노래 댄스</div>
-							<div class="rankRow">10,232,232</div>
-							<div class="rankRow">1,232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
 					</div>
-
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(4)">더보기</button>
 					</div>
 
 				</div>
@@ -1065,224 +186,12 @@
 				<div class="subNav-content" id="tech">
 					<div class="chnContents">
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 					</div>
-
 
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(5)">더보기</button>
 					</div>
 
 				</div>
@@ -1297,226 +206,13 @@
 				<div class="subNav-content" id="education">
 
 					<div class="chnContents">
-
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
 					</div>
 
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(6)">더보기</button>
 					</div>
 
 				</div>
@@ -1531,223 +227,12 @@
 					<div class="chnContents">
 
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 					</div>
 
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(7)">더보기</button>
 					</div>
 
 				</div>
@@ -1760,226 +245,13 @@
 				<div class="subNav-content" id="daylife">
 
 					<div class="chnContents">
-
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
 					</div>
 
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(8)">더보기</button>
 					</div>
 				</div>
 
@@ -1991,226 +263,13 @@
 				<div class="subNav-content" id="game">
 
 					<div class="chnContents">
-
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
 					</div>
 
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(9)">더보기</button>
 					</div>
 
 				</div>
@@ -2223,226 +282,13 @@
 				<div class="subNav-content" id="sports">
 
 					<div class="chnContents">
-
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
 					</div>
 
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(10)">더보기</button>
 					</div>
 
 				</div>
@@ -2455,226 +301,13 @@
 				<div class="subNav-content" id="food">
 
 					<div class="chnContents">
-
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
 					</div>
 
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(11)">더보기</button>
 					</div>
 
 				</div>
@@ -2687,224 +320,12 @@
 				<div class="subNav-content" id="kids">
 
 					<div class="chnContents">
-
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 					</div>
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(12)">더보기</button>
 					</div>
 
 
@@ -2918,226 +339,13 @@
 				<div class="subNav-content" id="pet">
 
 					<div class="chnContents">
-
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
 					</div>
 
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(13)">더보기</button>
 					</div>
 
 				</div>
@@ -3150,226 +358,13 @@
 				<div class="subNav-content" id="exercise">
 
 					<div class="chnContents">
-
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
 					</div>
 
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(14)">더보기</button>
 					</div>
 
 				</div>
@@ -3382,226 +377,13 @@
 				<div class="subNav-content" id="habbit">
 
 					<div class="chnContents">
-
 						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						<div class="pt-2"></div>
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-						<div class="pt-2"></div>
-
-						<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img style="width: 48px; border-radius: 48px;"
-									src="https://yt3.ggpht.com/a-/AN66SAzagU8o4275kfOeL5mYnU0TJfIRvKz2po3JpQ=s288-mo-c-c0xffffffff-rj-k-no">
-							</div>
-							<div class="rankRow">여행에미치다-Travelholic</div>
-							<div class="rankRow">#여행</div>
-							<div class="rankRow">232,232</div>
-							<div class="rankRow">232,232,213</div>
-							<div class="rankRow2">120</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
 					</div>
 
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo">더보기</button>
+						<button class="btnListGo" onclick="addList(15)">더보기</button>
 					</div>
 
 				</div>
@@ -3617,4 +399,121 @@
 	<jsp:include page="/02_page/commonFooter.jsp" flush="false" />
 
 </body>
+<script>
+	var categoryArray = [0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+	function initList(i) {
+		
+		var startNo = categoryArray[i];
+		if(startNo != 0) return; 
+		Common.addList(2,startNo,i);
+		categoryArray[i] = categoryArray[i] + 20;
+	}
+	
+	function addList(i) {
+			var startNo = categoryArray[i];
+			Common.addList(2,startNo,i);
+			categoryArray[i] = categoryArray[i] + 20;
+			if(categoryArray[i] >= 890) 
+				switch(i) {
+				case 1:
+					$("#studio .btnListGo").hide();
+					break;
+				case 2:
+					$("#entertain .btnListGo").hide();
+					break;
+				case 3:
+					$("#travel .btnListGo").hide();
+					break;
+				case 4:
+					$("#singdance .btnListGo").hide();
+					break;
+				case 5:
+					$("#tech .btnListGo").hide();
+					break;
+				case 6:
+					$("#education .btnListGo").hide();
+					break;
+				case 7:
+					$("#beauty .btnListGo").hide();
+					break;
+				case 8:
+					$("#daylife .btnListGo").hide();
+					break;
+				case 9:
+					$("#game .btnListGo").hide();
+					break;
+				case 10:
+					$("#sports .btnListGo").hide();
+					break;
+				case 11:
+					$("#food .btnListGo").hide();
+					break;
+				case 12:
+					$("#kids .btnListGo").hide();
+					break;
+				case 13:
+					$("#pet .btnListGo").hide();
+					break;
+				case 14:
+					$("#exercise .btnListGo").hide();
+					break;
+				case 15:
+					$("#habbit .btnListGo").hide();
+					break;
+				}
+	}
+	
+	$(document).ready(function() { 
+		
+		var url="/main?action=getRankingList";  
+	    var params = {
+	    	startNo : 0,
+	    	mode : 2,
+	    	categoryNo : 1,
+	    };
+	    
+	    $.ajax({      
+	        type:"POST",  
+	        url:url,      
+	        data:params,  
+	        dataType:'json',
+	        success:function(args){   
+	        	for(var i=0; i<args.rankingList.length; i++) {
+					$('#studio .chnContents').append(`
+							<div id="chnContent" class="w-auto ml-auto">
+							<div class="rankMainRowCnt">
+								<div class="d-inline-block rankMainCnt">`+args.rankingList[i].outputRankTopNo + `위</div>
+								<div class="d-inline-block rankMainDif">-</div>
+							</div>
+							<div class="rankMainRowImg">
+								<img id="chnListThumbNail"
+									style="width: 48px; border-radius: 48px;"
+									src="`+args.rankingList[i].outputChannelThumbnail +`">
+							</div>
+							<div class="rankMainRow">`+args.rankingList[i].outputChannelTitle+`</div>
+							<div class="rankMainRow">#`+args.rankingList[i].outputCategoryNo+`</div>
+							<div class="rankMainRow">`+args.rankingList[i].outputChannelFollowers+`</div>
+							<div class="rankMainRow">`+args.rankingList[i].outputChannelViews+`</div>
+							<div class="rankMainRow2">`+args.rankingList[i].outputChannelVideoCount+`</div>
+							<div class="rankMainRowBtn">
+								<button class="btnChnGo">
+									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
+										보기</a>
+								</button>
+							</div>
+						</div>
+						<hr
+							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+					</div>
+				  `);
+	        	}
+	        },   
+	        error:function(e){  
+	            alert(e.responseText);  
+	        }  
+	    });  
+		
+	});
+</script>
 </html>

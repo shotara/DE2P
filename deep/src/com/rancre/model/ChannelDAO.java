@@ -11,6 +11,7 @@ import com.rancre.model.domain.FeedCount;
 import com.rancre.model.domain.FeedHashtag;
 import com.rancre.model.domain.FeedList;
 import com.rancre.model.domain.FeedSeries;
+import com.rancre.model.domain.RankCategory;
 import com.rancre.model.domain.RankTop;
 import com.rancre.util.DAOFactory;
 
@@ -575,7 +576,19 @@ public class ChannelDAO {
 		}
 	}
 
-	public static ArrayList<RankTop> getRankingList(int mode, int startNo, int categoryNo) {
+	public static ArrayList<RankTop> getRankingList(int startNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (ArrayList)sqlSession.selectList(namespace + ".getRankingList", startNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static ArrayList<RankCategory> getRankingList2(int mode, int startNo, int categoryNo) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);
 		
@@ -585,7 +598,7 @@ public class ChannelDAO {
 			map.put("startNo", startNo);
 			map.put("categoryNo", categoryNo);
 
-			return (ArrayList)sqlSession.selectList(namespace + ".getRankingList", map);
+			return (ArrayList)sqlSession.selectList(namespace + ".getRankingList2", map);
 			
 		} finally {
 			sqlSession.close();
