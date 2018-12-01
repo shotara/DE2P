@@ -169,14 +169,14 @@ public class CommonController {
 			// 순위 리스트
 			JSONArray rankingList = new JSONArray();
 			if(mode == 1) {
-				ArrayList<RankTop> ranking = ChannelDAO.getRankingList(categoryNo);
+				ArrayList<RankTop> ranking = ChannelDAO.getRankingList(startNo);
 				for(int i=0; i<ranking.size(); i++) {
 					JSONObject tempObject = new JSONObject();
 					tempObject.put("outputRankTopNo", ranking.get(i).getRacRankTopNo());
 					tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
-					tempObject.put("outputCategoryNo", ranking.get(i).getRacCategoryNo());
+					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryName(ranking.get(i).getRacCategoryNo()));
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
-					tempObject.put("outputChannelTitle", ranking.get(i).getRacChannelTitle());
+					tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));
 					tempObject.put("outputChannelFollowers", ranking.get(i).getRacChannelFollowers());
 					tempObject.put("outputChannelViews", ranking.get(i).getRacChannelViews());
 					tempObject.put("outputChannelVideoCount", ranking.get(i).getRacChannelVideoCount());
@@ -190,9 +190,11 @@ public class CommonController {
 				for(int i=0; i<ranking.size(); i++) {
 					JSONObject tempObject = new JSONObject();
 					tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
-					tempObject.put("outputCategoryNo", ranking.get(i).getRacCategoryNo());
+					// 카테고리 가져오기
+					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryName(ranking.get(i).getRacCategoryNo()));
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
-					tempObject.put("outputChannelTitle", ranking.get(i).getRacChannelTitle());
+					// 13자리 
+					tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));
 					tempObject.put("outputChannelFollowers", ranking.get(i).getRacChannelFollowers());
 					tempObject.put("outputChannelViews", ranking.get(i).getRacChannelViews());
 					tempObject.put("outputChannelVideoCount", ranking.get(i).getRacChannelVideoCount());
