@@ -5,6 +5,14 @@
 <mapper namespace="channel">
 
 	<select id="getRankingList"  resultType="com.rancre.model.domain.RankTop">
-		SELECT * FROM rac_rank_top Limit 100
+		<if test="mode == 1" >
+			SELECT * FROM rac_rank_top Limit #{startNo}, 10
+		</if>
+		<if test="mode == 2" >
+			SELECT * FROM rac_channel WHERE racCategoryNo = #{categoryNo} ORDER BY racChannelInsertDate DESC LIMIT #{startNo}, 20
+		</if>
+		<if test="mode == 3" >
+			SELECT * FROM rac_channel ORDER BY racChannelInsertDate DESC LIMIT #{startNo}, 20
+		</if>
 	</select>
 </mapper>

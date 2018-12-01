@@ -47,258 +47,12 @@
 
 				<!-- 채널별 스탯 영역1 -->
 				<div class="chnContents">
-					<div id="chnContent" class="w-auto ml-auto">
-						<div class="rankMainRowCnt">
-							<div class="d-inline-block rankMainCnt">1위</div>
-							<div class="d-inline-block rankMainDif">-</div>
-						</div>
-						<div class="rankMainRowImg">
-							<img id="chnListThumbNail"
-								style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-						</div>
-						<div class="rankMainRow">WassupMan</div>
-						<div class="rankMainRow">#스튜디오</div>
-						<div class="rankMainRow">1,232,232</div>
-						<div class="rankMainRow">232,232,213</div>
-						<div class="rankMainRow2">20</div>
-						<div class="rankMainRowBtn">
-							<button class="btnChnGo">
-								<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-									보기</a>
-							</button>
-						</div>
-					</div>
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-					<!-- 채널별 스탯 영역1 -->
-
-					<div class="pt-2"></div>
-					<div id="chnContent" class="w-auto ml-auto">
-						<div class="rankMainRowCnt">
-							<div class="d-inline-block rankMainCnt">2위</div>
-							<div class="d-inline-block rankMainDif">-</div>
-						</div>
-						<div class="rankMainRowImg">
-							<img style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-						</div>
-						<div class="rankMainRow">WassupMan</div>
-						<div class="rankMainRow">#스튜디오</div>
-						<div class="rankMainRow">1,232,232</div>
-						<div class="rankMainRow">232,232,213</div>
-						<div class="rankMainRow2">20</div>
-						<div class="rankMainRowBtn">
-							<button class="btnChnGo">
-								<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-									보기</a>
-							</button>
-						</div>
-					</div>
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-					<div class="pt-2"></div>
-					<div id="chnContent" class="w-auto ml-auto">
-						<div class="rankMainRowCnt">
-							<div class="d-inline-block rankMainCnt">3위</div>
-							<div class="d-inline-block rankMainDif">-</div>
-						</div>
-						<div class="rankMainRowImg">
-							<img style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-						</div>
-						<div class="rankMainRow">WassupMan</div>
-						<div class="rankMainRow">#스튜디오</div>
-						<div class="rankMainRow">1,232,232</div>
-						<div class="rankMainRow">232,232,213</div>
-						<div class="rankMainRow2">20</div>
-						<div class="rankMainRowBtn">
-							<button class="btnChnGo">
-								<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-									보기</a>
-							</button>
-						</div>
-					</div>
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-					<div class="pt-2"></div>
-					<div id="chnContent" class="w-auto ml-auto">
-						<div class="rankMainRowCnt">
-							<div class="d-inline-block rankMainCnt">4위</div>
-							<div class="d-inline-block rankMainDif">-</div>
-						</div>
-						<div class="rankMainRowImg">
-							<img style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-						</div>
-						<div class="rankMainRow">WassupMan</div>
-						<div class="rankMainRow">#스튜디오</div>
-						<div class="rankMainRow">1,232,232</div>
-						<div class="rankMainRow">232,232,213</div>
-						<div class="rankMainRow2">20</div>
-						<div class="rankMainRowBtn">
-							<button class="btnChnGo">
-								<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-									보기</a>
-							</button>
-						</div>
-					</div>
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-					<div class="pt-2"></div>
-					<div id="chnContent" class="w-auto ml-auto">
-						<div class="rankMainRowCnt">
-							<div class="d-inline-block rankMainCnt">5위</div>
-							<div class="d-inline-block rankMainDif">-</div>
-						</div>
-						<div class="rankMainRowImg">
-							<img style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-						</div>
-						<div class="rankMainRow">WassupMan</div>
-						<div class="rankMainRow">#스튜디오</div>
-						<div class="rankMainRow">1,232,232</div>
-						<div class="rankMainRow">232,232,213</div>
-						<div class="rankMainRow2">20</div>
-						<div class="rankMainRowBtn">
-							<button class="btnChnGo">
-								<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-									보기</a>
-							</button>
-						</div>
-					</div>
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-					<div class="pt-2"></div>
-					<div id="chnContent" class="w-auto ml-auto">
-						<div class="rankMainRowCnt">
-							<div class="d-inline-block rankMainCnt">6위</div>
-							<div class="d-inline-block rankMainDif">-</div>
-						</div>
-						<div class="rankMainRowImg">
-							<img style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-						</div>
-						<div class="rankMainRow">WassupMan</div>
-						<div class="rankMainRow">#스튜디오</div>
-						<div class="rankMainRow">1,232,232</div>
-						<div class="rankMainRow">232,232,213</div>
-						<div class="rankMainRow2">20</div>
-						<div class="rankMainRowBtn">
-							<button class="btnChnGo">
-								<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-									보기</a>
-							</button>
-						</div>
-					</div>
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-					<div class="pt-2"></div>
-					<div id="chnContent" class="w-auto ml-auto">
-						<div class="rankMainRowCnt">
-							<div class="d-inline-block rankMainCnt">7위</div>
-							<div class="d-inline-block rankMainDif">-</div>
-						</div>
-						<div class="rankMainRowImg">
-							<img style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-						</div>
-						<div class="rankMainRow">WassupMan</div>
-						<div class="rankMainRow">#스튜디오</div>
-						<div class="rankMainRow">1,232,232</div>
-						<div class="rankMainRow">232,232,213</div>
-						<div class="rankMainRow2">20</div>
-						<div class="rankMainRowBtn">
-							<button class="btnChnGo">
-								<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-									보기</a>
-							</button>
-						</div>
-					</div>
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-					<div class="pt-2"></div>
-					<div id="chnContent" class="w-auto ml-auto">
-						<div class="rankMainRowCnt">
-							<div class="d-inline-block rankMainCnt">8위</div>
-							<div class="d-inline-block rankMainDif">-</div>
-						</div>
-						<div class="rankMainRowImg">
-							<img style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-						</div>
-						<div class="rankMainRow">WassupMan</div>
-						<div class="rankMainRow">#스튜디오</div>
-						<div class="rankMainRow">1,232,232</div>
-						<div class="rankMainRow">232,232,213</div>
-						<div class="rankMainRow2">20</div>
-						<div class="rankMainRowBtn">
-							<button class="btnChnGo">
-								<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-									보기</a>
-							</button>
-						</div>
-					</div>
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-					<div class="pt-2"></div>
-					<div id="chnContent" class="w-auto ml-auto">
-						<div class="rankMainRowCnt">
-							<div class="d-inline-block rankMainCnt">9위</div>
-							<div class="d-inline-block rankMainDif">-</div>
-						</div>
-						<div class="rankMainRowImg">
-							<img style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-						</div>
-						<div class="rankMainRow">WassupMan</div>
-						<div class="rankMainRow">#스튜디오</div>
-						<div class="rankMainRow">1,232,232</div>
-						<div class="rankMainRow">232,232,213</div>
-						<div class="rankMainRow2">20</div>
-						<div class="rankMainRowBtn">
-							<button class="btnChnGo">
-								<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-									보기</a>
-							</button>
-						</div>
-					</div>
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-					<div class="pt-2"></div>
-					<div id="chnContent" class="w-auto ml-auto">
-						<div class="rankMainRowCnt">
-							<div class="d-inline-block rankMainCnt">100위</div>
-							<div class="d-inline-block">
-								<span class="glyphicon glyphicon-triangle-bottom">1</span>
-							</div>
-						</div>
-						<div class="rankMainRowImg">
-							<img style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
-						</div>
-						<div class="rankMainRow">WassupMan</div>
-						<div class="rankMainRow">#스튜디오</div>
-						<div class="rankMainRow">1,232,232</div>
-						<div class="rankMainRow">232,232,213</div>
-						<div class="rankMainRow2">20</div>
-						<div class="rankMainRowBtn">
-							<button class="btnChnGo">
-								<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
-									보기</a>
-							</button>
-						</div>
-					</div>
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
 				</div>
-
 				<div class="pt-4"></div>
 				
 				<div class="rankBottom txt-center">
-					<button class="btnListGo">더보기</button>
+					<button class="btnListGo" onclick="addList()">더보기</button>
+					<input type="hidden" id="startNo">
 				</div>
 
 			</div>
@@ -309,11 +63,72 @@
 	</section>
 
 	<jsp:include page="/02_page/commonFooter.jsp" flush="false" />
-
-	<section class="indexRecommend"> </section>
-	<c:forEach var="i" items="${requestScope.outputFeedList}">
-		<div class="row<c:if test="${i.outputPostType == 1}"> notice</c:if>"
-			onclick="Feed.goView('${i.outputFeedNo}')"></div>
-	</c:forEach>
 </body>
+<script>
+	
+	function addList() {
+			
+			var startNo = $("#startNo").val();
+	
+			Common.addList(1,startNo,0);
+		    
+			$("#startNo").val(startNo*1+10);
+		    if(startNo>=90) 
+				$(".btnListGo").hide();
+	}
+	
+	$(document).ready(function() { 
+		
+		$("#startNo").val(10);
+		var url="/main?action=getRankingList";  
+	    var params = {
+	    	startNo : 0,
+	    	mode : 1
+	    };
+	    
+	    $.ajax({      
+	        type:"POST",  
+	        url:url,      
+	        data:params,  
+	        dataType:'json',
+	        success:function(args){   
+	        	for(var i=0; i<args.rankingList.length; i++) {
+					$('.chnContents').append(`
+							<div id="chnContent" class="w-auto ml-auto">
+							<div class="rankMainRowCnt">
+								<div class="d-inline-block rankMainCnt">`+args.rankingList[i].outputRankTopNo + `위</div>
+								<div class="d-inline-block rankMainDif">-</div>
+							</div>
+							<div class="rankMainRowImg">
+								<img id="chnListThumbNail"
+									style="width: 48px; border-radius: 48px;"
+									src="`+args.rankingList[i].outputChannelThumbnail +`">
+							</div>
+							<div class="rankMainRow">`+args.rankingList[i].outputChannelTitle+`</div>
+							<div class="rankMainRow">#`+args.rankingList[i].outputCategoryNo+`</div>
+							<div class="rankMainRow">`+args.rankingList[i].outputChannelFollowers+`</div>
+							<div class="rankMainRow">`+args.rankingList[i].outputChannelViews+`</div>
+							<div class="rankMainRow2">`+args.rankingList[i].outputChannelVideoCount+`</div>
+							<div class="rankMainRowBtn">
+								<button class="btnChnGo">
+									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
+										보기</a>
+								</button>
+							</div>
+						</div>
+						<hr
+							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+					</div>
+							`);
+					
+	        	}
+
+	        },   
+	        error:function(e){  
+	            alert(e.responseText);  
+	        }  
+	    });  
+		
+	});
+</script>
 </html>

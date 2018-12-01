@@ -45,51 +45,12 @@ public class CommonController {
 		try{
 			HttpSession session = req.getSession();
 
-			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
-			int inputCategoryNo = 1;
-			int inputNextFeedNo = 0;
-			int listMode = 0; 	// FeedList Mode  1 : newFeedList , 2 : bestFeedListByALl, 3 : bestFeedListByCategory
-			int inputHotFeedCount = 0; 	// HotFeed를 가져올 갯수  - 멤버면 10개, 방문자면 20개.
-			long inputCurrentDate = System.currentTimeMillis()/1000;
-			JSONObject jMainObject = new JSONObject();
-			
-			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
-
-			if(sessionMemberNo>0) {        
-				MemberFavorite memberFavorite = MemberDAO.getMemberFavorite(sessionMemberNo);
-				if(memberFavorite!=null)
-					inputCategoryNo = memberFavorite.getDeepCategoryNo();
-				else 
-					inputCategoryNo = 1;
-			}
-		
-			// 순위 리스트
-			ArrayList<RankTop> ranking = ChannelDAO.getRankingList();
-			JSONArray rankingList = new JSONArray();
-			for(int i=0; i<ranking.size(); i++) {
-				JSONObject tempObject = new JSONObject();
-				tempObject.put("outputRankTopNo", ranking.get(i).getRacRankTopNo());
-				tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
-				tempObject.put("outputCategoryNo", ranking.get(i).getRacCategoryNo());
-				tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
-				tempObject.put("outputChannelTitle", ranking.get(i).getRacChannelTitle());
-				tempObject.put("outputChannelFollowers", ranking.get(i).getRacChannelFollowers());
-				tempObject.put("outputChannelViews", ranking.get(i).getRacChannelViews());
-				tempObject.put("outputChannelVideoCount", ranking.get(i).getRacChannelVideoCount());
-				tempObject.put("outputChannelThumbnail", ranking.get(i).getRacChannelThumbnail());
-				
-				rankingList.add(tempObject);
-			}
-			
-			jMainObject.put("rankingList", rankingList);
-			
 			
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 			
 			CommonUtil.commonPrintLog("SUCCESS", className, "Init Main OK", map);
-			res.getWriter().write(jMainObject.toString());
-//			req.getRequestDispatcher("/index.jsp").forward(req, res);
+			req.getRequestDispatcher("/index.jsp").forward(req, res);
 			return;
 			
 		} catch(Exception e) {
@@ -187,5 +148,54 @@ public class CommonController {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}	
+	}
+
+	public static void getRankingList(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+	
+		try{
+			HttpSession session = req.getSession();
+
+			// Top100 Mode : 1, All Mode : 2, New Mode : 3
+			int mode = req.getParameter("mode") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("mode").toString())) : 0;
+			int startNo = req.getParameter("startNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("startNo").toString())) : 0;
+			int categoryNo = req.getParameter("categoryNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("categoryNo").toString())) : 0;
+			JSONObject jMainObject = new JSONObject();
+			
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+
+			// 순위 리스트
+			ArrayList<RankTop> ranking = ChannelDAO.getRankingList(mode, startNo, categoryNo);
+			JSONArray rankingList = new JSONArray();
+			for(int i=0; i<ranking.size(); i++) {
+				JSONObject tempObject = new JSONObject();
+				tempObject.put("outputRankTopNo", ranking.get(i).getRacRankTopNo());
+				tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
+				tempObject.put("outputCategoryNo", ranking.get(i).getRacCategoryNo());
+				tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
+				tempObject.put("outputChannelTitle", ranking.get(i).getRacChannelTitle());
+				tempObject.put("outputChannelFollowers", ranking.get(i).getRacChannelFollowers());
+				tempObject.put("outputChannelViews", ranking.get(i).getRacChannelViews());
+				tempObject.put("outputChannelVideoCount", ranking.get(i).getRacChannelVideoCount());
+				tempObject.put("outputChannelThumbnail", ranking.get(i).getRacChannelThumbnail());
+				
+				rankingList.add(tempObject);
+			}
+			
+			jMainObject.put("rankingList", rankingList);
+			
+			
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get RankingList OK", map);
+			res.getWriter().write(jMainObject.toString());
+//			req.getRequestDispatcher("/index.jsp").forward(req, res);
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

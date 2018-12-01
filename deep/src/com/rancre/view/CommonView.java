@@ -60,6 +60,11 @@ public class CommonView extends HttpServlet {
 					map.put("ACTION", "getMyPage");
 					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 					CommonController.getMyPage(req,res);
+					break;					
+				case "getRankingList":
+					map.put("ACTION", "getRankingList");
+					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+					CommonController.getRankingList(req,res);
 					break;						
 				default:
 					CommonUtil.commonPrintLog("ERROR", this.getClass().getSimpleName(), "Incorrect Action Parameter (action : " + action + ")", map);

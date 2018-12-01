@@ -575,12 +575,17 @@ public class ChannelDAO {
 		}
 	}
 
-	public static ArrayList<RankTop> getRankingList() {
+	public static ArrayList<RankTop> getRankingList(int mode, int startNo, int categoryNo) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);
 		
 		try {	
-			return (ArrayList)sqlSession.selectList(namespace + ".getRankingList");
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("mode", mode);
+			map.put("startNo", startNo);
+			map.put("categoryNo", categoryNo);
+
+			return (ArrayList)sqlSession.selectList(namespace + ".getRankingList", map);
 			
 		} finally {
 			sqlSession.close();

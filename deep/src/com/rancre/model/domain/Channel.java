@@ -14,6 +14,8 @@ public class Channel {
 	private String racChannelThumbnail;
 	private Timestamp racChannelCreateDate;
 	private Timestamp racChannelUpdateDate;
+	private Timestamp racChannelInsertDate;
+	
 	public Channel() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -84,9 +86,15 @@ public class Channel {
 	public void setRacChannelUpdateDate(Timestamp racChannelUpdateDate) {
 		this.racChannelUpdateDate = racChannelUpdateDate;
 	}
-	public Channel(int racChannelNo, int racMemberNo, int racChannelStatus, int racCategoryNo,
-			String racChannelTitle, int racChannelFollowers, int racChannelViews, String racChannelUrl,
-			String racChannelThumbnail, Timestamp racChannelCreateDate, Timestamp racChannelUpdateDate) {
+	public Timestamp getRacChannelInsertDate() {
+		return racChannelInsertDate;
+	}
+	public void setRacChannelInsertDate(Timestamp racChannelInsertDate) {
+		this.racChannelInsertDate = racChannelInsertDate;
+	}
+	public Channel(int racChannelNo, int racMemberNo, int racChannelStatus, int racCategoryNo, String racChannelTitle,
+			int racChannelFollowers, int racChannelViews, String racChannelUrl, String racChannelThumbnail,
+			Timestamp racChannelCreateDate, Timestamp racChannelUpdateDate, Timestamp racChannelInsertDate) {
 		super();
 		this.racChannelNo = racChannelNo;
 		this.racMemberNo = racMemberNo;
@@ -99,6 +107,7 @@ public class Channel {
 		this.racChannelThumbnail = racChannelThumbnail;
 		this.racChannelCreateDate = racChannelCreateDate;
 		this.racChannelUpdateDate = racChannelUpdateDate;
+		this.racChannelInsertDate = racChannelInsertDate;
 	}
 	
 }

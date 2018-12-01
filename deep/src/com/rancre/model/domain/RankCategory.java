@@ -1,5 +1,7 @@
 package com.rancre.model.domain;
 
+import java.sql.Timestamp;
+
 public class RankCategory {
 
 	private int racRankCategoryNo;
@@ -12,6 +14,7 @@ public class RankCategory {
 	private int racChannelVideoCount;
 	private String racChannelUrl;
 	private String racChannelThumbnail;
+	private Timestamp racChannelInsertDate;
 	public RankCategory() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -76,9 +79,15 @@ public class RankCategory {
 	public void setRacChannelThumbnail(String racChannelThumbnail) {
 		this.racChannelThumbnail = racChannelThumbnail;
 	}
+	public Timestamp getRacChannelInsertDate() {
+		return racChannelInsertDate;
+	}
+	public void setRacChannelInsertDate(Timestamp racChannelInsertDate) {
+		this.racChannelInsertDate = racChannelInsertDate;
+	}
 	public RankCategory(int racRankCategoryNo, int racChannelNo, int racCategoryNo, int racRankCategoryRanking,
 			String racChannelTitle, int racChannelFollowers, int racChannelViews, int racChannelVideoCount,
-			String racChannelUrl, String racChannelThumbnail) {
+			String racChannelUrl, String racChannelThumbnail, Timestamp racChannelInsertDate) {
 		super();
 		this.racRankCategoryNo = racRankCategoryNo;
 		this.racChannelNo = racChannelNo;
@@ -90,7 +99,7 @@ public class RankCategory {
 		this.racChannelVideoCount = racChannelVideoCount;
 		this.racChannelUrl = racChannelUrl;
 		this.racChannelThumbnail = racChannelThumbnail;
+		this.racChannelInsertDate = racChannelInsertDate;
 	}
-
 
 }
