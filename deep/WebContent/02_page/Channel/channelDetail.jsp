@@ -415,11 +415,108 @@
 
 										<div class="pTop2 display-flex"></div>
 
-										<div class="bottom-txt w-100">
-											<div class="recommend float-left">이 채널을 다른 마케터에게도
+										<div class="bottom-txt row w-100">
+											<div class="col-6 recommend float-left">이 채널을 다른 마케터에게도
 												추천하나요?</div>
-											<div class="answer float-left">예</div>
-											<div class="help float-right">이 후기가 도움이됩니다</div>
+											<div class="col answer float-left">예</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="pTop2"></div>
+
+							<div class="review">
+								<div class="review-top">
+									<div class="date float-left">최근 1년 이내, 실제 집행된 광고에 대한
+										리뷰입니다.</div>
+								</div>
+
+								<div class="pTop2 w-100 display-flex"></div>
+
+								<div class="review-detail">
+									<div class="review-row float-left">
+										<div class="idx">광고 만족도</div>
+										<div class="idx">광고 타입</div>
+										<div class="idx">목표 도달률</div>
+										<div class="idx">목표 전환률</div>
+										<div class="idx">타깃 성별</div>
+										<div class="idx">타깃 연령</div>
+									</div>
+									<div class="review-stat float-left">
+										<div class="stat">4.5</div>
+										<div class="stat">브랜디드 영상</div>
+										<div class="stat">달성</div>
+										<div class="stat">달성</div>
+										<div class="stat">남성</div>
+										<div class="stat">20대 초반 ~ 30대 중반</div>
+									</div>
+									<div class="review-text w-auto float-left">
+										<div class="txt">
+											<span>입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
+												이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
+												이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가
+												이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
+												이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가
+												이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
+												이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가
+												이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
+												이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다. </span>
+										</div>
+
+										<div class="pTop2 display-flex"></div>
+
+										<div class="bottom-txt row w-100">
+											<div class="col-6 recommend float-left">이 채널을 다른 마케터에게도
+												추천하나요?</div>
+											<div class="col answer float-left">예</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							
+							<div class="pTop2"></div>
+							
+							<div class="review">
+								<div class="review-top">
+									<div class="date float-left">최근 1년 이내, 실제 집행된 광고에 대한
+										리뷰입니다.</div>
+								</div>
+
+								<div class="pTop2 w-100 display-flex"></div>
+
+								<div class="review-detail">
+									<div class="review-row float-left">
+										<div class="idx">광고 만족도</div>
+										<div class="idx">광고 타입</div>
+										<div class="idx">목표 도달률</div>
+										<div class="idx">목표 전환률</div>
+										<div class="idx">타깃 성별</div>
+										<div class="idx">타깃 연령</div>
+									</div>
+									<div class="review-stat float-left">
+										<div class="stat">4.5</div>
+										<div class="stat">브랜디드 영상</div>
+										<div class="stat">달성</div>
+										<div class="stat">달성</div>
+										<div class="stat">남성</div>
+										<div class="stat">20대 초반 ~ 30대 중반</div>
+									</div>
+									<div class="review-text w-auto float-left">
+										<div class="txt">
+											<span>입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
+												이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
+												이곳에 노출됩니다. </span>
+										</div>
+
+										<div class="pTop2 display-flex"></div>
+
+										<div class="bottom-txt row w-100">
+											<div class="col-6 recommend float-left">이 채널을 다른 마케터에게도
+												추천하나요?</div>
+											<div class="col answer float-left">예</div>
 										</div>
 									</div>
 								</div>

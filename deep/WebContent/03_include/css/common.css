@@ -584,7 +584,7 @@ ul.sub-tabs li a.active {
 }
 
 .review-text .txt {
-	height : auto;
+	min-height : 150px;
 	width : 710px;
 	position : relative;
 }
