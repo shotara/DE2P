@@ -44,9 +44,8 @@
 
 				<!-- 로우 끝  -->
 
-				<!-- 스튜디오 영역 시작 -->
 
-				<div class="subNav-content active">
+				<div class="chnContents">
 
 					<div class="pt-2"></div>
 
@@ -262,10 +261,6 @@
 						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 
 				</div>
-
-
-				<!--  스튜디오 콘텐츠 영역 끝  -->
-
 
 				<div class="pt-4"></div>
 
@@ -275,16 +270,9 @@
 			</div>
 		</div>
 	</div>
-
 	</section>
 
 	<jsp:include page="/02_page/commonFooter.jsp" flush="false" />
 
-
-	<section class="indexRecommend"> </section>
-	<c:forEach var="i" items="${requestScope.outputFeedList}">
-		<div class="row<c:if test="${i.outputPostType == 1}"> notice</c:if>"
-			onclick="Feed.goView('${i.outputFeedNo}')"></div>
-	</c:forEach>
 </body>
 </html>

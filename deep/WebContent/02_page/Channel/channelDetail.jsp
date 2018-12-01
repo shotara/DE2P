@@ -436,6 +436,9 @@
 
 						<!-- non review finished -->
 					</div>
+					
+					
+					
 					<div class="sub-tabcontent w-100" id="price">
 
 						<div class="pTop"></div>
