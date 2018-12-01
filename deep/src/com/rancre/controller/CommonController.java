@@ -187,10 +187,8 @@ public class CommonController {
 			}
 			else {
 				ArrayList<RankCategory> ranking = ChannelDAO.getRankingList2(mode, startNo, categoryNo);
-				int rankingNo = startNo++;
 				for(int i=0; i<ranking.size(); i++) {
 					JSONObject tempObject = new JSONObject();
-					tempObject.put("outputRankTopNo", startNo++);
 					tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
 					tempObject.put("outputCategoryNo", ranking.get(i).getRacCategoryNo());
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
