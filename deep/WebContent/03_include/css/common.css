@@ -320,8 +320,13 @@ a.subnav-link:hover {
 
 .rankRow {
 	display: inline-block;
-	width: 180px;
+	width: 170px;
 	float: lfet;
+	margin-right :10px;
+}
+
+.rankRow .txt{
+	overflow : hidden;
 }
 
 .rankRow2 {
@@ -366,8 +371,14 @@ a.subnav-link:hover {
 
 .rankMainRow {
 	display: inline-block;
-	width: 166px;
+	width: 156px;
 	float: lfet;
+	maring-right : 10px;
+}
+
+.rankMainRow .txt{
+	width: auto;
+	overflow:hidden;
 }
 
 .rankMainRow2 {

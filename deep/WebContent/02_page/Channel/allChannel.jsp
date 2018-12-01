@@ -110,7 +110,7 @@
 								<img style="width: 48px; border-radius: 48px;"
 									src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
 							</div>
-							<div class="rankRow">WassupMan</div>
+							<div class="rankRow"><span class="txt">WassupManddddddddddddddddddddd</span></div>
 							<div class="rankRow">#스튜디오</div>
 							<div class="rankRow">1,232,232</div>
 							<div class="rankRow">232,232,213</div>

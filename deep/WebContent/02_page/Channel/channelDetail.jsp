@@ -174,7 +174,7 @@
 
 						<div class="subtab-title inline-block">최근 이 채널에 업로드 된 영상입니다.</div>
 
-						<div class="pTop"></div>
+						<div class="pTop2"></div>
 
 						<div class="uploadVideos inline-block">
 							<div class="uploadVideo float-left">
@@ -258,7 +258,7 @@
 						<div class="subtab-title inline-block">이 채널을 통해 진행된 광고
 							영상입니다. 채널과 제품, 브랜드의 컨셉이 맞는지 확인해보세요!</div>
 
-						<div class="pTop"></div>
+						<div class="pTop2"></div>
 
 
 						<!-- comercialVideo start -->
@@ -370,7 +370,7 @@
 						<div class="subtab-title inline-block">이 채널을 이용한 광고주들의
 							후기입니다. 채널에 내 광고를 집행하기 전 체크해보세요!</div>
 
-						<div class="pTop"></div>
+						<div class="pTop2"></div>
 
 						<!-- channel reivew start -->
 
@@ -446,7 +446,7 @@
 						<div class="subtab-title inline-block">이 채널에서 집행된 광고 단가입니다.
 							예산에 맞는 채널인지 미리 확인해보세요.</div>
 
-						<div class="pTop"></div>
+						<div class="pTop2"></div>
 
 						<div class=""></div>
 
