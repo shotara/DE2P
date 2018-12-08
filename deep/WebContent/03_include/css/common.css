@@ -5,8 +5,6 @@
 /**********************************/
 /*  rancre common CSS  */
 /*********************************/
-
-
 * {
 	box-sizing: border-box !important;
 }
@@ -39,78 +37,83 @@ a {
 	padding-top: 30px;
 }
 
+.pTop4 {
+	padding-top: 40px;
+}
+
 .pRight {
-	padding-right : 10px;
+	padding-right: 10px;
 }
 
 .pBottom {
-	padding-bottom : 10px;
+	padding-bottom: 10px;
 }
 
 .pBottom2 {
-	padding-bottom : 20px;
+	padding-bottom: 20px;
 }
 
-.pBottom3{
-	padding-bottom : 30px;
+.pBottom3 {
+	padding-bottom: 30px;
 }
 
 .txt-center {
-	text-align : center;
+	text-align: center;
 }
 
 .txt-left {
-	text-align : left;
+	text-align: left;
 }
 
 .txt-right {
-	text-align : right;
+	text-align: right;
 }
 
-.txt-vertical{
-	height : 50%;
+.txt-vertical {
+	height: 50%;
 }
 
-.display-flex{
+.display-flex {
 	display: flex;
 }
 
 .display-block {
-	display : block;
+	display: block;
 }
 
 .inline-flex {
-	display : inline-flex;
+	display: inline-flex;
 }
 
-.float-right{
-	float : right;
+.float-right {
+	float: right;
 }
 
-.float-left{
-	float : left;
+.float-left {
+	float: left;
 }
 
 .v10 {
 	height: 10%;
 }
 
-.v20{
-	height:20%;
+.v20 {
+	height: 20%;
 }
 
-.v30{
-	height:30%;
-}
-.v40{
-	height:40%;
+.v30 {
+	height: 30%;
 }
 
-.v50{
-	height:50%;
+.v40 {
+	height: 40%;
 }
 
-.commonA{
+.v50 {
+	height: 50%;
+}
+
+.commonA {
 	text-decoration: none !important;
 	color: #f11834 !important;
 }
@@ -123,7 +126,6 @@ a {
 /**********************************/
 /*  button collection  */
 /*********************************/
-
 .commonBtn {
 	width: auto;
 	border-radius: 8px;
@@ -133,7 +135,7 @@ a {
 	color: #f11834;
 }
 
-.commonBtn a{
+.commonBtn a {
 	text-decoration: none !important;
 	color: #f11834 !important;
 }
@@ -181,7 +183,6 @@ a {
 /**********************************/
 /*  subnav  */
 /*********************************/
-
 .subnav {
 	background-color: rgba(255, 255, 255, 1) !important;
 }
@@ -247,8 +248,6 @@ a.subnav-link:hover {
 	color: #fff;
 }
 
-
-
 /**********************************/
 /*  font awesome customize  */
 /*********************************/
@@ -304,7 +303,6 @@ a.subnav-link:hover {
 /**********************************/
 /*  main - list type using CSS */
 /*********************************/
-
 .mainList {
 	padding-top: 20px;
 	width: 100%;
@@ -330,7 +328,7 @@ a.subnav-link:hover {
 	display: inline-block;
 	width: 170px;
 	float: lfet;
-	margin-right :10px;
+	margin-right: 10px;
 }
 
 .rankRow2 {
@@ -370,7 +368,6 @@ a.subnav-link:hover {
 	-ms-flex-align: center;
 }
 
-
 .txt-align-right {
 	text-align: right;
 }
@@ -383,7 +380,7 @@ a.subnav-link:hover {
 	display: inline-block;
 	width: 156px;
 	float: lfet;
-	maring-right : 10px;
+	maring-right: 10px;
 }
 
 .rankMainRow2 {
@@ -411,7 +408,6 @@ a.subnav-link:hover {
 /**********************************/
 /*  footer  */
 /*********************************/
-
 .ranFooter {
 	margin-top: 70px;
 	background-color: #f11834;
@@ -444,11 +440,9 @@ a.subnav-link:hover {
 	font-weight: bold;
 }
 
-
 /**********************************/
 /*  Channel Detail page  */
 /*********************************/
-
 .chnDtlTop {
 	display: flex;
 }
@@ -465,7 +459,6 @@ a.subnav-link:hover {
 }
 
 /* 채널 디테일 sub tabs*/
-
 .sub-tabs {
 	list-style: none;
 	margin: 0;
@@ -474,33 +467,30 @@ a.subnav-link:hover {
 }
 
 /* Float the list items side by side */
-
 .sub-tabs li {
 	float: left;
 }
 
 /* Style the links inside the list items */
-
-.sub-tabs li a{
+.sub-tabs li a {
 	display: inline-block;
 	color: #b4b4b4;
 	text-align: center;
 	text-decoration: none;
 	padding-right: 16px;
 	font-size: 1.1em;
-	font-weight : bold;
+	font-weight: bold;
 	transition: 0.3s;
 }
 
 /* Style the tab content */
-
 .sub-tabcontent {
 	display: none;
 	padding: 6px 12px;
 }
 
 ul.sub-tabs li a.active {
-	color:#000;
+	color: #000;
 }
 
 .sub-tabcontent.active {
@@ -508,88 +498,117 @@ ul.sub-tabs li a.active {
 }
 
 .uploadVideo {
-	margin:0 auto;
-	width : auto;
-	padding-right:16px;
+	margin: 0 auto;
+	width: auto;
+	padding-right: 16px;
 }
 
 .uploadVideo-right {
-	margin:0 auto;
-	width : auto;
+	margin: 0 auto;
+	width: auto;
 }
 
 .comercialVideo {
-	margin:0 auto;
-	width : auto;
-	padding-right:16px;
+	margin: 0 auto;
+	width: auto;
+	padding-right: 16px;
 }
 
 .comercialVideo-right {
-	margin:0 auto;
-	width : auto;
+	margin: 0 auto;
+	width: auto;
 }
 
-.non-comercials{
-	height : 260px;
+.non-comercials {
+	height: 260px;
 }
 
-.non-reviews{
-	height : 260px;
+.non-reviews {
+	height: 260px;
 }
 
 .review {
-	padding : 25px 50px;
-	border : 1px solid #eeeeee;	
-	border-radius : 5px;
-	box-shadow : 1px 1px #eeeeee;
-	min-height : 290px;
-	position : relative;
-	display : block;
-	overflow : auto;
+	padding: 25px 50px;
+	border: 1px solid #eeeeee;
+	border-radius: 5px;
+	box-shadow: 1px 1px #eeeeee;
+	min-height: 290px;
+	position: relative;
+	display: block;
+	overflow: auto;
 }
 
 .review-detail {
-	claer : both;
+	claer: both;
 }
 
 .review-row {
-	font-weight : bold;
-	padding-right : 40px;
-	position : relative;
-	height : auto;
+	font-weight: bold;
+	padding-right: 40px;
+	position: relative;
+	height: auto;
 }
 
 .review-row .idx {
-	padding-bottom : 10px;
+	padding-bottom: 10px;
 }
 
 .review-stat {
-	padding-right : 40px;
-	min-wdith : 150px;
-	position : relative;
-	height : auto;
+	padding-right: 40px;
+	min-wdith: 150px;
+	position: relative;
+	height: auto;
 }
 
 .review-stat .stat {
-	padding-bottom : 10px;
+	padding-bottom: 10px;
 }
 
-.bottom-text .recommend{
-	float : left;
-	margin-right : 30px;
+.bottom-text .recommend {
+	float: left;
+	margin-right: 30px;
 }
 
 .bottom-text .answer {
-	float : left;
+	float: left;
 }
 
 .review-text .txt {
-	min-height : 150px;
-	width : 710px;
-	position : relative;
+	min-height: 150px;
+	width: 710px;
+	position: relative;
 }
 
+/**********************************/
+/*  Search Page CSS  */
+/*********************************/
+.searchKeyword {
+	width: auto;
+	position: relative;
+}
 
+.searchKeyword input[type="text"] {
+	width: 100%; /* 원하는 너비 설정 */
+	height: auto; /* 높이값 초기화 */
+	line-height: normal; /* line-height 초기화 */
+	padding: .8em .5em; /* 원하는 여백 설정, 상하단 여백으로 높이를 조절 */
+	font-family: inherit; /* 폰트 상속 */
+	font-size: 40px;
+	border: 0px;
+	border-radius: 0; /* iSO 둥근모서리 제거 */
+	text-align: center;
+	outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */
+	-webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */
+	-moz-appearance: none;
+	appearance: none;
+	outline-style: none;
+}
 
+.search-result {
+	min-height: 300px;
+	width: auto;
+}
 
-
+.non-result {
+	font-size: 30px;
+}
