@@ -13,39 +13,82 @@
 </head>
 <body>
 
-
-
-	<section class="login">
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-4"></div>
+			<div class="col txt-center">
+				<div class="txt-center login">
 
-			<div class="col-xl-4 text-center login-Form">
-				<div>
-					<span class="brand">Rancre</span>
-				</div>
-				<input class="inputMemberEmail" type="email" id="inputMemberEmail"
-					placeholder="이메일" required /> 
+					<div class="pTop"></div>
+
+					<div class="float-right login-Redirect">
+						<a href="/index.jsp">홈으로</a>
+					</div>
+					<div class="login-brand">Rancre</div>
+
+					<div class="pTop2"></div>
+
+					<div class="float-left login-type-corp">기업</div>
+					<hr
+						style="margin-top: 1.5rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa;">
+
+					<div class="pTop3"></div>
+
+					<div>
+						<span>더 많은 채널의 광고 리뷰가 궁금하신가요? </br> 지금 랭크리에서 2,342개 채널의 광고 효과를
+							확인해보세요!
+						</span>
+					</div>
+
+					<div class="pTop3"></div>
+
+					<div class="ipt-login">
+						<div class="float-left login-commonTxt">이메일</div>
+						<input class="ipt-Member-Email" type="email" id="inputMemberEmail"
+							placeholder="email@email.com" required />
+					</div>
+
+					<div class="ipt-login pTop2">
+						<div class="float-left login-commonTxt">패스워드</div>
+						<input class="ipt-Member-Password" type="password"
+							id="inputMemberPassword" placeholder="******" required />
+					</div>
+
+					<div class="pTop3"></div>
+
+					<div>
+						<a href="#" onclick="Auth.login()"><button
+								class="common-wide-Btn" type="button">로그인</button></a>
+					</div>
+
+					<div class="pTop3"></div>
+
+					<hr
+						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa;">
+
+					<div class="pTop2"></div>
+
+					<div class="row">
+						<div class="col login-Redirect">
+							<a href="/index.jsp">아이디 찾기</a>
+						</div>
+						<div class="col login-Redirect">
+							<a href="/index.jsp">비밀번호 찾기</a>
+						</div>
+						<div class="col login-Redirect">
+							<a href="../Auth/join.jsp">회원가입</a>
+						</div>
+					</div>
 					
-				<input class="inputMemberPassword"
-					type="password" id="inputMemberPassword" placeholder="패스워드"
-					required />
-				<div class="msgRow">
-					<span class="malfunMsg"></span>
+					<div class="pTop4"></div>
+
+					<div class="float-left"><span class="brand-color">Rancre</span><span class="gray-color"> all right reserved.</span></div>
+					<div class="float-right login-Redirect"><a href="#">Contact Us</a></div>
+					
+					
 				</div>
-
-				<button class="inputLoginBtn" type="button" onclick="Auth.login()">로그인</button>
 			</div>
-			<div class="col-xl-4">
-				<span><a href="/index.jsp">홈으로</a></span>
-			</div>
-
-
 		</div>
 	</div>
-	</section>
-
-
 
 </body>
 </html>

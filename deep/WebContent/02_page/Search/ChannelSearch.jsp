@@ -24,8 +24,7 @@
 			<!-- search input area -->
 
 			<div class="col searchKeyword">
-				<input type="text" id="searchInput" placeholder="다음으로 검색을 시작합니다.">
-				<button type="reset" class="clearable">clear</button>
+				<input class="clearable" type="text" placeholder="다음으로 검색을 시작합니다."/>
 			</div>
 
 

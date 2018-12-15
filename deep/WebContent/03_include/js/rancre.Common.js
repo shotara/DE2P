@@ -73,7 +73,7 @@ Common.addList = function (mode, startNo, categoryNo) {
 			success:function(args){   
 				for(var i=0; i<args.rankingList.length; i++) {
 					var content = `
-					<div id="chnContent" class="w-auto ml-auto">
+						<div id="chnContent" class="w-auto ml-auto">
 						<div class="rankRowImg">
 						<img id="chnListThumbNail"
 						style="width: 48px; border-radius: 48px;"
@@ -233,18 +233,20 @@ $(function() {
 /** search page using */
 /*****************************/
 
-$(".searchKeyword").each(function() {
+jQuery(function($) {
 
-	var $inp = $(this).find("input:text"),
-	$cle = $(this).find(".clearable");
 
-	$inp.on("input", function(){
-		$cle.toggle(!!this.value);
+	// /////
+	// CLEARABLE INPUT
+	function tog(v){return v?'addClass':'removeClass';} 
+	$(document).on('input', '.clearable', function(){
+		$(this)[tog(this.value)]('x');
+	}).on('mousemove', '.x', function( e ){
+		$(this)[tog(this.offsetWidth-18 < e.clientX-this.getBoundingClientRect().left)]('onX');   
+	}).on('touchstart click', '.onX', function( ev ){
+		ev.preventDefault();
+		$(this).removeClass('x onX').val('').change();
 	});
 
-	$cle.on("touchstart click", function(e) {
-		e.preventDefault();
-		$inp.val("").trigger("input");
-	});
 
 });

@@ -26,19 +26,27 @@ a {
 }
 
 .pTop {
-	padding-top: 10px;
+	padding-top : 10px;
 }
 
 .pTop2 {
-	padding-top: 20px;
+	padding-top : 20px;
 }
 
 .pTop3 {
-	padding-top: 30px;
+	padding-top : 30px;
 }
 
 .pTop4 {
-	padding-top: 40px;
+	padding-top : 40px;
+}
+
+.pTop5 {
+	padding-top : 50px;
+}
+
+.pTop10 {
+	padding-top : 100px;
 }
 
 .pRight {
@@ -135,6 +143,10 @@ a {
 	color: #f11834;
 }
 
+.commonBtn:focus {
+	outline:none;
+}
+
 .commonBtn a {
 	text-decoration: none !important;
 	color: #f11834 !important;
@@ -143,6 +155,54 @@ a {
 .commonBtn a:hover {
 	text-decoration: none !important;
 	color: #f11834 !important;
+}
+
+.commonReverseBtn {
+	width: auto;
+	border-radius: 8px;
+	border: 1px solid #f11834;
+	font-size: 1em;
+	height: 36px;
+	background-color : #f11834;
+	color: #fff;
+}
+
+.commonReverseBtn:focus {
+	outline:none;
+}
+
+.commonReverseBtn a {
+	text-decoration: none !important;
+	color: #fff !important;
+}
+
+.commonReverseBtn a:hover {
+	text-decoration: none !important;
+	background-color: #f11834 !important;
+	color : #fff;
+}
+
+.common-wide-Btn {
+	width: 100%;
+	border-radius: 8px;
+	border: 1px solid #f11834;
+	font-size: 1em;
+	height: 36px;
+	background-color : #f11834;
+	color: #fff;
+	font-weight : bold;
+}
+
+.common-wide-Btn:focus {
+	outline:none;
+}
+
+.common-wide-Btn a {
+	text-decoration: none !important;
+}
+
+.common-wide-Btn a:hover {
+	text-decoration: none !important;
 }
 
 .inputJoinBtn {
@@ -270,35 +330,80 @@ a.subnav-link:hover {
 /**********************************/
 /*  login  */
 /*********************************/
+
 .login {
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-	-ms-flex-align: center;
-	align-items: center;
-	-ms-flex-pack: justify;
-	justify-content: space-between;
+	padding-right : 240px;
+	padding-left : 240px;
 }
 
-.login .brand {
-	display: inline-block;
-	padding-top: 0.3125rem;
-	padding-bottom: 0.3125rem;
-	margin-right: 1rem;
-	font-size: 3.25rem;
+.login-brand {
+	font-size: 4rem;
 	line-height: inherit;
 	white-space: nowrap;
 	font-weight: bold;
 	color: #F11834 !important;
 }
 
-.login-Form {
-	width: 480px;
-	height: 480px;
-	padding-top: 50px;
-	background-color: #fff;
+.brand-color {
+	color : #f11834;
 }
+
+.gray-color {
+	color : #707070;
+}
+
+.login-Redirect a{
+	color : #707070;
+}
+
+.login-Redirect a:hover {
+	color : #707070;
+}
+
+.login-type-corp {
+	border : 0;
+	border-bottom : 1px solid #f11834;
+	font-weight : bold;
+}
+
+.login-commonTxt {
+	font-weight : bold;
+	padding-bottom : 5px;
+}
+
+.ipt-login {
+	width : 100%;
+	display : inline-block;
+}
+
+.ipt-Member-Email {
+	height : 40px;
+	font-size : 1em;
+	width : 100%;
+	border : 1px solid #eee;
+	border-radius : 3px;
+	padding-left : 10px;
+}
+
+.ipt-Member-Email:focus {
+	border : 1px solid #f11834;
+	outline : none;
+}
+
+.ipt-Member-Password {
+	height : 40px;
+	font-size : 1em;
+	width : 100%;
+	border : 1px solid #eee;
+	border-radius : 3px;
+	padding-left : 10px;
+}
+
+.ipt-Member-Password:focus {
+	border : 1px solid #f11834;
+	outline : none;
+}
+
 
 /**********************************/
 /*  main - list type using CSS */
@@ -603,6 +708,17 @@ ul.sub-tabs li a.active {
 	appearance: none;
 	outline-style: none;
 }
+
+.clearable{
+  background: #fff url('../01_image/commonImg/mJotv.gif') no-repeat right -10px center;
+  border: 1px solid #999;
+  padding: 3px 18px 3px 4px; /* Use the same right padding (18) in jQ! */
+  border-radius: 3px;
+  transition: background 0.4s;
+}
+.clearable.x  { background-position: right 5px center; }
+.clearable.onX{ cursor: pointer; }
+.clearable::-ms-clear {display: none; width:0; height:0;}
 
 .searchResult {
 	height : auto;
