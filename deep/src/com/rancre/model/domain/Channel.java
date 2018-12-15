@@ -9,7 +9,7 @@ public class Channel {
 	private int racCategoryNo;
 	private String racChannelTitle;
 	private int racChannelFollowers;
-	private int racChannelViews;
+	private long racChannelViews;
 	private String racChannelUrl;
 	private String racChannelThumbnail;
 	private Timestamp racChannelCreateDate;
@@ -20,80 +20,105 @@ public class Channel {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public int getRacChannelNo() {
 		return racChannelNo;
 	}
+
 	public void setRacChannelNo(int racChannelNo) {
 		this.racChannelNo = racChannelNo;
 	}
+
 	public int getRacMemberNo() {
 		return racMemberNo;
 	}
+
 	public void setRacMemberNo(int racMemberNo) {
 		this.racMemberNo = racMemberNo;
 	}
+
 	public int getRacChannelStatus() {
 		return racChannelStatus;
 	}
+
 	public void setRacChannelStatus(int racChannelStatus) {
 		this.racChannelStatus = racChannelStatus;
 	}
+
 	public int getRacCategoryNo() {
 		return racCategoryNo;
 	}
+
 	public void setRacCategoryNo(int racCategoryNo) {
 		this.racCategoryNo = racCategoryNo;
 	}
+
 	public String getRacChannelTitle() {
 		return racChannelTitle;
 	}
+
 	public void setRacChannelTitle(String racChannelTitle) {
 		this.racChannelTitle = racChannelTitle;
 	}
+
 	public int getRacChannelFollowers() {
 		return racChannelFollowers;
 	}
+
 	public void setRacChannelFollowers(int racChannelFollowers) {
 		this.racChannelFollowers = racChannelFollowers;
 	}
-	public int getRacChannelViews() {
+
+	public long getRacChannelViews() {
 		return racChannelViews;
 	}
-	public void setRacChannelViews(int racChannelViews) {
+
+	public void setRacChannelViews(long racChannelViews) {
 		this.racChannelViews = racChannelViews;
 	}
+
 	public String getRacChannelUrl() {
 		return racChannelUrl;
 	}
+
 	public void setRacChannelUrl(String racChannelUrl) {
 		this.racChannelUrl = racChannelUrl;
 	}
+
 	public String getRacChannelThumbnail() {
 		return racChannelThumbnail;
 	}
+
 	public void setRacChannelThumbnail(String racChannelThumbnail) {
 		this.racChannelThumbnail = racChannelThumbnail;
 	}
+
 	public Timestamp getRacChannelCreateDate() {
 		return racChannelCreateDate;
 	}
+
 	public void setRacChannelCreateDate(Timestamp racChannelCreateDate) {
 		this.racChannelCreateDate = racChannelCreateDate;
 	}
+
 	public Timestamp getRacChannelUpdateDate() {
 		return racChannelUpdateDate;
 	}
+
 	public void setRacChannelUpdateDate(Timestamp racChannelUpdateDate) {
 		this.racChannelUpdateDate = racChannelUpdateDate;
 	}
+
 	public Timestamp getRacChannelInsertDate() {
 		return racChannelInsertDate;
 	}
+
 	public void setRacChannelInsertDate(Timestamp racChannelInsertDate) {
 		this.racChannelInsertDate = racChannelInsertDate;
 	}
+
 	public Channel(int racChannelNo, int racMemberNo, int racChannelStatus, int racCategoryNo, String racChannelTitle,
-			int racChannelFollowers, int racChannelViews, String racChannelUrl, String racChannelThumbnail,
+			int racChannelFollowers, long racChannelViews, String racChannelUrl, String racChannelThumbnail,
 			Timestamp racChannelCreateDate, Timestamp racChannelUpdateDate, Timestamp racChannelInsertDate) {
 		super();
 		this.racChannelNo = racChannelNo;
@@ -109,5 +134,6 @@ public class Channel {
 		this.racChannelUpdateDate = racChannelUpdateDate;
 		this.racChannelInsertDate = racChannelInsertDate;
 	}
+	
 	
 }
