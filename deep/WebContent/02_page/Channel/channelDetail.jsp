@@ -137,7 +137,9 @@
 						<div class="txt-center inline-block">기업회원으로 로그인하면 이 채널의 비즈니스
 							정보를 확인할 수 있습니다.</div>
 						<div class="pTop txt-center">
-							<button class="commonBtn">기업회원으로 로그인하기</button>
+							<button class="commonBtn">
+								<a href="/02_page/Auth/login.jsp">기업회원으로 로그인하기</a>
+							</button>
 						</div>
 					</div>
 
@@ -476,9 +478,9 @@
 								</div>
 
 							</div>
-							
+
 							<div class="pTop2"></div>
-							
+
 							<div class="review">
 								<div class="review-top">
 									<div class="date float-left">최근 1년 이내, 실제 집행된 광고에 대한

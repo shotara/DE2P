@@ -604,11 +604,12 @@ ul.sub-tabs li a.active {
 	outline-style: none;
 }
 
-.search-result {
-	min-height: 300px;
+.searchResult {
+	height : auto;
 	width: auto;
 }
 
 .non-result {
 	font-size: 30px;
+	min-height : 400px;
 }
