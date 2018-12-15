@@ -21,32 +21,28 @@ a {
 	border-top: 10px;
 }
 
-.li-right {
-	float: right;
-}
-
 .pTop {
-	padding-top : 10px;
+	padding-top: 10px;
 }
 
 .pTop2 {
-	padding-top : 20px;
+	padding-top: 20px;
 }
 
 .pTop3 {
-	padding-top : 30px;
+	padding-top: 30px;
 }
 
 .pTop4 {
-	padding-top : 40px;
+	padding-top: 40px;
 }
 
 .pTop5 {
-	padding-top : 50px;
+	padding-top: 50px;
 }
 
 .pTop10 {
-	padding-top : 100px;
+	padding-top: 100px;
 }
 
 .pRight {
@@ -63,6 +59,22 @@ a {
 
 .pBottom3 {
 	padding-bottom: 30px;
+}
+
+.mTop {
+	margin-top : 10px;
+}
+
+.mBottom {
+	margin-bottom : 10px;
+}
+
+.mRight {
+	margin-right : 10px;
+}
+
+.mLeft {
+	margin-left : 10px;
 }
 
 .txt-center {
@@ -87,6 +99,14 @@ a {
 
 .display-block {
 	display: block;
+}
+
+.display-intial {
+	display : initial;
+}
+
+.display-inherit {
+	display : inherit;
 }
 
 .inline-flex {
@@ -121,6 +141,14 @@ a {
 	height: 50%;
 }
 
+.w10 {
+	width : 10%;
+}
+
+.w20 {
+	width : 20%;
+}
+
 .commonA {
 	text-decoration: none !important;
 	color: #f11834 !important;
@@ -131,9 +159,14 @@ a {
 	color: #f11834 !important;
 }
 
+.primary-color {
+	color: #f11834 !important;
+}
+
 /**********************************/
 /*  button collection  */
 /*********************************/
+
 .commonBtn {
 	width: auto;
 	border-radius: 8px;
@@ -144,7 +177,7 @@ a {
 }
 
 .commonBtn:focus {
-	outline:none;
+	outline: none;
 }
 
 .commonBtn a {
@@ -163,12 +196,12 @@ a {
 	border: 1px solid #f11834;
 	font-size: 1em;
 	height: 36px;
-	background-color : #f11834;
+	background-color: #f11834;
 	color: #fff;
 }
 
 .commonReverseBtn:focus {
-	outline:none;
+	outline: none;
 }
 
 .commonReverseBtn a {
@@ -179,7 +212,7 @@ a {
 .commonReverseBtn a:hover {
 	text-decoration: none !important;
 	background-color: #f11834 !important;
-	color : #fff;
+	color: #fff;
 }
 
 .common-wide-Btn {
@@ -188,13 +221,13 @@ a {
 	border: 1px solid #f11834;
 	font-size: 1em;
 	height: 36px;
-	background-color : #f11834;
+	background-color: #f11834;
 	color: #fff;
-	font-weight : bold;
+	font-weight: bold;
 }
 
 .common-wide-Btn:focus {
-	outline:none;
+	outline: none;
 }
 
 .common-wide-Btn a {
@@ -205,13 +238,15 @@ a {
 	text-decoration: none !important;
 }
 
-.inputJoinBtn {
-	background-color: #4a3c89;
-	border: 0;
+.companyCheckBtn {
 	width: 100%;
-	height: 40px;
-	font-size: 1.25em;
+	border-radius: 8px;
+	border: 1px solid #f11834;
+	font-size: 1em;
+	height: 36px;
+	background-color: #f11834;
 	color: #fff;
+	font-weight: bold;
 }
 
 .rankRowBtn {
@@ -281,6 +316,24 @@ a.subnav-link:hover {
 /**********************************/
 /*  join  */
 /*********************************/
+.ipt-Member-Join {
+	height: 36px;
+	font-size: 1em;
+	width: 100%;
+	border: 1px solid #eee;
+	border-radius: 3px;
+	padding-left: 10px;
+}
+
+.ipt-Company-Number {
+	height: 36px;
+	font-size: 1em;
+	width: 100%;
+	border: 1px solid #eee;
+	border-radius: 3px;
+	padding-left: 10px;
+}
+
 .join {
 	display: -ms-flexbox;
 	display: flex;
@@ -330,10 +383,9 @@ a.subnav-link:hover {
 /**********************************/
 /*  login  */
 /*********************************/
-
 .login {
-	padding-right : 240px;
-	padding-left : 240px;
+	padding-right: 240px;
+	padding-left: 240px;
 }
 
 .login-brand {
@@ -345,65 +397,64 @@ a.subnav-link:hover {
 }
 
 .brand-color {
-	color : #f11834;
+	color: #f11834;
 }
 
 .gray-color {
-	color : #707070;
+	color: #707070;
 }
 
-.login-Redirect a{
-	color : #707070;
+.login-Redirect a {
+	color: #707070;
 }
 
 .login-Redirect a:hover {
-	color : #707070;
+	color: #707070;
 }
 
 .login-type-corp {
-	border : 0;
-	border-bottom : 1px solid #f11834;
-	font-weight : bold;
+	border: 0;
+	border-bottom: 1px solid #f11834;
+	font-weight: bold;
 }
 
 .login-commonTxt {
-	font-weight : bold;
-	padding-bottom : 5px;
+	font-weight: bold;
+	padding-bottom: 5px;
 }
 
 .ipt-login {
-	width : 100%;
-	display : inline-block;
+	width: 100%;
+	display: inline-block;
 }
 
 .ipt-Member-Email {
-	height : 40px;
-	font-size : 1em;
-	width : 100%;
-	border : 1px solid #eee;
-	border-radius : 3px;
-	padding-left : 10px;
+	height: 36px;
+	font-size: 1em;
+	width: 100%;
+	border: 1px solid #eee;
+	border-radius: 3px;
+	padding-left: 10px;
 }
 
 .ipt-Member-Email:focus {
-	border : 1px solid #f11834;
-	outline : none;
+	border: 1px solid #f11834;
+	outline: none;
 }
 
 .ipt-Member-Password {
-	height : 40px;
-	font-size : 1em;
-	width : 100%;
-	border : 1px solid #eee;
-	border-radius : 3px;
-	padding-left : 10px;
+	height: 36px;
+	font-size: 1em;
+	width: 100%;
+	border: 1px solid #eee;
+	border-radius: 3px;
+	padding-left: 10px;
 }
 
 .ipt-Member-Password:focus {
-	border : 1px solid #f11834;
-	outline : none;
+	border: 1px solid #f11834;
+	outline: none;
 }
-
 
 /**********************************/
 /*  main - list type using CSS */
@@ -709,23 +760,35 @@ ul.sub-tabs li a.active {
 	outline-style: none;
 }
 
-.clearable{
-  background: #fff url('../01_image/commonImg/mJotv.gif') no-repeat right -10px center;
-  border: 1px solid #999;
-  padding: 3px 18px 3px 4px; /* Use the same right padding (18) in jQ! */
-  border-radius: 3px;
-  transition: background 0.4s;
+.clearable {
+	background: #fff url('../01_image/commonImg/mJotv.gif') no-repeat right
+		-10px center;
+	border: 1px solid #999;
+	padding: 3px 18px 3px 4px; /* Use the same right padding (18) in jQ! */
+	border-radius: 3px;
+	transition: background 0.4s;
 }
-.clearable.x  { background-position: right 5px center; }
-.clearable.onX{ cursor: pointer; }
-.clearable::-ms-clear {display: none; width:0; height:0;}
+
+.clearable.x {
+	background-position: right 5px center;
+}
+
+.clearable.onX {
+	cursor: pointer;
+}
+
+.clearable::-ms-clear {
+	display: none;
+	width: 0;
+	height: 0;
+}
 
 .searchResult {
-	height : auto;
+	height: auto;
 	width: auto;
 }
 
 .non-result {
 	font-size: 30px;
-	min-height : 400px;
+	min-height: 400px;
 }

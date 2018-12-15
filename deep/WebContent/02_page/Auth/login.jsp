@@ -42,15 +42,15 @@
 					<div class="pTop3"></div>
 
 					<div class="ipt-login">
-						<div class="float-left login-commonTxt">이메일</div>
+						<div class="float-left login-commonTxt">아이디</div>
 						<input class="ipt-Member-Email" type="email" id="inputMemberEmail"
-							placeholder="email@email.com" required />
+							placeholder="이메일을 입력해주세요." required />
 					</div>
 
 					<div class="ipt-login pTop2">
-						<div class="float-left login-commonTxt">패스워드</div>
+						<div class="float-left login-commonTxt">비밀번호</div>
 						<input class="ipt-Member-Password" type="password"
-							id="inputMemberPassword" placeholder="******" required />
+							id="inputMemberPassword" placeholder="비밀번호를 입력해주세요." required />
 					</div>
 
 					<div class="pTop3"></div>
