@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.rancre.model.domain.Channel;
+import com.rancre.model.domain.ChannelAd;
 import com.rancre.model.domain.Feed;
 import com.rancre.model.domain.FeedComment;
 import com.rancre.model.domain.FeedCount;
@@ -13,6 +15,8 @@ import com.rancre.model.domain.FeedList;
 import com.rancre.model.domain.FeedSeries;
 import com.rancre.model.domain.RankCategory;
 import com.rancre.model.domain.RankTop;
+import com.rancre.model.domain.Review;
+import com.rancre.model.domain.Video;
 import com.rancre.util.DAOFactory;
 
 public class ChannelDAO {
@@ -599,6 +603,42 @@ public class ChannelDAO {
 			map.put("categoryNo", categoryNo);
 
 			return (ArrayList)sqlSession.selectList(namespace + ".getRankingList2", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static Channel getChannelByNo(int inputChannelNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (Channel)sqlSession.selectOne(namespace + ".getChannelByNo", inputChannelNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static ArrayList<ChannelAd> getChannelAdList(int inputChannelNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (ArrayList)sqlSession.selectList(namespace + ".getChannelAdList", inputChannelNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static ArrayList<Review> getReviewList(int inputChannelNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (ArrayList)sqlSession.selectList(namespace + ".getReviewList", inputChannelNo);
 			
 		} finally {
 			sqlSession.close();

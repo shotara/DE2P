@@ -77,11 +77,11 @@
 					<div id="" class="col w-auto d-inline-block txt-center">
 						<span>1위 </span><span>-</span>
 					</div>
-					<div id="" class="col w-auto d-inline-block txt-center">1,223,232</div>
+					<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelFollowers }</div>
 					<div id="" class="col w-auto d-inline-block txt-center">+
-						123,232</div>
-					<div id="" class="col w-auto d-inline-block txt-center">123,232,232,232</div>
-					<div id="" class="col w-auto d-inline-block txt-center">12,232,232</div>
+						${requestScope.outputChannelBeforeFollowers }</div>
+					<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelViews }</div>
+					<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelRecentViews }</div>
 				</div>
 
 				<!-- 채널 스텟 - 종합순위/총구독자수/차주대비/총조회수/최근평균조회수 끝 -->
@@ -89,6 +89,7 @@
 				<hr
 					style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 
+				<c:if test ="${not empty sessionScope.racMemberNo}">
 				<!-- 채널 스탯 - 광고만족도/광고평균조회수/단가/카테고리 시작 로그인시 노출 정보  -->
 
 				<div class="chnDtlInfo">
@@ -115,21 +116,20 @@
 
 					<div class="row w-auto ml-auto">
 						<div id="" class="col w-auto d-inline-block txt-center">
-							<span>1위 </span><span>-</span>
+							<span>${requestScope.outputAdSatisfyRank }</span><span>-</span>
 						</div>
-						<div id="" class="col w-auto d-inline-block txt-center">1,223,232</div>
-						<div id="" class="col w-auto d-inline-block txt-center">+
-							123,232</div>
-						<div id="" class="col w-auto d-inline-block txt-center">123,232,232,232</div>
-						<div id="" class="col w-auto d-inline-block txt-center">12,232,232</div>
+						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdViews }</div>
+						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdMinPrice }</div>
+						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdEvenPrice }</div>
+						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdMaxPrice }</div>
 					</div>
 
 				</div>
-
+				
 				<!-- 채널 스탯 - 광고만족도/광고평균조회수/단가/카테고리 끝 -->
-
+				</c:if>
+				<c:if test ="${empty sessionScope.racMemberNo}">
 				<!-- 비로그인 시 채널 스텟 가리기 -->
-
 				<div class="chnDtlCover w-100">
 					<div class="pTop3 pBottom">
 						<div class="txt-center inline-block">이 채널의 광고 만족도, 광고 가격,
@@ -144,8 +144,8 @@
 					</div>
 
 				</div>
-
 				<!-- 비로그인 시 채널 스텟 가리기 -->
+				</c:if>
 
 
 				<hr

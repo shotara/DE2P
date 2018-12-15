@@ -24,7 +24,17 @@
 		<servlet-name>BlogView</servlet-name>
 		<url-pattern>/blog</url-pattern>
 	</servlet-mapping>
-	         
+ 	
+ 	<servlet>
+		<servlet-name>ChannelView</servlet-name>
+		<servlet-class>com.rancre.view.ChannelView</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ChannelView</servlet-name>
+		<url-pattern>/channel</url-pattern>
+	</servlet-mapping>
+	        
 	<servlet>
 		<servlet-name>CommonView</servlet-name>
 		<servlet-class>com.rancre.view.CommonView</servlet-class>
