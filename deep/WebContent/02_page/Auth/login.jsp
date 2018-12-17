@@ -18,7 +18,7 @@
 			<div class="col txt-center">
 				<div class="txt-center login">
 
-					<div class="pTop"></div>
+					<div class="pTop3"></div>
 
 					<div class="float-right login-Redirect">
 						<a href="/index.jsp">홈으로</a>
@@ -47,25 +47,25 @@
 							placeholder="이메일을 입력해주세요." required />
 					</div>
 
-					<div class="ipt-login pTop2">
+					<div class="ipt-login pTop3">
 						<div class="float-left login-commonTxt">비밀번호</div>
 						<input class="ipt-Member-Password" type="password"
 							id="inputMemberPassword" placeholder="비밀번호를 입력해주세요." required />
 					</div>
 
-					<div class="pTop3"></div>
+					<div class="pTop5"></div>
 
 					<div>
 						<a href="#" onclick="Auth.login()"><button
 								class="common-wide-Btn" type="button">로그인</button></a>
 					</div>
 
-					<div class="pTop3"></div>
+					<div class="pTop5"></div>
 
 					<hr
 						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa;">
 
-					<div class="pTop2"></div>
+					<div class="pTop3"></div>
 
 					<div class="row">
 						<div class="col login-Redirect">
@@ -79,7 +79,7 @@
 						</div>
 					</div>
 					
-					<div class="pTop4"></div>
+					<div class="pTop5"></div>
 
 					<div class="float-left"><span class="brand-color">Rancre</span><span class="gray-color"> all right reserved.</span></div>
 					<div class="float-right login-Redirect"><a href="#">Contact Us</a></div>

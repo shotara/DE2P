@@ -18,14 +18,14 @@
 			<div class="col txt-center">
 				<div class="txt-center login">
 
-					<div class="pTop"></div>
+					<div class="pTop3"></div>
 
 					<div class="float-right login-Redirect">
 						<a href="/index.jsp">홈으로</a>
 					</div>
 					<div class="login-brand">Rancre</div>
 
-					<div class="pTop3"></div>
+					<div class="pTop2"></div>
 
 					<div>
 						<span>더 많은 채널의 광고 리뷰가 궁금하신가요? </br> 지금 랭크리에서 2,342개 채널의 광고 효과를
@@ -66,28 +66,28 @@
 					</div>
 					<div class="inline-flex">
 						<input class="ipt-Company-Number display-initial" type="text"
-							id="inputCompany-Number1" required />
-						<div class="ipt-Company-Slash display-initial">-</div>
+							id="inputCompany-Number1" maxlength="3" required />
+						<span class="pRight pLeft pTop-half">-</span>
 						<input class="ipt-Company-Number display-initial" type="text"
-							id="inputCompany-Number2" required />
-						<div class="ipt-Company-Slash display-initial">-</div>
+							id="inputCompany-Number2" maxlength="2" required />
+						<span class="pRight pLeft pTop-half">-</span>
 						<input class="ipt-Company-Number display-initial mRight" type="text"
-							id="inputCompany-Number3" required />
-						<div class="w20 display-initial">
+							id="inputCompany-Number3" maxlength="5" required />
+						<div class="ipt-Company-Check display-initial">
 							<button class="companyCheckBtn" onclick="">조회</button>
 						</div>
 					</div>
 
 
-					<div class="pTop2"></div>
+					<div class="pTop3"></div>
 
-					<div class="">
-						<span>동영상 채널을 이용하여 광고를 하신적이 있나요?</span> </br> <span>광고 후기를 입력하면
-							다른 광고 후기를 바로 확인할 수 있어요!</span>
+					<div class="notice">
+						<span>동영상 채널을 이용하여 광고를 하신적이 있나요?</span> </br> <span>지금 광고 리뷰를 입력하면
+							다른 광고 리뷰와 채널의 비즈니스 정보를 바로 확인할 수 있어요!</span>
 
 					</div>
 
-					<div class="">
+					<div class="comercial-check">
 						<input type="radio" id="yes" name="commercialCheck" checked>
 						<label for="yes">예</label> <input type="radio" id="no"
 							name="commercialCheck"> <label for="no">아니오</label>
