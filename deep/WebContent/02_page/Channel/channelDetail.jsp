@@ -16,7 +16,7 @@
 	<jsp:include page="/02_page/commonNav.jsp" flush="false" />
 	<div class="container">
 		<div class="row">
-			<div class="col pt-3">
+			<div class="col v20">
 
 				<!-- 채널 상세 페이지 상단 영역 시작  -->
 

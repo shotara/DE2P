@@ -16,16 +16,16 @@
 	<div class="container">
 		<div class="row">
 			<div class="col txt-center">
-				<div class="txt-center login">
+				<div class="txt-center join">
 
-					<div class="pTop3"></div>
+					<div class="v20"></div>
 
 					<div class="float-right login-Redirect">
 						<a href="/index.jsp">홈으로</a>
 					</div>
 					<div class="login-brand">Rancre</div>
 
-					<div class="pTop2"></div>
+					<div class="pTop"></div>
 
 					<div>
 						<span>더 많은 채널의 광고 리뷰가 궁금하신가요? </br> 지금 랭크리에서 2,342개 채널의 광고 효과를
@@ -36,7 +36,7 @@
 					<div class="pTop3"></div>
 
 					<div class="ipt-login">
-						<div class="float-left login-commonTxt">
+						<div class="float-left join-commonTxt">
 							아이디<span class="primary-color">*</span>
 						</div>
 						<input class="ipt-Member-Join" type="email" id="inputMemberEmail"
@@ -44,7 +44,7 @@
 					</div>
 
 					<div class="ipt-login pTop2">
-						<div class="float-left login-commonTxt">
+						<div class="float-left join-commonTxt">
 							비밀번호<span class="primary-color">*</span>
 						</div>
 						<input class="ipt-Member-Join" type="password"
@@ -52,7 +52,7 @@
 					</div>
 
 					<div class="ipt-login pTop2">
-						<div class="float-left login-commonTxt">
+						<div class="float-left join-commonTxt">
 							회사명<span class="primary-color">*</span>
 						</div>
 						<input class="ipt-Member-Join" type="text" id="inputCompanyName"
@@ -60,43 +60,28 @@
 					</div>
 
 					<div class="ipt-login pTop2">
-						<div class="float-left login-commonTxt">
+						<div class="float-left join-commonTxt">
 							사업자번호<span class="primary-color">*</span>
 						</div>
 					</div>
 					<div class="inline-flex">
 						<input class="ipt-Company-Number display-initial" type="text"
-							id="inputCompany-Number1" maxlength="3" required />
-						<span class="pRight pLeft pTop-half">-</span>
-						<input class="ipt-Company-Number display-initial" type="text"
-							id="inputCompany-Number2" maxlength="2" required />
-						<span class="pRight pLeft pTop-half">-</span>
-						<input class="ipt-Company-Number display-initial mRight" type="text"
+							id="inputCompany-Number1" maxlength="3" required /> <span
+							class="pRight pLeft pTop-half">-</span> <input
+							class="ipt-Company-Number display-initial" type="text"
+							id="inputCompany-Number2" maxlength="2" required /> <span
+							class="pRight pLeft pTop-half">-</span> <input
+							class="ipt-Company-Number display-initial mRight" type="text"
 							id="inputCompany-Number3" maxlength="5" required />
 						<div class="ipt-Company-Check display-initial">
 							<button class="companyCheckBtn" onclick="">조회</button>
 						</div>
 					</div>
 
-
-					<div class="pTop3"></div>
-
-					<div class="notice">
-						<span>동영상 채널을 이용하여 광고를 하신적이 있나요?</span> </br> <span>지금 광고 리뷰를 입력하면
-							다른 광고 리뷰와 채널의 비즈니스 정보를 바로 확인할 수 있어요!</span>
-
-					</div>
-
-					<div class="comercial-check">
-						<input type="radio" id="yes" name="commercialCheck" checked>
-						<label for="yes">예</label> <input type="radio" id="no"
-							name="commercialCheck"> <label for="no">아니오</label>
-					</div>
-
 					<div class="pTop3"></div>
 
 					<div>
-						<a href="#" onclick="Auth.join()"><button
+						<a href="../Auth/joinPermit.jsp" onclick="Auth.join()"><button
 								class="common-wide-Btn" type="button">회원가입</button></a>
 					</div>
 
@@ -128,6 +113,8 @@
 					<div class="float-right login-Redirect">
 						<a href="#">Contact Us</a>
 					</div>
+
+					<div class="pTop4"></div>
 
 
 				</div>

@@ -18,7 +18,7 @@
 	<section class="section" data-type="feed">
 	<div class="container">
 		<div class="row">
-			<div class="col pt-3">
+			<div class="col v20">
 				<div class="w-auto ml-auto">
 					<h3>새로운 채널</h3>
 				</div>

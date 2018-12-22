@@ -18,22 +18,20 @@
 			<div class="col txt-center">
 				<div class="txt-center login">
 
-					<div class="pTop3"></div>
+					<div class="v20"></div>
 
 					<div class="float-right login-Redirect">
 						<a href="/index.jsp">홈으로</a>
 					</div>
 					<div class="login-brand">Rancre</div>
 
-					<div class="pTop2"></div>
+					<div class="pTop"></div>
 
 					<div class="float-left login-type-corp">기업</div>
 					<hr
 						style="margin-top: 1.5rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa;">
 
-					<div class="pTop3"></div>
-
-					<div>
+					<div class="pTop2">
 						<span>더 많은 채널의 광고 리뷰가 궁금하신가요? </br> 지금 랭크리에서 2,342개 채널의 광고 효과를
 							확인해보세요!
 						</span>
@@ -84,7 +82,7 @@
 					<div class="float-left"><span class="brand-color">Rancre</span><span class="gray-color"> all right reserved.</span></div>
 					<div class="float-right login-Redirect"><a href="#">Contact Us</a></div>
 					
-					
+					<div class="pTop5"></div>
 				</div>
 			</div>
 		</div>

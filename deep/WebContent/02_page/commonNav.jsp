@@ -23,7 +23,7 @@
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active"><a class="nav-link"
-						href="#">리뷰등록</a></li>
+						href="../02_page/Review/review.jsp" onclick="Auth.loginCheck()">리뷰등록</a></li>
 				<c:if test="${empty sessionScope.deepMemberNo}">
 					<li class="nav-item active"><a class="nav-link"
 						href="/02_page/Auth/login.jsp">로그인</a></li>
