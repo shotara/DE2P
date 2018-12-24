@@ -644,4 +644,40 @@ public class ChannelDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static ArrayList<Video> getRecentVieoList(int inputChannelNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (ArrayList)sqlSession.selectList(namespace + ".getRecentVieoList", inputChannelNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static ArrayList<Video> getChannelAdVideoList(int inputChannelNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (ArrayList)sqlSession.selectList(namespace + ".getChannelAdVideoList", inputChannelNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static ChannelAd getChannelAd(int inputChannelAdNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (ChannelAd)sqlSession.selectOne(namespace + ".getChannelAd", inputChannelAdNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

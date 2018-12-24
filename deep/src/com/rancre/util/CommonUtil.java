@@ -339,7 +339,7 @@ public class CommonUtil {
 			if(str.length() > 13) return str.substring(0,13)+"...";
 			else return str;		
 		case 3:
-			if(str.length() > 20) return str.substring(0,10)+"...";
+			if(str.length() > 20) return str.substring(0,15)+"...";
 			else return str;
 		default:
 			return null;

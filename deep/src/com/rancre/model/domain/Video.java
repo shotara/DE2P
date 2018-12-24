@@ -3,32 +3,35 @@ package com.rancre.model.domain;
 import java.sql.Timestamp;
 
 public class Video {
-	private String racVideoUrl;
-	private String racVideoThumbnail;
-	private long racVideoView;
+	private int racVideoNo;
+	private int racChannelNo;
+	private String racVideoId;
 	private String racVideoTitle;
-	private Timestamp racVideoCreateDate;
+	private long racVideoViews;
+	private String racVideoThumbnail;
+	private String racVideoCreateDate;
+	private Timestamp racVideoUpdateDate;
 	public Video() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public String getRacVideoUrl() {
-		return racVideoUrl;
+	public int getRacVideoNo() {
+		return racVideoNo;
 	}
-	public void setRacVideoUrl(String racVideoUrl) {
-		this.racVideoUrl = racVideoUrl;
+	public void setRacVideoNo(int racVideoNo) {
+		this.racVideoNo = racVideoNo;
 	}
-	public String getRacVideoThumbnail() {
-		return racVideoThumbnail;
+	public int getRacChannelNo() {
+		return racChannelNo;
 	}
-	public void setRacVideoThumbnail(String racVideoThumbnail) {
-		this.racVideoThumbnail = racVideoThumbnail;
+	public void setRacChannelNo(int racChannelNo) {
+		this.racChannelNo = racChannelNo;
 	}
-	public long getRacVideoView() {
-		return racVideoView;
+	public String getRacVideoId() {
+		return racVideoId;
 	}
-	public void setRacVideoView(long racVideoView) {
-		this.racVideoView = racVideoView;
+	public void setRacVideoId(String racVideoId) {
+		this.racVideoId = racVideoId;
 	}
 	public String getRacVideoTitle() {
 		return racVideoTitle;
@@ -36,19 +39,41 @@ public class Video {
 	public void setRacVideoTitle(String racVideoTitle) {
 		this.racVideoTitle = racVideoTitle;
 	}
-	public Timestamp getRacVideoCreateDate() {
+	public long getRacVideoViews() {
+		return racVideoViews;
+	}
+	public void setRacVideoViews(long racVideoViews) {
+		this.racVideoViews = racVideoViews;
+	}
+	public String getRacVideoThumbnail() {
+		return racVideoThumbnail;
+	}
+	public void setRacVideoThumbnail(String racVideoThumbnail) {
+		this.racVideoThumbnail = racVideoThumbnail;
+	}
+	public String getRacVideoCreateDate() {
 		return racVideoCreateDate;
 	}
-	public void setRacVideoCreateDate(Timestamp racVideoCreateDate) {
+	public void setRacVideoCreateDate(String racVideoCreateDate) {
 		this.racVideoCreateDate = racVideoCreateDate;
 	}
-	public Video(String racVideoUrl, String racVideoThumbnail, long racVideoView, String racVideoTitle,
-			Timestamp racVideoCreateDate) {
+	public Timestamp getRacVideoUpdateDate() {
+		return racVideoUpdateDate;
+	}
+	public void setRacVideoUpdateDate(Timestamp racVideoUpdateDate) {
+		this.racVideoUpdateDate = racVideoUpdateDate;
+	}
+	public Video(int racVideoNo, int racChannelNo, String racVideoId, String racVideoTitle, long racVideoViews,
+			String racVideoThumbnail, String racVideoCreateDate, Timestamp racVideoUpdateDate) {
 		super();
-		this.racVideoUrl = racVideoUrl;
-		this.racVideoThumbnail = racVideoThumbnail;
-		this.racVideoView = racVideoView;
+		this.racVideoNo = racVideoNo;
+		this.racChannelNo = racChannelNo;
+		this.racVideoId = racVideoId;
 		this.racVideoTitle = racVideoTitle;
+		this.racVideoViews = racVideoViews;
+		this.racVideoThumbnail = racVideoThumbnail;
 		this.racVideoCreateDate = racVideoCreateDate;
+		this.racVideoUpdateDate = racVideoUpdateDate;
 	}
+	
 }

@@ -64,13 +64,26 @@ public class ChannelController {
 			req.setAttribute("outputChannelViews", channel.getRacChannelViews());
 			req.setAttribute("outputChannelRecentViews", channel.getRacChannelViews()/1000);
 			
-			// Get Youtube Channel Video API
-			ArrayList<Video> recentVideoList = new ArrayList<Video>();
-			Video tempRecentVideo = new Video();
+			// Get Youtube Channel Video
+			ArrayList<Video> recentVideoList = ChannelDAO.getRecentVieoList(inputChannelNo);
+			ArrayList<HashMap<String,Object>> outputRecentVideoList = new ArrayList<HashMap<String,Object>>();
 			
+			for(int i=0; i < recentVideoList.size(); i++) {
+				HashMap<String,Object> tempObejct = new HashMap<String,Object>();
+				tempObejct.put("outputVideoNo", recentVideoList.get(i).getRacVideoNo());
+				tempObejct.put("outputChannelNo", recentVideoList.get(i).getRacChannelNo());
+				tempObejct.put("outputVideoId", recentVideoList.get(i).getRacVideoId());
+				tempObejct.put("outputVideoTitle", CommonUtil.splitString(recentVideoList.get(i).getRacVideoTitle(), 3));
+				tempObejct.put("outputVideoThumbnail", recentVideoList.get(i).getRacVideoThumbnail());
+				tempObejct.put("outputVideoViews", recentVideoList.get(i).getRacVideoViews());
+				tempObejct.put("outputVideoCreateDate", recentVideoList.get(i).getRacVideoCreateDate());
+				
+				outputRecentVideoList.add(tempObejct);
+				
+			}
 			
-			
-			req.setAttribute("outputRecentVideos", recentVideoList);
+			req.setAttribute("outputRecentVideoList", outputRecentVideoList);
+			req.setAttribute("outputRecentVideoList2", recentVideoList);
 
 			// Channel Ad part
 			if(sessionMemberNo>0) {
@@ -81,21 +94,47 @@ public class ChannelController {
 				req.setAttribute("outputAdMaxPrice", 100000);
 
 				// Get Youtube Video API
-				ArrayList<ChannelAd> channelAdList = ChannelDAO.getChannelAdList(inputChannelNo);
-				ArrayList<Video> adVideoList = new ArrayList<Video>();
+				ArrayList<Video> channelAdList = ChannelDAO.getChannelAdVideoList(inputChannelNo);
+				ArrayList<HashMap<String,Object>> adVideoList = new ArrayList<HashMap<String,Object>>();
 
 				for(int i=0; i<channelAdList.size();i++) {
-					Video tempVideo = new Video();
-					tempVideo.setRacVideoUrl(channelAdList.get(i).getRacChannelAdUrl());
-					adVideoList.add(tempVideo);
+					HashMap<String,Object> tempObejct = new HashMap<String,Object>();
+					tempObejct.put("outputVideoNo", channelAdList.get(i).getRacVideoNo());
+					tempObejct.put("outputChannelNo", channelAdList.get(i).getRacChannelNo());
+					tempObejct.put("outputVideoId", channelAdList.get(i).getRacVideoId());
+					tempObejct.put("outputVideoTitle", CommonUtil.splitString(channelAdList.get(i).getRacVideoTitle(), 3));
+					tempObejct.put("outputVideoThumbnail", channelAdList.get(i).getRacVideoThumbnail());
+					tempObejct.put("outputVideoViews", channelAdList.get(i).getRacVideoViews());
+					tempObejct.put("outputVideoCreateDate", channelAdList.get(i).getRacVideoCreateDate());
+					
+					adVideoList.add(tempObejct);
 				}
-
-				req.setAttribute("outputAdVideos", adVideoList);
+				req.setAttribute("outputAdVideoList", adVideoList);
 
 				// Channel Reviews
 				ArrayList<Review> reviewList = ChannelDAO.getReviewList(inputChannelNo);
-				
-				req.setAttribute("outputReivews", reviewList);
+				ArrayList<HashMap<String,Object>> outputReviewList = new ArrayList<HashMap<String,Object>>();
+
+				for(int i=0; i<channelAdList.size();i++) {
+					HashMap<String,Object> tempObejct = new HashMap<String,Object>();
+					tempObejct.put("outputReviewNo", reviewList.get(i).getRacReviewNo());
+					tempObejct.put("outputChannelNo", reviewList.get(i).getRacChannelNo());
+					tempObejct.put("outputChannelAdNo", reviewList.get(i).getRacChannelAdNo());
+					tempObejct.put("outputChannelAdType", ChannelDAO.getChannelAd(reviewList.get(i).getRacChannelAdNo()).getRacChannelAdType());
+					tempObejct.put("outputChannelCostNo", reviewList.get(i).getRacChannelCostNo());
+					tempObejct.put("outputReviewSatisfy", reviewList.get(i).getRacReviewSatisfy());
+					tempObejct.put("outputReviewTargetReach", reviewList.get(i).getRacReviewTargetReach());
+					tempObejct.put("outputReviewTargetConversion", reviewList.get(i).getRacReviewTargetConversion());
+					tempObejct.put("outputReviewTargetGender", reviewList.get(i).getRacReviewTargetGender());
+					tempObejct.put("outputReviewTargetAge", reviewList.get(i).getRacReviewTargetAge());
+					tempObejct.put("outputReviewRecomand", reviewList.get(i).getRacReviewRecomand());
+					tempObejct.put("outputReviewAdAgain", reviewList.get(i).getRacReviewAdAgain());
+					tempObejct.put("outputReviewDetail", reviewList.get(i).getRacReviewDetail());
+					tempObejct.put("outputReviewCreateDate", reviewList.get(i).getRacReviewCreateDate());
+
+					outputReviewList.add(tempObejct);
+				}
+				req.setAttribute("outputReivewList", outputReviewList);
 				
 			}
 			

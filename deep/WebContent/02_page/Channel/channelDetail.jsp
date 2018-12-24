@@ -83,7 +83,7 @@
 					<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelViews }</div>
 					<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelRecentViews }</div>
 				</div>
-
+				
 				<!-- 채널 스텟 - 종합순위/총구독자수/차주대비/총조회수/최근평균조회수 끝 -->
 
 				<hr
@@ -179,76 +179,22 @@
 						<div class="pTop2"></div>
 
 						<div class="uploadVideos inline-block">
+							<c:forEach var="item" items="${requestScope.outputRecentVideoList}">
 							<div class="uploadVideo float-left">
 								<div class="videoThumb">
-									<img style="width: 210"
-										src="https://i.ytimg.com/vi/nM0xDI5R50E/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCyX3ITgm7WVhMGHX6HEi78Wz8WPQ">
+									<img style="width: 210px" 
+										src="${item.outputVideoThumbnail}">
 								</div>
 								<div class="detail">
-									<div class="title inline-block">[MV] IU(아이유)_BBIBBI(삐삐)</div>
+									<div class="title inline-block">${item.outputVideoTitle }</div>
 									<div class="count inline">
 										<div class="float-left pRight">조회수</div>
-										<div class="float-left">4863만</div>
+										<div class="float-left">${item.outputVideoViews }</div>
 										<div class="float-right">1개월 전</div>
 									</div>
 								</div>
 							</div>
-							<div class="uploadVideo float-left">
-								<div class="videoThumb">
-									<img style="width: 210"
-										src="https://i.ytimg.com/vi/nM0xDI5R50E/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCyX3ITgm7WVhMGHX6HEi78Wz8WPQ">
-								</div>
-								<div class="detail">
-									<div class="title inline-block">[MV] IU(아이유)_BBIBBI(삐삐)</div>
-									<div class="count inline">
-										<div class="float-left pRight">조회수</div>
-										<div class="float-left">4863만</div>
-										<div class="float-right">1개월 전</div>
-									</div>
-								</div>
-							</div>
-							<div class="uploadVideo float-left">
-								<div class="videoThumb">
-									<img style="width: 210"
-										src="https://i.ytimg.com/vi/nM0xDI5R50E/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCyX3ITgm7WVhMGHX6HEi78Wz8WPQ">
-								</div>
-								<div class="detail">
-									<div class="title inline-block">[MV] IU(아이유)_BBIBBI(삐삐)</div>
-									<div class="count inline">
-										<div class="float-left pRight">조회수</div>
-										<div class="float-left">4863만</div>
-										<div class="float-right">1개월 전</div>
-									</div>
-								</div>
-							</div>
-							<div class="uploadVideo float-left">
-								<div class="videoThumb">
-									<img style="width: 210"
-										src="https://i.ytimg.com/vi/nM0xDI5R50E/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCyX3ITgm7WVhMGHX6HEi78Wz8WPQ">
-								</div>
-								<div class="detail">
-									<div class="title inline-block">[MV] IU(아이유)_BBIBBI(삐삐)</div>
-									<div class="count inline">
-										<div class="float-left pRight">조회수</div>
-										<div class="float-left">4863만</div>
-										<div class="float-right">1개월 전</div>
-									</div>
-								</div>
-							</div>
-							<div class="uploadVideo-right float-right">
-								<div class="videoThumb">
-									<img style="width: 210"
-										src="https://i.ytimg.com/vi/nM0xDI5R50E/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCyX3ITgm7WVhMGHX6HEi78Wz8WPQ">
-								</div>
-								<div class="detail">
-									<div class="title inline-block">[MV] IU(아이유)_BBIBBI(삐삐)</div>
-									<div class="count inline">
-										<div class="float-left pRight">조회수</div>
-										<div class="float-left">4863만</div>
-										<div class="float-right">1개월 전</div>
-									</div>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 					</div>
 
@@ -267,76 +213,22 @@
 
 
 						<div class="comercialVideos inline-block">
+							<c:forEach var="item" items="${requestScope.outputAdVideoList}">
 							<div class="comercialVideo float-left">
 								<div class="videoThumb">
-									<img style="width: 210"
-										src="https://i.ytimg.com/vi/nM0xDI5R50E/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCyX3ITgm7WVhMGHX6HEi78Wz8WPQ">
+									<img style="width: 210px" 
+										src="${item.outputVideoThumbnail}">								
 								</div>
 								<div class="detail">
-									<div class="title inline-block">[MV] IU(아이유)_BBIBBI(삐삐)</div>
+									<div class="title inline-block">${item.outputVideoTitle }</div>
 									<div class="count inline">
 										<div class="float-left pRight">조회수</div>
-										<div class="float-left">4863만</div>
+										<div class="float-left">${item.outputVideoViews }</div>
 										<div class="float-right">1개월 전</div>
 									</div>
 								</div>
 							</div>
-							<div class="comercialVideo float-left">
-								<div class="videoThumb">
-									<img style="width: 210"
-										src="https://i.ytimg.com/vi/nM0xDI5R50E/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCyX3ITgm7WVhMGHX6HEi78Wz8WPQ">
-								</div>
-								<div class="detail">
-									<div class="title inline-block">[MV] IU(아이유)_BBIBBI(삐삐)</div>
-									<div class="count inline">
-										<div class="float-left pRight">조회수</div>
-										<div class="float-left">4863만</div>
-										<div class="float-right">1개월 전</div>
-									</div>
-								</div>
-							</div>
-							<div class="comercialVideo float-left">
-								<div class="videoThumb">
-									<img style="width: 210"
-										src="https://i.ytimg.com/vi/nM0xDI5R50E/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCyX3ITgm7WVhMGHX6HEi78Wz8WPQ">
-								</div>
-								<div class="detail">
-									<div class="title inline-block">[MV] IU(아이유)_BBIBBI(삐삐)</div>
-									<div class="count inline">
-										<div class="float-left pRight">조회수</div>
-										<div class="float-left">4863만</div>
-										<div class="float-right">1개월 전</div>
-									</div>
-								</div>
-							</div>
-							<div class="comercialVideo float-left">
-								<div class="videoThumb">
-									<img style="width: 210"
-										src="https://i.ytimg.com/vi/nM0xDI5R50E/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCyX3ITgm7WVhMGHX6HEi78Wz8WPQ">
-								</div>
-								<div class="detail">
-									<div class="title inline-block">[MV] IU(아이유)_BBIBBI(삐삐)</div>
-									<div class="count inline">
-										<div class="float-left pRight">조회수</div>
-										<div class="float-left">4863만</div>
-										<div class="float-right">1개월 전</div>
-									</div>
-								</div>
-							</div>
-							<div class="comercialVideo-right float-right">
-								<div class="videoThumb">
-									<img style="width: 210"
-										src="https://i.ytimg.com/vi/nM0xDI5R50E/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCyX3ITgm7WVhMGHX6HEi78Wz8WPQ">
-								</div>
-								<div class="detail">
-									<div class="title inline-block">[MV] IU(아이유)_BBIBBI(삐삐)</div>
-									<div class="count inline">
-										<div class="float-left pRight">조회수</div>
-										<div class="float-left">4863만</div>
-										<div class="float-right">1개월 전</div>
-									</div>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 
 
@@ -375,8 +267,8 @@
 						<div class="pTop2"></div>
 
 						<!-- channel reivew start -->
-
 						<div class="reviews">
+							<c:forEach var="item" items="${requestScope.outputReivewList}">
 							<div class="review">
 								<div class="review-top">
 									<div class="date float-left">최근 1년 이내, 실제 집행된 광고에 대한
@@ -395,24 +287,16 @@
 										<div class="idx">타깃 연령</div>
 									</div>
 									<div class="review-stat float-left">
-										<div class="stat">4.5</div>
-										<div class="stat">브랜디드 영상</div>
-										<div class="stat">달성</div>
-										<div class="stat">달성</div>
-										<div class="stat">남성</div>
-										<div class="stat">20대 초반 ~ 30대 중반</div>
+										<div class="stat">${item.outputReviewSatisfy }</div>
+										<div class="stat">${item.outputChannelAdType }</div>
+										<div class="stat">${item.outputReviewTargetReach }</div>
+										<div class="stat">${item.outputReviewTargetConversion }</div>
+										<div class="stat">${item.outputReviewTargetGender }</div>
+										<div class="stat">${item.outputReviewTargetAge }</div>
 									</div>
 									<div class="review-text w-auto float-left">
 										<div class="txt">
-											<span>입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
-												이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
-												이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가
-												이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
-												이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가
-												이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
-												이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가
-												이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
-												이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다. </span>
+											<span>${item.outputReviewDetail }</span>
 										</div>
 
 										<div class="pTop2 display-flex"></div>
@@ -420,7 +304,7 @@
 										<div class="bottom-txt row w-100">
 											<div class="col-6 recommend float-left">이 채널을 다른 마케터에게도
 												추천하나요?</div>
-											<div class="col answer float-left">예</div>
+											<div class="col answer float-left">${item.outputReviewAdAgain }</div>
 										</div>
 									</div>
 								</div>
@@ -428,104 +312,8 @@
 							</div>
 
 							<div class="pTop2"></div>
-
-							<div class="review">
-								<div class="review-top">
-									<div class="date float-left">최근 1년 이내, 실제 집행된 광고에 대한
-										리뷰입니다.</div>
-								</div>
-
-								<div class="pTop2 w-100 display-flex"></div>
-
-								<div class="review-detail">
-									<div class="review-row float-left">
-										<div class="idx">광고 만족도</div>
-										<div class="idx">광고 타입</div>
-										<div class="idx">목표 도달률</div>
-										<div class="idx">목표 전환률</div>
-										<div class="idx">타깃 성별</div>
-										<div class="idx">타깃 연령</div>
-									</div>
-									<div class="review-stat float-left">
-										<div class="stat">4.5</div>
-										<div class="stat">브랜디드 영상</div>
-										<div class="stat">달성</div>
-										<div class="stat">달성</div>
-										<div class="stat">남성</div>
-										<div class="stat">20대 초반 ~ 30대 중반</div>
-									</div>
-									<div class="review-text w-auto float-left">
-										<div class="txt">
-											<span>입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
-												이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
-												이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가
-												이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
-												이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가
-												이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
-												이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가
-												이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
-												이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다. </span>
-										</div>
-
-										<div class="pTop2 display-flex"></div>
-
-										<div class="bottom-txt row w-100">
-											<div class="col-6 recommend float-left">이 채널을 다른 마케터에게도
-												추천하나요?</div>
-											<div class="col answer float-left">예</div>
-										</div>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="pTop2"></div>
-
-							<div class="review">
-								<div class="review-top">
-									<div class="date float-left">최근 1년 이내, 실제 집행된 광고에 대한
-										리뷰입니다.</div>
-								</div>
-
-								<div class="pTop2 w-100 display-flex"></div>
-
-								<div class="review-detail">
-									<div class="review-row float-left">
-										<div class="idx">광고 만족도</div>
-										<div class="idx">광고 타입</div>
-										<div class="idx">목표 도달률</div>
-										<div class="idx">목표 전환률</div>
-										<div class="idx">타깃 성별</div>
-										<div class="idx">타깃 연령</div>
-									</div>
-									<div class="review-stat float-left">
-										<div class="stat">4.5</div>
-										<div class="stat">브랜디드 영상</div>
-										<div class="stat">달성</div>
-										<div class="stat">달성</div>
-										<div class="stat">남성</div>
-										<div class="stat">20대 초반 ~ 30대 중반</div>
-									</div>
-									<div class="review-text w-auto float-left">
-										<div class="txt">
-											<span>입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
-												이곳에 노출됩니다. 입력한 텍스트가 이곳에 노출됩니다.입력한 텍스트가 이곳에 노출됩니다. 입력한 텍스트가
-												이곳에 노출됩니다. </span>
-										</div>
-
-										<div class="pTop2 display-flex"></div>
-
-										<div class="bottom-txt row w-100">
-											<div class="col-6 recommend float-left">이 채널을 다른 마케터에게도
-												추천하나요?</div>
-											<div class="col answer float-left">예</div>
-										</div>
-									</div>
-								</div>
-
-							</div>
-
-
+							
+							</c:forEach>
 						</div>
 
 						<!-- channel review finished -->
