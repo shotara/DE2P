@@ -743,6 +743,10 @@ a.subnav-link:hover {
 	font-size: 1.5em;
 }
 
+.detail .title {
+	overflow : hidden;
+}
+
 /* 채널 디테일 sub tabs*/
 .sub-tabs {
 	list-style: none;
@@ -935,7 +939,6 @@ ul.sub-tabs li a.active {
 
 .ipt-channel-review {
 	width: 100%;
-	display: inline-block;
 }
 
 .ipt-channel-name {
@@ -959,4 +962,23 @@ ul.sub-tabs li a.active {
 
 .review-commonTxt2 {
 	font-weight: bold;
+}
+
+.review-commonSubTxt {
+	color : #b4b4b4;
+	padding-bottom: 5px;
+}
+
+.ipt-Select-Date {
+	height: 36px;
+	font-size: 1em;
+	width: 50%;
+	border: 1px solid #eee;
+	border-radius: 3px;
+	padding-left: 10px;
+}
+
+.ipt-Select-Date:focus {
+	border: 1px solid #f11834;
+	outline: none;
 }
