@@ -33,8 +33,8 @@
 						</div>
 						<div class="txt-left review-commonSubTxt">광고한 채널의 이름을
 							입력해주세요!</div>
-						<input class="ipt-channel-name" type="txt" id="Input-Channel-Name"
-							placeholder="와썹맨Wassup-man" required />
+						<input class="ipt-Common-Review" type="text"
+							id="Input-Channel-Name" placeholder="와썹맨Wassup-man" required />
 					</div>
 
 					<div class="ipt-channel-review pTop2">
@@ -80,46 +80,77 @@
 						<div class="txt-left review-commonTxt2 inline-block">
 							광고 집행 일자<span class="primary-color">*</span>
 						</div>
-						<div class="txt-left review-commonSubTxt">입력한 일자는 년도만 노출되며, 1~3년 이내 3년 ~ 5년 이내 등으로 표기됩니다.</div>
-						<div class="inline-flex">
+						<div class="txt-left review-commonSubTxt">입력한 일자는 년도만 노출되며,
+							1~3년 이내 3년 ~ 5년 이내 등으로 표기됩니다.</div>
+						<div class="inline-flex w100">
 							<select class="ipt-Select-Date" id="commercial-Date1">
-								<option value="0">성별무관</option>
-								<option value="1">남성</option>
-								<option value="2">여성</option>
-							</select> <select class="ipt-Select-Date" id="commercial-Date2">
-								<option value="0">성별무관</option>
-								<option value="1">남성</option>
-								<option value="2">여성</option>
+								<option value="0">2018년</option>
+								<option value="1">2017년</option>
+								<option value="2">2016년</option>
+							</select>
+							<div class="pRight"></div>
+							<select class="ipt-Select-Date" id="commercial-Date2">
+								<option value="0">12월</option>
+								<option value="1">11월</option>
+								<option value="2">10월</option>
 							</select>
 						</div>
 
 					</div>
 
-					<div class="ipt-joinPermit pTop2">
+					<div class="ipt-channel-review pTop2">
 
-						<div class="float-left joinPermit-commonTxt inline-block">
-							동영상 채널을 통해 광고를 하신적이 있나요?<span class="primary-color pRight10">*</span>
+						<div class="txt-left review-commonTxt2 inline-block">
+							광고 집행 비용<span class="primary-color">*</span>
 						</div>
+						<div class="txt-left review-commonSubTxt">광고 비용을 입력한 리뷰를
+							작성하면 다른 채널의 광고 비용을 확인 할 수 있습니다.</div>
+						<div class="inline-flex w100">
+							<select class="ipt-Select-CommercialType" id="commercial-Type">
+								<option value="0">영상 콘텐츠</option>
+								<option value="1">배너 광고</option>
+								<option value="2">기타</option>
+							</select>
+							<div class="pRight"></div>
+							<input class="ipt-Commercial-Price" type="text"
+								id="Input-Commercial-Price" placeholder="10,000,000" required />
+
+						</div>
+
 					</div>
-					<div class="float-right">
-						<div class="radio-item">
-							<input type="radio" id="commercial-exYes" name="commercial-ex"
-								value="1" checked> <label for="commercial-exYes">예</label>
-						</div>
 
-						<div class="radio-item">
-							<input type="radio" id="commercial-exNo" name="commercial-ex"
-								value="0"> <label for="commercial-exNo">아니오</label>
-						</div>
+					<div class="ipt-channel-review pTop2">
+
+						<div class="txt-left review-commonTxt2 inline-block">광고 영상
+							URL</div>
+						<div class="txt-left review-commonSubTxt">입력한 광고 URL은 리뷰
+							검증에만 사용되며, 입력한 리뷰와 연동되지 않습니다.</div>
+						<input class="ipt-Common-Review" type="text"
+							id="Input-Commercial-Url"
+							placeholder="http://youtube.com/example" required />
 					</div>
 
-					<div class="pTop3"></div>
+
+					<div class="ipt-channel-review pTop2">
+
+						<div class="txt-left review-commonTxt2 inline-block">
+							채널 리뷰<span class="primary-color">*</span>
+						</div>
+						<div class="txt-left review-commonSubTxt">모든 리뷰는 익명처리되며, 심사를
+							거쳐 수정될 수 있습니다.</div>
+						<textarea class="w100 review-TextArea" col="1" row="1"
+							id="Input-Commercial-Text"
+							placeholder="광고 리뷰를 등록하고, 다른 채널의 광고 이용 리뷰를 확인해보세요!"></textarea>
+					</div>
 
 					<div class="pTop3">
-						<a href="#" onclick="Auth.join()"><button
-								class="common-wide-Btn" type="button">회원가입 완료</button></a>
+						<button class="float-left common-wide20Reverse-Btn pRight"
+							type="button">이전</button>
+						<button class="float-right common-wide80-Btn" type="button">다음</button>
+
 					</div>
 
+					<div class="pTop4"></div>
 					<div class="pTop4"></div>
 
 					<div class="float-left">
