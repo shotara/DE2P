@@ -177,9 +177,9 @@ public class CommonController {
 					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryName(ranking.get(i).getRacCategoryNo()));
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
 					tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));
-					tempObject.put("outputChannelFollowers", ranking.get(i).getRacChannelFollowers());
-					tempObject.put("outputChannelViews", ranking.get(i).getRacChannelViews());
-					tempObject.put("outputChannelVideoCount", ranking.get(i).getRacChannelVideoCount());
+					tempObject.put("outputChannelFollowers", CommonUtil.setCommaForInt(ranking.get(i).getRacChannelFollowers()));
+					tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(ranking.get(i).getRacChannelViews()));
+					tempObject.put("outputChannelVideoCount", CommonUtil.setCommaForInt(ranking.get(i).getRacChannelVideoCount()));
 					tempObject.put("outputChannelThumbnail", ranking.get(i).getRacChannelThumbnail());
 					
 					rankingList.add(tempObject);
@@ -195,9 +195,9 @@ public class CommonController {
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
 					// 13자리 
 					tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));
-					tempObject.put("outputChannelFollowers", ranking.get(i).getRacChannelFollowers());
-					tempObject.put("outputChannelViews", ranking.get(i).getRacChannelViews());
-					tempObject.put("outputChannelVideoCount", ranking.get(i).getRacChannelVideoCount());
+					tempObject.put("outputChannelFollowers", CommonUtil.setCommaForInt(ranking.get(i).getRacChannelFollowers()));
+					tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(ranking.get(i).getRacChannelViews()));
+					tempObject.put("outputChannelVideoCount", CommonUtil.setCommaForInt(ranking.get(i).getRacChannelVideoCount()));
 					tempObject.put("outputChannelThumbnail", ranking.get(i).getRacChannelThumbnail());
 					
 					rankingList.add(tempObject);

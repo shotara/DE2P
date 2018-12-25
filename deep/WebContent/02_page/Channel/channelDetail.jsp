@@ -25,7 +25,7 @@
 					<div class="chnDtlImg d-inline-block">
 						<img id="chnDtlThumbNail"
 							style="width: 80px; border-radius: 80px;"
-							src="https://yt3.ggpht.com/a-/AN66SAzpOoL9VM1ytSDLaMuCoEV4Gr3U4XaXFbAtew=s176-mo-c-c0xffffffff-rj-k-no">
+							src="${requestScope.outputChannelThumbnail }">
 					</div>
 					<!-- 채널 썸네일 영역 끝  -->
 
@@ -33,11 +33,11 @@
 
 					<div class="pTop d-inline-block">
 						<div class="w-auto ml-auto">
-							<span class="chnDtlName">WassupMan</span>
+							<span class="chnDtlName">${requestScope.outputChannelTitle }</span>
 						</div>
 						<div class="chnDtlCategory w-auto ml-auto">
 
-							<span class="chnCategory">#스튜디오</span>
+							<span class="chnCategory">${requestScope.outputChannelCategory }</span>
 						</div>
 					</div>
 					<!-- 채널 이름 및 카테고리 끝 -->
@@ -162,8 +162,8 @@
 							<li><a data-tab="comercial" href="#comercial">이 채널의 광고
 									영상</a></li>
 							<li><a data-tab="review" href="#review">이 채널의 광고 리뷰</a></li>
-							<li><a data-tab="price" href="#price">이 채널의 광고 단가</a></li>
-						</ul>
+<!-- 							<li><a data-tab="price" href="#price">이 채널의 광고 단가</a></li>
+ -->						</ul>
 					</div>
 				</div>
 
@@ -183,7 +183,7 @@
 							<div class="uploadVideo float-left">
 								<div class="videoThumb">
 									<img style="width: 210px" 
-										src="${item.outputVideoThumbnail}">
+										src="${item.outputVideoThumbnail}" onclick="window.open('https://www.youtube.com/watch?v=${item.outputVideoId}')">
 								</div>
 								<div class="detail">
 									<div class="title inline-block">${item.outputVideoTitle }</div>
@@ -208,55 +208,62 @@
 
 						<div class="pTop2"></div>
 
+						<!--  Non-Login Member -->
+						<c:if test ="${empty sessionScope.racMemberNo}">
+							로그인이 필요합니다.
+						</c:if>						
 
+						<c:if test ="${not empty sessionScope.racMemberNo}">
+						<!--  Non-Login Member finished-->
+						
+						<!-- Login Member -->
 						<!-- comercialVideo start -->
-
-
-						<div class="comercialVideos inline-block">
-							<c:forEach var="item" items="${requestScope.outputAdVideoList}">
-							<div class="comercialVideo float-left">
-								<div class="videoThumb">
-									<img style="width: 210px" 
-										src="${item.outputVideoThumbnail}">								
-								</div>
-								<div class="detail">
-									<div class="title inline-block">${item.outputVideoTitle }</div>
-									<div class="count inline">
-										<div class="float-left pRight">조회수</div>
-										<div class="float-left">${item.outputVideoViews }</div>
-										<div class="float-right">1개월 전</div>
+							<c:if test ="${not empty requestScope.outputAdVideoList}">
+							<div class="comercialVideos inline-block">
+								<c:forEach var="item" items="${requestScope.outputAdVideoList}">
+								<div class="comercialVideo float-left">
+									<div class="videoThumb">
+										<img style="width: 210px" 
+										src="${item.outputVideoThumbnail}" onclick="window.open('https://www.youtube.com/watch?v=${item.outputVideoId}')">
+									</div>
+									<div class="detail">
+										<div class="title inline-block">${item.outputVideoTitle }</div>
+										<div class="count inline">
+											<div class="float-left pRight">조회수</div>
+											<div class="float-left">${item.outputVideoViews }</div>
+											<div class="float-right">1개월 전</div>
+										</div>
 									</div>
 								</div>
+								</c:forEach>
 							</div>
-							</c:forEach>
-						</div>
-
-
+							</c:if>
 						<!-- comercialVideo finished -->
 
 						<!-- non-comercialVideo start -->
-
-						<div class="non-comercials txt-center">
-
-							<div class="v30"></div>
-
-							<div class="txt-center">
-								<span>아직 이 채널에서 진행한 광고 영상이 없습니다. 혹시 이 채널에서 광고를 집행하였나요? </span>
+							<c:if test ="${empty requestScope.outputAdVideoList}">
+	
+							<div class="non-comercials txt-center">
+	
+								<div class="v30"></div>
+	
+								<div class="txt-center">
+									<span>아직 이 채널에서 진행한 광고 영상이 없습니다. 혹시 이 채널에서 광고를 집행하였나요? </span>
+								</div>
+	
+								<div class="pTop2"></div>
+	
+								<button class="commonBtn">
+									<a class="" href="#">광고 리뷰 쓰기</a>
+								</button>
+	
 							</div>
-
-							<div class="pTop2"></div>
-
-							<button class="commonBtn">
-								<a class="" href="#">광고 리뷰 쓰기</a>
-							</button>
-
-						</div>
-
+							</c:if>
+						</c:if>
 						<!-- non-comercialVideo finished -->
-
+						<!-- Login Member finished-->
 					</div>
-
-
+				
 					<div class="sub-tabcontent w-100" id="review">
 
 						<div class="pTop"></div>
@@ -266,81 +273,92 @@
 
 						<div class="pTop2"></div>
 
+						<!--  Non-Login Member -->
+						<c:if test ="${empty sessionScope.racMemberNo}">
+							로그인이 필요합니다.
+						</c:if>						
+
+						<c:if test ="${not empty sessionScope.racMemberNo}">
+						<!--  Non-Login Member finished-->
+						
+						<!-- Login Member -->
 						<!-- channel reivew start -->
-						<div class="reviews">
-							<c:forEach var="item" items="${requestScope.outputReivewList}">
-							<div class="review">
-								<div class="review-top">
-									<div class="date float-left">최근 1년 이내, 실제 집행된 광고에 대한
-										리뷰입니다.</div>
-								</div>
-
-								<div class="pTop2 w-100 display-flex"></div>
-
-								<div class="review-detail">
-									<div class="review-row float-left">
-										<div class="idx">광고 만족도</div>
-										<div class="idx">광고 타입</div>
-										<div class="idx">목표 도달률</div>
-										<div class="idx">목표 전환률</div>
-										<div class="idx">타깃 성별</div>
-										<div class="idx">타깃 연령</div>
+						<c:if test ="${not empty requestScope.outputReivewList}">
+							<div class="reviews">
+								<c:forEach var="item" items="${requestScope.outputReivewList}">
+								<div class="review">
+									<div class="review-top">
+										<div class="date float-left">최근 1년 이내, 실제 집행된 광고에 대한
+											리뷰입니다.</div>
 									</div>
-									<div class="review-stat float-left">
-										<div class="stat">${item.outputReviewSatisfy }</div>
-										<div class="stat">${item.outputChannelAdType }</div>
-										<div class="stat">${item.outputReviewTargetReach }</div>
-										<div class="stat">${item.outputReviewTargetConversion }</div>
-										<div class="stat">${item.outputReviewTargetGender }</div>
-										<div class="stat">${item.outputReviewTargetAge }</div>
-									</div>
-									<div class="review-text w-auto float-left">
-										<div class="txt">
-											<span>${item.outputReviewDetail }</span>
+	
+									<div class="pTop2 w-100 display-flex"></div>
+	
+									<div class="review-detail">
+										<div class="review-row float-left">
+											<div class="idx">광고 만족도</div>
+											<div class="idx">광고 타입</div>
+											<div class="idx">목표 도달률</div>
+											<div class="idx">목표 전환률</div>
+											<div class="idx">타깃 성별</div>
+											<div class="idx">타깃 연령</div>
 										</div>
-
-										<div class="pTop2 display-flex"></div>
-
-										<div class="bottom-txt row w-100">
-											<div class="col-6 recommend float-left">이 채널을 다른 마케터에게도
-												추천하나요?</div>
-											<div class="col answer float-left">${item.outputReviewAdAgain }</div>
+										<div class="review-stat float-left">
+											<div class="stat">${item.outputReviewSatisfy }</div>
+											<div class="stat">${item.outputChannelAdType }</div>
+											<div class="stat">${item.outputReviewTargetReach }</div>
+											<div class="stat">${item.outputReviewTargetConversion }</div>
+											<div class="stat">${item.outputReviewTargetGender }</div>
+											<div class="stat">${item.outputReviewTargetAge }</div>
+										</div>
+										<div class="review-text w-auto float-left">
+											<div class="txt">
+												<span>${item.outputReviewDetail }</span>
+											</div>
+	
+											<div class="pTop2 display-flex"></div>
+	
+											<div class="bottom-txt row w-100">
+												<div class="col-6 recommend float-left">이 채널을 다른 마케터에게도
+													추천하나요?</div>
+												<div class="col answer float-left">${item.outputReviewAdAgain }</div>
+											</div>
 										</div>
 									</div>
+	
 								</div>
-
+	
+								<div class="pTop2"></div>
+								
+								</c:forEach>
 							</div>
-
-							<div class="pTop2"></div>
-							
-							</c:forEach>
-						</div>
-
+						</c:if>
 						<!-- channel review finished -->
 
 						<!-- non review start -->
-
-						<div class="non-reviews txt-center">
-
-							<div class="v30"></div>
-
-							<div class="txt-center">
-								<span>아직 이 채널의 광고 리뷰가 없습니다. 이 채널의 광고 리뷰를 작성하시겠어요? </span>
+						<c:if test ="${empty requestScope.outputReivewList}">
+							<div class="non-reviews txt-center">
+	
+								<div class="v30"></div>
+	
+								<div class="txt-center">
+									<span>아직 이 채널의 광고 리뷰가 없습니다. 이 채널의 광고 리뷰를 작성하시겠어요? </span>
+								</div>
+	
+								<div class="pTop2"></div>
+	
+								<button class="commonBtn">
+									<a class="" href="#">광고 리뷰 쓰기</a>
+								</button>
+							
 							</div>
-
-							<div class="pTop2"></div>
-
-							<button class="commonBtn">
-								<a class="" href="#">광고 리뷰 쓰기</a>
-							</button>
-
-						</div>
-
+						</c:if>
+						</c:if>
 						<!-- non review finished -->
+						<!-- Login Member finished-->
 					</div>
 
-
-
+<!-- 
 					<div class="sub-tabcontent w-100" id="price">
 
 						<div class="pTop"></div>
@@ -353,7 +371,7 @@
 						<div class=""></div>
 
 
-					</div>
+					</div> -->
 				</div>
 
 			</div>

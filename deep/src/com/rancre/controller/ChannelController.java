@@ -59,15 +59,17 @@ public class ChannelController {
 
 			// Channel Detail
 			Channel channel = ChannelDAO.getChannelByNo(inputChannelNo);
-			req.setAttribute("outputChannelFollowers", channel.getRacChannelFollowers());
+			req.setAttribute("outputChannelFollowers", CommonUtil.setCommaForInt(channel.getRacChannelFollowers()));
 			req.setAttribute("outputChannelBeforeFollowers", 0);
-			req.setAttribute("outputChannelViews", channel.getRacChannelViews());
-			req.setAttribute("outputChannelRecentViews", channel.getRacChannelViews()/1000);
-			
+			req.setAttribute("outputChannelViews", CommonUtil.setCommaForLong(channel.getRacChannelViews()));
+			req.setAttribute("outputChannelTitle", channel.getRacChannelTitle());
+			req.setAttribute("outputChannelCategory", CommonUtil.getChannelCategoryName(channel.getRacCategoryNo()));
+			req.setAttribute("outputChannelThumbnail", channel.getRacChannelThumbnail());
+
 			// Get Youtube Channel Video
 			ArrayList<Video> recentVideoList = ChannelDAO.getRecentVieoList(inputChannelNo);
 			ArrayList<HashMap<String,Object>> outputRecentVideoList = new ArrayList<HashMap<String,Object>>();
-			
+			int recentViews = 0;
 			for(int i=0; i < recentVideoList.size(); i++) {
 				HashMap<String,Object> tempObejct = new HashMap<String,Object>();
 				tempObejct.put("outputVideoNo", recentVideoList.get(i).getRacVideoNo());
@@ -75,15 +77,15 @@ public class ChannelController {
 				tempObejct.put("outputVideoId", recentVideoList.get(i).getRacVideoId());
 				tempObejct.put("outputVideoTitle", CommonUtil.splitString(recentVideoList.get(i).getRacVideoTitle(), 3));
 				tempObejct.put("outputVideoThumbnail", recentVideoList.get(i).getRacVideoThumbnail());
-				tempObejct.put("outputVideoViews", recentVideoList.get(i).getRacVideoViews());
+				tempObejct.put("outputVideoViews", CommonUtil.setCommaForLong(recentVideoList.get(i).getRacVideoViews()));
 				tempObejct.put("outputVideoCreateDate", recentVideoList.get(i).getRacVideoCreateDate());
-				
+				recentViews = (int) (recentViews + recentVideoList.get(i).getRacVideoViews()); 
 				outputRecentVideoList.add(tempObejct);
 				
 			}
 			
+			req.setAttribute("outputChannelRecentViews", recentVideoList.size()!= 0 ? CommonUtil.setCommaForInt(recentViews / recentVideoList.size()) : 0);
 			req.setAttribute("outputRecentVideoList", outputRecentVideoList);
-			req.setAttribute("outputRecentVideoList2", recentVideoList);
 
 			// Channel Ad part
 			if(sessionMemberNo>0) {
@@ -104,7 +106,7 @@ public class ChannelController {
 					tempObejct.put("outputVideoId", channelAdList.get(i).getRacVideoId());
 					tempObejct.put("outputVideoTitle", CommonUtil.splitString(channelAdList.get(i).getRacVideoTitle(), 3));
 					tempObejct.put("outputVideoThumbnail", channelAdList.get(i).getRacVideoThumbnail());
-					tempObejct.put("outputVideoViews", channelAdList.get(i).getRacVideoViews());
+					tempObejct.put("outputVideoViews", CommonUtil.setCommaForLong(channelAdList.get(i).getRacVideoViews()));
 					tempObejct.put("outputVideoCreateDate", channelAdList.get(i).getRacVideoCreateDate());
 					
 					adVideoList.add(tempObejct);
@@ -176,9 +178,9 @@ public class ChannelController {
 					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryName(ranking.get(i).getRacCategoryNo()));
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
 					tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));
-					tempObject.put("outputChannelFollowers", ranking.get(i).getRacChannelFollowers());
-					tempObject.put("outputChannelViews", ranking.get(i).getRacChannelViews());
-					tempObject.put("outputChannelVideoCount", ranking.get(i).getRacChannelVideoCount());
+					tempObject.put("outputChannelFollowers", CommonUtil.setCommaForInt(ranking.get(i).getRacChannelFollowers()));
+					tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(ranking.get(i).getRacChannelViews()));
+					tempObject.put("outputChannelVideoCount", CommonUtil.setCommaForInt(ranking.get(i).getRacChannelVideoCount()));
 					tempObject.put("outputChannelThumbnail", ranking.get(i).getRacChannelThumbnail());
 					
 					rankingList.add(tempObject);
@@ -194,9 +196,9 @@ public class ChannelController {
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
 					// 13자리 
 					tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));
-					tempObject.put("outputChannelFollowers", ranking.get(i).getRacChannelFollowers());
-					tempObject.put("outputChannelViews", ranking.get(i).getRacChannelViews());
-					tempObject.put("outputChannelVideoCount", ranking.get(i).getRacChannelVideoCount());
+					tempObject.put("outputChannelFollowers", CommonUtil.setCommaForInt(ranking.get(i).getRacChannelFollowers()));
+					tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(ranking.get(i).getRacChannelViews()));
+					tempObject.put("outputChannelVideoCount", CommonUtil.setCommaForInt(ranking.get(i).getRacChannelVideoCount()));
 					tempObject.put("outputChannelThumbnail", ranking.get(i).getRacChannelThumbnail());
 					
 					rankingList.add(tempObject);

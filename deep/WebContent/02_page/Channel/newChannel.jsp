@@ -98,13 +98,13 @@
 									src="`+args.rankingList[i].outputChannelThumbnail +`">
 							</div>
 							<div class="rankRow">`+args.rankingList[i].outputChannelTitle+`</div>
-							<div class="rankRow">#`+args.rankingList[i].outputCategoryNo+`</div>
+							<div class="rankRow">`+args.rankingList[i].outputCategoryNo+`</div>
 							<div class="rankRow">`+args.rankingList[i].outputChannelFollowers+`</div>
 							<div class="rankRow">`+args.rankingList[i].outputChannelViews+`</div>
 							<div class="rankRow2">`+args.rankingList[i].outputChannelVideoCount+`</div>
 							<div class="rankRowBtn">
 								<button class="btnChnGo">
-									<a class="chnDtlGo" href="/02_page/Channel/channelDetail.jsp">채널정보
+									<a class="chnDtlGo" href="/channel?action=getChannelDetail&inputChannelNo=`+args.rankingList[i].outputChannelNo+`">채널정보
 										보기</a>
 								</button>
 							</div>

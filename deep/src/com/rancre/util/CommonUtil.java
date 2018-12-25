@@ -350,37 +350,45 @@ public class CommonUtil {
 		
 		switch(categoryNo) {
 		case 1:
-			return "스튜디오";
+			return "#스튜디오";
 		case 2:
-			return "엔터";
+			return "#엔터";
 		case 3:
-			return "여행";
+			return "#여행";
 		case 4:
-			return "노래 댄스";
+			return "#노래 댄스";
 		case 5:
-			return "테크";
+			return "#테크";
 		case 6:
-			return "교육(어학)";
+			return "#교육(어학)";
 		case 7:
-			return "뷰티";
+			return "#뷰티";
 		case 8:
-			return "일상";
+			return "#일상";
 		case 9:
-			return "게임";
+			return "#게임";
 		case 10:
-			return "스포츠";
+			return "#스포츠";
 		case 11:
-			return "먹방";
+			return "#먹방";
 		case 12:
-			return "키즈";
+			return "#키즈";
 		case 13:
-			return "반려동물";
+			return "#반려동물";
 		case 14:
-			return "운동";
+			return "#운동";
 		case 15:
-			return "취미";
+			return "#취미";
 		default:
-			return "기타";
+			return "#기타";
 		}
+	}
+	
+	public static String setCommaForInt(int i) {
+		return String.format("%,d", i);
+	}
+	
+	public static String setCommaForLong(Long i) {
+		return String.format("%,d", i);
 	}
 }
