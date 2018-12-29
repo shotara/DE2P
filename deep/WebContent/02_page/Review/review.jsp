@@ -17,11 +17,9 @@
 			<div class="col txt-center">
 				<div class="txt-center channel-review">
 
-					<div class="v20"></div>
-
 					<div class="common-brand">Rancre</div>
 
-					<div class="review-step1">
+					<div class="review-step1" id="review-Step1">
 
 						<div class="pTop">
 							<span>광고 리뷰를 작성하시면 다른 채널의 리뷰를 바로 확인할 수 있습니다! </br> 외부에 노출되는 모든
@@ -146,13 +144,11 @@
 						</div>
 
 						<div class="pTop2">
-							<button class="float-left common-wide20Reverse-Btn pRight"
-								type="button">이전</button>
-							<button class="float-right common-wide75-Btn" type="button">다음</button>
-
+							<button class="float-right common-wide-Btn" type="button" onclick="Common.review(1)">다음</button>
 						</div>
 					</div>
-					<div class="review-step2">
+					
+					<div class="review-step2" id="review-Step2">
 
 						<div class="pTop">
 							<span>거의 다 작성하였습니다! </br> 작성한 리뷰는 다른 마케터들에게 큰 도움이 됩니다!
@@ -174,7 +170,7 @@
 							</div>
 
 						</div>
-						
+
 						<div class="ipt-channel-review pTop2">
 
 							<div class="txt-left review-commonTxt2 inline-block">
@@ -190,16 +186,16 @@
 							</div>
 
 						</div>
-						
-							
+
 						<div class="ipt-channel-review pTop2">
 
 							<div class="txt-left review-commonTxt2 inline-block">
-								광고 아이템 카테고리<span class="primary-color">*</span>
+								광고 상품 카테고리<span class="primary-color">*</span>
 							</div>
-							<div class="txt-left review-commonSubTxt">광고한 아이템이 속한 카테고리는 무엇인가요?</div>
+							<div class="txt-left review-commonSubTxt">광고할 상품과 제일 근접한
+								카테고리를 선택해주세요!</div>
 							<div class="w100">
-								<select class="ipt-Select-Reach" id="success-convert">
+								<select class="ipt-Select-Reach" id="success-itemType">
 									<option value="0">달성함</option>
 									<option value="1">달성하지 못함</option>
 								</select>
@@ -207,12 +203,99 @@
 
 						</div>
 
+						<div class="ipt-channel-review pTop2">
+
+							<div class="txt-left review-commonTxt2 inline-block">
+								타깃 연령<span class="primary-color">*</span>
+							</div>
+							<div class="txt-left review-commonSubTxt">영상의 타깃 연령을
+								선택해주세요!</div>
+							<div class="w100">
+								<select class="ipt-Select-Reach" id="success-age">
+									<option value="0">연령무관</option>
+									<option value="1">10대</option>
+									<option value="2">10대 - 20대</option>
+									<option value="3">20대</option>
+									<option value="4">20대 - 30대</option>
+									<option value="5">30대</option>
+									<option value="6">30대 - 40대</option>
+									<option value="7">40대</option>
+									<option value="8">40대 - 50대</option>
+									<option value="9">50대 이상</option>
+								</select>
+							</div>
+
+						</div>
+
+						<div class="ipt-channel-review pTop2">
+
+							<div class="txt-left review-commonTxt2 inline-block">
+								타깃 성별<span class="primary-color">*</span>
+							</div>
+							<div class="txt-left review-commonSubTxt">영상의 타깃 성별을
+								선택해주세요!</div>
+							<div class="w100">
+								<select class="ipt-Select-Reach" id="success-sex">
+									<option value="0">성별무관</option>
+									<option value="1">남성</option>
+									<option value="2">여성</option>
+								</select>
+							</div>
+
+						</div>
+
+
+						<div class="ipt-channel-review pTop2">
+							<div class="float-left review-commonTxt inline-block">
+								이 채널을 다른 마케터에게도 추천하나요?<span class="primary-color">*</span>
+							</div>
+						</div>
+
+						<div class="float-right">
+							<div class="radio-item">
+								<input type="radio" id="channel-Recommand"
+									name="channel-recommand" value="0" checked> <label
+									for="channel-Recommand">예</label>
+							</div>
+
+							<div class="radio-item">
+								<input type="radio" id="channel-Unrecommand"
+									name="channel-recommand" value="1"> <label
+									for="channel-Unrecommand">아니오</label>
+							</div>
+
+						</div>
+						
+						<div class="pTop"></div>
+
+						<div class="ipt-channel-review pTop3">
+							<div class="float-left review-commonTxt inline-block">
+								다음에도 유튜브 채널을 통해 광고를 할 예정이신가요?<span class="primary-color">*</span>
+							</div>
+						</div>
+
+						<div class="float-right">
+							<div class="radio-item">
+								<input type="radio" id="channel-Reuse"
+									name="channel-reuse" value="0" checked> <label
+									for="channel-Reuse">예</label>
+							</div>
+
+							<div class="radio-item">
+								<input type="radio" id="channel-Unreuse"
+									name="channel-reuse" value="1"> <label
+									for="channel-Unreuse">아니오</label>
+							</div>
+
+						</div>
+
+						<div class="pTop2"></div>
 
 
 						<div class="pTop2">
 							<button class="float-left common-wide20Reverse-Btn pRight"
-								type="button">이전</button>
-							<button class="float-right common-wide75-Btn" type="button">리뷰
+								type="button" onclick="Common.review(2)">이전</button>
+							<button class="float-right common-wide75-Btn" type="button" onclick="Common.review(3)">리뷰
 								등록</button>
 
 						</div>
@@ -223,7 +306,7 @@
 
 				<div class="review-footer">
 
-					<div class="pTop4"></div>
+					<div class="pTop5"></div>
 
 					<div class="float-left">
 						<span class="brand-color">Rancre</span><span class="gray-color">

@@ -203,6 +203,28 @@ Common.addList = function (mode, startNo, categoryNo) {
 
 }
 
+Common.review = function (mode){
+	
+	if(mode==1){
+		/**move next-page **/
+		var review_step1 = document.getElementById('review-Step1');
+		var review_step2 = document.getElementById('review-Step2');
+	    review_step1.style.display = 'none';
+		review_step2.style.display = 'block';
+	}
+	else if(mode==2){
+		/**move pre-page **/
+		var review_step1 = document.getElementById('review-Step1');
+		var review_step2 = document.getElementById('review-Step2');
+	    review_step1.style.display = 'block';
+		review_step2.style.display = 'none';
+	}
+	else if(mode==3){
+		return;
+	}
+	
+}
+
 /******************************/
 /** channel Detail page using */
 /*****************************/
