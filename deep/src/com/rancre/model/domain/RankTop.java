@@ -6,7 +6,7 @@ public class RankTop {
 
 	private int racRankTopNo;
 	private int racChannelNo;
-	private int racCategoryNo;
+	private String racChannelCategory;
 	private String racChannelTitle;
 	private int racChannelFollowers;
 	private long racChannelViews;
@@ -36,12 +36,12 @@ public class RankTop {
 		this.racChannelNo = racChannelNo;
 	}
 
-	public int getRacCategoryNo() {
-		return racCategoryNo;
+	public String getRacChannelCategory() {
+		return racChannelCategory;
 	}
 
-	public void setRacCategoryNo(int racCategoryNo) {
-		this.racCategoryNo = racCategoryNo;
+	public void setRacChannelCategory(String racChannelCategory) {
+		this.racChannelCategory = racChannelCategory;
 	}
 
 	public String getRacChannelTitle() {
@@ -100,13 +100,13 @@ public class RankTop {
 		this.racChannelInsertDate = racChannelInsertDate;
 	}
 
-	public RankTop(int racRankTopNo, int racChannelNo, int racCategoryNo, String racChannelTitle,
+	public RankTop(int racRankTopNo, int racChannelNo, String racChannelCategory, String racChannelTitle,
 			int racChannelFollowers, long racChannelViews, int racChannelVideoCount, String racChannelUrl,
 			String racChannelThumbnail, Timestamp racChannelInsertDate) {
 		super();
 		this.racRankTopNo = racRankTopNo;
 		this.racChannelNo = racChannelNo;
-		this.racCategoryNo = racCategoryNo;
+		this.racChannelCategory = racChannelCategory;
 		this.racChannelTitle = racChannelTitle;
 		this.racChannelFollowers = racChannelFollowers;
 		this.racChannelViews = racChannelViews;
@@ -115,5 +115,4 @@ public class RankTop {
 		this.racChannelThumbnail = racChannelThumbnail;
 		this.racChannelInsertDate = racChannelInsertDate;
 	}
-	
 }

@@ -174,7 +174,7 @@ public class CommonController {
 					JSONObject tempObject = new JSONObject();
 					tempObject.put("outputRankTopNo", ranking.get(i).getRacRankTopNo());
 					tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
-					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryName(ranking.get(i).getRacCategoryNo()));
+					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryList(ranking.get(i).getRacChannelCategory()));
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
 					tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));
 					tempObject.put("outputChannelFollowers", CommonUtil.setCommaForInt(ranking.get(i).getRacChannelFollowers()));
@@ -191,7 +191,7 @@ public class CommonController {
 					JSONObject tempObject = new JSONObject();
 					tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
 					// 카테고리 가져오기
-					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryName(ranking.get(i).getRacCategoryNo()));
+					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryList(ranking.get(i).getRacChannelCategory()));
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
 					// 13자리 
 					tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));

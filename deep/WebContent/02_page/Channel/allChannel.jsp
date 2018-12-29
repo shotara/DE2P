@@ -470,7 +470,7 @@
 	    var params = {
 	    	startNo : 0,
 	    	mode : 2,
-	    	categoryNo : 1,
+	    	categoryNo : 2,
 	    };
 	    
 	    $.ajax({      

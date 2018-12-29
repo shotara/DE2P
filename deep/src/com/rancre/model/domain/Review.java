@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class Review {
 	private int racReviewNo;
 	private int racChannelNo;
+	private int racReviewStatus;
 	private int racChannelAdNo;
 	private int racChannelCostNo;
 	private int racReviewSatisfy;
@@ -31,6 +32,12 @@ public class Review {
 	}
 	public void setRacChannelNo(int racChannelNo) {
 		this.racChannelNo = racChannelNo;
+	}
+	public int getRacReviewStatus() {
+		return racReviewStatus;
+	}
+	public void setRacReviewStatus(int racReviewStatus) {
+		this.racReviewStatus = racReviewStatus;
 	}
 	public int getRacChannelAdNo() {
 		return racChannelAdNo;
@@ -98,12 +105,14 @@ public class Review {
 	public void setRacReviewCreateDate(Timestamp racReviewCreateDate) {
 		this.racReviewCreateDate = racReviewCreateDate;
 	}
-	public Review(int racReviewNo, int racChannelNo, int racChannelAdNo, int racChannelCostNo, int racReviewSatisfy,
-			int racReviewTargetReach, int racReviewTargetConversion, int racReviewTargetGender, int racReviewTargetAge,
-			int racReviewRecomand, int racReviewAdAgain, String racReviewDetail, Timestamp racReviewCreateDate) {
+	public Review(int racReviewNo, int racChannelNo, int racReviewStatus, int racChannelAdNo, int racChannelCostNo,
+			int racReviewSatisfy, int racReviewTargetReach, int racReviewTargetConversion, int racReviewTargetGender,
+			int racReviewTargetAge, int racReviewRecomand, int racReviewAdAgain, String racReviewDetail,
+			Timestamp racReviewCreateDate) {
 		super();
 		this.racReviewNo = racReviewNo;
 		this.racChannelNo = racChannelNo;
+		this.racReviewStatus = racReviewStatus;
 		this.racChannelAdNo = racChannelAdNo;
 		this.racChannelCostNo = racChannelCostNo;
 		this.racReviewSatisfy = racReviewSatisfy;

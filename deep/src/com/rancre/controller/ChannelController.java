@@ -63,7 +63,7 @@ public class ChannelController {
 			req.setAttribute("outputChannelBeforeFollowers", 0);
 			req.setAttribute("outputChannelViews", CommonUtil.setCommaForLong(channel.getRacChannelViews()));
 			req.setAttribute("outputChannelTitle", channel.getRacChannelTitle());
-			req.setAttribute("outputChannelCategory", CommonUtil.getChannelCategoryName(channel.getRacCategoryNo()));
+			req.setAttribute("outputChannelCategory", CommonUtil.getChannelCategoryList(channel.getRacChannelCategory()));
 			req.setAttribute("outputChannelThumbnail", channel.getRacChannelThumbnail());
 
 			// Get Youtube Channel Video
@@ -175,7 +175,7 @@ public class ChannelController {
 					JSONObject tempObject = new JSONObject();
 					tempObject.put("outputRankTopNo", ranking.get(i).getRacRankTopNo());
 					tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
-					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryName(ranking.get(i).getRacCategoryNo()));
+					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryList(ranking.get(i).getRacChannelCategory()));
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
 					tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));
 					tempObject.put("outputChannelFollowers", CommonUtil.setCommaForInt(ranking.get(i).getRacChannelFollowers()));
@@ -192,7 +192,7 @@ public class ChannelController {
 					JSONObject tempObject = new JSONObject();
 					tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
 					// 카테고리 가져오기
-					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryName(ranking.get(i).getRacCategoryNo()));
+					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryList(ranking.get(i).getRacChannelCategory()));
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
 					// 13자리 
 					tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));

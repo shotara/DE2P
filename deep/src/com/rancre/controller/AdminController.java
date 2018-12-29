@@ -316,7 +316,7 @@ public class AdminController {
 			jObject.put("outputChannelNo", channel.getRacChannelNo());
 			jObject.put("outputChannelTitle", channel.getRacChannelTitle());
 			jObject.put("outputChannelUrl", channel.getRacChannelUrl());
-			jObject.put("outputChannelCategory", channel.getRacCategoryNo());
+			jObject.put("outputChannelCategory", CommonUtil.getChannelCategoryList(channel.getRacChannelCategory()));
 
 			CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel info OK", map);
 			req.setAttribute("result", jObject);

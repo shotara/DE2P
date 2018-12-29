@@ -6,7 +6,7 @@ public class Channel {
 	private int racChannelNo;
 	private int racMemberNo;
 	private int racChannelStatus;
-	private int racCategoryNo;
+	private String racChannelCategory;
 	private String racChannelTitle;
 	private int racChannelFollowers;
 	private long racChannelViews;
@@ -45,12 +45,12 @@ public class Channel {
 		this.racChannelStatus = racChannelStatus;
 	}
 
-	public int getRacCategoryNo() {
-		return racCategoryNo;
+	public String getRacChannelCategory() {
+		return racChannelCategory;
 	}
 
-	public void setRacCategoryNo(int racCategoryNo) {
-		this.racCategoryNo = racCategoryNo;
+	public void setRacChannelCategory(String racChannelCategory) {
+		this.racChannelCategory = racChannelCategory;
 	}
 
 	public String getRacChannelTitle() {
@@ -117,14 +117,15 @@ public class Channel {
 		this.racChannelInsertDate = racChannelInsertDate;
 	}
 
-	public Channel(int racChannelNo, int racMemberNo, int racChannelStatus, int racCategoryNo, String racChannelTitle,
-			int racChannelFollowers, long racChannelViews, String racChannelUrl, String racChannelThumbnail,
-			Timestamp racChannelCreateDate, Timestamp racChannelUpdateDate, Timestamp racChannelInsertDate) {
+	public Channel(int racChannelNo, int racMemberNo, int racChannelStatus, String racChannelCategory,
+			String racChannelTitle, int racChannelFollowers, long racChannelViews, String racChannelUrl,
+			String racChannelThumbnail, Timestamp racChannelCreateDate, Timestamp racChannelUpdateDate,
+			Timestamp racChannelInsertDate) {
 		super();
 		this.racChannelNo = racChannelNo;
 		this.racMemberNo = racMemberNo;
 		this.racChannelStatus = racChannelStatus;
-		this.racCategoryNo = racCategoryNo;
+		this.racChannelCategory = racChannelCategory;
 		this.racChannelTitle = racChannelTitle;
 		this.racChannelFollowers = racChannelFollowers;
 		this.racChannelViews = racChannelViews;
@@ -133,7 +134,5 @@ public class Channel {
 		this.racChannelCreateDate = racChannelCreateDate;
 		this.racChannelUpdateDate = racChannelUpdateDate;
 		this.racChannelInsertDate = racChannelInsertDate;
-	}
-	
-	
+	}	
 }
