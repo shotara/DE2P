@@ -13,16 +13,25 @@
 		INSERT INTO rac_channel_ad(racChannelNo, racChannelAdUrl, racChannelAdCreateDate)
 		VALUES(#{channelNo}, #{channelAdUrl}, #{inputCurrentDate})
 	</select>			
-				
+
+	<select id="addChannelCategory" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO rac_channel_category(racChannelNo, racCategoryNo)
+		VALUES(#{channelNo}, #{categoryNo})
+	</select>		
+					
 	<!-- Update -->
 	<select id="setChannelInfo" parameterType="java.util.HashMap" resultType="int">
-		UPDATE rac_channel SET racCategoryNo=#{categoryNo}, racMcnNo=#{mcnNo}, racChannelUpdateDate=#{inputCurrentDate}
+		UPDATE rac_channel SET racChannelCategory=#{category}, racMcnNo=#{mcnNo}, racChannelUpdateDate=#{inputCurrentDate}
 		WHERE racChannelNo=#{channelNo}
 	</select>
 	
 	<!-- Delete -->
 	<select id="deleteFeedLike" parameterType="java.util.HashMap" resultType="int">
 		DELETE FROM deep_feed_like WHERE deepFeedNo=#{feedNo} AND deepMemberNo=#{memberNo}
+	</select>
+	
+	<select id="deleteChannelCategory" parameterType="java.util.HashMap" resultType="int">
+		DELETE FROM rac_channel_category WHERE racChannelNo=#{channelNo} AND racCategoryNo=#{categoryNo}
 	</select>
 	
 	<!-- Common -->
@@ -50,5 +59,9 @@
 	
 	<select id="getChannel" parameterType="int"  resultType="com.rancre.model.domain.Channel">
 		SELECT * FROM rac_channel WHERE racChannelNo=#{channelNo}
+	</select>	
+	
+	<select id="getChannelCategory" parameterType="int"  resultType="com.rancre.model.domain.ChannelCategory">
+		SELECT * FROM rac_channel_category WHERE racChannelNo=#{channelNo}
 	</select>	
 </mapper>

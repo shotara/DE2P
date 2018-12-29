@@ -23,10 +23,12 @@ import org.json.simple.JSONObject;
 
 import com.rancre.config.GlobalValue;
 import com.rancre.model.AdminDAO;
+import com.rancre.model.ChannelDAO;
 import com.rancre.model.FeedDAO;
 import com.rancre.model.MemberDAO;
 import com.rancre.model.UploadDAO;
 import com.rancre.model.domain.Channel;
+import com.rancre.model.domain.ChannelCategory;
 import com.rancre.model.domain.ChannelCost;
 import com.rancre.model.domain.Feed;
 import com.rancre.model.domain.FeedComment;
@@ -89,6 +91,7 @@ public class AdminController {
 				jTempObject.put("outputChannelUrl", channelList.get(i).getRacChannelUrl());
 				jTempObject.put("outputChannelFollowers", channelList.get(i).getRacChannelFollowers());
 				jTempObject.put("outputChannelViews", channelList.get(i).getRacChannelViews());
+				jTempObject.put("outputChannelCategory", channelList.get(i).getRacChannelCategory());
 				// 후기 가져오기
 				jTempObject.put("outputPostscriptCount", 0);
 				// 광고 영상에 대하여 
@@ -248,6 +251,8 @@ public class AdminController {
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int inputChannelNo = req.getParameter("inputChannelNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelNo").toString())) : 0;
 			int inputCategoryNo = req.getParameter("inputCategoryNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputCategoryNo").toString())) : 0;
+			int inputCategoryNo2 = req.getParameter("inputCategoryNo2") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputCategoryNo2").toString())) : 0;
+			int inputCategoryNo3 = req.getParameter("inputCategoryNo3") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputCategoryNo3").toString())) : 0;
 			int inputMcnNo = req.getParameter("inputMcnNo") != "" ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputMcnNo").toString())) : 0;
 
 			Calendar calendar = Calendar.getInstance();
@@ -269,11 +274,69 @@ public class AdminController {
 				return;
 			}
 			
-			int check = AdminDAO.setChannelInfo(inputChannelNo, inputCategoryNo, inputMcnNo, inputCurrentDate);
+
+			String category = "";
+			
+			category = inputCategoryNo + ";";
+			if(inputCategoryNo2 != 1) category += inputCategoryNo2 + ";";
+			if(inputCategoryNo3 != 1) category += inputCategoryNo3 + ";";
+
+			
+			Channel channel = ChannelDAO.getChannelByNo(inputChannelNo);			
+			int check = AdminDAO.setChannelInfo(inputChannelNo, category, inputMcnNo, inputCurrentDate);
 			if(check != 1) {
 				CommonUtil.commonPrintLog("FAIL", className, "Add  Channel Info", map);
-			}			
-
+			}		
+			
+			/// 카테고리 기존 카테고리와 비교
+			ArrayList<String> originalCategory = CommonUtil.commonSpiltBySemicolon(channel.getRacChannelCategory());
+			if(originalCategory.size() == 1) {
+				if(Integer.parseInt(originalCategory.get(0)) != inputCategoryNo) { 
+					AdminDAO.deleteChannelCategory(inputChannelNo, Integer.parseInt(originalCategory.get(0)));
+					if(inputCategoryNo != 1)
+						AdminDAO.addChannelCategory(inputChannelNo, inputCategoryNo);
+				}
+				
+				if(inputCategoryNo2 != 1)
+					AdminDAO.addChannelCategory(inputChannelNo, inputCategoryNo2);
+				if(inputCategoryNo3 != 1)
+					AdminDAO.addChannelCategory(inputChannelNo, inputCategoryNo3);
+				
+			} else if(originalCategory.size() == 2) {
+				if(Integer.parseInt(originalCategory.get(0)) != inputCategoryNo) { 
+					AdminDAO.deleteChannelCategory(inputChannelNo, Integer.parseInt(originalCategory.get(0)));
+					if(inputCategoryNo != 1)
+						AdminDAO.addChannelCategory(inputChannelNo, inputCategoryNo);
+				}
+				if(Integer.parseInt(originalCategory.get(1)) != inputCategoryNo2) { 
+					AdminDAO.deleteChannelCategory(inputChannelNo, Integer.parseInt(originalCategory.get(1)));
+					if(inputCategoryNo2 != 1)
+						AdminDAO.addChannelCategory(inputChannelNo, inputCategoryNo2);
+				}
+				
+				if(inputCategoryNo3 != 1)
+					AdminDAO.addChannelCategory(inputChannelNo, inputCategoryNo3);
+				
+			} else if(originalCategory.size() == 3) {
+				if(Integer.parseInt(originalCategory.get(0)) != inputCategoryNo) { 
+					AdminDAO.deleteChannelCategory(inputChannelNo, Integer.parseInt(originalCategory.get(0)));
+					if(inputCategoryNo != 1)
+						AdminDAO.addChannelCategory(inputChannelNo, inputCategoryNo);
+				}
+				if(Integer.parseInt(originalCategory.get(1)) != inputCategoryNo2) { 
+					AdminDAO.deleteChannelCategory(inputChannelNo, Integer.parseInt(originalCategory.get(1)));
+					if(inputCategoryNo2 != 1)
+						AdminDAO.addChannelCategory(inputChannelNo, inputCategoryNo2);
+				}
+				if(Integer.parseInt(originalCategory.get(2)) != inputCategoryNo3) { 
+					AdminDAO.deleteChannelCategory(inputChannelNo, Integer.parseInt(originalCategory.get(2)));
+					if(inputCategoryNo3 != 1)
+						AdminDAO.addChannelCategory(inputChannelNo, inputCategoryNo3);
+				}		
+				
+				
+			}
+			
 			// 완료 
 			CommonUtil.commonPrintLog("SUCCESS", className, "Channel Info Add OK", map);
 			jObject.put("outputResult", "1");
@@ -310,9 +373,30 @@ public class AdminController {
 			/// Check Admin Member 
 
 
-			// 현재 대출 가능한 도서(book_lending_possible이 true인 목록만 가져옴)
 			Channel channel = AdminDAO.getChannel(inputChannelNo);
+			ArrayList<ChannelCategory> categoryList = AdminDAO.getChannelCategory(inputChannelNo);
+			for(int i=0; i<categoryList.size();i++) {
+				switch(i) {
+					case 0:
+						jObject.put("outputCategoryNo", categoryList.get(i).getRacCategoryNo());
+						break;
+					case 1:
+						jObject.put("outputCategoryNo2", categoryList.get(i).getRacCategoryNo());
+						break;
+					case 2:
+						jObject.put("outputCategoryNo3", categoryList.get(i).getRacCategoryNo());
+						break;
+				}
+			}
+			
+			if(categoryList.size() == 1) {
+				jObject.put("outputCategoryNo2", 1);
+				jObject.put("outputCategoryNo3", 1);
 
+			} else if(categoryList.size() == 2) {
+				jObject.put("outputCategoryNo3", 1);	
+			}
+			
 			jObject.put("outputChannelNo", channel.getRacChannelNo());
 			jObject.put("outputChannelTitle", channel.getRacChannelTitle());
 			jObject.put("outputChannelUrl", channel.getRacChannelUrl());

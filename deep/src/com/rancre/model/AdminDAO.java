@@ -7,6 +7,7 @@ import java.util.HashMap;
 import org.apache.ibatis.session.SqlSession;
 
 import com.rancre.model.domain.Channel;
+import com.rancre.model.domain.ChannelCategory;
 import com.rancre.model.domain.ChannelCost;
 import com.rancre.model.domain.Feed;
 import com.rancre.model.domain.FeedComment;
@@ -50,6 +51,31 @@ public class AdminDAO {
 		}
 	}
 	
+	public static int addChannelCategory(
+			int inputChannelNo, 
+			int inputCategoryNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("channelNo", inputChannelNo);
+			map.put("categoryNo", inputCategoryNo);			
+
+			int check = (int)sqlSession.insert(namespace + ".addChannelCategory", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 	public static int addChannelAdUrl(
 			int inputChannelNo, 
 			String inputChannelAdUrl, 
@@ -79,7 +105,7 @@ public class AdminDAO {
 	// Update Method
 	public static int setChannelInfo(
 			int inputChannelNo, 
-			int inputCategoryNo, 
+			String inputCategory, 
 			int inputMcnNo,
 			Timestamp inputCurrentDate) {
 		
@@ -88,7 +114,7 @@ public class AdminDAO {
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("channelNo", inputChannelNo);
-			map.put("categoryNo", inputCategoryNo);			
+			map.put("category", inputCategory);			
 			map.put("mcnNo", inputMcnNo);			
 			map.put("inputCurrentDate", inputCurrentDate);			
 
@@ -230,6 +256,40 @@ public class AdminDAO {
 		try {
 			return (Channel)sqlSession.selectOne(namespace + ".getChannel", inputChannelNo);
 			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static ArrayList<ChannelCategory> getChannelCategory(int inputChannelNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			return (ArrayList) sqlSession.selectList(namespace + ".getChannelCategory", inputChannelNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int deleteChannelCategory(int inputChannelNo, int inputCategoryNo) {
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("channelNo", inputChannelNo);
+			map.put("categoryNo", inputCategoryNo);			
+		
+			int check = (int)sqlSession.delete(namespace + ".deleteChannelCategory", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
 		} finally {
 			sqlSession.close();
 		}

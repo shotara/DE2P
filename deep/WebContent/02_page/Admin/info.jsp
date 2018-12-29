@@ -11,7 +11,7 @@
 
 </head>
 <script type="text/javascript">
-	function addInfo(no, mcn, category) {
+	function addInfo(no, mcn, category, category2, category3) {
 		
 		var action, form_data;
 		
@@ -22,7 +22,9 @@
 		form_data = {
 				inputChannelNo : no,
 				inputMcnNo : mcn,
-				inputCategoryNo : category
+				inputCategoryNo : category,
+				inputCategoryNo2 : category2,
+				inputCategoryNo3 : category3
 		};
 		
 		$.ajax({
@@ -83,15 +85,61 @@
 			    <option value="16">취미</option>
 			    <option value="17">기타</option>
 			</select>
+			<select name="category2" id="category2">
+			    <option value="1">카테고리 선택</option>
+			    <option value="2">스튜디오</option>
+			    <option value="3">엔터</option>
+			    <option value="4">여행</option>
+  			    <option value="5">노래, 댄스</option>
+			    <option value="6">테크</option>
+			    <option value="7">교육</option>
+			    <option value="8">뷰티</option>
+			    <option value="9">일상</option>
+   			    <option value="10">게임</option>
+			    <option value="11">스포츠</option>
+			    <option value="12">먹방</option>
+			    <option value="13">키즈</option>
+   			    <option value="14">반려동물</option>
+			    <option value="15">운동</option>
+			    <option value="16">취미</option>
+			    <option value="17">기타</option>
+			</select>
+			<select name="category3" id="category3">
+			    <option value="1">카테고리 선택</option>
+			    <option value="2">스튜디오</option>
+			    <option value="3">엔터</option>
+			    <option value="4">여행</option>
+  			    <option value="5">노래, 댄스</option>
+			    <option value="6">테크</option>
+			    <option value="7">교육</option>
+			    <option value="8">뷰티</option>
+			    <option value="9">일상</option>
+   			    <option value="10">게임</option>
+			    <option value="11">스포츠</option>
+			    <option value="12">먹방</option>
+			    <option value="13">키즈</option>
+   			    <option value="14">반려동물</option>
+			    <option value="15">운동</option>
+			    <option value="16">취미</option>
+			    <option value="17">기타</option>
+			</select>
 		</div>
 	</div>
 	
 	<div class="btn">
-		<button onclick="addInfo(${result.outputChannelNo},$('#mcnNo').val(),$('#category').val())">정보입력</button>
+		<button onclick="addInfo(${result.outputChannelNo},$('#mcnNo').val(),$('#category').val(),$('#category2').val(),$('#category3').val())">정보입력</button>
 		<button>취소</button>
 	</div>
 </section>
 
+<script>
+	$(document).ready(function() { 
+		
+		$("#category").val(${result.outputCategoryNo}).prop("selected", true);
+		$("#category2").val(${result.outputCategoryNo2}).prop("selected", true);
+		$("#category3").val(${result.outputCategoryNo3}).prop("selected", true);
 
+	});
+</script>
 </body>
 </html>

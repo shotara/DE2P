@@ -15,8 +15,8 @@
 .col1 {width:300px; float:left; text-align:center; border-right:1px solid; border-bottom:1px solid;}
 .col2 {width:300px; float:left; text-align:center; border-right:1px solid; border-bottom:1px solid;}
 .col3 {width:200px; float:left; text-align:center; border-right:1px solid; border-bottom:1px solid;}
-.col4 {width:150px; float:left; text-align:center; border-right:1px solid; border-bottom:1px solid;}
-.col5 {width:150px; float:left; text-align:center; border-right:1px solid; border-bottom:1px solid;}
+.col4 {width:100px; float:left; text-align:center; border-right:1px solid; border-bottom:1px solid;}
+.col5 {width:130px; float:left; text-align:center; border-right:1px solid; border-bottom:1px solid;}
 .col6 {width:100px; float:left; text-align:center; border-right:1px solid; border-bottom:1px solid;}
 .col7 {width:100px; float:left; text-align:center; border-right:1px solid; border-bottom:1px solid;}
 .col8 {width:300px; float:left; text-align:center; border-right:1px solid; border-bottom:1px solid;}
@@ -26,6 +26,7 @@
 
 <div class="col1">채널명</div>
 <div class="col2">채널아이디</div>
+<div class="col5">카테고리</div>
 <div class="col3">조회수</div>
 <div class="col4">등록 후기 수</div>
 <div class="col5">식별광고 영상 수</div>
@@ -41,6 +42,7 @@
 	<c:forEach var="item" items="${channels}">
 		<div class="col1">${item.outputChannelTitle}</div>
 		<div class="col2">${item.outputChannelUrl}</div>
+		<div class="col5">${item.outputChannelCategory}</div>
 		<div class="col3">${item.outputChannelViews}</div>
 		<div class="col4">${item.outputPostscriptCount}</div>
 		<div class="col5">${item.outputChannelAdCount}</div>
