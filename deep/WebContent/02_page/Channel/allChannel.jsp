@@ -31,50 +31,50 @@
 
 				<div class="subNav-tabs w-auto ml-auto">
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link active" data-tab="studio" href="#studio" onclick="initList(1)">스튜디오</a>
+						<a class="subnav-link active" data-tab="studio" href="#studio" onclick="initList(2)">스튜디오</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="entertain" href="#entertain" onclick="initList(2)">엔터</a>
+						<a class="subnav-link" data-tab="entertain" href="#entertain" onclick="initList(3)">엔터</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="travel" href="#travel" onclick="initList(3)">여행</a>
+						<a class="subnav-link" data-tab="travel" href="#travel" onclick="initList(4)">여행</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="singdance" href="#singdance" onclick="initList(4)">노래
+						<a class="subnav-link" data-tab="singdance" href="#singdance" onclick="initList(5)">노래
 							댄스</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="tech" href="#tech" onclick="initList(5)">테크</a>
+						<a class="subnav-link" data-tab="tech" href="#tech" onclick="initList(6)">테크</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="education" href="#education" onclick="initList(6)">교육(어학)</a>
+						<a class="subnav-link" data-tab="education" href="#education" onclick="initList(7)">교육(어학)</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="beauty" href="#beauty" onclick="initList(7)">뷰티</a>
+						<a class="subnav-link" data-tab="beauty" href="#beauty" onclick="initList(8)">뷰티</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="daylife" href="#daylife" onclick="initList(8)">일상</a>
+						<a class="subnav-link" data-tab="daylife" href="#daylife" onclick="initList(9)">일상</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="game" href="#game" onclick="initList(9)">게임</a>
+						<a class="subnav-link" data-tab="game" href="#game" onclick="initList(10)">게임</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="sports" href="#sports" onclick="initList(10)">스포츠</a>
+						<a class="subnav-link" data-tab="sports" href="#sports" onclick="initList(11)">스포츠</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="food" href="#food" onclick="initList(11)">먹방</a>
+						<a class="subnav-link" data-tab="food" href="#food" onclick="initList(12)">먹방</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="kids" href="#kids" onclick="initList(12)">키즈</a>
+						<a class="subnav-link" data-tab="kids" href="#kids" onclick="initList(13)">키즈</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="pet" href="#pet" onclick="initList(13)">반려동물</a>
+						<a class="subnav-link" data-tab="pet" href="#pet" onclick="initList(14)">반려동물</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="exercise" href="#exercise" onclick="initList(14)">운동</a>
+						<a class="subnav-link" data-tab="exercise" href="#exercise" onclick="initList(15)">운동</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="habbit" href="#habbit" onclick="initList(15)">취미</a>
+						<a class="subnav-link" data-tab="habbit" href="#habbit" onclick="initList(16)">취미</a>
 					</div>
 				</div>
 
@@ -400,7 +400,7 @@
 
 </body>
 <script>
-	var categoryArray = [0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	var categoryArray = [0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 	function initList(i) {
 		
@@ -416,49 +416,49 @@
 			categoryArray[i] = categoryArray[i] + 20;
 			if(categoryArray[i] >= 890) 
 				switch(i) {
-				case 1:
+				case 2:
 					$("#studio .btnListGo").hide();
 					break;
-				case 2:
+				case 3:
 					$("#entertain .btnListGo").hide();
 					break;
-				case 3:
+				case 4:
 					$("#travel .btnListGo").hide();
 					break;
-				case 4:
+				case 5:
 					$("#singdance .btnListGo").hide();
 					break;
-				case 5:
+				case 6:
 					$("#tech .btnListGo").hide();
 					break;
-				case 6:
+				case 7:
 					$("#education .btnListGo").hide();
 					break;
-				case 7:
+				case 8:
 					$("#beauty .btnListGo").hide();
 					break;
-				case 8:
+				case 9:
 					$("#daylife .btnListGo").hide();
 					break;
-				case 9:
+				case 10:
 					$("#game .btnListGo").hide();
 					break;
-				case 10:
+				case 11:
 					$("#sports .btnListGo").hide();
 					break;
-				case 11:
+				case 12:
 					$("#food .btnListGo").hide();
 					break;
-				case 12:
+				case 13:
 					$("#kids .btnListGo").hide();
 					break;
-				case 13:
+				case 14:
 					$("#pet .btnListGo").hide();
 					break;
-				case 14:
+				case 15:
 					$("#exercise .btnListGo").hide();
 					break;
-				case 15:
+				case 16:
 					$("#habbit .btnListGo").hide();
 					break;
 				}

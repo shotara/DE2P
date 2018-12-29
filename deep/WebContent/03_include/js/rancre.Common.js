@@ -96,49 +96,49 @@ Common.addList = function (mode, startNo, categoryNo) {
 						</div>
 						`;
 					switch(categoryNo) {
-					case 1:
+					case 2:
 						$("#studio .chnContents").append(content);
 						break;
-					case 2:
+					case 3:
 						$("#entertain .chnContents").append(content);
 						break;
-					case 3:
+					case 4:
 						$("#travel .chnContents").append(content);
 						break;
-					case 4:
+					case 5:
 						$("#singdance .chnContents").append(content);
 						break;
-					case 5:
+					case 6:
 						$("#tech .chnContents").append(content);
 						break;
-					case 6:
+					case 7:
 						$("#education .chnContents").append(content);
 						break;
-					case 7:
+					case 8:
 						$("#beauty .chnContents").append(content);
 						break;
-					case 8:
+					case 9:
 						$("#daylife .chnContents").append(content);
 						break;
-					case 9:
+					case 10:
 						$("#game .chnContents").append(content);
 						break;
-					case 10:
+					case 11:
 						$("#sports .chnContents").append(content);
 						break;
-					case 11:
+					case 12:
 						$("#food .chnContents").append(content);
 						break;
-					case 12:
+					case 13:
 						$("#kids .chnContents").append(content);
 						break;
-					case 13:
+					case 14:
 						$("#pet .chnContents").append(content);
 						break;
-					case 14:
+					case 15:
 						$("#exercise .chnContents").append(content);
 						break;
-					case 15:
+					case 16:
 						$("#habbit .chnContents").append(content);
 						break;
 					}

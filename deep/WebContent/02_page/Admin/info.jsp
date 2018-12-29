@@ -66,9 +66,22 @@
 		<div class="info-channel-category">
 			<select name="category" id="category">
 			    <option value="1">카테고리 선택</option>
-			    <option value="2">뷰티</option>
-			    <option value="3">먹방</option>
-			    <option value="4">BJ</option>
+			    <option value="2">스튜디오</option>
+			    <option value="3">엔터</option>
+			    <option value="4">여행</option>
+  			    <option value="5">노래, 댄스</option>
+			    <option value="6">테크</option>
+			    <option value="7">교육</option>
+			    <option value="8">뷰티</option>
+			    <option value="9">일상</option>
+   			    <option value="10">게임</option>
+			    <option value="11">스포츠</option>
+			    <option value="12">먹방</option>
+			    <option value="13">키즈</option>
+   			    <option value="14">반려동물</option>
+			    <option value="15">운동</option>
+			    <option value="16">취미</option>
+			    <option value="17">기타</option>
 			</select>
 		</div>
 	</div>
