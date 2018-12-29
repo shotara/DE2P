@@ -21,136 +21,208 @@
 
 					<div class="common-brand">Rancre</div>
 
-					<div class="pTop">
-						<span>광고 리뷰를 작성하시면 다른 채널의 리뷰를 바로 확인할 수 있습니다! </br> 외부에 노출되는 모든
-							리뷰는 익명처리됩니다!
-						</span>
+					<div class="review-step1">
+
+						<div class="pTop">
+							<span>광고 리뷰를 작성하시면 다른 채널의 리뷰를 바로 확인할 수 있습니다! </br> 외부에 노출되는 모든
+								리뷰는 익명처리됩니다!
+							</span>
+						</div>
+
+						<div class="ipt-channel-review pTop3">
+							<div class="txt-left review-commonTxt2">
+								채널 이름<span class="primary-color">*</span>
+							</div>
+							<div class="txt-left review-commonSubTxt">광고한 채널의 이름을
+								입력해주세요!</div>
+							<input class="ipt-Common-Review" type="text"
+								id="Input-Channel-Name" placeholder="와썹맨Wassup-man" required />
+						</div>
+
+						<div class="ipt-channel-review pTop2">
+							<div class="float-left review-commonTxt inline-block">
+								종합 만족도<span class="primary-color">*</span>
+							</div>
+						</div>
+
+
+						<div class="float-right">
+							<div class="radio-item">
+								<input type="radio" id="commercial-verySatisfy"
+									name="commercial-satisfy" value="0" checked> <label
+									for="commercial-verySatisfy">매우 만족</label>
+							</div>
+
+							<div class="radio-item">
+								<input type="radio" id="commercial-Satisfy"
+									name="commercial-satisfy" value="1"> <label
+									for="commercial-Satisfy">만족</label>
+							</div>
+							<div class="radio-item">
+								<input type="radio" id="commercial-normal"
+									name="commercial-satisfy" value="2"> <label
+									for="commercial-normal">보통</label>
+							</div>
+							<div class="radio-item">
+								<input type="radio" id="commercial-unSatisfy"
+									name="commercial-satisfy" value="3"> <label
+									for="commercial-unSatisfy">불만족</label>
+							</div>
+							<div class="radio-item">
+								<input type="radio" id="commercial-veryunSatisfy"
+									name="commercial-satisfy" value="4"> <label
+									for="commercial-veryunSatisfy">매우 불만족</label>
+							</div>
+						</div>
+
+						<div class="pTop2"></div>
+
+						<div class="ipt-channel-review pTop2">
+
+							<div class="txt-left review-commonTxt2 inline-block">
+								광고 집행 일자<span class="primary-color">*</span>
+							</div>
+							<div class="txt-left review-commonSubTxt">입력한 일자는 년도만 노출되며,
+								1~3년 이내 3년 ~ 5년 이내 등으로 표기됩니다.</div>
+							<div class="inline-flex w100">
+								<select class="ipt-Select-Date" id="commercial-Date1">
+									<option value="0">2018년</option>
+									<option value="1">2017년</option>
+									<option value="2">2016년</option>
+								</select>
+								<div class="pRight"></div>
+								<select class="ipt-Select-Date" id="commercial-Date2">
+									<option value="0">12월</option>
+									<option value="1">11월</option>
+									<option value="2">10월</option>
+								</select>
+							</div>
+
+						</div>
+
+						<div class="ipt-channel-review pTop2">
+
+							<div class="txt-left review-commonTxt2 inline-block">
+								광고 집행 비용<span class="primary-color">*</span>
+							</div>
+							<div class="txt-left review-commonSubTxt">광고 비용을 입력한 리뷰를
+								작성하면 다른 채널의 광고 비용을 확인 할 수 있습니다.</div>
+							<div class="inline-flex w100">
+								<select class="ipt-Select-CommercialType" id="commercial-Type">
+									<option value="0">영상 콘텐츠</option>
+									<option value="1">배너 광고</option>
+									<option value="2">기타</option>
+								</select>
+								<div class="pRight"></div>
+								<input class="ipt-Commercial-Price" type="text"
+									id="Input-Commercial-Price" placeholder="10,000,000" required />
+
+							</div>
+
+						</div>
+
+						<div class="ipt-channel-review pTop2">
+
+							<div class="txt-left review-commonTxt2 inline-block">광고 영상
+								URL</div>
+							<div class="txt-left review-commonSubTxt">입력한 광고 URL은 리뷰
+								검증에만 사용되며, 입력한 리뷰와 연동되지 않습니다.</div>
+							<input class="ipt-Common-Review" type="text"
+								id="Input-Commercial-Url"
+								placeholder="http://youtube.com/example" required />
+						</div>
+
+
+						<div class="ipt-channel-review pTop2">
+
+							<div class="txt-left review-commonTxt2 inline-block">
+								채널 리뷰<span class="primary-color">*</span>
+							</div>
+							<div class="txt-left review-commonSubTxt">모든 리뷰는 익명처리되며,
+								심사를 거쳐 수정될 수 있습니다.</div>
+							<textarea class="w100 review-TextArea" col="1" row="1"
+								id="Input-Commercial-Text"
+								placeholder="광고 리뷰를 등록하고, 다른 채널의 광고 이용 리뷰를 확인해보세요!"></textarea>
+						</div>
+
+						<div class="pTop2">
+							<button class="float-left common-wide20Reverse-Btn pRight"
+								type="button">이전</button>
+							<button class="float-right common-wide75-Btn" type="button">다음</button>
+
+						</div>
+					</div>
+					<div class="review-step2">
+
+						<div class="pTop">
+							<span>거의 다 작성하였습니다! </br> 작성한 리뷰는 다른 마케터들에게 큰 도움이 됩니다!
+							</span>
+						</div>
+
+						<div class="ipt-channel-review pTop3">
+
+							<div class="txt-left review-commonTxt2 inline-block">
+								도달률(조회수)<span class="primary-color">*</span>
+							</div>
+							<div class="txt-left review-commonSubTxt">광고 영상은 목표한
+								도달률(조회수)을 달성하였나요?</div>
+							<div class="w100">
+								<select class="ipt-Select-Reach" id="success-reach">
+									<option value="0">달성함</option>
+									<option value="1">달성하지 못함</option>
+								</select>
+							</div>
+
+						</div>
+						
+						<div class="ipt-channel-review pTop2">
+
+							<div class="txt-left review-commonTxt2 inline-block">
+								전환률(인입 또는 매출)<span class="primary-color">*</span>
+							</div>
+							<div class="txt-left review-commonSubTxt">광고 영상은 목표한 전환률(인입
+								또는 매출)을 달성하였나요?</div>
+							<div class="w100">
+								<select class="ipt-Select-Reach" id="success-convert">
+									<option value="0">달성함</option>
+									<option value="1">달성하지 못함</option>
+								</select>
+							</div>
+
+						</div>
+						
+							
+						<div class="ipt-channel-review pTop2">
+
+							<div class="txt-left review-commonTxt2 inline-block">
+								광고 아이템 카테고리<span class="primary-color">*</span>
+							</div>
+							<div class="txt-left review-commonSubTxt">광고한 아이템이 속한 카테고리는 무엇인가요?</div>
+							<div class="w100">
+								<select class="ipt-Select-Reach" id="success-convert">
+									<option value="0">달성함</option>
+									<option value="1">달성하지 못함</option>
+								</select>
+							</div>
+
+						</div>
+
+
+
+						<div class="pTop2">
+							<button class="float-left common-wide20Reverse-Btn pRight"
+								type="button">이전</button>
+							<button class="float-right common-wide75-Btn" type="button">리뷰
+								등록</button>
+
+						</div>
+
 					</div>
 
-					<div class="ipt-channel-review pTop3">
-						<div class="txt-left review-commonTxt2">
-							채널 이름<span class="primary-color">*</span>
-						</div>
-						<div class="txt-left review-commonSubTxt">광고한 채널의 이름을
-							입력해주세요!</div>
-						<input class="ipt-Common-Review" type="text"
-							id="Input-Channel-Name" placeholder="와썹맨Wassup-man" required />
-					</div>
+				</div>
 
-					<div class="ipt-channel-review pTop2">
-						<div class="float-left review-commonTxt inline-block">
-							종합 만족도<span class="primary-color">*</span>
-						</div>
-					</div>
+				<div class="review-footer">
 
-
-					<div class="float-right">
-						<div class="radio-item">
-							<input type="radio" id="commercial-verySatisfy"
-								name="commercial-satisfy" value="0" checked> <label
-								for="commercial-verySatisfy">매우 만족</label>
-						</div>
-
-						<div class="radio-item">
-							<input type="radio" id="commercial-Satisfy"
-								name="commercial-satisfy" value="1"> <label
-								for="commercial-Satisfy">만족</label>
-						</div>
-						<div class="radio-item">
-							<input type="radio" id="commercial-normal"
-								name="commercial-satisfy" value="2"> <label
-								for="commercial-normal">보통</label>
-						</div>
-						<div class="radio-item">
-							<input type="radio" id="commercial-unSatisfy"
-								name="commercial-satisfy" value="3"> <label
-								for="commercial-unSatisfy">불만족</label>
-						</div>
-						<div class="radio-item">
-							<input type="radio" id="commercial-veryunSatisfy"
-								name="commercial-satisfy" value="4"> <label
-								for="commercial-veryunSatisfy">매우 불만족</label>
-						</div>
-					</div>
-
-					<div class="pTop2"></div>
-
-					<div class="ipt-channel-review pTop2">
-
-						<div class="txt-left review-commonTxt2 inline-block">
-							광고 집행 일자<span class="primary-color">*</span>
-						</div>
-						<div class="txt-left review-commonSubTxt">입력한 일자는 년도만 노출되며,
-							1~3년 이내 3년 ~ 5년 이내 등으로 표기됩니다.</div>
-						<div class="inline-flex w100">
-							<select class="ipt-Select-Date" id="commercial-Date1">
-								<option value="0">2018년</option>
-								<option value="1">2017년</option>
-								<option value="2">2016년</option>
-							</select>
-							<div class="pRight"></div>
-							<select class="ipt-Select-Date" id="commercial-Date2">
-								<option value="0">12월</option>
-								<option value="1">11월</option>
-								<option value="2">10월</option>
-							</select>
-						</div>
-
-					</div>
-
-					<div class="ipt-channel-review pTop2">
-
-						<div class="txt-left review-commonTxt2 inline-block">
-							광고 집행 비용<span class="primary-color">*</span>
-						</div>
-						<div class="txt-left review-commonSubTxt">광고 비용을 입력한 리뷰를
-							작성하면 다른 채널의 광고 비용을 확인 할 수 있습니다.</div>
-						<div class="inline-flex w100">
-							<select class="ipt-Select-CommercialType" id="commercial-Type">
-								<option value="0">영상 콘텐츠</option>
-								<option value="1">배너 광고</option>
-								<option value="2">기타</option>
-							</select>
-							<div class="pRight"></div>
-							<input class="ipt-Commercial-Price" type="text"
-								id="Input-Commercial-Price" placeholder="10,000,000" required />
-
-						</div>
-
-					</div>
-
-					<div class="ipt-channel-review pTop2">
-
-						<div class="txt-left review-commonTxt2 inline-block">광고 영상
-							URL</div>
-						<div class="txt-left review-commonSubTxt">입력한 광고 URL은 리뷰
-							검증에만 사용되며, 입력한 리뷰와 연동되지 않습니다.</div>
-						<input class="ipt-Common-Review" type="text"
-							id="Input-Commercial-Url"
-							placeholder="http://youtube.com/example" required />
-					</div>
-
-
-					<div class="ipt-channel-review pTop2">
-
-						<div class="txt-left review-commonTxt2 inline-block">
-							채널 리뷰<span class="primary-color">*</span>
-						</div>
-						<div class="txt-left review-commonSubTxt">모든 리뷰는 익명처리되며, 심사를
-							거쳐 수정될 수 있습니다.</div>
-						<textarea class="w100 review-TextArea" col="1" row="1"
-							id="Input-Commercial-Text"
-							placeholder="광고 리뷰를 등록하고, 다른 채널의 광고 이용 리뷰를 확인해보세요!"></textarea>
-					</div>
-
-					<div class="pTop3">
-						<button class="float-left common-wide20Reverse-Btn pRight"
-							type="button">이전</button>
-						<button class="float-right common-wide80-Btn" type="button">다음</button>
-
-					</div>
-
-					<div class="pTop4"></div>
 					<div class="pTop4"></div>
 
 					<div class="float-left">

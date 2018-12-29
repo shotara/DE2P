@@ -273,8 +273,8 @@ a {
 	text-decoration: none !important;
 }
 
-.common-wide80-Btn {
-	width: 80%;
+.common-wide75-Btn {
+	width: 75%;
 	border-radius: 8px;
 	border: 1px solid #f11834;
 	font-size: 1em;
@@ -284,15 +284,15 @@ a {
 	font-weight: bold;
 }
 
-.common-wide80-Btn:focus {
+.common-wide75-Btn:focus {
 	outline: none;
 }
 
-.common-wide80-Btn a {
+.common-wide75-Btn a {
 	text-decoration: none !important;
 }
 
-.common-wide80-Btn a:hover {
+.common-wide75-Btn a:hover {
 	text-decoration: none !important;
 }
 
@@ -303,7 +303,7 @@ a {
 	font-size: 1em;
 	height: 36px;
 	background-color: #fff;
-	color: #707070;
+	color: #f11834;
 }
 
 .common-wide20Reverse-Btn:focus {
@@ -319,7 +319,6 @@ a {
 	text-decoration: none !important;
 	color: #fff;
 }
-
 
 .companyCheckBtn {
 	width: 100%;
@@ -359,43 +358,43 @@ a {
 }
 
 .radio-item {
-  display: inline-block;
-  position: relative;
-  padding: 0 6px;
+	display: inline-block;
+	position: relative;
+	padding: 0 6px;
 }
 
 .radio-item input[type='radio'] {
-  display: none;
+	display: none;
 }
 
 .radio-item label {
-  color: #000;
-  font-weight: normal;
+	color: #000;
+	font-weight: normal;
 }
 
 .radio-item label:before {
-  content: " ";
-  display: inline-block;
-  position: relative;
-  top: 5px;
-  margin: 0 5px 0 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 11px;
-  border: 2px solid #f11834;
-  background-color: transparent;
+	content: " ";
+	display: inline-block;
+	position: relative;
+	top: 5px;
+	margin: 0 5px 0 0;
+	width: 20px;
+	height: 20px;
+	border-radius: 11px;
+	border: 2px solid #f11834;
+	background-color: transparent;
 }
 
-.radio-item input[type=radio]:checked + label:after {
-  border-radius: 11px;
-  width: 12px;
-  height: 12px;
-  position: absolute;
-  top: 9px;
-  left: 10px;
-  content: " ";
-  display: inline-block;
-  background: #f11834;
+.radio-item input[type=radio]:checked+label:after {
+	border-radius: 11px;
+	width: 12px;
+	height: 12px;
+	position: absolute;
+	top: 9px;
+	left: 10px;
+	content: " ";
+	display: inline-block;
+	background: #f11834;
 }
 
 /**********************************/
@@ -457,12 +456,11 @@ a.subnav-link:hover {
 	color: #F11834 !important;
 }
 
-
 .ipt-Member-Join {
 	height: 36px;
 	font-size: 1em;
 	width: 100%;
-	border: 1px solid #eee;
+	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
 }
@@ -476,7 +474,7 @@ a.subnav-link:hover {
 	height: 36px;
 	font-size: 1em;
 	width: 100%;
-	border: 1px solid #eee;
+	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
 }
@@ -503,7 +501,7 @@ a.subnav-link:hover {
 	height: 36px;
 	font-size: 1em;
 	width: 100%;
-	border: 1px solid #eee;
+	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
 }
@@ -514,15 +512,15 @@ a.subnav-link:hover {
 }
 
 .ipt-Select-Option {
-	color : #b4b4b4;
+	color: #b4b4b4;
 }
 
 .ipt-Select-Option:checked {
-	color : #000;
+	color: #000;
 }
 
 .ipt-commercial-ex {
-	padding-right : 20px;
+	padding-right: 20px;
 }
 
 .join-commonTxt {
@@ -535,11 +533,9 @@ a.subnav-link:hover {
 }
 
 .joinPermit-commonSubTxt {
-	color : #707070;
+	color: #707070;
 	padding-bottom: 5px;
 }
-
-
 
 /**********************************/
 /*  font awesome customize  */
@@ -613,7 +609,7 @@ a.subnav-link:hover {
 	height: 36px;
 	font-size: 1em;
 	width: 100%;
-	border: 1px solid #eee;
+	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
 }
@@ -627,7 +623,7 @@ a.subnav-link:hover {
 	height: 36px;
 	font-size: 1em;
 	width: 100%;
-	border: 1px solid #eee;
+	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
 }
@@ -796,7 +792,7 @@ a.subnav-link:hover {
 }
 
 .detail .title {
-	overflow : hidden;
+	overflow: hidden;
 }
 
 /* 채널 디테일 sub tabs*/
@@ -838,21 +834,19 @@ ul.sub-tabs li a.active {
 	display: block;
 }
 
-.uploadVideo {
+.upload-Video {
 	margin: 0 auto;
-	width: auto;
-	padding-right: 16px;
-}
-
-.uploadVideo-right {
-	margin: 0 auto;
-	width: auto;
+	width: 20%;
 }
 
 .comercialVideo {
 	margin: 0 auto;
 	width: auto;
 	padding-right: 16px;
+}
+
+.detail .count {
+	width: 210px;
 }
 
 .comercialVideo-right {
@@ -923,7 +917,6 @@ ul.sub-tabs li a.active {
 /**********************************/
 /*  Search Page CSS  */
 /*********************************/
-
 .searchKeyword {
 	width: auto;
 	position: relative;
@@ -979,11 +972,9 @@ ul.sub-tabs li a.active {
 	min-height: 400px;
 }
 
-
 /**********************************/
 /*  Review Page CSS  */
 /*********************************/
-
 .channel-review {
 	padding-right: 240px;
 	padding-left: 240px;
@@ -997,7 +988,7 @@ ul.sub-tabs li a.active {
 	height: 36px;
 	font-size: 1em;
 	width: 100%;
-	border: 1px solid #eee;
+	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
 }
@@ -1017,7 +1008,7 @@ ul.sub-tabs li a.active {
 }
 
 .review-commonSubTxt {
-	color : #707070;
+	color: #707070;
 	padding-bottom: 5px;
 }
 
@@ -1025,10 +1016,10 @@ ul.sub-tabs li a.active {
 	height: 36px;
 	font-size: 1em;
 	width: 50%;
-	border: 1px solid #eee;
+	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
-	background-color : #fff;
+	background-color: #fff;
 }
 
 .ipt-Select-Date:focus {
@@ -1040,10 +1031,10 @@ ul.sub-tabs li a.active {
 	height: 36px;
 	font-size: 1em;
 	width: 30%;
-	border: 1px solid #eee;
+	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
-	background-color : #fff;
+	background-color: #fff;
 }
 
 .ipt-Select-CommercialType:focus {
@@ -1055,7 +1046,7 @@ ul.sub-tabs li a.active {
 	height: 36px;
 	font-size: 1em;
 	width: 100%;
-	border: 1px solid #eee;
+	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
 }
@@ -1069,7 +1060,7 @@ ul.sub-tabs li a.active {
 	height: 36px;
 	font-size: 1em;
 	width: 100%;
-	border: 1px solid #eee;
+	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
 }
@@ -1083,7 +1074,7 @@ ul.sub-tabs li a.active {
 	height: 36px;
 	font-size: 1em;
 	width: 100%;
-	border: 1px solid #eee;
+	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
 }
@@ -1097,12 +1088,41 @@ ul.sub-tabs li a.active {
 	height: 200px;
 	font-size: 1em;
 	width: 100%;
-	border: 1px solid #eee;
+	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
 }
 
 .review-TextArea:focus {
+	border: 1px solid #f11834;
+	outline: none;
+}
+
+.review-footer {
+	padding-right: 240px;
+	padding-left: 240px;
+	height: 70px;
+}
+
+.review-step1 {
+	display: none;
+}
+
+.review-step2 {
+	
+}
+
+.ipt-Select-Reach {
+	height: 36px;
+	font-size: 1em;
+	width: 100%;
+	border: 1px solid #b4b4b4;
+	border-radius: 3px;
+	padding-left: 10px;
+	background-color: #fff;
+}
+
+.ipt-Select-Reach:focus {
 	border: 1px solid #f11834;
 	outline: none;
 }
