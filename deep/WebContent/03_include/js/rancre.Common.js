@@ -33,11 +33,10 @@ Common.addList = function (mode, startNo, categoryNo) {
 							style="width: 48px; border-radius: 48px;"
 							src="`+args.rankingList[i].outputChannelThumbnail +`">
 							</div>
-							<div class="rankMainRow">`+args.rankingList[i].outputChannelTitle+`</div>
-							<div class="rankMainRow">`+args.rankingList[i].outputCategoryNo+`</div>
-							<div class="rankMainRow">`+args.rankingList[i].outputChannelFollowers+`</div>
-							<div class="rankMainRow">`+args.rankingList[i].outputChannelViews+`</div>
-							<div class="rankMainRow2">`+args.rankingList[i].outputChannelVideoCount+`</div>
+							<div class="ranc-Main-Row">`+args.rankingList[i].outputChannelTitle+`</div>
+							<div class="ranc-Main-Row2">`+args.rankingList[i].outputCategoryNo+`</div>
+							<div class="ranc-Main-Row">`+args.rankingList[i].outputChannelFollowers+`</div>
+							<div class="ranc-Main-Row">`+args.rankingList[i].outputChannelViews+`</div>
 							<div class="rankMainRowBtn">
 							<button class="btnChnGo">
 							<a class="chnDtlGo" href="/channel?action=getChannelDetail&inputChannelNo=`+args.rankingList[i].outputChannelNo+`">채널정보
@@ -79,11 +78,10 @@ Common.addList = function (mode, startNo, categoryNo) {
 						style="width: 48px; border-radius: 48px;"
 						src="`+args.rankingList[i].outputChannelThumbnail +`">
 						</div>
-						<div class="rankRow">`+args.rankingList[i].outputChannelTitle+`</div>
-						<div class="rankRow">`+args.rankingList[i].outputCategoryNo+`</div>
-						<div class="rankRow">`+args.rankingList[i].outputChannelFollowers+`</div>
-						<div class="rankRow">`+args.rankingList[i].outputChannelViews+`</div>
-						<div class="rankRow2">`+args.rankingList[i].outputChannelVideoCount+`</div>
+						<div class="ranc-Row">`+args.rankingList[i].outputChannelTitle+`</div>
+						<div class="ranc-Row2">`+args.rankingList[i].outputCategoryNo+`</div>
+						<div class="ranc-Row">`+args.rankingList[i].outputChannelFollowers+`</div>
+						<div class="ranc-Row">`+args.rankingList[i].outputChannelViews+`</div>
 						<div class="rankRowBtn">
 						<button class="btnChnGo">
 						<a class="chnDtlGo" href="/channel?action=getChannelDetail&inputChannelNo=`+args.rankingList[i].outputChannelNo+`">채널정보
@@ -136,7 +134,7 @@ Common.addList = function (mode, startNo, categoryNo) {
 						$("#pet .chnContents").append(content);
 						break;
 					case 15:
-						$("#exercise .chnContents").append(content);
+						$("#asmr .chnContents").append(content);
 						break;
 					case 16:
 						$("#habbit .chnContents").append(content);
@@ -170,11 +168,10 @@ Common.addList = function (mode, startNo, categoryNo) {
 							style="width: 48px; border-radius: 48px;"
 							src="`+args.rankingList[i].outputChannelThumbnail +`">
 							</div>
-							<div class="rankRow">`+args.rankingList[i].outputChannelTitle+`</div>
-							<div class="rankRow">`+args.rankingList[i].outputCategoryNo+`</div>
-							<div class="rankRow">`+args.rankingList[i].outputChannelFollowers+`</div>
-							<div class="rankRow">`+args.rankingList[i].outputChannelViews+`</div>
-							<div class="rankRow2">`+args.rankingList[i].outputChannelVideoCount+`</div>
+							<div class="ranc-Row">`+args.rankingList[i].outputChannelTitle+`</div>
+							<div class="ranc-Row2">`+args.rankingList[i].outputCategoryNo+`</div>
+							<div class="ranc-Row">`+args.rankingList[i].outputChannelFollowers+`</div>
+							<div class="ranc-Row">`+args.rankingList[i].outputChannelViews+`</div>
 							<div class="rankRowBtn">
 							<button class="btnChnGo">
 							<a class="chnDtlGo" href="/channel?action=getChannelDetail&inputChannelNo=`+args.rankingList[i].outputChannelNo+`">채널정보

@@ -33,11 +33,10 @@
 
 				<div class="topRow">
 					<div class="rankRowImg"></div>
-					<div class="rankRow">채널명</div>
-					<div class="rankRow">카테고리</div>
-					<div class="rankRow">총구독자수</div>
-					<div class="rankRow">총조회수</div>
-					<div class="rankRow2">영상수</div>
+					<div class="ranc-Row">채널명</div>
+					<div class="ranc-Row2">카테고리</div>
+					<div class="ranc-Row">총구독자수</div>
+					<div class="ranc-Row">총조회수</div>
 					<div class="rankRowBtn"></div>
 				</div>
 				<hr>
@@ -97,11 +96,10 @@
 									style="width: 48px; border-radius: 48px;"
 									src="`+args.rankingList[i].outputChannelThumbnail +`">
 							</div>
-							<div class="rankRow">`+args.rankingList[i].outputChannelTitle+`</div>
-							<div class="rankRow">`+args.rankingList[i].outputCategoryNo+`</div>
-							<div class="rankRow">`+args.rankingList[i].outputChannelFollowers+`</div>
-							<div class="rankRow">`+args.rankingList[i].outputChannelViews+`</div>
-							<div class="rankRow2">`+args.rankingList[i].outputChannelVideoCount+`</div>
+							<div class="ranc-Row">`+args.rankingList[i].outputChannelTitle+`</div>
+							<div class="ranc-Row2">`+args.rankingList[i].outputCategoryNo+`</div>
+							<div class="ranc-Row">`+args.rankingList[i].outputChannelFollowers+`</div>
+							<div class="ranc-Row">`+args.rankingList[i].outputChannelViews+`</div>
 							<div class="rankRowBtn">
 								<button class="btnChnGo">
 									<a class="chnDtlGo" href="/channel?action=getChannelDetail&inputChannelNo=`+args.rankingList[i].outputChannelNo+`">채널정보

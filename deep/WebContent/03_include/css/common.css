@@ -413,7 +413,6 @@ a {
 div a.subnav-link {
 	text-decoration: none;
 	color: #b4b4b4;
-	font-weight: bold;
 }
 
 a.subnav-link.active {
@@ -670,6 +669,18 @@ a.subnav-link:hover {
 	float: lfet;
 }
 
+.ranc-Row {
+	display: inline-block;
+	width: 190px;
+	margin-right: 10px;
+}
+
+.ranc-Row2 {
+	display: inline-block;
+	width: 230px;
+	margin-right: 10px;
+}
+
 .rankRowImg {
 	display: inline-block;
 	width: 48px;
@@ -709,17 +720,15 @@ a.subnav-link:hover {
 	font-weight: 1.2em;
 }
 
-.rankMainRow {
+.ranc-Main-Row {
 	display: inline-block;
-	width: 156px;
-	float: lfet;
+	width: 181px;
 	maring-right: 10px;
 }
 
-.rankMainRow2 {
+.ranc-Main-Row2 {
 	display: inline-block;
-	width: 110px;
-	float: lfet;
+	width: 191px;
 }
 
 .rankMainRowCnt {

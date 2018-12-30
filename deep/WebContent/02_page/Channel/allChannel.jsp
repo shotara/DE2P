@@ -59,7 +59,7 @@
 						<a class="subnav-link" data-tab="game" href="#game" onclick="initList(10)">게임</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="sports" href="#sports" onclick="initList(11)">스포츠</a>
+						<a class="subnav-link" data-tab="sports" href="#sports" onclick="initList(11)">운동</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="food" href="#food" onclick="initList(12)">먹방</a>
@@ -71,7 +71,7 @@
 						<a class="subnav-link" data-tab="pet" href="#pet" onclick="initList(14)">반려동물</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="exercise" href="#exercise" onclick="initList(15)">운동</a>
+						<a class="subnav-link" data-tab="exercise" href="#exercise" onclick="initList(15)">ASMR</a>
 					</div>
 					<div class="subNav-tab col w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="habbit" href="#habbit" onclick="initList(16)">취미</a>
@@ -86,11 +86,10 @@
 
 				<div class="topRow">
 					<div class="rankRowImg"></div>
-					<div class="rankRow">채널명</div>
-					<div class="rankRow">카테고리</div>
-					<div class="rankRow">총구독자수</div>
-					<div class="rankRow">총조회수</div>
-					<div class="rankRow2">영상수</div>
+					<div class="ranc-Row">채널명</div>
+					<div class="ranc-Row2">카테고리</div>
+					<div class="ranc-Row">총구독자수</div>
+					<div class="ranc-Row">총조회수</div>
 					<div class="rankRowBtn"></div>
 				</div>
 				<hr>
@@ -276,7 +275,7 @@
 
 				<!-- 게임  끝   -->
 
-				<!-- 스포츠  시작  -->
+				<!-- 운동  시작  -->
 
 
 				<div class="subNav-content" id="sports">
@@ -293,7 +292,7 @@
 
 				</div>
 
-				<!-- 스포츠  끝   -->
+				<!-- 운동  끝   -->
 
 				<!-- 먹방   시작  -->
 
@@ -352,10 +351,10 @@
 
 				<!-- 반려동물   끝   -->
 
-				<!-- 운동   시작  -->
+				<!-- ASMR   시작  -->
 
 
-				<div class="subNav-content" id="exercise">
+				<div class="subNav-content" id="asmr">
 
 					<div class="chnContents">
 						<div class="pt-2"></div>
@@ -369,7 +368,7 @@
 
 				</div>
 
-				<!-- 운동   끝   -->
+				<!-- ASMR   끝   -->
 
 				<!-- 취미  시작  -->
 
@@ -456,7 +455,7 @@
 					$("#pet .btnListGo").hide();
 					break;
 				case 15:
-					$("#exercise .btnListGo").hide();
+					$("#asmr .btnListGo").hide();
 					break;
 				case 16:
 					$("#habbit .btnListGo").hide();
@@ -487,11 +486,10 @@
 									style="width: 48px; border-radius: 48px;"
 									src="`+args.rankingList[i].outputChannelThumbnail +`">
 							</div>
-							<div class="rankRow">`+args.rankingList[i].outputChannelTitle+`</div>
-							<div class="rankRow">`+args.rankingList[i].outputCategoryNo+`</div>
-							<div class="rankRow">`+args.rankingList[i].outputChannelFollowers+`</div>
-							<div class="rankRow">`+args.rankingList[i].outputChannelViews+`</div>
-							<div class="rankRow2">`+args.rankingList[i].outputChannelVideoCount+`</div>
+							<div class="ranc-Row">`+args.rankingList[i].outputChannelTitle+`</div>
+							<div class="ranc-Row2">`+args.rankingList[i].outputCategoryNo+`</div>
+							<div class="ranc-Row">`+args.rankingList[i].outputChannelFollowers+`</div>
+							<div class="ranc-Row">`+args.rankingList[i].outputChannelViews+`</div>
 							<div class="rankRowBtn">
 								<button class="btnChnGo">
 								<a class="chnDtlGo" href="/channel?action=getChannelDetail&inputChannelNo=`+args.rankingList[i].outputChannelNo+`">채널정보
