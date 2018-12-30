@@ -16,9 +16,9 @@
 	<jsp:include page="/02_page/commonNav.jsp" flush="false" />
 
 	<section class="section" data-type="feed">
-	<div class="container">
+	<div class="container pTop2">
 		<div class="row">
-			<div class="col v20">
+			<div class="col">
 				<div class="w-auto ml-auto">
 					<h3>새로운 채널</h3>
 				</div>

@@ -216,8 +216,19 @@ Common.review = function (mode){
 	    review_step1.style.display = 'block';
 		review_step2.style.display = 'none';
 	}
-	else if(mode==3){
+	else if(mode==3){ //confirm the review
+		
 		return;
+	}
+	else if(mode==4){
+		var check_cancel = confirm("리뷰는 다른 마케터에게 큰 도움이 됩니다. 리뷰 등록을 취소하겠습니까?");
+		
+		if(check_cancel){//don't want to write review, go index page
+			location.href="/index.jsp";
+			check_cancel = true;
+		}else{//leave review page
+			check_cancel = false;
+		}
 	}
 	
 }

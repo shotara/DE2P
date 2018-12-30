@@ -77,6 +77,18 @@ a {
 	margin-top: 10px;
 }
 
+.mTop2 {
+	margin-top: 20px;
+}
+
+.mTop3 {
+	margin-top: 30px;
+}
+
+.mTop4 {
+	margin-top: 40px;
+}
+
 .mBottom {
 	margin-bottom: 10px;
 }
@@ -395,6 +407,29 @@ a {
 	content: " ";
 	display: inline-block;
 	background: #f11834;
+}
+
+.common-Small-Btn {
+	width: auto;
+	border-radius: 8px;
+	border: 1px solid #f11834;
+	font-size: 1em;
+	height: 30px;
+	color: #f11834;
+}
+
+.common-Small-Btn:focus {
+	outline: none;
+}
+
+.common-Small-Btn a {
+	text-decoration: none !important;
+	color: #f11834 !important;
+}
+
+.common-Small-Btn a:hover {
+	text-decoration: none !important;
+	color: #f11834 !important;
 }
 
 /**********************************/
@@ -1133,4 +1168,54 @@ ul.sub-tabs li a.active {
 .ipt-Select-Reach:focus {
 	border: 1px solid #f11834;
 	outline: none;
+}
+
+/**********************************/
+/*  Corp main                CSS */
+/*********************************/
+
+.ranc-Corp-Row {
+	display: inline-block;
+}
+
+
+.corp-Row {
+	color : #b4b4b4;
+	font-size : 1.2em;
+	padding-right : 30px;
+	width : 180px;
+}
+
+.corp-Name {
+	color : #272727;
+	font-size : 1.2em;
+	padding-right : 30px;
+	width : 180px;
+}
+
+.corp-Id {
+	color : #272727;
+	font-size : 1.2em;
+	padding-right : 30px;
+	width : 180px;
+}
+
+.corp-ReviewCnt {
+	color : #272727;
+	font-size : 1.2em;
+	padding-right : 30px;
+	width : 180px;
+}
+
+.corp-headerTitle {
+	color : #272727;
+	font-size : 1.2em;
+}
+
+.corp-ChnReivew-Wait {
+	color : #b4b4b4;
+}
+
+.corp-ChnReivew-Unaccept {
+	color : #f11834;
 }

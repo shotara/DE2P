@@ -14,7 +14,7 @@
 <body>
 
 	<jsp:include page="/02_page/commonNav.jsp" flush="false" />
-	<div class="container v20">
+	<div class="container pTop2">
 		<div class="row">
 			<div class="col">
 

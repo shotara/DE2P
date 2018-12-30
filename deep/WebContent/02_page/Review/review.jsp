@@ -144,7 +144,9 @@
 						</div>
 
 						<div class="pTop2">
-							<button class="float-right common-wide-Btn" type="button" onclick="Common.review(1)">다음</button>
+							<button class="float-left common-wide20Reverse-Btn pRight"
+								type="button" onclick="Common.review(4)">취소</button>
+							<button class="float-right common-wide75-Btn" type="button" onclick="Common.review(1)">다음</button>
 						</div>
 					</div>
 					
@@ -297,7 +299,6 @@
 								type="button" onclick="Common.review(2)">이전</button>
 							<button class="float-right common-wide75-Btn" type="button" onclick="Common.review(3)">리뷰
 								등록</button>
-
 						</div>
 
 					</div>

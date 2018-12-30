@@ -17,19 +17,19 @@
 				<li class="nav-item active"><a class="nav-link" href="#">리뷰관리
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">채널관리</a></li>
+				<li class="nav-item active"><a class="nav-link" href="#">채널관리</a></li>
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active"><a class="nav-link"
-						href="#">리뷰등록</a></li>
-				<c:if test="${empty sessionScope.deepMemberNo}">
+						href="/02_page/Review/review.jsp" onclick="Auth.loginCheck()">리뷰등록</a></li>
+				<c:if test="${empty sessionScope.racMemberNo}">
 					<li class="nav-item active"><a class="nav-link"
 						href="/02_page/Auth/login.jsp">로그인</a></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="/02_page/Auth/join.jsp">회원가입</a></li>
 				</c:if>
-				<c:if test="${not empty sessionScope.deepMemberNo}">
-					<li class="nav-item active"><a class="nav-link" href="#">기업홈</a></li>
+				<c:if test="${not empty sessionScope.racMemberNo}">
+					<li class="nav-item active"><a class="nav-link" href="/02_page/Corp/mainCorp.jsp">기업홈</a></li>
 					<li class="nav-item active"><a class="nav-link" href="#"
 						onclick="Auth.logout()">로그아웃</a></li>
 				</c:if>
