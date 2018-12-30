@@ -25,7 +25,6 @@
 </style>
 
 <div class="col1">채널명</div>
-<div class="col2">채널아이디</div>
 <div class="col5">카테고리</div>
 <div class="col3">조회수</div>
 <div class="col4">등록 후기 수</div>
@@ -41,7 +40,6 @@
 <div class="content">
 	<c:forEach var="item" items="${channels}">
 		<div class="col1">${item.outputChannelTitle}</div>
-		<div class="col2">${item.outputChannelUrl}</div>
 		<div class="col5">${item.outputChannelCategory}</div>
 		<div class="col3">${item.outputChannelViews}</div>
 		<div class="col4">${item.outputPostscriptCount}</div>
