@@ -121,16 +121,24 @@
 
 				<!-- end channel review exist -->
 
+
+
 				<!-- if non-channel review -->
 
-				<div class="none-MyReivew">
-					<div>
-						등록한 채널 리뷰가 없습니다. </br>
-						지금 리뷰를 등록하고 다른 리뷰를 확인하겠습니다!
+				<div class="none-MyReview txt-center">
+					<div class="common-alert-txt">
+						등록한 광고 리뷰가 없습니다. </br> 지금 광고 리뷰를 등록하고 다른 채널의 리뷰를 확인해보세요!
+					</div>
+					<div class="go-write-review">
+						<button class="commonBtn">리뷰 등록하기</button>
 					</div>
 				</div>
 
 				<!-- end non-channel review -->
+
+
+
+				<!-- start view channel & like channel area start -->
 
 				<div class="pTop4 inline-block subNav-tabs">
 					<div class="corp-headerTitle subNav-tab">
@@ -143,6 +151,10 @@
 					</div>
 				</div>
 
+				<!-- end view channel & like channel area end -->
+
+
+
 				<div class="pTop3 w100 inline-block">
 					<div class="corp-View-Row">채널명</div>
 					<div class="corp-View-Row">카테고리</div>
@@ -150,6 +162,10 @@
 					<div class="corp-View-Row-Right">총 조회수</div>
 					<hr>
 				</div>
+
+
+
+				<!-- if exist view channel list -->
 
 				<div class="subNav-content active corp-MyView-Contents"
 					id="myViewContent">
@@ -303,8 +319,45 @@
 					<hr
 						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 
+					<!-- pagination area -->
+
+					<div class="pagination-area pTop3">
+
+						<ul class="common-pagination">
+							<li class="common-page-pre display-none">이전</li>
+							<li class="common-page-link active">1</li>
+							<li class="common-page-link">2</li>
+							<li class="common-page-link">3</li>
+							<li class="common-page-link">4</li>
+							<li class="common-page-link">5</li>
+							<li class="common-page-next go-review-list"><a
+								class="common-A" href="#">다음<img style="margin-bottom: 2px;"
+									src="/01_image/commonImg/right-arrow.png"></a></li>
+						</ul>
+					</div>
+
+					<!-- end pagination area -->
+
 
 				</div>
+
+				<!-- end exist view channel list -->
+
+				<!-- none exist view channel list -->
+
+				<div class="none-View-List txt-center">
+					<div class="common-alert-txt">
+						최근 15일 내 검색한 채널이 없습니다. </br> 이런 채널은 어떤가요?
+					</div>
+					<div class="go-write-review">
+						<button class="commonBtn">리뷰 등록하기</button>
+					</div>
+				</div>
+
+				<!-- none exist view channel list -->
+
+
+				<!-- if exist like channel list -->
 
 				<div class="subNav-content corp-MyLike-Contents" id="myLikeContent">
 
@@ -462,22 +515,44 @@
 					<hr
 						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 
+					<!-- pagination area -->
+
+					<div class="pagination-area pTop3">
+
+						<ul class="common-pagination">
+							<li class="common-page-pre display-none">이전</li>
+							<li class="common-page-link active">1</li>
+							<li class="common-page-link">2</li>
+							<li class="common-page-link">3</li>
+							<li class="common-page-link">4</li>
+							<li class="common-page-link">5</li>
+							<li class="common-page-next go-review-list"><a
+								class="common-A" href="#">다음<img style="margin-bottom: 2px;"
+									src="/01_image/commonImg/right-arrow.png"></a></li>
+						</ul>
+					</div>
+
+					<!-- end pagination area -->
+
 
 				</div>
 
-				<div class="pagination-area pTop3">
-					<ul class="common-pagination">
-						<li class="common-page-pre display-none">이전</li>
-						<li class="common-page-link active">1</li>
-						<li class="common-page-link">2</li>
-						<li class="common-page-link">3</li>
-						<li class="common-page-link">4</li>
-						<li class="common-page-link">5</li>
-						<li class="common-page-next go-review-list"><a
-							class="common-A" href="#">다음<img style="margin-bottom: 2px;"
-								src="/01_image/commonImg/right-arrow.png"></a></li>
-					</ul>
+
+				<!-- end exist like channel list -->
+
+
+				<!-- none like channel list -->
+
+				<div class="none-Like-List txt-center">
+					<div class="common-alert-txt">
+						관심 채널로 등록한 채널이 없습니다. </br> 이런 채널은 어떤가요?
+					</div>
+					<div class="go-write-review">
+						<button class="commonBtn">리뷰 등록하기</button>
+					</div>
 				</div>
+
+				<!-- none like channel list -->
 
 
 			</div>
