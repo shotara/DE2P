@@ -8,10 +8,10 @@
 		INSERT INTO rac_channel_cost(racChannelNo, racChannelCostCategory, racChannelCostPrice, racChannelCostCreateDate)
 		VALUES(#{channelNo}, #{channelCostCategory}, #{channelCostPrice}, #{inputCurrentDate})
 	</select>	
-	
-	<select id="addChannelAdUrl" parameterType="java.util.HashMap" resultType="int">
-		INSERT INTO rac_channel_ad(racChannelNo, racChannelAdUrl, racChannelAdCreateDate)
-		VALUES(#{channelNo}, #{channelAdUrl}, #{inputCurrentDate})
+	 	
+	 <select id="addChannelAdUrl" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO rac_channel_ad(racChannelNo, racVideoId, racVideoTitle, racVideoViews, racVideoThumbnail, racChannelAdType, racVideoCreateDate, racVideoUpdateDate, racChannelAdCreateDate)
+		VALUES(#{channelNo}, #{videoId}, #{videoTitle}, #{videoViews}, #{videoThumbnail}, #{channelAdType}, #{videoCreateDate}, #{inputCurrentDate}, #{inputCurrentDate})
 	</select>			
 
 	<select id="addChannelCategory" parameterType="java.util.HashMap" resultType="int">

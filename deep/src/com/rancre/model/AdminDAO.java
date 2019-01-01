@@ -78,7 +78,12 @@ public class AdminDAO {
 	
 	public static int addChannelAdUrl(
 			int inputChannelNo, 
-			String inputChannelAdUrl, 
+			String inputVideoId,
+			String inputVideoTitle,
+			String inputVideoViews,
+			String inputVideoThumbnail,
+			int inputChannelAdType,
+			Timestamp inputVideoCreateDate,
 			Timestamp inputCurrentDate) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
@@ -86,8 +91,13 @@ public class AdminDAO {
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("channelNo", inputChannelNo);
-			map.put("channelAdUrl", inputChannelAdUrl);	
-			map.put("inputCurrentDate", inputCurrentDate);			
+			map.put("videoId", inputVideoId);	
+			map.put("videoTitle", inputVideoTitle);				
+			map.put("videoViews", inputVideoViews);
+			map.put("videoThumbnail", inputVideoThumbnail);	
+			map.put("channelAdType", inputChannelAdType);		
+			map.put("videoCreateDate", inputVideoCreateDate);
+			map.put("inputCurrentDate", inputCurrentDate);	
 
 			int check = (int)sqlSession.insert(namespace + ".addChannelAdUrl", map);
 			

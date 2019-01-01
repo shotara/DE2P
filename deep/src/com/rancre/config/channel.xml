@@ -37,10 +37,8 @@
 	<select id="getChannelAd"  resultType="com.rancre.model.domain.ChannelAd">
 		SELECT * FROM rac_channel_ad WHERE racChannelAdNo = #{inputChannelAdNo}
 	</select>
-	<select id="getChannelAdVideoList"  resultType="com.rancre.model.domain.Video">
-		SELECT b.* 
-		FROM (SELECT * FROM rac_channel_ad WHERE racChannelNo = #{inputChannelNo} ORDER BY racChannelAdNo DESC LIMIT 15) a,
-		 	 (SELECT * FROM rac_video) b
-		WHERE a.racVideoNo = b.racVideoNo 
+	<select id="getChannelAdVideoList"  resultType="com.rancre.model.domain.ChannelAd">
+		SELECT * FROM rac_channel_ad WHERE racChannelNo = #{inputChannelNo} ORDER BY racChannelAdNo DESC LIMIT 15
+
 	</select>
 </mapper>

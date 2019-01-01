@@ -657,7 +657,7 @@ public class ChannelDAO {
 		}
 	}
 
-	public static ArrayList<Video> getChannelAdVideoList(int inputChannelNo) {
+	public static ArrayList<ChannelAd> getChannelAdVideoList(int inputChannelNo) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);
 		

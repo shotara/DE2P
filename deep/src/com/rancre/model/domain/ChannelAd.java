@@ -6,10 +6,14 @@ public class ChannelAd {
 
 	private int racChannelAdNo;
 	private int racChannelNo;
-	private int racVideoNo;
+	private String racVideoId;
+	private String racVideoTitle;
+	private long racVideoViews;
+	private String racVideoThumbnail;
 	private int racChannelAdType;
-	private String racChannelAdUrl;
-	private Timestamp rachannelAdCreateDate;
+	private Timestamp racVideoCreateDate;
+	private Timestamp racVideoUpdateDate;
+	private Timestamp racChannelAdCreateDate;
 	public ChannelAd() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -26,11 +30,29 @@ public class ChannelAd {
 	public void setRacChannelNo(int racChannelNo) {
 		this.racChannelNo = racChannelNo;
 	}
-	public int getRacVideoNo() {
-		return racVideoNo;
+	public String getRacVideoId() {
+		return racVideoId;
 	}
-	public void setRacVideoNo(int racVideoNo) {
-		this.racVideoNo = racVideoNo;
+	public void setRacVideoId(String racVideoId) {
+		this.racVideoId = racVideoId;
+	}
+	public String getRacVideoTitle() {
+		return racVideoTitle;
+	}
+	public void setRacVideoTitle(String racVideoTitle) {
+		this.racVideoTitle = racVideoTitle;
+	}
+	public long getRacVideoViews() {
+		return racVideoViews;
+	}
+	public void setRacVideoViews(long racVideoViews) {
+		this.racVideoViews = racVideoViews;
+	}
+	public String getRacVideoThumbnail() {
+		return racVideoThumbnail;
+	}
+	public void setRacVideoThumbnail(String racVideoThumbnail) {
+		this.racVideoThumbnail = racVideoThumbnail;
 	}
 	public int getRacChannelAdType() {
 		return racChannelAdType;
@@ -38,28 +60,37 @@ public class ChannelAd {
 	public void setRacChannelAdType(int racChannelAdType) {
 		this.racChannelAdType = racChannelAdType;
 	}
-	public String getRacChannelAdUrl() {
-		return racChannelAdUrl;
+	public Timestamp getRacVideoCreateDate() {
+		return racVideoCreateDate;
 	}
-	public void setRacChannelAdUrl(String racChannelAdUrl) {
-		this.racChannelAdUrl = racChannelAdUrl;
+	public void setRacVideoCreateDate(Timestamp racVideoCreateDate) {
+		this.racVideoCreateDate = racVideoCreateDate;
 	}
-	public Timestamp getRachannelAdCreateDate() {
-		return rachannelAdCreateDate;
+	public Timestamp getRacVideoUpdateDate() {
+		return racVideoUpdateDate;
 	}
-	public void setRachannelAdCreateDate(Timestamp rachannelAdCreateDate) {
-		this.rachannelAdCreateDate = rachannelAdCreateDate;
+	public void setRacVideoUpdateDate(Timestamp racVideoUpdateDate) {
+		this.racVideoUpdateDate = racVideoUpdateDate;
 	}
-	public ChannelAd(int racChannelAdNo, int racChannelNo, int racVideoNo, int racChannelAdType, String racChannelAdUrl,
-			Timestamp rachannelAdCreateDate) {
+	public Timestamp getRacChannelAdCreateDate() {
+		return racChannelAdCreateDate;
+	}
+	public void setRacChannelAdCreateDate(Timestamp racChannelAdCreateDate) {
+		this.racChannelAdCreateDate = racChannelAdCreateDate;
+	}
+	public ChannelAd(int racChannelAdNo, int racChannelNo, String racVideoId, String racVideoTitle, long racVideoViews,
+			String racVideoThumbnail, int racChannelAdType, Timestamp racVideoCreateDate, Timestamp racVideoUpdateDate,
+			Timestamp racChannelAdCreateDate) {
 		super();
 		this.racChannelAdNo = racChannelAdNo;
 		this.racChannelNo = racChannelNo;
-		this.racVideoNo = racVideoNo;
+		this.racVideoId = racVideoId;
+		this.racVideoTitle = racVideoTitle;
+		this.racVideoViews = racVideoViews;
+		this.racVideoThumbnail = racVideoThumbnail;
 		this.racChannelAdType = racChannelAdType;
-		this.racChannelAdUrl = racChannelAdUrl;
-		this.rachannelAdCreateDate = rachannelAdCreateDate;
+		this.racVideoCreateDate = racVideoCreateDate;
+		this.racVideoUpdateDate = racVideoUpdateDate;
+		this.racChannelAdCreateDate = racChannelAdCreateDate;
 	}
-
-
 }

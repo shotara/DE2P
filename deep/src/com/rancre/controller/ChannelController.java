@@ -96,12 +96,12 @@ public class ChannelController {
 				req.setAttribute("outputAdMaxPrice", 100000);
 
 				// Get Youtube Video API
-				ArrayList<Video> channelAdList = ChannelDAO.getChannelAdVideoList(inputChannelNo);
+				ArrayList<ChannelAd> channelAdList = ChannelDAO.getChannelAdVideoList(inputChannelNo);
 				ArrayList<HashMap<String,Object>> adVideoList = new ArrayList<HashMap<String,Object>>();
 
 				for(int i=0; i<channelAdList.size();i++) {
 					HashMap<String,Object> tempObejct = new HashMap<String,Object>();
-					tempObejct.put("outputVideoNo", channelAdList.get(i).getRacVideoNo());
+					tempObejct.put("outputChannelAdNo", channelAdList.get(i).getRacChannelAdNo());
 					tempObejct.put("outputChannelNo", channelAdList.get(i).getRacChannelNo());
 					tempObejct.put("outputVideoId", channelAdList.get(i).getRacVideoId());
 					tempObejct.put("outputVideoTitle", CommonUtil.splitString(channelAdList.get(i).getRacVideoTitle(), 3));

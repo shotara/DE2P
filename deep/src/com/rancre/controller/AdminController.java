@@ -1,6 +1,7 @@
 package com.rancre.controller;
 
 import java.io.File;
+import java.net.URL;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -20,6 +21,9 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 import com.rancre.config.GlobalValue;
 import com.rancre.model.AdminDAO;
@@ -198,6 +202,7 @@ public class AdminController {
 
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int inputChannelNo = req.getParameter("inputChannelNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelNo").toString())) : 0;
+			int inputChannelAdType = req.getParameter("inputChannelAdType") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelAdType").toString())) : 1;
 			String[] inputChannelAdUrls = req.getParameterValues("inputChannelAdUrls");
 			ArrayList<String> channeAdUrls = new ArrayList<String>();
 			for(int i=0; i<inputChannelAdUrls.length;i++) {
@@ -222,9 +227,16 @@ public class AdminController {
 				return;
 			}
 			
-			// Join member 
+			// Channel Ad Video  
 			for(int i=0; i<channeAdUrls.size();i++) {
-				int check = AdminDAO.addChannelAdUrl(inputChannelNo, channeAdUrls.get(i), inputCurrentDate);
+				String url= "https://www.youtube.com/watch?v=" + channeAdUrls.get(i);
+				Document doc = Jsoup.parse(new URL(url).openStream(), "utf-8", url);
+				
+				String viewsContent = doc.select(".watch-view-count").toString().substring(35, doc.select(".watch-view-count").toString().length()-8).replace(",", "");
+				String nameContent = doc.select("#eow-title").first().attr("title");
+				String thumbContent = doc.select("#watch7-content link[itemprop='thumbnailUrl']").first().attr("href");
+				String dateContent = doc.select("#watch7-content meta[itemprop='datePublished']").first().attr("content") + " 00:00:00";
+				int check = AdminDAO.addChannelAdUrl(inputChannelNo, channeAdUrls.get(i), nameContent, viewsContent, thumbContent, inputChannelAdType, Timestamp.valueOf(dateContent), inputCurrentDate);
 				if(check != 1) {
 					CommonUtil.commonPrintLog("FAIL", className, "Add  Channel Ad Url :" + inputChannelAdUrls[i], map);
 				}			
