@@ -406,4 +406,54 @@ public class CommonUtil {
 	public static String setCommaForLong(Long i) {
 		return String.format("%,d", i);
 	}
+	
+	public static String getReviewTarget(int no) {
+		switch(no) {
+		case 1:
+			return "달성";
+		case 2:
+			return "미달성";
+		case 3:
+			return "초과달성";
+		default:
+			return "달성";
+		}
+	}
+	
+	public static String getGender(int no) {
+		switch(no) {
+		case 1:
+			return "남성";
+		case 2:
+			return "여성";
+		default:
+			return "남/녀 공통";
+		}
+	}
+	
+	public static String getAge(int no) {
+		switch(no) {
+		case 1:
+			return "10대 초반 ~ 20대 초반";
+		case 2:
+			return "20대 초반 ~ 30대 초반";
+		case 3:
+			return "30대 초반 ~ 40대 초반";
+		case 4:
+			return "40대 초반 ~ 50대 초반";
+		default:
+			return "전체";
+		}
+	}
+	
+	public static String getRecomand(int no) {
+		switch(no) {
+		case 1:
+			return "예";
+		case 2:
+			return "아니요";
+		default:
+			return "예";
+		}
+	}
 }

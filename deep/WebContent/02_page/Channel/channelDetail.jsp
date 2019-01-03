@@ -192,7 +192,7 @@
 										<div class="count inline">
 											<div class="float-left pRight">조회수</div>
 											<div class="float-left">${item.outputVideoViews }</div>
-											<div class="float-right">1개월 전</div>
+											<div class="float-right">${item.outputVideoCreateDate }</div>
 										</div>
 									</div>
 								</div>
