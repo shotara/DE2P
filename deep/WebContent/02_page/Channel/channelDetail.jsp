@@ -56,32 +56,31 @@
 
 				<div class="row w-auto ml-auto">
 					<div class="col w-auto d-inline-block txt-center">
-						<span class="font-weight-bold">종합 순위</span>
+						<span class="font-weight-bold">랭크리 등급</span>
 					</div>
 					<div class="col w-auto d-inline-block txt-center">
-						<span class="font-weight-bold">총 구독자 수</span>
-					</div>
-					<div class="col w-auto d-inline-block txt-center">
-						<span class="font-weight-bold">지난주 대비 구독자수</span>
+						<span class="font-weight-bold">총 구독자수</span>
 					</div>
 					<div class="col w-auto d-inline-block txt-center">
 						<span class="font-weight-bold">총 조회수</span>
 					</div>
 					<div class="col w-auto d-inline-block txt-center">
-						<span class="font-weight-bold">최근 영상 평균 조회수</span>
+						<span class="font-weight-bold">최근 영상의 평균 조회수</span>
+					</div>
+					<div class="col w-auto d-inline-block txt-center">
+						<span class="font-weight-bold">평균 업로드 일자</span>
 					</div>
 				</div>
 				<div class="pt-3"></div>
 
 				<div class="row w-auto ml-auto">
 					<div id="" class="col w-auto d-inline-block txt-center">
-						<span>1위 </span><span>-</span>
+						<span>A+</span>
 					</div>
 					<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelFollowers }</div>
-					<div id="" class="col w-auto d-inline-block txt-center">+
-						${requestScope.outputChannelBeforeFollowers }</div>
 					<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelViews }</div>
 					<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelRecentViews }</div>
+					<div id="" class="col w-auto d-inline-block txt-center">2.3일</div>
 				</div>
 
 				<!-- 채널 스텟 - 종합순위/총구독자수/차주대비/총조회수/최근평균조회수 끝 -->
@@ -96,19 +95,19 @@
 
 						<div class="row chnDtlRow w-auto ml-auto">
 							<div class="col w-auto d-inline-block txt-center">
+								<span class="font-weight-bold">카테고리 순위</span>
+							</div>
+							<div class="col w-auto d-inline-block txt-center">
+								<span class="font-weight-bold">지난주 대비 구독자수</span>
+							</div>
+							<div class="col w-auto d-inline-block txt-center">
 								<span class="font-weight-bold">광고 만족도</span>
 							</div>
 							<div class="col w-auto d-inline-block txt-center">
 								<span class="font-weight-bold">광고 영상 평균 조회수</span>
 							</div>
 							<div class="col w-auto d-inline-block txt-center">
-								<span class="font-weight-bold">최저 광고 단가</span>
-							</div>
-							<div class="col w-auto d-inline-block txt-center">
 								<span class="font-weight-bold">평균 광고 단가</span>
-							</div>
-							<div class="col w-auto d-inline-block txt-center">
-								<span class="font-weight-bold">최고 광고 단가</span>
 							</div>
 						</div>
 
@@ -116,12 +115,12 @@
 
 						<div class="row w-auto ml-auto">
 							<div id="" class="col w-auto d-inline-block txt-center">
-								<span>${requestScope.outputAdSatisfyRank }</span><span>-</span>
+								<span>1위</span><span>(여행)</span>
 							</div>
+							<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelBeforeFollowers }</div>
+							<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdSatisfyRank }</div>
 							<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdViews }</div>
-							<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdMinPrice }</div>
 							<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdEvenPrice }</div>
-							<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdMaxPrice }</div>
 						</div>
 
 					</div>
