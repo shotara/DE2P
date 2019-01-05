@@ -53,12 +53,36 @@ a {
 	padding-right: 10px;
 }
 
+.pRight2 {
+	padding-right: 20px;
+}
+
+.pRight3 {
+	padding-right: 30px;
+}
+
+.pRight4 {
+	padding-right: 40px;
+}
+
 .pRight10 {
 	padding-right: 100px;
 }
 
 .pLeft {
 	padding-left: 10px;
+}
+
+.pLeft2 {
+	padding-left: 20px;
+}
+
+.pLeft3 {
+	padding-left: 30px;
+}
+
+.pLeft4 {
+	padding-left: 40px;
 }
 
 .pBottom {
@@ -240,6 +264,7 @@ a {
 	font-size: 1em;
 	height: 36px;
 	color: #f11834;
+	cursor : pointer;
 }
 
 .commonBtn:focus {
@@ -313,6 +338,7 @@ a {
 	background-color: #f11834;
 	color: #fff;
 	font-weight: bold;
+	cursor : pointer;
 }
 
 .common-wide75-Btn:focus {
@@ -335,6 +361,7 @@ a {
 	height: 36px;
 	background-color: #fff;
 	color: #f11834;
+	cursor : pointer;
 }
 
 .common-wide20Reverse-Btn:focus {
@@ -347,6 +374,31 @@ a {
 }
 
 .common-wide20Reverse-Btn a:hover {
+	text-decoration: none !important;
+	color: #fff;
+}
+
+.common-wide85Reverse-Btn {
+	width: 85%;
+	border-radius: 8px;
+	border: 1px solid #f11834;
+	font-size: 1em;
+	height: 30px;
+	background-color: #fff;
+	color: #f11834;
+	cursor : pointer;
+}
+
+.common-wide85Reverse-Btn:focus {
+	outline: none;
+}
+
+.common-wide85Reverse-Btn a {
+	text-decoration: none !important;
+	color: #fff !important;
+}
+
+.common-wide85Reverse-Btn a:hover {
 	text-decoration: none !important;
 	color: #fff;
 }
@@ -776,6 +828,7 @@ a.subnav-link:hover {
 .chnDtlGo {
 	text-decoration: none;
 	color: #f11834;
+	outline : none;
 }
 
 .chnDtlGo:hover {
@@ -802,7 +855,6 @@ a.subnav-link:hover {
 .ranc-Main-Row {
 	display: inline-block;
 	width: 181px;
-	maring-right: 10px;
 }
 
 .ranc-Main-Row2 {
@@ -928,24 +980,26 @@ ul.sub-tabs li a.active {
 .upload-Video {
 	margin: 0 auto;
 	width: 20%;
+	cursor : pointer;
 }
 
-.comercialVideo {
+.commercialVideo {
 	margin: 0 auto;
 	width: auto;
 	padding-right: 16px;
+	cursor : pointer;
 }
 
 .detail .count {
 	width: 210px;
 }
 
-.comercialVideo-right {
+.commercialVideo-right {
 	margin: 0 auto;
 	width: auto;
 }
 
-.non-comercials {
+.non-commercials {
 	height: 260px;
 }
 
@@ -1008,18 +1062,17 @@ ul.sub-tabs li a.active {
 /**********************************/
 /*  Search Page CSS  */
 /*********************************/
-.searchKeyword {
-	width: auto;
-	position: relative;
+.search-Keyword {
+	width: 100%;
+	display : inline-block;
 }
 
-.searchKeyword input[type="text"] {
-	width: 100%; /* 원하는 너비 설정 */
+.search-Keyword input[type="text"] {
+	width: auto; /* 원하는 너비 설정 */
 	height: auto; /* 높이값 초기화 */
 	line-height: normal; /* line-height 초기화 */
-	padding: .8em .5em; /* 원하는 여백 설정, 상하단 여백으로 높이를 조절 */
 	font-family: inherit; /* 폰트 상속 */
-	font-size: 40px;
+	font-size: 2.4em;
 	border: 0px;
 	border-radius: 0; /* iSO 둥근모서리 제거 */
 	text-align: center;
@@ -1028,6 +1081,29 @@ ul.sub-tabs li a.active {
 	-moz-appearance: none;
 	appearance: none;
 	outline-style: none;
+	spellcheck : false;
+	display : inline-block;
+}
+
+.ipt-search-box {
+	width : auto;
+	display : inline;
+}
+
+.ipt-search {
+	display : inline-block;
+	width : 100%;
+}
+
+.clear-Btn {
+	color : #fff;
+	border : none;
+	apperance : none;
+	outline : none;
+	display : inline;
+	padding : 0;
+	vertical-align : middle;
+	margin-bottom : 20px;
 }
 
 .clearable {
@@ -1082,6 +1158,7 @@ ul.sub-tabs li a.active {
 	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
+	spellcheck : false;
 }
 
 .ipt-channel-name:focus {
@@ -1140,6 +1217,7 @@ ul.sub-tabs li a.active {
 	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
+	spellcheck : false;
 }
 
 .ipt-Common-Review:focus {
@@ -1182,6 +1260,7 @@ ul.sub-tabs li a.active {
 	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
+	spellcheck : false;
 }
 
 .review-TextArea:focus {
@@ -1363,6 +1442,7 @@ ul.sub-tabs li a.active {
 	background-color: #fff;
 	color: #747474;
 	margin-right: 4px;
+	cursor : pointer;
 }
 
 .common-page-link:focus {
@@ -1383,6 +1463,7 @@ ul.sub-tabs li a.active {
 	color: #f11834;
 	font-weight: bold;
 	margin-right: 4px;
+	cursor : default;
 }
 
 .common-page-pre, .common-page-next {
@@ -1415,4 +1496,47 @@ ul.sub-tabs li a.active {
 .none-Like-List {
 	height: 350px;
 	padding-top: 100px;
+}
+
+.recommend-channel-list {
+	padding-top: 30px;
+	display : inline-block;
+}
+
+.recommend-channel {
+	width : 270px;
+	height : 120px;
+	border : 1px solid #eee;
+	border-radius : 3px;
+	box-shadow: 1px 1px #eeeeee;
+	display : inline-block;
+	margin-right : 5px;
+}
+
+.recommend-channel-right {
+	width : 270px;
+	height : 120px;
+	border : 1px solid #eee;
+	border-radius : 3px;
+	box-shadow: 1px 1px #eeeeee;
+	display : inline-block;
+}
+
+.reco-chnImg {
+	display : inline-block;
+	padding-left : 15px;
+	padding-top : 10px;
+	padding-right : 10px;
+	vertical-align : middle;
+}
+
+.reco-chnInfo {
+	padding-top : 10px;
+	display : inline-block;
+	vertical-align : middle;
+}
+
+.reco-chnInfo .name {
+	font-weight : bold;
+	font-size : 1.2em;
 }

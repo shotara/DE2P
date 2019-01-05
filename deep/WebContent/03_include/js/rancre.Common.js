@@ -200,29 +200,40 @@ Common.addList = function (mode, startNo, categoryNo) {
 
 }
 
+/******************************/
+/** Go channel Detail page   **/
+/******************************/
+
+
+
+
+/******************************/
+/** Review page using         */
+/******************************/
+
 Common.review = function (mode){
-	
+
 	if(mode==1){
 		/**move next-page **/
 		var review_step1 = document.getElementById('review-Step1');
 		var review_step2 = document.getElementById('review-Step2');
-	    review_step1.style.display = 'none';
+		review_step1.style.display = 'none';
 		review_step2.style.display = 'block';
 	}
 	else if(mode==2){
 		/**move pre-page **/
 		var review_step1 = document.getElementById('review-Step1');
 		var review_step2 = document.getElementById('review-Step2');
-	    review_step1.style.display = 'block';
+		review_step1.style.display = 'block';
 		review_step2.style.display = 'none';
 	}
 	else if(mode==3){ //confirm the review
-		
+
 		return;
 	}
 	else if(mode==4){
 		var check_cancel = confirm("리뷰는 다른 마케터에게 큰 도움이 됩니다. 리뷰 등록을 취소하겠습니까?");
-		
+
 		if(check_cancel){//don't want to write review, go index page
 			location.href="/index.jsp";
 			check_cancel = true;
@@ -230,7 +241,7 @@ Common.review = function (mode){
 			check_cancel = false;
 		}
 	}
-	
+
 }
 
 /******************************/
@@ -260,23 +271,22 @@ $(function() {
 
 
 /******************************/
-/** search page using */
-/*****************************/
+/** search page using         */
+/******************************/
 
-jQuery(function($) {
+Common.search = function (mode){
 
+	if(mode==1){
+		/**x button call **/
+		var clear-btn3 = document.getElementById('clear-btn');
+		clear-btn3.display = 'block';
+	}
+	else if(mode==2){
+		/** empty search input box**/
+		var clear-btn2 = document.getElementById('clear-btn');
+		var ipt-search = document.getElementById('ipt-Search');
+		clear-btn2.display = 'none';
+		ipt-search.val('');
 
-	// /////
-	// CLEARABLE INPUT
-	function tog(v){return v?'addClass':'removeClass';} 
-	$(document).on('input', '.clearable', function(){
-		$(this)[tog(this.value)]('x');
-	}).on('mousemove', '.x', function( e ){
-		$(this)[tog(this.offsetWidth-18 < e.clientX-this.getBoundingClientRect().left)]('onX');   
-	}).on('touchstart click', '.onX', function( ev ){
-		ev.preventDefault();
-		$(this).removeClass('x onX').val('').change();
-	});
-
-
-});
+	}
+}

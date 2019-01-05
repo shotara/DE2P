@@ -19,12 +19,16 @@
 	<div class="container">
 		<div class="row">
 
-			<div class="pt-4"></div>
-
 			<!-- search input area -->
 
-			<div class="col searchKeyword">
-				<input class="clearable" type="text" placeholder="다음으로 검색을 시작합니다."/>
+			<div class="txt-center search-Keyword pTop4">
+				<div class="ipt-search-box">
+					<input class="ipt-search" id="ipt-Search" type="text"
+						placeholder="다음으로 Rancre 검색" onkeyup="Common.search(1)" />
+				</div>
+				<button id ="clear-btn" class="clear-Btn" onclick="Common.search(2)">
+					<img style="width: 20px;" src="/01_image/commonImg/cancel.png">
+				</button>
 			</div>
 
 

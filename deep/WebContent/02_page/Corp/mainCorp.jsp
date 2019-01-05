@@ -130,7 +130,9 @@
 						등록한 광고 리뷰가 없습니다. </br> 지금 광고 리뷰를 등록하고 다른 채널의 리뷰를 확인해보세요!
 					</div>
 					<div class="go-write-review">
-						<button class="commonBtn">리뷰 등록하기</button>
+						<button class="commonBtn"
+							onclick="location.href='/02_page/Review/review.jsp'">리뷰
+							등록하기</button>
 					</div>
 				</div>
 
@@ -345,13 +347,72 @@
 
 				<!-- none exist view channel list -->
 
-				<div class="none-View-List txt-center">
-					<div class="common-alert-txt">
+				<div class="none-View-List">
+					<div class="common-alert-txt txt-center">
 						최근 15일 내 검색한 채널이 없습니다. </br> 이런 채널은 어떤가요?
 					</div>
-					<div class="go-write-review">
-						<button class="commonBtn">리뷰 등록하기</button>
+					<div class="recommend-channel-list">
+						<div class="recommend-channel">
+							<div class="reco-chnImg txt-left">
+								<img id="corp-View-Row-ThumbNail"
+									style="width: 50px; border-radius: 50px;"
+									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+							</div>
+							<div class="reco-chnInfo">
+								<div class="name">Wassup-Man</div>
+								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+							</div>
+							<div class="txt-center pTop">
+								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+							</div>
+						</div>
+
+						<div class="recommend-channel">
+							<div class="reco-chnImg txt-left">
+								<img id="corp-View-Row-ThumbNail"
+									style="width: 50px; border-radius: 50px;"
+									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+							</div>
+							<div class="reco-chnInfo">
+								<div class="name">Wassup-Man</div>
+								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+							</div>
+							<div class="txt-center pTop">
+								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+							</div>
+						</div>
+
+						<div class="recommend-channel">
+							<div class="reco-chnImg txt-left">
+								<img id="corp-View-Row-ThumbNail"
+									style="width: 50px; border-radius: 50px;"
+									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+							</div>
+							<div class="reco-chnInfo">
+								<div class="name">Wassup-Man</div>
+								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+							</div>
+							<div class="txt-center pTop">
+								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+							</div>
+						</div>
+						<div class="recommend-channel-right">
+							<div class="reco-chnImg txt-left">
+								<img id="corp-View-Row-ThumbNail"
+									style="width: 50px; border-radius: 50px;"
+									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+							</div>
+							<div class="reco-chnInfo">
+								<div class="name">Wassup-Man</div>
+								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+							</div>
+							<div class="txt-center pTop">
+								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+							</div>
+						</div>
 					</div>
+
+
 				</div>
 
 				<!-- none exist view channel list -->
@@ -543,12 +604,69 @@
 
 				<!-- none like channel list -->
 
-				<div class="none-Like-List txt-center">
-					<div class="common-alert-txt">
+				<div class="none-Like-List">
+					<div class="common-alert-txt txt-center">
 						관심 채널로 등록한 채널이 없습니다. </br> 이런 채널은 어떤가요?
 					</div>
-					<div class="go-write-review">
-						<button class="commonBtn">리뷰 등록하기</button>
+					<div class="recommend-channel-list">
+						<div class="recommend-channel">
+							<div class="reco-chnImg txt-left">
+								<img id="corp-View-Row-ThumbNail"
+									style="width: 50px; border-radius: 50px;"
+									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+							</div>
+							<div class="reco-chnInfo">
+								<div class="name">Wassup-Man</div>
+								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+							</div>
+							<div class="txt-center pTop">
+								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+							</div>
+						</div>
+
+						<div class="recommend-channel">
+							<div class="reco-chnImg txt-left">
+								<img id="corp-View-Row-ThumbNail"
+									style="width: 50px; border-radius: 50px;"
+									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+							</div>
+							<div class="reco-chnInfo">
+								<div class="name">Wassup-Man</div>
+								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+							</div>
+							<div class="txt-center pTop">
+								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+							</div>
+						</div>
+
+						<div class="recommend-channel">
+							<div class="reco-chnImg txt-left">
+								<img id="corp-View-Row-ThumbNail"
+									style="width: 50px; border-radius: 50px;"
+									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+							</div>
+							<div class="reco-chnInfo">
+								<div class="name">Wassup-Man</div>
+								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+							</div>
+							<div class="txt-center pTop">
+								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+							</div>
+						</div>
+						<div class="recommend-channel-right">
+							<div class="reco-chnImg txt-left">
+								<img id="corp-View-Row-ThumbNail"
+									style="width: 50px; border-radius: 50px;"
+									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+							</div>
+							<div class="reco-chnInfo">
+								<div class="name">Wassup-Man</div>
+								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+							</div>
+							<div class="txt-center pTop">
+								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+							</div>
+						</div>
 					</div>
 				</div>
 

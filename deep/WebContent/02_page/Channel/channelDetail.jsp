@@ -158,7 +158,7 @@
 						<ul id="myTab" class="sub-tabs">
 							<li><a data-tab="upload" href="#upload" class="active">최근
 									업로드 영상</a></li>
-							<li><a data-tab="comercial" href="#comercial">이 채널의 광고
+							<li><a data-tab="commercial" href="#commercial">이 채널의 광고
 									영상</a></li>
 							<li><a data-tab="review" href="#review">이 채널의 광고 리뷰</a></li>
 							<!-- 							<li><a data-tab="price" href="#price">이 채널의 광고 단가</a></li>
@@ -200,7 +200,7 @@
 					</div>
 
 
-					<div class="sub-tabcontent w-100" id="comercial">
+					<div class="sub-tabcontent w-100" id="commercial">
 
 						<div class="pTop"></div>
 
@@ -224,11 +224,11 @@
 							<!--  Non-Login Member finished-->
 
 							<!-- Login Member -->
-							<!-- comercialVideo start -->
+							<!-- commercialVideo start -->
 							<c:if test="${not empty requestScope.outputAdVideoList}">
-								<div class="comercialVideos inline-block">
+								<div class="commercialVideos inline-block">
 									<c:forEach var="item" items="${requestScope.outputAdVideoList}">
-										<div class="comercialVideo float-left">
+										<div class="commercialVideo float-left">
 											<div class="videoThumb">
 												<img style="width: 210px" src="${item.outputVideoThumbnail}"
 													onclick="window.open('https://www.youtube.com/watch?v=${item.outputVideoId}')">
@@ -245,12 +245,12 @@
 									</c:forEach>
 								</div>
 							</c:if>
-							<!-- comercialVideo finished -->
+							<!-- commercialVideo finished -->
 
-							<!-- non-comercialVideo start -->
+							<!-- non-commercialVideo start -->
 							<c:if test="${empty requestScope.outputAdVideoList}">
 
-								<div class="non-comercials txt-center">
+								<div class="non-commercials txt-center">
 
 									<div class="v30"></div>
 
@@ -268,7 +268,7 @@
 								</div>
 							</c:if>
 						</c:if>
-						<!-- non-comercialVideo finished -->
+						<!-- non-commercialVideo finished -->
 						<!-- Login Member finished-->
 					</div>
 
