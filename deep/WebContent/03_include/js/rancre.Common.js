@@ -275,18 +275,25 @@ $(function() {
 /******************************/
 
 Common.search = function (mode){
-
-	if(mode==1){
-		/**x button call **/
-		var clear-btn3 = document.getElementById('clear-btn');
-		clear-btn3.display = 'block';
+	if(mode == 1){ /** clear input value and remove x button **/
+		const elem = document.getElementById('clear-btn');
+		const ipt_clear = document.getElementById('ipt-Search');
+		elem.style.display = 'none';
+		ipt_clear.value = '';
 	}
-	else if(mode==2){
-		/** empty search input box**/
-		var clear-btn2 = document.getElementById('clear-btn');
-		var ipt-search = document.getElementById('ipt-Search');
-		clear-btn2.display = 'none';
-		ipt-search.val('');
-
+	else if (mode == 2) {
+		var keyPressed = event.keyCode || event.which;
+	
+		if(keyPressed==13){
+			
+			const ipt_search = document.getElementById('ipt-Search');
+			const clear_btn = document.getElementById('clear-btn');
+			ipt_search.style.width = 'auto';
+			clear_btn.style.display = 'inline-block';		
+			
+			keyPressed=null;
+		}else{
+			return false;
+		}
 	}
 }
