@@ -26,7 +26,7 @@
 						placeholder="다음으로 Rancre 검색" onkeyup="Common.search(2)"/>
 				</div>
 				<button id="clear-btn" class="clear-Btn" onclick="Common.search(1)">
-					<img style="width: 20px;" src="/01_image/commonImg/cancel.png">
+					<img style="width: 15px;" src="/01_image/commonImg/cancel.png">
 				</button>
 			</div>
 

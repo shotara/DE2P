@@ -279,20 +279,25 @@ Common.search = function (mode){
 		const elem = document.getElementById('clear-btn');
 		const ipt_clear = document.getElementById('ipt-Search');
 		elem.style.display = 'none';
+		ipt_clear.style.width = 'auto';
 		ipt_clear.value = '';
 	}
 	else if (mode == 2) {
 		var keyPressed = event.keyCode || event.which;
 	
 		if(keyPressed==13){
-			
 			const ipt_search = document.getElementById('ipt-Search');
 			const clear_btn = document.getElementById('clear-btn');
-			ipt_search.style.width = 'auto';
 			clear_btn.style.display = 'inline-block';		
 			
 			keyPressed=null;
 		}else{
+			const ipt_search_width = document.getElementById('ipt-Search');
+			const ipt_len = ipt_search_width.value.length;
+			const ipt_width = (ipt_len*23)+'px';
+			//alert(ipt_width);
+		
+			ipt_search_width.style.width = ipt_width;
 			return false;
 		}
 	}

@@ -237,6 +237,15 @@ a {
 	color: #747474 !important;
 }
 
+.common-white-A {
+	color : #fff;
+}
+
+.common-white-A:hover{
+	text-decoration : none !important;
+	color : #fff;
+}
+
 .primary-color {
 	color: #f11834 !important;
 }
@@ -802,7 +811,7 @@ a.subnav-link:hover {
 
 .ranc-Row {
 	display: inline-block;
-	width: 190px;
+	width: 198px;
 	margin-right: 10px;
 }
 
@@ -854,12 +863,12 @@ a.subnav-link:hover {
 
 .ranc-Main-Row {
 	display: inline-block;
-	width: 181px;
+	width: 190px;
 }
 
 .ranc-Main-Row2 {
 	display: inline-block;
-	width: 191px;
+	width: 200px;
 }
 
 .rankMainRowCnt {
@@ -910,7 +919,6 @@ a.subnav-link:hover {
 
 .footer-detail {
 	color: #fff;
-	font-weight: bold;
 }
 
 /**********************************/
@@ -1077,7 +1085,7 @@ ul.sub-tabs li a.active {
 	height: auto; /* 높이값 초기화 */
 	line-height: normal; /* line-height 초기화 */
 	font-family: inherit; /* 폰트 상속 */
-	font-size: 2.4em;
+	font-size: 30px;
 	border: 0px;
 	border-radius: 0; /* iSO 둥근모서리 제거 */
 	text-align: center;
@@ -1103,7 +1111,7 @@ ul.sub-tabs li a.active {
 	display : none;
 	padding : 0;
 	vertical-align : middle;
-	margin-bottom : 20px;
+	margin-bottom : 12px;
 	cursor : pointer;
 }
 
@@ -1571,3 +1579,14 @@ ul.sub-tabs li a.active {
 	font-weight : bold;
 	font-size : 1.2em;
 }
+
+
+/**********************/
+/* etc contact us     */
+/**********************/
+
+.contact-us {
+	min-height : 650px;
+}
+
+

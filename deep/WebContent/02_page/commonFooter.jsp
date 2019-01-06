@@ -8,11 +8,14 @@
 	<div class="container">
 		<div class="pt-3"></div>
 		<div class="w-auto">
-			<div class="col-md-2">
+			<div class="float-left">
 				<a class="footer-brand" href="/index.jsp">Rancre</a>
 			</div>
-			<div class="col-md-10 ml-auto">
-				<span class="footer-detail">Rancre 는 채널 추천 서비스로 여러분에게 새로운 채널을 추천해주고 싶어 만들었어요! 더 많은 채널을
+			<div class="float-right mTop">
+				<a class="common-white-A" href="/02_page/etc/contact.jsp">contact us</a>
+			</div>
+			<div class="txt-center pTop4">
+				<span class="footer-detail">Rancre 는 채널 추천 서비스로 여러분에게 새로운 채널을 추천해주고 싶어 만들었어요! </br> 더 많은 채널을
 					보여주도록 노력할게요!</span>
 			</div>
 		</div>
