@@ -59,7 +59,7 @@
 		</div>
 		<div class="info-channel-url">
 			<div class="left">채널아이디</div>
-			<div class="right">${result.outputChannelUrl}</div>
+			<div class="right"><a onclick="window.open('https://www.youtube.com${result.outputChannelUrl}')">${result.outputChannelUrl}</a></div>
 		</div>
 		<div class="info-channel-mcn">
 			<div class="left">소속</div>
@@ -129,6 +129,9 @@
 	<div class="btn">
 		<button onclick="addInfo(${result.outputChannelNo},$('#mcnNo').val(),$('#category').val(),$('#category2').val(),$('#category3').val())">정보입력</button>
 		<button>취소</button>
+	</div>
+	<div class="btn">
+		<button onclick="location.href='/admin?action=getChannelList&page=${result.pageNo}&size=30'">목록</button>
 	</div>
 </section>
 

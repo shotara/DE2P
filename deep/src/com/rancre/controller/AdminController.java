@@ -61,7 +61,9 @@ public class AdminController {
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int page = req.getParameter("page") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("page").toString())) : 1;
 			int size = req.getParameter("size") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("size").toString())) : 10;
-
+			
+			if(page==0) page=1;
+			
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
@@ -121,7 +123,7 @@ public class AdminController {
 			jObject.put("currentPageNo", paging.getCurrentPageNo());
 			jObject.put("nextPageNo", paging.getNextPageNo());
 			jObject.put("paging", paging);
-
+	
 			CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel List OK", map);
 			req.setAttribute("result", jObject);
 			req.getRequestDispatcher("/02_page/Admin/channelList.jsp").forward(req, res);
@@ -370,7 +372,7 @@ public class AdminController {
 
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int inputChannelNo = req.getParameter("inputChannelNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelNo").toString())) : 0;
-
+			int inputPageNo = req.getParameter("inputPageNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputPageNo").toString())) : 0;
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
@@ -413,7 +415,7 @@ public class AdminController {
 			jObject.put("outputChannelTitle", channel.getRacChannelTitle());
 			jObject.put("outputChannelUrl", channel.getRacChannelUrl());
 			jObject.put("outputChannelCategory", CommonUtil.getChannelCategoryList(channel.getRacChannelCategory()));
-
+			jObject.put("pageNo", inputPageNo);
 			CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel info OK", map);
 			req.setAttribute("result", jObject);
 			req.getRequestDispatcher("/02_page/Admin/info.jsp").forward(req, res);

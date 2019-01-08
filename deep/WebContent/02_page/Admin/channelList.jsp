@@ -48,7 +48,7 @@
 		<div class="col7">${item.outputChannelCostEvenPrice}</div>
 		<div class="col8">
 			<button onclick="location.href='/admin?action=getChannelCost&inputChannelNo=${item.outputChannelNo}'">단가등록</button>
-			<button onclick="location.href='/admin?action=getChannelInfo&inputChannelNo=${item.outputChannelNo}'">정보등록</button>
+			<button onclick="location.href='/admin?action=getChannelInfo&inputChannelNo=${item.outputChannelNo}&inputPageNo=${paging.currentPageNo}'">정보등록</button>
 			<button onclick="location.href='/admin?action=getChannelAdUrl&inputChannelNo=${item.outputChannelNo}'">광고영상등록</button>
 		</div>
 		<br/>
@@ -63,17 +63,43 @@
 
 <script>
 $(document).ready(function() {
-	var current =  $("#currentNo").val();
-	var total = (current)*1+10;
-	for(var i=current-1; i<total;i++) {
-		var input=""
-		if((i+1) != current) {
-			input= "<a href='/admin?action=getChannelList&page="+(i+1)+"&size=10'>"+(i+1)+"</a> ";
-		} else {
-			input = (i+1)+ " ";
-		}
-		$("#page").append(input);
+	var current =  $("#currentNo").val();  
+	var total = parseInt((current)/10)*10+10;
+	var start = parseInt((current)/10)*10;
+	var finalPage = $("#finalPageNo").val();
+
+	if(start>0) {
+		if((start-10)==0)
+			$("#page").append("<a href='/admin?action=getChannelList&page=1&size=30'>이전</a> ");		
+		else
+			$("#page").append("<a href='/admin?action=getChannelList&page="+(start-10)+"&size=30'>이전</a> ");		
 	}
+	
+	if(start==0) {
+		for(var i=start; i<total && i< finalPage;i++) {
+			var input=""
+			if((i+1) != current) {
+				input= "<a href='/admin?action=getChannelList&page="+(i+1)+"&size=30'>"+(i+1)+"</a> ";
+			} else {
+				input = (i+1)+ " ";
+			}
+			$("#page").append(input);
+		}
+	} else {
+		for(var i=start; i<total+1 && i+1< finalPage;i++) {
+			var input=""
+			if((i) != current) {
+				input= "<a href='/admin?action=getChannelList&page="+(i)+"&size=30'>"+(i)+"</a> ";
+			} else {
+				input = (i)+ " ";
+			}
+			$("#page").append(input);
+		}
+	}
+
+	if(total<finalPage)
+		$("#page").append("<a href='/admin?action=getChannelList&page="+total+"&size=30'>다음</a> ");
+
 });
 
 </script>
