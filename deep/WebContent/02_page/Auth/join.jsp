@@ -53,6 +53,14 @@
 
 					<div class="ipt-login pTop2">
 						<div class="float-left join-commonTxt">
+							비밀번호 확인<span class="primary-color">*</span>
+						</div>
+						<input class="ipt-Member-Join" type="password"
+							id="inputMemberPassword2" placeholder="비밀번호를 한번 더 입력해주세요." required />
+					</div>
+
+					<div class="ipt-login pTop2">
+						<div class="float-left join-commonTxt">
 							회사명<span class="primary-color">*</span>
 						</div>
 						<input class="ipt-Member-Join" type="text" id="inputCompanyName"
