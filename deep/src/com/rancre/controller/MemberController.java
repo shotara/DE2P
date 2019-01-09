@@ -2,8 +2,11 @@ package com.rancre.controller;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.PrivateKey;
@@ -23,11 +26,20 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.json.JSONException;
 import org.json.XML;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FilePart;
@@ -329,19 +341,21 @@ public class MemberController {
 				
 		try {
 			HttpSession session = req.getSession(false);
-			
+			JSONObject jObject = new JSONObject();
 			// 세션이 없는 경우
 			if(session == null) {
 				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
-				res.getWriter().write("-1");
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
 				return;
 			}
 			
 			session.invalidate();
-			
 			CommonUtil.commonPrintLog("SUCCESS", className, "User Logout OK", map);
-			res.getWriter().write("1");
-
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -488,12 +502,10 @@ public class MemberController {
 		try {
 			HttpSession session = req.getSession();
 			
-			BufferedReader br = null; 
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int inputNumber = req.getParameter("inputNumber") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputNumber").toString())) : 0;				
 			String inputCompany = req.getParameter("inputCompany") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputCompany").toString()) : null;
-			String key = "zrmMgIa4mQMssyPY1Y%2Fao0z7Xr6i7i9YOdn%2B0sISrGUHkdbMsay3aU6ov%2BH5wo9%2BEBzXfCQ0teCQn1Jz45YoGg%3D%3D";
-			
+			String checkResult = "";
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
@@ -509,35 +521,122 @@ public class MemberController {
 //				return;
 //			}	
 			
-			String urlStr = "http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/getBassInfoSearch?bzowr_rgst_no="
-					+ inputNumber + "&wkpl_nm="+ inputCompany+"&numOfRows=1&serviceKey="+key; // 요청 할 주소
 
-			System.out.println(urlStr);
-			URL url = new URL(urlStr);
-			HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
-			urlconnection.setRequestMethod("GET");
-			br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(),"utf-8"));
-			String result="";
-			String line;
-			while((line = br.readLine()) != null)  {
-				result = result + line + "\n";
-			}
-			System.out.println(result);
-			org.json.JSONObject objsct = null;
+	        String returnString = "";
+	        HttpURLConnection connection = null;
+	        OutputStream os =null;
+
+
+	        DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder parser = docBuilderFactory.newDocumentBuilder();
+	        Document doc = parser.newDocument();
+	        
+	        Element root = doc.createElement("map");
+	        root.setAttribute("id","ATTABZAA001R08");
+	        doc.appendChild(root);
+	        Element pubcUserNo = doc.createElement("pubcUserNo");
+	        root.appendChild(pubcUserNo);
+
+	        Element mobYn = doc.createElement("mobYn");
+	        mobYn.setTextContent("N");
+	        root.appendChild(mobYn);
+
+	        Element inqrTrgtClCd = doc.createElement("inqrTrgtClCd");
+	        inqrTrgtClCd.setTextContent("1");
+	        root.appendChild(inqrTrgtClCd);
+	        
+	        Element txprDscmNo = doc.createElement("txprDscmNo");
+	        txprDscmNo.setTextContent(inputCompany);
+	        root.appendChild(txprDscmNo);
+	  
+	        Element dongCode = doc.createElement("dongCode");
+	        dongCode.setTextContent("15");
+	        root.appendChild(dongCode);
+	        
+	        Element psbSearch = doc.createElement("psbSearch");
+	        psbSearch.setTextContent("Y");
+	        root.appendChild(psbSearch);  
+	        
+	        Element map2 = doc.createElement("map");
+	        map2.setAttribute("id","userReqInfoVO");
+	        root.appendChild(map2);   
+	        
+	        TransformerFactory factory = TransformerFactory.newInstance();
+	        Transformer former = factory.newTransformer();
+	        former.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+	        former.setOutputProperty(OutputKeys.INDENT, "yes");
+	        
+	        StringWriter sw = new StringWriter();
+	        StreamResult result = new StreamResult(sw);
+	        DOMSource source = new DOMSource(doc);
+	        former.transform(source, result);
+	        
+	        try{
+	           //전송할 서버 url
+	            URL searchUrl = new URL("https://teht.hometax.go.kr/wqAction.do?actionId=ATTABZAA001R08&screenId=UTEABAAA13&popupYn=false&realScreenId=");
+	            connection = (HttpURLConnection)searchUrl.openConnection();
+	            connection.setDoOutput(true);
+	            connection.setRequestMethod("POST");
+	            connection.setRequestProperty( "Content-Type", "text/xml" );
+	            connection.setRequestProperty( "Content-Length", Integer.toString(sw.toString().length()));
+
+	            os = connection.getOutputStream();
+
+	            os.write( sw.toString().getBytes("utf-8") );
+	            os.flush();
+	            os.close();
+
+	            //결과값 수신
+	            int rc = connection.getResponseCode();
+	            if(rc==200){
+	                InputStreamReader in = new InputStreamReader(connection.getInputStream(),"utf-8");
+	                BufferedReader br = new BufferedReader(in);
+	                String strLine;
+	                while ((strLine = br.readLine()) != null){
+	                    returnString = returnString.concat(strLine);
+	                }
+
+	                //결과값출력
+	                
+
+	            }else{
+	                System.out.println("http response code error: "+rc+"\n");
+	    			jObject.put("outputResult", "-2");
+	                return;
+	            }
+
+	        } catch( IOException e ){
+	            System.out.println("search URL connect failed: " + e.getMessage());
+				jObject.put("outputResult", "-3");
+	            e.printStackTrace();
+	        }finally{
+	        	if(os!=null) os.close();
+	        	connection.disconnect();
+	        }
+			
+	        
 	        try {
-	            org.json.JSONObject xmlJSONObj = XML.toJSONObject(result);
+				org.json.JSONObject objsct = null;
+	            org.json.JSONObject xmlJSONObj = XML.toJSONObject(returnString);
 	            String jsonPrettyPrintString = xmlJSONObj.toString(4);
-	            result = jsonPrettyPrintString;
+	            returnString = jsonPrettyPrintString;
 	            objsct = xmlJSONObj;
-	            System.out.println(jsonPrettyPrintString);
+		        
+	            checkResult = objsct.getJSONObject("map").getString("trtCntn");
+		        
+		        
 	        } catch (JSONException je) {
 	            System.out.println(je.toString());
 	        }
-			
-	        System.out.println(objsct.getJSONObject("response").getJSONObject("header").getString("resultCode"));
-			
-			CommonUtil.commonPrintLog("SUCCESS", className, "Login Check OK", map);
-			jObject.put("outputResult", "1");
+	        
+	        if(checkResult.equals("부가가치세 일반과세자 입니다.")) {
+				jObject.put("outputResult", "1");
+
+	        } else {
+				jObject.put("outputResult", "-1");
+	        }
+	        
+			CommonUtil.commonPrintLog("SUCCESS", className, "Company Check OK", map);
 			res.getWriter().write(jObject.toString());
 			return;
 			
