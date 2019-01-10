@@ -36,7 +36,7 @@
 			success :  function(response){
 				if(response.outputResult == "1"){
 					alert("등록성공")
-					location.href = "/";
+					location.href = "/admin?action=getChannelList&page=${result.pageNo}&size=30";
 				}else{
 					alert("실패");
 				}
