@@ -35,6 +35,11 @@
 		VALUES((SELECT racMemberNo FROM rac_member WHERE racMemberEmail=#{memberEmail}), #{memberUid})
 	</select>	
 	
+    <select id="addCompany" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO rac_company(racMemberNo, racCompanyName, racCompanyBusinessNo)
+		VALUES((SELECT racMemberNo FROM rac_member WHERE racMemberEmail=#{memberEmail}), #{companyName}, #{businessNo})
+	</select>	
+	
 	<!-- CommonController.setProfile -->
 	<select id="setMember" parameterType="java.util.HashMap" resultType="int">
 		UPDATE deep_member 

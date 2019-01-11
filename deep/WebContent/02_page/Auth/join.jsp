@@ -9,7 +9,44 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
+<script>
+	$('#inputMemberEmail').focusout(function() {
+		if(!Auth.joinCheck(1)) {
+			buttonDisable();
+		};
+	});
 
+	$('#inputMemberPassword2').focusout(function() {
+		if(!Auth.joinCheck(2)) {
+			buttonDisable();
+
+		};	});
+	
+	function buttonDisable() {
+		var btn = document.getElementById('joinButton');
+		btn.disabled = 'disabled';
+	}
+	
+	function checkNumber(temp) {
+				
+		if(isNaN(temp) == true) {
+			alert("숫자만 입력해주세요.");
+			buttonDisable();
+		} 
+	};
+
+	$('#inputCompany-Number1').focusout(function() {
+		Auth.checkNumber($('#inputCompany-Number1').val());
+	});
+	$('#inputCompany-Number2').focusout(function() {
+		Auth.checkNumber($('#inputCompany-Number2').val());
+	});
+	$('#inputCompany-Number3').focusout(function() {
+		Auth.checkNumber($('#inputCompany-Number3').val());
+	});
+		
+	
+</script>
 </head>
 <body>
 
@@ -64,7 +101,7 @@
 							회사명<span class="primary-color">*</span>
 						</div>
 						<input class="ipt-Member-Join" type="text" id="inputCompanyName"
-							placeholder="회사명을 입력해주세요." required />
+							placeholder="회사명을 입력해주세요." required  oncahnge="buttonDisable();" />
 					</div>
 
 					<div class="ipt-login pTop2">
@@ -74,23 +111,23 @@
 					</div>
 					<div class="inline-flex">
 						<input class="ipt-Company-Number display-initial" type="text"
-							id="inputCompany-Number1" maxlength="3" required /> <span
+							id="inputCompany-Number1" maxlength="3" oncahnge="buttonDisable();"  required /> <span
 							class="pRight pLeft pTop-half">-</span> <input
 							class="ipt-Company-Number display-initial" type="text"
-							id="inputCompany-Number2" maxlength="2" required /> <span
+							id="inputCompany-Number2" maxlength="2" oncahnge="buttonDisable();"  required /> <span
 							class="pRight pLeft pTop-half">-</span> <input
 							class="ipt-Company-Number display-initial mRight" type="text"
-							id="inputCompany-Number3" maxlength="5" required />
+							id="inputCompany-Number3" maxlength="5" oncahnge="buttonDisable();"  required />
 						<div class="ipt-Company-Check display-initial">
-							<button class="companyCheckBtn" onclick="">조회</button>
+							<button class="companyCheckBtn" onclick="Auth.businessCheck()">조회</button>
 						</div>
 					</div>
 
 					<div class="pTop3"></div>
 
 					<div>
-						<a href="../Auth/joinPermit.jsp" onclick="Auth.join()"><button
-								class="common-wide-Btn" type="button">회원가입</button></a>
+						<a onclick="Auth.join()"><button
+								id="joinButton" class="common-wide-Btn" type="button" disabled="disabled">회원가입</button></a>
 					</div>
 
 					<div class="pTop3"></div>

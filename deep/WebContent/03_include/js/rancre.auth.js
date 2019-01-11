@@ -24,8 +24,8 @@ Auth.checkValue = function(mode){
 		break;
 		
 	case 2: //pw check - join
-		var password1 = $("#inputMemberPasswordPre").val();
-		var password2 = $("#inputMemberPassword").val();
+		var password1 = $("#inputMemberPassword").val();
+		var password2 = $("#inputMemberPassword2").val();
 		
 		if(password1.length < 6){
 			alert("패스워드는 6글자 이상으로 해주세요");
@@ -168,6 +168,59 @@ Auth.joinCheck = function(mode){
 		
 }
 
+Auth.businessCheck = function () {
+	
+	var businessNo = $("#inputCompany-Number1").val() + $("#inputCompany-Number2").val() + $("#inputCompany-Number3").val();  
+	
+	var publicKeyModulus = "";
+	var publicKeyExponent = "";
+
+	$.ajax({
+		type : "POST",
+		url : "/main?action=getRSAPublicKey",
+		dataType : "json",
+		async: false,
+		success: function(response) {
+			publicKeyModulus = response.deepPublicKeyModulus;
+			publicKeyExponent = response.deepPublicKeyExponent;
+		}, error: function(xhr,status,error) {
+			alert(error);
+		}
+	});
+
+	var rsa = new RSAKey();
+	rsa.setPublic(publicKeyModulus, publicKeyExponent);
+	
+	var form_data = {
+			inputCompany : businessNo
+		};
+	
+	$.ajax({
+		type:"POST",
+		url: "/member?action=checkCompany",
+		data:form_data,
+		dataType: "json",
+		async : false,
+		success: function(response) {
+			
+			if(response.outputResult == "1") {
+				alert("확인되었습니다.");
+				var btn = document.getElementById('joinButton');
+				btn.disabled = false;
+				return true;
+			} else if(response.outputResult == "-1") {
+				alert("틀리거나 이미 사용중인 사업자 번호입니다.");
+				var btn = document.getElementById('joinButton');
+				btn.disabled = 'disabled';
+				return false;
+			} else {
+				alert(response.outputResult);
+				alert("알수없는 문제가 발생했습니다.");
+			}
+		}
+	});
+}
+
 Auth.join = function(){
 	
 	if(!Auth.joinCheck(1)){
@@ -176,10 +229,9 @@ Auth.join = function(){
 	if(!Auth.joinCheck(2)){
 		return false;
 	} // password check
-	if(!Auth.joinCheck(3)){
-		return false;
-	}//name check
-	//deep.waiting(true);
+//	if(!Auth.businessCheck()) {
+//		return false;
+//	}
 	
 	//2. 공개키 요청
 	var publicKeyModulus = "";
@@ -201,26 +253,29 @@ Auth.join = function(){
 	var rsa = new RSAKey();
 	rsa.setPublic(publicKeyModulus, publicKeyExponent);
 	
-	var memberEmail, memberPassword, memberName;
+	var memberEmail, memberPassword, businessNumber;
 	
 	action = "/member?action=joinMember";
 	
 	memberEmail = protectXSS($("#inputMemberEmail").val().trim());
 	memberPassword = protectXSS($("#inputMemberPassword").val().trim());
-	memberPasswordConfirm = protectXSS($("#inputMemberPasswordPre").val().trim());
-	memberName = protectXSS($("#inputMemberName").val().trim());
+	memberPasswordConfirm = protectXSS($("#inputMemberPassword2").val().trim());
+	businessNumber =  protectXSS($("#inputCompany-Number1").val() + $("#inputCompany-Number2").val() + $("#inputCompany-Number3").val());
+	companyName =  protectXSS($("#inputCompanyName").val());
 
 	//암호화
 	var encryptMemberEmail = rsa.encrypt(memberEmail);
 	var encryptMemberPassword = rsa.encrypt(memberPassword);
 	var encryptMemberPasswordConfirm = rsa.encrypt(memberPasswordConfirm);
-	var encryptMemberName = rsa.encrypt(memberName);
-	
+	var encryptBusinessNumber = rsa.encrypt(businessNumber);
+	var encryptCompanyName = rsa.encrypt(companyName);
+
 	form_data = {
-			inputMemberName : encryptMemberName,
+			inputBusinessNumber : encryptBusinessNumber,
 			inputMemberPassword : encryptMemberPassword,
 			inputMemberPasswordConfirm : encryptMemberPasswordConfirm,
-			inputMemberEmail : encryptMemberEmail
+			inputMemberEmail : encryptMemberEmail,
+			inputCompanyName : encryptCompanyName
 	};
 	
 	

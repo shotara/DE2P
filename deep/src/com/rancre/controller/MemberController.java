@@ -245,6 +245,8 @@ public class MemberController {
 			Calendar calendar = Calendar.getInstance();
 			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
 			String inputMemberEmail = req.getParameter("inputMemberEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberEmail").toString()) : null;
+			String inputBusinessNumber = req.getParameter("inputBusinessNumber") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputBusinessNumber").toString()) : null;
+			String inputCompanyName = req.getParameter("inputCompanyName") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputCompanyName").toString()) : null;
 			String inputMemberPassword = req.getParameter("inputMemberPassword") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberPassword").toString()) : null;
 			String inputMemberPasswordConfirm = req.getParameter("inputMemberPasswordConfirm") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberPasswordConfirm").toString()) : null;
 
@@ -256,6 +258,8 @@ public class MemberController {
 			// Parameter check
 			ArrayList<Object> parameterList = new ArrayList<Object>();
 			parameterList.add(inputMemberEmail);
+			parameterList.add(inputBusinessNumber);
+			parameterList.add(inputCompanyName);
 			parameterList.add(inputMemberPassword);
 			parameterList.add(inputMemberPasswordConfirm);
 			if(!CommonUtil.commonParameterCheck(parameterList)) {
@@ -278,15 +282,15 @@ public class MemberController {
 			}			
          
 			// RSA Decrypt
-//			String decryptMemberMajor = EncryptUtil.RSA_Decode(privateKey, inputMemberMajor);
-//			String decryptMemberCareer = EncryptUtil.RSA_Decode(privateKey, inputMemberCareer);
+			String decryptCompanyName = EncryptUtil.RSA_Decode(privateKey, inputCompanyName);
+			String decryptBusinessNumber = EncryptUtil.RSA_Decode(privateKey, inputBusinessNumber);
 			String decryptMemberEmail = EncryptUtil.RSA_Decode(privateKey, inputMemberEmail);
 			String decryptMemberPassword = EncryptUtil.RSA_Decode(privateKey, inputMemberPassword);
 				
 			// AES Encrypt
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
-//			String encryptMemberMajor = EncryptUtil.AES_Encode(decryptMemberMajor, aesKey);
-//			String encryptMemberCareer = EncryptUtil.AES_Encode(decryptMemberCareer, aesKey);
+			String encryptCompanyName = EncryptUtil.AES_Encode(decryptCompanyName, aesKey);
+			String encryptBusinessNumber = EncryptUtil.AES_Encode(decryptBusinessNumber, aesKey);
 			String encryptMemberEmail = EncryptUtil.AES_Encode(decryptMemberEmail, aesKey);
 			
 			// Check the email in the database
@@ -322,6 +326,13 @@ public class MemberController {
 			// Create MemberUid
 			String memberUid = encryptMemberEmail.substring(0,6) + Long.toString(System.currentTimeMillis()/1000).substring(0,4);
 			int createMemberUid = MemberDAO.addMemberUid(encryptMemberEmail, memberUid);
+			
+			// Create Business 
+			
+			int createCompany = MemberDAO.addCompany(encryptMemberEmail, encryptCompanyName, encryptBusinessNumber, inputCurrentDate);
+			if(createCompany != 1) {
+				CommonUtil.commonPrintLog("FAIL", className, "Add Company Fail", map);
+			}			
 			
 			// 완료 
 			CommonUtil.commonPrintLog("SUCCESS", className, "User Join OK", map);
@@ -514,12 +525,12 @@ public class MemberController {
 			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
 			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
 			
-//			if(privateKey == null) {
-//				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
-//				jObject.put("outputResult", "-2");
-//				res.getWriter().write(jObject.toString());
-//				return;
-//			}	
+			if(privateKey == null) {
+				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}	
 			
 
 	        String returnString = "";

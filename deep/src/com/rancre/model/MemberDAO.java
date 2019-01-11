@@ -68,6 +68,31 @@ public class MemberDAO {
 		}
 	}
 	
+
+	public static int addCompany(String encryptMemberEmail, String encryptCompanyName, String encryptBusinessNumber, Timestamp inputCurrentDate) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();		
+			map.put("memberEmail", encryptMemberEmail);
+			map.put("companyName", encryptCompanyName);			
+			map.put("businessNo", encryptBusinessNumber);			
+
+			int check = (int)sqlSession.insert(namespace + ".addCompany", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
 	
 	// Update Method
 	public static int setMember(
