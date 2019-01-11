@@ -208,8 +208,13 @@ Auth.businessCheck = function () {
 				var btn = document.getElementById('joinButton');
 				btn.disabled = false;
 				return true;
+			} else if(response.outputResult == "-2") {
+				alert("잘못된 사업자 번호입니다.");
+				var btn = document.getElementById('joinButton');
+				btn.disabled = 'disabled';
+				return false;
 			} else if(response.outputResult == "-1") {
-				alert("틀리거나 이미 사용중인 사업자 번호입니다.");
+				alert("이미 사용중인 사업자 번호입니다.");
 				var btn = document.getElementById('joinButton');
 				btn.disabled = 'disabled';
 				return false;
@@ -288,7 +293,7 @@ Auth.join = function(){
 			
 			if(response.outputResult == "1"){
 				alert("회원가입 완료");
-				location.href = "/joinPermit";
+				location.href = "/";
 			}else if(response.outputResult == "-3" ||response.outputResult == "-4"){
 				$("div.msgRow.malfunMsg").text("이미 가입된 이메일 또는 사용중인 닉네임입니다.");
 			}else {

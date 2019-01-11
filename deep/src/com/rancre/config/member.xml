@@ -38,6 +38,11 @@
     <select id="addCompany" parameterType="java.util.HashMap" resultType="int">
 		INSERT INTO rac_company(racMemberNo, racCompanyName, racCompanyBusinessNo)
 		VALUES((SELECT racMemberNo FROM rac_member WHERE racMemberEmail=#{memberEmail}), #{companyName}, #{businessNo})
+	</select>
+	
+		
+	<select id="checkCompany" parameterType="String" resultType="int">
+		SELECT count(*) FROM rac_company WHERE racCompanyBusinessNo=#{inputBusinessNo}
 	</select>	
 	
 	<!-- CommonController.setProfile -->

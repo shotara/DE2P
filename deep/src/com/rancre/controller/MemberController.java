@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -250,7 +251,6 @@ public class MemberController {
 			String inputMemberPassword = req.getParameter("inputMemberPassword") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberPassword").toString()) : null;
 			String inputMemberPasswordConfirm = req.getParameter("inputMemberPasswordConfirm") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberPasswordConfirm").toString()) : null;
 
-			System.out.println("time =" + inputCurrentDate);
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
@@ -335,6 +335,45 @@ public class MemberController {
 			}			
 			
 			// 완료 
+
+			  String host     = "smtp.naver.com";
+			  final String user   = "shotzara@naver.com";
+			  final String password  = "rmlarmla12!";
+
+			  String to = decryptMemberEmail;
+
+			  // Get the session object
+			  Properties props = new Properties();
+			  props.put("mail.smtp.host", host);
+			  props.put("mail.smtp.auth", "true");
+
+			  Session mailSession = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			   protected PasswordAuthentication getPasswordAuthentication() {
+			    return new PasswordAuthentication(user, password);
+			   }
+			  });
+
+			  // Compose the message
+			  try {
+			   MimeMessage message = new MimeMessage(mailSession);
+			   message.setFrom(new InternetAddress(user));
+			   message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+			   // Subject
+			   message.setSubject("[Subject] Java Mail Test");
+			   
+			   // Text
+			   message.setText("Simple mail test..");
+
+			   // send the message
+			   Transport.send(message);
+			   System.out.println("message sent successfully...");
+
+			  } catch (MessagingException e) {
+			   e.printStackTrace();
+			  }
+			
+			
 			CommonUtil.commonPrintLog("SUCCESS", className, "User Join OK", map);
 			jObject.put("outputResult", "1");
 			res.getWriter().write(jObject.toString());
@@ -607,9 +646,6 @@ public class MemberController {
 	                    returnString = returnString.concat(strLine);
 	                }
 
-	                //결과값출력
-	                
-
 	            }else{
 	                System.out.println("http response code error: "+rc+"\n");
 	    			jObject.put("outputResult", "-2");
@@ -641,10 +677,19 @@ public class MemberController {
 	        }
 	        
 	        if(checkResult.equals("부가가치세 일반과세자 입니다.")) {
-				jObject.put("outputResult", "1");
+				String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+				String encryptBusinessNumber = EncryptUtil.AES_Encode(inputCompany, aesKey);
+
+				int check = MemberDAO.checkCompany(encryptBusinessNumber);
+				if(check==0) {
+					jObject.put("outputResult", "1");
+				} else {
+					jObject.put("outputResult", "-1");
+
+				}
 
 	        } else {
-				jObject.put("outputResult", "-1");
+				jObject.put("outputResult", "-2");
 	        }
 	        
 			CommonUtil.commonPrintLog("SUCCESS", className, "Company Check OK", map);

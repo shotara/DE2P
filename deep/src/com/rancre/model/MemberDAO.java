@@ -235,4 +235,16 @@ public class MemberDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static int checkCompany(String inputBusinessNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (int)sqlSession.selectOne(namespace + ".checkCompany", inputBusinessNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
 }
