@@ -17,7 +17,7 @@
 		
 	<!-- MemberController.loginMember() -->
     <select id="getMemberByMemberMail" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Member">
-		SELECT * FROM rac_member WHERE racMemberEmail=#{memberEmail} AND racMemberPassword=#{memberPassword}
+		SELECT * FROM rac_member WHERE racMemberEmail=#{memberEmail} AND racMemberPassword=#{memberPassword} AND racMemberStatus=2
 	</select>
 	
 	<select id="getMemberUid" parameterType="int" resultType="com.rancre.model.domain.MemberUid">
@@ -39,11 +39,26 @@
 		INSERT INTO rac_company(racMemberNo, racCompanyName, racCompanyBusinessNo)
 		VALUES((SELECT racMemberNo FROM rac_member WHERE racMemberEmail=#{memberEmail}), #{companyName}, #{businessNo})
 	</select>
-	
 		
 	<select id="checkCompany" parameterType="String" resultType="int">
 		SELECT count(*) FROM rac_company WHERE racCompanyBusinessNo=#{inputBusinessNo}
 	</select>	
+	
+	<select id="permitJoin" parameterType="java.util.HashMap" resultType="int">
+		UPDATE rac_member SET racMemberStatus=2
+		WHERE racMemberNo=(SELECT a.racMemberNo FROM (SELECT * FROM rac_member WHERE racMemberEmail=#{email}) a, (SELECT * FROM rac_member_uid WHERE racMemberUid=#{uid}) b WHERE a.racMemberNo=b.racMemberNo AND a.racMemberStatus=1)
+	</select>
+			
+	<select id="getMemberByJoinPermit" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Member">
+		SELECT a.* 
+		FROM (SELECT * FROM rac_member WHERE racMemberEmail=#{memberEmail}) a, (SELECT * FROM rac_member_uid WHERE racMemberUid=#{memberUid}) b
+		WHERE a.racMemberNo=b.racMemberNo	
+	</select>	
+		
+	<select id="addMemberAdTarget" parameterType="java.util.HashMap" resultType="int">
+		UPDATE rac_company SET racCompanyAdCategory=#{adCategory}, racCompanyTargetAge=#{targetAge}, racCompanyTargetGender=#{targetSex}
+		WHERE racMemberNo=(SELECT racMemberNo FROM rac_member_uid WHERE racMemberUid=#{memberUid})
+	</select>
 	
 	<!-- CommonController.setProfile -->
 	<select id="setMember" parameterType="java.util.HashMap" resultType="int">
@@ -62,7 +77,6 @@
 		UPDATE deep_member SET deepMemberImage=#{uploadNo}
 		WHERE deepMemberNo=#{memberNo}
 	</select>
-	
 	
 	<!-- CommonMethod -->
 	<select id="getMemberByMemberNo" parameterType="int" resultType="com.rancre.model.domain.Member">

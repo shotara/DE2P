@@ -194,7 +194,7 @@ public class MemberController {
 			}
 			
 			// check member permit
-			if(member.getRacMemberStatus() != 1) {
+			if(member.getRacMemberStatus() != 2) {
 				CommonUtil.commonPrintLog("FAIL", className, "No Member Permit!", map);
 				jObject.put("outputResult", "-5");
 				res.getWriter().write(jObject.toString());
@@ -363,7 +363,7 @@ public class MemberController {
 			   message.setSubject("[Subject] Java Mail Test");
 			   
 			   // Text
-			   message.setText("Simple mail test..");
+			   message.setText("http://localhost:8080/member?action=permitJoin&inputEmail="+decryptMemberEmail+"&inputUid="+memberUid);
 
 			   // send the message
 			   Transport.send(message);
@@ -761,6 +761,68 @@ public class MemberController {
 			jObject.put("outputAuthNo", randomNum);
 
 			CommonUtil.commonPrintLog("SUCCESS", className, "Login Check OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void permitJoin(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			String inputEmail = req.getParameter("inputEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputEmail").toString()) : null;
+			String inputUid = req.getParameter("inputUid") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputUid").toString()) : null;
+			
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+			String encryptMemberEmail = EncryptUtil.AES_Encode(inputEmail, aesKey);
+	
+			// 메일/ 회원체크
+			int check = MemberDAO.permitJoin(encryptMemberEmail, inputUid);
+			if(check!=1) {
+				CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit Fail", map);
+				req.getRequestDispatcher("/error.jsp").forward(req, res);
+			}
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit OK", map);
+			req.setAttribute("memberUid",inputUid);
+			req.getRequestDispatcher("/02_page/Auth/joinPermit.jsp").forward(req, res);
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void addMemberAdTarget(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {			
+			int inputAdCategory = req.getParameter("inputAdCategory") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputAdCategory").toString())) : 0;				
+			int inputTargetAge = req.getParameter("inputTargetAge") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputTargetAge").toString())) : 0;				
+			int inputTargetSex = req.getParameter("inputTargetSex") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputTargetSex").toString())) : 0;				
+			String inputMemberUid = req.getParameter("inputMemberUid") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberUid").toString()) : null;
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+			// 회원의 광고 타겟 저장 
+			int check = MemberDAO.addMemberAdTarget(inputAdCategory, inputTargetAge, inputTargetSex, inputMemberUid);
+			if(check!=1) {
+				CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit Fail", map);
+				jObject.put("outputResult", "-1");
+			}
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit OK", map);
 			jObject.put("outputResult", "1");
 			res.getWriter().write(jObject.toString());
 			return;

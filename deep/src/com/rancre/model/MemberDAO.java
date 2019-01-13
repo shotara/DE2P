@@ -44,7 +44,9 @@ public class MemberDAO {
 		}
 	}
 
-	public static int addMemberUid(String encryptMemberEmail, String memberUid) {
+	public static int addMemberUid(
+			String encryptMemberEmail, 
+			String memberUid) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
@@ -69,7 +71,11 @@ public class MemberDAO {
 	}
 	
 
-	public static int addCompany(String encryptMemberEmail, String encryptCompanyName, String encryptBusinessNumber, Timestamp inputCurrentDate) {
+	public static int addCompany(
+			String encryptMemberEmail, 
+			String encryptCompanyName, 
+			String encryptBusinessNumber, 
+			Timestamp inputCurrentDate) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
@@ -94,6 +100,37 @@ public class MemberDAO {
 		}
 	}
 	
+
+	public static int addMemberAdTarget(
+			int inputAdCategory, 
+			int inputTargetAge, 
+			int inputTargetSex,
+			String inputMemberUid) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();		
+			map.put("adCategory", inputAdCategory);
+			map.put("targetAge", inputTargetAge);			
+			map.put("targetSex", inputTargetSex);			
+			map.put("memberUid", inputMemberUid);			
+
+			int check = (int)sqlSession.update(namespace + ".addMemberAdTarget", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 	// Update Method
 	public static int setMember(
 			int mode, 
@@ -153,7 +190,31 @@ public class MemberDAO {
 		}
 	}
 	
-	
+
+	public static int permitJoin(String inputEmail, String inputUid) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("email", inputEmail);
+			map.put("uid", inputUid);			
+
+			int check = (int)sqlSession.update(namespace + ".permitJoin", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return 1;
+			} else {
+				sqlSession.rollback();
+				return 0;
+			}
+			
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
 	
 	// Select Method
 	public static int checkMember(int mode, String inputMemberParam) {
@@ -242,6 +303,22 @@ public class MemberDAO {
 		
 		try {	
 			return (int)sqlSession.selectOne(namespace + ".checkCompany", inputBusinessNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static Member getMemberByJoinPermit(String encryptMemberEmail, String inputUid) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberEmail", encryptMemberEmail);
+			map.put("memberUid", inputUid);
+
+			return (Member)sqlSession.selectOne(namespace + ".getMemberByJoinPermit", map);
 			
 		} finally {
 			sqlSession.close();

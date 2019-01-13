@@ -304,8 +304,6 @@ Auth.join = function(){
 	
 }
 
-
-
 Auth.login = function(){
 	
 	//email check regular expression
@@ -385,7 +383,7 @@ Auth.loginCheck = function(mode){
 		dataType : "json",
 		async : false,
 		success : function(response){
-			if(resonese.outputResult == "1"){
+			if(response.outputResult == "1"){
 				check1 = true; //Status - login
 			}else if(response.outputResult == "-1"){
 				//login needed

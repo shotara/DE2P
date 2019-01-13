@@ -7,8 +7,73 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
+<script>
+
+function joinPermit() {
+	var inputMemberUid = "${memberUid}";
+	
+	if(inputMemberUid=="") {
+		alert("잘못된 접근입니다.");	
+		return;
+	}
+	
+	var state1 = $('#commercial-category option:selected').val();
+	var state2 = $('#commercial-target-age option:selected').val();
+	var state3 = $('#commercial-target-sex option:selected').val();
+
+	if(!(state1 >= 0)) {
+		alert("광고 할 상품과 가장 유사한 카테고리를 선택해주세요. 채널 추천에 도움이 됩니다.");
+		return;
+	}
+	
+	if(!(state2 >= 0)) {
+		alert("광고 할 상품의 연령을 선택해주세요. 채널 추천에 도움이 됩니다.");
+		return;
+	}
+	
+	
+	if(!(state3 >= 0)) {
+		alert("광고 할 상품의 성별을 선택해주세요. 채널 추천에 도움이 됩니다.");
+		return;
+	}
+		
+	var inputAdCategory = $('#commercial-category option:selected').val();
+	var inputTargetAge = $('#commercial-target-age option:selected').val();
+	var inputTargetSex = $('#commercial-target-sex option:selected').val();
+
+	form_data = {
+			inputAdCategory : inputAdCategory,
+			inputTargetAge : inputTargetAge,
+			inputTargetSex : inputTargetSex,
+			inputMemberUid : inputMemberUid
+	};
+	
+	$.ajax({
+		type : "POST",
+		url : "/member?action=addMemberAdTarget",
+		dataType : "json",
+		data : form_data,
+		async: false,
+		success : function(response){
+			if(response.outputResult == "1"){
+				if (confirm("지금 광고 리뷰를 입력하시겠습니까? 리뷰를 입력하시면 다른 사람의 리뷰를 모두 확인할 수 있습니다.") == true){    //확인
+					// 리뷰 작성 페이지로
+					location.href = "/02_page/Review/review.jsp";
+				}else{   //취소
+					location.href = "/02_page/Auth/login.jsp";
+				}
+
+			}else if(response.outputResult == "-1"){
+
+			}
+		}, error: function(xhr,status,error) {
+			alert(error);
+		}
+	});
+}
+
+</script>
 </head>
 <body>
 
@@ -53,6 +118,7 @@
 							하는 상품의 타깃 연령을 선택해주세요.</div>
 						<div class="inline-block">
 							<select class="ipt-Select-Join" id="commercial-target-age">
+								<option disabled selected hidden>연령대를 선택해주세요!</option>
 								<option value="0">연령무관</option>
 								<option value="1">10대</option>
 								<option value="2">10대 - 20대</option>
@@ -76,6 +142,8 @@
 							하는 상품의 타깃 성별을 선택해주세요.</div>
 						<div class="inline-block">
 							<select class="ipt-Select-Join" id="commercial-target-sex">
+								<option disabled selected hidden>연령대를 선택해주세요!</option>
+					
 								<option value="0">성별무관</option>
 								<option value="1">남성</option>
 								<option value="2">여성</option>
@@ -105,7 +173,7 @@
 					<div class="pTop3"></div>
 
 					<div class="pTop3">
-						<a href="#" onclick="Auth.join()"><button
+						<a href="#" onclick="joinPermit()"><button
 								class="common-wide-Btn" type="button">회원가입 완료</button></a>
 					</div>
 

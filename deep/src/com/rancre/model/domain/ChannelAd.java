@@ -11,6 +11,7 @@ public class ChannelAd {
 	private long racVideoViews;
 	private String racVideoThumbnail;
 	private int racChannelAdType;
+	private int racChannelAdCategory;
 	private Timestamp racVideoCreateDate;
 	private Timestamp racVideoUpdateDate;
 	private Timestamp racChannelAdCreateDate;
@@ -60,6 +61,12 @@ public class ChannelAd {
 	public void setRacChannelAdType(int racChannelAdType) {
 		this.racChannelAdType = racChannelAdType;
 	}
+	public int getRacChannelAdCategory() {
+		return racChannelAdCategory;
+	}
+	public void setRacChannelAdCategory(int racChannelAdCategory) {
+		this.racChannelAdCategory = racChannelAdCategory;
+	}
 	public Timestamp getRacVideoCreateDate() {
 		return racVideoCreateDate;
 	}
@@ -79,8 +86,8 @@ public class ChannelAd {
 		this.racChannelAdCreateDate = racChannelAdCreateDate;
 	}
 	public ChannelAd(int racChannelAdNo, int racChannelNo, String racVideoId, String racVideoTitle, long racVideoViews,
-			String racVideoThumbnail, int racChannelAdType, Timestamp racVideoCreateDate, Timestamp racVideoUpdateDate,
-			Timestamp racChannelAdCreateDate) {
+			String racVideoThumbnail, int racChannelAdType, int racChannelAdCategory, Timestamp racVideoCreateDate,
+			Timestamp racVideoUpdateDate, Timestamp racChannelAdCreateDate) {
 		super();
 		this.racChannelAdNo = racChannelAdNo;
 		this.racChannelNo = racChannelNo;
@@ -89,8 +96,10 @@ public class ChannelAd {
 		this.racVideoViews = racVideoViews;
 		this.racVideoThumbnail = racVideoThumbnail;
 		this.racChannelAdType = racChannelAdType;
+		this.racChannelAdCategory = racChannelAdCategory;
 		this.racVideoCreateDate = racVideoCreateDate;
 		this.racVideoUpdateDate = racVideoUpdateDate;
 		this.racChannelAdCreateDate = racChannelAdCreateDate;
 	}
+
 }
