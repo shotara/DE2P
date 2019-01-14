@@ -680,4 +680,28 @@ public class ChannelDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static ArrayList<Channel> autoComplete(String inputChannelTitle) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (ArrayList)sqlSession.selectList(namespace + ".autoComplete", inputChannelTitle);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static Channel getChannelByTitle(String inputChannelTitle) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (Channel)sqlSession.selectOne(namespace + ".getChannelByTitle", inputChannelTitle);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

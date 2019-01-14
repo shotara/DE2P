@@ -214,6 +214,28 @@ Common.addList = function (mode, startNo, categoryNo) {
 Common.review = function (mode){
 
 	if(mode==1){
+		var channelName = $("#Input-Channel-Name").val();
+		if (channelName=="") {
+			alert("채널명을 입력해주세요.");
+			return;
+		}
+		
+		var channelPrice = $("#Input-Commercial-Price").val();
+		if (channelPrice=="") {
+			alert("광고 집행비용을 입력해주세요.");
+			return;
+		}
+		if(isNaN(channelPrice) == true) {
+			alert("숫자만 입력해주세요.");
+			return;
+		} 
+		
+		var channelText = $("#Input-Commercial-Text").val();
+		if (channelText=="") {
+			alert("리뷰 내용을 입력해주세요.");
+			return;
+		}
+		
 		/**move next-page **/
 		var review_step1 = document.getElementById('review-Step1');
 		var review_step2 = document.getElementById('review-Step2');
@@ -228,7 +250,86 @@ Common.review = function (mode){
 		review_step2.style.display = 'none';
 	}
 	else if(mode==3){ //confirm the review
+		
+		var publicKeyModulus = "";
+		var publicKeyExponent = "";
 
+		$.ajax({
+			type : "POST",
+			url : "/main?action=getRSAPublicKey",
+			dataType : "json",
+			async: false,
+			success: function(response) {
+				publicKeyModulus = response.deepPublicKeyModulus;
+				publicKeyExponent = response.deepPublicKeyExponent;
+			}, error: function(xhr,status,error) {
+				alert(error);
+			}
+		});
+
+		var rsa = new RSAKey();
+		rsa.setPublic(publicKeyModulus, publicKeyExponent);
+
+		var channelName = $("#Input-Channel-Name").val();
+		var channelSatisfy = $('input[name="commercial-satisfy"]:checked').val();
+		var commercialDate1 = $("#commercial-Date1").val();
+		var commercialDate2 = $("#commercial-Date2").val();
+		var commercialType = $("#commercial-Type").val();
+		var commercialPrice = $("#Input-Commercial-Price").val();
+		var commercialUrl = $("#Input-Commercial-Url").val();
+		var channelText = $("#Input-Commercial-Text").val();
+		
+		var targetReach = $("#success-reach").val();
+		var targetConvert = $("#success-convert").val();
+		var targetType = $("#success-itemType").val();
+		var targetAge = $("#success-age").val();
+		var targetSex = $("#success-sex").val();
+		var channelRecomand = $('input[name="channel-recommand"]:checked').val();
+		var channelReuse = $('input[name="channel-Reuse"]:checked').val();
+
+		var encryptChannelName = rsa.encrypt(channelName);
+		var encryptCommercialUrl = rsa.encrypt(commercialUrl);
+		var encryptChannelText = rsa.encrypt(channelText);
+
+		var form_data = {
+				inputChannelName : encryptChannelName,
+				inputReviewSatisfy : channelSatisfy,
+				inputReviewDate1 : commercialDate1,
+				inputReviewDate2 : commercialDate2,
+				inputChannelAdType : commercialType,
+				inputChannelCostPrice : commercialPrice,
+				inputChannelAdUrl : encryptCommercialUrl,
+				inputReviewDetail : encryptChannelText,
+				inputReviewTargetReach : targetReach,
+				inputReviewTargetConvert : targetConvert,
+				inputChannelAdCategory : targetType,
+				inputReviewTargetAge : targetAge,
+				inputReviewTargetSex : targetSex,
+				inputReviewRecomand : channelRecomand,
+				inputReviewAdAgain : channelReuse
+		};
+		
+		$.ajax({
+			type:"POST",
+			url: "/channel?action=addReview",
+			data:form_data,
+			dataType: "json",
+			async : false,
+			success: function(response) {
+				
+				if(response.outputResult == "1") {
+					check = true;
+				} else if(response.outputResult == "-3") {
+					alert("이미 사용중인 메일/이름입니다.");
+					
+					check = false;
+				} else {
+					alert(response.outputResult);
+					alert("알수없는 문제가 발생했습니다.");
+					check = false;
+				}
+			}
+		});
 		return;
 	}
 	else if(mode==4){

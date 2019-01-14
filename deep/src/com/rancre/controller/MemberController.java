@@ -806,6 +806,8 @@ public class MemberController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		
 		try {			
+			HttpSession session = req.getSession();
+
 			int inputAdCategory = req.getParameter("inputAdCategory") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputAdCategory").toString())) : 0;				
 			int inputTargetAge = req.getParameter("inputTargetAge") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputTargetAge").toString())) : 0;				
 			int inputTargetSex = req.getParameter("inputTargetSex") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputTargetSex").toString())) : 0;				
@@ -815,8 +817,22 @@ public class MemberController {
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 
+			PrivateKey privateKey = null;
+			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+			
+			if(privateKey == null) {
+				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}	
+			
+
+			String decryptMemberUid = EncryptUtil.RSA_Decode(privateKey, inputMemberUid);
+				
 			// 회원의 광고 타겟 저장 
-			int check = MemberDAO.addMemberAdTarget(inputAdCategory, inputTargetAge, inputTargetSex, inputMemberUid);
+			int check = MemberDAO.addMemberAdTarget(inputAdCategory, inputTargetAge, inputTargetSex, decryptMemberUid);
 			if(check!=1) {
 				CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit Fail", map);
 				jObject.put("outputResult", "-1");
@@ -825,6 +841,46 @@ public class MemberController {
 			CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit OK", map);
 			jObject.put("outputResult", "1");
 			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void goReview(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+			
+			String inputMemberUid = req.getParameter("inputMemberUid") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberUid").toString()) : null;
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+			PrivateKey privateKey = null;
+			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+			
+			if(privateKey == null) {
+				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}	
+			
+			String decryptMemberUid = EncryptUtil.RSA_Decode(privateKey, inputMemberUid);
+
+			Member member = MemberDAO.getMemberByMemberUid(inputMemberUid);
+			
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+			MemberController.setMemberSession(session, member, decryptMemberUid, aesKey);
+
+			CommonUtil.commonPrintLog("SUCCESS", className, "goReview OK", map);
+			req.getRequestDispatcher("/02_page/Review/review.jsp").forward(req, res);
 			return;
 			
 		} catch (Exception e) {

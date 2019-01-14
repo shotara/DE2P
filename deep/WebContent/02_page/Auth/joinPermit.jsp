@@ -38,15 +38,37 @@ function joinPermit() {
 		return;
 	}
 		
+	var publicKeyModulus = "";
+	var publicKeyExponent = "";
+	var action = "/main?action=getRSAPublicKey";
+	
+	$.ajax({
+		type : "POST",
+		url : "/main?action=getRSAPublicKey",
+		dataType : "json",
+		async: false,
+		success: function(response) {
+			publicKeyModulus = response.deepPublicKeyModulus;
+			publicKeyExponent = response.deepPublicKeyExponent;
+		}, error: function(xhr,status,error) {
+			alert(error);
+		}
+	});
+
+	var rsa = new RSAKey();
+	rsa.setPublic(publicKeyModulus, publicKeyExponent);
+	
+	var memberUid  = rsa.encrypt(inputMemberUid);
+
 	var inputAdCategory = $('#commercial-category option:selected').val();
 	var inputTargetAge = $('#commercial-target-age option:selected').val();
 	var inputTargetSex = $('#commercial-target-sex option:selected').val();
-
+	
 	form_data = {
 			inputAdCategory : inputAdCategory,
 			inputTargetAge : inputTargetAge,
 			inputTargetSex : inputTargetSex,
-			inputMemberUid : inputMemberUid
+			inputMemberUid : memberUid
 	};
 	
 	$.ajax({
@@ -58,8 +80,26 @@ function joinPermit() {
 		success : function(response){
 			if(response.outputResult == "1"){
 				if (confirm("지금 광고 리뷰를 입력하시겠습니까? 리뷰를 입력하시면 다른 사람의 리뷰를 모두 확인할 수 있습니다.") == true){    //확인
+					
 					// 리뷰 작성 페이지로
-					location.href = "/02_page/Review/review.jsp";
+					var action = "/main?action=getRSAPublicKey";
+					$.ajax({
+						type : "POST",
+						url : "/main?action=getRSAPublicKey",
+						dataType : "json",
+						async: false,
+						success: function(response) {
+							publicKeyModulus = response.deepPublicKeyModulus;
+							publicKeyExponent = response.deepPublicKeyExponent;
+						}, error: function(xhr,status,error) {
+							alert(error);
+						}
+					});
+					var rsa2 = new RSAKey();
+					rsa2.setPublic(publicKeyModulus, publicKeyExponent);
+					memberUid  = rsa2.encrypt(inputMemberUid);
+					
+					location.href = "/member?action=goReview&inputMemberUid="+memberUid;
 				}else{   //취소
 					location.href = "/02_page/Auth/login.jsp";
 				}

@@ -324,4 +324,19 @@ public class MemberDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static Member getMemberByMemberUid(String inputMemberUid) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberUid", inputMemberUid);
+
+			return (Member)sqlSession.selectOne(namespace + ".getMemberByMemberUid", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

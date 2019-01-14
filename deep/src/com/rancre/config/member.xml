@@ -60,6 +60,12 @@
 		WHERE racMemberNo=(SELECT racMemberNo FROM rac_member_uid WHERE racMemberUid=#{memberUid})
 	</select>
 	
+	<select id="getMemberByMemberUid" parameterType="String" resultType="com.rancre.model.domain.Member">
+		SELECT a.* 
+		FROM (SELECT * FROM rac_member) a, (SELECT * FROM rac_member_uid WHERE racMemberUid=#{memberUid}) b
+		WHERE a.racMemberNo=b.racMemberNo		
+	</select>	
+	
 	<!-- CommonController.setProfile -->
 	<select id="setMember" parameterType="java.util.HashMap" resultType="int">
 		UPDATE deep_member 

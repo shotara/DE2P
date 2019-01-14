@@ -9,6 +9,48 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
+<script>
+	var sessionCheck = "${sessionScope.racMemberUid}";
+	if(sessionCheck=="") {
+		alert("로그인이 필요합니다.");
+		location.href = "/02_page/Auth/login.jsp"
+	}
+	
+	function searchChannel() {
+		
+		var channelName = protectXSS($("#Input-Channel-Name").val());
+
+		$( "#Input-Channel-Name" ).autocomplete({
+	        source : function( request, response ) {
+	             $.ajax({
+	                    type: 'post',
+	                    url: "/channel?action=autoCompleteChannel",
+	                    dataType: "json",
+	                   	async:true,
+	                    data: { inputChannelTitle : channelName },
+	                    success: function(data) {
+	                        //서버에서 json 데이터 response 후 목록에 뿌려주기 위함
+	                        response(
+	                            $.map(data.outputResult, function(item) {
+	                                return {
+	                                    label: item.outputChannelTitle,
+	                                    value: item.outputChannelTitle
+	                                }
+	                            })
+	                        );
+	                    }
+	               });
+	            },
+	        //조회를 위한 최소글자수
+	        minLength: 2,
+	        select: function( event, ui ) {
+	            // 만약 검색리스트에서 선택하였을때 선택한 데이터에 의한 이벤트발생
+	            
+	        }
+	    });
+	}
+	
+</script>
 </head>
 <body>
 
@@ -34,7 +76,7 @@
 							<div class="txt-left review-commonSubTxt">광고한 채널의 이름을
 								입력해주세요!</div>
 							<input class="ipt-Common-Review" type="text"
-								id="Input-Channel-Name" placeholder="와썹맨Wassup-man" required />
+								id="Input-Channel-Name" placeholder="와썹맨Wassup-man" required onchange="searchChannel()"/>
 						</div>
 
 						<div class="ipt-channel-review pTop2">
@@ -279,7 +321,7 @@
 						<div class="float-right">
 							<div class="radio-item">
 								<input type="radio" id="channel-Reuse"
-									name="channel-reuse" value="0" checked> <label
+									name="channel-Reuse" value="0" checked> <label
 									for="channel-Reuse">예</label>
 							</div>
 

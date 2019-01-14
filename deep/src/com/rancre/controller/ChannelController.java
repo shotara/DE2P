@@ -221,4 +221,107 @@ public class ChannelController {
 			e.printStackTrace();
 		}
 	}
+
+	public static void addReview(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {			
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			int inputReviewSatisfy = req.getParameter("inputReviewSatisfy") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewSatisfy").toString())) : 0;				
+			int inputReviewDate1 = req.getParameter("inputReviewDate1") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewDate1").toString())) : 0;				
+			int inputReviewDate2 = req.getParameter("inputReviewDate2") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewDate2").toString())) : 0;				
+			int inputChannelAdType = req.getParameter("inputChannelAdType") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelAdType").toString())) : 0;				
+			int commercialPrice = req.getParameter("commercialPrice") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("commercialPrice").toString())) : 0;				
+			int inputReviewTargetReach = req.getParameter("inputReviewTargetReach") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewTargetReach").toString())) : 0;				
+			int inputReviewTargetConvert = req.getParameter("inputReviewTargetConvert") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewTargetConvert").toString())) : 0;				
+			int inputChannelAdCategory = req.getParameter("inputChannelAdCategory") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelAdCategory").toString())) : 0;				
+			int inputReviewTargetAge = req.getParameter("inputReviewTargetAge") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewTargetAge").toString())) : 0;				
+			int inputReviewTargetSex = req.getParameter("inputReviewTargetSex") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewTargetSex").toString())) : 0;				
+			int inputReviewRecomand = req.getParameter("inputReviewRecomand") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewRecomand").toString())) : 0;				
+			int inputReviewAdAgain = req.getParameter("inputReviewAdAgain") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewAdAgain").toString())) : 0;				
+			String inputChannelName = req.getParameter("inputChannelName") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelName").toString()) : null;
+			String inputChannelAdUrl = req.getParameter("inputChannelAdUrl") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelAdUrl").toString()) : null;
+			String inputReviewDetail = req.getParameter("inputReviewDetail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputReviewDetail").toString()) : null;
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+			PrivateKey privateKey = null;
+			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+			
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			if(privateKey == null) {
+				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			String decryptChannelName = EncryptUtil.RSA_Decode(privateKey, inputChannelName);
+			
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+
+			/// 리뷰를 등록하려면?  채널 연결, 채널애드, 채널코스트, 리뷰 연결
+			Channel channel = ChannelDAO.getChannelByTitle(decryptChannelName);
+			
+//			inputChannelAdUrl  -- > 일단 먼저 ?
+			
+//			int check = ChannelDAO.addChannelAd(channel.getRacChannelNo(),)
+			
+			
+			
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void autoCompleteChannel(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {			
+			HttpSession session = req.getSession();
+
+			String inputChannelTitle = req.getParameter("inputChannelTitle") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelTitle").toString()) : null;
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			ArrayList<Channel> channelList = ChannelDAO.autoComplete(inputChannelTitle);
+			JSONArray jArray = new JSONArray();
+			for(int i=0; i<channelList.size();i++) {
+				JSONObject tempObject = new JSONObject();
+				tempObject.put("outputChannelTitle", channelList.get(i).getRacChannelTitle());
+				tempObject.put("outputChannelNo", channelList.get(i).getRacChannelNo());
+			
+				jArray.add(tempObject);
+			}
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Auto Complete OK", map);
+			jObject.put("outputResult", jArray);
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
