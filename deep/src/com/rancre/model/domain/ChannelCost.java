@@ -6,7 +6,6 @@ public class ChannelCost {
 	
 	private int racChannelCostNo;
 	private int racChannelNo;
-	private int racChannelCostCategory;
 	private int racChannelCostPrice;
 	private Timestamp racChannelCostCreateDate;
 	public ChannelCost() {
@@ -25,12 +24,7 @@ public class ChannelCost {
 	public void setRacChannelNo(int racChannelNo) {
 		this.racChannelNo = racChannelNo;
 	}
-	public int getRacChannelCostCategory() {
-		return racChannelCostCategory;
-	}
-	public void setRacChannelCostCategory(int racChannelCostCategory) {
-		this.racChannelCostCategory = racChannelCostCategory;
-	}
+
 	public int getRacChannelCostPrice() {
 		return racChannelCostPrice;
 	}
@@ -43,12 +37,11 @@ public class ChannelCost {
 	public void setRacChannelCostCreateDate(Timestamp racChannelCostCreateDate) {
 		this.racChannelCostCreateDate = racChannelCostCreateDate;
 	}
-	public ChannelCost(int racChannelCostNo, int racChannelNo, int racChannelCostCategory, int racChannelCostPrice,
+	public ChannelCost(int racChannelCostNo, int racChannelNo, int racChannelCostPrice,
 			Timestamp racChannelCostCreateDate) {
 		super();
 		this.racChannelCostNo = racChannelCostNo;
 		this.racChannelNo = racChannelNo;
-		this.racChannelCostCategory = racChannelCostCategory;
 		this.racChannelCostPrice = racChannelCostPrice;
 		this.racChannelCostCreateDate = racChannelCostCreateDate;
 	}	

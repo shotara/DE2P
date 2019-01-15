@@ -47,6 +47,29 @@
 	</select>
 	
 	<select id="getChannelByTitle" parameterType="String" resultType="com.rancre.model.domain.Channel">
-		SELECT * FROM rac_channel WHERE racChannelTitle = #{inputChanneTitle}
+		SELECT * FROM rac_channel WHERE racChannelTitle = #{inputChanneTitle} AND racChannelStatus=2;
 	</select>
+	
+	<select id="getChannelAdLastOne" parameterType="String" resultType="int">
+		SELECT racChannelAdNo FROM rac_channel_ad ORDER BY racChannelAdNo DESC LIMIT 1
+	</select>
+	
+	<select id="getChannelCostLastOne" parameterType="String" resultType="int">
+		SELECT racChannelCostNo FROM rac_channel_cost ORDER BY racChannelCostNo DESC LIMIT 1
+	</select>
+	
+    <select id="addChannelAd" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO rac_channel_ad(racChannelNo, racVideoId, racChannelAdType, racChannelAdCategory, racChannelAdCreateDate, racChannelAdExecuteDate)
+		VALUES(#{channelNo}, #{videoId}, #{channelAdType}, #{channelAdCategory}, #{inputCurrentDate}, #{executeDate})
+	</select>	
+
+    <select id="addChannelCost" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO rac_channel_cost(racChannelNo, racChannelCostPrice, racChannelCostCreateDate)
+		VALUES(#{channelNo}, #{channelCostPrice}, #{inputCurrentDate})
+	</select>		
+
+    <select id="addReview" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO rac_review(racReviewStatus, racChannelNo, racChannelAdNo, racChannelCostNo, racReviewSatisfy, racReviewTargetReach, racReviewTargetConversion, racReviewTargetGender, racReviewTargetAge, racReviewRecomand, racReviewAdAgain, racReviewDetail, racReviewCreateDate)
+		VALUES(#{reviewStatus}, #{channelNo}, #{channelAdNo}, #{channelCostNo}, #{reviewSatisfy}, #{reviewTargetReach}, #{reviewTargetConvert}, #{reviewTargetSex}, #{reviewTargetAge}, #{reviewTargetRecomand}, #{reviewTargetAdAgain}, #{reviewTargetDetail}, #{inputCurrentDate})
+	</select>	
 </mapper>

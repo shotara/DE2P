@@ -8,7 +8,10 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.RSAPrivateKeySpec;
 import java.security.spec.RSAPublicKeySpec;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -100,6 +103,7 @@ public class ChannelController {
 				ArrayList<HashMap<String,Object>> adVideoList = new ArrayList<HashMap<String,Object>>();
 
 				for(int i=0; i<channelAdList.size();i++) {
+					if(channelAdList.get(i).getRacVideoTitle() == null) continue;
 					HashMap<String,Object> tempObejct = new HashMap<String,Object>();
 					tempObejct.put("outputChannelAdNo", channelAdList.get(i).getRacChannelAdNo());
 					tempObejct.put("outputChannelNo", channelAdList.get(i).getRacChannelNo());
@@ -117,7 +121,7 @@ public class ChannelController {
 				ArrayList<Review> reviewList = ChannelDAO.getReviewList(inputChannelNo);
 				ArrayList<HashMap<String,Object>> outputReviewList = new ArrayList<HashMap<String,Object>>();
 
-				for(int i=0; i<channelAdList.size();i++) {
+				for(int i=0; i<reviewList.size();i++) {
 					HashMap<String,Object> tempObejct = new HashMap<String,Object>();
 					tempObejct.put("outputReviewNo", reviewList.get(i).getRacReviewNo());
 					tempObejct.put("outputChannelNo", reviewList.get(i).getRacChannelNo());
@@ -137,7 +141,6 @@ public class ChannelController {
 					outputReviewList.add(tempObejct);
 				}
 				req.setAttribute("outputReivewList", outputReviewList);
-				
 			}
 			
 			res.setContentType("application/json");
@@ -245,7 +248,9 @@ public class ChannelController {
 			String inputChannelName = req.getParameter("inputChannelName") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelName").toString()) : null;
 			String inputChannelAdUrl = req.getParameter("inputChannelAdUrl") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelAdUrl").toString()) : null;
 			String inputReviewDetail = req.getParameter("inputReviewDetail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputReviewDetail").toString()) : null;
-			
+			Calendar calendar = Calendar.getInstance();
+			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
+
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
@@ -269,20 +274,38 @@ public class ChannelController {
 			}
 			
 			String decryptChannelName = EncryptUtil.RSA_Decode(privateKey, inputChannelName);
-			
+			String decryptChannelAdUrl = EncryptUtil.RSA_Decode(privateKey, inputChannelAdUrl);
+
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 
 			/// 리뷰를 등록하려면?  채널 연결, 채널애드, 채널코스트, 리뷰 연결
 			Channel channel = ChannelDAO.getChannelByTitle(decryptChannelName);
 			
-//			inputChannelAdUrl  -- > 일단 먼저 ?
+			Date date = new Date();
+			date.setYear(Integer.parseInt(CommonUtil.getChannelAdDate(inputReviewDate1))-1900);
+			date.setMonth(inputReviewDate2);
+			date.setDate(1);
+			Timestamp executeDate = new Timestamp(date.getTime());
 			
-//			int check = ChannelDAO.addChannelAd(channel.getRacChannelNo(),)
+			int check = ChannelDAO.addChannelAd(channel.getRacChannelNo(), decryptChannelAdUrl, inputChannelAdType, inputChannelAdCategory, inputCurrentDate, executeDate);
+			if(check !=1) {
+				CommonUtil.commonPrintLog("ERROR", className, "Add Channel Ad Fail!!", map);
+			}
+			int channelAdNo = ChannelDAO.getChannelAdLastOne();
 			
+			int check2 = ChannelDAO.addChannelCost(channel.getRacChannelNo(), commercialPrice, inputCurrentDate);
+			if(check2 !=1) {
+				CommonUtil.commonPrintLog("ERROR", className, "add Channel Cost Fail!!", map);
+			}	
+			int channelCostNo = ChannelDAO.getChannelCostLastOne();
 			
+			int check3 = ChannelDAO.addReview(1, channel.getRacChannelNo(), channelAdNo, channelCostNo, inputReviewSatisfy, inputReviewTargetReach, 
+					inputReviewTargetConvert, inputReviewTargetSex, inputReviewTargetAge, inputReviewRecomand, inputReviewAdAgain, inputReviewDetail, inputCurrentDate);
+			if(check3 !=1) {
+				CommonUtil.commonPrintLog("ERROR", className, "add Review Fail!!", map);
+			}
 			
-			
-			CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit OK", map);
+			CommonUtil.commonPrintLog("SUCCESS", className, "Review add OK", map);
 			jObject.put("outputResult", "1");
 			res.getWriter().write(jObject.toString());
 			return;

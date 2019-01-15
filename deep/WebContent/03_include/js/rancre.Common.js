@@ -318,15 +318,10 @@ Common.review = function (mode){
 			success: function(response) {
 				
 				if(response.outputResult == "1") {
-					check = true;
-				} else if(response.outputResult == "-3") {
-					alert("이미 사용중인 메일/이름입니다.");
-					
-					check = false;
+					alert("리뷰가 등록되었습니다.");
+					location.href = "/";
 				} else {
-					alert(response.outputResult);
 					alert("알수없는 문제가 발생했습니다.");
-					check = false;
 				}
 			}
 		});

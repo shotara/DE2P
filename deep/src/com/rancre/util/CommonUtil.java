@@ -456,4 +456,20 @@ public class CommonUtil {
 			return "예";
 		}
 	}
+	
+	public static String getChannelAdDate(int no) {
+		switch(no) {
+		case 0:
+			return "2019";
+		case 1:
+			return "2018";
+		case 2:
+			return "2017";
+		case 3:
+			return "2016";
+		default:
+			return "2019";
+		}
+	}
+	
 }

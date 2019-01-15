@@ -1,5 +1,6 @@
 package com.rancre.model;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,32 +23,101 @@ import com.rancre.util.DAOFactory;
 public class ChannelDAO {
 
 	private static final String namespace = "channel";
-	
-	// Insert Method
-	public static int addFeed(
-			int inputMemberNo, 
-			int inputCategoryNo, 
-			int inputFeedStatus, 
-			int inputFeedType,
-			long inputCurrentDate,
-			String inputFeedTitle, 
-			String inputFeedImages, 
-			String inputFeedContent) {
+
+	public static int addChannelAd(
+			int racChannelNo, 
+			String decryptChannelAdUrl, 
+			int inputChannelAdType,
+			int inputChannelAdCategory, 
+			Timestamp inputCurrentDate,
+			Timestamp executeDate) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("memberNo", inputMemberNo);
-			map.put("categoryNo", inputCategoryNo);	
-			map.put("feedStatus", inputFeedStatus);
-			map.put("feedType", inputFeedType);			
+			map.put("channelNo", racChannelNo);
+			map.put("videoId", decryptChannelAdUrl);	
+			map.put("channelAdType", inputChannelAdType);
+			map.put("channelAdCategory", inputChannelAdCategory);			
 			map.put("inputCurrentDate", inputCurrentDate);			
-			map.put("feedTitle", inputFeedTitle);
-			map.put("feedImages", inputFeedImages);			
-			map.put("feedContent", inputFeedContent);
+			map.put("executeDate", executeDate);			
 
-			int check = (int)sqlSession.insert(namespace + ".addFeed", map);
+			int check = (int)sqlSession.insert(namespace + ".addChannelAd", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int addChannelCost(
+			int racChannelNo, 
+			int commercialPrice, 
+			Timestamp inputCurrentDate) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+				
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("channelNo", racChannelNo);
+			map.put("channelCostPrice", commercialPrice);			
+			map.put("inputCurrentDate", inputCurrentDate);			
+
+			int check = (int)sqlSession.insert(namespace + ".addChannelCost", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int addReview(
+			int inpoutReviewStatus, 
+			int channelNo,
+			int channelAdNo, 
+			int channelCostNo, 
+			int inputReviewSatisfy,
+			int inputReviewTargetReach, 
+			int inputReviewTargetConvert, 
+			int inputReviewTargetSex,
+			int inputReviewTargetAge, 
+			int inputReviewRecomand, 
+			int inputReviewAdAgain, 
+			String inputReviewDetail,
+			Timestamp inputCurrentDate) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+				
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("reviewStatus", inpoutReviewStatus);
+			map.put("channelNo", channelNo);			
+			map.put("channelAdNo", channelAdNo);			
+			map.put("channelCostNo", channelCostNo);					
+			map.put("reviewSatisfy", inputReviewSatisfy);
+			map.put("reviewTargetReach", inputReviewTargetReach);			
+			map.put("reviewTargetConvert", inputReviewTargetConvert);			
+			map.put("reviewTargetSex", inputReviewTargetSex);
+			map.put("reviewTargetAge", inputReviewTargetAge);			
+			map.put("reviewTargetRecomand", inputReviewRecomand);		
+			map.put("reviewTargetAdAgain", inputReviewAdAgain);
+			map.put("reviewTargetDetail", inputReviewDetail);			
+			map.put("inputCurrentDate", inputCurrentDate);		
+
+			int check = (int)sqlSession.insert(namespace + ".addReview", map);
 			
 			if(check == 1) {
 				sqlSession.commit();
@@ -699,6 +769,30 @@ public class ChannelDAO {
 		
 		try {	
 			return (Channel)sqlSession.selectOne(namespace + ".getChannelByTitle", inputChannelTitle);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int getChannelAdLastOne() {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (int)sqlSession.selectOne(namespace + ".getChannelAdLastOne");
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int getChannelCostLastOne() {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (int)sqlSession.selectOne(namespace + ".getChannelCostLastOne");
 			
 		} finally {
 			sqlSession.close();
