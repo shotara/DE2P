@@ -59,7 +59,6 @@ public class ChannelController {
 			
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 
-
 			// Channel Detail
 			Channel channel = ChannelDAO.getChannelByNo(inputChannelNo);
 			req.setAttribute("outputChannelFollowers", CommonUtil.setCommaForInt(channel.getRacChannelFollowers()));
@@ -141,6 +140,15 @@ public class ChannelController {
 					outputReviewList.add(tempObejct);
 				}
 				req.setAttribute("outputReivewList", outputReviewList);
+			}
+			
+			if(sessionMemberNo != channel.getRacMemberNo()) {
+				Calendar calendar = Calendar.getInstance();
+				Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
+				int check2 = ChannelDAO.addChannelView(sessionMemberNo,channel.getRacChannelNo(), inputCurrentDate);
+				if(check2 != 1) {
+					CommonUtil.commonPrintLog("EROOR", className, "ADD Channel View FAIL!!!", map);
+				}
 			}
 			
 			res.setContentType("application/json");
@@ -299,7 +307,7 @@ public class ChannelController {
 			}	
 			int channelCostNo = ChannelDAO.getChannelCostLastOne();
 			
-			int check3 = ChannelDAO.addReview(1, channel.getRacChannelNo(), channelAdNo, channelCostNo, inputReviewSatisfy, inputReviewTargetReach, 
+			int check3 = ChannelDAO.addReview(sessionMemberNo, 1, channel.getRacChannelNo(), channelAdNo, channelCostNo, inputReviewSatisfy, inputReviewTargetReach, 
 					inputReviewTargetConvert, inputReviewTargetSex, inputReviewTargetAge, inputReviewRecomand, inputReviewAdAgain, inputReviewDetail, inputCurrentDate);
 			if(check3 !=1) {
 				CommonUtil.commonPrintLog("ERROR", className, "add Review Fail!!", map);

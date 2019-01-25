@@ -85,15 +85,43 @@
 	</select>
 	
 	<!-- CommonMethod -->
-	<select id="getMemberByMemberNo" parameterType="int" resultType="com.rancre.model.domain.Member">
-		SELECT * FROM deep_member WHERE deepMemberNo=#{inputMemberNo}
-	</select>
-	
 	<select id="getMemberFavorite" parameterType="int" resultType="com.rancre.model.domain.MemberFavorite">
 		SELECT * FROM deep_member_favorite WHERE deepMemberNo=#{inputMemberNo}
 	</select>
 	
 	<select id="getMemberNoByMemberUid" parameterType="String" resultType="int">
 		SELECT deepMemberNo FROM deep_member_uid WHERE deepMemberUid=#{inputMemberUid}
+	</select>
+	
+	<select id="getCompanyByMemberNo" parameterType="int" resultType="com.rancre.model.domain.Company">
+		SELECT * FROM rac_company WHERE racMemberNo=#{inputMemberNo}
+	</select>	
+	
+	<select id="getReviewListByMemberNo" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Review">
+		SELECT * FROM rac_review WHERE racMemberNo=#{memberNo} ORDER BY racReviewCreateDate DESC LIMIT #{startNo}, 5
+	</select>		
+	
+	<select id="getRecentChannelList" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Channel">
+		SELECT a.* FROM (SELECT * FROM rac_channel) a, (SELECT * FROM rac_channel_view WHERE racMemberNo=#{memberNo} GROUP BY racChannelNo) b WHERE b.racChannelNo=a.racChannelNo ORDER BY b.racChannelViewDate DESC LIMIT #{startNo}, 6
+	</select>		
+	
+	<select id="getChannelLikeList" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Channel">
+		SELECT a.* FROM (SELECT * FROM rac_channel) a, (SELECT * FROM rac_channel_like WHERE racMemberNo=#{memberNo}) b WHERE b.racChannelNo=a.racChannelNo ORDER BY b.racChannelLikeDate DESC LIMIT #{startNo}, 6
+	</select>		
+	
+	<select id="getMemberByMemberNo" parameterType="int" resultType="com.rancre.model.domain.Member">
+		SELECT * FROM rac_member WHERE racMemberNo=#{inputMemberNo}
+	</select>
+	
+	<select id="countMemberReview" parameterType="int" resultType="int">
+		SELECT count(*) FROM rac_review WHERE racMemberNo=#{inputMemberNo}
+	</select>	
+	
+	<select id="countMemberChannelView" parameterType="int" resultType="int">
+		SELECT count(a.racMemberNo) FROM (SELECT * FROM rac_channel_view WHERE racMemberNo=#{inputMemberNo} GROUP BY racChannelNo) a 
+	</select>	
+	
+	<select id="countMemberChannelLike" parameterType="int" resultType="int">
+		SELECT count(*) FROM rac_channel_like WHERE racMemberNo=#{inputMemberNo}
 	</select>
 </mapper>

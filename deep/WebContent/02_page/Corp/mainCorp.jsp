@@ -9,7 +9,172 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
+<script>
+	$(document).ready(function() {
+		
+		///////////// Review 
+		var review_current = ${reviewCurrentPageNo};
+		var review_total = parseInt((review_current) / 10) * 10 + 10;
+		var review_start = parseInt((review_current) / 10) * 10;
+		var review_finalPage = ${reviewPaging.finalPageNo};
+		
+		if (review_start > 0) {
+			if ((review_start - 10) == 0)
+				$("#reviewPaging")
+						.append(
+								"<li class='common-page-pre display-none'><a href='/admin?action=getChannelList&page=1&size=30'>이전</a></li> ");
+			else
+				$("#reviewPaging").append(
+						"<li class='common-page-pre display-none'><a href='/admin?action=getChannelList&page="
+								+ (review_start - 10)
+								+ "&size=30'>이전</a><li> ");
+		}
+		if (review_start == 0) {
+			for (var i = review_start; i < review_total && i < review_finalPage; i++) {
+				var input = ""
+				if ((i + 1) != review_current) {
+					input = "<li class='common-page-link'><a href='/admin?action=getChannelList&page="
+							+ (i + 1)
+							+ "&size=5'>"
+							+ (i + 1)
+							+ "</a></li> ";
+				} else {
+					input = "<li class='common-page-link active'>"+(i + 1) + "</li> ";
+				}
+				$("#reviewPaging").append(input);
+			}
+		} else {
+			for (var i = review_start; i < review_total + 1
+					&& i + 1 < review_finalPage; i++) {
+				var input = ""
+				if ((i) != review_current) {
+					input = "<li class='common-page-link'><a href='/admin?action=getChannelList&page="
+							+ (i)
+							+ "&size=5'>"
+							+ (i)
+							+ "</a></li> ";
+				} else {
+					input ="<li class='common-page-link active'>"+ (i) + "</li> ";
+				}
+				$("#reviewPaging").append(input);
+			}
+		}
 
+		if (review_total < review_finalPage)
+			$("#reviewPaging").append(
+					"<a href='/admin?action=getChannelList&page="
+							+ review_total + "&size=5'>다음</a> ");
+	
+		///////////// Recent 
+		var recent_current = ${recentCurrentPageNo};
+		var recent_total = parseInt((recent_current) / 10) * 10 + 10;
+		var recent_start = parseInt((recent_current) / 10) * 10;
+		var recent_finalPage = ${recentPaging.finalPageNo};
+		
+		if (recent_start > 0) {
+			if ((recent_start - 10) == 0)
+				$("#recentPaging")
+						.append(
+								"<li class='common-page-pre display-none'><a href='/admin?action=getChannelList&page=1&size=30'>이전</a></li> ");
+			else
+				$("#recentPaging").append(
+						"<li class='common-page-pre display-none'><a href='/admin?action=getChannelList&page="
+								+ (recent_start - 10)
+								+ "&size=30'>이전</a><li> ");
+		}
+		if (recent_start == 0) {
+			for (var i = recent_start; i < recent_total && i < recent_finalPage; i++) {
+				var input = ""
+				if ((i + 1) != recent_current) {
+					input = "<li class='common-page-link'><a href='/admin?action=getChannelList&page="
+							+ (i + 1)
+							+ "&size=5'>"
+							+ (i + 1)
+							+ "</a></li> ";
+				} else {
+					input = "<li class='common-page-link active'>"+(i + 1) + "</li> ";
+				}
+				$("#recentPaging").append(input);
+			}
+		} else {
+			for (var i = recent_start; i < recent_total + 1
+					&& i + 1 < recent_finalPage; i++) {
+				var input = ""
+				if ((i) != recent_current) {
+					input = "<li class='common-page-link'><a href='/admin?action=getChannelList&page="
+							+ (i)
+							+ "&size=5'>"
+							+ (i)
+							+ "</a></li> ";
+				} else {
+					input ="<li class='common-page-link active'>"+ (i) + "</li> ";
+				}
+				$("#recentPaging").append(input);
+			}
+		}
+
+		if (recent_total < recent_finalPage)
+			$("#recentPaging").append(
+					"<a href='/admin?action=getChannelList&page="
+							+ recent_total + "&size=5'>다음</a> ");
+	
+		///////Like 
+		var like_current = ${likeCurrentPageNo};
+		var like_total = parseInt((like_current) / 10) * 10 + 10;
+		var like_start = parseInt((like_current) / 10) * 10;
+		var like_finalPage = ${likePaging.finalPageNo};
+		
+		if (like_start > 0) {
+			if ((like_start - 10) == 0)
+				$("#likePaging")
+						.append(
+								"<li class='common-page-pre display-none'><a href='/admin?action=getChannelList&page=1&size=30'>이전</a></li> ");
+			else
+				$("#likePaging").append(
+						"<li class='common-page-pre display-none'><a href='/admin?action=getChannelList&page="
+								+ (like_start - 10)
+								+ "&size=30'>이전</a><li> ");
+		}
+		if (like_start == 0) {
+			for (var i = like_start; i < like_total && i < like_finalPage; i++) {
+				var input = ""
+				if ((i + 1) != like_current) {
+					input = "<li class='common-page-link'><a href='/admin?action=getChannelList&page="
+							+ (i + 1)
+							+ "&size=5'>"
+							+ (i + 1)
+							+ "</a></li> ";
+				} else {
+					input = "<li class='common-page-link active'>"+(i + 1) + "</li> ";
+				}
+				$("#likePaging").append(input);
+			}
+		} else {
+			for (var i = like_start; i < like_total + 1
+					&& i + 1 < like_finalPage; i++) {
+				var input = ""
+				if ((i) != like_current) {
+					input = "<li class='common-page-link'><a href='/admin?action=getChannelList&page="
+							+ (i)
+							+ "&size=5'>"
+							+ (i)
+							+ "</a></li> ";
+				} else {
+					input ="<li class='common-page-link active'>"+ (i) + "</li> ";
+				}
+				$("#likePaging").append(input);
+			}
+		}
+
+		if (like_total < like_finalPage)
+			$("#likePaging").append(
+					"<a href='/admin?action=getChannelList&page="
+							+ like_total + "&size=5'>다음</a> ");
+	
+	});
+	
+	
+</script>
 </head>
 <body>
 
@@ -27,16 +192,16 @@
 
 					<div class="pTop3"></div>
 
-					<div class="corp-Name inline-block float-left">(주)롯데정보통신</div>
-					<div class="corp-Id inline-block float-left">admin-123</div>
-					<div class="corp-ReviewCnt inline-block float-left">10개</div>
+					<div class="corp-Name inline-block float-left">${outputCompanyName }</div>
+					<div class="corp-Id inline-block float-left">${outputMemberName }</div>
+					<div class="corp-ReviewCnt inline-block float-left">${outputReviewCount }개</div>
 
 				</div>
 
 
 
 				<div class="pTop4 mTop4 inline-block">
-					<div class="corp-headerTitle">나의 리뷰 (15건)</div>
+					<div class="corp-headerTitle">나의 리뷰 (${outputReviewCount }건)</div>
 				</div>
 
 				<div class="pTop3 row">
@@ -47,84 +212,8 @@
 				</div>
 				<hr>
 
-				<!-- if channel review exist -->
-				<div class="corp-MyReview-Contents">
-
-					<div class="corp-MyReview row">
-						<div class="col float-left corp-ChnName">와썹맨Wassup-Man</div>
-						<div class="col float-left corp-ChnSatisfy">매우 만족</div>
-						<div class="col float-left corp-ChnReview-Date">2018-12-24</div>
-						<div class="col float-left corp-ChnReivew-Accept">승인</div>
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-					<div class="corp-MyReview row">
-						<div class="col float-left corp-ChnName">와썹맨Wassup-Man</div>
-						<div class="col float-left corp-ChnSatisfy">매우 만족</div>
-						<div class="col float-left corp-ChnReview-Date">2018-12-24</div>
-						<div class="col float-left corp-ChnReivew-Wait">미승인</div>
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-					<div class="corp-MyReview row">
-						<div class="col float-left corp-ChnName">와썹맨Wassup-Man</div>
-						<div class="col float-left corp-ChnSatisfy">매우 만족</div>
-						<div class="col float-left corp-ChnReview-Date">2018-12-24</div>
-						<div class="col float-left corp-ChnReivew-Unaccept">거절</div>
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-					<div class="corp-MyReview row">
-						<div class="col float-left corp-ChnName">와썹맨Wassup-Man</div>
-						<div class="col float-left corp-ChnSatisfy">매우 만족</div>
-						<div class="col float-left corp-ChnReview-Date">2018-12-24</div>
-						<div class="col float-left corp-ChnReivew-Unaccept">거절</div>
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-					<div class="corp-MyReview row">
-						<div class="col float-left corp-ChnName">와썹맨Wassup-Man</div>
-						<div class="col float-left corp-ChnSatisfy">매우 만족</div>
-						<div class="col float-left corp-ChnReview-Date">2018-12-24</div>
-						<div class="col float-left corp-ChnReivew-Unaccept">거절</div>
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-
-
-					<div class="pagination-area pTop3">
-						<ul class="common-pagination">
-							<li class="common-page-pre display-none">이전</li>
-							<li class="common-page-link active">1</li>
-							<li class="common-page-link">2</li>
-							<li class="common-page-link">3</li>
-							<li class="common-page-link">4</li>
-							<li class="common-page-link">5</li>
-							<li class="common-page-next go-review-list"><a
-								class="common-A" href="#">다음<img style="margin-bottom: 2px;"
-									src="/01_image/commonImg/right-arrow.png"></a></li>
-						</ul>
-					</div>
-
-				</div>
-
-
-				<!-- end channel review exist -->
-
-
-
 				<!-- if non-channel review -->
-
+				<c:if test="${outputReviewList.size() == 0}">
 				<div class="none-MyReview txt-center">
 					<div class="common-alert-txt">
 						등록한 광고 리뷰가 없습니다. </br> 지금 광고 리뷰를 등록하고 다른 채널의 리뷰를 확인해보세요!
@@ -135,13 +224,34 @@
 							등록하기</button>
 					</div>
 				</div>
-
+				</c:if>
 				<!-- end non-channel review -->
+				
+				<!-- if channel review exist -->
+				<c:if test="${outputReviewList.size() != 0}">
+				<div class="corp-MyReview-Contents">
+					<c:forEach var="item" items="${outputReviewList}">
+					<div class="corp-MyReview row">
+						<div class="col float-left corp-ChnName">${item.outputChannelTitle}</div>
+						<div class="col float-left corp-ChnSatisfy">${item.outputReviewSatisfy}</div>
+						<div class="col float-left corp-ChnReview-Date">${item.outputReviewCreateDate}</div>
+						<div class="col float-left corp-ChnReivew-Accept">${item.outputReviewStatus}</div>
+					</div>
 
+					<hr
+						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+					</c:forEach>
+					<div class="pagination-area pTop3">
+						<ul class="common-pagination" id="reviewPaging">
+						</ul>
+					</div>
+
+				</div>
+				</c:if>
+				<!-- end channel review exist -->
 
 
 				<!-- start view channel & like channel area start -->
-
 				<div class="pTop4 inline-block subNav-tabs">
 					<div class="corp-headerTitle subNav-tab">
 						<a class="subnav-link active" data-tab="myViewContent"
@@ -152,9 +262,7 @@
 							href="#myLikeContent" onclick="">나의 관심 채널</a>
 					</div>
 				</div>
-
 				<!-- end view channel & like channel area end -->
-
 
 
 				<div class="pTop3 w100 inline-block">
@@ -166,28 +274,27 @@
 				</div>
 
 
-
 				<!-- if exist view channel list -->
-
+				<c:if test="${outputChannelViewList.size() != 0 }">
 				<div class="subNav-content active corp-MyView-Contents"
 					id="myViewContent">
-
+					<c:forEach var="item" items="${outputChannelViewList}">
 					<div class="corp-MyView w100">
 						<div class="corp-View-Row-ChnImg">
 							<img id="corp-View-Row-ThumbNail"
 								style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+								src="${item.outputChannelThumbnail }" />
 						</div>
-						<div class="corp-View-Row-ChnName">도티 TV</div>
-						<div class="corp-View-Row-Category">#게임, 엔터</div>
-						<div class="corp-View-Row-Subscribe">123,232,232</div>
-						<div class="corp-View-Row-TotalView">232,123,232,232</div>
+						<div class="corp-View-Row-ChnName">${item.outputChannelName}</div>
+						<div class="corp-View-Row-Category">${item.outputChannelCategory}</div>
+						<div class="corp-View-Row-Subscribe">${item.outputChannelFollowers}</div>
+						<div class="corp-View-Row-TotalView">${item.outputChannelViews}</div>
 						<div class="corp-View-Row-Like">
 							<button class="common-Small-Btn" onclick="">관심채널 등록</button>
 						</div>
 						<div class="corp-View-Row-DetailGo">
 							<button class="common-Small-Btn">
-								<a href="#">채널정보 보기</a>
+								<a href="/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo }">채널정보 보기</a>
 							</button>
 						</div>
 
@@ -195,159 +302,23 @@
 
 					<hr
 						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-					<div class="corp-MyView w100">
-						<div class="corp-View-Row-ChnImg">
-							<img id="corp-View-Row-ThumbNail"
-								style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-						</div>
-						<div class="corp-View-Row-ChnName">도티 TV</div>
-						<div class="corp-View-Row-Category">#게임, 엔터</div>
-						<div class="corp-View-Row-Subscribe">123,232,232</div>
-						<div class="corp-View-Row-TotalView">232,123,232,232</div>
-						<div class="corp-View-Row-Like">
-							<button class="common-Small-Btn" onclick="">관심채널 등록</button>
-						</div>
-						<div class="corp-View-Row-DetailGo">
-							<button class="common-Small-Btn">
-								<a href="#">채널정보 보기</a>
-							</button>
-						</div>
-
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-
-					<div class="corp-MyView w100">
-						<div class="corp-View-Row-ChnImg">
-							<img id="corp-View-Row-ThumbNail"
-								style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-						</div>
-						<div class="corp-View-Row-ChnName">도티 TV</div>
-						<div class="corp-View-Row-Category">#게임, 엔터</div>
-						<div class="corp-View-Row-Subscribe">123,232,232</div>
-						<div class="corp-View-Row-TotalView">232,123,232,232</div>
-						<div class="corp-View-Row-Like">
-							<button class="common-Small-Btn" onclick="">관심채널 등록</button>
-						</div>
-						<div class="corp-View-Row-DetailGo">
-							<button class="common-Small-Btn">
-								<a href="#">채널정보 보기</a>
-							</button>
-						</div>
-
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-
-					<div class="corp-MyView w100">
-						<div class="corp-View-Row-ChnImg">
-							<img id="corp-View-Row-ThumbNail"
-								style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-						</div>
-						<div class="corp-View-Row-ChnName">도티 TV</div>
-						<div class="corp-View-Row-Category">#게임, 엔터</div>
-						<div class="corp-View-Row-Subscribe">123,232,232</div>
-						<div class="corp-View-Row-TotalView">232,123,232,232</div>
-						<div class="corp-View-Row-Like">
-							<button class="common-Small-Btn" onclick="">관심채널 등록</button>
-						</div>
-						<div class="corp-View-Row-DetailGo">
-							<button class="common-Small-Btn">
-								<a href="#">채널정보 보기</a>
-							</button>
-						</div>
-
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-
-					<div class="corp-MyView w100">
-						<div class="corp-View-Row-ChnImg">
-							<img id="corp-View-Row-ThumbNail"
-								style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-						</div>
-						<div class="corp-View-Row-ChnName">도티 TV</div>
-						<div class="corp-View-Row-Category">#게임, 엔터</div>
-						<div class="corp-View-Row-Subscribe">123,232,232</div>
-						<div class="corp-View-Row-TotalView">232,123,232,232</div>
-						<div class="corp-View-Row-Like">
-							<button class="common-Small-Btn" onclick="">관심채널 등록</button>
-						</div>
-						<div class="corp-View-Row-DetailGo">
-							<button class="common-Small-Btn">
-								<a href="#">채널정보 보기</a>
-							</button>
-						</div>
-
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-
-					<div class="corp-MyView w100">
-						<div class="corp-View-Row-ChnImg">
-							<img id="corp-View-Row-ThumbNail"
-								style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-						</div>
-						<div class="corp-View-Row-ChnName">도티 TV</div>
-						<div class="corp-View-Row-Category">#게임, 엔터</div>
-						<div class="corp-View-Row-Subscribe">123,232,232</div>
-						<div class="corp-View-Row-TotalView">232,123,232,232</div>
-						<div class="corp-View-Row-Like">
-							<button class="common-Small-Reverse-Btn" onclick="">관심채널
-								취소</button>
-						</div>
-						<div class="corp-View-Row-DetailGo">
-							<button class="common-Small-Btn">
-								<a href="#">채널정보 보기</a>
-							</button>
-						</div>
-
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
+					</c:forEach>
 					<!-- pagination area -->
 
 					<div class="pagination-area pTop3">
-
-						<ul class="common-pagination">
-							<li class="common-page-pre display-none">이전</li>
-							<li class="common-page-link active">1</li>
-							<li class="common-page-link">2</li>
-							<li class="common-page-link">3</li>
-							<li class="common-page-link">4</li>
-							<li class="common-page-link">5</li>
-							<li class="common-page-next go-review-list"><a
-								class="common-A" href="#">다음<img style="margin-bottom: 2px;"
-									src="/01_image/commonImg/right-arrow.png"></a></li>
+						<ul class="common-pagination" id="recentPaging">
 						</ul>
 					</div>
 
 					<!-- end pagination area -->
 
-
 				</div>
-
+				</c:if>
 				<!-- end exist view channel list -->
 
 				<!-- none exist view channel list -->
-
-				<div class="none-View-List">
+				<c:if test="${outputChannelViewList.size() == 0 }">
+				<div class="none-View-List active" id="myViewContent">
 					<div class="common-alert-txt txt-center">
 						최근 15일 내 검색한 채널이 없습니다. </br> 이런 채널은 어떤가요?
 					</div>
@@ -411,34 +382,31 @@
 							</div>
 						</div>
 					</div>
-
-
 				</div>
-
+				</c:if>
 				<!-- none exist view channel list -->
 
 
 				<!-- if exist like channel list -->
-
+				<c:if test="${outputChannelLikeList.size() != 0 }">
 				<div class="subNav-content corp-MyLike-Contents" id="myLikeContent">
-
+					<c:forEach var="item" items="${outputChannelLikeList}">
 					<div class="corp-MyView w100">
 						<div class="corp-View-Row-ChnImg">
 							<img id="corp-View-Row-ThumbNail"
 								style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+								src="${item.outputChannelThumbnail }" />
 						</div>
-						<div class="corp-View-Row-ChnName">도티 TV</div>
-						<div class="corp-View-Row-Category">#게임, 엔터</div>
-						<div class="corp-View-Row-Subscribe">123,232,232</div>
-						<div class="corp-View-Row-TotalView">232,123,232,232</div>
+						<div class="corp-View-Row-ChnName">${item.outputChannelName}</div>
+						<div class="corp-View-Row-Category">${item.outputChannelCategory}</div>
+						<div class="corp-View-Row-Subscribe">${item.outputChannelFollowers}</div>
+						<div class="corp-View-Row-TotalView">${item.outputChannelViews}</div>
 						<div class="corp-View-Row-Like">
-							<button class="common-Small-Reverse-Btn" onclick="">관심채널
-								취소</button>
+							<button class="common-Small-Btn" onclick="">관심채널 등록</button>
 						</div>
 						<div class="corp-View-Row-DetailGo">
 							<button class="common-Small-Btn">
-								<a href="#">채널정보 보기</a>
+								<a href="/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo }">채널정보 보기</a>
 							</button>
 						</div>
 
@@ -446,164 +414,23 @@
 
 					<hr
 						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-					<div class="corp-MyView w100">
-						<div class="corp-View-Row-ChnImg">
-							<img id="corp-View-Row-ThumbNail"
-								style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-						</div>
-						<div class="corp-View-Row-ChnName">도티 TV</div>
-						<div class="corp-View-Row-Category">#게임, 엔터</div>
-						<div class="corp-View-Row-Subscribe">123,232,232</div>
-						<div class="corp-View-Row-TotalView">232,123,232,232</div>
-						<div class="corp-View-Row-Like">
-							<button class="common-Small-Reverse-Btn" onclick="">관심채널
-								취소</button>
-						</div>
-						<div class="corp-View-Row-DetailGo">
-							<button class="common-Small-Btn">
-								<a href="#">채널정보 보기</a>
-							</button>
-						</div>
-
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-
-					<div class="corp-MyView w100">
-						<div class="corp-View-Row-ChnImg">
-							<img id="corp-View-Row-ThumbNail"
-								style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-						</div>
-						<div class="corp-View-Row-ChnName">도티 TV</div>
-						<div class="corp-View-Row-Category">#게임, 엔터</div>
-						<div class="corp-View-Row-Subscribe">123,232,232</div>
-						<div class="corp-View-Row-TotalView">232,123,232,232</div>
-						<div class="corp-View-Row-Like">
-							<button class="common-Small-Reverse-Btn" onclick="">관심채널
-								취소</button>
-						</div>
-						<div class="corp-View-Row-DetailGo">
-							<button class="common-Small-Btn">
-								<a href="#">채널정보 보기</a>
-							</button>
-						</div>
-
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-
-					<div class="corp-MyView w100">
-						<div class="corp-View-Row-ChnImg">
-							<img id="corp-View-Row-ThumbNail"
-								style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-						</div>
-						<div class="corp-View-Row-ChnName">도티 TV</div>
-						<div class="corp-View-Row-Category">#게임, 엔터</div>
-						<div class="corp-View-Row-Subscribe">123,232,232</div>
-						<div class="corp-View-Row-TotalView">232,123,232,232</div>
-						<div class="corp-View-Row-Like">
-							<button class="common-Small-Reverse-Btn" onclick="">관심채널
-								취소</button>
-						</div>
-						<div class="corp-View-Row-DetailGo">
-							<button class="common-Small-Btn">
-								<a href="#">채널정보 보기</a>
-							</button>
-						</div>
-
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-
-					<div class="corp-MyView w100">
-						<div class="corp-View-Row-ChnImg">
-							<img id="corp-View-Row-ThumbNail"
-								style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-						</div>
-						<div class="corp-View-Row-ChnName">도티 TV</div>
-						<div class="corp-View-Row-Category">#게임, 엔터</div>
-						<div class="corp-View-Row-Subscribe">123,232,232</div>
-						<div class="corp-View-Row-TotalView">232,123,232,232</div>
-						<div class="corp-View-Row-Like">
-							<button class="common-Small-Reverse-Btn" onclick="">관심채널
-								취소</button>
-						</div>
-						<div class="corp-View-Row-DetailGo">
-							<button class="common-Small-Btn">
-								<a href="#">채널정보 보기</a>
-							</button>
-						</div>
-
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-
-					<div class="corp-MyView w100">
-						<div class="corp-View-Row-ChnImg">
-							<img id="corp-View-Row-ThumbNail"
-								style="width: 48px; border-radius: 48px;"
-								src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-						</div>
-						<div class="corp-View-Row-ChnName">도티 TV</div>
-						<div class="corp-View-Row-Category">#게임, 엔터</div>
-						<div class="corp-View-Row-Subscribe">123,232,232</div>
-						<div class="corp-View-Row-TotalView">232,123,232,232</div>
-						<div class="corp-View-Row-Like">
-							<button class="common-Small-Reverse-Btn" onclick="">관심채널
-								취소</button>
-						</div>
-						<div class="corp-View-Row-DetailGo">
-							<button class="common-Small-Btn">
-								<a href="#">채널정보 보기</a>
-							</button>
-						</div>
-
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
+					</c:forEach>
 					<!-- pagination area -->
 
 					<div class="pagination-area pTop3">
-
-						<ul class="common-pagination">
-							<li class="common-page-pre display-none">이전</li>
-							<li class="common-page-link active">1</li>
-							<li class="common-page-link">2</li>
-							<li class="common-page-link">3</li>
-							<li class="common-page-link">4</li>
-							<li class="common-page-link">5</li>
-							<li class="common-page-next go-review-list"><a
-								class="common-A" href="#">다음<img style="margin-bottom: 2px;"
-									src="/01_image/commonImg/right-arrow.png"></a></li>
+						<ul class="common-pagination" id="likePaging">
 						</ul>
 					</div>
 
 					<!-- end pagination area -->
 
-
 				</div>
-
-
+				</c:if>
 				<!-- end exist like channel list -->
 
 
 				<!-- none like channel list -->
-
+				<c:if test="${outputChannelLikeList.size() == 0 }">
 				<div class="none-Like-List">
 					<div class="common-alert-txt txt-center">
 						관심 채널로 등록한 채널이 없습니다. </br> 이런 채널은 어떤가요?
@@ -669,7 +496,7 @@
 						</div>
 					</div>
 				</div>
-
+				</c:if>
 				<!-- none like channel list -->
 
 

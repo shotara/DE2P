@@ -69,7 +69,12 @@
 	</select>		
 
     <select id="addReview" parameterType="java.util.HashMap" resultType="int">
-		INSERT INTO rac_review(racReviewStatus, racChannelNo, racChannelAdNo, racChannelCostNo, racReviewSatisfy, racReviewTargetReach, racReviewTargetConversion, racReviewTargetGender, racReviewTargetAge, racReviewRecomand, racReviewAdAgain, racReviewDetail, racReviewCreateDate)
-		VALUES(#{reviewStatus}, #{channelNo}, #{channelAdNo}, #{channelCostNo}, #{reviewSatisfy}, #{reviewTargetReach}, #{reviewTargetConvert}, #{reviewTargetSex}, #{reviewTargetAge}, #{reviewTargetRecomand}, #{reviewTargetAdAgain}, #{reviewTargetDetail}, #{inputCurrentDate})
-	</select>	
+		INSERT INTO rac_review(racMemberNo, racReviewStatus, racChannelNo, racChannelAdNo, racChannelCostNo, racReviewSatisfy, racReviewTargetReach, racReviewTargetConversion, racReviewTargetGender, racReviewTargetAge, racReviewRecomand, racReviewAdAgain, racReviewDetail, racReviewCreateDate)
+		VALUES(#{memberNo}, #{reviewStatus}, #{channelNo}, #{channelAdNo}, #{channelCostNo}, #{reviewSatisfy}, #{reviewTargetReach}, #{reviewTargetConvert}, #{reviewTargetSex}, #{reviewTargetAge}, #{reviewTargetRecomand}, #{reviewTargetAdAgain}, #{reviewTargetDetail}, #{inputCurrentDate})
+	</select>
+	
+    <select id="addChannelView" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO rac_channel_view(racMemberNo, racChannelNo, racChannelViewDate)
+		VALUES(#{memberNo}, #{channelNo}, #{inputCurrentDate})
+	</select>		
 </mapper>

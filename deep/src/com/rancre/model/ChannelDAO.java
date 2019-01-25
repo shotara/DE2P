@@ -85,6 +85,7 @@ public class ChannelDAO {
 	}
 
 	public static int addReview(
+			int inputMemberNo,
 			int inpoutReviewStatus, 
 			int channelNo,
 			int channelAdNo, 
@@ -103,6 +104,7 @@ public class ChannelDAO {
 				
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberNo", inputMemberNo);
 			map.put("reviewStatus", inpoutReviewStatus);
 			map.put("channelNo", channelNo);			
 			map.put("channelAdNo", channelAdNo);			
@@ -118,145 +120,6 @@ public class ChannelDAO {
 			map.put("inputCurrentDate", inputCurrentDate);		
 
 			int check = (int)sqlSession.insert(namespace + ".addReview", map);
-			
-			if(check == 1) {
-				sqlSession.commit();
-				return check;
-			} else {
-				sqlSession.rollback();
-				return check;
-			}
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
-	public static int addFeedReady(
-			int inputMemberNo, 
-			int inputCategoryNo, 
-			int inputFeedStatus, 
-			int inputFeedType,
-			long inputCurrentDate, 
-			String inputFeedTitle, 
-			String inputFeedImages, 
-			String inputFeedContent) {
-		
-		SqlSession sqlSession = DAOFactory.getSqlSession(false);
-		
-		try {	
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("memberNo", inputMemberNo);
-			map.put("categoryNo", inputCategoryNo);	
-			map.put("feedStatus", inputFeedStatus);
-			map.put("feedType", inputFeedType);			
-			map.put("inputCurrentDate", inputCurrentDate);			
-			map.put("feedTitle", inputFeedTitle);
-			map.put("feedImages", inputFeedImages);			
-			map.put("feedContent", inputFeedContent);
-
-			int check = (int)sqlSession.insert(namespace + ".addFeedReady", map);
-			
-			if(check == 1) {
-				sqlSession.commit();
-				return check;
-			} else {
-				sqlSession.rollback();
-				return check;
-			}
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
-	public static int addFeedSeries(
-			int inputFeedNo, 
-			int inputMemberNo, 
-			int inputFeedStatus, 
-			int inputFeedSeriesId,
-			int inputFeedSeriesOrder, 
-			long inputCurrentDate, 
-			String inputFeedSeriesName) {
-		
-		SqlSession sqlSession = DAOFactory.getSqlSession(false);
-		
-		try {	
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("feedNo", inputFeedNo);	
-			map.put("memberNo", inputMemberNo);
-			map.put("feedStatus", inputFeedStatus);
-			map.put("feedSeriesId", inputFeedSeriesId);			
-			map.put("feedSeriesOrder", inputFeedSeriesOrder);
-			map.put("inputCurrentDate", inputCurrentDate);			
-			map.put("feedSeriesName", inputFeedSeriesName);			
-
-			int check = (int)sqlSession.insert(namespace + ".addFeedSeries", map);
-			
-			if(check == 1) {
-				sqlSession.commit();
-				return check;
-			} else {
-				sqlSession.rollback();
-				return check;
-			}
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
-	public static int addFeedSeriesReady(
-			int inputFeedNo, 
-			int inputMemberNo, 
-			int inputFeedStatus,
-			int inputFeedSeriesId, 
-			int inputFeedSeriesOrder, 
-			long inputCurrentDate, 
-			String inputFeedSeriesName) {
-		
-		SqlSession sqlSession = DAOFactory.getSqlSession(false);
-		
-		try {	
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("feedNo", inputFeedNo);	
-			map.put("memberNo", inputMemberNo);
-			map.put("feedStatus", inputFeedStatus);
-			map.put("feedSeriesId", inputFeedSeriesId);			
-			map.put("feedSeriesOrder", inputFeedSeriesOrder);
-			map.put("inputCurrentDate", inputCurrentDate);			
-			map.put("feedSeriesName", inputFeedSeriesName);			
-
-			int check = (int)sqlSession.insert(namespace + ".addFeedSeriesReady", map);
-			
-			if(check == 1) {
-				sqlSession.commit();
-				return check;
-			} else {
-				sqlSession.rollback();
-				return check;
-			}
-		} finally {
-			sqlSession.close();
-		}
-	}
-
-
-	public static int addFeedComment(int inputFeedNo, int inputMemberNo, int inputFeedCommentStatus,
-			int inputFeedParentCommentNo, int inputFeedCommentDepth, int inputFeedCommentNotify,
-			long inputCurrentDate, String inputFeedCommentContent) {
-		
-		SqlSession sqlSession = DAOFactory.getSqlSession(false);
-		
-		try {	
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("feedNo", inputFeedNo);	
-			map.put("memberNo", inputMemberNo);
-			map.put("feedCommentStatus", inputFeedCommentStatus);
-			map.put("feedParentCommentNo", inputFeedParentCommentNo);			
-			map.put("feedCommentDepth", inputFeedCommentDepth);
-			map.put("feddCommentNotify", inputFeedCommentNotify);			
-			map.put("inputCurrentDate", inputCurrentDate);			
-			map.put("feedCommentContent", inputFeedCommentContent);			
-	
-			int check = (int)sqlSession.insert(namespace + ".addFeedComment", map);
 			
 			if(check == 1) {
 				sqlSession.commit();
@@ -295,43 +158,17 @@ public class ChannelDAO {
 		}
 	}
 
-	public static int addFeedCommentLike(int inputFeedCommentNo, int inputMemberNo, long inputCurrentDate) {
+	public static int addChannelView(int inputMemberNo, int racChannelNo, Timestamp inputCurrentDate) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("feedCommentNo", inputFeedCommentNo);	
-			map.put("memberNo", inputMemberNo);		
+			map.put("channelNo", racChannelNo);	
+			map.put("memberNo", inputMemberNo);			
 			map.put("inputCurrentDate", inputCurrentDate);			
-	
-	
-			int check = (int)sqlSession.insert(namespace + ".addFeedCommentLike", map);
-			
-			if(check == 1) {
-				sqlSession.commit();
-				return check;
-			} else {
-				sqlSession.rollback();
-				return check;
-			}
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
-	public static int addFeedShare(int inputFeedNo, int inputMemberNo, long inputCurrentDate) {
-		
-		SqlSession sqlSession = DAOFactory.getSqlSession(false);
-		
-		try {	
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("feedNo", inputFeedNo);	
-			map.put("memberNo", inputMemberNo);		
-			map.put("inputCurrentDate", inputCurrentDate);			
-	
-	
-			int check = (int)sqlSession.insert(namespace + ".addFeedShare", map);
+
+			int check = (int)sqlSession.insert(namespace + ".addChannelView", map);
 			
 			if(check == 1) {
 				sqlSession.commit();

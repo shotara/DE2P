@@ -47,12 +47,20 @@ import com.oreilly.servlet.multipart.FilePart;
 import com.oreilly.servlet.multipart.MultipartParser;
 import com.oreilly.servlet.multipart.Part;
 import com.rancre.config.GlobalValue;
+import com.rancre.model.AdminDAO;
+import com.rancre.model.ChannelDAO;
 import com.rancre.model.MemberDAO;
 import com.rancre.model.NoticeDAO;
 import com.rancre.model.UploadDAO;
+import com.rancre.model.domain.Channel;
+import com.rancre.model.domain.ChannelLike;
+import com.rancre.model.domain.ChannelView;
+import com.rancre.model.domain.Company;
 import com.rancre.model.domain.Member;
 import com.rancre.model.domain.MemberUid;
 import com.rancre.model.domain.Notice;
+import com.rancre.model.domain.Paging;
+import com.rancre.model.domain.Review;
 import com.rancre.model.domain.Upload;
 import com.rancre.util.CommonUtil;
 import com.rancre.util.EncryptUtil;
@@ -881,6 +889,123 @@ public class MemberController {
 
 			CommonUtil.commonPrintLog("SUCCESS", className, "goReview OK", map);
 			req.getRequestDispatcher("/02_page/Review/review.jsp").forward(req, res);
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void getMypage(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+		
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+			Company company = MemberDAO.getCompanyByMemberNo(sessionMemberNo);
+			req.setAttribute("outputCompanyName", EncryptUtil.AES_Decode(company.getRacCompanyName(), aesKey));
+			
+			Member member = MemberDAO.getMemberByMemberNo(sessionMemberNo);
+			req.setAttribute("outputMemberName", EncryptUtil.AES_Decode(member.getRacMemberEmail(), aesKey));
+
+			// 리뷰 리스트 
+			ArrayList<Review> reviewList = MemberDAO.getReviewListByMemberNo(sessionMemberNo, 0);
+			int reviewCount = MemberDAO.countMemberReview(sessionMemberNo);
+			req.setAttribute("outputReviewCount", reviewCount);
+			
+			Paging reviewPaging = new Paging(1, 5);
+			reviewPaging.setNumberOfRecords(reviewCount);
+			reviewPaging.makePaging();
+
+			ArrayList<HashMap<String,Object>> outputReviewList = new ArrayList<HashMap<String,Object>>();
+			for(int i=0; i<reviewList.size();i++) {
+				HashMap<String,Object> tempObject = new HashMap<String,Object>();
+				tempObject.put("outputChannelTitle", ChannelDAO.getChannelByNo(reviewList.get(i).getRacChannelNo()).getRacChannelTitle());
+				tempObject.put("outputReviewSatisfy", reviewList.get(i).getRacReviewSatisfy());
+				tempObject.put("outputReviewCreateDate", reviewList.get(i).getRacReviewCreateDate());
+				tempObject.put("outputReviewStatus", reviewList.get(i).getRacReviewStatus());
+
+				outputReviewList.add(tempObject);
+			}
+			req.setAttribute("outputReviewList", outputReviewList);
+			req.setAttribute("reviewFirstPageNo", reviewPaging.getFirstPageNo());
+			req.setAttribute("reviewPrevPageNo", reviewPaging.getPrevPageNo());
+			req.setAttribute("reviewCurrentPageNo", reviewPaging.getCurrentPageNo());
+			req.setAttribute("reviewNextPageNo", reviewPaging.getNextPageNo());
+			req.setAttribute("reviewPaging", reviewPaging);
+			
+			// 최근 본 채널
+			ArrayList<Channel> channelViewList = MemberDAO.getRecentChannelList(sessionMemberNo, 0);
+			int recentCount = MemberDAO.countMemberChannelView(sessionMemberNo);
+			req.setAttribute("outputRecentCount", recentCount);
+			
+			Paging recentPaging = new Paging(1, 5);
+			recentPaging.setNumberOfRecords(recentCount);
+			recentPaging.makePaging();
+
+			ArrayList<HashMap<String,Object>> outputChannelViewList = new ArrayList<HashMap<String,Object>>();
+			for(int i=0; i<channelViewList.size();i++) {
+				HashMap<String,Object> tempObject = new HashMap<String,Object>();
+				tempObject.put("outputChannelName", channelViewList.get(i).getRacChannelTitle());
+				tempObject.put("outputChannelCategory", CommonUtil.getChannelCategoryList(channelViewList.get(i).getRacChannelCategory()));
+				tempObject.put("outputChannelFollowers", channelViewList.get(i).getRacChannelFollowers());
+				tempObject.put("outputChannelViews", channelViewList.get(i).getRacChannelViews());
+				tempObject.put("outputChannelThumbnail", channelViewList.get(i).getRacChannelThumbnail());
+				tempObject.put("outputChannelNo", channelViewList.get(i).getRacChannelNo());
+
+				outputChannelViewList.add(tempObject);
+			}
+			req.setAttribute("outputChannelViewList", outputChannelViewList);
+			req.setAttribute("recentFirstPageNo", recentPaging.getFirstPageNo());
+			req.setAttribute("recentPrevPageNo", recentPaging.getPrevPageNo());
+			req.setAttribute("recentCurrentPageNo", recentPaging.getCurrentPageNo());
+			req.setAttribute("recentNextPageNo", recentPaging.getNextPageNo());
+			req.setAttribute("recentPaging", recentPaging);
+			
+			// 관심 채널 
+			ArrayList<Channel> channelLikeList = MemberDAO.getChannelLikeList(sessionMemberNo, 0);
+			int likeCount = MemberDAO.countMemberChannelLike(sessionMemberNo);
+			req.setAttribute("outputLikeCount", likeCount);
+			
+			Paging likePaging = new Paging(1, 5);
+			likePaging.setNumberOfRecords(likeCount);
+			likePaging.makePaging();
+
+			ArrayList<HashMap<String,Object>> outputChannelLikeList = new ArrayList<HashMap<String,Object>>();
+			for(int i=0; i<channelLikeList.size();i++) {
+				HashMap<String,Object> tempObject = new HashMap<String,Object>();
+				tempObject.put("outputChannelName", channelLikeList.get(i).getRacChannelTitle());
+				tempObject.put("outputChannelCategory", CommonUtil.getChannelCategoryList(channelLikeList.get(i).getRacChannelCategory()));
+				tempObject.put("outputChannelFollowers", channelLikeList.get(i).getRacChannelFollowers());
+				tempObject.put("outputChannelViews", channelLikeList.get(i).getRacChannelViews());
+				tempObject.put("outputChannelThumbnail", channelLikeList.get(i).getRacChannelThumbnail());
+				tempObject.put("outputChannelNo", channelLikeList.get(i).getRacChannelNo());
+
+				outputChannelLikeList.add(tempObject);
+			}
+			req.setAttribute("outputChannelLikeList", outputChannelLikeList);
+			req.setAttribute("likeFirstPageNo", likePaging.getFirstPageNo());
+			req.setAttribute("likePrevPageNo", likePaging.getPrevPageNo());
+			req.setAttribute("likeCurrentPageNo", likePaging.getCurrentPageNo());
+			req.setAttribute("likeNextPageNo", likePaging.getNextPageNo());
+			req.setAttribute("likePaging", likePaging);
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "GET MyPage OK", map);
+			req.getRequestDispatcher("/02_page/Corp/mainCorp.jsp").forward(req, res);
 			return;
 			
 		} catch (Exception e) {

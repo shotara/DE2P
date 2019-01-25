@@ -87,6 +87,11 @@ public class MemberView extends HttpServlet {
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				MemberController.goReview(req,res);
 				break;	
+			case "getMypage":
+				map.put("ACTION", "getMypage");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				MemberController.getMypage(req,res);
+				break;	
 			}
 			
 		} catch (Exception e) {

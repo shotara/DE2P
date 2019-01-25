@@ -1,13 +1,19 @@
 package com.rancre.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.rancre.model.domain.Channel;
+import com.rancre.model.domain.ChannelLike;
+import com.rancre.model.domain.ChannelView;
+import com.rancre.model.domain.Company;
 import com.rancre.model.domain.Member;
 import com.rancre.model.domain.MemberFavorite;
 import com.rancre.model.domain.MemberUid;
+import com.rancre.model.domain.Review;
 import com.rancre.util.DAOFactory;
 
 public class MemberDAO {
@@ -334,6 +340,102 @@ public class MemberDAO {
 			map.put("memberUid", inputMemberUid);
 
 			return (Member)sqlSession.selectOne(namespace + ".getMemberByMemberUid", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static Company getCompanyByMemberNo(int inputMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (Company)sqlSession.selectOne(namespace + ".getCompanyByMemberNo", inputMemberNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static ArrayList<Review> getReviewListByMemberNo(int inputMemberNo, int startNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberNo", inputMemberNo);
+			map.put("startNo", startNo);
+
+			return (ArrayList)sqlSession.selectList(namespace + ".getReviewListByMemberNo", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static ArrayList<Channel> getRecentChannelList(int inputMemberNo, int startNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberNo", inputMemberNo);
+			map.put("startNo", startNo);
+
+			return (ArrayList)sqlSession.selectList(namespace + ".getRecentChannelList", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static ArrayList<Channel> getChannelLikeList(int inputMemberNo, int startNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberNo", inputMemberNo);
+			map.put("startNo", startNo);
+
+			return (ArrayList)sqlSession.selectList(namespace + ".getChannelLikeList", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int countMemberReview(int sessionMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (int)sqlSession.selectOne(namespace + ".countMemberReview", sessionMemberNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int countMemberChannelView(int sessionMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (int)sqlSession.selectOne(namespace + ".countMemberChannelView", sessionMemberNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int countMemberChannelLike(int sessionMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (int)sqlSession.selectOne(namespace + ".countMemberChannelLike", sessionMemberNo);
 			
 		} finally {
 			sqlSession.close();

@@ -4,8 +4,9 @@ import java.sql.Timestamp;
 
 public class Review {
 	private int racReviewNo;
-	private int racChannelNo;
 	private int racReviewStatus;
+	private int racMemberNo;
+	private int racChannelNo;
 	private int racChannelAdNo;
 	private int racChannelCostNo;
 	private int racReviewSatisfy;
@@ -27,17 +28,23 @@ public class Review {
 	public void setRacReviewNo(int racReviewNo) {
 		this.racReviewNo = racReviewNo;
 	}
-	public int getRacChannelNo() {
-		return racChannelNo;
-	}
-	public void setRacChannelNo(int racChannelNo) {
-		this.racChannelNo = racChannelNo;
-	}
 	public int getRacReviewStatus() {
 		return racReviewStatus;
 	}
 	public void setRacReviewStatus(int racReviewStatus) {
 		this.racReviewStatus = racReviewStatus;
+	}
+	public int getRacMemberNo() {
+		return racMemberNo;
+	}
+	public void setRacMemberNo(int racMemberNo) {
+		this.racMemberNo = racMemberNo;
+	}
+	public int getRacChannelNo() {
+		return racChannelNo;
+	}
+	public void setRacChannelNo(int racChannelNo) {
+		this.racChannelNo = racChannelNo;
 	}
 	public int getRacChannelAdNo() {
 		return racChannelAdNo;
@@ -105,14 +112,15 @@ public class Review {
 	public void setRacReviewCreateDate(Timestamp racReviewCreateDate) {
 		this.racReviewCreateDate = racReviewCreateDate;
 	}
-	public Review(int racReviewNo, int racChannelNo, int racReviewStatus, int racChannelAdNo, int racChannelCostNo,
-			int racReviewSatisfy, int racReviewTargetReach, int racReviewTargetConversion, int racReviewTargetGender,
-			int racReviewTargetAge, int racReviewRecomand, int racReviewAdAgain, String racReviewDetail,
-			Timestamp racReviewCreateDate) {
+	public Review(int racReviewNo, int racReviewStatus, int racMemberNo, int racChannelNo, int racChannelAdNo,
+			int racChannelCostNo, int racReviewSatisfy, int racReviewTargetReach, int racReviewTargetConversion,
+			int racReviewTargetGender, int racReviewTargetAge, int racReviewRecomand, int racReviewAdAgain,
+			String racReviewDetail, Timestamp racReviewCreateDate) {
 		super();
 		this.racReviewNo = racReviewNo;
-		this.racChannelNo = racChannelNo;
 		this.racReviewStatus = racReviewStatus;
+		this.racMemberNo = racMemberNo;
+		this.racChannelNo = racChannelNo;
 		this.racChannelAdNo = racChannelAdNo;
 		this.racChannelCostNo = racChannelCostNo;
 		this.racReviewSatisfy = racReviewSatisfy;
@@ -125,5 +133,4 @@ public class Review {
 		this.racReviewDetail = racReviewDetail;
 		this.racReviewCreateDate = racReviewCreateDate;
 	}
-
 }
