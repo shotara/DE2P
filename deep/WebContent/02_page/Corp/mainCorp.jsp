@@ -10,169 +10,312 @@
 
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
 <script>
-	$(document).ready(function() {
-		
-		///////////// Review 
-		var review_current = ${reviewCurrentPageNo};
-		var review_total = parseInt((review_current) / 10) * 10 + 10;
-		var review_start = parseInt((review_current) / 10) * 10;
-		var review_finalPage = ${reviewPaging.finalPageNo};
-		
-		if (review_start > 0) {
-			if ((review_start - 10) == 0)
-				$("#reviewPaging")
-						.append(
-								"<li class='common-page-pre display-none'><a href='/admin?action=getChannelList&page=1&size=30'>이전</a></li> ");
-			else
-				$("#reviewPaging").append(
-						"<li class='common-page-pre display-none'><a href='/admin?action=getChannelList&page="
-								+ (review_start - 10)
-								+ "&size=30'>이전</a><li> ");
-		}
-		if (review_start == 0) {
-			for (var i = review_start; i < review_total && i < review_finalPage; i++) {
-				var input = ""
-				if ((i + 1) != review_current) {
-					input = "<li class='common-page-link'><a href='/admin?action=getChannelList&page="
-							+ (i + 1)
-							+ "&size=5'>"
-							+ (i + 1)
-							+ "</a></li> ";
-				} else {
-					input = "<li class='common-page-link active'>"+(i + 1) + "</li> ";
-				}
-				$("#reviewPaging").append(input);
-			}
-		} else {
-			for (var i = review_start; i < review_total + 1
-					&& i + 1 < review_finalPage; i++) {
-				var input = ""
-				if ((i) != review_current) {
-					input = "<li class='common-page-link'><a href='/admin?action=getChannelList&page="
-							+ (i)
-							+ "&size=5'>"
-							+ (i)
-							+ "</a></li> ";
-				} else {
-					input ="<li class='common-page-link active'>"+ (i) + "</li> ";
-				}
-				$("#reviewPaging").append(input);
-			}
-		}
+	function getChannelPage(mode, page) {
+		switch(mode) {
+		case 1:
+			var url="/member?action=getReviewChannelList";  
+		    var params = {
+		    	startNo : (page-1)*5
+		    };
+		    
+		    $.ajax({      
+		        type:"POST",  
+		        url:url,      
+		        data:params,  
+		        dataType:'json',
+		        success:function(args){   
+		            $("#myReviewChild").empty();
 
-		if (review_total < review_finalPage)
-			$("#reviewPaging").append(
-					"<a href='/admin?action=getChannelList&page="
-							+ review_total + "&size=5'>다음</a> ");
-	
-		///////////// Recent 
-		var recent_current = ${recentCurrentPageNo};
-		var recent_total = parseInt((recent_current) / 10) * 10 + 10;
-		var recent_start = parseInt((recent_current) / 10) * 10;
-		var recent_finalPage = ${recentPaging.finalPageNo};
+		        	for(var i=0; i<args.outputReviewList.length; i++) {
+						$('#myReviewChild').append(`
+								<div class="corp-MyReview row">
+								<div class="col float-left corp-ChnName">`+args.outputReviewList[i].outputChannelTitle+`</div>
+								<div class="col float-left corp-ChnSatisfy">`+args.outputReviewList[i].outputReviewSatisfy+`</div>
+								<div class="col float-left corp-ChnReview-Date">`+args.outputReviewList[i].outputReviewCreateDate+`</div>
+								<div class="col float-left corp-ChnReivew-Accept">`+args.outputReviewList[i].outputReviewStatus+`</div>
+							</div>
 		
-		if (recent_start > 0) {
-			if ((recent_start - 10) == 0)
-				$("#recentPaging")
-						.append(
-								"<li class='common-page-pre display-none'><a href='/admin?action=getChannelList&page=1&size=30'>이전</a></li> ");
-			else
-				$("#recentPaging").append(
-						"<li class='common-page-pre display-none'><a href='/admin?action=getChannelList&page="
-								+ (recent_start - 10)
-								+ "&size=30'>이전</a><li> ");
-		}
-		if (recent_start == 0) {
-			for (var i = recent_start; i < recent_total && i < recent_finalPage; i++) {
-				var input = ""
-				if ((i + 1) != recent_current) {
-					input = "<li class='common-page-link'><a href='/admin?action=getChannelList&page="
-							+ (i + 1)
-							+ "&size=5'>"
-							+ (i + 1)
-							+ "</a></li> ";
-				} else {
-					input = "<li class='common-page-link active'>"+(i + 1) + "</li> ";
-				}
-				$("#recentPaging").append(input);
-			}
-		} else {
-			for (var i = recent_start; i < recent_total + 1
-					&& i + 1 < recent_finalPage; i++) {
-				var input = ""
-				if ((i) != recent_current) {
-					input = "<li class='common-page-link'><a href='/admin?action=getChannelList&page="
-							+ (i)
-							+ "&size=5'>"
-							+ (i)
-							+ "</a></li> ";
-				} else {
-					input ="<li class='common-page-link active'>"+ (i) + "</li> ";
-				}
-				$("#recentPaging").append(input);
-			}
-		}
+							<hr
+								style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+								
+								`);
+		        	}
 
-		if (recent_total < recent_finalPage)
-			$("#recentPaging").append(
-					"<a href='/admin?action=getChannelList&page="
-							+ recent_total + "&size=5'>다음</a> ");
-	
-		///////Like 
-		var like_current = ${likeCurrentPageNo};
-		var like_total = parseInt((like_current) / 10) * 10 + 10;
-		var like_start = parseInt((like_current) / 10) * 10;
-		var like_finalPage = ${likePaging.finalPageNo};
-		
-		if (like_start > 0) {
-			if ((like_start - 10) == 0)
-				$("#likePaging")
-						.append(
-								"<li class='common-page-pre display-none'><a href='/admin?action=getChannelList&page=1&size=30'>이전</a></li> ");
-			else
-				$("#likePaging").append(
-						"<li class='common-page-pre display-none'><a href='/admin?action=getChannelList&page="
-								+ (like_start - 10)
-								+ "&size=30'>이전</a><li> ");
-		}
-		if (like_start == 0) {
-			for (var i = like_start; i < like_total && i < like_finalPage; i++) {
-				var input = ""
-				if ((i + 1) != like_current) {
-					input = "<li class='common-page-link'><a href='/admin?action=getChannelList&page="
-							+ (i + 1)
-							+ "&size=5'>"
-							+ (i + 1)
-							+ "</a></li> ";
-				} else {
-					input = "<li class='common-page-link active'>"+(i + 1) + "</li> ";
-				}
-				$("#likePaging").append(input);
-			}
-		} else {
-			for (var i = like_start; i < like_total + 1
-					&& i + 1 < like_finalPage; i++) {
-				var input = ""
-				if ((i) != like_current) {
-					input = "<li class='common-page-link'><a href='/admin?action=getChannelList&page="
-							+ (i)
-							+ "&size=5'>"
-							+ (i)
-							+ "</a></li> ";
-				} else {
-					input ="<li class='common-page-link active'>"+ (i) + "</li> ";
-				}
-				$("#likePaging").append(input);
-			}
-		}
+		            $("#reviewPaging").empty();
+		            
+		    		var review_current = args.reviewCurrentPageNo;
+		    		var review_total = parseInt((review_current) / 10) * 10 + 10;
+		    		var review_start = parseInt((review_current) / 10) * 10;
+		    		var review_finalPage = args.reviewFinalPageNo;
+		    		
+		    		if (review_start > 0) {
+		    			if ((review_start - 10) == 0)
+		    				$("#reviewPaging")
+		    						.append(
+		    								"<li class='common-page-pre display-none' onclick='getChannelPage(1,1)>이전</li> ");
+		    			else
+		    				$("#reviewPaging").append(
+		    						"<li class='common-page-pre display-none' onclick='getChannelPage(1,"
+		    								+ (review_start - 10)
+		    								+ ");'>이전</li> ");
+		    		}
 
-		if (like_total < like_finalPage)
-			$("#likePaging").append(
-					"<a href='/admin?action=getChannelList&page="
-							+ like_total + "&size=5'>다음</a> ");
-	
-	});
-	
+		    		if (review_start == 0) {
+		    			for (var i = review_start; i < review_total && i < review_finalPage; i++) {
+		    				var input = ""
+		    				if ((i + 1) != review_current) {
+		    					input = "<li class='common-page-link' onclick='getChannelPage(1,"
+		    							+ (i + 1)
+		    							+ ");'>"
+		    							+ (i + 1)
+		    							+ "</li> ";
+		    				} else {
+		    					input = "<li class='common-page-link active'>"+(i + 1) + "</li> ";
+		    				}
+		    				$("#reviewPaging").append(input);
+		    			}
+		    		} else {
+		    			for (var i = review_start; i < review_total + 1
+		    					&& i + 1 < review_finalPage; i++) {
+		    				var input = ""
+		    				if ((i) != review_current) {
+		    					input = "<li class='common-page-link' onclick='getChannelPage(1,"
+		    							+ (i)
+		    							+ ");'>"
+		    							+ (i)
+		    							+ "</li> ";
+		    				} else {
+		    					input ="<li class='common-page-link active'>"+ (i) + "</li> ";
+		    				}
+		    				$("#reviewPaging").append(input);
+		    			}
+		    		}
+
+		    		if (review_total < review_finalPage)
+		    			$("#reviewPaging").append(
+		    					`<li class="common-page-next go-review-list"><a
+		    					class="common-A" onclick="getChannelPage(2,`+review_total+`)">다음<img style="margin-bottom: 2px;"
+		    						src="/01_image/commonImg/right-arrow.png"></a></li>`);
+		        },   
+		        error:function(request,status,error){  
+		            alert(error);  
+		        }  
+		    });  
+			
+			break;
+		case 2:
+			var url="/member?action=getRecentChannelList";  
+		    var params = {
+		    	startNo : (page-1)*5
+		    };
+		    
+		    $.ajax({      
+		        type:"POST",  
+		        url:url,      
+		        data:params,  
+		        dataType:'json',
+		        success:function(args){   
+		            $("#myViewChild").empty();
+
+		        	for(var i=0; i<args.outputChannelList.length; i++) {
+						$('#myViewChild').append(`
+								<div class="corp-MyView w100">
+								<div class="corp-View-Row-ChnImg">
+									<img id="corp-View-Row-ThumbNail"
+										style="width: 48px; border-radius: 48px;"
+										src="`+ args.outputChannelList[i].outputChannelThumbnail +`" />
+								</div>
+								<div class="corp-View-Row-ChnName">`+ args.outputChannelList[i].outputChannelName +`</div>
+								<div class="corp-View-Row-Category">`+ args.outputChannelList[i].outputChannelCategory +`</div>
+								<div class="corp-View-Row-Subscribe">`+ args.outputChannelList[i].outputChannelFollowers +`</div>
+								<div class="corp-View-Row-TotalView">`+ args.outputChannelList[i].outputChannelViews +`</div>
+								<div class="corp-View-Row-Like">
+									<button class="common-Small-Btn" onclick="">관심채널 등록</button>
+								</div>
+								<div class="corp-View-Row-DetailGo">
+									<button class="common-Small-Btn">
+										<a href="/channel?action=getChannelDetail&inputChannelNo=`+ args.outputChannelList[i].outputChannelNo +`">채널정보 보기</a>
+									</button>
+								</div>
+
+							</div>
+
+							<hr
+								style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+					  `);
+		        	}
+
+		            $("#recentPaging").empty();
+		            
+		    		var recent_current = args.recentCurrentPageNo;
+		    		var recent_total = parseInt((recent_current) / 10) * 10 + 10;
+		    		var recent_start = parseInt((recent_current) / 10) * 10;
+		    		var recent_finalPage = args.recentFinalPageNo;
+		    		
+		    		if (recent_start > 0) {
+		    			if ((recent_start - 10) == 0)
+		    				$("#recentPaging")
+		    						.append(
+		    								"<li class='common-page-pre display-none' onclick='getChannelPage(2,1)>이전</li> ");
+		    			else
+		    				$("#recentPaging").append(
+		    						"<li class='common-page-pre display-none' onclick='getChannelPage(2,"
+		    								+ (recent_start - 10)
+		    								+ ");'>이전</li> ");
+		    		}
+
+		    		if (recent_start == 0) {
+		    			for (var i = recent_start; i < recent_total && i < recent_finalPage; i++) {
+		    				var input = ""
+		    				if ((i + 1) != recent_current) {
+		    					input = "<li class='common-page-link' onclick='getChannelPage(2,"
+		    							+ (i + 1)
+		    							+ ");'>"
+		    							+ (i + 1)
+		    							+ "</li> ";
+		    				} else {
+		    					input = "<li class='common-page-link active'>"+(i + 1) + "</li> ";
+		    				}
+		    				$("#recentPaging").append(input);
+		    			}
+		    		} else {
+		    			for (var i = recent_start; i < recent_total + 1
+		    					&& i + 1 < recent_finalPage; i++) {
+		    				var input = ""
+		    				if ((i) != recent_current) {
+		    					input = "<li class='common-page-link' onclick='getChannelPage(2,"
+		    							+ (i)
+		    							+ ");'>"
+		    							+ (i)
+		    							+ "</li> ";
+		    				} else {
+		    					input ="<li class='common-page-link active'>"+ (i) + "</li> ";
+		    				}
+		    				$("#recentPaging").append(input);
+		    			}
+		    		}
+
+		    		if (recent_total < recent_finalPage)
+		    			$("#recentPaging").append(
+		    					`<li class="common-page-next go-review-list"><a
+		    					class="common-A" onclick="getChannelPage(2,`+recent_total+`)">다음<img style="margin-bottom: 2px;"
+		    						src="/01_image/commonImg/right-arrow.png"></a></li>`);
+		    	
+		        },   
+		        error:function(request,status,error){  
+		            alert(error);  
+		        }  
+		    });  
+			
+			break;
+		case 3:
+			var url="/member?action=getLikeChannelList";  
+		    var params = {
+		    	startNo : (page-1)*5
+		    };
+		    
+		    $.ajax({      
+		        type:"POST",  
+		        url:url,      
+		        data:params,  
+		        dataType:'json',
+		        success:function(args){   
+		            $("#myLikeChild").empty();
+
+		        	for(var i=0; i<args.outputChannelList.length; i++) {
+						$('#myLikeChild').append(`
+								<div class="corp-MyView w100">
+								<div class="corp-View-Row-ChnImg">
+									<img id="corp-View-Row-ThumbNail"
+										style="width: 48px; border-radius: 48px;"
+										src="`+ args.outputChannelList[i].outputChannelThumbnail +`" />
+								</div>
+								<div class="corp-View-Row-ChnName">`+ args.outputChannelList[i].outputChannelName +`</div>
+								<div class="corp-View-Row-Category">`+ args.outputChannelList[i].outputChannelCategory +`</div>
+								<div class="corp-View-Row-Subscribe">`+ args.outputChannelList[i].outputChannelFollowers +`</div>
+								<div class="corp-View-Row-TotalView">`+ args.outputChannelList[i].outputChannelViews +`</div>
+								<div class="corp-View-Row-Like">
+									<button class="common-Small-Btn" onclick="">관심채널 등록</button>
+								</div>
+								<div class="corp-View-Row-DetailGo">
+									<button class="common-Small-Btn">
+										<a href="/channel?action=getChannelDetail&inputChannelNo=`+ args.outputChannelList[i].outputChannelNo +`">채널정보 보기</a>
+									</button>
+								</div>
+
+							</div>
+
+							<hr
+								style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+					  `);
+		        	}
+
+		            $("#likePaging").empty();
+		            
+		    		var like_current = args.recentCurrentPageNo;
+		    		var like_total = parseInt((like_current) / 10) * 10 + 10;
+		    		var like_start = parseInt((like_current) / 10) * 10;
+		    		var like_finalPage = args.recentFinalPageNo;
+		    		
+		    		if (like_start > 0) {
+		    			if ((like_start - 10) == 0)
+		    				$("#likePaging")
+		    						.append(
+		    								"<li class='common-page-pre display-none' onclick='getChannelPage(3,1)>이전</li> ");
+		    			else
+		    				$("#likePaging").append(
+		    						"<li class='common-page-pre display-none' onclick='getChannelPage(3,"
+		    								+ (like_start - 10)
+		    								+ ");'>이전</li> ");
+		    		}
+
+		    		if (like_start == 0) {
+		    			for (var i = like_start; i < like_total && i < like_finalPage; i++) {
+		    				var input = ""
+		    				if ((i + 1) != like_current) {
+		    					input = "<li class='common-page-link' onclick='getChannelPage(3,"
+		    							+ (i + 1)
+		    							+ ");'>"
+		    							+ (i + 1)
+		    							+ "</li> ";
+		    				} else {
+		    					input = "<li class='common-page-link active'>"+(i + 1) + "</li> ";
+		    				}
+		    				$("#likePaging").append(input);
+		    			}
+		    		} else {
+		    			for (var i = like_start; i < like_total + 1
+		    					&& i + 1 < like_finalPage; i++) {
+		    				var input = ""
+		    				if ((i) != like_current) {
+		    					input = "<li class='common-page-link' onclick='getChannelPage(3,"
+		    							+ (i)
+		    							+ ");'>"
+		    							+ (i)
+		    							+ "</li> ";
+		    				} else {
+		    					input ="<li class='common-page-link active'>"+ (i) + "</li> ";
+		    				}
+		    				$("#likePaging").append(input);
+		    			}
+		    		}
+
+		    		if (like_total < like_finalPage)
+		    			$("#likePaging").append(
+						`<li class="common-page-next go-review-list"><a
+						class="common-A" onclick="getChannelPage(3,`+like_total+`)">다음<img style="margin-bottom: 2px;"
+							src="/01_image/commonImg/right-arrow.png"></a></li>`);
+			
+		        },   
+		        error:function(request,status,error){  
+		            alert(error);  
+		        }  
+		    });  
+			
+			
+			break;
+		}
+	}
 	
 </script>
 </head>
@@ -229,23 +372,24 @@
 				
 				<!-- if channel review exist -->
 				<c:if test="${outputReviewList.size() != 0}">
-				<div class="corp-MyReview-Contents">
+				<div class="corp-MyReview-Contents" id="myReviewContent">
+					<div id="myReviewChild">
 					<c:forEach var="item" items="${outputReviewList}">
-					<div class="corp-MyReview row">
-						<div class="col float-left corp-ChnName">${item.outputChannelTitle}</div>
-						<div class="col float-left corp-ChnSatisfy">${item.outputReviewSatisfy}</div>
-						<div class="col float-left corp-ChnReview-Date">${item.outputReviewCreateDate}</div>
-						<div class="col float-left corp-ChnReivew-Accept">${item.outputReviewStatus}</div>
-					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+						<div class="corp-MyReview row">
+							<div class="col float-left corp-ChnName">${item.outputChannelTitle}</div>
+							<div class="col float-left corp-ChnSatisfy">${item.outputReviewSatisfy}</div>
+							<div class="col float-left corp-ChnReview-Date">${item.outputReviewCreateDate}</div>
+							<div class="col float-left corp-ChnReivew-Accept">${item.outputReviewStatus}</div>
+						</div>
+	
+						<hr
+							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 					</c:forEach>
+					</div>
 					<div class="pagination-area pTop3">
 						<ul class="common-pagination" id="reviewPaging">
 						</ul>
 					</div>
-
 				</div>
 				</c:if>
 				<!-- end channel review exist -->
@@ -278,6 +422,7 @@
 				<c:if test="${outputChannelViewList.size() != 0 }">
 				<div class="subNav-content active corp-MyView-Contents"
 					id="myViewContent">
+					<div id="myViewChild">
 					<c:forEach var="item" items="${outputChannelViewList}">
 					<div class="corp-MyView w100">
 						<div class="corp-View-Row-ChnImg">
@@ -303,8 +448,9 @@
 					<hr
 						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 					</c:forEach>
+					</div>
 					<!-- pagination area -->
-
+				
 					<div class="pagination-area pTop3">
 						<ul class="common-pagination" id="recentPaging">
 						</ul>
@@ -390,6 +536,7 @@
 				<!-- if exist like channel list -->
 				<c:if test="${outputChannelLikeList.size() != 0 }">
 				<div class="subNav-content corp-MyLike-Contents" id="myLikeContent">
+					<div id="myLikeChild">
 					<c:forEach var="item" items="${outputChannelLikeList}">
 					<div class="corp-MyView w100">
 						<div class="corp-View-Row-ChnImg">
@@ -415,6 +562,7 @@
 					<hr
 						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 					</c:forEach>
+					</div>
 					<!-- pagination area -->
 
 					<div class="pagination-area pTop3">
@@ -505,6 +653,174 @@
 	</div>
 
 	<jsp:include page="/02_page/commonFooter.jsp" flush="false" />
+	<script>
+	$(document).ready(function() {
+		
+		///////////// Review 
+		var review_current = ${reviewCurrentPageNo};
+		var review_total = parseInt((review_current) / 10) * 10 + 10;
+		var review_start = parseInt((review_current) / 10) * 10;
+		var review_finalPage = ${reviewPaging.finalPageNo};
+		
+		if (review_start > 0) {
+			if ((review_start - 10) == 0)
+				$("#reviewPaging")
+							.append(
+							"<li class='common-page-pre display-none' onclick='getChannelPage(1,1)>이전</li> ");
+			else
+			$("#reviewPaging").append(
+					"<li class='common-page-pre display-none' onclick='getChannelPage(1,"
+							+ (recent_start - 10)
+							+ ");'>이전</li> ");
+		}
+		if (review_start == 0) {
+			for (var i = review_start; i < review_total && i < review_finalPage; i++) {
+				var input = ""
+				if ((i + 1) != review_current) {
+					input = "<li class='common-page-link'><a href='/admin?action=getChannelList&page="
+							+ (i + 1)
+							+ "&size=5'>"
+							+ (i + 1)
+							+ "</a></li> ";
+				} else {
+					input = "<li class='common-page-link active'>"+(i + 1) + "</li> ";
+				}
+				$("#reviewPaging").append(input);
+			}
+		} else {
+			for (var i = review_start; i < review_total + 1
+					&& i + 1 < review_finalPage; i++) {
+				var input = ""
+				if ((i) != review_current) {
+					input = "<li class='common-page-link'><a href='/admin?action=getChannelList&page="
+							+ (i)
+							+ "&size=5'>"
+							+ (i)
+							+ "</a></li> ";
+				} else {
+					input ="<li class='common-page-link active'>"+ (i) + "</li> ";
+				}
+				$("#reviewPaging").append(input);
+			}
+		}
 
+		if (review_total < review_finalPage)
+			$("#reviewPaging").append(
+					`<li class="common-page-next go-review-list"><a
+					class="common-A" onclick="getChannelPage(2,`+review_total+`)">다음<img style="margin-bottom: 2px;"
+						src="/01_image/commonImg/right-arrow.png"></a></li>`);
+	
+		///////////// Recent 
+		var recent_current = ${recentCurrentPageNo};
+		var recent_total = parseInt((recent_current) / 10) * 10 + 10;
+		var recent_start = parseInt((recent_current) / 10) * 10;
+		var recent_finalPage = ${recentPaging.finalPageNo};
+		
+		if (recent_start > 0) {
+			if ((recent_start - 10) == 0)
+				$("#recentPaging")
+						.append(
+								"<li class='common-page-pre display-none' onclick='getChannelPage(2,1)>이전</li> ");
+			else
+				$("#recentPaging").append(
+						"<li class='common-page-pre display-none' onclick='getChannelPage(2,"
+								+ (recent_start - 10)
+								+ ");'>이전</li> ");
+		}
+		if (recent_start == 0) {
+			for (var i = recent_start; i < recent_total && i < recent_finalPage; i++) {
+				var input = ""
+				if ((i + 1) != recent_current) {
+					input = "<li class='common-page-link' onclick='getChannelPage(2,"
+							+ (i + 1)
+							+ ");'>"
+							+ (i + 1)
+							+ "</a></li> ";
+				} else {
+					input = "<li class='common-page-link active'>"+(i + 1) + "</li> ";
+				}
+				$("#recentPaging").append(input);
+			}
+		} else {
+			for (var i = recent_start; i < recent_total + 1
+					&& i + 1 < recent_finalPage; i++) {
+				var input = ""
+				if ((i) != recent_current) {
+					input = "<li class='common-page-link' onclick='getChannelPage(2,"
+							+ (i)
+							+ ");'>"
+							+ (i)
+							+ "</li> ";
+				} else {
+					input ="<li class='common-page-link active'>"+ (i) + "</li> ";
+				}
+				$("#recentPaging").append(input);
+			}
+		}
+
+		if (recent_total < recent_finalPage)
+			$("#recentPaging").append(
+					`<li class="common-page-next go-review-list"><a
+					class="common-A" onclick="getChannelPage(2,`+recent_total+`)">다음<img style="margin-bottom: 2px;"
+						src="/01_image/commonImg/right-arrow.png"></a></li>`);
+	
+		///////Like 
+		var like_current = ${likeCurrentPageNo};
+		var like_total = parseInt((like_current) / 10) * 10 + 10;
+		var like_start = parseInt((like_current) / 10) * 10;
+		var like_finalPage = ${likePaging.finalPageNo};
+		
+		if (like_start > 0) {
+			if ((like_start - 10) == 0)
+				$("#likePaging")
+						.append(
+						"<li class='common-page-pre display-none' onclick='getChannelPage(3,1)>이전</li> ");
+			else
+				$("#likePaging").append(
+						"<li class='common-page-pre display-none' onclick='getChannelPage(3,"
+						+ (recent_start - 10)
+						+ ");'>이전</li> ");
+		}
+		if (like_start == 0) {
+			for (var i = like_start; i < like_total && i < like_finalPage; i++) {
+				var input = ""
+				if ((i + 1) != like_current) {
+					input = "<li class='common-page-link' onclick='getChannelPage(3,"
+							+ (i + 1)
+							+ ");'>"
+							+ (i + 1)
+							+ "</li> ";
+				} else {
+					input = "<li class='common-page-link active'>"+(i + 1) + "</li> ";
+				}
+				$("#likePaging").append(input);
+			}
+		} else {
+			for (var i = like_start; i < like_total + 1
+					&& i + 1 < like_finalPage; i++) {
+				var input = ""
+				if ((i) != like_current) {
+					input = "<li class='common-page-link' onclick='getChannelPage(3,"
+							+ (i)
+							+ ");'>"
+							+ (i)
+							+ "</li> ";
+				} else {
+					input ="<li class='common-page-link active'>"+ (i) + "</li> ";
+				}
+				$("#likePaging").append(input);
+			}
+		}
+
+		if (like_total < like_finalPage)
+			$("#likePaging").append(
+					`<li class="common-page-next go-review-list"><a
+					class="common-A" onclick="getChannelPage(3,`+like_total+`)">다음<img style="margin-bottom: 2px;"
+						src="/01_image/commonImg/right-arrow.png"></a></li>`);
+		
+
+	
+	});
+	</script>
 </body>
 </html>

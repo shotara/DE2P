@@ -92,6 +92,21 @@ public class MemberView extends HttpServlet {
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				MemberController.getMypage(req,res);
 				break;	
+			case "getRecentChannelList":
+				map.put("ACTION", "getRecentChannelList");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				MemberController.getRecentChannelList(req,res);
+				break;	
+			case "getReviewList":
+				map.put("ACTION", "getReviewList");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				MemberController.getReviewList(req,res);
+				break;	
+			case "getLikeChannelList":
+				map.put("ACTION", "getLikeChannelList");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				MemberController.getLikeChannelList(req,res);
+				break;	
 			}
 			
 		} catch (Exception e) {

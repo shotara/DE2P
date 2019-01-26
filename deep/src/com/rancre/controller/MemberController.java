@@ -60,6 +60,8 @@ import com.rancre.model.domain.Member;
 import com.rancre.model.domain.MemberUid;
 import com.rancre.model.domain.Notice;
 import com.rancre.model.domain.Paging;
+import com.rancre.model.domain.RankCategory;
+import com.rancre.model.domain.RankTop;
 import com.rancre.model.domain.Review;
 import com.rancre.model.domain.Upload;
 import com.rancre.util.CommonUtil;
@@ -935,9 +937,9 @@ public class MemberController {
 			for(int i=0; i<reviewList.size();i++) {
 				HashMap<String,Object> tempObject = new HashMap<String,Object>();
 				tempObject.put("outputChannelTitle", ChannelDAO.getChannelByNo(reviewList.get(i).getRacChannelNo()).getRacChannelTitle());
-				tempObject.put("outputReviewSatisfy", reviewList.get(i).getRacReviewSatisfy());
+				tempObject.put("outputReviewSatisfy", CommonUtil.getReviewSatisfy(reviewList.get(i).getRacReviewSatisfy()));
 				tempObject.put("outputReviewCreateDate", reviewList.get(i).getRacReviewCreateDate());
-				tempObject.put("outputReviewStatus", reviewList.get(i).getRacReviewStatus());
+				tempObject.put("outputReviewStatus", CommonUtil.getReviewStatus(reviewList.get(i).getRacReviewStatus()));
 
 				outputReviewList.add(tempObject);
 			}
@@ -1009,6 +1011,191 @@ public class MemberController {
 			return;
 			
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void getRecentChannelList(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+	
+		try{
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			int startNo = req.getParameter("startNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("startNo").toString())) : 0;
+			JSONObject jObject = new JSONObject();
+			
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// 최근 리스트
+			ArrayList<Channel> channelViewList = MemberDAO.getRecentChannelList(sessionMemberNo, startNo);
+			int recentCount = MemberDAO.countMemberChannelView(sessionMemberNo);
+			jObject.put("outputRecentCount", recentCount);
+			
+			Paging recentPaging = new Paging(startNo, 5);
+			recentPaging.setNumberOfRecords(recentCount);
+			recentPaging.makePaging();
+
+			JSONArray outputChannelViewList = new JSONArray();
+			for(int i=0; i<channelViewList.size();i++) {
+				JSONObject tempObject = new JSONObject();
+				tempObject.put("outputChannelName", channelViewList.get(i).getRacChannelTitle());
+				tempObject.put("outputChannelCategory", CommonUtil.getChannelCategoryList(channelViewList.get(i).getRacChannelCategory()));
+				tempObject.put("outputChannelFollowers", channelViewList.get(i).getRacChannelFollowers());
+				tempObject.put("outputChannelViews", channelViewList.get(i).getRacChannelViews());
+				tempObject.put("outputChannelThumbnail", channelViewList.get(i).getRacChannelThumbnail());
+				tempObject.put("outputChannelNo", channelViewList.get(i).getRacChannelNo());
+
+				outputChannelViewList.add(tempObject);
+			}
+			jObject.put("outputChannelList", outputChannelViewList);
+			jObject.put("recentFirstPageNo", recentPaging.getFirstPageNo());
+			jObject.put("recentPrevPageNo", recentPaging.getPrevPageNo());
+			jObject.put("recentCurrentPageNo", recentPaging.getCurrentPageNo());
+			jObject.put("recentNextPageNo", recentPaging.getNextPageNo());
+			jObject.put("recentFinalPageNo", recentPaging.getFinalPageNo());
+
+			
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get Recent Channl(mypage) OK", map);
+			res.getWriter().write(jObject.toString());
+//			req.getRequestDispatcher("/index.jsp").forward(req, res);
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void getReviewList(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+	
+		try{
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			int startNo = req.getParameter("startNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("startNo").toString())) : 0;
+			JSONObject jObject = new JSONObject();
+			
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// 최근 리스트
+			ArrayList<Review> reviewList = MemberDAO.getReviewListByMemberNo(sessionMemberNo, startNo);
+			int reviewCount = MemberDAO.countMemberReview(sessionMemberNo);
+			jObject.put("outputReviewCount", reviewCount);
+			
+			Paging reveiwPaging = new Paging(startNo, 5);
+			reveiwPaging.setNumberOfRecords(reviewCount);
+			reveiwPaging.makePaging();
+
+			JSONArray outputReviewList = new JSONArray();
+			for(int i=0; i<reviewList.size();i++) {
+				JSONObject tempObject = new JSONObject();
+				tempObject.put("outputChannelTitle", ChannelDAO.getChannelByNo(reviewList.get(i).getRacChannelNo()));
+				tempObject.put("outputReviewSatisfy", CommonUtil.getReviewSatisfy(reviewList.get(i).getRacReviewSatisfy()));
+				tempObject.put("outputReviewCreateDate", reviewList.get(i).getRacReviewCreateDate());
+				tempObject.put("outputReviewStatus", CommonUtil.getReviewStatus(reviewList.get(i).getRacReviewStatus()));
+				tempObject.put("outputChannelNo", reviewList.get(i).getRacChannelNo());
+
+				outputReviewList.add(tempObject);
+			}
+			jObject.put("outputReviewList", outputReviewList);
+			jObject.put("reviewFirstPageNo", reveiwPaging.getFirstPageNo());
+			jObject.put("reviewPrevPageNo", reveiwPaging.getPrevPageNo());
+			jObject.put("reviewCurrentPageNo", reveiwPaging.getCurrentPageNo());
+			jObject.put("reviewNextPageNo", reveiwPaging.getNextPageNo());
+			jObject.put("reviewFinalPageNo", reveiwPaging.getFinalPageNo());
+
+			
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get  Review (mypage) OK", map);
+			res.getWriter().write(jObject.toString());
+//			req.getRequestDispatcher("/index.jsp").forward(req, res);
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void getLikeChannelList(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+	
+		try{
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			int startNo = req.getParameter("startNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("startNo").toString())) : 0;
+			JSONObject jObject = new JSONObject();
+			
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// 최근 리스트
+			ArrayList<Channel> channelLikeList = MemberDAO.getChannelLikeList(sessionMemberNo, startNo);
+			int likeCount = MemberDAO.countMemberChannelLike(sessionMemberNo);
+			jObject.put("outputRecentCount", likeCount);
+			
+			Paging likePaging = new Paging(startNo, 5);
+			likePaging.setNumberOfRecords(likeCount);
+			likePaging.makePaging();
+
+			JSONArray outputChannelViewList = new JSONArray();
+			for(int i=0; i<channelLikeList.size();i++) {
+				JSONObject tempObject = new JSONObject();
+				tempObject.put("outputChannelName", channelLikeList.get(i).getRacChannelTitle());
+				tempObject.put("outputChannelCategory", CommonUtil.getChannelCategoryList(channelLikeList.get(i).getRacChannelCategory()));
+				tempObject.put("outputChannelFollowers", channelLikeList.get(i).getRacChannelFollowers());
+				tempObject.put("outputChannelViews", channelLikeList.get(i).getRacChannelViews());
+				tempObject.put("outputChannelThumbnail", channelLikeList.get(i).getRacChannelThumbnail());
+				tempObject.put("outputChannelNo", channelLikeList.get(i).getRacChannelNo());
+
+				outputChannelViewList.add(tempObject);
+			}
+			jObject.put("outputChannelList", outputChannelViewList);
+			jObject.put("likeFirstPageNo", likePaging.getFirstPageNo());
+			jObject.put("likePrevPageNo", likePaging.getPrevPageNo());
+			jObject.put("likeCurrentPageNo", likePaging.getCurrentPageNo());
+			jObject.put("likeNextPageNo", likePaging.getNextPageNo());
+			jObject.put("likeFinalPageNo", likePaging.getFinalPageNo());
+
+			
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get Like Channl(mypage) OK", map);
+			res.getWriter().write(jObject.toString());
+//			req.getRequestDispatcher("/index.jsp").forward(req, res);
+			return;
+			
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}

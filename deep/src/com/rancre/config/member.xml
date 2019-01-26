@@ -102,11 +102,10 @@
 	</select>		
 	
 	<select id="getRecentChannelList" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Channel">
-		SELECT a.* FROM (SELECT * FROM rac_channel) a, (SELECT * FROM rac_channel_view WHERE racMemberNo=#{memberNo} GROUP BY racChannelNo) b WHERE b.racChannelNo=a.racChannelNo ORDER BY b.racChannelViewDate DESC LIMIT #{startNo}, 6
+		SELECT a.* FROM (SELECT * FROM rac_channel) a, (SELECT * FROM rac_channel_view WHERE racMemberNo=#{memberNo} GROUP BY racChannelNo) b WHERE b.racChannelNo=a.racChannelNo ORDER BY b.racChannelViewDate DESC LIMIT #{startNo}, 5
 	</select>		
-	
 	<select id="getChannelLikeList" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Channel">
-		SELECT a.* FROM (SELECT * FROM rac_channel) a, (SELECT * FROM rac_channel_like WHERE racMemberNo=#{memberNo}) b WHERE b.racChannelNo=a.racChannelNo ORDER BY b.racChannelLikeDate DESC LIMIT #{startNo}, 6
+		SELECT a.* FROM (SELECT * FROM rac_channel) a, (SELECT * FROM rac_channel_like WHERE racMemberNo=#{memberNo}) b WHERE b.racChannelNo=a.racChannelNo ORDER BY b.racChannelLikeDate DESC LIMIT #{startNo}, 5
 	</select>		
 	
 	<select id="getMemberByMemberNo" parameterType="int" resultType="com.rancre.model.domain.Member">

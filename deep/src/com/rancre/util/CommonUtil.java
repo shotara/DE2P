@@ -471,5 +471,29 @@ public class CommonUtil {
 			return "2019";
 		}
 	}
+
+	public static String getReviewStatus(int no) {
+		switch(no) {
+		case 1:
+			return "검토중";
+		case 2:
+			return "승인";
+		case 3:
+			return "삭제";
+		default:
+			return "검토중";
+		}
+	}
+
+	public static String getReviewSatisfy(int no) {
+		switch(no) {
+		case 1:
+			return "만족";
+		case 2:
+			return "불만족";
+		default:
+			return "만족";
+		}
+	}
 	
 }
