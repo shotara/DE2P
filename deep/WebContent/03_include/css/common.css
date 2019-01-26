@@ -238,12 +238,12 @@ a {
 }
 
 .common-white-A {
-	color : #fff;
+	color: #fff;
 }
 
-.common-white-A:hover{
-	text-decoration : none !important;
-	color : #fff;
+.common-white-A:hover {
+	text-decoration: none !important;
+	color: #fff;
 }
 
 .primary-color {
@@ -273,7 +273,7 @@ a {
 	font-size: 1em;
 	height: 36px;
 	color: #f11834;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .commonBtn:focus {
@@ -347,7 +347,7 @@ a {
 	background-color: #f11834;
 	color: #fff;
 	font-weight: bold;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .common-wide75-Btn:focus {
@@ -370,7 +370,7 @@ a {
 	height: 36px;
 	background-color: #fff;
 	color: #f11834;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .common-wide20Reverse-Btn:focus {
@@ -395,7 +395,7 @@ a {
 	height: 30px;
 	background-color: #fff;
 	color: #f11834;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .common-wide85Reverse-Btn:focus {
@@ -837,7 +837,7 @@ a.subnav-link:hover {
 .chnDtlGo {
 	text-decoration: none;
 	color: #f11834;
-	outline : none;
+	outline: none;
 }
 
 .chnDtlGo:hover {
@@ -988,14 +988,14 @@ ul.sub-tabs li a.active {
 .upload-Video {
 	margin: 0 auto;
 	width: 20%;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .commercialVideo {
 	margin: 0 auto;
 	width: auto;
 	padding-right: 16px;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .detail .count {
@@ -1071,13 +1071,14 @@ ul.sub-tabs li a.active {
 /*  Search Page CSS  */
 /*********************************/
 .rec-search {
-	width : 100%;
-	min-height : 700px;
+	width: 100%;
+	min-height: 700px;
+	position : relative;
 }
 
 .search-Keyword {
 	width: 100%;
-	display : inline-block;
+	display: inline-block;
 }
 
 .search-Keyword input[type="text"] {
@@ -1094,88 +1095,155 @@ ul.sub-tabs li a.active {
 	-moz-appearance: none;
 	appearance: none;
 	outline-style: none;
-	spellcheck : false !important;
-	display : inline-block;
+	spellcheck: false !important;
+	display: inline-block;
 }
 
 .ipt-search-box {
-	width : auto;
-	display : inline;
+	width: auto;
+	display: inline;
 }
 
 .clear-Btn {
-	color : #fff;
-	border : none;
-	apperance : none;
-	outline : none;
-	display : none;
-	padding : 0;
-	vertical-align : middle;
-	margin-bottom : 12px;
-	cursor : pointer;
+	color: #fff;
+	border: none;
+	apperance: none;
+	outline: none;
+	display: none;
+	padding: 0;
+	vertical-align: middle;
+	margin-bottom: 12px;
+	cursor: pointer;
 }
 
 .clear-Btn:focus {
-	outline : none;
+	outline: none;
 }
 
 .before-result {
-	padding-top : 20px;
+	padding-top: 20px;
 	min-height: 400px;
 }
 
 .before-result span {
-	font-size : 30px;
+	font-size: 30px;
 }
 
 .non-result {
-	padding-top : 100px;
-	font-size: 30px;
+	padding-top: 100px;
 	min-height: 400px;
+}
+
+.non-result span {
+	font-size: 1.75em;
 }
 
 .search-reco-channel-list {
 	padding-top: 30px;
-	display : inline-block;
+	display: inline-block;
 }
 
 .search-reco-channel {
-	width : 270px;
-	height : 120px;
-	border : 1px solid #eee;
-	border-radius : 3px;
+	width: 270px;
+	height: 120px;
+	border: 1px solid #eee;
+	border-radius: 3px;
 	box-shadow: 1px 1px #eeeeee;
-	display : inline-block;
-	margin-right : 5px;
-	margin-bottom : 5px;
+	display: inline-block;
+	margin-right: 5px;
+	margin-bottom: 5px;
 }
 
 .search-reco-channel-right {
-	width : 270px;
-	height : 120px;
-	border : 1px solid #eee;
-	border-radius : 3px;
+	width: 270px;
+	height: 120px;
+	border: 1px solid #eee;
+	border-radius: 3px;
 	box-shadow: 1px 1px #eeeeee;
-	display : inline-block;
+	display: inline-block;
 }
 
 .search-reco-chnImg {
-	display : inline-block;
-	padding-left : 18px;
-	padding-top : 10px;
-	padding-right : 10px;
-	vertical-align : middle;
+	display: inline-block;
+	padding-left: 18px;
+	padding-top: 10px;
+	padding-right: 10px;
+	vertical-align: middle;
 }
 
 .search-reco-chnInfo {
-	padding-top : 10px;
-	display : inline-block;
-	vertical-align : middle;
+	padding-top: 10px;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .search-reco-chnInfo .name {
-	font-weight : bold;
-	font-size : 1.2em;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+/*************************************************/
+/* The Search Channel Request Modal (background) */
+/*************************************************/
+
+.req-search-modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1000; /* Sit on top */
+	padding-top: 200px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.req-search-modal-content {
+	display : none;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	border-radius : 5px;
+	width: 35%;
+	height : 300px;
+}
+
+/* The Close Button */
+.req-modal-close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.req-modal-close:hover, .req-modal-close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.req-search-modal-title {
+	font-size : 1.5em;
+	font-wieght : bold;
+}
+
+.ipt-req-search-channel {
+	height: 36px;
+	font-size: 1em;
+	width: 100%;
+	border: 1px solid #b4b4b4;
+	border-radius: 3px;
+	padding-left: 10px;
+	spellcheck: false;
+}
+
+.ipt-req-search-channel:focus {
+	border: 1px solid #f11834;
+	outline: none;
 }
 
 /**********************************/
@@ -1197,7 +1265,7 @@ ul.sub-tabs li a.active {
 	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
-	spellcheck : false;
+	spellcheck: false;
 }
 
 .ipt-channel-name:focus {
@@ -1256,7 +1324,7 @@ ul.sub-tabs li a.active {
 	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
-	spellcheck : false;
+	spellcheck: false;
 }
 
 .ipt-Common-Review:focus {
@@ -1299,7 +1367,7 @@ ul.sub-tabs li a.active {
 	border: 1px solid #b4b4b4;
 	border-radius: 3px;
 	padding-left: 10px;
-	spellcheck : false;
+	spellcheck: false;
 }
 
 .review-TextArea:focus {
@@ -1481,7 +1549,7 @@ ul.sub-tabs li a.active {
 	background-color: #fff;
 	color: #747474;
 	margin-right: 4px;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .common-page-link:focus {
@@ -1502,7 +1570,7 @@ ul.sub-tabs li a.active {
 	color: #f11834;
 	font-weight: bold;
 	margin-right: 4px;
-	cursor : default;
+	cursor: default;
 }
 
 .common-page-pre, .common-page-next {
@@ -1539,54 +1607,50 @@ ul.sub-tabs li a.active {
 
 .recommend-channel-list {
 	padding-top: 30px;
-	display : inline-block;
+	display: inline-block;
 }
 
 .recommend-channel {
-	width : 270px;
-	height : 120px;
-	border : 1px solid #eee;
-	border-radius : 3px;
+	width: 270px;
+	height: 120px;
+	border: 1px solid #eee;
+	border-radius: 3px;
 	box-shadow: 1px 1px #eeeeee;
-	display : inline-block;
-	margin-right : 5px;
+	display: inline-block;
+	margin-right: 5px;
 }
 
 .recommend-channel-right {
-	width : 270px;
-	height : 120px;
-	border : 1px solid #eee;
-	border-radius : 3px;
+	width: 270px;
+	height: 120px;
+	border: 1px solid #eee;
+	border-radius: 3px;
 	box-shadow: 1px 1px #eeeeee;
-	display : inline-block;
+	display: inline-block;
 }
 
 .reco-chnImg {
-	display : inline-block;
-	padding-left : 15px;
-	padding-top : 10px;
-	padding-right : 10px;
-	vertical-align : middle;
+	display: inline-block;
+	padding-left: 15px;
+	padding-top: 10px;
+	padding-right: 10px;
+	vertical-align: middle;
 }
 
 .reco-chnInfo {
-	padding-top : 10px;
-	display : inline-block;
-	vertical-align : middle;
+	padding-top: 10px;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .reco-chnInfo .name {
-	font-weight : bold;
-	font-size : 1.2em;
+	font-weight: bold;
+	font-size: 1.2em;
 }
-
 
 /**********************/
 /* etc contact us     */
 /**********************/
-
 .contact-us {
-	min-height : 650px;
+	min-height: 650px;
 }
-
-

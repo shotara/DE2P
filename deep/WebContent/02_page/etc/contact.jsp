@@ -18,10 +18,13 @@
 	<div class="container contact-us">
 		<div class="row">
 			<div class="contact-title">
-				<input />
+				<input placeholder="무엇이든 질문하세요!"/>
 			</div>
 			<div class="contact-content">
 				<textarea rows="" cols=""></textarea>
+			</div>
+			<div class="">
+				<button class="common-btn"></button>
 			</div>
 		
 		</div>

@@ -219,7 +219,7 @@ Common.review = function (mode){
 			alert("채널명을 입력해주세요.");
 			return;
 		}
-		
+
 		var channelPrice = $("#Input-Commercial-Price").val();
 		if (channelPrice=="") {
 			alert("광고 집행비용을 입력해주세요.");
@@ -229,13 +229,13 @@ Common.review = function (mode){
 			alert("숫자만 입력해주세요.");
 			return;
 		} 
-		
+
 		var channelText = $("#Input-Commercial-Text").val();
 		if (channelText=="") {
 			alert("리뷰 내용을 입력해주세요.");
 			return;
 		}
-		
+
 		/**move next-page **/
 		var review_step1 = document.getElementById('review-Step1');
 		var review_step2 = document.getElementById('review-Step2');
@@ -250,7 +250,7 @@ Common.review = function (mode){
 		review_step2.style.display = 'none';
 	}
 	else if(mode==3){ //confirm the review
-		
+
 		var publicKeyModulus = "";
 		var publicKeyExponent = "";
 
@@ -278,7 +278,7 @@ Common.review = function (mode){
 		var commercialPrice = $("#Input-Commercial-Price").val();
 		var commercialUrl = $("#Input-Commercial-Url").val();
 		var channelText = $("#Input-Commercial-Text").val();
-		
+
 		var targetReach = $("#success-reach").val();
 		var targetConvert = $("#success-convert").val();
 		var targetType = $("#success-itemType").val();
@@ -308,7 +308,7 @@ Common.review = function (mode){
 				inputReviewRecomand : channelRecomand,
 				inputReviewAdAgain : channelReuse
 		};
-		
+
 		$.ajax({
 			type:"POST",
 			url: "/channel?action=addReview",
@@ -316,7 +316,7 @@ Common.review = function (mode){
 			dataType: "json",
 			async : false,
 			success: function(response) {
-				
+
 				if(response.outputResult == "1") {
 					alert("리뷰가 등록되었습니다.");
 					location.href = "/";
@@ -371,6 +371,7 @@ $(function() {
 /******************************/
 
 Common.search = function (mode){
+	
 	if(mode == 1){ /** clear input value and remove x button **/
 		const elem = document.getElementById('clear-btn');
 		const ipt_clear = document.getElementById('ipt-Search');
@@ -380,21 +381,42 @@ Common.search = function (mode){
 	}
 	else if (mode == 2) {
 		var keyPressed = event.keyCode || event.which;
-	
+
 		if(keyPressed==13){
 			const ipt_search = document.getElementById('ipt-Search');
 			const clear_btn = document.getElementById('clear-btn');
 			clear_btn.style.display = 'inline-block';		
-			
+
 			keyPressed=null;
 		}else{
 			const ipt_search_width = document.getElementById('ipt-Search');
 			const ipt_len = ipt_search_width.value.length;
 			const ipt_width = (ipt_len*23)+'px';
 			//alert(ipt_width);
-		
+
 			ipt_search_width.style.width = ipt_width;
 			return false;
 		}
 	}
+	else if (mode == 3) { /** modal popup Open **/
+		const modal = document.getElementById('req-Search-Modal');
+		const modal_content = document.getElementById('req-Search-Modal-Content');
+		modal.style.display = 'block';
+		modal_content.style.display = 'block';
+
+		/** window.onclick = function(event) {
+			if (event.target == modal) {
+				modal_content.style.display = 'none';
+				modal.style.display = 'none';
+			}
+		} **/
+	}
+	else if (mode == 4) { /** modal popup Close **/
+		const modal = document.getElementById('req-Search-Modal');
+		const modal_content = document.getElementById('req-Search-Modal-Content');
+		modal.style.display = 'none';
+		modal_content.style.display = 'none';
+		// When the user clicks on <span> (x), close the modal
+	}
+
 }
