@@ -3883,6 +3883,7 @@ input[type="button"].btn-block {
 
 .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
   border-color: #e9ecef #e9ecef #dee2e6;
+  cursor : pointer;
 }
 
 .nav-tabs .nav-link.disabled {
@@ -3896,6 +3897,7 @@ input[type="button"].btn-block {
   color: #495057;
   background-color: #fff;
   border-color: #dee2e6 #dee2e6 #fff;
+  cursor : pointer;
 }
 
 .nav-tabs .dropdown-menu {

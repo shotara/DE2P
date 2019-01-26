@@ -75,8 +75,11 @@
 							</div>
 							<div class="txt-left review-commonSubTxt">광고한 채널의 이름을
 								입력해주세요!</div>
-							<input class="ipt-Common-Review" type="text"
-								id="Input-Channel-Name" placeholder="와썹맨Wassup-man" required onchange="searchChannel()"/>
+							<div class="channel-autocomplete">
+								<input class="ipt-Common-Review" type="text"
+									id="Input-Channel-Name" placeholder="Ex) 와썹맨, Dana " required
+									onchange="searchChannel()" />
+							</div>
 						</div>
 
 						<div class="ipt-channel-review pTop2">
@@ -134,17 +137,17 @@
 								<select class="ipt-Select-Date" id="commercial-Date2">
 									<option value="1">1월</option>
 									<option value="2">2월</option>
-									<option value="3">3월</option>									<option value="11">11월</option>
-									<option value="4">4월</option>									<option value="11">11월</option>
-									<option value="5">5월</option>									<option value="11">11월</option>
-									<option value="6">6월</option>									<option value="11">11월</option>
-									<option value="7">7월</option>									<option value="11">11월</option>
-									<option value="8">8월</option>									<option value="11">11월</option>
-									<option value="9">9월</option>									<option value="11">11월</option>
-									<option value="10">10월</option>									<option value="11">11월</option>
+									<option value="3">3월</option>
+									<option value="4">4월</option>
+									<option value="5">5월</option>
+									<option value="6">6월</option>
+									<option value="7">7월</option>
+									<option value="8">8월</option>
+									<option value="9">9월</option>
+									<option value="10">10월</option>
 									<option value="11">11월</option>
 									<option value="12">12월</option>
-									
+
 								</select>
 							</div>
 
@@ -198,10 +201,11 @@
 						<div class="pTop2">
 							<button class="float-left common-wide20Reverse-Btn pRight"
 								type="button" onclick="Common.review(4)">취소</button>
-							<button class="float-right common-wide75-Btn" type="button" onclick="Common.review(1)">다음</button>
+							<button class="float-right common-wide75-Btn" type="button"
+								onclick="Common.review(1)">다음</button>
 						</div>
 					</div>
-					
+
 					<div class="review-step2" id="review-Step2">
 
 						<div class="pTop">
@@ -319,7 +323,7 @@
 							</div>
 
 						</div>
-						
+
 						<div class="pTop"></div>
 
 						<div class="ipt-channel-review pTop3">
@@ -330,15 +334,13 @@
 
 						<div class="float-right">
 							<div class="radio-item">
-								<input type="radio" id="channel-Reuse"
-									name="channel-Reuse" value="0" checked> <label
-									for="channel-Reuse">예</label>
+								<input type="radio" id="channel-Reuse" name="channel-Reuse"
+									value="0" checked> <label for="channel-Reuse">예</label>
 							</div>
 
 							<div class="radio-item">
-								<input type="radio" id="channel-Unreuse"
-									name="channel-reuse" value="1"> <label
-									for="channel-Unreuse">아니오</label>
+								<input type="radio" id="channel-Unreuse" name="channel-reuse"
+									value="1"> <label for="channel-Unreuse">아니오</label>
 							</div>
 
 						</div>
@@ -349,8 +351,8 @@
 						<div class="pTop2">
 							<button class="float-left common-wide20Reverse-Btn pRight"
 								type="button" onclick="Common.review(2)">이전</button>
-							<button class="float-right common-wide75-Btn" type="button" onclick="Common.review(3)">리뷰
-								등록</button>
+							<button class="float-right common-wide75-Btn" type="button"
+								onclick="Common.review(3)">리뷰 등록</button>
 						</div>
 
 					</div>

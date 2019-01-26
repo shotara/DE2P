@@ -107,6 +107,7 @@
 								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
 							</div>
 						</div>
+
 						<div class="search-reco-channel">
 							<div class="search-reco-chnImg txt-left">
 								<img id="search-reco-thumbNail"
@@ -306,8 +307,71 @@
 
 				<!-- channel result area start -->
 
-				<div class="videoResult">
-					<div class=""></div>
+				<div class="search-exist-video-Result">
+				
+					<div class="search-channel-exist-title">검색한 채널</div>
+					
+					<div class="search-channel-list">
+						<div class="search-reco-channel">
+							<div class="search-chnImg txt-left">
+								<img id="search-thumbNail"
+									style="width: 50px; border-radius: 50px;"
+									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+							</div>
+							<div class="search-chnInfo">
+								<div class="name">Wassup-Man</div>
+								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+							</div>
+							<div class="txt-center pTop">
+								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+							</div>
+						</div>
+
+						<div class="search-channel">
+							<div class="search-chnImg txt-left">
+								<img id="search-thumbNail"
+									style="width: 50px; border-radius: 50px;"
+									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+							</div>
+							<div class="search-chnInfo">
+								<div class="name">Wassup-Man</div>
+								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+							</div>
+							<div class="txt-center pTop">
+								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+							</div>
+						</div>
+
+						<div class="search-channel">
+							<div class="search-chnImg txt-left">
+								<img id="search-thumbNail"
+									style="width: 50px; border-radius: 50px;"
+									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+							</div>
+							<div class="search-chnInfo">
+								<div class="name">Wassup-Man</div>
+								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+							</div>
+							<div class="txt-center pTop">
+								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+							</div>
+						</div>
+
+						<div class="search-channel-right">
+							<div class="search-chnImg txt-left">
+								<img id="search-thumbNail"
+									style="width: 50px; border-radius: 50px;"
+									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+							</div>
+							<div class="search-chnInfo">
+								<div class="name">Wassup-Man</div>
+								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+							</div>
+							<div class="txt-center pTop">
+								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<!-- channel result area finished -->
@@ -323,16 +387,18 @@
 				<div class="req-search-modal-content" id="req-Search-Modal-Content">
 					<span class="req-modal-close" onclick="Common.search(4)">&times;</span>
 
-					<div class="pTop">
+					<div class="req-input-area">
 						<span class="req-search-modal-title">채널 수집 요청하기</span>
-						<hr style="margin-top: 3px; border-color: #f11834;">
+						<hr style="margin-top: 5px; border-color: #f11834;">
+						
 						<span class="display-block">궁금한 채널 정보가 나오지 않았나요?</span> <span
 							class="display-block">채널 URL을 입력하면 랭크리에서 관련 정보 수집을 시작합니다.</span>
-						<div class="pTop"></div>
+
+						<div class="pTop2"></div>
 						<input class="ipt-req-search-channel"
 							placeholder="https://www.youtube.com/user/example" type="email" />
-						<div class="text-center">
-							<button class="common-wide-758-Btn">채널 수집 요청</button>
+						<div class="text-center pTop2">
+							<button class="common-wide-Reverse-Btn">채널 수집 요청</button>
 						</div>
 					</div>
 				</div>

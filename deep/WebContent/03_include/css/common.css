@@ -362,6 +362,31 @@ a {
 	text-decoration: none !important;
 }
 
+.common-wide-Reverse-Btn {
+	width: 100%;
+	border-radius: 8px;
+	border: 1px solid #f11834;
+	font-size: 1em;
+	height: 36px;
+	background-color: #fff;
+	color: #f11834;
+	cursor: pointer;
+}
+
+.common-wide-Reverse-Btn:focus {
+	outline: none;
+}
+
+.common-wide-Reverse-Btn a {
+	text-decoration: none !important;
+	color: #fff !important;
+}
+
+.common-wide-Reverse-Btn a:hover {
+	text-decoration: none !important;
+	color: #fff;
+}
+
 .common-wide20Reverse-Btn {
 	width: 20%;
 	border-radius: 8px;
@@ -1070,10 +1095,12 @@ ul.sub-tabs li a.active {
 /**********************************/
 /*  Search Page CSS  */
 /*********************************/
+
+/** search basic page css + search keyword area *******/
 .rec-search {
 	width: 100%;
 	min-height: 700px;
-	position : relative;
+	position: relative;
 }
 
 .search-Keyword {
@@ -1120,6 +1147,7 @@ ul.sub-tabs li a.active {
 	outline: none;
 }
 
+/** before search something **/
 .before-result {
 	padding-top: 20px;
 	min-height: 400px;
@@ -1129,6 +1157,7 @@ ul.sub-tabs li a.active {
 	font-size: 30px;
 }
 
+/** none result            **/
 .non-result {
 	padding-top: 100px;
 	min-height: 400px;
@@ -1138,6 +1167,64 @@ ul.sub-tabs li a.active {
 	font-size: 1.75em;
 }
 
+/** result exist in search page **/
+.search-exist-video-Result {
+	padding-top: 20px;
+	min-height: 400px;
+}
+
+.search-channel-exist-title {
+	text-align: left;
+	font-size: 1.5em;
+}
+
+.search-channel-list {
+	padding-top: 20px;
+	display: inline-block;
+}
+
+.search-channel {
+	width: 270px;
+	height: 120px;
+	border: 1px solid #eee;
+	border-radius: 3px;
+	box-shadow: 1px 1px #eeeeee;
+	display: inline-block;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+.search-channel-right {
+	width: 270px;
+	height: 120px;
+	border: 1px solid #eee;
+	border-radius: 3px;
+	box-shadow: 1px 1px #eeeeee;
+	display: inline-block;
+}
+
+.search-chnImg {
+	display: inline-block;
+	padding-left: 18px;
+	padding-top: 10px;
+	padding-right: 10px;
+	vertical-align: middle;
+}
+
+.search-chnInfo {
+	padding-top: 10px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.search-chnInfo .name {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+/*************************************/
+/** recommend channel in search page */
+/*************************************/
 .search-reco-channel-list {
 	padding-top: 30px;
 	display: inline-block;
@@ -1185,11 +1272,10 @@ ul.sub-tabs li a.active {
 /*************************************************/
 /* The Search Channel Request Modal (background) */
 /*************************************************/
-
 .req-search-modal {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
-	z-index: 1000; /* Sit on top */
+	z-index: 1001; /* Sit on top */
 	padding-top: 200px; /* Location of the box */
 	left: 0;
 	top: 0;
@@ -1202,14 +1288,14 @@ ul.sub-tabs li a.active {
 
 /* Modal Content */
 .req-search-modal-content {
-	display : none;
+	display: none;
 	background-color: #fefefe;
 	margin: auto;
 	padding: 20px;
 	border: 1px solid #888;
-	border-radius : 5px;
+	border-radius: 5px;
 	width: 35%;
-	height : 300px;
+	height: 265px;
 }
 
 /* The Close Button */
@@ -1227,8 +1313,8 @@ ul.sub-tabs li a.active {
 }
 
 .req-search-modal-title {
-	font-size : 1.5em;
-	font-wieght : bold;
+	font-size: 1.5em;
+	font-wieght: bold;
 }
 
 .ipt-req-search-channel {
@@ -1256,6 +1342,12 @@ ul.sub-tabs li a.active {
 
 .ipt-channel-review {
 	width: 100%;
+}
+
+.channel-autocomplete {
+	position: relative;
+	display: inline-block;
+	width : 100%;
 }
 
 .ipt-channel-name {

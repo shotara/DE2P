@@ -14,16 +14,21 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="/index.jsp">채널100
-						<span class="sr-only">(current)</span>
+				<li class="nav-item active"><a class="nav-link"
+					href="/index.jsp">채널100 <span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item active"><a class="nav-link" href="/02_page/Channel/allChannel.jsp">모든채널</a></li>
-				<li class="nav-item active"><a class="nav-link" href="/02_page/Channel/newChannel.jsp">새로운채널</a></li>
-				<li class="nav-item active"><a class="nav-link" href="/02_page/Search/ChannelSearch.jsp">검색</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/02_page/Channel/allChannel.jsp">모든채널</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/02_page/Channel/newChannel.jsp">새로운채널</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/02_page/Search/ChannelSearch.jsp">검색</a></li>
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active"><a class="nav-link"
-						href="/02_page/Review/review.jsp" onclick="Auth.loginCheck()">리뷰등록</a></li>
+					href="#" onclick="Common.search(3)">채널수집요청</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/02_page/Review/review.jsp" onclick="Auth.loginCheck()">리뷰등록</a></li>
 				<c:if test="${empty sessionScope.racMemberNo}">
 					<li class="nav-item active"><a class="nav-link"
 						href="/02_page/Auth/login.jsp">로그인</a></li>
@@ -31,7 +36,8 @@
 						href="/02_page/Auth/join.jsp">회원가입</a></li>
 				</c:if>
 				<c:if test="${not empty sessionScope.racMemberNo}">
-					<li class="nav-item active"><a class="nav-link" href="/02_page/Corp/mainCorp.jsp">기업홈</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="/02_page/Corp/mainCorp.jsp">기업홈</a></li>
 					<li class="nav-item active"><a class="nav-link" href="#"
 						onclick="Auth.logout()">로그아웃</a></li>
 				</c:if>
@@ -39,3 +45,31 @@
 		</div>
 	</div>
 </nav>
+
+<!-- Request Search Channel Area Start -->
+<div class="req-search-modal" id="req-Search-Modal">
+
+	<!-- Modal content -->
+	<div class="req-search-modal-content" id="req-Search-Modal-Content">
+		<span class="req-modal-close" onclick="Common.search(4)">&times;</span>
+
+		<div class="req-input-area">
+			<span class="req-search-modal-title">채널 수집 요청하기</span>
+			<hr style="margin-top: 5px; border-color: #f11834;">
+
+			<span class="display-block">궁금한 채널 정보가 나오지 않았나요?</span> <span
+				class="display-block">채널 URL을 입력하면 랭크리에서 관련 정보 수집을 시작합니다.</span>
+
+			<div class="pTop2"></div>
+			<input class="ipt-req-search-channel"
+				placeholder="https://www.youtube.com/user/example" type="email" />
+			<div class="text-center pTop2">
+				<button class="common-wide-Reverse-Btn">채널 수집 요청</button>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Request Search Channel Area finished -->
+
