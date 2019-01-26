@@ -77,4 +77,17 @@
 		INSERT INTO rac_channel_view(racMemberNo, racChannelNo, racChannelViewDate)
 		VALUES(#{memberNo}, #{channelNo}, #{inputCurrentDate})
 	</select>		
+		
+    <select id="checkChannelLike" parameterType="java.util.HashMap" resultType="int">
+		SELECT count(*) FROM rac_channel_like WHERE racMemberNo=#{memberNo} AND racChannelNo=#{channelNo}
+	</select>		
+		
+    <select id="addChannelLike" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO rac_channel_like(racMemberNo, racChannelNo, racChannellikeDate)
+		VALUES(#{memberNo}, #{channelNo}, #{inputCurrentDate})
+	</select>	
+	
+	<select id="deleteChannelLike" parameterType="java.util.HashMap" resultType="int">
+		DELETE FROM rac_channel_like WHERE racChannelNo=#{channelNo} AND racMemberNo=#{memberNo}
+	</select>
 </mapper>

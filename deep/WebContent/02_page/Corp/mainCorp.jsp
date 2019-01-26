@@ -252,10 +252,10 @@
 
 		            $("#likePaging").empty();
 		            
-		    		var like_current = args.recentCurrentPageNo;
+		    		var like_current = args.likeCurrentPageNo;
 		    		var like_total = parseInt((like_current) / 10) * 10 + 10;
 		    		var like_start = parseInt((like_current) / 10) * 10;
-		    		var like_finalPage = args.recentFinalPageNo;
+		    		var like_finalPage = args.likeFinalPageNo;
 		    		
 		    		if (like_start > 0) {
 		    			if ((like_start - 10) == 0)

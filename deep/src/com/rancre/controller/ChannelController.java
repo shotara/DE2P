@@ -355,4 +355,128 @@ public class ChannelController {
 			e.printStackTrace();
 		}
 	}
+
+	public static void addChannelLike(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+	
+		try{
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			int inputChannelNo = req.getParameter("inputChannelNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelNo").toString())) : 0;
+			Calendar calendar = Calendar.getInstance();
+			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputChannelNo);	
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			// Member check
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// Check Channel Like
+			int check = ChannelDAO.checkChannelLike(sessionMemberNo, inputChannelNo);
+			if(check!=0) {
+				CommonUtil.commonPrintLog("FAIL", className, "Already Channel Like !!!", map);
+				jObject.put("outputResult", "-3");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			int check2 = ChannelDAO.addChannelLike(sessionMemberNo, inputChannelNo, inputCurrentDate);
+			if(check2!=1) {
+				CommonUtil.commonPrintLog("FAIL", className, "Add Feed Like Fail !!!", map);
+				jObject.put("outputResult", "-4");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			CommonUtil.commonPrintLog("SUCCESS", className, "Add Channel Like OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+//			req.getRequestDispatcher("/index.jsp").forward(req, res);
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void deleteChannelLike(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+	
+		try{
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			int inputChannelNo = req.getParameter("inputChannelNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelNo").toString())) : 0;
+			Calendar calendar = Calendar.getInstance();
+			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputChannelNo);	
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			// Member check
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// Check Channel Like
+			int check = ChannelDAO.checkChannelLike(sessionMemberNo, inputChannelNo);
+			if(check!=1) {
+				CommonUtil.commonPrintLog("FAIL", className, "Not Channel Like !!!", map);
+				jObject.put("outputResult", "-3");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			int check2 = ChannelDAO.deleteChannelLike(sessionMemberNo, inputChannelNo);
+			if(check2!=1) {
+				CommonUtil.commonPrintLog("FAIL", className, "Delete Feed Like Fail !!!", map);
+				jObject.put("outputResult", "-4");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			CommonUtil.commonPrintLog("SUCCESS", className, "Add Channel Like OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+//			req.getRequestDispatcher("/index.jsp").forward(req, res);
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

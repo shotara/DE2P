@@ -182,32 +182,21 @@ public class ChannelDAO {
 		}
 	}
 	
-	// Update Method
-	public static int setFeed(
-			int inputFeedNo, 
+
+	public static int addChannelLike(
 			int inputMemberNo, 
-			int inputCategoryNo, 
-			int inputFeedStatus,
-			int inputFeedType, 
-			long inputCurrentDate, 
-			String inputFeedTitle, 
-			String inputFeedImages,
-			String inputFeedContent) {
+			int inputChannelNo, 
+			Timestamp inputCurrentDate) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("feedNo", inputFeedNo);
+			map.put("channelNo", inputChannelNo);	
 			map.put("memberNo", inputMemberNo);			
-			map.put("categoryNo", inputCategoryNo);			
-			map.put("feedStatus", inputFeedStatus);			
-			map.put("feedType", inputFeedType);
-			map.put("inputCurrentDate", inputCurrentDate);
-			map.put("feedTitle", inputFeedTitle);			
-			map.put("feedImages", inputFeedImages);			
-			map.put("feedContent", inputFeedContent);			
-			int check = (int)sqlSession.update(namespace + ".setFeed", map);
+			map.put("inputCurrentDate", inputCurrentDate);			
+
+			int check = (int)sqlSession.insert(namespace + ".addChannelLike", map);
 			
 			if(check == 1) {
 				sqlSession.commit();
@@ -222,39 +211,16 @@ public class ChannelDAO {
 	}
 	
 	// Delete Method
-	public static int deleteFeedLike(int inputFeedNo, int inputMemberNo) {
+	public static int deleteChannelLike(int inputMemberNo, int inputChannelNo) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("feedNo", inputFeedNo);
+			map.put("channelNo", inputChannelNo);	
 			map.put("memberNo", inputMemberNo);			
-		
-			int check = (int)sqlSession.delete(namespace + ".deleteFeedLike", map);
-			
-			if(check == 1) {
-				sqlSession.commit();
-				return check;
-			} else {
-				sqlSession.rollback();
-				return check;
-			}
-		} finally {
-			sqlSession.close();
-		}
-	}
 
-	public static int deleteFeedCommentLike(int inputFeedCommentNo, int inputMemberNo) {
-		
-		SqlSession sqlSession = DAOFactory.getSqlSession(false);
-		
-		try {	
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("feedCommentNo", inputFeedCommentNo);
-			map.put("memberNo", inputMemberNo);			
-		
-			int check = (int)sqlSession.delete(namespace + ".deleteFeedCommentLike", map);
+			int check = (int)sqlSession.delete(namespace + ".deleteChannelLike", map);
 			
 			if(check == 1) {
 				sqlSession.commit();
@@ -266,6 +232,7 @@ public class ChannelDAO {
 		} finally {
 			sqlSession.close();
 		}
+
 	}
 	
 	// Select Method
@@ -630,6 +597,22 @@ public class ChannelDAO {
 		
 		try {	
 			return (int)sqlSession.selectOne(namespace + ".getChannelCostLastOne");
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int checkChannelLike(int inputMemberNo, int inputChannelNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberNo", inputMemberNo);
+			map.put("channelNo", inputChannelNo);
+
+			return (int)sqlSession.selectOne(namespace + ".checkChannelLike", map);
 			
 		} finally {
 			sqlSession.close();
