@@ -16,40 +16,6 @@
 		location.href = "/02_page/Auth/login.jsp"
 	}
 	
-	function searchChannel() {
-		
-		var channelName = protectXSS($("#Input-Channel-Name").val());
-
-		$( "#Input-Channel-Name" ).autocomplete({
-	        source : function( request, response ) {
-	             $.ajax({
-	                    type: 'post',
-	                    url: "/channel?action=autoCompleteChannel",
-	                    dataType: "json",
-	                   	async:true,
-	                    data: { inputChannelTitle : channelName },
-	                    success: function(data) {
-	                        //서버에서 json 데이터 response 후 목록에 뿌려주기 위함
-	                        response(
-	                            $.map(data.outputResult, function(item) {
-	                                return {
-	                                    label: item.outputChannelTitle,
-	                                    value: item.outputChannelTitle
-	                                }
-	                            })
-	                        );
-	                    }
-	               });
-	            },
-	        //조회를 위한 최소글자수
-	        minLength: 2,
-	        select: function( event, ui ) {
-	            // 만약 검색리스트에서 선택하였을때 선택한 데이터에 의한 이벤트발생
-	            
-	        }
-	    });
-	}
-	
 </script>
 </head>
 <body>
@@ -78,7 +44,7 @@
 							<div class="channel-autocomplete">
 								<input class="ipt-Common-Review" type="text"
 									id="Input-Channel-Name" placeholder="Ex) 와썹맨, Dana " required
-									onchange="searchChannel()" />
+									onkeyup="Common.review(5)" />
 							</div>
 						</div>
 

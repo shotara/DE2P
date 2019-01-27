@@ -56,15 +56,19 @@
 		<div class="req-input-area">
 			<span class="req-search-modal-title">채널 수집 요청하기</span>
 			<hr style="margin-top: 5px; border-color: #f11834;">
+			
+			<div class="pTop"></div>
 
 			<span class="display-block">궁금한 채널 정보가 나오지 않았나요?</span> <span
 				class="display-block">채널 URL을 입력하면 랭크리에서 관련 정보 수집을 시작합니다.</span>
 
 			<div class="pTop2"></div>
-			<input class="ipt-req-search-channel"
+			
+			<input class="ipt-req-search-channel" id ="ipt-Req-Search-Channel"
 				placeholder="https://www.youtube.com/user/example" type="email" />
-			<div class="text-center pTop2">
-				<button class="common-wide-Reverse-Btn">채널 수집 요청</button>
+				
+			<div class="text-center pTop3">
+				<button class="common-wide-Reverse-Btn" onclick="Common.search(5)">채널 수집 요청</button>
 			</div>
 		</div>
 	</div>

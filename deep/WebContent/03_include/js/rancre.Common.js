@@ -337,8 +337,36 @@ Common.review = function (mode){
 			check_cancel = false;
 		}
 	}
+	else if(mode==5){ //채널명 자동완성
 
-}
+		var channelName = protectXSS($("#Input-Channel-Name").val());
+
+		$("#Input-Channel-Name").autocomplete({
+			source : function(request, response) {
+				$.ajax({
+					type : 'post',
+					url : "/channel?action=autoCompleteChannel",
+					dataType : "json",
+					async : true,
+					data : {
+						inputChannelTitle : channelName
+					},
+					success : function(data) {
+						//서버에서 json 데이터 response 후 목록에 뿌려주기 위함, 한글 데이터가 지금 깨지고 있는 것 같은데 확인 필
+						response($.map(data.outputResult, function(item) {
+							return {
+								label : item.outputChannelTitle,
+								value : item.outputChannelTitle,
+							}
+						}));
+					}
+				});
+			},
+			//조회를 위한 최소글자수 1로 해야함 한글자짜리 활성화 된 채널 2개 존재함 유튜브 채널 타이틀 정책 쓰레기임 한글자가 뭐냐 ex, '벨'이라는 유튜버 있음 
+			minLength : 1
+		});
+	}
+};
 
 /******************************/
 /** channel Detail page using */
@@ -371,7 +399,7 @@ $(function() {
 /******************************/
 
 Common.search = function (mode){
-	
+
 	if(mode == 1){ /** clear input value and remove x button **/
 		const elem = document.getElementById('clear-btn');
 		const ipt_clear = document.getElementById('ipt-Search');
@@ -418,5 +446,51 @@ Common.search = function (mode){
 		modal_content.style.display = 'none';
 		// When the user clicks on <span> (x), close the modal
 	}
+	else if (mode == 5) { /**request channel search **/
+		var req_Channel_Url = $("#ipt-Req-Search-Channel").val();
+		var check_Channel_Url1 = "www.youtube.com/user/";
+		var check_Channel_Url2 = "www.youtube.com/channel/";
 
+		if (req_Channel_Url=="") {
+			alert("채널 URL을 입력해주세요.");
+			return;
+		}
+		else if (req_Channel_Url.length < 22){ /** Url 형식 검사  **/
+			//url이 지나치게 짧은 경우
+			alert("채널 URL을 정확히 입력해주세요.")
+			return;
+		}else if (req_Channel_Url.indexOf(check_Channel_Url1) == -1 && req_Channel_Url.indexOf(check_Channel_Url2) == -1){
+			//url 내 www.youtube.com/user/가 들어갔는지 검사
+			//또는 url 내 www.youtube.com/channel/가 들어갔는지 검사
+			alert("채널 URL을 정확히 입력해주세요.");
+			return;
+		}
+		else {  //채널 URL이 기본적으로 유요한 경우 진입
+
+			var form_data = {
+					inputChannelUrl : req_Channel_Url
+			};
+
+			$.ajax({
+				type:"POST",
+				url: "/channel?action=",
+				data:form_data,
+				dataType: "json",
+				async : false,
+				success: function(response) {
+
+					if(response.outputResult == "1") { /** 정상적으로 채널이 수집되었을 경우 **/ 
+						alert("채널 수집이 정상적으로 요청되었습니다.랭크리에서 채널 정보가 노출되기까지 최대 24시간이 걸릴 수 있습니다.");
+						location.href = "/";
+					} else {
+						alert("알수없는 문제가 발생했습니다.");
+					}
+				}
+			});
+			return; 
+		}
+
+	}
 }
+
+

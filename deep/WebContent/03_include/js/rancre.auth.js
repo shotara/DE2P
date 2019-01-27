@@ -18,7 +18,7 @@ Auth.checkValue = function(mode){
 	case 1: //email check
 		var email = $("#inputMemberEmail").val();
 		if(!validateEmail(email)){  //valid email check
-			alert("올바른  이메일이 아닙니다");
+			alert("올바른 이메일이 아닙니다");
 			return false;
 		}
 		break;
@@ -363,7 +363,7 @@ Auth.login = function(){
 			if(response.outputResult == "1"){
 				location.href = "/";
 			}else{
-				alert("등록되지 않은 이메일이거나, \n 이메일 또는 비밀번호가 잘못되었습니다.");
+				alert("등록되지 않은 이메일이거나, \n이메일 또는 비밀번호가 잘못되었습니다.");
 			}
 		}, error(xhr, status, error){
 			alert("알 수 없는 문제가 발생하였습니다. \n 문제가 지속된다면 전 혼이 나겠네요. \n 고객센터로 조용히 문의바랍니다.");
