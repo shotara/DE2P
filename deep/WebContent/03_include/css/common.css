@@ -1347,7 +1347,7 @@ ul.sub-tabs li a.active {
 .channel-autocomplete {
 	position: relative;
 	display: inline-block;
-	width : 100%;
+	width: 100%;
 }
 
 .ipt-channel-name {
@@ -1470,7 +1470,7 @@ ul.sub-tabs li a.active {
 .review-footer {
 	padding-right: 240px;
 	padding-left: 240px;
-	height: 70px;
+	height: 170px;
 }
 
 .review-step1 {
@@ -1494,6 +1494,19 @@ ul.sub-tabs li a.active {
 .ipt-Select-Reach:focus {
 	border: 1px solid #f11834;
 	outline: none;
+}
+
+/********************************/
+/* autocomplete using in review */
+/********************************/
+
+.ui-autocomplete {
+	max-height: 200px;
+	overflow-y: auto;
+	/* prevent horizontal scrollbar */
+	overflow-x: hidden;
+	/* add padding to account for vertical scrollbar */
+	padding-right: 20px;
 }
 
 /**********************************/
