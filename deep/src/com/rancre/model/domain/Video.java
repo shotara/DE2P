@@ -9,7 +9,7 @@ public class Video {
 	private String racVideoTitle;
 	private long racVideoViews;
 	private String racVideoThumbnail;
-	private String racVideoCreateDate;
+	private Timestamp racVideoCreateDate;
 	private Timestamp racVideoUpdateDate;
 	public Video() {
 		super();
@@ -51,10 +51,10 @@ public class Video {
 	public void setRacVideoThumbnail(String racVideoThumbnail) {
 		this.racVideoThumbnail = racVideoThumbnail;
 	}
-	public String getRacVideoCreateDate() {
+	public Timestamp getRacVideoCreateDate() {
 		return racVideoCreateDate;
 	}
-	public void setRacVideoCreateDate(String racVideoCreateDate) {
+	public void setRacVideoCreateDate(Timestamp racVideoCreateDate) {
 		this.racVideoCreateDate = racVideoCreateDate;
 	}
 	public Timestamp getRacVideoUpdateDate() {
@@ -64,7 +64,7 @@ public class Video {
 		this.racVideoUpdateDate = racVideoUpdateDate;
 	}
 	public Video(int racVideoNo, int racChannelNo, String racVideoId, String racVideoTitle, long racVideoViews,
-			String racVideoThumbnail, String racVideoCreateDate, Timestamp racVideoUpdateDate) {
+			String racVideoThumbnail, Timestamp racVideoCreateDate, Timestamp racVideoUpdateDate) {
 		super();
 		this.racVideoNo = racVideoNo;
 		this.racChannelNo = racChannelNo;

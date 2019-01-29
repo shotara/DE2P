@@ -80,7 +80,7 @@ public class ChannelController {
 				tempObejct.put("outputVideoTitle", CommonUtil.splitString(recentVideoList.get(i).getRacVideoTitle(), 3));
 				tempObejct.put("outputVideoThumbnail", recentVideoList.get(i).getRacVideoThumbnail());
 				tempObejct.put("outputVideoViews", CommonUtil.setCommaForLong(recentVideoList.get(i).getRacVideoViews()));
-				tempObejct.put("outputVideoCreateDate", recentVideoList.get(i).getRacVideoCreateDate());
+				tempObejct.put("outputVideoCreateDate", CommonUtil.getChannelDetailDate(recentVideoList.get(i).getRacVideoCreateDate()));
 				recentViews = (int) (recentViews + recentVideoList.get(i).getRacVideoViews()); 
 				outputRecentVideoList.add(tempObejct);
 				
@@ -135,7 +135,7 @@ public class ChannelController {
 					tempObejct.put("outputReviewRecomand", CommonUtil.getRecomand(reviewList.get(i).getRacReviewRecomand()));
 					tempObejct.put("outputReviewAdAgain", CommonUtil.getRecomand(reviewList.get(i).getRacReviewAdAgain()));
 					tempObejct.put("outputReviewDetail", reviewList.get(i).getRacReviewDetail());
-					tempObejct.put("outputReviewCreateDate", reviewList.get(i).getRacReviewCreateDate());
+					tempObejct.put("outputReviewCreateDate", CommonUtil.getChannelDetailDate(reviewList.get(i).getRacReviewCreateDate()));
 
 					outputReviewList.add(tempObejct);
 				}
