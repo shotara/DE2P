@@ -5,8 +5,8 @@ var Common ={};
 
 Common.addList = function (mode, startNo, categoryNo) {
 
-	if(mode==1 && startNo>=100) return;
-	if((mode==2 || mode==3) && startNo>=200) return;
+	if(mode==1 && startNo>=100) return -1;
+	if((mode==2 || mode==3) && startNo>=200) return -1;
 
 	if(mode == 1) {
 		var url="/main?action=getRankingList";  
@@ -50,7 +50,6 @@ Common.addList = function (mode, startNo, categoryNo) {
 					`);
 
 				}
-
 			},   
 			error:function(e){  
 				alert(e.responseText);  
@@ -141,7 +140,56 @@ Common.addList = function (mode, startNo, categoryNo) {
 						break;
 					}
 				}
-
+				
+				if(args.rankingList.length < 20) {
+					switch(categoryNo) {
+					case 2:
+						$("#studio .btnListGo").hide();
+						break;
+					case 3:
+						$("#entertain .btnListGo").hide();
+						break;
+					case 4:
+						$("#travel .btnListGo").hide();
+						break;
+					case 5:
+						$("#singdance .btnListGo").hide();
+						break;
+					case 6:
+						$("#tech .btnListGo").hide();
+						break;
+					case 7:
+						$("#education .btnListGo").hide();
+						break;
+					case 8:
+						$("#beauty .btnListGo").hide();
+						break;
+					case 9:
+						$("#daylife .btnListGo").hide();
+						break;
+					case 10:
+						$("#game .btnListGo").hide();
+						break;
+					case 11:
+						$("#sports .btnListGo").hide();
+						break;
+					case 12:
+						$("#food .btnListGo").hide();
+						break;
+					case 13:
+						$("#kids .btnListGo").hide();
+						break;
+					case 14:
+						$("#pet .btnListGo").hide();
+						break;
+					case 15:
+						$("#asmr .btnListGo").hide();
+						break;
+					case 16:
+						$("#habbit .btnListGo").hide();
+						break;
+					}
+				}
 			},   
 			error:function(e){  
 				alert(e.responseText);  
@@ -186,6 +234,55 @@ Common.addList = function (mode, startNo, categoryNo) {
 
 				}
 
+				if(args.rankingList.length < 20) {
+					switch(categoryNo) {
+					case 2:
+						$("#studio .btnListGo").hide();
+						break;
+					case 3:
+						$("#entertain .btnListGo").hide();
+						break;
+					case 4:
+						$("#travel .btnListGo").hide();
+						break;
+					case 5:
+						$("#singdance .btnListGo").hide();
+						break;
+					case 6:
+						$("#tech .btnListGo").hide();
+						break;
+					case 7:
+						$("#education .btnListGo").hide();
+						break;
+					case 8:
+						$("#beauty .btnListGo").hide();
+						break;
+					case 9:
+						$("#daylife .btnListGo").hide();
+						break;
+					case 10:
+						$("#game .btnListGo").hide();
+						break;
+					case 11:
+						$("#sports .btnListGo").hide();
+						break;
+					case 12:
+						$("#food .btnListGo").hide();
+						break;
+					case 13:
+						$("#kids .btnListGo").hide();
+						break;
+					case 14:
+						$("#pet .btnListGo").hide();
+						break;
+					case 15:
+						$("#asmr .btnListGo").hide();
+						break;
+					case 16:
+						$("#habbit .btnListGo").hide();
+						break;
+					}
+				}
 			},   
 			error:function(e){  
 				alert(e.responseText);  
@@ -197,7 +294,6 @@ Common.addList = function (mode, startNo, categoryNo) {
 		$(".btnListGo").hide();
 	if((mode==2 || mode==3) && startNo>=890)
 		$(".btnListGo").hide();
-
 }
 
 /******************************/
@@ -365,6 +461,8 @@ Common.review = function (mode){
 			//조회를 위한 최소글자수 1로 해야함 한글자짜리 활성화 된 채널 2개 존재함 유튜브 채널 타이틀 정책 쓰레기임 한글자가 뭐냐 ex, '벨'이라는 유튜버 있음 
 			minLength : 1
 		});
+	} else if(mode==6) {
+		alert("epgpt");
 	}
 };
 
@@ -409,21 +507,94 @@ Common.search = function (mode){
 	}
 	else if (mode == 2) {
 		var keyPressed = event.keyCode || event.which;
+		var channelName = protectXSS($("#ipt-Search").val());
 
-		if(keyPressed==13){
-			const ipt_search = document.getElementById('ipt-Search');
+		if(keyPressed==13) {
+			
+			
+			var publicKeyModulus = "";
+			var publicKeyExponent = "";
+
+			$.ajax({
+				type : "POST",
+				url : "/main?action=getRSAPublicKey",
+				dataType : "json",
+				async: false,
+				success: function(response) {
+					publicKeyModulus = response.deepPublicKeyModulus;
+					publicKeyExponent = response.deepPublicKeyExponent;
+				}, error: function(xhr,status,error) {
+					alert(error);
+				}
+			});
+
+			var rsa = new RSAKey();
+			rsa.setPublic(publicKeyModulus, publicKeyExponent);
+
+			var encryptChannelName = rsa.encrypt(channelName);
+
+			var form_data = {
+					inputChannelName : encryptChannelName
+			};
+
+			$.ajax({
+				type:"POST",
+				url: "/channel?action=searchChannel",
+				data:form_data,
+				dataType: "json",
+				async : false,
+				success: function(response) {
+
+					if(response.outputChannelNo > 0) { /** 정상적채널명 **/ 
+						location.href = "/channel?action=getChannelDetail&inputChannelNo="+response.outputChannelNo;
+					} else {
+						alert("알수없는 문제가 발생했습니다.");
+					}
+				}
+			});
+			return; 
+			
+		}
+		if(channelName !=""){
 			const clear_btn = document.getElementById('clear-btn');
 			clear_btn.style.display = 'inline-block';		
 
 			keyPressed=null;
 		}else{
-			const ipt_search_width = document.getElementById('ipt-Search');
-			const ipt_len = ipt_search_width.value.length;
-			const ipt_width = (ipt_len*23)+'px';
-			//alert(ipt_width);
-
-			ipt_search_width.style.width = ipt_width;
-			return false;
+			Common.search(1);
+//			const ipt_search_width = document.getElementById('ipt-Search');
+//			const ipt_len = ipt_search_width.value.length;
+//			const ipt_width = (ipt_len*23)+'px';
+//			//alert(ipt_width);
+//
+//			ipt_search_width.style.width = ipt_width;
+//			return false;
+		}
+		if(keyPressed != 38 && keyPressed != 39 && keyPressed != 40 && keyPressed != 37) {
+			$("#ipt-Search").autocomplete({
+				source : function(request, response) {
+					$.ajax({
+						type : 'post',
+						url : "/channel?action=autoCompleteChannel",
+						dataType : "json",
+						async : true,
+						data : {
+							inputChannelTitle : channelName
+						},
+						success : function(data) {
+							//서버에서 json 데이터 response 후 목록에 뿌려주기 위함, 한글 데이터가 지금 깨지고 있는 것 같은데 확인 필
+							response($.map(data.outputResult, function(item) {
+								return {
+									label : item.outputChannelTitle,
+									value : item.outputChannelTitle,
+								}
+							}));
+						}
+					});
+				},
+				//조회를 위한 최소글자수 1로 해야함 한글자짜리 활성화 된 채널 2개 존재함 유튜브 채널 타이틀 정책 쓰레기임 한글자가 뭐냐 ex, '벨'이라는 유튜버 있음 
+				minLength : 1
+			});
 		}
 	}
 	else if (mode == 3) { /** modal popup Open **/

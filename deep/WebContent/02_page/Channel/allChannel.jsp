@@ -9,7 +9,121 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
-
+<script>
+	var categoryArray = [0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	
+	function initList(i) {
+		
+		var startNo = categoryArray[i];
+		if(startNo != 0) return; 
+		Common.addList(2,startNo,i);
+		categoryArray[i] = categoryArray[i] + 20;
+		
+	}
+	
+	function addList2(i) {
+			var startNo = categoryArray[i];
+			Common.addList(2,startNo,i);
+			categoryArray[i] = categoryArray[i] + 20;
+			if(categoryArray[i] >= 890) 
+				switch(i) {
+				case 2:
+					$("#studio .btnListGo").hide();
+					break;
+				case 3:
+					$("#entertain .btnListGo").hide();
+					break;
+				case 4:
+					$("#travel .btnListGo").hide();
+					break;
+				case 5:
+					$("#singdance .btnListGo").hide();
+					break;
+				case 6:
+					$("#tech .btnListGo").hide();
+					break;
+				case 7:
+					$("#education .btnListGo").hide();
+					break;
+				case 8:
+					$("#beauty .btnListGo").hide();
+					break;
+				case 9:
+					$("#daylife .btnListGo").hide();
+					break;
+				case 10:
+					$("#game .btnListGo").hide();
+					break;
+				case 11:
+					$("#sports .btnListGo").hide();
+					break;
+				case 12:
+					$("#food .btnListGo").hide();
+					break;
+				case 13:
+					$("#kids .btnListGo").hide();
+					break;
+				case 14:
+					$("#pet .btnListGo").hide();
+					break;
+				case 15:
+					$("#asmr .btnListGo").hide();
+					break;
+				case 16:
+					$("#habbit .btnListGo").hide();
+					break;
+				}
+	}
+	
+	$(document).ready(function() { 
+		
+		var url="/main?action=getRankingList";  
+	    var params = {
+	    	startNo : 0,
+	    	mode : 2,
+	    	categoryNo : 2,
+	    };
+	    
+	    $.ajax({      
+	        type:"POST",  
+	        url:url,      
+	        data:params,  
+	        dataType:'json',
+	        success:function(args){   
+	        	for(var i=0; i<args.rankingList.length; i++) {
+					$('#studio .chnContents').append(`
+							<div id="chnContent" class="w-auto ml-auto">
+							<div class="rankRowImg">
+								<img id="chnListThumbNail"
+									style="width: 48px; border-radius: 48px;"
+									src="`+args.rankingList[i].outputChannelThumbnail +`">
+							</div>
+							<div class="ranc-Row">`+args.rankingList[i].outputChannelTitle+`</div>
+							<div class="ranc-Row2">`+args.rankingList[i].outputCategoryNo+`</div>
+							<div class="ranc-Row">`+args.rankingList[i].outputChannelFollowers+`</div>
+							<div class="ranc-Row">`+args.rankingList[i].outputChannelViews+`</div>
+							<div class="rankRowBtn">
+								<button class="btnChnGo">
+								<a class="chnDtlGo" href="/channel?action=getChannelDetail&inputChannelNo=`+args.rankingList[i].outputChannelNo+`">채널정보
+										보기</a>
+								</button>
+							</div>
+						</div>
+						<hr
+							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+					</div>
+				  `);
+	        	}
+	        	
+	        	if(args.rankingList.length <20) $("#studio .btnListGo").hide();
+	        },   
+	        error:function(e){  
+	            alert(e.responseText);  
+	        }  
+	    });  
+		
+	});
+</script>
 </head>
 <body>
 
@@ -108,7 +222,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(1)">더보기</button>
+						<button class="btnListGo" onclick="addList2(2)">더보기</button>
 					</div>
 				</div>
 				<!--  스튜디오 콘텐츠 영역 끝  -->
@@ -125,7 +239,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(2)">더보기</button>
+						<button class="btnListGo" onclick="addList2(3)">더보기</button>
 					</div>
 
 				</div>
@@ -147,7 +261,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(3)">더보기</button>
+						<button class="btnListGo" onclick="addList2(4)">더보기</button>
 					</div>
 
 				</div>
@@ -168,7 +282,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(4)">더보기</button>
+						<button class="btnListGo" onclick="addList2(5);">더보기</button>
 					</div>
 
 				</div>
@@ -190,7 +304,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(5)">더보기</button>
+						<button class="btnListGo" onclick="addList2(6)">더보기</button>
 					</div>
 
 				</div>
@@ -211,7 +325,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(6)">더보기</button>
+						<button class="btnListGo" onclick="addList2(7)">더보기</button>
 					</div>
 
 				</div>
@@ -231,7 +345,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(7)">더보기</button>
+						<button class="btnListGo" onclick="addList2(8)">더보기</button>
 					</div>
 
 				</div>
@@ -250,7 +364,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(8)">더보기</button>
+						<button class="btnListGo" onclick="addList2(9)">더보기</button>
 					</div>
 				</div>
 
@@ -268,7 +382,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(9)">더보기</button>
+						<button class="btnListGo" onclick="addList2(10)">더보기</button>
 					</div>
 
 				</div>
@@ -287,7 +401,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(10)">더보기</button>
+						<button class="btnListGo" onclick="addList2(11)">더보기</button>
 					</div>
 
 				</div>
@@ -306,7 +420,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(11)">더보기</button>
+						<button class="btnListGo" onclick="addList2(12)">더보기</button>
 					</div>
 
 				</div>
@@ -324,7 +438,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(12)">더보기</button>
+						<button class="btnListGo" onclick="addList2(13)">더보기</button>
 					</div>
 
 
@@ -344,7 +458,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(13)">더보기</button>
+						<button class="btnListGo" onclick="addList(14)">더보기</button>
 					</div>
 
 				</div>
@@ -363,7 +477,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(14)">더보기</button>
+						<button class="btnListGo" onclick="addList(15)">더보기</button>
 					</div>
 
 				</div>
@@ -382,7 +496,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(15)">더보기</button>
+						<button class="btnListGo" onclick="addList(16)">더보기</button>
 					</div>
 
 				</div>
@@ -398,116 +512,4 @@
 	<jsp:include page="/02_page/commonFooter.jsp" flush="false" />
 
 </body>
-<script>
-	var categoryArray = [0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-	function initList(i) {
-		
-		var startNo = categoryArray[i];
-		if(startNo != 0) return; 
-		Common.addList(2,startNo,i);
-		categoryArray[i] = categoryArray[i] + 20;
-	}
-	
-	function addList(i) {
-			var startNo = categoryArray[i];
-			Common.addList(2,startNo,i);
-			categoryArray[i] = categoryArray[i] + 20;
-			if(categoryArray[i] >= 890) 
-				switch(i) {
-				case 2:
-					$("#studio .btnListGo").hide();
-					break;
-				case 3:
-					$("#entertain .btnListGo").hide();
-					break;
-				case 4:
-					$("#travel .btnListGo").hide();
-					break;
-				case 5:
-					$("#singdance .btnListGo").hide();
-					break;
-				case 6:
-					$("#tech .btnListGo").hide();
-					break;
-				case 7:
-					$("#education .btnListGo").hide();
-					break;
-				case 8:
-					$("#beauty .btnListGo").hide();
-					break;
-				case 9:
-					$("#daylife .btnListGo").hide();
-					break;
-				case 10:
-					$("#game .btnListGo").hide();
-					break;
-				case 11:
-					$("#sports .btnListGo").hide();
-					break;
-				case 12:
-					$("#food .btnListGo").hide();
-					break;
-				case 13:
-					$("#kids .btnListGo").hide();
-					break;
-				case 14:
-					$("#pet .btnListGo").hide();
-					break;
-				case 15:
-					$("#asmr .btnListGo").hide();
-					break;
-				case 16:
-					$("#habbit .btnListGo").hide();
-					break;
-				}
-	}
-	
-	$(document).ready(function() { 
-		
-		var url="/main?action=getRankingList";  
-	    var params = {
-	    	startNo : 0,
-	    	mode : 2,
-	    	categoryNo : 2,
-	    };
-	    
-	    $.ajax({      
-	        type:"POST",  
-	        url:url,      
-	        data:params,  
-	        dataType:'json',
-	        success:function(args){   
-	        	for(var i=0; i<args.rankingList.length; i++) {
-					$('#studio .chnContents').append(`
-							<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-								<img id="chnListThumbNail"
-									style="width: 48px; border-radius: 48px;"
-									src="`+args.rankingList[i].outputChannelThumbnail +`">
-							</div>
-							<div class="ranc-Row">`+args.rankingList[i].outputChannelTitle+`</div>
-							<div class="ranc-Row2">`+args.rankingList[i].outputCategoryNo+`</div>
-							<div class="ranc-Row">`+args.rankingList[i].outputChannelFollowers+`</div>
-							<div class="ranc-Row">`+args.rankingList[i].outputChannelViews+`</div>
-							<div class="rankRowBtn">
-								<button class="btnChnGo">
-								<a class="chnDtlGo" href="/channel?action=getChannelDetail&inputChannelNo=`+args.rankingList[i].outputChannelNo+`">채널정보
-										보기</a>
-								</button>
-							</div>
-						</div>
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-					</div>
-				  `);
-	        	}
-	        },   
-	        error:function(e){  
-	            alert(e.responseText);  
-	        }  
-	    });  
-		
-	});
-</script>
 </html>

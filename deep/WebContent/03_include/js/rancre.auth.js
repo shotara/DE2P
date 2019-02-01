@@ -206,6 +206,7 @@ Auth.businessCheck = function () {
 			if(response.outputResult == "1") {
 				alert("확인되었습니다.");
 				var btn = document.getElementById('joinButton');
+				btn.classname="common-wide-Btn";
 				btn.disabled = false;
 				return true;
 			} else if(response.outputResult == "-2") {

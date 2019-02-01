@@ -75,6 +75,11 @@ public class ChannelView extends HttpServlet {
 					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 					ChannelController.deleteChannelLike(req,res);
 					break;		
+				case "searchChannel":
+					map.put("ACTION", "searchChannel");
+					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+					ChannelController.searchChannel(req,res);
+					break;
 				default:
 					CommonUtil.commonPrintLog("ERROR", this.getClass().getSimpleName(), "Incorrect Action Parameter (action : " + action + ")", map);
 			}

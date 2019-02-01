@@ -9,45 +9,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
-<script>
-	$('#inputMemberEmail').focusout(function() {
-		if (!Auth.joinCheck(1)) {
-			buttonDisable();
-		}
-		;
-	});
 
-	$('#inputMemberPassword2').focusout(function() {
-		if (!Auth.joinCheck(2)) {
-			buttonDisable();
-
-		}
-		;
-	});
-
-	function buttonDisable() {
-		var btn = document.getElementById('joinButton');
-		btn.disabled = 'disabled';
-	}
-
-	function checkNumber(temp) {
-
-		if (isNaN(temp) == true) {
-			alert("숫자만 입력해주세요.");
-			buttonDisable();
-		}
-	};
-
-	$('#inputCompany-Number1').focusout(function() {
-		Auth.checkNumber($('#inputCompany-Number1').val());
-	});
-	$('#inputCompany-Number2').focusout(function() {
-		Auth.checkNumber($('#inputCompany-Number2').val());
-	});
-	$('#inputCompany-Number3').focusout(function() {
-		Auth.checkNumber($('#inputCompany-Number3').val());
-	});
-</script>
+<style>
+.common-disable-Btn {
+	width: 100%;
+	border-radius: 8px;
+	border: 1px solid #b4b4b4;
+	font-size: 1em;
+	height: 36px;
+	background-color: #eee;
+	color: #fff;
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
 
@@ -131,7 +105,7 @@
 					<div class="pTop3"></div>
 
 					<div>
-						<button id="joinButton" class="common-wide-Btn" type="button"
+						<button id="joinButton" class="common-disable-Btn" type="button"
 							disabled="disabled" onclick="Auth.join()">회원가입</button>
 					</div>
 
@@ -171,6 +145,42 @@
 			</div>
 		</div>
 	</div>
+<script>
+	$('#inputMemberEmail').focusout(function() {
+		if (!Auth.joinCheck(1)) {
+			buttonDisable();
+		}
+	});
 
+	$('#inputMemberPassword2').focusout(function() {
+		if (!Auth.joinCheck(2)) {
+			buttonDisable();
+		}
+	});
+
+	function buttonDisable() {
+		var btn = document.getElementById('joinButton');
+		btn.classname="common-disable-Btn";
+		btn.disabled = 'disabled';
+	}
+
+	function checkNumber(temp) {
+
+		if (isNaN(temp) == true) {
+			alert("숫자만 입력해주세요.");
+			buttonDisable();
+		}
+	};
+
+	$('#inputCompany-Number1').focusout(function() {
+		Auth.checkNumber($('#inputCompany-Number1').val());
+	});
+	$('#inputCompany-Number2').focusout(function() {
+		Auth.checkNumber($('#inputCompany-Number2').val());
+	});
+	$('#inputCompany-Number3').focusout(function() {
+		Auth.checkNumber($('#inputCompany-Number3').val());
+	});
+</script>
 </body>
 </html>

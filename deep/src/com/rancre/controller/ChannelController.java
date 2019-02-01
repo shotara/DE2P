@@ -55,7 +55,6 @@ public class ChannelController {
 
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int inputChannelNo = req.getParameter("inputChannelNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelNo").toString())) : 0;
-			String inputChannelUrl = req.getParameter("inputChannelUrl") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelUrl").toString()) : "";
 			
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 
@@ -284,8 +283,6 @@ public class ChannelController {
 			String decryptChannelName = EncryptUtil.RSA_Decode(privateKey, inputChannelName);
 			String decryptChannelAdUrl = EncryptUtil.RSA_Decode(privateKey, inputChannelAdUrl);
 
-			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
-
 			/// 리뷰를 등록하려면?  채널 연결, 채널애드, 채널코스트, 리뷰 연결
 			Channel channel = ChannelDAO.getChannelByTitle(decryptChannelName);
 			
@@ -476,6 +473,37 @@ public class ChannelController {
 			return;
 			
 		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void searchChannel(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {			
+			HttpSession session = req.getSession();
+
+			String inputChannelName = req.getParameter("inputChannelName") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelName").toString()) : null;
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			PrivateKey privateKey = null;
+			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+			
+			String decryptChannelName = EncryptUtil.RSA_Decode(privateKey, inputChannelName);
+
+			Channel channel = ChannelDAO.getChannelByTitle(decryptChannelName);
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Auto Complete OK", map);
+			jObject.put("outputChannelNo", channel.getRacChannelNo());
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
