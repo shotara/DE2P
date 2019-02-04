@@ -637,14 +637,35 @@ Common.search = function (mode){
 			return;
 		}
 		else {  //채널 URL이 기본적으로 유요한 경우 진입
+			
+			var publicKeyModulus = "";
+			var publicKeyExponent = "";
 
+			$.ajax({
+				type : "POST",
+				url : "/main?action=getRSAPublicKey",
+				dataType : "json",
+				async: false,
+				success: function(response) {
+					publicKeyModulus = response.deepPublicKeyModulus;
+					publicKeyExponent = response.deepPublicKeyExponent;
+				}, error: function(xhr,status,error) {
+					alert(error);
+				}
+			});
+
+			var rsa = new RSAKey();
+			rsa.setPublic(publicKeyModulus, publicKeyExponent);
+
+			var encryptChannelUrl = rsa.encrypt(req_Channel_Url);
+			
 			var form_data = {
-					inputChannelUrl : req_Channel_Url
+					inputChannelUrl : encryptChannelUrl
 			};
 
 			$.ajax({
 				type:"POST",
-				url: "/channel?action=",
+				url: "/channel?action=searchChannelUrl",
 				data:form_data,
 				dataType: "json",
 				async : false,

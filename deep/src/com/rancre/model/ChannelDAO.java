@@ -209,7 +209,49 @@ public class ChannelDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static int addChannel(
+			int inputMemberNo, 
+			int inputChannelStatus, 
+			String inputCategory,
+			String channelTitle, 
+			int followers, 
+			int views,
+			String checkChannelUrl, 
+			String thumbnail, 
+			String inputCountry, 
+			Timestamp inputCreateDate,
+			Timestamp inputCurrentDate) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+				
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberNo", inputMemberNo);
+			map.put("channelStatus", inputChannelStatus);
+			map.put("channelCategory", inputCategory);			
+			map.put("channelTitle", channelTitle);			
+			map.put("channelFollowers", followers);					
+			map.put("channelViews", views);
+			map.put("channelUrl", checkChannelUrl);			
+			map.put("channelThumbnail", thumbnail);			
+			map.put("channelRegion", inputCountry);
+			map.put("channelCreateDate", inputCreateDate);			
+			map.put("channelInsertDate", inputCurrentDate);		
 	
+			int check = (int)sqlSession.insert(namespace + ".addChannel", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
 	// Delete Method
 	public static int deleteChannelLike(int inputMemberNo, int inputChannelNo) {
 		
@@ -618,4 +660,17 @@ public class ChannelDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static int checkChannelUrl(String checkChannelUrl) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (int)sqlSession.selectOne(namespace + ".checkChannelUrl", checkChannelUrl);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 }

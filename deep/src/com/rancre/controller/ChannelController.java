@@ -1,6 +1,7 @@
 package com.rancre.controller;
 
 import java.io.File;
+import java.net.URL;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -20,6 +21,9 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import com.rancre.config.GlobalValue;
 import com.rancre.model.ChannelDAO;
@@ -498,7 +502,7 @@ public class ChannelController {
 
 			Channel channel = ChannelDAO.getChannelByTitle(decryptChannelName);
 			
-			CommonUtil.commonPrintLog("SUCCESS", className, "Auto Complete OK", map);
+			CommonUtil.commonPrintLog("SUCCESS", className, "Search Channel OK", map);
 			jObject.put("outputChannelNo", channel.getRacChannelNo());
 			res.getWriter().write(jObject.toString());
 			return;
@@ -506,5 +510,96 @@ public class ChannelController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void searchChannelUrl(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {			
+			HttpSession session = req.getSession();
+
+			String inputChannelUrl = req.getParameter("inputChannelUrl") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelUrl").toString()) : null;
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			PrivateKey privateKey = null;
+			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+			
+			String decryptChannelUrl = EncryptUtil.RSA_Decode(privateKey, inputChannelUrl);
+
+			// 채널 중복 확인
+			String checkChannelUrl = decryptChannelUrl.substring(decryptChannelUrl.lastIndexOf("youtube.com") + 11, decryptChannelUrl.length());
+			int check = ChannelDAO.checkChannelUrl(checkChannelUrl);
+			if(check!=0) {
+				CommonUtil.commonPrintLog("FAIL", className, "Channel URL Already Exist !!!", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// 없으면 크롤링 
+			String url= decryptChannelUrl+"/about";
+			Document doc = Jsoup.parse(new URL(url).openStream(), "utf-8", url);
+			Elements status = doc.select(".about-stat");
+			String country = doc.select(".country-inline").toString();
+			int followers, views = 0;
+			String createDate, inputCountry;
+			String channelTitle = doc.select("#watch-container meta[itemprop='name']").first().attr("content");
+			String thumbnail = doc.select("#watch-container link[itemprop='thumbnailUrl']").first().attr("href");
+			Timestamp inputCreateDate = null;
+			
+			// Followers
+			if(status.toString().indexOf("구독자") != -1) {
+				followers = Integer.parseInt(status.toString().substring(status.toString().indexOf("구독자")+7, status.toString().indexOf("명")-4).replace(",", ""));
+			} else {
+				followers= -1;
+			}
+			
+			// Views
+			if(status.toString().indexOf("조회수") != -1) {
+				views = Integer.parseInt(status.toString().substring(status.toString().indexOf("조회수")+7, status.toString().indexOf("</b>회</span>")).replace(",", ""));
+			}
+			
+			// CreateDate
+			if(status.toString().indexOf("가입일") != -1) {
+				createDate = status.toString().substring(status.toString().indexOf("가입일")+5, status.toString().indexOf(".</span>"));
+				ArrayList<String> dateList = CommonUtil.commonSpiltByComma(createDate.replace(". ", ","));
+							
+				Date time = new Date();
+				time.setYear(Integer.parseInt(dateList.get(0)) - 1900);
+				time.setMonth(Integer.parseInt(dateList.get(1)));
+				time.setDate(Integer.parseInt(dateList.get(2)));
+				inputCreateDate = new java.sql.Timestamp(time.getTime());
+
+			}
+			
+			// Region 
+			if(country.indexOf("한국")!=-1) {
+				inputCountry = "Ko";
+			} else {
+				inputCountry = "En";
+			}
+			Calendar calendar = Calendar.getInstance();
+			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
+			int check2 = ChannelDAO.addChannel(1,2,"1;", channelTitle, followers, views, checkChannelUrl, thumbnail, inputCountry, inputCreateDate, inputCurrentDate);
+			if(check2==0) {
+				CommonUtil.commonPrintLog("FAIL", className, "Channel ADD Fail !!!", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Search Channel URL OK", map);
+			jObject.put("outputResult", 1);
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
 	}
 }
