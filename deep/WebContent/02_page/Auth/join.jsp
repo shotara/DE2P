@@ -10,18 +10,6 @@
 
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
 
-<style>
-.common-disable-Btn {
-	width: 100%;
-	border-radius: 8px;
-	border: 1px solid #b4b4b4;
-	font-size: 1em;
-	height: 36px;
-	background-color: #eee;
-	color: #fff;
-	font-weight: bold;
-}
-</style>
 </head>
 <body>
 
@@ -36,8 +24,6 @@
 						<a href="/index.jsp">홈으로</a>
 					</div>
 					<div class="login-brand">Rancre</div>
-
-					<div class="pTop"></div>
 
 					<div>
 						<span>더 많은 채널의 광고 리뷰가 궁금하신가요? </br> 지금 랭크리에서 2,342개 채널의 광고 효과를
@@ -88,17 +74,17 @@
 					<div class="inline-flex">
 						<input class="ipt-Company-Number display-initial" type="text"
 							id="inputCompany-Number1" maxlength="3"
-							oncahnge="buttonDisable();" required /> <span
+							onkeyup="Auth.checkNumber()" required /> <span
 							class="pRight pLeft pTop-half">-</span> <input
 							class="ipt-Company-Number display-initial" type="text"
 							id="inputCompany-Number2" maxlength="2"
-							oncahnge="buttonDisable();" required /> <span
+							onkeyup="Auth.checkNumber()" required /> <span
 							class="pRight pLeft pTop-half">-</span> <input
 							class="ipt-Company-Number display-initial mRight" type="text"
 							id="inputCompany-Number3" maxlength="5"
-							oncahnge="buttonDisable();" required />
+							onkeyup="Auth.checkNumber()" required />
 						<div class="ipt-Company-Check display-initial">
-							<button class="companyCheckBtn" onclick="Auth.businessCheck()">조회</button>
+							<button class="companyCheckBtn" id="company-Check-Btn" onclick="Auth.businessCheck()">조회</button>
 						</div>
 					</div>
 

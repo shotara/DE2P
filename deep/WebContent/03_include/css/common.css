@@ -5,6 +5,10 @@
 /**********************************/
 /*  rancre common CSS  */
 /*********************************/
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 * {
 	box-sizing: border-box !important;
 }
@@ -173,6 +177,10 @@ a {
 	float: left;
 }
 
+.flow-hidden {
+	overflow: hidden;
+}
+
 .vertical-bottom {
 	vertical-align: bottom;
 }
@@ -256,6 +264,7 @@ a {
 	white-space: nowrap;
 	font-weight: bold;
 	color: #F11834 !important;
+	font-family: 'Do Hyeon', sans-serif;
 }
 
 .common-alert-txt {
@@ -440,12 +449,21 @@ a {
 .companyCheckBtn {
 	width: 100%;
 	border-radius: 4px;
-	border: 1px solid #f11834;
+	border: 1px solid #fd8090;
 	font-size: 1em;
 	height: 36px;
-	background-color: #f11834;
+	background-color: #fd8090;
 	color: #fff;
-	font-weight: bold;
+}
+
+.company-disable-Btn {
+	width: 100%;
+	border-radius: 4px;
+	border: 1px solid #FD8090;
+	font-size: 1em;
+	height: 36px;
+	background-color: #FD8090;
+	color: #fff;
 }
 
 .rankRowBtn {
@@ -563,6 +581,16 @@ a {
 	text-decoration: none !important;
 }
 
+.common-disable-Btn {
+	width: 100%;
+	border-radius: 4px;
+	border: 1px solid #FD8090;
+	font-size: 1em;
+	height: 36px;
+	background-color: #FD8090;
+	color: #fff;
+}
+
 /**********************************/
 /*  subnav  */
 /*********************************/
@@ -618,6 +646,7 @@ a.subnav-link:hover {
 	white-space: nowrap;
 	font-weight: bold;
 	color: #F11834 !important;
+	font-family: 'Do Hyeon', sans-serif;
 }
 
 .ipt-Member-Join {
@@ -735,6 +764,7 @@ a.subnav-link:hover {
 	font-weight: bold;
 	color: #F11834 !important;
 	padding-left: 42px;
+	font-family: 'Do Hyeon', sans-serif;
 }
 
 .brand-color {
@@ -834,16 +864,34 @@ a.subnav-link:hover {
 	float: lfet;
 }
 
+.ranc-Row3 {
+	display: inline-block;
+	width: 190px;
+	margin-right: 18px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: middle;
+}
+
 .ranc-Row {
 	display: inline-block;
 	width: 198px;
 	margin-right: 10px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: middle;
 }
 
 .ranc-Row2 {
 	display: inline-block;
 	width: 230px;
 	margin-right: 10px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: middle;
 }
 
 .rankRowImg {
@@ -889,6 +937,10 @@ a.subnav-link:hover {
 .ranc-Main-Row {
 	display: inline-block;
 	width: 190px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: middle;
 }
 
 .ranc-Main-Row2 {
@@ -935,6 +987,7 @@ a.subnav-link:hover {
 	font-weight: bold;
 	color: #fff;
 	text-decoration: none;
+	font-family: 'Do Hyeon', sans-serif;
 }
 
 .footer-brand:hover, .footer-brand:focus {
@@ -1365,9 +1418,14 @@ ul.sub-tabs li a.active {
 	outline: none;
 }
 
+.review-radio {
+	overflow: hidden;
+}
+
 .review-commonTxt {
 	font-weight: bold;
 	padding-bottom: 5px;
+	overflow: hidden;
 }
 
 .review-commonTxt2 {
@@ -1499,7 +1557,6 @@ ul.sub-tabs li a.active {
 /********************************/
 /* autocomplete using in review */
 /********************************/
-
 .ui-autocomplete {
 	max-height: 200px;
 	overflow-y: auto;

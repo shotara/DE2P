@@ -77,7 +77,7 @@ Common.addList = function (mode, startNo, categoryNo) {
 						style="width: 48px; border-radius: 48px;"
 						src="`+args.rankingList[i].outputChannelThumbnail +`">
 						</div>
-						<div class="ranc-Row">`+args.rankingList[i].outputChannelTitle+`</div>
+						<div class="ranc-Row3">`+args.rankingList[i].outputChannelTitle+`</div>
 						<div class="ranc-Row2">`+args.rankingList[i].outputCategoryNo+`</div>
 						<div class="ranc-Row">`+args.rankingList[i].outputChannelFollowers+`</div>
 						<div class="ranc-Row">`+args.rankingList[i].outputChannelViews+`</div>
@@ -216,7 +216,7 @@ Common.addList = function (mode, startNo, categoryNo) {
 							style="width: 48px; border-radius: 48px;"
 							src="`+args.rankingList[i].outputChannelThumbnail +`">
 							</div>
-							<div class="ranc-Row">`+args.rankingList[i].outputChannelTitle+`</div>
+							<div class="ranc-Row3">`+args.rankingList[i].outputChannelTitle+`</div>
 							<div class="ranc-Row2">`+args.rankingList[i].outputCategoryNo+`</div>
 							<div class="ranc-Row">`+args.rankingList[i].outputChannelFollowers+`</div>
 							<div class="ranc-Row">`+args.rankingList[i].outputChannelViews+`</div>
@@ -674,7 +674,9 @@ Common.search = function (mode){
 					if(response.outputResult == "1") { /** 정상적으로 채널이 수집되었을 경우 **/ 
 						alert("채널 수집이 정상적으로 요청되었습니다.랭크리에서 채널 정보가 노출되기까지 최대 24시간이 걸릴 수 있습니다.");
 						location.href = "/";
-					} else {
+					} else if(response.outputResult == "-1"){
+						alert("이미 존재하는 채널입니다. 검색을 통해서 채널을 확인해보세요!");
+					}else {
 						alert("알수없는 문제가 발생했습니다.");
 					}
 				}

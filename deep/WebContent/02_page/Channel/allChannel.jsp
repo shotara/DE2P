@@ -98,7 +98,7 @@
 									style="width: 48px; border-radius: 48px;"
 									src="`+args.rankingList[i].outputChannelThumbnail +`">
 							</div>
-							<div class="ranc-Row">`+args.rankingList[i].outputChannelTitle+`</div>
+							<div class="ranc-Row3">`+args.rankingList[i].outputChannelTitle+`</div>
 							<div class="ranc-Row2">`+args.rankingList[i].outputCategoryNo+`</div>
 							<div class="ranc-Row">`+args.rankingList[i].outputChannelFollowers+`</div>
 							<div class="ranc-Row">`+args.rankingList[i].outputChannelViews+`</div>
@@ -200,7 +200,7 @@
 
 				<div class="topRow">
 					<div class="rankRowImg"></div>
-					<div class="ranc-Row">채널명</div>
+					<div class="ranc-Row3">채널명</div>
 					<div class="ranc-Row2">카테고리</div>
 					<div class="ranc-Row">총구독자수</div>
 					<div class="ranc-Row">총조회수</div>

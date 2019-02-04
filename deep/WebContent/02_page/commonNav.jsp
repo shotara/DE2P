@@ -25,8 +25,8 @@
 					href="/02_page/Search/ChannelSearch.jsp">검색</a></li>
 			</ul>
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link"
-					href="#" onclick="Common.search(3)">채널수집요청</a></li>
+				<li class="nav-item active"><a class="nav-link" href="#"
+					onclick="Common.search(3)">채널수집요청</a></li>
 				<li class="nav-item active"><a class="nav-link"
 					href="/02_page/Review/review.jsp" onclick="Auth.loginCheck()">리뷰등록</a></li>
 				<c:if test="${empty sessionScope.racMemberNo}">
@@ -56,19 +56,25 @@
 		<div class="req-input-area">
 			<span class="req-search-modal-title">채널 수집 요청하기</span>
 			<hr style="margin-top: 5px; border-color: #f11834;">
-			
-			<div class="pTop"></div>
 
-			<span class="display-block">궁금한 채널 정보가 나오지 않았나요?</span> <span
-				class="display-block">채널 URL을 입력하면 랭크리에서 관련 정보 수집을 시작합니다.</span>
+			<div>
 
-			<div class="pTop2"></div>
-			
-			<input class="ipt-req-search-channel" id ="ipt-Req-Search-Channel"
-				placeholder="https://www.youtube.com/user/example" type="email" />
+				<span class="display-block ">궁금한 채널 정보가 나오지 않았나요?</span> <span
+					class="display-block">채널 URL을 입력하면 랭크리에서 관련 정보 수집을 시작합니다.</span>
+			</div>
+
+			<div class="pTop">
+				<span>채널 URL </span><span class="primary-color">*</span> 
 				
+				<input
+					class="ipt-req-search-channel" id="ipt-Req-Search-Channel"
+					placeholder="https://www.youtube.com/user/example" type="email" />
+
+			</div>
+
 			<div class="text-center pTop3">
-				<button class="common-wide-Reverse-Btn" onclick="Common.search(5)">채널 수집 요청</button>
+				<button class="common-wide-Reverse-Btn" onclick="Common.search(5)">채널
+					수집 요청</button>
 			</div>
 		</div>
 	</div>

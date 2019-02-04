@@ -11,11 +11,10 @@
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
 <script>
 	var sessionCheck = "${sessionScope.racMemberUid}";
-	if(sessionCheck=="") {
+	if (sessionCheck == "") {
 		alert("로그인이 필요합니다.");
 		location.href = "/02_page/Auth/login.jsp"
 	}
-	
 </script>
 </head>
 <body>
@@ -48,45 +47,43 @@
 							</div>
 						</div>
 
-						<div class="ipt-channel-review pTop2">
+						<div class="ipt-channel-review review-radio pTop2">
 							<div class="float-left review-commonTxt inline-block">
 								종합 만족도<span class="primary-color">*</span>
 							</div>
+
+							<div class="float-right flow-hidden">
+								<div class="radio-item">
+									<input type="radio" id="commercial-verySatisfy"
+										name="commercial-satisfy" value="0" checked> <label
+										for="commercial-verySatisfy">매우 만족</label>
+								</div>
+
+								<div class="radio-item">
+									<input type="radio" id="commercial-Satisfy"
+										name="commercial-satisfy" value="1"> <label
+										for="commercial-Satisfy">만족</label>
+								</div>
+								<div class="radio-item">
+									<input type="radio" id="commercial-normal"
+										name="commercial-satisfy" value="2"> <label
+										for="commercial-normal">보통</label>
+								</div>
+								<div class="radio-item">
+									<input type="radio" id="commercial-unSatisfy"
+										name="commercial-satisfy" value="3"> <label
+										for="commercial-unSatisfy">불만족</label>
+								</div>
+								<div class="radio-item">
+									<input type="radio" id="commercial-veryunSatisfy"
+										name="commercial-satisfy" value="4"> <label
+										for="commercial-veryunSatisfy">매우 불만족</label>
+								</div>
+
+							</div>
 						</div>
 
-
-						<div class="float-right">
-							<div class="radio-item">
-								<input type="radio" id="commercial-verySatisfy"
-									name="commercial-satisfy" value="0" checked> <label
-									for="commercial-verySatisfy">매우 만족</label>
-							</div>
-
-							<div class="radio-item">
-								<input type="radio" id="commercial-Satisfy"
-									name="commercial-satisfy" value="1"> <label
-									for="commercial-Satisfy">만족</label>
-							</div>
-							<div class="radio-item">
-								<input type="radio" id="commercial-normal"
-									name="commercial-satisfy" value="2"> <label
-									for="commercial-normal">보통</label>
-							</div>
-							<div class="radio-item">
-								<input type="radio" id="commercial-unSatisfy"
-									name="commercial-satisfy" value="3"> <label
-									for="commercial-unSatisfy">불만족</label>
-							</div>
-							<div class="radio-item">
-								<input type="radio" id="commercial-veryunSatisfy"
-									name="commercial-satisfy" value="4"> <label
-									for="commercial-veryunSatisfy">매우 불만족</label>
-							</div>
-						</div>
-
-						<div class="pTop2"></div>
-
-						<div class="ipt-channel-review pTop2">
+						<div class="ipt-channel-review pTop">
 
 							<div class="txt-left review-commonTxt2 inline-block">
 								광고 집행 일자<span class="primary-color">*</span>
@@ -164,7 +161,7 @@
 								placeholder="광고 리뷰를 등록하고, 다른 채널의 광고 이용 리뷰를 확인해보세요!"></textarea>
 						</div>
 
-						<div class="pTop2">
+						<div class="pTop2 flow-hidden">
 							<button class="float-left common-wide20Reverse-Btn pRight"
 								type="button" onclick="Common.review(4)">취소</button>
 							<button class="float-right common-wide75-Btn" type="button"
@@ -269,52 +266,47 @@
 						</div>
 
 
-						<div class="ipt-channel-review pTop2">
+						<div class="ipt-channel-review pTop2 flow-hidden">
 							<div class="float-left review-commonTxt inline-block">
 								이 채널을 다른 마케터에게도 추천하나요?<span class="primary-color">*</span>
 							</div>
+
+							<div class="float-right">
+								<div class="radio-item">
+									<input type="radio" id="channel-Recommand"
+										name="channel-recommand" value="0" checked> <label
+										for="channel-Recommand">예</label>
+								</div>
+
+								<div class="radio-item">
+									<input type="radio" id="channel-Unrecommand"
+										name="channel-recommand" value="1"> <label
+										for="channel-Unrecommand">아니오</label>
+								</div>
+
+							</div>
 						</div>
 
-						<div class="float-right">
-							<div class="radio-item">
-								<input type="radio" id="channel-Recommand"
-									name="channel-recommand" value="0" checked> <label
-									for="channel-Recommand">예</label>
-							</div>
-
-							<div class="radio-item">
-								<input type="radio" id="channel-Unrecommand"
-									name="channel-recommand" value="1"> <label
-									for="channel-Unrecommand">아니오</label>
-							</div>
-
-						</div>
-
-						<div class="pTop"></div>
-
-						<div class="ipt-channel-review pTop3">
+						<div class="ipt-channel-review flow-hidden pTop2">
 							<div class="float-left review-commonTxt inline-block">
 								다음에도 유튜브 채널을 통해 광고를 할 예정이신가요?<span class="primary-color">*</span>
 							</div>
+
+							<div class="float-right">
+								<div class="radio-item">
+									<input type="radio" id="channel-Reuse" name="channel-Reuse"
+										value="0" checked> <label for="channel-Reuse">예</label>
+								</div>
+
+								<div class="radio-item">
+									<input type="radio" id="channel-Unreuse" name="channel-Reuse"
+										value="1"> <label for="channel-Unreuse">아니오</label>
+								</div>
+
+							</div>
 						</div>
 
-						<div class="float-right">
-							<div class="radio-item">
-								<input type="radio" id="channel-Reuse" name="channel-Reuse"
-									value="0" checked> <label for="channel-Reuse">예</label>
-							</div>
-
-							<div class="radio-item">
-								<input type="radio" id="channel-Unreuse" name="channel-reuse"
-									value="1"> <label for="channel-Unreuse">아니오</label>
-							</div>
-
-						</div>
-
-						<div class="pTop2"></div>
-
-
-						<div class="pTop2">
+						<div class="pTop2 flow-hidden">
 							<button class="float-left common-wide20Reverse-Btn pRight"
 								type="button" onclick="Common.review(2)">이전</button>
 							<button class="float-right common-wide75-Btn" type="button"
@@ -343,7 +335,5 @@
 			</div>
 		</div>
 	</div>
-
-
 </body>
 </html>

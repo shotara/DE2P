@@ -4,15 +4,21 @@
 <!-- CSS -->
 <link type="text/css" href="/03_include/css/common.css" rel="stylesheet" />
 <link type="text/css" href="/03_include/css/bootstrap.css" rel="stylesheet" />
+
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR" rel="stylesheet">
+
 <!-- jQuery ui style sheet -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <!-- JQuery -->
 <script type ="text/javascript" src="/03_include/js/jquery-2.1.4.js"></script>
- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
 <!-- jQuery library -->
 <script src="https://code.jquery.com/jquery.js"></script>
+
 <!-- jQuery ui library -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 

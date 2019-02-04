@@ -9,12 +9,12 @@ Auth.init = function(){}
 
 
 Auth.checkValue = function(mode){
-	
+
 	//mode 1 = email check
 	//mode 2 = pw check
-	
+
 	switch(mode){
-	
+
 	case 1: //email check
 		var email = $("#inputMemberEmail").val();
 		if(!validateEmail(email)){  //valid email check
@@ -22,23 +22,23 @@ Auth.checkValue = function(mode){
 			return false;
 		}
 		break;
-		
+
 	case 2: //pw check - join
 		var password1 = $("#inputMemberPassword").val();
 		var password2 = $("#inputMemberPassword2").val();
-		
+
 		if(password1.length < 6){
 			alert("패스워드는 6글자 이상으로 해주세요");
 			$("div.msgRow.malfunMsg").text("비밀번호는 6글자 이상 가능합니다");
 			return false;
 		}
-		
+
 		if(password1 != password2){
-			
+
 			if(passwoord2 == ""){
-					alert("패스워드를 확인해주세요.");
-					$("div.msgRow.malfunMsg").text("비밀번호를 입력해주세요");
-					return false;
+				alert("패스워드를 확인해주세요.");
+				$("div.msgRow.malfunMsg").text("비밀번호를 입력해주세요");
+				return false;
 			}else{
 				alert("패스워드가 일치하지 않습니다.");
 				$("div.msgRow.malfunMsg").text("비밀번호가 일치하지 않습니다.");
@@ -46,9 +46,9 @@ Auth.checkValue = function(mode){
 			}		
 			return false;
 		}
-		
+
 		break;
-		
+
 	case 3://check Name;
 		var name = $("#inputMemberName").val();
 		//less than 2 letters 
@@ -57,53 +57,53 @@ Auth.checkValue = function(mode){
 			$("div.msgRow.malfunMsg").text("닉네임은 2글자 이상 8글자 이하입니다");
 			return false;
 		}
-		
+
 		// 이름이 한글, 영문, 숫자가 아닌 경우
 		var chk = /[0-9]|[a-z]|[A-Z]|[가-힣]/
-		for(i=0; i<name.length; i++) {
-			if(!chk.test(name.charAt(i))) {
-				alert("이름을 확인해주세요.");
-				$("div.msgRow.malfunMsg").text("이름은 한글, 영문, 숫자만 사용할 수 있습니다.");
-				return false;
+			for(i=0; i<name.length; i++) {
+				if(!chk.test(name.charAt(i))) {
+					alert("이름을 확인해주세요.");
+					$("div.msgRow.malfunMsg").text("이름은 한글, 영문, 숫자만 사용할 수 있습니다.");
+					return false;
+				}
 			}
-		}
 		break;
-		
+
 	case 4:
 		var password = $("#inputMemberPassword").val();
-		
+
 		//less than 6 letters
 		if(password.length < 6){
 			alert("비밀번호는 6글자 이상이어야합니다.");
 			return false;
 		}
-		
+
 		break;
-		
+
 	default :
-			return false;
+		return false;
 	}
-	
+
 	return true;
 }
 
 
 Auth.joinCheck = function(mode){
-	
+
 	var check;
 	var paramtype;
 	var param;
-		
+
 	if(mode == 1){ //eamil check
 		param = checkWhitespace($("#inputMemberEmail").val());
 		param = param.toLowerCase();
 		$("#inputMemberEmail").val(param);
-		
+
 		if(!Auth.checkValue(1)){
 			return false;
 		}
 	} else if(mode == 2){//password check
-		
+
 		if(!Auth.checkValue(2)){
 			return false;
 		}else {
@@ -111,11 +111,11 @@ Auth.joinCheck = function(mode){
 		}
 	} else if(mode == 3){//name check
 		param = $("#inputMemberName").val();		
-		
+
 		if(!Auth.checkValue(3))
 			return false;
 	}
-	
+
 	var publicKeyModulus = "";
 	var publicKeyExponent = "";
 
@@ -141,7 +141,7 @@ Auth.joinCheck = function(mode){
 			mode : mode,
 			inputMemberParam : encryptParam
 	};
-	
+
 	$.ajax({
 		type:"POST",
 		url: "/member?action=checkMember",
@@ -149,12 +149,12 @@ Auth.joinCheck = function(mode){
 		dataType: "json",
 		async : false,
 		success: function(response) {
-			
+
 			if(response.outputResult == "1") {
 				check = true;
 			} else if(response.outputResult == "-3") {
 				alert("이미 사용중인 메일/이름입니다.");
-				
+
 				check = false;
 			} else {
 				alert(response.outputResult);
@@ -163,72 +163,100 @@ Auth.joinCheck = function(mode){
 			}
 		}
 	});
-	
+
 	return check;
-		
+
+}
+
+Auth.checkNumber =function(mode){
+	
+	var check_ipt1 = $("#inputCompany-Number1").val();
+	var check_ipt2 = $("#inputCompany-Number2").val();
+	var check_ipt3 = $("#inputCompany-Number3").val();
+	
+	if(mode == 1){
+		if(check_ipt1.length != 3){
+			var button_join = document.getElementById('company-Check-Btn');
+			button_join.disabled = true;
+		}
+	}
 }
 
 Auth.businessCheck = function () {
-	
-	var businessNo = $("#inputCompany-Number1").val() + $("#inputCompany-Number2").val() + $("#inputCompany-Number3").val();  
-	
-	var publicKeyModulus = "";
-	var publicKeyExponent = "";
 
-	$.ajax({
-		type : "POST",
-		url : "/main?action=getRSAPublicKey",
-		dataType : "json",
-		async: false,
-		success: function(response) {
-			publicKeyModulus = response.deepPublicKeyModulus;
-			publicKeyExponent = response.deepPublicKeyExponent;
-		}, error: function(xhr,status,error) {
-			alert(error);
-		}
-	});
+	var check_ipt1 = $("#inputCompany-Number1").val();
+	var check_ipt2 = $("#inputCompany-Number2").val();
+	var check_ipt3 = $("#inputCompany-Number3").val();
 
-	var rsa = new RSAKey();
-	rsa.setPublic(publicKeyModulus, publicKeyExponent);
-	
-	var form_data = {
-			inputCompany : businessNo
-		};
-	
-	$.ajax({
-		type:"POST",
-		url: "/member?action=checkCompany",
-		data:form_data,
-		dataType: "json",
-		async : false,
-		success: function(response) {
-			
-			if(response.outputResult == "1") {
-				alert("확인되었습니다.");
-				var btn = document.getElementById('joinButton');
-				btn.classname="common-wide-Btn";
-				btn.disabled = false;
-				return true;
-			} else if(response.outputResult == "-2") {
-				alert("잘못된 사업자 번호입니다.");
-				var btn = document.getElementById('joinButton');
-				btn.disabled = 'disabled';
-				return false;
-			} else if(response.outputResult == "-1") {
-				alert("이미 사용중인 사업자 번호입니다.");
-				var btn = document.getElementById('joinButton');
-				btn.disabled = 'disabled';
-				return false;
-			} else {
-				alert(response.outputResult);
-				alert("알수없는 문제가 발생했습니다.");
+	if(check_ipt1.length == 3 && check_ipt2.length == 2 && check_ipt3.length == 5){
+		
+		var button_join = document.getElementById('company-Check-Btn');
+		button_join.style.background = '#f11834';
+		button_join.style.border = '1px solid #f11834';
+		button_join.disabled = false;
+		
+		var businessNo = $("#inputCompany-Number1").val() + $("#inputCompany-Number2").val() + $("#inputCompany-Number3").val();  
+
+		var publicKeyModulus = "";
+		var publicKeyExponent = "";
+
+		$.ajax({
+			type : "POST",
+			url : "/main?action=getRSAPublicKey",
+			dataType : "json",
+			async: false,
+			success: function(response) {
+				publicKeyModulus = response.deepPublicKeyModulus;
+				publicKeyExponent = response.deepPublicKeyExponent;
+			}, error: function(xhr,status,error) {
+				alert(error);
 			}
-		}
-	});
+		});
+
+		var rsa = new RSAKey();
+		rsa.setPublic(publicKeyModulus, publicKeyExponent);
+
+		var form_data = {
+				inputCompany : businessNo
+		};
+
+		$.ajax({
+			type:"POST",
+			url: "/member?action=checkCompany",
+			data:form_data,
+			dataType: "json",
+			async : false,
+			success: function(response) {
+
+				if(response.outputResult == "1") {
+					alert("확인되었습니다.");
+					var btn = document.getElementById('joinButton');
+					btn.classname="common-wide-Btn";
+					btn.disabled = false;
+					return true;
+				} else if(response.outputResult == "-2") {
+					alert("잘못된 사업자 번호입니다.");
+					var btn = document.getElementById('joinButton');
+					btn.disabled = 'disabled';
+					return false;
+				} else if(response.outputResult == "-1") {
+					alert("이미 사용중인 사업자 번호입니다.");
+					var btn = document.getElementById('joinButton');
+					btn.disabled = 'disabled';
+					return false;
+				} else {
+					alert(response.outputResult);
+					alert("알수없는 문제가 발생했습니다.");
+				}
+			}
+		});
+	}else {
+		
+	}
 }
 
 Auth.join = function(){
-	
+
 	if(!Auth.joinCheck(1)){
 		return false;
 	}// email check
@@ -236,9 +264,9 @@ Auth.join = function(){
 		return false;
 	} // password check
 //	if(!Auth.businessCheck()) {
-//		return false;
+//	return false;
 //	}
-	
+
 	//2. 공개키 요청
 	var publicKeyModulus = "";
 	var publicKeyExponent = "";
@@ -258,11 +286,11 @@ Auth.join = function(){
 
 	var rsa = new RSAKey();
 	rsa.setPublic(publicKeyModulus, publicKeyExponent);
-	
+
 	var memberEmail, memberPassword, businessNumber;
-	
+
 	action = "/member?action=joinMember";
-	
+
 	memberEmail = protectXSS($("#inputMemberEmail").val().trim());
 	memberPassword = protectXSS($("#inputMemberPassword").val().trim());
 	memberPasswordConfirm = protectXSS($("#inputMemberPassword2").val().trim());
@@ -283,15 +311,15 @@ Auth.join = function(){
 			inputMemberEmail : encryptMemberEmail,
 			inputCompanyName : encryptCompanyName
 	};
-	
-	
+
+
 	$.ajax({
 		type : "POST",
 		url : action,
 		data : form_data,
 		dataType : "json",
 		success: function(response){
-			
+
 			if(response.outputResult == "1"){
 				alert("회원가입 완료");
 				location.href = "/";
@@ -302,16 +330,16 @@ Auth.join = function(){
 			}
 		}	
 	});
-	
+
 }
 
 Auth.login = function(){
-	
+
 	//email check regular expression
 	if(!Auth.checkValue(1)){
 		return false;
 	}
-	
+
 	//pw check more than 6 letters
 	if(!Auth.checkValue(4)){
 		return false;
@@ -320,7 +348,7 @@ Auth.login = function(){
 	var publicKeyModulus = "";
 	var publicKeyExponent = "";
 	var action = "/main?action=getRSAPublicKey";
-	
+
 	$.ajax({
 		type : "POST",
 		url : "/main?action=getRSAPublicKey",
@@ -336,11 +364,11 @@ Auth.login = function(){
 
 	var rsa = new RSAKey();
 	rsa.setPublic(publicKeyModulus, publicKeyExponent);
-		
+
 	var memberEmail = "";
 	var memberPassword = "";
 	var action, form_data;
-	
+
 	action = "/member?action=loginMember";
 	memberEmail = $("#inputMemberEmail").val();
 	memberPassword = $("#inputMemberPassword").val();
@@ -348,12 +376,12 @@ Auth.login = function(){
 	//encryption
 	var encryptMemberEmail  = rsa.encrypt(memberEmail);
 	var encryptMemberPassword = rsa.encrypt(memberPassword);
-	
+
 	form_data = {
 			inputMemberEmail : encryptMemberEmail,
 			inputMemberPassword : encryptMemberPassword
 	};
-	
+
 	$.ajax({
 		type:"POST",
 		url : action,
@@ -370,14 +398,14 @@ Auth.login = function(){
 			alert("알 수 없는 문제가 발생하였습니다. \n 문제가 지속된다면 전 혼이 나겠네요. \n 고객센터로 조용히 문의바랍니다.");
 		}
 	});
-	
+
 	return false;
 }
 
 Auth.loginCheck = function(mode){
-	
+
 	var check1 = false;
-	
+
 	$.ajax({
 		type :  "POST",
 		url : "/member?action=loginCheck",
@@ -390,7 +418,7 @@ Auth.loginCheck = function(mode){
 				//login needed
 				if(mode == 1){
 					var check2 = confirm("로그인이 필요합니다.\n로그인하시겠습니까?");
-					
+
 					if(!check2){//don't want to login
 						check1 = false;
 					}else{//Move to login page
@@ -405,14 +433,14 @@ Auth.loginCheck = function(mode){
 			alert(error);
 		}	
 	});
-	
+
 	return check1;
 }
 
 Auth.logout = function(){
-	
+
 	var action = "/member?action=logoutMember";
-	
+
 	$.ajax({
 		type : "POST",
 		url : action,
@@ -427,10 +455,10 @@ Auth.logout = function(){
 			}else {
 				alert("알 수 없는 에러가 발생했습니다");
 			}
-			
+
 		}, error: function(xhr, status, error){
 			alert(error);
 		}
-		
+
 	});
 }
