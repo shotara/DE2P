@@ -17,7 +17,10 @@ Auth.checkValue = function(mode){
 
 	case 1: //email check
 		var email = $("#inputMemberEmail").val();
-		if(!validateEmail(email)){  //valid email check
+		if(email == ""){
+			alert("이메일을 입력해주세요.");
+			return false;
+		}else if(!validateEmail(email)){  //valid email check
 			alert("올바른 이메일이 아닙니다");
 			return false;
 		}
@@ -28,20 +31,17 @@ Auth.checkValue = function(mode){
 		var password2 = $("#inputMemberPassword2").val();
 
 		if(password1.length < 6){
-			alert("패스워드는 6글자 이상으로 해주세요");
-			$("div.msgRow.malfunMsg").text("비밀번호는 6글자 이상 가능합니다");
+			alert("패스워드는 6글자 이상으로 해주세요.");
 			return false;
 		}
 
 		if(password1 != password2){
 
 			if(passwoord2 == ""){
-				alert("패스워드를 확인해주세요.");
-				$("div.msgRow.malfunMsg").text("비밀번호를 입력해주세요");
+				alert("패스워드를 한번 더 입력해주세요.");
 				return false;
 			}else{
 				alert("패스워드가 일치하지 않습니다.");
-				$("div.msgRow.malfunMsg").text("비밀번호가 일치하지 않습니다.");
 				return false;
 			}		
 			return false;
@@ -49,35 +49,13 @@ Auth.checkValue = function(mode){
 
 		break;
 
-	case 3://check Name;
-		var name = $("#inputMemberName").val();
+	case 3://check company Name;
+		var companyname = $("#inputCompanyName").val();
 		//less than 2 letters 
-		if(name.length < 2 || name.length > 9){
-			alert("이름을 확인해주세요");
-			$("div.msgRow.malfunMsg").text("닉네임은 2글자 이상 8글자 이하입니다");
+		if(companyname == ""){
+			alert("회사명을 입력해주세요.");
 			return false;
 		}
-
-		// 이름이 한글, 영문, 숫자가 아닌 경우
-		var chk = /[0-9]|[a-z]|[A-Z]|[가-힣]/
-			for(i=0; i<name.length; i++) {
-				if(!chk.test(name.charAt(i))) {
-					alert("이름을 확인해주세요.");
-					$("div.msgRow.malfunMsg").text("이름은 한글, 영문, 숫자만 사용할 수 있습니다.");
-					return false;
-				}
-			}
-		break;
-
-	case 4:
-		var password = $("#inputMemberPassword").val();
-
-		//less than 6 letters
-		if(password.length < 6){
-			alert("비밀번호는 6글자 이상이어야합니다.");
-			return false;
-		}
-
 		break;
 
 	default :
@@ -100,20 +78,23 @@ Auth.joinCheck = function(mode){
 		$("#inputMemberEmail").val(param);
 
 		if(!Auth.checkValue(1)){
+		
 			return false;
 		}
 	} else if(mode == 2){//password check
 
 		if(!Auth.checkValue(2)){
+
 			return false;
-		}else {
+		}else{
 			return true;
 		}
 	} else if(mode == 3){//name check
-		param = $("#inputMemberName").val();		
 
-		if(!Auth.checkValue(3))
+		if(!Auth.checkValue(3)){
+			
 			return false;
+		}
 	}
 
 	var publicKeyModulus = "";
@@ -175,9 +156,16 @@ Auth.checkNumber =function(mode){
 	var check_ipt3 = $("#inputCompany-Number3").val();
 	
 	if(mode == 1){
-		if(check_ipt1.length != 3){
-			var button_join = document.getElementById('company-Check-Btn');
-			button_join.disabled = true;
+		if(check_ipt1.length < 3 || check_ipt2.length < 2 || check_ipt3.length < 5){
+			var check_company = document.getElementById('company-Check-Btn');
+			check_company.style.background = '#fd8090';
+			check_company.style.border = '1px solid #fd8090';
+			check_company.disabled = true;
+		}else {
+			var check_company = document.getElementById('company-Check-Btn');
+			check_company.style.background = '#f11834';
+			check_company.style.border = '1px solid #f11834';
+			check_company.disabled = false;
 		}
 	}
 }
@@ -189,11 +177,6 @@ Auth.businessCheck = function () {
 	var check_ipt3 = $("#inputCompany-Number3").val();
 
 	if(check_ipt1.length == 3 && check_ipt2.length == 2 && check_ipt3.length == 5){
-		
-		var button_join = document.getElementById('company-Check-Btn');
-		button_join.style.background = '#f11834';
-		button_join.style.border = '1px solid #f11834';
-		button_join.disabled = false;
 		
 		var businessNo = $("#inputCompany-Number1").val() + $("#inputCompany-Number2").val() + $("#inputCompany-Number3").val();  
 
@@ -231,7 +214,8 @@ Auth.businessCheck = function () {
 				if(response.outputResult == "1") {
 					alert("확인되었습니다.");
 					var btn = document.getElementById('joinButton');
-					btn.classname="common-wide-Btn";
+					btn.style.background = '#f11834';
+					btn.style.border = '1px solid #f11834';
 					btn.disabled = false;
 					return true;
 				} else if(response.outputResult == "-2") {
@@ -262,11 +246,14 @@ Auth.join = function(){
 	}// email check
 	if(!Auth.joinCheck(2)){
 		return false;
-	} // password check
-//	if(!Auth.businessCheck()) {
-//	return false;
-//	}
+	}//password check
+	
+	if(!Auth.joinCheck(3)){
+		return false;
+	}// company name check
 
+	
+	alert("조인 정상 진입");
 	//2. 공개키 요청
 	var publicKeyModulus = "";
 	var publicKeyExponent = "";

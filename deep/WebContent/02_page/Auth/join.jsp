@@ -63,7 +63,7 @@
 							회사명<span class="primary-color">*</span>
 						</div>
 						<input class="ipt-Member-Join" type="text" id="inputCompanyName"
-							placeholder="회사명을 입력해주세요." required oncahnge="buttonDisable();" />
+							placeholder="회사명을 입력해주세요." required />
 					</div>
 
 					<div class="ipt-login pTop2">
@@ -74,15 +74,15 @@
 					<div class="inline-flex">
 						<input class="ipt-Company-Number display-initial" type="text"
 							id="inputCompany-Number1" maxlength="3"
-							onkeyup="Auth.checkNumber()" required /> <span
+							onkeyup="Auth.checkNumber(1)" required /> <span
 							class="pRight pLeft pTop-half">-</span> <input
 							class="ipt-Company-Number display-initial" type="text"
 							id="inputCompany-Number2" maxlength="2"
-							onkeyup="Auth.checkNumber()" required /> <span
+							onkeyup="Auth.checkNumber(1)" required /> <span
 							class="pRight pLeft pTop-half">-</span> <input
 							class="ipt-Company-Number display-initial mRight" type="text"
 							id="inputCompany-Number3" maxlength="5"
-							onkeyup="Auth.checkNumber()" required />
+							onkeyup="Auth.checkNumber(1)" required />
 						<div class="ipt-Company-Check display-initial">
 							<button class="companyCheckBtn" id="company-Check-Btn" onclick="Auth.businessCheck()">조회</button>
 						</div>
@@ -131,42 +131,5 @@
 			</div>
 		</div>
 	</div>
-<script>
-	$('#inputMemberEmail').focusout(function() {
-		if (!Auth.joinCheck(1)) {
-			buttonDisable();
-		}
-	});
-
-	$('#inputMemberPassword2').focusout(function() {
-		if (!Auth.joinCheck(2)) {
-			buttonDisable();
-		}
-	});
-
-	function buttonDisable() {
-		var btn = document.getElementById('joinButton');
-		btn.classname="common-disable-Btn";
-		btn.disabled = 'disabled';
-	}
-
-	function checkNumber(temp) {
-
-		if (isNaN(temp) == true) {
-			alert("숫자만 입력해주세요.");
-			buttonDisable();
-		}
-	};
-
-	$('#inputCompany-Number1').focusout(function() {
-		Auth.checkNumber($('#inputCompany-Number1').val());
-	});
-	$('#inputCompany-Number2').focusout(function() {
-		Auth.checkNumber($('#inputCompany-Number2').val());
-	});
-	$('#inputCompany-Number3').focusout(function() {
-		Auth.checkNumber($('#inputCompany-Number3').val());
-	});
-</script>
 </body>
 </html>
