@@ -191,8 +191,6 @@ public class MemberController {
 			
 			// SHA-256 Encrypt
 			String encryptMemberPassword = EncryptUtil.SHA256_Encode(decryptMemberPassword);
-//			String encryptMemberPassword = EncryptUtil.SHA256_Encode(inputMemberPassword);
-
 			Member member = MemberDAO.getMemberByMemberMail(encryptMemberEmail, encryptMemberPassword);
 			
 			// Password not correct
@@ -334,7 +332,7 @@ public class MemberController {
 			}			
 			
 			// Create MemberUid
-			String memberUid = encryptMemberEmail.substring(0,6) + Long.toString(System.currentTimeMillis()/1000).substring(0,4);
+			String memberUid = decryptMemberEmail.substring(0,3) + Long.toString(System.currentTimeMillis()/1000).substring(0,4) + decryptMemberEmail.substring(1,4);
 			int createMemberUid = MemberDAO.addMemberUid(encryptMemberEmail, memberUid);
 			
 			// Create Business 
@@ -793,12 +791,13 @@ public class MemberController {
 
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 			String encryptMemberEmail = EncryptUtil.AES_Encode(inputEmail, aesKey);
-	
+
 			// 메일/ 회원체크
 			int check = MemberDAO.permitJoin(encryptMemberEmail, inputUid);
 			if(check!=1) {
 				CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit Fail", map);
 				req.getRequestDispatcher("/error.jsp").forward(req, res);
+				return;
 			}
 			
 			CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit OK", map);

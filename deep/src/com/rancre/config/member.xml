@@ -17,7 +17,7 @@
 		
 	<!-- MemberController.loginMember() -->
     <select id="getMemberByMemberMail" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Member">
-		SELECT * FROM rac_member WHERE racMemberEmail=#{memberEmail} AND racMemberPassword=#{memberPassword} AND racMemberStatus=2
+		SELECT * FROM rac_member WHERE racMemberEmail=#{memberEmail} AND racMemberPassword=#{memberPassword}
 	</select>
 	
 	<select id="getMemberUid" parameterType="int" resultType="com.rancre.model.domain.MemberUid">

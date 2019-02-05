@@ -96,56 +96,8 @@ Auth.joinCheck = function(mode){
 			return false;
 		}
 	}
-
-	var publicKeyModulus = "";
-	var publicKeyExponent = "";
-
-	$.ajax({
-		type : "POST",
-		url : "/main?action=getRSAPublicKey",
-		dataType : "json",
-		async: false,
-		success: function(response) {
-			publicKeyModulus = response.deepPublicKeyModulus;
-			publicKeyExponent = response.deepPublicKeyExponent;
-		}, error: function(xhr,status,error) {
-			alert(error);
-		}
-	});
-
-	var rsa = new RSAKey();
-	rsa.setPublic(publicKeyModulus, publicKeyExponent);
-
-	var encryptParam = rsa.encrypt(param);
-
-	var form_data = {
-			mode : mode,
-			inputMemberParam : encryptParam
-	};
-
-	$.ajax({
-		type:"POST",
-		url: "/member?action=checkMember",
-		data:form_data,
-		dataType: "json",
-		async : false,
-		success: function(response) {
-
-			if(response.outputResult == "1") {
-				check = true;
-			} else if(response.outputResult == "-3") {
-				alert("이미 사용중인 메일/이름입니다.");
-
-				check = false;
-			} else {
-				alert(response.outputResult);
-				alert("알수없는 문제가 발생했습니다.");
-				check = false;
-			}
-		}
-	});
-
-	return check;
+	
+	return true;
 
 }
 
@@ -252,8 +204,6 @@ Auth.join = function(){
 		return false;
 	}// company name check
 
-	
-	alert("조인 정상 진입");
 	//2. 공개키 요청
 	var publicKeyModulus = "";
 	var publicKeyExponent = "";
@@ -327,10 +277,10 @@ Auth.login = function(){
 		return false;
 	}
 
-	//pw check more than 6 letters
-	if(!Auth.checkValue(4)){
-		return false;
-	}
+//	//pw check more than 6 letters
+//	if(!Auth.checkValue(4)){
+//		return false;
+//	}
 
 	var publicKeyModulus = "";
 	var publicKeyExponent = "";
@@ -378,6 +328,8 @@ Auth.login = function(){
 		success :  function(response){
 			if(response.outputResult == "1"){
 				location.href = "/";
+			} else if(response.outputResult == "-5"){
+				alert("인증 메일이 발송되었습니다. 인증메일을 확인해주세요.");
 			}else{
 				alert("등록되지 않은 이메일이거나, \n이메일 또는 비밀번호가 잘못되었습니다.");
 			}
