@@ -43,15 +43,16 @@
 					<!-- 채널 이름 및 카테고리 끝 -->
 
 					<!-- 관심 채널 등록 -->
-					
 					<c:if test="${not empty sessionScope.racMemberNo}">
 						<div class="float-right chn-like-area">
-							<button class="commonBtn chn-like-Btn" onclick="">관심채널
+							<c:if test="${requestScope.outputChannelLike==0}">
+							<button class="commonBtn chn-like-Btn" onclick="Common.Like(1,${requestScope.outputChannelNo });">관심채널
 								설정</button>
-						</div>
-						<div class="float-right chn-liked-area">
-							<button class="commonReverseBtn chn-liked-Btn" onclick="">관심채널
+							</c:if>
+							<c:if test="${requestScope.outputChannelLike!=0}">
+							<button class="commonReverseBtn chn-liked-Btn" onclick="Common.Like(2,${requestScope.outputChannelNo });">관심채널
 								해제</button>
+							</c:if>		
 						</div>
 					</c:if>
 					

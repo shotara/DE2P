@@ -1,4 +1,4 @@
-package com.rancre.controller;
+ package com.rancre.controller;
 
 import java.io.File;
 import java.net.URL;
@@ -32,6 +32,7 @@ import com.rancre.model.MemberDAO;
 import com.rancre.model.UploadDAO;
 import com.rancre.model.domain.Channel;
 import com.rancre.model.domain.ChannelAd;
+import com.rancre.model.domain.ChannelLike;
 import com.rancre.model.domain.FeedHashtag;
 import com.rancre.model.domain.FeedList;
 import com.rancre.model.domain.FeedSeries;
@@ -70,7 +71,10 @@ public class ChannelController {
 			req.setAttribute("outputChannelTitle", channel.getRacChannelTitle());
 			req.setAttribute("outputChannelCategory", CommonUtil.getChannelCategoryList(channel.getRacChannelCategory()));
 			req.setAttribute("outputChannelThumbnail", channel.getRacChannelThumbnail());
+			req.setAttribute("outputChannelLike", ChannelDAO.checkChannelLike(sessionMemberNo, inputChannelNo));
+			req.setAttribute("outputChannelNo", inputChannelNo);
 
+			
 			// Get Youtube Channel Video
 			ArrayList<Video> recentVideoList = ChannelDAO.getRecentVieoList(inputChannelNo);
 			ArrayList<HashMap<String,Object>> outputRecentVideoList = new ArrayList<HashMap<String,Object>>();

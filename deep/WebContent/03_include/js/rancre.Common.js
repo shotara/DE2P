@@ -714,5 +714,60 @@ Common.contactUs = function (mode){
 			}
 		});
 	}
-
 }
+	
+	/**************************************/
+	/** contact us(footer) page using     */
+	/**************************************/
+	Common.Like = function (mode, no){
+				
+		if(mode == 1){
+			// 좋아요 
+			var form_data = {
+					inputChannelNo : no
+			};
+
+			$.ajax({
+				type:"POST",
+				url: "/channel?action=addChannelLike",
+				data:form_data,
+				dataType: "json",
+				async : false,
+				success: function(response) {
+
+					if(response.outputResult == "1") { 
+						location.reload();
+					} else if(response.outputResult == "-3"){
+						alert("이미 관심채널이 설정 되어있습니다.");
+					}else {
+						alert("알수없는 문제가 발생했습니다.");
+					}
+				}
+			});
+		}
+			
+		else if(mode == 2){
+			// 취소 
+			var form_data = {
+					inputChannelNo : no
+			};
+
+			$.ajax({
+				type:"POST",
+				url: "/channel?action=deleteChannelLike",
+				data:form_data,
+				dataType: "json",
+				async : false,
+				success: function(response) {
+
+					if(response.outputResult == "1") { 
+						location.reload();
+					} else if(response.outputResult == "-3"){
+						alert("관심채널이 아닙니다.");
+					}else {
+						alert("알수없는 문제가 발생했습니다.");
+					}
+				}
+			});		
+		}
+	}
