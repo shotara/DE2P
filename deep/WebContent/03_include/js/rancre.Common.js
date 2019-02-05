@@ -140,7 +140,7 @@ Common.addList = function (mode, startNo, categoryNo) {
 						break;
 					}
 				}
-				
+
 				if(args.rankingList.length < 20) {
 					switch(categoryNo) {
 					case 2:
@@ -510,8 +510,8 @@ Common.search = function (mode){
 		var channelName = protectXSS($("#ipt-Search").val());
 
 		if(keyPressed==13) {
-			
-			
+
+
 			var publicKeyModulus = "";
 			var publicKeyExponent = "";
 
@@ -553,7 +553,7 @@ Common.search = function (mode){
 				}
 			});
 			return; 
-			
+
 		}
 		if(channelName !=""){
 			const clear_btn = document.getElementById('clear-btn');
@@ -566,7 +566,7 @@ Common.search = function (mode){
 //			const ipt_len = ipt_search_width.value.length;
 //			const ipt_width = (ipt_len*23)+'px';
 //			//alert(ipt_width);
-//
+
 //			ipt_search_width.style.width = ipt_width;
 //			return false;
 		}
@@ -637,7 +637,7 @@ Common.search = function (mode){
 			return;
 		}
 		else {  //채널 URL이 기본적으로 유요한 경우 진입
-			
+
 			var publicKeyModulus = "";
 			var publicKeyExponent = "";
 
@@ -658,7 +658,7 @@ Common.search = function (mode){
 			rsa.setPublic(publicKeyModulus, publicKeyExponent);
 
 			var encryptChannelUrl = rsa.encrypt(req_Channel_Url);
-			
+
 			var form_data = {
 					inputChannelUrl : encryptChannelUrl
 			};
@@ -687,4 +687,32 @@ Common.search = function (mode){
 	}
 }
 
+/**************************************/
+/** contact us(footer) page using     */
+/**************************************/
 
+Common.contactUs = function (mode){
+
+	if(mode == 1){//open contact us modal
+		const modal = document.getElementById('con-Us-Modal');
+		const modal_content = document.getElementById('con-Us-Modal-Content');
+		modal.style.display = 'block';
+		modal_content.style.display = 'block';
+
+		/** window.onclick = function(event) {
+			if (event.target == modal) {
+				modal_content.style.display = 'none';
+				modal.style.display = 'none';
+			}
+		} **/
+	}else if(mode == 2){//close contact us modal
+		const modal = document.getElementById('con-Us-Modal');
+		const modal_content = document.getElementById('con-Us-Modal-Content');
+		modal.style.display = 'none';
+		modal_content.style.display = 'none';
+		// When the user clicks on <span> (x), close the modal
+	}else if(mode == 3){
+		
+	}
+
+}

@@ -24,7 +24,7 @@
 				<textarea rows="" cols=""></textarea>
 			</div>
 			<div class="">
-				<button class="common-btn"></button>
+				<button class="common-Btn"></button>
 			</div>
 		
 		</div>

@@ -464,7 +464,7 @@
 
 				<!-- none exist view channel list -->
 				<c:if test="${outputChannelViewList.size() == 0 }">
-				<div class="none-View-List active" id="myViewContent">
+				<div class="subNav-content active none-View-List" id="myViewContent">
 					<div class="common-alert-txt txt-center">
 						최근 15일 내 검색한 채널이 없습니다. </br> 이런 채널은 어떤가요?
 					</div>
@@ -579,7 +579,7 @@
 
 				<!-- none like channel list -->
 				<c:if test="${outputChannelLikeList.size() == 0 }">
-				<div class="none-Like-List">
+				<div class="subNav-content none-Like-List" id="myLikeContent">
 					<div class="common-alert-txt txt-center">
 						관심 채널로 등록한 채널이 없습니다. </br> 이런 채널은 어떤가요?
 					</div>
