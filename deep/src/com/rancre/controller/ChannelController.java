@@ -493,19 +493,58 @@ public class ChannelController {
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
-			
-			PrivateKey privateKey = null;
-			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
-			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
-			
-			String decryptChannelName = EncryptUtil.RSA_Decode(privateKey, inputChannelName);
-
-			Channel channel = ChannelDAO.getChannelByTitle(decryptChannelName);
-			
-			CommonUtil.commonPrintLog("SUCCESS", className, "Search Channel OK", map);
-			jObject.put("outputChannelNo", channel.getRacChannelNo());
-			res.getWriter().write(jObject.toString());
-			return;
+ 
+			if(inputChannelName.equals("")) {
+				Calendar calendar = Calendar.getInstance();
+				calendar.set(calendar.HOUR_OF_DAY,0);
+				Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
+				ArrayList<Channel> recomandChannelList = ChannelDAO.getRecomandChannel(inputCurrentDate);
+				ArrayList<HashMap<String,Object>> outputRecomandChannelList = new ArrayList<HashMap<String,Object>>();
+				for(int i=0; i < recomandChannelList.size(); i++) {
+					HashMap<String,Object> tempObject = new HashMap<String,Object>();
+					tempObject.put("outputChannelNo", recomandChannelList.get(i).getRacChannelNo());
+					tempObject.put("outputChannelCategory", CommonUtil.getChannelCategoryList(recomandChannelList.get(i).getRacChannelCategory()));
+					tempObject.put("outputChannelUrl", recomandChannelList.get(i).getRacChannelUrl());
+					tempObject.put("outputChannelTitle", recomandChannelList.get(i).getRacChannelTitle());
+					tempObject.put("outputChannelFollowers", CommonUtil.setCommaForInt(recomandChannelList.get(i).getRacChannelFollowers()));
+					tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(recomandChannelList.get(i).getRacChannelViews()));
+					tempObject.put("outputChannelThumbnail", recomandChannelList.get(i).getRacChannelThumbnail());
+					outputRecomandChannelList.add(tempObject);
+					
+				}
+				
+				CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel Search OK", map);
+				req.setAttribute("outputRecomandChannelList", outputRecomandChannelList);
+				req.getRequestDispatcher("/02_page/Search/ChannelSearch.jsp").forward(req, res);
+				return;
+				
+			} else {
+//				
+//				PrivateKey privateKey = null;
+//				privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+//				session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+				
+//				String decryptChannelName = EncryptUtil.RSA_Decode(privateKey, inputChannelName);
+				ArrayList<Channel> channelList = ChannelDAO.searchChannelList(inputChannelName);
+				ArrayList<HashMap<String,Object>> outputSearchChannelList = new ArrayList<HashMap<String,Object>>();
+				for(int i=0; i < channelList.size(); i++) {
+					HashMap<String,Object> tempObject = new HashMap<String,Object>();
+					tempObject.put("outputChannelNo", channelList.get(i).getRacChannelNo());
+					tempObject.put("outputChannelCategory", CommonUtil.getChannelCategoryList(channelList.get(i).getRacChannelCategory()));
+					tempObject.put("outputChannelUrl", channelList.get(i).getRacChannelUrl());
+					tempObject.put("outputChannelTitle", channelList.get(i).getRacChannelTitle());
+					tempObject.put("outputChannelFollowers", CommonUtil.setCommaForInt(channelList.get(i).getRacChannelFollowers()));
+					tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(channelList.get(i).getRacChannelViews()));
+					tempObject.put("outputChannelThumbnail", channelList.get(i).getRacChannelThumbnail());
+					outputSearchChannelList.add(tempObject);
+					
+				}				
+				CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel Search OK", map);
+				req.setAttribute("outputSearchChannelList", outputSearchChannelList);
+				req.getRequestDispatcher("/02_page/Search/ChannelSearch.jsp").forward(req, res);
+				return;
+				
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

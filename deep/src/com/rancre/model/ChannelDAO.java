@@ -673,4 +673,31 @@ public class ChannelDAO {
 		}
 	}
 
+	public static ArrayList<Channel> getRecomandChannel(Timestamp inputCurrentDate) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("inputCurrentDate", inputCurrentDate);
+
+			return (ArrayList)sqlSession.selectList(namespace + ".getRecomandChannel", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static ArrayList<Channel> searchChannelList(String inputChannelTitle) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (ArrayList)sqlSession.selectList(namespace + ".searchChannelList", inputChannelTitle);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 }

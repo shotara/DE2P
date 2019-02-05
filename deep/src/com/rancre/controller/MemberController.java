@@ -921,7 +921,8 @@ public class MemberController {
 			req.setAttribute("outputCompanyName", EncryptUtil.AES_Decode(company.getRacCompanyName(), aesKey));
 			
 			Member member = MemberDAO.getMemberByMemberNo(sessionMemberNo);
-			req.setAttribute("outputMemberName", EncryptUtil.AES_Decode(member.getRacMemberEmail(), aesKey));
+			String memberName = EncryptUtil.AES_Decode(member.getRacMemberEmail(), aesKey);
+			req.setAttribute("outputMemberName", memberName.substring(0, memberName.indexOf("@")));
 
 			// 리뷰 리스트 
 			ArrayList<Review> reviewList = MemberDAO.getReviewListByMemberNo(sessionMemberNo, 0);

@@ -42,256 +42,37 @@
 			<div class="col search-Result">
 
 				<!-- before result area start -->
+				<c:if test="${not empty requestScope.outputRecomandChannelList }">
 				<div class="before-result">
 					<div class="txt-center">
 						<span>이런 채널은 어떤가요?</span>
 					</div>
 
 					<div class="search-reco-channel-list">
+						<c:forEach var="item" items="${requestScope.outputRecomandChannelList}">
 						<div class="search-reco-channel">
 							<div class="search-reco-chnImg txt-left">
 								<img id="search-reco-thumbNail"
 									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+									src="${item.outputChannelThumbnail }" />
 							</div>
 							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+								<div class="name">${item.outputChannelTitle }</div>
+								<div class="category inline-block txt-left">${item.outputChannelCategory }</div>
 							</div>
 							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+								<button class="common-wide85Reverse-Btn" onclick="location.href='/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo}';">채널정보 보기</button>
 							</div>
 						</div>
-
-						<div class="search-reco-channel">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="search-reco-channel">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="search-reco-channel-right">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="search-reco-channel">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="search-reco-channel">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="search-reco-channel">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="search-reco-channel-right">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-						<div class="search-reco-channel">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="search-reco-channel">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="search-reco-channel">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="search-reco-channel-right">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-						<div class="search-reco-channel">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="search-reco-channel">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="search-reco-channel">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="search-reco-channel-right">
-							<div class="search-reco-chnImg txt-left">
-								<img id="search-reco-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 
 				</div>
-
+				</c:if>
 				<!-- before result area finished -->
 
 				<!-- none result area start -->
+				<c:if test="${empty requestScope.outputRecomandChannelList && empty requestScope.outputSearchChannelList}">
 				<div class="non-result txt-center">
 					<span class="display-block">검색 결과가 없습니다. 다른 검색어를 입력해보세요!</span> <span
 						class="display-block">또는 이 채널을 찾아주세요!</span>
@@ -302,81 +83,36 @@
 					</div>
 
 				</div>
-
+				</c:if>
 				<!-- none result area finished -->
 
 				<!-- channel result area start -->
-
+				<c:if test="${empty requestScope.outputRecomandChannelList && not empty requestScope.outputSearchChannelList}">
 				<div class="search-exist-video-Result">
 				
 					<div class="search-channel-exist-title">검색한 채널</div>
 					
 					<div class="search-channel-list">
+						<c:forEach var="item" items="${requestScope.outputSearchChannelList}">
 						<div class="search-reco-channel">
 							<div class="search-chnImg txt-left">
 								<img id="search-thumbNail"
 									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+									src="${item.outputChannelThumbnail }" />
 							</div>
 							<div class="search-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+								<div class="name">${item.outputChannelTitle }</div>
+								<div class="category inline-block txt-left">${item.outputChannelCategory }</div>
 							</div>
 							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+								<button class="common-wide85Reverse-Btn" onclick="location.href='/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo}';">채널정보 보기</button>
 							</div>
 						</div>
-
-						<div class="search-channel">
-							<div class="search-chnImg txt-left">
-								<img id="search-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="search-channel">
-							<div class="search-chnImg txt-left">
-								<img id="search-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="search-channel-right">
-							<div class="search-chnImg txt-left">
-								<img id="search-thumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="search-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
-
+				</c:if>
 				<!-- channel result area finished -->
-
-
 			</div>
 
 

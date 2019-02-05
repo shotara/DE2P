@@ -99,4 +99,18 @@
 		INSERT INTO rac_channel(racMemberNo, racChannelStatus, racChannelCategory, racChannelTitle, racChannelFollowers, racChannelViews, racChannelUrl, racChannelThumbnail, racChannelRegion, racChannelCreateDate, racChannelUpdateDate, racChannelInsertDate)
 		VALUES(#{memberNo}, #{channelStatus}, #{channelCategory}, #{channelTitle}, #{channelFollowers}, #{channelViews}, #{channelUrl}, #{channelThumbnail}, #{channelRegion}, #{channelCreateDate}, #{channelInsertDate}, #{channelInsertDate})
 	</select>
+	
+	<select id="getRecomandChannel" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Channel">
+		SELECT * FROM rac_channel WHERE racChannelUpdateDate <![CDATA[>]]> #{inputCurrentDate} LIMIT 16
+	</select>		
+	
+	<select id="searchChannelList" parameterType="String" resultType="com.rancre.model.domain.Channel">
+	SELECT * FROM (
+		(SELECT * FROM rac_channel WHERE racChannelTitle LIKE concat(#{inputChannelTitle},'%') AND racChannelStatus=2 AND racChannelRegion="Ko")
+		UNION
+		(SELECT * FROM rac_channel WHERE racChannelTitle LIKE concat('%',#{inputChannelTitle}) AND racChannelStatus=2 AND racChannelRegion="Ko")
+		UNION
+		(SELECT * FROM rac_channel WHERE racChannelTitle LIKE concat('%',#{inputChannelTitle},'%') AND racChannelStatus=2 AND racChannelRegion="Ko")
+		) as a;
+	</select>
 </mapper>
