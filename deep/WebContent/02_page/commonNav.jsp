@@ -22,7 +22,7 @@
 				<li class="nav-item active"><a class="nav-link"
 					href="/02_page/Channel/newChannel.jsp">새로운채널</a></li>
 				<li class="nav-item active"><a class="nav-link"
-					href="/02_page/Search/ChannelSearch.jsp">검색</a></li>
+					href="/channel?action=searchChannel&inputChannelName=">검색</a></li>
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active"><a class="nav-link" href="#"

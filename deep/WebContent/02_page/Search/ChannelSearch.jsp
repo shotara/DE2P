@@ -23,7 +23,7 @@
 			<div class="txt-center search-Keyword pTop4">
 				<div class="ipt-search-box">
 					<input class="ipt-search" id="ipt-Search" type="text"
-						placeholder="다음으로 Rancre 검색" onkeyup="javascript: if (event.keyCode != 37 && event.keyCode != 38 && event.keyCode != 39 && event.keyCode != 40) {Common.search(2);}" />
+						placeholder="다음으로 Rancre 검색" onkeyup="Common.search(2)" />
 				</div>
 				<button id="clear-btn" class="clear-Btn" onclick="Common.search(1)">
 					<img style="width: 15px;" src="/01_image/commonImg/cancel.png">
