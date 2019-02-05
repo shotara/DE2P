@@ -712,7 +712,52 @@ Common.contactUs = function (mode){
 		modal_content.style.display = 'none';
 		// When the user clicks on <span> (x), close the modal
 	}else if(mode == 3){
-		
+
+		var publicKeyModulus = "";
+		var publicKeyExponent = "";
+
+		$.ajax({
+			type : "POST",
+			url : "/main?action=getRSAPublicKey",
+			dataType : "json",
+			async: false,
+			success: function(response) {
+				publicKeyModulus = response.deepPublicKeyModulus;
+				publicKeyExponent = response.deepPublicKeyExponent;
+			}, error: function(xhr,status,error) {
+				alert(error);
+			}
+		});
+
+		var rsa = new RSAKey();
+		rsa.setPublic(publicKeyModulus, publicKeyExponent);
+
+		var inputEmail = $("#ipt-con-Us-Email").val();
+		var inputContent = $("#Input-Contact-Text").val();
+
+		var encryptEmail = rsa.encrypt(inputEmail);
+		var encryptContent = rsa.encrypt(inputContent);
+
+		var form_data = {
+				inputEmail : encryptEmail,
+				inputContent : encryptContent
+		};
+
+		$.ajax({
+			type:"POST",
+			url: "/main?action=contactUs",
+			data:form_data,
+			dataType: "json",
+			async : false,
+			success: function(response) {
+				if(response.outputResult == "1") { /** 정상적으로 채널이 수집되었을 경우 **/ 
+					alert("문의가 접수되었습니다! 빠른 시일 안에 연락드리겠습니다.");
+					location.href = "/";
+				}else {
+					alert("알수없는 문제가 발생했습니다.");
+				}
+			}
+		});
 	}
 
 }

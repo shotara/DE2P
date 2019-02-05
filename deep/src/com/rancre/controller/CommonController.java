@@ -8,9 +8,19 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.RSAPrivateKeySpec;
 import java.security.spec.RSAPublicKeySpec;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -217,6 +227,100 @@ public class CommonController {
 			return;
 			
 		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void contactUs(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			HttpSession session = req.getSession();
+
+			Calendar calendar = Calendar.getInstance();
+			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
+			String inputEmail = req.getParameter("inputEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputEmail").toString()) : null;
+			String inputContent = req.getParameter("inputContent") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputContent").toString()) : null;
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputEmail);
+			parameterList.add(inputContent);
+
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// Get Private key
+			PrivateKey privateKey = null;
+			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+			
+			if(privateKey == null) {
+				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}			
+		
+
+			// 완료 
+
+			  String host     = "smtp.naver.com";
+			  final String user   = "shotzara@naver.com";
+			  final String password  = "rmlarmla12!";
+
+			  String to = user;
+
+			  // Get the session object
+			  Properties props = new Properties();
+			  props.put("mail.smtp.host", host);
+			  props.put("mail.smtp.auth", "true");
+
+			  Session mailSession = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			   protected PasswordAuthentication getPasswordAuthentication() {
+			    return new PasswordAuthentication(user, password);
+			   }
+			  });
+
+			  // Compose the message
+			  try {
+			   MimeMessage message = new MimeMessage(mailSession);
+			   message.setFrom(new InternetAddress(user));
+			   message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+			   // Subject
+			   message.setSubject("문의 메일");
+			   
+			   // Text
+			   message.setText(" 보낸이 : " + EncryptUtil.RSA_Decode(privateKey, inputEmail)
+			   		+ "\n 보낸날짜 : " + inputCurrentDate
+			   		+ "\n 내용 : " + EncryptUtil.RSA_Decode(privateKey, inputContent)
+			   		+ ""
+			   		+ "");
+
+			   // send the message
+			   Transport.send(message);
+			   System.out.println("message sent successfully...");
+
+			  } catch (MessagingException e) {
+			   e.printStackTrace();
+			  }
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Contact Us OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
