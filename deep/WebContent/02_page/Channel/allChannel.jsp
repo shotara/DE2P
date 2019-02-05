@@ -129,8 +129,8 @@
 
 	<jsp:include page="/02_page/commonNav.jsp" flush="false" />
 
-	<section class="section" data-type="feed">
-	<div class="container pTop2">
+	
+	<div class="container pTop2 all-channel">
 		<div class="row">
 			<div class="col">
 				<div class="w-auto ml-auto">
@@ -507,7 +507,6 @@
 		</div>
 	</div>
 
-	</section>
 
 	<jsp:include page="/02_page/commonFooter.jsp" flush="false" />
 

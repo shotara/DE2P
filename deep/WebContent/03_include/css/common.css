@@ -964,6 +964,10 @@ a.subnav-link:hover {
 	width: 60%;
 }
 
+.all-channel {
+	min-height : 700px;
+}
+
 /**********************************/
 /*  footer  */
 /*********************************/
@@ -1194,6 +1198,10 @@ ul.sub-tabs li a.active {
 	display: inline-block;
 }
 
+#searchChannelForm {
+	display : inline-block;
+}
+
 .search-Keyword input[type="text"] {
 	width: auto; /* 원하는 너비 설정 */
 	height: auto; /* 높이값 초기화 */
@@ -1322,6 +1330,7 @@ ul.sub-tabs li a.active {
 .search-reco-channel-list {
 	padding-top: 30px;
 	display: inline-block;
+	padding-bottom : 100px;
 }
 
 .search-reco-channel {
