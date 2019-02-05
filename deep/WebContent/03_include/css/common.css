@@ -1243,7 +1243,7 @@ ul.sub-tabs li a.active {
 	border-radius: 3px;
 	box-shadow: 1px 1px #eeeeee;
 	display: inline-block;
-	margin-right: 5px;
+	margin-right: 4px;
 	margin-bottom: 5px;
 }
 
@@ -1266,13 +1266,21 @@ ul.sub-tabs li a.active {
 
 .search-chnInfo {
 	padding-top: 10px;
+	width : 160px;
 	display: inline-block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 	vertical-align: middle;
 }
 
 .search-chnInfo .name {
 	font-weight: bold;
 	font-size: 1.2em;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: middle;
 }
 
 /*************************************/
@@ -1290,7 +1298,7 @@ ul.sub-tabs li a.active {
 	border-radius: 3px;
 	box-shadow: 1px 1px #eeeeee;
 	display: inline-block;
-	margin-right: 5px;
+	margin-right: 4px;
 	margin-bottom: 5px;
 }
 
@@ -1313,13 +1321,21 @@ ul.sub-tabs li a.active {
 
 .search-reco-chnInfo {
 	padding-top: 10px;
+	width: 160px;
 	display: inline-block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 	vertical-align: middle;
 }
 
 .search-reco-chnInfo .name {
 	font-weight: bold;
 	font-size: 1.2em;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: middle;
 }
 
 /*************************************************/
@@ -1718,6 +1734,10 @@ ul.sub-tabs li a.active {
 .corp-View-Row-ChnName {
 	width: 150px;
 	display: inline-block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: middle;
 }
 
 .corp-View-Row-Category {

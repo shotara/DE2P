@@ -326,7 +326,7 @@
 							all right reserved.</span>
 					</div>
 					<div class="float-right login-Redirect">
-						<a href="#">Contact Us</a>
+						<a href="#" onclick="Common.contactUs(1)">Contact Us</a>
 					</div>
 
 					<div class="pTop4"></div>

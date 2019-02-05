@@ -80,7 +80,7 @@
 					<div class="pTop5"></div>
 
 					<div class="float-left"><span class="brand-color">Rancre</span><span class="gray-color"> all right reserved.</span></div>
-					<div class="float-right login-Redirect"><a href="#">Contact Us</a></div>
+					<div class="float-right login-Redirect"><a href="#" onclick="Common.contactUs(1)">Contact Us</a></div>
 					
 					<div class="pTop5"></div>
 				</div>
