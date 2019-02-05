@@ -118,6 +118,10 @@
 		            $("#myViewChild").empty();
 
 		        	for(var i=0; i<args.outputChannelList.length; i++) {
+						var like='';
+						if(args.outputChannelList[i].outputChannelLike==0) like = `<button class="commonBtn" onclick="Common.Like(1,`+args.outputChannelList[i].outputChannelNo+`);">관심채널 등록</button>`;
+						else like =`<button class="commonReverseBtn" onclick="Common.Like(2,`+args.outputChannelList[i].outputChannelNo+`);">관심채널 해제</button>`;
+						
 						$('#myViewChild').append(`
 								<div class="corp-MyView w100">
 								<div class="corp-View-Row-ChnImg">
@@ -130,7 +134,7 @@
 								<div class="corp-View-Row-Subscribe">`+ args.outputChannelList[i].outputChannelFollowers +`</div>
 								<div class="corp-View-Row-TotalView">`+ args.outputChannelList[i].outputChannelViews +`</div>
 								<div class="corp-View-Row-Like">
-									<button class="common-Small-Btn" onclick="">관심채널 등록</button>
+								`+like+`
 								</div>
 								<div class="corp-View-Row-DetailGo">
 									<button class="common-Small-Btn">
@@ -223,6 +227,10 @@
 		            $("#myLikeChild").empty();
 
 		        	for(var i=0; i<args.outputChannelList.length; i++) {
+						var like='';
+						if(args.outputChannelList[i].outputChannelLike==0) like = `<button class="commonBtn" onclick="Common.Like(1,`+args.outputChannelList[i].outputChannelNo+`);">관심채널 등록</button>`;
+						else like =`<button class="commonReverseBtn" onclick="Common.Like(2,`+args.outputChannelList[i].outputChannelNo+`);">관심채널 해제</button>`;
+						
 						$('#myLikeChild').append(`
 								<div class="corp-MyView w100">
 								<div class="corp-View-Row-ChnImg">
@@ -235,7 +243,7 @@
 								<div class="corp-View-Row-Subscribe">`+ args.outputChannelList[i].outputChannelFollowers +`</div>
 								<div class="corp-View-Row-TotalView">`+ args.outputChannelList[i].outputChannelViews +`</div>
 								<div class="corp-View-Row-Like">
-									<button class="common-Small-Btn" onclick="">관심채널 등록</button>
+									`+like+`
 								</div>
 								<div class="corp-View-Row-DetailGo">
 									<button class="common-Small-Btn">
@@ -435,7 +443,12 @@
 						<div class="corp-View-Row-Subscribe">${item.outputChannelFollowers}</div>
 						<div class="corp-View-Row-TotalView">${item.outputChannelViews}</div>
 						<div class="corp-View-Row-Like">
-							<button class="commonBtn" onclick="">관심채널 등록</button>
+							<c:if test="${item.outputChannelLike==0}">
+							<button class="commonBtn" onclick="Common.Like(1,${item.outputChannelNo });">관심채널 등록</button>
+							</c:if>
+							<c:if test="${item.outputChannelLike!=0}">
+							<button class="commonReverseBtn" onclick="Common.Like(2,${item.outputChannelNo });">관심채널 해제</button>
+							</c:if>
 						</div>
 						<div class="corp-View-Row-DetailGo">
 							<button class="commonBtn">
@@ -549,7 +562,12 @@
 						<div class="corp-View-Row-Subscribe">${item.outputChannelFollowers}</div>
 						<div class="corp-View-Row-TotalView">${item.outputChannelViews}</div>
 						<div class="corp-View-Row-Like">
-							<button class="commonReverseBtn" onclick="">관심채널 해제</button>
+							<c:if test="${item.outputChannelLike==0}">
+							<button class="commonBtn" onclick="Common.Like(1,${item.outputChannelNo });">관심채널 등록</button>
+							</c:if>
+							<c:if test="${item.outputChannelLike!=0}">
+							<button class="commonReverseBtn" onclick="Common.Like(2,${item.outputChannelNo });">관심채널 해제</button>
+							</c:if>
 						</div>
 						<div class="corp-View-Row-DetailGo">
 							<button class="commonBtn">

@@ -1030,6 +1030,7 @@ public class MemberController {
 				tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(channelViewList.get(i).getRacChannelViews()));
 				tempObject.put("outputChannelThumbnail", channelViewList.get(i).getRacChannelThumbnail());
 				tempObject.put("outputChannelNo", channelViewList.get(i).getRacChannelNo());
+				tempObject.put("outputChannelLike", ChannelDAO.checkChannelLike(sessionMemberNo, channelViewList.get(i).getRacChannelNo()));
 
 				outputChannelViewList.add(tempObject);
 			}
@@ -1058,6 +1059,7 @@ public class MemberController {
 				tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(channelLikeList.get(i).getRacChannelViews()));
 				tempObject.put("outputChannelThumbnail", channelLikeList.get(i).getRacChannelThumbnail());
 				tempObject.put("outputChannelNo", channelLikeList.get(i).getRacChannelNo());
+				tempObject.put("outputChannelLike", ChannelDAO.checkChannelLike(sessionMemberNo, channelLikeList.get(i).getRacChannelNo()));
 
 				outputChannelLikeList.add(tempObject);
 			}
