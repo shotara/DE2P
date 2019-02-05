@@ -511,4 +511,34 @@ public class CommonUtil {
 
 	}
 	
+	public static String getCompanyAdCategory(int no) {
+		switch(no) {
+		case 1:
+			return "서비스";
+		case 2:
+			return "제조/화학";
+		case 3:
+			return "의료/제약/복지";
+		case 4:
+			return "유통/무역/운송";
+		case 5:
+			return "교육업";
+		case 6:
+			return "건설업";
+		case 7:
+			return "IT/웹/통신";
+		case 8:
+			return "미디어/디자인";
+		case 9:
+			return "은행/금융업";
+		case 10:
+			return "기관/협회";
+		case 11:
+			return "기타";
+
+		default:
+			return "기타";
+		}
+	}
+	
 }

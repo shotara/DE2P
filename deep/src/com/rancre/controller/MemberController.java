@@ -963,8 +963,8 @@ public class MemberController {
 				HashMap<String,Object> tempObject = new HashMap<String,Object>();
 				tempObject.put("outputChannelName", channelViewList.get(i).getRacChannelTitle());
 				tempObject.put("outputChannelCategory", CommonUtil.getChannelCategoryList(channelViewList.get(i).getRacChannelCategory()));
-				tempObject.put("outputChannelFollowers", channelViewList.get(i).getRacChannelFollowers());
-				tempObject.put("outputChannelViews", channelViewList.get(i).getRacChannelViews());
+				tempObject.put("outputChannelFollowers", CommonUtil.setCommaForInt(channelViewList.get(i).getRacChannelFollowers()));
+				tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(channelViewList.get(i).getRacChannelViews()));
 				tempObject.put("outputChannelThumbnail", channelViewList.get(i).getRacChannelThumbnail());
 				tempObject.put("outputChannelNo", channelViewList.get(i).getRacChannelNo());
 
@@ -991,8 +991,8 @@ public class MemberController {
 				HashMap<String,Object> tempObject = new HashMap<String,Object>();
 				tempObject.put("outputChannelName", channelLikeList.get(i).getRacChannelTitle());
 				tempObject.put("outputChannelCategory", CommonUtil.getChannelCategoryList(channelLikeList.get(i).getRacChannelCategory()));
-				tempObject.put("outputChannelFollowers", channelLikeList.get(i).getRacChannelFollowers());
-				tempObject.put("outputChannelViews", channelLikeList.get(i).getRacChannelViews());
+				tempObject.put("outputChannelFollowers", CommonUtil.setCommaForInt(channelLikeList.get(i).getRacChannelFollowers()));
+				tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(channelLikeList.get(i).getRacChannelViews()));
 				tempObject.put("outputChannelThumbnail", channelLikeList.get(i).getRacChannelThumbnail());
 				tempObject.put("outputChannelNo", channelLikeList.get(i).getRacChannelNo());
 

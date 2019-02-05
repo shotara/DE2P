@@ -37,7 +37,7 @@
 				</c:if>
 				<c:if test="${not empty sessionScope.racMemberNo}">
 					<li class="nav-item active"><a class="nav-link"
-						href="/02_page/Corp/mainCorp.jsp">기업홈</a></li>
+						href="/member?action=getMypage">기업홈</a></li>
 					<li class="nav-item active"><a class="nav-link" href="#"
 						onclick="Auth.logout()">로그아웃</a></li>
 				</c:if>
