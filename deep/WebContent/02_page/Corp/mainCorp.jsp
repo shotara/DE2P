@@ -435,10 +435,10 @@
 						<div class="corp-View-Row-Subscribe">${item.outputChannelFollowers}</div>
 						<div class="corp-View-Row-TotalView">${item.outputChannelViews}</div>
 						<div class="corp-View-Row-Like">
-							<button class="common-Small-Btn" onclick="">관심채널 등록</button>
+							<button class="commonBtn" onclick="">관심채널 등록</button>
 						</div>
 						<div class="corp-View-Row-DetailGo">
-							<button class="common-Small-Btn">
+							<button class="commonBtn">
 								<a href="/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo }">채널정보 보기</a>
 							</button>
 						</div>
@@ -549,10 +549,10 @@
 						<div class="corp-View-Row-Subscribe">${item.outputChannelFollowers}</div>
 						<div class="corp-View-Row-TotalView">${item.outputChannelViews}</div>
 						<div class="corp-View-Row-Like">
-							<button class="common-Small-Btn" onclick="">관심채널 등록</button>
+							<button class="commonReverseBtn" onclick="">관심채널 해제</button>
 						</div>
 						<div class="corp-View-Row-DetailGo">
-							<button class="common-Small-Btn">
+							<button class="commonBtn">
 								<a href="/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo }">채널정보 보기</a>
 							</button>
 						</div>
