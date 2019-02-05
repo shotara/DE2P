@@ -968,6 +968,10 @@ a.subnav-link:hover {
 	min-height : 700px;
 }
 
+#myTabContent {
+	min-height : 300px;
+}
+
 /**********************************/
 /*  footer  */
 /*********************************/
