@@ -141,11 +141,17 @@ function joinPermit() {
 							<select class="ipt-Select-Join" id="commercial-category" required>
 								<option disabled selected hidden>광고할 상품과 제일 근접한 카테고리를
 									선택해주세요!</option>
-								<option value="0">1</option>
-								<option value="1">2</option>
-								<option value="2">3</option>
-								<option value="3">4</option>
-								<option value="4">5</option>
+								<option value="1">서비스</option>
+								<option value="2">제조/화학</option>
+								<option value="3">의료/제약/복지</option>
+								<option value="4">유통/무역/운송</option>
+								<option value="5">교육업</option>
+								<option value="6">건설업</option>
+								<option value="7">IT/웹/통신</option>
+								<option value="8">미디어/디자인</option>
+								<option value="9">은행/금융업</option>
+								<option value="10">기관/협회</option>
+								<option value="11">기타</option>
 							</select>
 						</div>
 					</div>
