@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
+<jsp:include page="/02_page/commonContactUs.jsp" flush="true" />
 
 </head>
 <body>

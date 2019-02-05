@@ -1006,6 +1006,10 @@ a.subnav-link:hover {
 	display: flex;
 }
 
+.chn-basic-info {
+	vertical-align : middle;
+}
+
 .chnDtlImg {
 	display: inline-block;
 	width: 80px;
@@ -1016,6 +1020,35 @@ a.subnav-link:hover {
 	font-weight: bold;
 	font-size: 1.5em;
 }
+
+/** 관심채널 설정 전 **/
+
+.chn-like-area {
+	vertical-align : middle;
+	overflow:hidden;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.chn-like-Btn {
+	margin-top :22px;
+}
+
+/** 관심채널 설정 된 '후'  **/
+
+.chn-liked-area {
+	vertical-align : middle;
+	overflow:hidden;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.chn-liked-Btn {
+	margin-top :22px;
+}
+
 
 .detail .title {
 	width: 210px;

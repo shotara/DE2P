@@ -20,7 +20,7 @@
 
 				<!-- 채널 상세 페이지 상단 영역 시작  -->
 
-				<div class="display-flex w-auto ml-auto">
+				<div class="w100 ml-auto">
 					<!-- 채널 썸네일 영역 시작  -->
 					<div class="chnDtlImg d-inline-block">
 						<img id="chnDtlThumbNail"
@@ -31,7 +31,7 @@
 
 					<!-- 채널 이름 및 카테고리 시작 -->
 
-					<div class="pTop d-inline-block">
+					<div class="d-inline-block chn-basic-info">
 						<div class="w-auto ml-auto">
 							<span class="chnDtlName">${requestScope.outputChannelTitle }</span>
 						</div>
@@ -41,6 +41,22 @@
 						</div>
 					</div>
 					<!-- 채널 이름 및 카테고리 끝 -->
+
+					<!-- 관심 채널 등록 -->
+					
+					<c:if test="${not empty sessionScope.racMemberNo}">
+						<div class="float-right chn-like-area">
+							<button class="commonBtn chn-like-Btn" onclick="">관심채널
+								설정</button>
+						</div>
+						<div class="float-right chn-liked-area">
+							<button class="commonReverseBtn chn-liked-Btn" onclick="">관심채널
+								해제</button>
+						</div>
+					</c:if>
+					
+					<!-- 관심 채널 등록 끝 -->
+				
 				</div>
 
 				<!-- 채널 상세 페이지 상단 영역 끝  -->
@@ -211,8 +227,10 @@
 
 						<!--  Non-Login Member -->
 						<c:if test="${empty sessionScope.racMemberNo}">
-							<div class="pTop5 txt-center inline-block">이 채널에서 진행된 광고 영상이 궁금하신가요?</div>
-							<div class="txt-center inline-block">기업회원으로 로그인하면 이 채널의 광고 영상을 확인할 수 있습니다.</div>
+							<div class="pTop5 txt-center inline-block">이 채널에서 진행된 광고
+								영상이 궁금하신가요?</div>
+							<div class="txt-center inline-block">기업회원으로 로그인하면 이 채널의 광고
+								영상을 확인할 수 있습니다.</div>
 							<div class="pTop txt-center">
 								<button class="commonBtn">
 									<a href="/02_page/Auth/login.jsp">기업회원으로 로그인하기</a>
@@ -283,8 +301,10 @@
 
 						<!--  Non-Login Member -->
 						<c:if test="${empty sessionScope.racMemberNo}">
-							<div class="pTop5 txt-center inline-block">이 채널을 이용한 다른 광고주의 리뷰가 궁금하신가요?</div>
-							<div class="txt-center inline-block">기업회원으로 로그인하면 이 채널의 리뷰를 확인할 수 있습니다.</div>
+							<div class="pTop5 txt-center inline-block">이 채널을 이용한 다른
+								광고주의 리뷰가 궁금하신가요?</div>
+							<div class="txt-center inline-block">기업회원으로 로그인하면 이 채널의 리뷰를
+								확인할 수 있습니다.</div>
 							<div class="pTop txt-center">
 								<button class="commonBtn">
 									<a href="/02_page/Auth/login.jsp">기업회원으로 로그인하기</a>
