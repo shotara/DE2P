@@ -519,13 +519,13 @@ public class ChannelController {
 				return;
 				
 			} else {
-//				
-//				PrivateKey privateKey = null;
-//				privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
-//				session.removeAttribute("PrivateKey"); // 키의 재사용 방지
 				
-//				String decryptChannelName = EncryptUtil.RSA_Decode(privateKey, inputChannelName);
-				ArrayList<Channel> channelList = ChannelDAO.searchChannelList(inputChannelName);
+				PrivateKey privateKey = null;
+				privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+				session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+				
+				String decryptChannelName = EncryptUtil.RSA_Decode(privateKey, inputChannelName);
+				ArrayList<Channel> channelList = ChannelDAO.searchChannelList(decryptChannelName);
 				ArrayList<HashMap<String,Object>> outputSearchChannelList = new ArrayList<HashMap<String,Object>>();
 				for(int i=0; i < channelList.size(); i++) {
 					HashMap<String,Object> tempObject = new HashMap<String,Object>();

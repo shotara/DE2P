@@ -371,9 +371,71 @@ public class MemberController {
 			   message.setSubject("[Subject] Java Mail Test");
 			   
 			   // Text
-			   message.setText("http://localhost:8080/member?action=permitJoin&inputEmail="+decryptMemberEmail+"&inputUid="+memberUid);
-
+			   String url = "http://localhost:8080/member?action=permitJoin&inputEmail="+decryptMemberEmail+"&inputUid="+memberUid;
+			   String text = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\r\n" + 
+			   		"			   <html xmlns='http://www.w3.org/1999/xhtml'>\r\n" + 
+			   		"			   <head>\r\n" + 
+			   		"			   <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />\r\n" + 
+			   		"			   <title>랭크리 이메일 인증</title>\r\n" + 
+			   		"			   <meta name='viewport' content='width=device-width, initial-scale=1.0' />\r\n" + 
+			   		"			   </head>\r\n" + 
+			   		"			   <body style='margin: 0; padding: 0;'>\r\n" + 
+			   		"			   	<table align='center' border='0' cellpadding='0' cellspacing='0'\r\n" + 
+			   		"			   		width='600'>\r\n" + 
+			   		"			   		<tr>\r\n" + 
+			   		"			   			<td bgcolor='#ffffff' align='center'\r\n" + 
+			   		"			   				style='font-size: 42px; color: #f11834; font-weight: bold; padding: 40px 0px 0px 0px;'>Rancre\r\n" + 
+			   		"			   			</td>\r\n" + 
+			   		"			   		</tr>\r\n" + 
+			   		"			   		<tr>\r\n" + 
+			   		"			   			<td bgcolor='#ffffff' style='padding: 40px 30px 60px 30px;'>\r\n" + 
+			   		"			   				<table border='0' cellpadding='0' cellspacing='0' width='100%'\r\n" + 
+			   		"			   					align='center'>\r\n" + 
+			   		"			   					<tr>\r\n" + 
+			   		"			   						<td align='center' style='font-size:18px;'>안녕하세요! 랭크리입니다. 회원가입을 신청해주셔서 감사합니다.</td>\r\n" + 
+			   		"			   					</tr>\r\n" + 
+			   		"			   					<tr>\r\n" + 
+			   		"			   						<td align='center' style='font-size:18px; padding:10px 0px 0px 0px;'>아래의 인증 URL을 눌러 회원가입을 완료해주시기 바랍니다.</td>\r\n" + 
+			   		"			   					</tr>\r\n" + 
+			   		"			   					<tr>\r\n" + 
+			   		"			   						<td align='center'>&nbsp;</td>\r\n" + 
+			   		"			   					</tr>\r\n" + 
+			   		"			   					<tr>\r\n" + 
+			   		"			   						<td align='center'>&nbsp;</td>\r\n" + 
+			   		"			   					</tr>\r\n" + 
+			   		"			   					<tr>\r\n" + 
+			   		"			   						<td align='center'>"+url +"</td>\r\n" + 
+			   		"			   					</tr>\r\n" + 
+			   		"			   					<tr>\r\n" + 
+			   		"			   						<td align='center'>&nbsp;</td>\r\n" + 
+			   		"			   					</tr>\r\n" + 
+			   		"			   					<tr>\r\n" + 
+			   		"			   						<td align='center'>&nbsp;</td>\r\n" + 
+			   		"			   					</tr>\r\n" + 
+			   		"			   					<tr>\r\n" + 
+			   		"			   						<td align='center' style='font-size:18px;'>이메일 인증을 완료하지 않은 경우, 서비스 이용에 제한이 있을 수 있습니다.\r\n" + 
+			   		"			   						</td>\r\n" + 
+			   		"			   					</tr>\r\n" + 
+			   		"			   				</table>\r\n" + 
+			   		"			   			</td>\r\n" + 
+			   		"			   		</tr>\r\n" + 
+			   		"			   		<tr>\r\n" + 
+			   		"			   			<td bgcolor='#f11834' style='padding: 30px 30px 30px 30px;'>\r\n" + 
+			   		"			   				<table border='0' cellpadding='0' cellspacing='0' width='100%'>\r\n" + 
+			   		"			   					<tr>\r\n" + 
+			   		"			   						<td align='center' style='color: #ffffff'>랭크리는 더 다양한 채널을 분석하기\r\n" + 
+			   		"			   							위한 서비스입니다.</td>\r\n" + 
+			   		"			   					</tr>\r\n" + 
+			   		"			   				</table>\r\n" + 
+			   		"\r\n" + 
+			   		"			   			</td>\r\n" + 
+			   		"			   		</tr>\r\n" + 
+			   		"			   	</table>\r\n" + 
+			   		"			   </body>\r\n" + 
+			   		"			   </html>";
+//			   message.setText(text);
 			   // send the message
+			   message.setContent(text, "text/html; charset=utf-8");
 			   Transport.send(message);
 			   System.out.println("message sent successfully...");
 

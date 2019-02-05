@@ -22,8 +22,11 @@
 
 			<div class="txt-center search-Keyword pTop4">
 				<div class="ipt-search-box">
-					<input class="ipt-search" id="ipt-Search" type="text"
-						placeholder="다음으로 Rancre 검색" onkeyup="Common.search(2)" />
+					<form action="/channel?action=searchChannel" method="POST" id="searchChannelForm">
+					<input class="ipt-search" id="ipt-Search" type="text" 
+						placeholder="다음으로 Rancre 검색" onkeyup="javascript:  Common.search(2);" />
+					<input type="hidden" name="inputChannelName" id="inputChannelName"/>	
+					</form>
 				</div>
 				<button id="clear-btn" class="clear-Btn" onclick="Common.search(1)">
 					<img style="width: 15px;" src="/01_image/commonImg/cancel.png">

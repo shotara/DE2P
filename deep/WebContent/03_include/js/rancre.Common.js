@@ -508,10 +508,8 @@ Common.search = function (mode){
 	else if (mode == 2) {
 		var keyPressed = event.keyCode || event.which;
 		var channelName = protectXSS($("#ipt-Search").val());
-
+		
 		if(keyPressed==13) {
-
-
 			var publicKeyModulus = "";
 			var publicKeyExponent = "";
 
@@ -532,29 +530,12 @@ Common.search = function (mode){
 			rsa.setPublic(publicKeyModulus, publicKeyExponent);
 
 			var encryptChannelName = rsa.encrypt(channelName);
-
-			var form_data = {
-					inputChannelName : encryptChannelName
-			};
-
-			$.ajax({
-				type:"POST",
-				url: "/channel?action=searchChannel",
-				data:form_data,
-				dataType: "json",
-				async : false,
-				success: function(response) {
-
-					if(response.outputChannelNo > 0) { /** 정상적채널명 **/ 
-						location.href = "/channel?action=getChannelDetail&inputChannelNo="+response.outputChannelNo;
-					} else {
-						alert("알수없는 문제가 발생했습니다.");
-					}
-				}
-			});
+			$("#inputChannelName").val(encryptChannelName);
+			document.getElementById('searchChannelForm').submit();
 			return; 
 
 		}
+		
 		if(channelName !=""){
 			const clear_btn = document.getElementById('clear-btn');
 			clear_btn.style.display = 'inline-block';		
@@ -569,32 +550,6 @@ Common.search = function (mode){
 
 //			ipt_search_width.style.width = ipt_width;
 //			return false;
-		}
-		if(keyPressed != 38 && keyPressed != 39 && keyPressed != 40 && keyPressed != 37) {
-			$("#ipt-Search").autocomplete({
-				source : function(request, response) {
-					$.ajax({
-						type : 'post',
-						url : "/channel?action=autoCompleteChannel",
-						dataType : "json",
-						async : true,
-						data : {
-							inputChannelTitle : channelName
-						},
-						success : function(data) {
-							//서버에서 json 데이터 response 후 목록에 뿌려주기 위함, 한글 데이터가 지금 깨지고 있는 것 같은데 확인 필
-							response($.map(data.outputResult, function(item) {
-								return {
-									label : item.outputChannelTitle,
-									value : item.outputChannelTitle,
-								}
-							}));
-						}
-					});
-				},
-				//조회를 위한 최소글자수 1로 해야함 한글자짜리 활성화 된 채널 2개 존재함 유튜브 채널 타이틀 정책 쓰레기임 한글자가 뭐냐 ex, '벨'이라는 유튜버 있음 
-				minLength : 1
-			});
 		}
 	}
 	else if (mode == 3) { /** modal popup Open **/
