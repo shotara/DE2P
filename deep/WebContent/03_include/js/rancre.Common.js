@@ -535,22 +535,6 @@ Common.search = function (mode){
 			return; 
 
 		}
-		
-		if(channelName !=""){
-			const clear_btn = document.getElementById('clear-btn');
-			clear_btn.style.display = 'inline-block';		
-
-			keyPressed=null;
-		}else{
-			Common.search(1);
-//			const ipt_search_width = document.getElementById('ipt-Search');
-//			const ipt_len = ipt_search_width.value.length;
-//			const ipt_width = (ipt_len*23)+'px';
-//			//alert(ipt_width);
-
-//			ipt_search_width.style.width = ipt_width;
-//			return false;
-		}
 	}
 	else if (mode == 3) { /** modal popup Open **/
 		const modal = document.getElementById('req-Search-Modal');
