@@ -6,7 +6,7 @@
 /*  rancre common CSS  */
 /*********************************/
 body {
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif !important;
 }
 
 * {
@@ -283,6 +283,7 @@ a {
 	height: 36px;
 	color: #f11834;
 	cursor: pointer;
+	background : #ffffff;
 }
 
 .commonBtn:focus {
@@ -486,6 +487,7 @@ a {
 	font-size: 1em;
 	height: 36px;
 	color: #f11834;
+	background : #ffffff;
 }
 
 .btnListGo:focus {
@@ -625,6 +627,17 @@ a.subnav-link:hover {
 
 .subNav-content.active {
 	display: block;
+}
+
+.all-channel-tab{
+	flex-basis : 0;
+	-ms-flex-positive : 1;
+	flex-grow :1;
+	max-width : 100%;
+	position :relative;
+	min-height : 1px;
+	padding-right : 14px;
+	padding-left : 14px;
 }
 
 /**********************************/

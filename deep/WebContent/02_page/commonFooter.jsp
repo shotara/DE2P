@@ -18,7 +18,7 @@
 			</div>
 			<div class="txt-center pTop4">
 				<span class="footer-detail">Rancre 는 채널 추천 서비스로 여러분에게 새로운 채널을
-					추천해주고 싶어 만들었어요! </br> 더 많은 채널을 보여주도록 노력할게요!
+					추천해주고 싶어 만들었어요! <br/> 더 많은 채널을 보여주도록 노력할게요!
 				</span>
 			</div>
 		</div>

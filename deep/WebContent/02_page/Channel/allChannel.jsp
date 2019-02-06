@@ -144,50 +144,50 @@
 				<!-- 랭킹페이지 서브 네비 영역  -->
 
 				<div class="subNav-tabs w-auto ml-auto">
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link active" data-tab="studio" href="#studio" onclick="initList(2)">스튜디오</a>
 					</div>
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="entertain" href="#entertain" onclick="initList(3)">엔터</a>
 					</div>
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="travel" href="#travel" onclick="initList(4)">여행</a>
 					</div>
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="singdance" href="#singdance" onclick="initList(5)">노래
 							댄스</a>
 					</div>
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="tech" href="#tech" onclick="initList(6)">테크</a>
 					</div>
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="education" href="#education" onclick="initList(7)">교육(어학)</a>
 					</div>
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="beauty" href="#beauty" onclick="initList(8)">뷰티</a>
 					</div>
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="daylife" href="#daylife" onclick="initList(9)">일상</a>
 					</div>
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="game" href="#game" onclick="initList(10)">게임</a>
 					</div>
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="sports" href="#sports" onclick="initList(11)">운동</a>
 					</div>
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="food" href="#food" onclick="initList(12)">먹방</a>
 					</div>
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="kids" href="#kids" onclick="initList(13)">키즈</a>
 					</div>
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="pet" href="#pet" onclick="initList(14)">반려동물</a>
 					</div>
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="exercise" href="#exercise" onclick="initList(15)">ASMR</a>
 					</div>
-					<div class="subNav-tab col w-auto ml-auto d-inline-block">
+					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="habbit" href="#habbit" onclick="initList(16)">취미</a>
 					</div>
 				</div>
