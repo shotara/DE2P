@@ -497,10 +497,10 @@ public class ChannelController {
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
- 
 			if(inputChannelName.equals("")) {
 				Calendar calendar = Calendar.getInstance();
-				calendar.set(calendar.HOUR_OF_DAY,0);
+				calendar.set(calendar.HOUR_OF_DAY,4);
+				calendar.set(calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH) -1);
 				Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
 				ArrayList<Channel> recomandChannelList = ChannelDAO.getRecomandChannel(inputCurrentDate);
 				ArrayList<HashMap<String,Object>> outputRecomandChannelList = new ArrayList<HashMap<String,Object>>();
@@ -514,7 +514,6 @@ public class ChannelController {
 					tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(recomandChannelList.get(i).getRacChannelViews()));
 					tempObject.put("outputChannelThumbnail", recomandChannelList.get(i).getRacChannelThumbnail());
 					outputRecomandChannelList.add(tempObject);
-					
 				}
 				
 				CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel Search OK", map);
@@ -523,7 +522,6 @@ public class ChannelController {
 				return;
 				
 			} else {
-				
 				PrivateKey privateKey = null;
 				privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
 				session.removeAttribute("PrivateKey"); // 키의 재사용 방지
