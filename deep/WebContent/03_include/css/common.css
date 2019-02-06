@@ -6,7 +6,7 @@
 /*  rancre common CSS  */
 /*********************************/
 body {
-	font-family: 'Noto Sans KR', sans-serif !important;
+	font-family : -apple-system, 'Nanum Gothic', sans-serif !important;
 }
 
 * {
@@ -636,8 +636,8 @@ a.subnav-link:hover {
 	max-width : 100%;
 	position :relative;
 	min-height : 1px;
-	padding-right : 14px;
-	padding-left : 14px;
+	padding-right : 13px;
+	padding-left : 13px;
 }
 
 /**********************************/
