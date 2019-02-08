@@ -673,14 +673,14 @@ public class ChannelDAO {
 		}
 	}
 
-	public static ArrayList<Channel> getRecomandChannel(Timestamp inputCurrentDate) {
+	public static ArrayList<Channel> getRecomandChannel(Timestamp inputCurrentDate, int limit) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);
 		
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("inputCurrentDate", inputCurrentDate);
-
+			map.put("limit", limit);
 			return (ArrayList)sqlSession.selectList(namespace + ".getRecomandChannel", map);
 			
 		} finally {

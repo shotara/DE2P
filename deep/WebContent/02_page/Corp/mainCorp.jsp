@@ -27,18 +27,16 @@
 		            $("#myReviewChild").empty();
 
 		        	for(var i=0; i<args.outputReviewList.length; i++) {
-						$('#myReviewChild').append(`
-								<div class="corp-MyReview row">
-								<div class="col float-left corp-ChnName">`+args.outputReviewList[i].outputChannelTitle+`</div>
-								<div class="col float-left corp-ChnSatisfy">`+args.outputReviewList[i].outputReviewSatisfy+`</div>
-								<div class="col float-left corp-ChnReview-Date">`+args.outputReviewList[i].outputReviewCreateDate+`</div>
-								<div class="col float-left corp-ChnReivew-Accept">`+args.outputReviewList[i].outputReviewStatus+`</div>
-							</div>
-		
-							<hr
-								style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-								
-								`);
+						$('#myReviewChild').append(
+								"			<div class='corp-MyReview row'>\r\n" + 
+								"			<div class='col float-left corp-ChnName'>"+args.outputReviewList[i].outputChannelTitle+"</div>\r\n" + 
+								"			<div class='col float-left corp-ChnSatisfy'>"+args.outputReviewList[i].outputReviewSatisfy+"</div>\r\n" + 
+								"			<div class='col float-left corp-ChnReview-Date'>"+args.outputReviewList[i].outputReviewCreateDate+"</div>\r\n" + 
+								"			<div class='col float-left corp-ChnReivew-Accept'>"+args.outputReviewList[i].outputReviewStatus+"</div>\r\n" + 
+								"		</div>\r\n" + 
+								"\r\n" + 
+								"		<hr\r\n" + 
+								"			style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n");
 		        	}
 
 		            $("#reviewPaging").empty();
@@ -93,9 +91,9 @@
 
 		    		if (review_total < review_finalPage)
 		    			$("#reviewPaging").append(
-		    					`<li class="common-page-next go-review-list"><a
-		    					class="common-A" onclick="getChannelPage(2,`+review_total+`)">다음<img style="margin-bottom: 2px;"
-		    						src="/01_image/commonImg/right-arrow.png"></a></li>`);
+		    					"<li class='common-page-next go-review-list'><a\r\n" + 
+		    					"class='common-A' onclick='getChannelPage(2,"+review_total+")'>다음<img style='margin-bottom: 2px;'\r\n" + 
+		    					"src='/01_image/commonImg/right-arrow.png'></a></li>");
 		        },   
 		        error:function(request,status,error){  
 		            alert(error);  
@@ -119,34 +117,35 @@
 
 		        	for(var i=0; i<args.outputChannelList.length; i++) {
 						var like='';
-						if(args.outputChannelList[i].outputChannelLike==0) like = `<button class="commonBtn" onclick="Common.Like(1,`+args.outputChannelList[i].outputChannelNo+`);">관심채널 등록</button>`;
-						else like =`<button class="commonReverseBtn" onclick="Common.Like(2,`+args.outputChannelList[i].outputChannelNo+`);">관심채널 해제</button>`;
+						if(args.outputChannelList[i].outputChannelLike==0) like = "<button class='commonBtn' onclick='Common.Like(1,"+args.outputChannelList[i].outputChannelNo+");'>관심채널 등록</button>";
+						else like ="<button class='commonReverseBtn' onclick='Common.Like(2,"+args.outputChannelList[i].outputChannelNo+");'>관심채널 해제</button>";
 						
-						$('#myViewChild').append(`
-								<div class="corp-MyView w100">
-								<div class="corp-View-Row-ChnImg">
-									<img id="corp-View-Row-ThumbNail"
-										style="width: 48px; border-radius: 48px;"
-										src="`+ args.outputChannelList[i].outputChannelThumbnail +`" />
-								</div>
-								<div class="corp-View-Row-ChnName">`+ args.outputChannelList[i].outputChannelName +`</div>
-								<div class="corp-View-Row-Category">`+ args.outputChannelList[i].outputChannelCategory +`</div>
-								<div class="corp-View-Row-Subscribe">`+ args.outputChannelList[i].outputChannelFollowers +`</div>
-								<div class="corp-View-Row-TotalView">`+ args.outputChannelList[i].outputChannelViews +`</div>
-								<div class="corp-View-Row-Like">
-								`+like+`
-								</div>
-								<div class="corp-View-Row-DetailGo">
-									<button class="common-Small-Btn">
-										<a href="/channel?action=getChannelDetail&inputChannelNo=`+ args.outputChannelList[i].outputChannelNo +`">채널정보 보기</a>
-									</button>
-								</div>
+						$('#myViewChild').append(
+								"								<div class='corp-MyView w100'>\r\n" + 
+								"								<div class='corp-View-Row-ChnImg'>\r\n" + 
+								"									<img id='corp-View-Row-ThumbNail'\r\n" + 
+								"										style='width: 48px; border-radius: 48px;'\r\n" + 
+								"										src='"+ args.outputChannelList[i].outputChannelThumbnail +"' />\r\n" + 
+								"								</div>\r\n" + 
+								"								<div class='corp-View-Row-ChnName'>"+ args.outputChannelList[i].outputChannelName +"</div>\r\n" + 
+								"								<div class='corp-View-Row-Category'>"+ args.outputChannelList[i].outputChannelCategory +"</div>\r\n" + 
+								"								<div class='corp-View-Row-Subscribe'>"+ args.outputChannelList[i].outputChannelFollowers +"</div>\r\n" + 
+								"								<div class='corp-View-Row-TotalView'>"+ args.outputChannelList[i].outputChannelViews +"</div>\r\n" + 
+								"								<div class='corp-View-Row-Like'>\r\n" + 
+								"								"+like+"\r\n" + 
+								"								</div>\r\n" + 
+								"								<div class='corp-View-Row-DetailGo'>\r\n" + 
+								"									<button class='common-Small-Btn'>\r\n" + 
+								"										<a href='/channel?action=getChannelDetail&inputChannelNo="+ args.outputChannelList[i].outputChannelNo +"'>채널정보 보기</a>\r\n" + 
+								"									</button>\r\n" + 
+								"								</div>\r\n" + 
+								"\r\n" + 
+								"							</div>\r\n" + 
+								"\r\n" + 
+								"							<hr\r\n" + 
+								"								style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n"
 
-							</div>
-
-							<hr
-								style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-					  `);
+					  );
 		        	}
 
 		            $("#recentPaging").empty();
@@ -201,9 +200,9 @@
 
 		    		if (recent_total < recent_finalPage)
 		    			$("#recentPaging").append(
-		    					`<li class="common-page-next go-review-list"><a
-		    					class="common-A" onclick="getChannelPage(2,`+recent_total+`)">다음<img style="margin-bottom: 2px;"
-		    						src="/01_image/commonImg/right-arrow.png"></a></li>`);
+		    					"<li class='common-page-next go-review-list'><a\r\n" + 
+		    					"class='common-A' onclick='getChannelPage(2,"+recent_total+")'>다음<img style='margin-bottom: 2px;'\r\n" + 
+		    					"src='/01_image/commonImg/right-arrow.png'></a></li>");
 		    	
 		        },   
 		        error:function(request,status,error){  
@@ -228,34 +227,34 @@
 
 		        	for(var i=0; i<args.outputChannelList.length; i++) {
 						var like='';
-						if(args.outputChannelList[i].outputChannelLike==0) like = `<button class="commonBtn" onclick="Common.Like(1,`+args.outputChannelList[i].outputChannelNo+`);">관심채널 등록</button>`;
-						else like =`<button class="commonReverseBtn" onclick="Common.Like(2,`+args.outputChannelList[i].outputChannelNo+`);">관심채널 해제</button>`;
+						if(args.outputChannelList[i].outputChannelLike==0) like = "<button class='commonBtn' onclick='Common.Like(1,"+args.outputChannelList[i].outputChannelNo+");'>관심채널 등록</button>";
+						else like ="<button class='commonReverseBtn' onclick='Common.Like(2,"+args.outputChannelList[i].outputChannelNo+");'>관심채널 해제</button>";
 						
-						$('#myLikeChild').append(`
-								<div class="corp-MyView w100">
-								<div class="corp-View-Row-ChnImg">
-									<img id="corp-View-Row-ThumbNail"
-										style="width: 48px; border-radius: 48px;"
-										src="`+ args.outputChannelList[i].outputChannelThumbnail +`" />
-								</div>
-								<div class="corp-View-Row-ChnName">`+ args.outputChannelList[i].outputChannelName +`</div>
-								<div class="corp-View-Row-Category">`+ args.outputChannelList[i].outputChannelCategory +`</div>
-								<div class="corp-View-Row-Subscribe">`+ args.outputChannelList[i].outputChannelFollowers +`</div>
-								<div class="corp-View-Row-TotalView">`+ args.outputChannelList[i].outputChannelViews +`</div>
-								<div class="corp-View-Row-Like">
-									`+like+`
-								</div>
-								<div class="corp-View-Row-DetailGo">
-									<button class="common-Small-Btn">
-										<a href="/channel?action=getChannelDetail&inputChannelNo=`+ args.outputChannelList[i].outputChannelNo +`">채널정보 보기</a>
-									</button>
-								</div>
-
-							</div>
-
-							<hr
-								style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-					  `);
+						$('#myLikeChild').append(
+								"								<div class='corp-MyView w100'>\r\n" + 
+								"								<div class='corp-View-Row-ChnImg'>\r\n" + 
+								"									<img id='corp-View-Row-ThumbNail'\r\n" + 
+								"										style='width: 48px; border-radius: 48px;'\r\n" + 
+								"										src='"+ args.outputChannelList[i].outputChannelThumbnail +"' />\r\n" + 
+								"								</div>\r\n" + 
+								"								<div class='corp-View-Row-ChnName'>"+ args.outputChannelList[i].outputChannelName +"</div>\r\n" + 
+								"								<div class='corp-View-Row-Category'>"+ args.outputChannelList[i].outputChannelCategory +"</div>\r\n" + 
+								"								<div class='corp-View-Row-Subscribe'>"+ args.outputChannelList[i].outputChannelFollowers +"</div>\r\n" + 
+								"								<div class='corp-View-Row-TotalView'>"+ args.outputChannelList[i].outputChannelViews +"</div>\r\n" + 
+								"								<div class='corp-View-Row-Like'>\r\n" + 
+								"									"+like+"\r\n" + 
+								"								</div>\r\n" + 
+								"								<div class='corp-View-Row-DetailGo'>\r\n" + 
+								"									<button class='common-Small-Btn'>\r\n" + 
+								"										<a href='/channel?action=getChannelDetail&inputChannelNo="+ args.outputChannelList[i].outputChannelNo +"'>채널정보 보기</a>\r\n" + 
+								"									</button>\r\n" + 
+								"								</div>\r\n" + 
+								"\r\n" + 
+								"							</div>\r\n" + 
+								"\r\n" + 
+								"							<hr\r\n" + 
+								"								style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n"
+					  );
 		        	}
 
 		            $("#likePaging").empty();
@@ -310,9 +309,9 @@
 
 		    		if (like_total < like_finalPage)
 		    			$("#likePaging").append(
-						`<li class="common-page-next go-review-list"><a
-						class="common-A" onclick="getChannelPage(3,`+like_total+`)">다음<img style="margin-bottom: 2px;"
-							src="/01_image/commonImg/right-arrow.png"></a></li>`);
+						"<li class='common-page-next go-review-list'><a"+
+						"class='common-A' onclick='getChannelPage(3,"+like_total+")'>다음<img style='margin-bottom: 2px;'"+
+							"src='/01_image/commonImg/right-arrow.png'></a></li>");
 			
 		        },   
 		        error:function(request,status,error){  
@@ -482,64 +481,22 @@
 						최근 15일 내 검색한 채널이 없습니다. </br> 이런 채널은 어떤가요?
 					</div>
 					<div class="recommend-channel-list">
+						<c:forEach var="item" items="${outputChannelViewRandom}">
 						<div class="recommend-channel">
 							<div class="reco-chnImg txt-left">
 								<img id="corp-View-Row-ThumbNail"
 									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+									src="${item.outputChannelThumbnail }"/>
 							</div>
 							<div class="reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+								<div class="name">${item.outputChannelTitle }</div>
+								<div class="category inline-block txt-left">${item.outputChannelCategory }</div>
 							</div>
 							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+								<button class="common-wide85Reverse-Btn" onclick="location.href='/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo}';">채널정보 보기</button>
 							</div>
 						</div>
-
-						<div class="recommend-channel">
-							<div class="reco-chnImg txt-left">
-								<img id="corp-View-Row-ThumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="recommend-channel">
-							<div class="reco-chnImg txt-left">
-								<img id="corp-View-Row-ThumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-						<div class="recommend-channel-right">
-							<div class="reco-chnImg txt-left">
-								<img id="corp-View-Row-ThumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 				</c:if>
@@ -602,64 +559,22 @@
 						관심 채널로 등록한 채널이 없습니다. </br> 이런 채널은 어떤가요?
 					</div>
 					<div class="recommend-channel-list">
+						<c:forEach var="item" items="${outputChannelLikeRandom}">
 						<div class="recommend-channel">
 							<div class="reco-chnImg txt-left">
 								<img id="corp-View-Row-ThumbNail"
 									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+									src="${item.outputChannelThumbnail }" />
 							</div>
 							<div class="reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
+								<div class="name">${item.outputChannelTitle}</div>
+								<div class="category inline-block txt-left">${item.outputChannelCategory }</div>
 							</div>
 							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
+								<button class="common-wide85Reverse-Btn" onclick="location.href='/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo}';">채널정보 보기</button>
 							</div>
 						</div>
-
-						<div class="recommend-channel">
-							<div class="reco-chnImg txt-left">
-								<img id="corp-View-Row-ThumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-
-						<div class="recommend-channel">
-							<div class="reco-chnImg txt-left">
-								<img id="corp-View-Row-ThumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
-						<div class="recommend-channel-right">
-							<div class="reco-chnImg txt-left">
-								<img id="corp-View-Row-ThumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="https://yt3.ggpht.com/-mUDER2p8AVo/AAAAAAAAAAI/AAAAAAAAAAA/qQod6ZFouBo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg" />
-							</div>
-							<div class="reco-chnInfo">
-								<div class="name">Wassup-Man</div>
-								<div class="category inline-block txt-left">#스튜디오, 게임, 엔터</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn">채널정보 보기</button>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 				</c:if>
@@ -724,9 +639,9 @@
 
 		if (review_total < review_finalPage)
 			$("#reviewPaging").append(
-					`<li class="common-page-next go-review-list"><a
-					class="common-A" onclick="getChannelPage(2,`+review_total+`)">다음<img style="margin-bottom: 2px;"
-						src="/01_image/commonImg/right-arrow.png"></a></li>`);
+					"<li class='common-page-next go-review-list'><a"+
+					"class='common-A' onclick='getChannelPage(2,"+review_total+")'>다음<img style='margin-bottom: 2px;'"+
+						"src='/01_image/commonImg/right-arrow.png'></a></li>");
 	
 		///////////// Recent 
 		var recent_current = ${recentCurrentPageNo};
@@ -778,9 +693,10 @@
 
 		if (recent_total < recent_finalPage)
 			$("#recentPaging").append(
-					`<li class="common-page-next go-review-list"><a
-					class="common-A" onclick="getChannelPage(2,`+recent_total+`)">다음<img style="margin-bottom: 2px;"
-						src="/01_image/commonImg/right-arrow.png"></a></li>`);
+					"	<li class='common-page-next go-review-list'><a\r\n" + 
+					"			class='common-A' onclick='getChannelPage(2,"+recent_total+")'>다음<img style='margin-bottom: 2px;'\r\n" + 
+					"				src='/01_image/commonImg/right-arrow.png'></a></li>"
+					);
 	
 		///////Like 
 		var like_current = ${likeCurrentPageNo};
@@ -832,9 +748,9 @@
 
 		if (like_total < like_finalPage)
 			$("#likePaging").append(
-					`<li class="common-page-next go-review-list"><a
-					class="common-A" onclick="getChannelPage(3,`+like_total+`)">다음<img style="margin-bottom: 2px;"
-						src="/01_image/commonImg/right-arrow.png"></a></li>`);
+					"					<li class='common-page-next go-review-list'><a\r\n" + 
+					"					class='common-A' onclick='getChannelPage(3,"+like_total+")'>다음<img style='margin-bottom: 2px;'\r\n" + 
+					"						src='/01_image/commonImg/right-arrow.png'></a></li>");
 		
 
 	

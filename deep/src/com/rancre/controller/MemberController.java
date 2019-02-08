@@ -11,6 +11,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.PrivateKey;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -967,6 +969,10 @@ public class MemberController {
 			HttpSession session = req.getSession();
 		
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			Calendar calendar = Calendar.getInstance();
+			calendar.set(calendar.HOUR_OF_DAY,4);
+			calendar.set(calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH) -1);
+			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime()); 
 			
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
@@ -994,13 +1000,13 @@ public class MemberController {
 			Paging reviewPaging = new Paging(1, 5);
 			reviewPaging.setNumberOfRecords(reviewCount);
 			reviewPaging.makePaging();
-
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd HH:mm");
 			ArrayList<HashMap<String,Object>> outputReviewList = new ArrayList<HashMap<String,Object>>();
 			for(int i=0; i<reviewList.size();i++) {
 				HashMap<String,Object> tempObject = new HashMap<String,Object>();
 				tempObject.put("outputChannelTitle", ChannelDAO.getChannelByNo(reviewList.get(i).getRacChannelNo()).getRacChannelTitle());
 				tempObject.put("outputReviewSatisfy", CommonUtil.getReviewSatisfy(reviewList.get(i).getRacReviewSatisfy()));
-				tempObject.put("outputReviewCreateDate", reviewList.get(i).getRacReviewCreateDate());
+				tempObject.put("outputReviewCreateDate", dateFormat.format(reviewList.get(i).getRacReviewCreateDate()));
 				tempObject.put("outputReviewStatus", CommonUtil.getReviewStatus(reviewList.get(i).getRacReviewStatus()));
 
 				outputReviewList.add(tempObject);
@@ -1031,8 +1037,25 @@ public class MemberController {
 				tempObject.put("outputChannelThumbnail", channelViewList.get(i).getRacChannelThumbnail());
 				tempObject.put("outputChannelNo", channelViewList.get(i).getRacChannelNo());
 				tempObject.put("outputChannelLike", ChannelDAO.checkChannelLike(sessionMemberNo, channelViewList.get(i).getRacChannelNo()));
-
 				outputChannelViewList.add(tempObject);
+			}
+			
+			if(channelViewList.size()==0) {
+				ArrayList<Channel> recomandChannelList = ChannelDAO.getRecomandChannel(inputCurrentDate, 4);
+				ArrayList<HashMap<String,Object>> outputRecomandChannelList = new ArrayList<HashMap<String,Object>>();
+				for(int i=0; i < recomandChannelList.size(); i++) {
+					HashMap<String,Object> tempObject = new HashMap<String,Object>();
+					tempObject.put("outputChannelNo", recomandChannelList.get(i).getRacChannelNo());
+					tempObject.put("outputChannelCategory", CommonUtil.getChannelCategoryList(recomandChannelList.get(i).getRacChannelCategory()));
+					tempObject.put("outputChannelUrl", recomandChannelList.get(i).getRacChannelUrl());
+					tempObject.put("outputChannelTitle", recomandChannelList.get(i).getRacChannelTitle());
+					tempObject.put("outputChannelFollowers", CommonUtil.setCommaForInt(recomandChannelList.get(i).getRacChannelFollowers()));
+					tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(recomandChannelList.get(i).getRacChannelViews()));
+					tempObject.put("outputChannelThumbnail", recomandChannelList.get(i).getRacChannelThumbnail());
+					outputRecomandChannelList.add(tempObject);
+				}
+				
+				req.setAttribute("outputChannelViewRandom", outputRecomandChannelList);
 			}
 			req.setAttribute("outputChannelViewList", outputChannelViewList);
 			req.setAttribute("recentFirstPageNo", recentPaging.getFirstPageNo());
@@ -1060,8 +1083,25 @@ public class MemberController {
 				tempObject.put("outputChannelThumbnail", channelLikeList.get(i).getRacChannelThumbnail());
 				tempObject.put("outputChannelNo", channelLikeList.get(i).getRacChannelNo());
 				tempObject.put("outputChannelLike", ChannelDAO.checkChannelLike(sessionMemberNo, channelLikeList.get(i).getRacChannelNo()));
-
+				System.out.println(ChannelDAO.checkChannelLike(sessionMemberNo, channelLikeList.get(i).getRacChannelNo()));
 				outputChannelLikeList.add(tempObject);
+			}
+			if(channelLikeList.size()==0) {
+				ArrayList<Channel> recomandChannelList = ChannelDAO.getRecomandChannel(inputCurrentDate, 4);
+				ArrayList<HashMap<String,Object>> outputRecomandChannelList2 = new ArrayList<HashMap<String,Object>>();
+				for(int i=0; i < recomandChannelList.size(); i++) {
+					HashMap<String,Object> tempObject = new HashMap<String,Object>();
+					tempObject.put("outputChannelNo", recomandChannelList.get(i).getRacChannelNo());
+					tempObject.put("outputChannelCategory", CommonUtil.getChannelCategoryList(recomandChannelList.get(i).getRacChannelCategory()));
+					tempObject.put("outputChannelUrl", recomandChannelList.get(i).getRacChannelUrl());
+					tempObject.put("outputChannelTitle", recomandChannelList.get(i).getRacChannelTitle());
+					tempObject.put("outputChannelFollowers", CommonUtil.setCommaForInt(recomandChannelList.get(i).getRacChannelFollowers()));
+					tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(recomandChannelList.get(i).getRacChannelViews()));
+					tempObject.put("outputChannelThumbnail", recomandChannelList.get(i).getRacChannelThumbnail());
+					outputRecomandChannelList2.add(tempObject);
+				}
+				
+				req.setAttribute("outputChannelLikeRandom", outputRecomandChannelList2);
 			}
 			req.setAttribute("outputChannelLikeList", outputChannelLikeList);
 			req.setAttribute("likeFirstPageNo", likePaging.getFirstPageNo());
@@ -1117,6 +1157,7 @@ public class MemberController {
 				tempObject.put("outputChannelViews", channelViewList.get(i).getRacChannelViews());
 				tempObject.put("outputChannelThumbnail", channelViewList.get(i).getRacChannelThumbnail());
 				tempObject.put("outputChannelNo", channelViewList.get(i).getRacChannelNo());
+				tempObject.put("outputChannelLike", ChannelDAO.checkChannelLike(sessionMemberNo, channelViewList.get(i).getRacChannelNo()));
 
 				outputChannelViewList.add(tempObject);
 			}
@@ -1240,6 +1281,7 @@ public class MemberController {
 				tempObject.put("outputChannelViews", channelLikeList.get(i).getRacChannelViews());
 				tempObject.put("outputChannelThumbnail", channelLikeList.get(i).getRacChannelThumbnail());
 				tempObject.put("outputChannelNo", channelLikeList.get(i).getRacChannelNo());
+				tempObject.put("outputChannelLike", ChannelDAO.checkChannelLike(sessionMemberNo, channelLikeList.get(i).getRacChannelNo()));
 
 				outputChannelViewList.add(tempObject);
 			}

@@ -258,7 +258,7 @@ Auth.join = function(){
 		success: function(response){
 
 			if(response.outputResult == "1"){
-				alert("회원가입 완료");
+				alert("인증메일이 발송되었습니다. 회원가입에 사용한 이메일에서 회원가입을 완료해주세요!");
 				location.href = "/";
 			}else if(response.outputResult == "-3" ||response.outputResult == "-4"){
 				$("div.msgRow.malfunMsg").text("이미 가입된 이메일 또는 사용중인 닉네임입니다.");

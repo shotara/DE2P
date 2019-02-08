@@ -22,32 +22,32 @@ Common.addList = function (mode, startNo, categoryNo) {
 			dataType:'json',
 			success:function(args){   
 				for(var i=0; i<args.rankingList.length; i++) {
-					$('.chnContents').append(`
-							<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankMainRowCnt">
-							<div class="d-inline-block rankMainCnt">`+args.rankingList[i].outputRankTopNo + `위</div>
-							<div class="d-inline-block rankMainDif">-</div>
-							</div>
-							<div class="rankMainRowImg">
-							<img id="chnListThumbNail"
-							style="width: 48px; border-radius: 48px;"
-							src="`+args.rankingList[i].outputChannelThumbnail +`">
-							</div>
-							<div class="ranc-Main-Row">`+args.rankingList[i].outputChannelTitle+`</div>
-							<div class="ranc-Main-Row2">`+args.rankingList[i].outputCategoryNo+`</div>
-							<div class="ranc-Main-Row">`+args.rankingList[i].outputChannelFollowers+`</div>
-							<div class="ranc-Main-Row">`+args.rankingList[i].outputChannelViews+`</div>
-							<div class="rankMainRowBtn">
-							<button class="btnChnGo">
-							<a class="chnDtlGo" href="/channel?action=getChannelDetail&inputChannelNo=`+args.rankingList[i].outputChannelNo+`">채널정보
-							보기</a>
-							</button>
-							</div>
-							</div>
-							<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-							</div>
-					`);
+					$('.chnContents').append(
+"							<div id='chnContent' class='w-auto ml-auto'>\r\n" + 
+"							<div class='rankMainRowCnt'>\r\n" + 
+"							<div class='d-inline-block rankMainCnt'>"+args.rankingList[i].outputRankTopNo + "위</div>\r\n" + 
+"							<div class='d-inline-block rankMainDif'>-</div>\r\n" + 
+"							</div>\r\n" + 
+"							<div class='rankMainRowImg'>\r\n" + 
+"							<img id='chnListThumbNail'\r\n" + 
+"							style='width: 48px; border-radius: 48px;'\r\n" + 
+"							src='"+args.rankingList[i].outputChannelThumbnail +"'>\r\n" + 
+"							</div>\r\n" + 
+"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelTitle+"</div>\r\n" + 
+"							<div class='ranc-Main-Row2'>"+args.rankingList[i].outputCategoryNo+"</div>\r\n" + 
+"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
+"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
+"							<div class='rankMainRowBtn'>\r\n" + 
+"							<button class='btnChnGo'>\r\n" + 
+"							<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>채널정보\r\n" + 
+"							보기</a>\r\n" + 
+"							</button>\r\n" + 
+"							</div>\r\n" + 
+"							</div>\r\n" + 
+"							<hr\r\n" + 
+"							style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n" + 
+"							</div>"
+					);
 
 				}
 			},   
@@ -70,28 +70,28 @@ Common.addList = function (mode, startNo, categoryNo) {
 			dataType:'json',
 			success:function(args){   
 				for(var i=0; i<args.rankingList.length; i++) {
-					var content = `
-						<div id="chnContent" class="w-auto ml-auto">
-						<div class="rankRowImg">
-						<img id="chnListThumbNail"
-						style="width: 48px; border-radius: 48px;"
-						src="`+args.rankingList[i].outputChannelThumbnail +`">
-						</div>
-						<div class="ranc-Row3">`+args.rankingList[i].outputChannelTitle+`</div>
-						<div class="ranc-Row2">`+args.rankingList[i].outputCategoryNo+`</div>
-						<div class="ranc-Row">`+args.rankingList[i].outputChannelFollowers+`</div>
-						<div class="ranc-Row">`+args.rankingList[i].outputChannelViews+`</div>
-						<div class="rankRowBtn">
-						<button class="btnChnGo">
-						<a class="chnDtlGo" href="/channel?action=getChannelDetail&inputChannelNo=`+args.rankingList[i].outputChannelNo+`">채널정보
-						보기</a>
-						</button>
-						</div>
-						</div>
-						<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-						</div>
-						`;
+					var content = 
+"						<div id='chnContent' class='w-auto ml-auto'>\r\n" + 
+"						<div class='rankRowImg'>\r\n" + 
+"						<img id='chnListThumbNail'\r\n" + 
+"						style='width: 48px; border-radius: 48px;'\r\n" + 
+"						src='"+args.rankingList[i].outputChannelThumbnail +"'>\r\n" + 
+"						</div>\r\n" + 
+"						<div class='ranc-Row3'>"+args.rankingList[i].outputChannelTitle+"</div>\r\n" + 
+"						<div class='ranc-Row2'>"+args.rankingList[i].outputCategoryNo+"</div>\r\n" + 
+"						<div class='ranc-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
+"						<div class='ranc-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
+"						<div class='rankRowBtn'>\r\n" + 
+"						<button class='btnChnGo'>\r\n" + 
+"						<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>채널정보\r\n" + 
+"						보기</a>\r\n" + 
+"						</button>\r\n" + 
+"						</div>\r\n" + 
+"						</div>\r\n" + 
+"						<hr\r\n" + 
+"						style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n" + 
+"						</div>"
+						;
 					switch(categoryNo) {
 					case 2:
 						$("#studio .chnContents").append(content);
@@ -209,28 +209,28 @@ Common.addList = function (mode, startNo, categoryNo) {
 			dataType:'json',
 			success:function(args){   
 				for(var i=0; i<args.rankingList.length; i++) {
-					$('.chnContents').append(`
-							<div id="chnContent" class="w-auto ml-auto">
-							<div class="rankRowImg">
-							<img id="chnListThumbNail"
-							style="width: 48px; border-radius: 48px;"
-							src="`+args.rankingList[i].outputChannelThumbnail +`">
-							</div>
-							<div class="ranc-Row3">`+args.rankingList[i].outputChannelTitle+`</div>
-							<div class="ranc-Row2">`+args.rankingList[i].outputCategoryNo+`</div>
-							<div class="ranc-Row">`+args.rankingList[i].outputChannelFollowers+`</div>
-							<div class="ranc-Row">`+args.rankingList[i].outputChannelViews+`</div>
-							<div class="rankRowBtn">
-							<button class="btnChnGo">
-							<a class="chnDtlGo" href="/channel?action=getChannelDetail&inputChannelNo=`+args.rankingList[i].outputChannelNo+`">채널정보
-							보기</a>
-							</button>
-							</div>
-							</div>
-							<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-							</div>
-					`);
+					$('.chnContents').append(
+"							<div id='chnContent' class='w-auto ml-auto'>\r\n" + 
+"							<div class='rankRowImg'>\r\n" + 
+"							<img id='chnListThumbNail'\r\n" + 
+"							style='width: 48px; border-radius: 48px;'\r\n" + 
+"							src='"+args.rankingList[i].outputChannelThumbnail +"'>\r\n" + 
+"							</div>\r\n" + 
+"							<div class='ranc-Row3'>"+args.rankingList[i].outputChannelTitle+"</div>\r\n" + 
+"							<div class='ranc-Row2'>"+args.rankingList[i].outputCategoryNo+"</div>\r\n" + 
+"							<div class='ranc-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
+"							<div class='ranc-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
+"							<div class='rankRowBtn'>\r\n" + 
+"							<button class='btnChnGo'>\r\n" + 
+"							<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>채널정보\r\n" + 
+"							보기</a>\r\n" + 
+"							</button>\r\n" + 
+"							</div>\r\n" + 
+"							</div>\r\n" + 
+"							<hr\r\n" + 
+"							style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n" + 
+"							</div>"
+					);
 
 				}
 

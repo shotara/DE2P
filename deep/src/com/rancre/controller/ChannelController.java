@@ -502,7 +502,7 @@ public class ChannelController {
 				calendar.set(calendar.HOUR_OF_DAY,4);
 				calendar.set(calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH) -1);
 				Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
-				ArrayList<Channel> recomandChannelList = ChannelDAO.getRecomandChannel(inputCurrentDate);
+				ArrayList<Channel> recomandChannelList = ChannelDAO.getRecomandChannel(inputCurrentDate, 16);
 				ArrayList<HashMap<String,Object>> outputRecomandChannelList = new ArrayList<HashMap<String,Object>>();
 				for(int i=0; i < recomandChannelList.size(); i++) {
 					HashMap<String,Object> tempObject = new HashMap<String,Object>();
