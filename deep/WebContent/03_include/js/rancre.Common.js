@@ -506,9 +506,9 @@ Common.search = function (mode){
 		ipt_clear.value = '';
 	}
 	else if (mode == 2) {
-		var keyPressed = event.keyCode || event.which;
+		var keyPressed = (event.keyCode ? event.keyCode : event.which);
 		var channelName = protectXSS($("#ipt-Search").val());
-		
+
 		if(keyPressed==13) {
 			var publicKeyModulus = "";
 			var publicKeyExponent = "";
