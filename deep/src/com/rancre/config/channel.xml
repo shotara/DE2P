@@ -101,7 +101,7 @@
 	</select>
 	
 	<select id="getRecomandChannel" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Channel">
-		SELECT * FROM rac_channel WHERE racChannelUpdateDate <![CDATA[>]]> #{inputCurrentDate} AND racChannelFollowers <![CDATA[>]]> 50000 ORDER BY RAND() LIMIT #{limit}
+		SELECT * FROM rac_channel WHERE racChannelUpdateDate <![CDATA[>]]> #{inputCurrentDate} AND racChannelFollowers <![CDATA[>]]> 50000 AND racChannelRegion="Ko" ORDER BY RAND() LIMIT #{limit}
 	</select>		
 	
 	<select id="searchChannelList" parameterType="String" resultType="com.rancre.model.domain.Channel">
