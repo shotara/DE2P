@@ -31,7 +31,7 @@
 	</select>
 	
 	<select id="getRecentVieoList"  resultType="com.rancre.model.domain.Video">
-		SELECT * FROM rac_video WHERE racChannelNo = #{inputChannelNo} ORDER BY racVideoCreateDate DESC LIMIT 15
+		SELECT * FROM rac_video WHERE racChannelNo = #{inputChannelNo} AND racVideoStatus=1 ORDER BY racVideoCreateDate DESC LIMIT 15
 	</select>
 	
 	<select id="getChannelAd"  resultType="com.rancre.model.domain.ChannelAd">
@@ -93,6 +93,10 @@
 	
 	<select id="deleteChannelLike" parameterType="java.util.HashMap" resultType="int">
 		DELETE FROM rac_channel_like WHERE racChannelNo=#{channelNo} AND racMemberNo=#{memberNo}
+	</select>
+	
+	<select id="setVideoStatus" parameterType="java.util.HashMap" resultType="int">
+		UPDATE rac_video SET racVideoStatus=#{videoStatus} WHERE racVideoNo=#{videoNo}
 	</select>
 	
     <select id="addChannel" parameterType="java.util.HashMap" resultType="int">

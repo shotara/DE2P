@@ -1,6 +1,7 @@
  package com.rancre.controller;
 
 import java.io.File;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.KeyFactory;
 import java.security.KeyPair;
@@ -86,6 +87,16 @@ public class ChannelController {
 				tempObejct.put("outputVideoId", recentVideoList.get(i).getRacVideoId());
 				tempObejct.put("outputVideoTitle", CommonUtil.splitString(recentVideoList.get(i).getRacVideoTitle(), 3));
 				tempObejct.put("outputVideoThumbnail", recentVideoList.get(i).getRacVideoThumbnail());
+				URL u = new URL (recentVideoList.get(i).getRacVideoThumbnail());
+				HttpURLConnection huc =  ( HttpURLConnection )  u.openConnection (); 
+				huc.setRequestMethod ("GET");  //OR  huc.setRequestMethod ("HEAD"); 
+				huc.connect () ; 
+				int code = huc.getResponseCode() ;
+				if(code==404) {
+					ChannelDAO.setVideoStatus(recentVideoList.get(i).getRacVideoNo(), -1);
+					CommonUtil.commonPrintLog("SUCCESS", className, "VIDEO STATUS CHANGE!!!", map);
+					continue;
+				}
 				tempObejct.put("outputVideoViews", CommonUtil.setCommaForLong(recentVideoList.get(i).getRacVideoViews()));
 				tempObejct.put("outputVideoCreateDate", CommonUtil.getChannelDetailDate(recentVideoList.get(i).getRacVideoCreateDate()));
 				recentViews = (int) (recentViews + recentVideoList.get(i).getRacVideoViews()); 

@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class Video {
 	private int racVideoNo;
 	private int racChannelNo;
+	private int racVideoStatus;
 	private String racVideoId;
 	private String racVideoTitle;
 	private long racVideoViews;
@@ -26,6 +27,12 @@ public class Video {
 	}
 	public void setRacChannelNo(int racChannelNo) {
 		this.racChannelNo = racChannelNo;
+	}
+	public int getRacVideoStatus() {
+		return racVideoStatus;
+	}
+	public void setRacVideoStatus(int racVideoStatus) {
+		this.racVideoStatus = racVideoStatus;
 	}
 	public String getRacVideoId() {
 		return racVideoId;
@@ -63,11 +70,12 @@ public class Video {
 	public void setRacVideoUpdateDate(Timestamp racVideoUpdateDate) {
 		this.racVideoUpdateDate = racVideoUpdateDate;
 	}
-	public Video(int racVideoNo, int racChannelNo, String racVideoId, String racVideoTitle, long racVideoViews,
-			String racVideoThumbnail, Timestamp racVideoCreateDate, Timestamp racVideoUpdateDate) {
+	public Video(int racVideoNo, int racChannelNo, int racVideoStatus, String racVideoId, String racVideoTitle,
+			long racVideoViews, String racVideoThumbnail, Timestamp racVideoCreateDate, Timestamp racVideoUpdateDate) {
 		super();
 		this.racVideoNo = racVideoNo;
 		this.racChannelNo = racChannelNo;
+		this.racVideoStatus = racVideoStatus;
 		this.racVideoId = racVideoId;
 		this.racVideoTitle = racVideoTitle;
 		this.racVideoViews = racVideoViews;

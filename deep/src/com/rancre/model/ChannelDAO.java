@@ -277,6 +277,28 @@ public class ChannelDAO {
 
 	}
 	
+	public static int setVideoStatus(int racVideoNo, int racVideoStatus) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("videoNo", racVideoNo);	
+			map.put("videoStatus", racVideoStatus);			
+
+			int check = (int)sqlSession.update(namespace + ".setVideoStatus", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
 	// Select Method
 	public static ArrayList<FeedList> getFeedList(int listMode, int inputCategoryNo, int inputParameter, long inputCurrentDate) {
 		
