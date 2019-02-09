@@ -20,7 +20,7 @@
 
 				<!-- 채널 상세 페이지 상단 영역 시작  -->
 
-				<div class="w100 ml-auto">
+				<div class="w100 ml-auto" id="chn-detail-top">
 					<!-- 채널 썸네일 영역 시작  -->
 					<div class="chnDtlImg d-inline-block">
 						<img id="chnDtlThumbNail"
@@ -46,126 +46,131 @@
 					<c:if test="${not empty sessionScope.racMemberNo}">
 						<div class="float-right chn-like-area">
 							<c:if test="${requestScope.outputChannelLike==0}">
-							<button class="commonBtn chn-like-Btn" onclick="Common.Like(1,${requestScope.outputChannelNo });">관심채널
-								설정</button>
+								<button class="commonBtn chn-like-Btn"
+									onclick="Common.Like(1,${requestScope.outputChannelNo });">관심채널
+									설정</button>
 							</c:if>
 							<c:if test="${requestScope.outputChannelLike!=0}">
-							<button class="commonReverseBtn chn-liked-Btn" onclick="Common.Like(2,${requestScope.outputChannelNo });">관심채널
-								해제</button>
-							</c:if>		
+								<button class="commonReverseBtn chn-liked-Btn"
+									onclick="Common.Like(2,${requestScope.outputChannelNo });">관심채널
+									해제</button>
+							</c:if>
 						</div>
 					</c:if>
-					
+
 					<!-- 관심 채널 등록 끝 -->
-				
+
 				</div>
 
 				<!-- 채널 상세 페이지 상단 영역 끝  -->
 
 
 				<!-- 채널 스탯 상세 영역 시작  -->
+				<div class="w100 ml-auto" id="chn-detail-middle">
+				
+					<div class="pt-3"></div>
+					<hr
+						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 
-				<div class="pt-3"></div>
-				<hr
-					style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+					<!-- 채널 스텟 - 종합순위/총구독자수/차주대비/총조회수/최근평균조회수 시작 기본노출정보 -->
 
-				<!-- 채널 스텟 - 종합순위/총구독자수/차주대비/총조회수/최근평균조회수 시작 기본노출정보 -->
+					<div class="row w-auto ml-auto">
+						<div class="col w-auto d-inline-block txt-center">
+							<span class="font-weight-bold">랭크리 등급</span>
+						</div>
+						<div class="col w-auto d-inline-block txt-center">
+							<span class="font-weight-bold">총 구독자수</span>
+						</div>
+						<div class="col w-auto d-inline-block txt-center">
+							<span class="font-weight-bold">총 조회수</span>
+						</div>
+						<div class="col w-auto d-inline-block txt-center">
+							<span class="font-weight-bold">최근 영상의 평균 조회수</span>
+						</div>
+						<div class="col w-auto d-inline-block txt-center">
+							<span class="font-weight-bold">평균 업로드 일자</span>
+						</div>
+					</div>
+					<div class="pt-3"></div>
 
-				<div class="row w-auto ml-auto">
-					<div class="col w-auto d-inline-block txt-center">
-						<span class="font-weight-bold">랭크리 등급</span>
+					<div class="row w-auto ml-auto">
+						<div id="" class="col w-auto d-inline-block txt-center">
+							<span>A+</span>
+						</div>
+						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelFollowers }</div>
+						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelViews }</div>
+						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelRecentViews }</div>
+						<div id="" class="col w-auto d-inline-block txt-center">2.3일</div>
 					</div>
-					<div class="col w-auto d-inline-block txt-center">
-						<span class="font-weight-bold">총 구독자수</span>
-					</div>
-					<div class="col w-auto d-inline-block txt-center">
-						<span class="font-weight-bold">총 조회수</span>
-					</div>
-					<div class="col w-auto d-inline-block txt-center">
-						<span class="font-weight-bold">최근 영상의 평균 조회수</span>
-					</div>
-					<div class="col w-auto d-inline-block txt-center">
-						<span class="font-weight-bold">평균 업로드 일자</span>
-					</div>
+
+					<!-- 채널 스텟 - 종합순위/총구독자수/차주대비/총조회수/최근평균조회수 끝 -->
+
+					<hr
+						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+
+					<c:if test="${not empty sessionScope.racMemberNo}">
+						<!-- 채널 스탯 - 광고만족도/광고평균조회수/단가/카테고리 시작 로그인시 노출 정보  -->
+
+						<div class="chnDtlInfo">
+
+							<div class="row chnDtlRow w-auto ml-auto">
+								<div class="col w-auto d-inline-block txt-center">
+									<span class="font-weight-bold">카테고리 순위</span>
+								</div>
+								<div class="col w-auto d-inline-block txt-center">
+									<span class="font-weight-bold">지난주 대비 구독자수</span>
+								</div>
+								<div class="col w-auto d-inline-block txt-center">
+									<span class="font-weight-bold">광고 만족도</span>
+								</div>
+								<div class="col w-auto d-inline-block txt-center">
+									<span class="font-weight-bold">광고 영상 평균 조회수</span>
+								</div>
+								<div class="col w-auto d-inline-block txt-center">
+									<span class="font-weight-bold">평균 광고 단가</span>
+								</div>
+							</div>
+
+							<div class="pt-3"></div>
+
+							<div class="row w-auto ml-auto">
+								<div id="" class="col w-auto d-inline-block txt-center">
+									<span>1위</span><span>(여행)</span>
+								</div>
+								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelBeforeFollowers }</div>
+								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdSatisfyRank }</div>
+								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdViews }</div>
+								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdEvenPrice }</div>
+							</div>
+
+						</div>
+
+						<!-- 채널 스탯 - 광고만족도/광고평균조회수/단가/카테고리 끝 -->
+					</c:if>
+					<c:if test="${empty sessionScope.racMemberNo}">
+						<!-- 비로그인 시 채널 스텟 가리기 -->
+						<div class="chnDtlCover w-100">
+							<div class="pTop3 pBottom">
+								<div class="txt-center inline-block">이 채널의 광고 만족도, 광고 가격,
+									후기가 궁금하신가요?</div>
+								<div class="txt-center inline-block">기업회원으로 로그인하면 이 채널의
+									비즈니스 정보를 확인할 수 있습니다.</div>
+								<div class="pTop txt-center">
+									<button class="commonBtn">
+										<a href="/02_page/Auth/login.jsp">기업회원으로 로그인하기</a>
+									</button>
+								</div>
+							</div>
+
+						</div>
+						<!-- 비로그인 시 채널 스텟 가리기 -->
+					</c:if>
+
+
+					<hr
+						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+
 				</div>
-				<div class="pt-3"></div>
-
-				<div class="row w-auto ml-auto">
-					<div id="" class="col w-auto d-inline-block txt-center">
-						<span>A+</span>
-					</div>
-					<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelFollowers }</div>
-					<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelViews }</div>
-					<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelRecentViews }</div>
-					<div id="" class="col w-auto d-inline-block txt-center">2.3일</div>
-				</div>
-
-				<!-- 채널 스텟 - 종합순위/총구독자수/차주대비/총조회수/최근평균조회수 끝 -->
-
-				<hr
-					style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-
-				<c:if test="${not empty sessionScope.racMemberNo}">
-					<!-- 채널 스탯 - 광고만족도/광고평균조회수/단가/카테고리 시작 로그인시 노출 정보  -->
-
-					<div class="chnDtlInfo">
-
-						<div class="row chnDtlRow w-auto ml-auto">
-							<div class="col w-auto d-inline-block txt-center">
-								<span class="font-weight-bold">카테고리 순위</span>
-							</div>
-							<div class="col w-auto d-inline-block txt-center">
-								<span class="font-weight-bold">지난주 대비 구독자수</span>
-							</div>
-							<div class="col w-auto d-inline-block txt-center">
-								<span class="font-weight-bold">광고 만족도</span>
-							</div>
-							<div class="col w-auto d-inline-block txt-center">
-								<span class="font-weight-bold">광고 영상 평균 조회수</span>
-							</div>
-							<div class="col w-auto d-inline-block txt-center">
-								<span class="font-weight-bold">평균 광고 단가</span>
-							</div>
-						</div>
-
-						<div class="pt-3"></div>
-
-						<div class="row w-auto ml-auto">
-							<div id="" class="col w-auto d-inline-block txt-center">
-								<span>1위</span><span>(여행)</span>
-							</div>
-							<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelBeforeFollowers }</div>
-							<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdSatisfyRank }</div>
-							<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdViews }</div>
-							<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdEvenPrice }</div>
-						</div>
-
-					</div>
-
-					<!-- 채널 스탯 - 광고만족도/광고평균조회수/단가/카테고리 끝 -->
-				</c:if>
-				<c:if test="${empty sessionScope.racMemberNo}">
-					<!-- 비로그인 시 채널 스텟 가리기 -->
-					<div class="chnDtlCover w-100">
-						<div class="pTop3 pBottom">
-							<div class="txt-center inline-block">이 채널의 광고 만족도, 광고 가격,
-								후기가 궁금하신가요?</div>
-							<div class="txt-center inline-block">기업회원으로 로그인하면 이 채널의
-								비즈니스 정보를 확인할 수 있습니다.</div>
-							<div class="pTop txt-center">
-								<button class="commonBtn">
-									<a href="/02_page/Auth/login.jsp">기업회원으로 로그인하기</a>
-								</button>
-							</div>
-						</div>
-
-					</div>
-					<!-- 비로그인 시 채널 스텟 가리기 -->
-				</c:if>
-
-
-				<hr
-					style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 
 				<div class="pt-1"></div>
 

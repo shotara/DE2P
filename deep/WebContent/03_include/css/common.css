@@ -478,6 +478,7 @@ a {
 	font-size: 1em;
 	height: 36px;
 	color: #f11834;
+	background : #ffffff;
 }
 
 .btnListGo {
@@ -924,6 +925,7 @@ a.subnav-link:hover {
 	text-decoration: none;
 	color: #f11834;
 	outline: none;
+	background : #ffffff;
 }
 
 .chnDtlGo:hover {
@@ -1054,6 +1056,7 @@ a.subnav-link:hover {
 
 .chn-like-Btn {
 	margin-top :22px;
+	margin-right : 45px;
 }
 
 /** 관심채널 설정 된 '후'  **/
@@ -1068,6 +1071,7 @@ a.subnav-link:hover {
 
 .chn-liked-Btn {
 	margin-top :22px;
+	margin-right : 45px;
 }
 
 
@@ -1076,6 +1080,19 @@ a.subnav-link:hover {
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
+}
+
+/*  channel detail page top area    */
+
+#chn-detail-top {
+	overflow : hidden;
+	padding-top : 20px;
+	height : 140px;
+}
+
+#chn-detail-middle {
+	overflow : hidden;
+	height : 300px;
 }
 
 /* 채널 디테일 sub tabs*/
@@ -1936,7 +1953,7 @@ ul.sub-tabs li a.active {
 	border-radius: 3px;
 	box-shadow: 1px 1px #eeeeee;
 	display: inline-block;
-	margin-right: 5px;
+	margin-right: 4px;
 }
 
 .recommend-channel-right {
