@@ -66,7 +66,10 @@ public class ChannelController {
 
 			// Channel Detail
 			Channel channel = ChannelDAO.getChannelByNo(inputChannelNo);
-			req.setAttribute("outputChannelFollowers", CommonUtil.setCommaForInt(channel.getRacChannelFollowers()));
+			String channelFollowers = CommonUtil.setCommaForInt(channel.getRacChannelFollowers());
+			System.out.println(channelFollowers);
+			if(channelFollowers.equals("-1")) channelFollowers="비공개";
+			req.setAttribute("outputChannelFollowers", channelFollowers);
 			req.setAttribute("outputChannelBeforeFollowers", 0);
 			req.setAttribute("outputChannelViews", CommonUtil.setCommaForLong(channel.getRacChannelViews()));
 			req.setAttribute("outputChannelTitle", channel.getRacChannelTitle());

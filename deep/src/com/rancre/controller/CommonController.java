@@ -205,7 +205,11 @@ public class CommonController {
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
 					// 13자리 
 					tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));
-					tempObject.put("outputChannelFollowers", CommonUtil.setCommaForInt(ranking.get(i).getRacChannelFollowers()));
+					String channelFollowers = CommonUtil.setCommaForInt(ranking.get(i).getRacChannelFollowers());
+					System.out.println(channelFollowers);
+					if(channelFollowers.equals("-1")) channelFollowers="비공개";
+					req.setAttribute("outputChannelFollowers", channelFollowers);
+					tempObject.put("outputChannelFollowers", channelFollowers);
 					tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(ranking.get(i).getRacChannelViews()));
 					tempObject.put("outputChannelVideoCount", CommonUtil.setCommaForInt(ranking.get(i).getRacChannelVideoCount()));
 					tempObject.put("outputChannelThumbnail", ranking.get(i).getRacChannelThumbnail());
