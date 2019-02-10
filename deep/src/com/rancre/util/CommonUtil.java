@@ -377,7 +377,7 @@ public class CommonUtil {
 		case 14:
 			return "#반려동물";
 		case 15:
-			return "#운동";
+			return "#ASMR";
 		case 16:
 			return "#취미";
 		default:

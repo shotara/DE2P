@@ -214,7 +214,6 @@ public class CommonController {
 				}
 			}
 
-
 			jMainObject.put("rankingList", rankingList);
 			
 			

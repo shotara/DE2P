@@ -185,7 +185,7 @@
 						<a class="subnav-link" data-tab="pet" href="#pet" onclick="initList(14)">반려동물</a>
 					</div>
 					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="exercise" href="#exercise" onclick="initList(15)">ASMR</a>
+						<a class="subnav-link" data-tab="asmr" href="#asmr" onclick="initList(15)">ASMR</a>
 					</div>
 					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="habbit" href="#habbit" onclick="initList(16)">취미</a>

@@ -234,7 +234,6 @@ public class ChannelController {
 				}
 			}
 
-
 			jMainObject.put("rankingList", rankingList);
 			
 			
