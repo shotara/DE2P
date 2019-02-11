@@ -380,6 +380,10 @@ public class CommonUtil {
 			return "#ASMR";
 		case 16:
 			return "#취미";
+		case 17:
+			return "#리뷰어";
+		case 18:
+			return "#스트리머";
 		default:
 			return "#기타";
 		}
@@ -509,6 +513,13 @@ public class CommonUtil {
 		else return newDate/(3600 * 24 * 365) + "년 전";
 		
 
+	}
+	
+	public static int getChannelVideoCreateDate(Timestamp date) {
+		Date currentDate = new Date();
+		int newDate = (int) ((currentDate.getTime() - date.getTime()) / 1000);  /// 1초 
+		
+		return newDate;
 	}
 	
 	public static String getCompanyAdCategory(int no) {

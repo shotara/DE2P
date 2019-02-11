@@ -33,6 +33,7 @@ import com.rancre.model.MemberDAO;
 import com.rancre.model.UploadDAO;
 import com.rancre.model.domain.Channel;
 import com.rancre.model.domain.ChannelAd;
+import com.rancre.model.domain.ChannelCost;
 import com.rancre.model.domain.ChannelLike;
 import com.rancre.model.domain.FeedHashtag;
 import com.rancre.model.domain.FeedList;
@@ -67,7 +68,7 @@ public class ChannelController {
 			// Channel Detail
 			Channel channel = ChannelDAO.getChannelByNo(inputChannelNo);
 			String channelFollowers = CommonUtil.setCommaForInt(channel.getRacChannelFollowers());
-			System.out.println(channelFollowers);
+
 			if(channelFollowers.equals("-1")) channelFollowers="비공개";
 			req.setAttribute("outputChannelFollowers", channelFollowers);
 			req.setAttribute("outputChannelBeforeFollowers", 0);
@@ -83,6 +84,7 @@ public class ChannelController {
 			ArrayList<Video> recentVideoList = ChannelDAO.getRecentVieoList(inputChannelNo);
 			ArrayList<HashMap<String,Object>> outputRecentVideoList = new ArrayList<HashMap<String,Object>>();
 			int recentViews = 0;
+			int updateDate = 0;
 			for(int i=0; i < recentVideoList.size(); i++) {
 				HashMap<String,Object> tempObejct = new HashMap<String,Object>();
 				tempObejct.put("outputVideoNo", recentVideoList.get(i).getRacVideoNo());
@@ -102,6 +104,7 @@ public class ChannelController {
 				}
 				tempObejct.put("outputVideoViews", CommonUtil.setCommaForLong(recentVideoList.get(i).getRacVideoViews()));
 				tempObejct.put("outputVideoCreateDate", CommonUtil.getChannelDetailDate(recentVideoList.get(i).getRacVideoCreateDate()));
+				updateDate = updateDate + CommonUtil.getChannelVideoCreateDate(recentVideoList.get(i).getRacVideoCreateDate());
 				recentViews = (int) (recentViews + recentVideoList.get(i).getRacVideoViews()); 
 				outputRecentVideoList.add(tempObejct);
 				
@@ -109,19 +112,19 @@ public class ChannelController {
 			
 			req.setAttribute("outputChannelRecentViews", recentVideoList.size()!= 0 ? CommonUtil.setCommaForInt(recentViews / recentVideoList.size()) : 0);
 			req.setAttribute("outputRecentVideoList", outputRecentVideoList);
-
+			if(recentVideoList.size()!=0) {
+				req.setAttribute("outputRecentVideoUpdateDate", updateDate/(3600*24)/recentVideoList.size()+" 일");
+			} else {
+				req.setAttribute("outputRecentVideoUpdateDate", "영상이 없습니다.");
+			}
+			
 			// Channel Ad part
 			if(sessionMemberNo>0) {
-				req.setAttribute("outputAdSatisfyRank", 1); // 리뷰의 점수 평균 
-				req.setAttribute("outputAdViews", 10000);
-				req.setAttribute("outputAdMinPrice", 100000);
-				req.setAttribute("outputAdEvenPrice", 100000);
-				req.setAttribute("outputAdMaxPrice", 100000);
-
 				// Get Youtube Video API
 				ArrayList<ChannelAd> channelAdList = ChannelDAO.getChannelAdVideoList(inputChannelNo);
 				ArrayList<HashMap<String,Object>> adVideoList = new ArrayList<HashMap<String,Object>>();
-
+				long adViews = 0;
+				int adEvenPrice = 0;
 				for(int i=0; i<channelAdList.size();i++) {
 					if(channelAdList.get(i).getRacVideoTitle() == null) continue;
 					HashMap<String,Object> tempObejct = new HashMap<String,Object>();
@@ -131,16 +134,20 @@ public class ChannelController {
 					tempObejct.put("outputVideoTitle", CommonUtil.splitString(channelAdList.get(i).getRacVideoTitle(), 3));
 					tempObejct.put("outputVideoThumbnail", channelAdList.get(i).getRacVideoThumbnail());
 					tempObejct.put("outputVideoViews", CommonUtil.setCommaForLong(channelAdList.get(i).getRacVideoViews()));
+					adViews = adViews + channelAdList.get(i).getRacVideoViews();
 					tempObejct.put("outputVideoCreateDate", channelAdList.get(i).getRacVideoCreateDate());
-					
+					ChannelCost channelCost = ChannelDAO.getChannelCost(inputChannelNo);
+					adEvenPrice = adEvenPrice + channelCost.getRacChannelCostPrice();
 					adVideoList.add(tempObejct);
 				}
 				req.setAttribute("outputAdVideoList", adVideoList);
 
+
+				
 				// Channel Reviews
 				ArrayList<Review> reviewList = ChannelDAO.getReviewList(inputChannelNo);
 				ArrayList<HashMap<String,Object>> outputReviewList = new ArrayList<HashMap<String,Object>>();
-
+				int satisfy = 0;
 				for(int i=0; i<reviewList.size();i++) {
 					HashMap<String,Object> tempObejct = new HashMap<String,Object>();
 					tempObejct.put("outputReviewNo", reviewList.get(i).getRacReviewNo());
@@ -149,6 +156,7 @@ public class ChannelController {
 					tempObejct.put("outputChannelAdType", ChannelDAO.getChannelAd(reviewList.get(i).getRacChannelAdNo()).getRacChannelAdType());
 					tempObejct.put("outputChannelCostNo", reviewList.get(i).getRacChannelCostNo());
 					tempObejct.put("outputReviewSatisfy", reviewList.get(i).getRacReviewSatisfy());
+					satisfy = satisfy + reviewList.get(i).getRacReviewSatisfy();
 					tempObejct.put("outputReviewTargetReach", CommonUtil.getReviewTarget(reviewList.get(i).getRacReviewTargetReach()));
 					tempObejct.put("outputReviewTargetConversion", CommonUtil.getReviewTarget(reviewList.get(i).getRacReviewTargetConversion()));
 					tempObejct.put("outputReviewTargetGender", CommonUtil.getGender(reviewList.get(i).getRacReviewTargetGender()));
@@ -161,6 +169,20 @@ public class ChannelController {
 					outputReviewList.add(tempObejct);
 				}
 				req.setAttribute("outputReivewList", outputReviewList);
+				
+				if(reviewList.size()!=0) {
+					req.setAttribute("outputAdSatisfyRank", Math.round(satisfy/reviewList.size()*10)/10); // 리뷰의 점수 평균 
+				} else {
+					req.setAttribute("outputAdSatisfyRank","정보없음"); // 리뷰의 점수 평균 
+
+				}
+				if(channelAdList.size()!=0) {
+					req.setAttribute("outputAdViews",  CommonUtil.setCommaForInt(Math.round(adViews/channelAdList.size())));
+					req.setAttribute("outputAdEvenPrice", CommonUtil.setCommaForInt(Math.round(adEvenPrice/channelAdList.size())));
+				} else {
+					req.setAttribute("outputAdViews", "정보없음");
+					req.setAttribute("outputAdEvenPrice","정보없음");
+				}
 			}
 			
 			if(sessionMemberNo != channel.getRacMemberNo()) {

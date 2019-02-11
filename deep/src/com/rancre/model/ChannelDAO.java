@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.rancre.model.domain.Channel;
 import com.rancre.model.domain.ChannelAd;
+import com.rancre.model.domain.ChannelCost;
 import com.rancre.model.domain.Feed;
 import com.rancre.model.domain.FeedComment;
 import com.rancre.model.domain.FeedCount;
@@ -716,6 +717,18 @@ public class ChannelDAO {
 		
 		try {	
 			return (ArrayList)sqlSession.selectList(namespace + ".searchChannelList", inputChannelTitle);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static ChannelCost getChannelCost(int inputChannelNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (ChannelCost)sqlSession.selectOne(namespace + ".getChannelCost", inputChannelNo);
 			
 		} finally {
 			sqlSession.close();

@@ -100,7 +100,7 @@
 						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelFollowers }</div>
 						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelViews }</div>
 						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelRecentViews }</div>
-						<div id="" class="col w-auto d-inline-block txt-center">2.3일</div>
+						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputRecentVideoUpdateDate }</div>
 					</div>
 
 					<!-- 채널 스텟 - 종합순위/총구독자수/차주대비/총조회수/최근평균조회수 끝 -->
