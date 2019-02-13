@@ -95,7 +95,7 @@
 
 					<div class="row w-auto ml-auto">
 						<div id="" class="col w-auto d-inline-block txt-center">
-							<span>A+</span>
+							<span>${requestScope.outputChannelGrade }${requestScope.outputChannelGradePlus }</span>
 						</div>
 						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelFollowers }</div>
 						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelViews }</div>
@@ -135,9 +135,9 @@
 
 							<div class="row w-auto ml-auto">
 								<div id="" class="col w-auto d-inline-block txt-center">
-									<span>1위</span><span>(여행)</span>
+									<span>${requestScope.outputChannelCategoryRank }위</span><span>(${requestScope.outputChannelCategoryName })</span>
 								</div>
-								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelBeforeFollowers }</div>
+								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelBeforeFollowersMark }${requestScope.outputChannelBeforeFollowers }</div>
 								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdSatisfyRank }</div>
 								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdViews }</div>
 								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdEvenPrice }</div>

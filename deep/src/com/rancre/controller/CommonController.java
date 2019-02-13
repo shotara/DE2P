@@ -206,7 +206,6 @@ public class CommonController {
 					// 13자리 
 					tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));
 					String channelFollowers = CommonUtil.setCommaForInt(ranking.get(i).getRacChannelFollowers());
-					System.out.println(channelFollowers);
 					if(channelFollowers.equals("-1")) channelFollowers="비공개";
 					req.setAttribute("outputChannelFollowers", channelFollowers);
 					tempObject.put("outputChannelFollowers", channelFollowers);

@@ -11,10 +11,12 @@ import java.security.PublicKey;
 import java.security.spec.RSAPrivateKeySpec;
 import java.security.spec.RSAPublicKeySpec;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -68,8 +70,36 @@ public class ChannelController {
 			// Channel Detail
 			Channel channel = ChannelDAO.getChannelByNo(inputChannelNo);
 			String channelFollowers = CommonUtil.setCommaForInt(channel.getRacChannelFollowers());
+			
+			Date date = new Date();
+			SimpleDateFormat formatType = new SimpleDateFormat("yyyy-MM-dd");
+			formatType.setTimeZone(TimeZone.getTimeZone("GMT+9"));
+			date.setDate(date.getDate()-1);
+			date.setHours(0);
+			Timestamp currentTime = new Timestamp(date.getTime());
 
 			if(channelFollowers.equals("-1")) channelFollowers="비공개";
+			if(ChannelDAO.checkRankTop(inputChannelNo)>0) {
+				req.setAttribute("outputChannelGrade", "A");
+				RankCategory categoryRanking = ChannelDAO.getRankCategory(inputChannelNo, currentTime);
+				req.setAttribute("outputChannelCategoryRank", categoryRanking.getRacRankCategoryRanking());
+				req.setAttribute("outputChannelCategoryName", CommonUtil.getChannelCategoryName(categoryRanking.getRacCategoryNo()));
+
+			} else if(ChannelDAO.checkRankCategory(inputChannelNo, currentTime)>0) {
+				req.setAttribute("outputChannelGrade", "B");
+				RankCategory categoryRanking = ChannelDAO.getRankCategory(inputChannelNo, currentTime);
+				req.setAttribute("outputChannelCategoryRank", categoryRanking.getRacRankCategoryRanking());
+				req.setAttribute("outputChannelCategoryName", CommonUtil.getChannelCategoryName(categoryRanking.getRacCategoryNo()));
+
+			} else {
+				req.setAttribute("outputChannelGrade", "C");
+				req.setAttribute("outputChannelCategoryRank", "200+");
+				String tempCategory = CommonUtil.getChannelCategoryList(channel.getRacChannelCategory());
+				if(tempCategory.indexOf(",")!=-1) tempCategory=tempCategory.substring(0, tempCategory.indexOf(","));
+				
+				req.setAttribute("outputChannelCategoryName", tempCategory);
+			}
+			
 			req.setAttribute("outputChannelFollowers", channelFollowers);
 			req.setAttribute("outputChannelBeforeFollowers", 0);
 			req.setAttribute("outputChannelViews", CommonUtil.setCommaForLong(channel.getRacChannelViews()));
@@ -78,6 +108,30 @@ public class ChannelController {
 			req.setAttribute("outputChannelThumbnail", channel.getRacChannelThumbnail());
 			req.setAttribute("outputChannelLike", ChannelDAO.checkChannelLike(sessionMemberNo, inputChannelNo));
 			req.setAttribute("outputChannelNo", inputChannelNo);
+			
+			// 전날짜 7일 평균 
+			date.setDate(date.getDate()-6);
+			date.setMinutes(0);
+			date.setSeconds(0);
+			Timestamp beforeDate = new Timestamp(date.getTime());
+			date.setDate(date.getDate()+1);
+			Timestamp afterDate = new Timestamp(date.getTime());
+			
+			if(ChannelDAO.checkChannelSummaryCount(inputChannelNo)>7) {
+
+				int evenFollowersForWeek = ChannelDAO.getFolloewrsPrevWeek(inputChannelNo,beforeDate,afterDate);
+				int outputChannelBeforeFollowers = channel.getRacChannelFollowers()-evenFollowersForWeek;
+				if(outputChannelBeforeFollowers > 0) {
+					req.setAttribute("outputChannelBeforeFollowersMark", "+");
+				} else if(outputChannelBeforeFollowers < 0) {
+					req.setAttribute("outputChannelBeforeFollowersMark", "-");
+				}
+				req.setAttribute("outputChannelBeforeFollowers", CommonUtil.setCommaForInt(outputChannelBeforeFollowers));
+				
+			} else {
+				req.setAttribute("outputChannelBeforeFollowers", "제공예정");
+
+			}
 
 			
 			// Get Youtube Channel Video
@@ -113,7 +167,9 @@ public class ChannelController {
 			req.setAttribute("outputChannelRecentViews", recentVideoList.size()!= 0 ? CommonUtil.setCommaForInt(recentViews / recentVideoList.size()) : 0);
 			req.setAttribute("outputRecentVideoList", outputRecentVideoList);
 			if(recentVideoList.size()!=0) {
-				req.setAttribute("outputRecentVideoUpdateDate", updateDate/(3600*24)/recentVideoList.size()+" 일");
+				int videoUpdateDate = updateDate/(3600*24)/recentVideoList.size();
+				if(videoUpdateDate<3) req.setAttribute("outputChannelGradePlus", "+");
+				req.setAttribute("outputRecentVideoUpdateDate", videoUpdateDate+" 일");
 			} else {
 				req.setAttribute("outputRecentVideoUpdateDate", "영상이 없습니다.");
 			}
@@ -142,8 +198,6 @@ public class ChannelController {
 				}
 				req.setAttribute("outputAdVideoList", adVideoList);
 
-
-				
 				// Channel Reviews
 				ArrayList<Review> reviewList = ChannelDAO.getReviewList(inputChannelNo);
 				ArrayList<HashMap<String,Object>> outputReviewList = new ArrayList<HashMap<String,Object>>();

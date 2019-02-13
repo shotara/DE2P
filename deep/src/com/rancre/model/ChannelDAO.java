@@ -735,4 +735,77 @@ public class ChannelDAO {
 		}
 	}
 
+	public static int checkRankTop(int inputChannelNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (int)sqlSession.selectOne(namespace + ".checkRankTop", inputChannelNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int checkRankCategory(int inputChannelNo, Timestamp inputCurrentDate) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("channelDate", inputCurrentDate);
+			map.put("channelNo", inputChannelNo);
+			
+			return (int)sqlSession.selectOne(namespace + ".checkRankCategory", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static RankCategory getRankCategory(int inputChannelNo, Timestamp inputCurrentDate) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("channelDate", inputCurrentDate);
+			map.put("channelNo", inputChannelNo);
+			
+			return (RankCategory)sqlSession.selectOne(namespace + ".getRankCategory", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int getFolloewrsPrevWeek(int inputChannelNo, Timestamp currentTime, Timestamp currentTime2) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("beforeDate", currentTime);
+			map.put("afterDate", currentTime2);
+			map.put("channelNo", inputChannelNo);
+			
+			return (int)sqlSession.selectOne(namespace + ".getFolloewrsPrevWeek", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int checkChannelSummaryCount(int inputChannelNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (int)sqlSession.selectOne(namespace + ".checkChannelSummaryCount", inputChannelNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 }

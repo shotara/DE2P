@@ -121,4 +121,24 @@
 		(SELECT * FROM rac_channel WHERE racChannelTitle LIKE concat('%',#{inputChannelTitle},'%') AND racChannelStatus=2 AND racChannelRegion="Ko")
 		) as a;
 	</select>
+	
+    <select id="checkRankTop" parameterType="int" resultType="int">
+		SELECT count(*) FROM rac_rank_top WHERE racChannelNo=#{inputChannelNo}
+	</select>	
+		
+    <select id="checkRankCategory" parameterType="java.util.HashMap" resultType="int">
+		SELECT count(*) FROM rac_rank_category WHERE racChannelNo=#{channelNo} AND racChannelInsertDate <![CDATA[>]]> #{channelDate}
+	</select>		
+	
+    <select id="getRankCategory" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.RankCategory">
+		SELECT * FROM rac_rank_category WHERE racChannelNo=#{channelNo} AND racChannelInsertDate <![CDATA[>]]> #{channelDate} ORDER BY racRankCategoryRanking ASC LIMIT 1
+	</select>		
+
+    <select id="checkChannelSummaryCount" parameterType="int" resultType="int">
+		SELECT count(*) FROM rac_channel_summary WHERE racChannelNo=#{channelNo} 
+	</select>		
+		
+    <select id="getFolloewrsPrevWeek" parameterType="java.util.HashMap" resultType="int">
+		SELECT racChannelFollowers FROM rac_channel_summary WHERE racChannelNo=#{channelNo} AND racChannelSummaryDate <![CDATA[>]]> #{beforeDate} AND racChannelSummaryDate <![CDATA[<]]> #{afterDate}
+	</select>		
 </mapper>
