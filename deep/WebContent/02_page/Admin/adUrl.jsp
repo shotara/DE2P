@@ -37,6 +37,7 @@
 			<input type="text" name="inputChannelAdUrls"/>
 			<input type="text" name="inputChannelAdUrls"/>
 			<input type="hidden" name="inputChannelNo" value="${result.outputChannelNo}"/>
+			<input type="hidden" name="inputPageNo" value="${result.pageNo}"/>
 		</div>
 	</div>
 	

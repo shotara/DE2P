@@ -141,4 +141,13 @@
     <select id="getFolloewrsPrevWeek" parameterType="java.util.HashMap" resultType="int">
 		SELECT racChannelFollowers FROM rac_channel_summary WHERE racChannelNo=#{channelNo} AND racChannelSummaryDate <![CDATA[>]]> #{beforeDate} AND racChannelSummaryDate <![CDATA[<]]> #{afterDate}
 	</select>		
+	
+    <select id="getRankBefore" parameterType="java.util.HashMap" resultType="int">
+		SELECT racRankTopNo FROM rac_rank_top_before WHERE racChannelNo=#{inputChannelNo} AND racChannelInsertDate <![CDATA[>]]> #{beforeDate} AND racChannelInsertDate <![CDATA[<]]> #{afterDate}
+	</select>		
+	
+	<select id="getChannelAverageCost"  resultType="int">
+		SELECT round(AVG(racChannelCostPrice),0) FROM rac_channel_cost WHERE racChannelNo = #{inputChannelNo}
+	</select>
+	
 </mapper>

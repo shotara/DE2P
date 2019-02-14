@@ -1128,6 +1128,7 @@ public class MemberController {
 
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int startNo = req.getParameter("startNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("startNo").toString())) : 0;
+			int pageNo = req.getParameter("pageNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("pageNo").toString())) : 0;
 			JSONObject jObject = new JSONObject();
 			
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
@@ -1144,7 +1145,7 @@ public class MemberController {
 			int recentCount = MemberDAO.countMemberChannelView(sessionMemberNo);
 			jObject.put("outputRecentCount", recentCount);
 			
-			Paging recentPaging = new Paging(startNo, 5);
+			Paging recentPaging = new Paging(pageNo, 5);
 			recentPaging.setNumberOfRecords(recentCount);
 			recentPaging.makePaging();
 
@@ -1191,6 +1192,8 @@ public class MemberController {
 
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int startNo = req.getParameter("startNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("startNo").toString())) : 0;
+			int pageNo = req.getParameter("pageNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("pageNo").toString())) : 0;
+
 			JSONObject jObject = new JSONObject();
 			
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
@@ -1207,7 +1210,7 @@ public class MemberController {
 			int reviewCount = MemberDAO.countMemberReview(sessionMemberNo);
 			jObject.put("outputReviewCount", reviewCount);
 			
-			Paging reveiwPaging = new Paging(startNo, 5);
+			Paging reveiwPaging = new Paging(pageNo, 5);
 			reveiwPaging.setNumberOfRecords(reviewCount);
 			reveiwPaging.makePaging();
 
@@ -1252,6 +1255,8 @@ public class MemberController {
 
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int startNo = req.getParameter("startNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("startNo").toString())) : 0;
+			int pageNo = req.getParameter("pageNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("pageNo").toString())) : 0;
+
 			JSONObject jObject = new JSONObject();
 			
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
@@ -1268,7 +1273,7 @@ public class MemberController {
 			int likeCount = MemberDAO.countMemberChannelLike(sessionMemberNo);
 			jObject.put("outputRecentCount", likeCount);
 			
-			Paging likePaging = new Paging(startNo, 5);
+			Paging likePaging = new Paging(pageNo, 5);
 			likePaging.setNumberOfRecords(likeCount);
 			likePaging.makePaging();
 

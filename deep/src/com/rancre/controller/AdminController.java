@@ -205,6 +205,8 @@ public class AdminController {
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int inputChannelNo = req.getParameter("inputChannelNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelNo").toString())) : 0;
 			int inputChannelAdType = req.getParameter("inputChannelAdType") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelAdType").toString())) : 1;
+			int inputPageNo = req.getParameter("inputPageNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputPageNo").toString())) : 1;
+
 			String[] inputChannelAdUrls = req.getParameterValues("inputChannelAdUrls");
 			ArrayList<String> channeAdUrls = new ArrayList<String>();
 			for(int i=0; i<inputChannelAdUrls.length;i++) {
@@ -247,7 +249,7 @@ public class AdminController {
 			// 완료 
 			CommonUtil.commonPrintLog("SUCCESS", className, "Channel Ad Url Add OK", map);
 			jObject.put("outputResult", "성공하였습니다.");
-			res.getWriter().write(jObject.toString());
+			req.getRequestDispatcher("/admin?action=getChannelList&page="+inputChannelNo+"&size=30").forward(req, res);
 			return;
 			
 		} catch (Exception e) {
@@ -436,6 +438,7 @@ public class AdminController {
 
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int inputChannelNo = req.getParameter("inputChannelNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelNo").toString())) : 0;
+			int inputPageNo = req.getParameter("inputPageNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputPageNo").toString())) : 0;
 
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
@@ -457,6 +460,7 @@ public class AdminController {
 			jObject.put("outputChannelNo", channel.getRacChannelNo());
 			jObject.put("outputChannelTitle", channel.getRacChannelTitle());
 			jObject.put("outputChannelUrl", channel.getRacChannelUrl());
+			jObject.put("pageNo", inputPageNo);
 
 			CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel ad url OK", map);
 			req.setAttribute("result", jObject);
@@ -478,6 +482,7 @@ public class AdminController {
 
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int inputChannelNo = req.getParameter("inputChannelNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelNo").toString())) : 0;
+			int inputPageNo = req.getParameter("inputPageNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputPageNo").toString())) : 0;
 
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
@@ -499,6 +504,7 @@ public class AdminController {
 			jObject.put("outputChannelNo", channel.getRacChannelNo());
 			jObject.put("outputChannelTitle", channel.getRacChannelTitle());
 			jObject.put("outputChannelUrl", channel.getRacChannelUrl());
+			jObject.put("pageNo", inputPageNo);
 
 			CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel cost OK", map);
 			req.setAttribute("result", jObject);

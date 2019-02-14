@@ -9,10 +9,13 @@ import java.security.PublicKey;
 import java.security.spec.RSAPrivateKeySpec;
 import java.security.spec.RSAPublicKeySpec;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Properties;
+import java.util.TimeZone;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -175,7 +178,18 @@ public class CommonController {
 			JSONObject jMainObject = new JSONObject();
 			
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
-
+			
+			Date date = new Date();
+			SimpleDateFormat formatType = new SimpleDateFormat("yyyy-MM-dd");
+			formatType.setTimeZone(TimeZone.getTimeZone("GMT+9"));
+			date.setDate(date.getDate()-1);
+			date.setHours(0);			
+			date.setMinutes(0);
+			date.setSeconds(0);
+			Timestamp beforeDate = new Timestamp(date.getTime());
+			date.setDate(date.getDate()+1);
+			Timestamp afterDate = new Timestamp(date.getTime());
+			
 			// 순위 리스트
 			JSONArray rankingList = new JSONArray();
 			if(mode == 1) {
@@ -184,6 +198,15 @@ public class CommonController {
 					JSONObject tempObject = new JSONObject();
 					tempObject.put("outputRankTopNo", ranking.get(i).getRacRankTopNo());
 					tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
+
+					int beforRanking = ChannelDAO.getRankBefore(ranking.get(i).getRacChannelNo(),beforeDate,afterDate);
+					
+					if(ranking.get(i).getRacRankTopNo()-beforRanking <0) 
+						tempObject.put("outputRankUpDown", "↑");
+					else if(ranking.get(i).getRacRankTopNo()-beforRanking >0)
+						tempObject.put("outputRankUpDown", "↓");
+					else
+						tempObject.put("outputRankUpDown", "-");
 					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryList(ranking.get(i).getRacChannelCategory()));
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
 					tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));

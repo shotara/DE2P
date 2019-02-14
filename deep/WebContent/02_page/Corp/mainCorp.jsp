@@ -15,7 +15,8 @@
 		case 1:
 			var url="/member?action=getReviewChannelList";  
 		    var params = {
-		    	startNo : (page-1)*5
+		    	startNo : (page-1)*5,
+		    	pageNo : page
 		    };
 		    
 		    $.ajax({      
@@ -104,7 +105,8 @@
 		case 2:
 			var url="/member?action=getRecentChannelList";  
 		    var params = {
-		    	startNo : (page-1)*5
+		    	startNo : (page-1)*5,
+		    	pageNo : page
 		    };
 		    
 		    $.ajax({      
@@ -154,7 +156,7 @@
 		    		var recent_total = parseInt((recent_current) / 10) * 10 + 10;
 		    		var recent_start = parseInt((recent_current) / 10) * 10;
 		    		var recent_finalPage = args.recentFinalPageNo;
-		    		
+
 		    		if (recent_start > 0) {
 		    			if ((recent_start - 10) == 0)
 		    				$("#recentPaging")
@@ -214,7 +216,8 @@
 		case 3:
 			var url="/member?action=getLikeChannelList";  
 		    var params = {
-		    	startNo : (page-1)*5
+		    	startNo : (page-1)*5,
+		    	pageNo : page
 		    };
 		    
 		    $.ajax({      

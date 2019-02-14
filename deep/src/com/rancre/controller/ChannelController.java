@@ -169,6 +169,7 @@ public class ChannelController {
 			if(recentVideoList.size()!=0) {
 				int videoUpdateDate = updateDate/(3600*24)/recentVideoList.size();
 				if(videoUpdateDate<3) req.setAttribute("outputChannelGradePlus", "+");
+				if(videoUpdateDate==0) videoUpdateDate=1;
 				req.setAttribute("outputRecentVideoUpdateDate", videoUpdateDate+" 일");
 			} else {
 				req.setAttribute("outputRecentVideoUpdateDate", "영상이 없습니다.");
@@ -180,7 +181,6 @@ public class ChannelController {
 				ArrayList<ChannelAd> channelAdList = ChannelDAO.getChannelAdVideoList(inputChannelNo);
 				ArrayList<HashMap<String,Object>> adVideoList = new ArrayList<HashMap<String,Object>>();
 				long adViews = 0;
-				int adEvenPrice = 0;
 				for(int i=0; i<channelAdList.size();i++) {
 					if(channelAdList.get(i).getRacVideoTitle() == null) continue;
 					HashMap<String,Object> tempObejct = new HashMap<String,Object>();
@@ -192,10 +192,18 @@ public class ChannelController {
 					tempObejct.put("outputVideoViews", CommonUtil.setCommaForLong(channelAdList.get(i).getRacVideoViews()));
 					adViews = adViews + channelAdList.get(i).getRacVideoViews();
 					tempObejct.put("outputVideoCreateDate", channelAdList.get(i).getRacVideoCreateDate());
-					ChannelCost channelCost = ChannelDAO.getChannelCost(inputChannelNo);
-					adEvenPrice = adEvenPrice + channelCost.getRacChannelCostPrice();
+
 					adVideoList.add(tempObejct);
 				}
+				
+				// ChannelCost
+				int channelAverageCost = ChannelDAO.getChannelAverageCost(inputChannelNo);
+				if(channelAverageCost==0)
+					req.setAttribute("outputAdEvenPrice","정보없음");
+				else 
+					req.setAttribute("outputAdEvenPrice",CommonUtil.setCommaForInt(channelAverageCost)+" 원");
+
+				
 				req.setAttribute("outputAdVideoList", adVideoList);
 
 				// Channel Reviews
@@ -232,10 +240,8 @@ public class ChannelController {
 				}
 				if(channelAdList.size()!=0) {
 					req.setAttribute("outputAdViews",  CommonUtil.setCommaForInt(Math.round(adViews/channelAdList.size())));
-					req.setAttribute("outputAdEvenPrice", CommonUtil.setCommaForInt(Math.round(adEvenPrice/channelAdList.size())));
 				} else {
 					req.setAttribute("outputAdViews", "정보없음");
-					req.setAttribute("outputAdEvenPrice","정보없음");
 				}
 			}
 			

@@ -808,4 +808,33 @@ public class ChannelDAO {
 		}
 	}
 
+	public static int getRankBefore(int inputChannelNo,Timestamp beforeDate, Timestamp afterDate) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("beforeDate", beforeDate);
+			map.put("afterDate", afterDate);
+			map.put("inputChannelNo", inputChannelNo);
+			
+			return (int)sqlSession.selectOne(namespace + ".getRankBefore", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int getChannelAverageCost(int inputChannelNo) {
+	
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (int)sqlSession.selectOne(namespace + ".getChannelAverageCost", inputChannelNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 }

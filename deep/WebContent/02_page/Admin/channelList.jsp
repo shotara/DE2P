@@ -115,11 +115,11 @@
 			<div class="col7">${item.outputChannelCostEvenPrice}</div>
 			<div class="col8">
 				<button
-					onclick="location.href='/admin?action=getChannelCost&inputChannelNo=${item.outputChannelNo}'">단가등록</button>
+					onclick="location.href='/admin?action=getChannelCost&inputChannelNo=${item.outputChannelNo}&inputPageNo=${paging.currentPageNo}'">단가등록</button>
 				<button
 					onclick="location.href='/admin?action=getChannelInfo&inputChannelNo=${item.outputChannelNo}&inputPageNo=${paging.currentPageNo}'">정보등록</button>
 				<button
-					onclick="location.href='/admin?action=getChannelAdUrl&inputChannelNo=${item.outputChannelNo}'">광고영상등록</button>
+					onclick="location.href='/admin?action=getChannelAdUrl&inputChannelNo=${item.outputChannelNo}&inputPageNo=${paging.currentPageNo}'">광고영상등록</button>
 			</div>
 			<br />
 		</c:forEach>

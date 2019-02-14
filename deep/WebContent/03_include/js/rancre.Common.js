@@ -26,7 +26,7 @@ Common.addList = function (mode, startNo, categoryNo) {
 "							<div id='chnContent' class='w-auto ml-auto'>\r\n" + 
 "							<div class='rankMainRowCnt'>\r\n" + 
 "							<div class='d-inline-block rankMainCnt'>"+args.rankingList[i].outputRankTopNo + "위</div>\r\n" + 
-"							<div class='d-inline-block rankMainDif'>-</div>\r\n" + 
+"							<div class='d-inline-block rankMainDif'>"+args.rankingList[i].outputRankUpDown + "</div>\r\n" + 
 "							</div>\r\n" + 
 "							<div class='rankMainRowImg'>\r\n" + 
 "							<img id='chnListThumbNail'\r\n" + 

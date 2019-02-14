@@ -81,9 +81,11 @@
 			    <option value="12">먹방</option>
 			    <option value="13">키즈</option>
    			    <option value="14">반려동물</option>
-			    <option value="15">운동</option>
+			    <option value="15">ASMR</option>
 			    <option value="16">취미</option>
-			    <option value="17">기타</option>
+			    <option value="17">리뷰어</option>
+			    <option value="18">스트리머</option>
+			    <option value="19">기타</option>
 			</select>
 			<select name="category2" id="category2">
 			    <option value="1">카테고리 선택</option>
@@ -100,9 +102,11 @@
 			    <option value="12">먹방</option>
 			    <option value="13">키즈</option>
    			    <option value="14">반려동물</option>
-			    <option value="15">운동</option>
+			    <option value="15">ASMR</option>
 			    <option value="16">취미</option>
-			    <option value="17">기타</option>
+			    <option value="17">리뷰어</option>
+			    <option value="18">스트리머</option>
+			    <option value="19">기타</option>
 			</select>
 			<select name="category3" id="category3">
 			    <option value="1">카테고리 선택</option>
@@ -119,9 +123,11 @@
 			    <option value="12">먹방</option>
 			    <option value="13">키즈</option>
    			    <option value="14">반려동물</option>
-			    <option value="15">운동</option>
+			    <option value="15">ASMR</option>
 			    <option value="16">취미</option>
-			    <option value="17">기타</option>
+			    <option value="17">리뷰어</option>
+			    <option value="18">스트리머</option>
+			    <option value="19">기타</option>
 			</select>
 		</div>
 	</div>
