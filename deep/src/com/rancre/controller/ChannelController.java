@@ -108,7 +108,8 @@ public class ChannelController {
 			req.setAttribute("outputChannelThumbnail", channel.getRacChannelThumbnail());
 			req.setAttribute("outputChannelLike", ChannelDAO.checkChannelLike(sessionMemberNo, inputChannelNo));
 			req.setAttribute("outputChannelNo", inputChannelNo);
-			
+			req.setAttribute("outputChannelUrl", channel.getRacChannelUrl());
+
 			// 전날짜 7일 평균 
 			date.setDate(date.getDate()-6);
 			date.setMinutes(0);

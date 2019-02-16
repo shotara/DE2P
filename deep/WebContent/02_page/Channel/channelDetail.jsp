@@ -33,9 +33,10 @@
 
 					<div class="d-inline-block chn-basic-info">
 						<div class="w-auto ml-auto">
-							<span class="chnDtlName">${requestScope.outputChannelTitle }</span>
+							<span class="chnDtlName" onclick="window.open('https://youtube.com${requestScope.outputChannelUrl }')"">${requestScope.outputChannelTitle }</span>
 						</div>
 						<div class="chnDtlCategory w-auto ml-auto">
+
 
 							<span class="chnCategory">${requestScope.outputChannelCategory }</span>
 						</div>

@@ -1280,7 +1280,6 @@ public class MemberController {
 				tempObject.put("outputChannelThumbnail", channelLikeList.get(i).getRacChannelThumbnail());
 				tempObject.put("outputChannelNo", channelLikeList.get(i).getRacChannelNo());
 				tempObject.put("outputChannelLike", ChannelDAO.checkChannelLike(sessionMemberNo, channelLikeList.get(i).getRacChannelNo()));
-				System.out.println(ChannelDAO.checkChannelLike(sessionMemberNo, channelLikeList.get(i).getRacChannelNo()));
 				outputChannelLikeList.add(tempObject);
 			}
 			if(channelLikeList.size()==0) {
@@ -1551,7 +1550,6 @@ public class MemberController {
 			// RSA Decrypt
 			String decryptMemberEmail = EncryptUtil.RSA_Decode(privateKey, inputMemberEmail);
 			String decryptMemberPassword = EncryptUtil.RSA_Decode(privateKey, inputMemberPassword);
-			System.out.println(decryptMemberEmail);
 				
 			// AES Encrypt
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
@@ -1568,8 +1566,7 @@ public class MemberController {
 				res.getWriter().write(jObject.toString());
 				return;
 			}
-			System.out.println(encryptMemberEmail);
-			System.out.println(encryptMemberPassword);
+
 			// Join member 
 			int check = MemberDAO.changeMemberPassword(encryptMemberEmail, encryptMemberPassword);
 
