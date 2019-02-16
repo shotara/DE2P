@@ -649,6 +649,20 @@ a.subnav-link:hover {
 	padding-left : 13px;
 }
 
+.detail-tab {
+	flex-basis : 0;
+	-ms-flex-positive : 1;
+	flex-grow :1;
+	max-width : 100%;
+	position :relative;
+	min-height : 1px;
+	padding-right : 13px;
+}
+
+.detail-tab .subnav-link.active {
+	font-weight : bold;
+}
+
 /**********************************/
 /*  join  */
 /*********************************/
@@ -1054,12 +1068,30 @@ a.subnav-link:hover {
 	display: inline-block;
 	width: 80px;
 	margin-right: 40px;
+	cursor : pointer;
 }
 
 .chnDtlName {
 	font-weight: bold;
 	font-size: 1.5em;
+	cursor : pointer;
 }
+
+/** 채널 바로 가기 **/
+
+.chn-redirect {
+	vertical-align : middle;
+	overflow:hidden;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.chn-redirect-Btn {
+	margin-top :22px;
+	margin-right : 45px;
+}
+
 
 /** 관심채널 설정 전 **/
 
@@ -1073,7 +1105,7 @@ a.subnav-link:hover {
 
 .chn-like-Btn {
 	margin-top :22px;
-	margin-right : 45px;
+	margin-right : 22px;
 }
 
 /** 관심채널 설정 된 '후'  **/
@@ -1088,7 +1120,7 @@ a.subnav-link:hover {
 
 .chn-liked-Btn {
 	margin-top :22px;
-	margin-right : 45px;
+	margin-right : 22px;
 }
 
 
@@ -1140,7 +1172,6 @@ a.subnav-link:hover {
 /* Style the tab content */
 .sub-tabcontent {
 	display: none;
-	padding: 6px 12px;
 }
 
 ul.sub-tabs li a.active {

@@ -22,7 +22,7 @@
 
 				<div class="w100 ml-auto" id="chn-detail-top">
 					<!-- 채널 썸네일 영역 시작  -->
-					<div class="chnDtlImg d-inline-block">
+					<div class="chnDtlImg d-inline-block" onclick="window.open('https://youtube.com${requestScope.outputChannelUrl }')"">
 						<img id="chnDtlThumbNail"
 							style="width: 80px; border-radius: 80px;"
 							src="${requestScope.outputChannelThumbnail }">
@@ -33,17 +33,19 @@
 
 					<div class="d-inline-block chn-basic-info">
 						<div class="w-auto ml-auto">
-							<span class="chnDtlName" onclick="window.open('https://youtube.com${requestScope.outputChannelUrl }')"">${requestScope.outputChannelTitle }</span>
+							<span class="chnDtlName"
+								onclick="window.open('https://youtube.com${requestScope.outputChannelUrl }')"">${requestScope.outputChannelTitle }</span>
+							
 						</div>
 						<div class="chnDtlCategory w-auto ml-auto">
-
-
 							<span class="chnCategory">${requestScope.outputChannelCategory }</span>
 						</div>
+						
 					</div>
 					<!-- 채널 이름 및 카테고리 끝 -->
 
 					<!-- 관심 채널 등록 -->
+
 					<c:if test="${not empty sessionScope.racMemberNo}">
 						<div class="float-right chn-like-area">
 							<c:if test="${requestScope.outputChannelLike==0}">
@@ -68,7 +70,7 @@
 
 				<!-- 채널 스탯 상세 영역 시작  -->
 				<div class="w100 ml-auto" id="chn-detail-middle">
-				
+
 					<div class="pt-3"></div>
 					<hr
 						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
@@ -176,23 +178,21 @@
 				<div class="pt-1"></div>
 
 				<!-- 채널 상세 탭 영역 -->
-				<div class="detail-tab inline-flex">
-					<div class="detail-tab float-left">
-						<ul id="myTab" class="sub-tabs">
-							<li><a data-tab="upload" href="#upload" class="active">최근
-									업로드 영상</a></li>
-							<li><a data-tab="commercial" href="#commercial">이 채널의 광고
-									영상</a></li>
-							<li><a data-tab="review" href="#review">이 채널의 광고 리뷰</a></li>
-							<!-- 							<li><a data-tab="price" href="#price">이 채널의 광고 단가</a></li>
- -->
+				<div class="detail-tab-area inline-flex">
+					<div class="float-left sub-tabs" id="subNav-Tabs">
+							<div class="subNav-tab detail-tab d-inline-block"><a data-tab="upload" href="#upload" class="subnav-link active">최근
+									업로드 영상</a></div>
+							<div class="subNav-tab detail-tab d-inline-block"><a data-tab="commercial" href="#commercial" class="subnav-link">이 채널의 광고
+									영상</a></div>
+							<div class="subNav-tab detail-tab d-inline-block"><a data-tab="review" href="#review" class="subnav-link">이 채널의 광고 리뷰</a></div>
+							<!-- 							<div class="subNav-tab"><a data-tab="price" href="#price" class="subnav-link">이 채널의 광고 단가</a></div> -->
 						</ul>
 					</div>
 				</div>
 
 				<!-- rancre.common.js sub-nav -->
 
-				<div id="myTabContent" class="row inline-block tab-content">
+				<div id="myTabContent" class="inline-block tab-content">
 					<div class="sub-tabcontent active w-auto" id="upload">
 
 						<div class="pTop"></div>
@@ -223,7 +223,7 @@
 					</div>
 
 
-					<div class="sub-tabcontent w-100" id="commercial">
+					<div class="sub-tabcontent" id="commercial">
 
 						<div class="pTop"></div>
 

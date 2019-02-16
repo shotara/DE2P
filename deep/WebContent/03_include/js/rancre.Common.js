@@ -472,10 +472,10 @@ Common.review = function (mode){
 
 
 $(function() {
-	$('ul.sub-tabs li a').click(function() {
+	$('div.detail-tab a').click(function() {
 		var activeTab = $(this).attr('data-tab');
-		$('ul.sub-tabs li a').removeClass('active');
-		$('.sub-tabcontent').removeClass('active');
+		$('div.detail-tab a').removeClass('active');
+		$('div.sub-tabcontent').removeClass('active');
 		$(this).addClass('active');
 		$('#' + activeTab).addClass('active');
 	})
