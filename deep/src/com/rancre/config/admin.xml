@@ -24,7 +24,17 @@
 		UPDATE rac_channel SET racChannelCategory=#{category}, racMcnNo=#{mcnNo}, racChannelUpdateDate=#{inputCurrentDate}
 		WHERE racChannelNo=#{channelNo}
 	</select>
-	
+
+	<select id="setRankTopCategory" parameterType="java.util.HashMap" resultType="int">
+		UPDATE rac_rank_top SET racChannelCategory=#{category}
+		WHERE racChannelNo=#{channelNo}
+	</select>
+
+	<select id="setRankCategoryCategory" parameterType="java.util.HashMap" resultType="int">
+		UPDATE rac_rank_category SET racChannelCategory=#{category}
+		WHERE racChannelNo=#{channelNo} AND racChannelInsertDate <![CDATA[>]]> #{inputCurrentDate} 
+	</select>
+				
 	<!-- Delete -->
 	<select id="deleteFeedLike" parameterType="java.util.HashMap" resultType="int">
 		DELETE FROM deep_feed_like WHERE deepFeedNo=#{feedNo} AND deepMemberNo=#{memberNo}

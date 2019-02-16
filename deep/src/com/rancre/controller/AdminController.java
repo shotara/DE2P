@@ -10,10 +10,13 @@ import java.security.PublicKey;
 import java.security.spec.RSAPrivateKeySpec;
 import java.security.spec.RSAPublicKeySpec;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -303,6 +306,25 @@ public class AdminController {
 			if(check != 1) {
 				CommonUtil.commonPrintLog("FAIL", className, "Add  Channel Info", map);
 			}		
+			
+			if(ChannelDAO.checkRankTop(inputChannelNo)>0) {
+				int check2 = AdminDAO.setRankTopCategory(inputChannelNo, category);
+				if(check2 != 1)
+					CommonUtil.commonPrintLog("FAIL", className, "Add  RANK TOP Info", map);
+
+			}
+			
+			Date date = new Date();
+			SimpleDateFormat formatType = new SimpleDateFormat("yyyy-MM-dd");
+			formatType.setTimeZone(TimeZone.getTimeZone("GMT+9"));
+			date.setHours(0);
+			Timestamp currentTime = new Timestamp(date.getTime());
+
+			if(ChannelDAO.checkRankCategory(inputChannelNo, currentTime)>0) {
+				int check2 = AdminDAO.setRankCategoryCategory(inputChannelNo, category, currentTime);
+				if(check2 != 1)
+					CommonUtil.commonPrintLog("FAIL", className, "Add  RANK CATEGORY Info", map);			
+			}
 			
 			/// 카테고리 기존 카테고리와 비교
 			ArrayList<String> originalCategory = CommonUtil.commonSpiltBySemicolon(channel.getRacChannelCategory());

@@ -141,11 +141,54 @@ public class AdminDAO {
 			sqlSession.close();
 		}
 	}
-	public static int addChannelInfo(int inputChannelNo, int inputCategoryNo, int inputMcnNo,
-			Timestamp inputCurrentDate) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public static int setRankTopCategory(int inputChannelNo, String category) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("channelNo", inputChannelNo);
+			map.put("category", category);				
+
+			int check = (int)sqlSession.update(namespace + ".setRankTopCategory", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
 	}
+
+	public static int setRankCategoryCategory(int inputChannelNo, String category, Timestamp inputCurrentDate) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("channelNo", inputChannelNo);
+			map.put("category", category);			
+			map.put("inputCurrentDate", inputCurrentDate);			
+
+			int check = (int)sqlSession.update(namespace + ".setRankCategoryCategory", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 	// Delete Method
 	public static int deleteFeedLike(int inputFeedNo, int inputMemberNo) {
 		
@@ -304,4 +347,5 @@ public class AdminDAO {
 			sqlSession.close();
 		}
 	}
+
 }
