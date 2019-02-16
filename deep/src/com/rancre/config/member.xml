@@ -54,7 +54,7 @@
 	
 	<select id="permitJoin" parameterType="java.util.HashMap" resultType="int">
 		UPDATE rac_member SET racMemberStatus=2
-		WHERE racMemberNo=(SELECT a.racMemberNo FROM (SELECT * FROM rac_member WHERE racMemberEmail=#{email}) a, (SELECT * FROM rac_member_uid WHERE racMemberUid=#{uid}) b WHERE a.racMemberNo=b.racMemberNo AND a.racMemberStatus=1)
+		WHERE racMemberEmail=#{email} AND racMemberStatus=1
 	</select>
 			
 	<select id="getMemberByJoinPermit" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Member">
@@ -133,4 +133,7 @@
 		SELECT count(*) FROM rac_channel_like WHERE racMemberNo=#{inputMemberNo}
 	</select>
 	
+	<select id="getMemberUidByEmail" parameterType="String" resultType="com.rancre.model.domain.MemberUid">
+		SELECT a.* FROM rac_member_uid a, rac_member b WHERE b.racMemberEmail=#{inputMemberEmail} AND b.racMemberNo=a.racMemberNo
+	</select>	
 </mapper>

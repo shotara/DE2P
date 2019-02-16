@@ -569,8 +569,11 @@ public class MemberController {
 			   // Subject
 			   message.setSubject("[Subject] Java Mail Test");
 			   
+			   String checkValue = "asd3ff";
+			   session.setAttribute("racJoinCheckValue", checkValue);
+			   session.setAttribute("racJoinMemberEmail", decryptMemberEmail);
 			   // Text
-			   String url = "http://localhost:8080/member?action=permitJoin&inputEmail="+decryptMemberEmail+"&inputUid="+memberUid;
+			   String url = "http://localhost:8080/member?action=permitJoin&inputEmail="+decryptMemberEmail+"&inputCheckValue="+checkValue;
 			   String text = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\r\n" + 
 			   		"			   <html xmlns='http://www.w3.org/1999/xhtml'>\r\n" + 
 			   		"			   <head>\r\n" + 
@@ -1044,25 +1047,44 @@ public class MemberController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		
 		try {
+			HttpSession session = req.getSession();
+
+			String sessionJoinEmail = session.getAttribute("racJoinMemberEmail") != null ? session.getAttribute("racJoinMemberEmail").toString() : "";
+			String sessionJoinCheckValue = session.getAttribute("racJoinCheckValue") != null ? session.getAttribute("racJoinCheckValue").toString() : "";
 			String inputEmail = req.getParameter("inputEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputEmail").toString()) : null;
-			String inputUid = req.getParameter("inputUid") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputUid").toString()) : null;
+			String inputCheckValue = req.getParameter("inputCheckValue") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputCheckValue").toString()) : null;
 			
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 
-			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
-			String encryptMemberEmail = EncryptUtil.AES_Encode(inputEmail, aesKey);
-
 			// 메일/ 회원체크
-			int check = MemberDAO.permitJoin(encryptMemberEmail, inputUid);
-			if(check!=1) {
-				CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit Fail", map);
+			if(!sessionJoinEmail.equals(inputEmail)) {
+				CommonUtil.commonPrintLog("ERROR", className, "Join Permit Fail1", map);
+				req.getRequestDispatcher("/error.jsp").forward(req, res);
+				return;
+			}
+
+			if(!sessionJoinCheckValue.equals(inputCheckValue)) {
+				CommonUtil.commonPrintLog("ERROR", className, "Join Permit Fail2", map);
 				req.getRequestDispatcher("/error.jsp").forward(req, res);
 				return;
 			}
 			
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+			String encryptMemberEmail = EncryptUtil.AES_Encode(inputEmail, aesKey);
+			
+			int check = MemberDAO.permitJoin(encryptMemberEmail);
+			if(check!=1) {
+				CommonUtil.commonPrintLog("ERROR", className, "Join Permit Fail", map);
+				req.getRequestDispatcher("/error.jsp").forward(req, res);
+				return;
+			}
+			
+			session.removeAttribute("racJoinMemberEmail");
+			session.removeAttribute("racJoinCheckValue");
 			CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit OK", map);
-			req.setAttribute("memberUid",inputUid);
+			MemberUid memberUid = MemberDAO.getMemberUidByEmail(encryptMemberEmail);
+			req.setAttribute("memberUid",memberUid.getRacMemberUid());
 			req.getRequestDispatcher("/02_page/Auth/joinPermit.jsp").forward(req, res);
 			return;
 			

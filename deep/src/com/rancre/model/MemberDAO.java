@@ -220,14 +220,13 @@ public class MemberDAO {
 	}
 	
 
-	public static int permitJoin(String inputEmail, String inputUid) {
+	public static int permitJoin(String inputEmail) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);
 		
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("email", inputEmail);
-			map.put("uid", inputUid);			
 
 			int check = (int)sqlSession.update(namespace + ".permitJoin", map);
 			
@@ -471,6 +470,18 @@ public class MemberDAO {
 		
 		try {	
 			return (int)sqlSession.selectOne(namespace + ".checkValidMember", inputMemberEmail);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static MemberUid getMemberUidByEmail(String inputMemberEmail) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (MemberUid)sqlSession.selectOne(namespace + ".getMemberUidByEmail", inputMemberEmail);
 			
 		} finally {
 			sqlSession.close();
