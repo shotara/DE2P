@@ -837,4 +837,16 @@ public class ChannelDAO {
 		}
 	}
 
+	public static int checkChannelCost(int inputChannelNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (int)sqlSession.selectOne(namespace + ".checkChannelCost", inputChannelNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 }

@@ -509,7 +509,7 @@ Common.search = function (mode){
 		var keyPressed = (event.keyCode ? event.keyCode : event.which);
 		var channelName = protectXSS($("#ipt-Search").val());
 
-		if(keyPressed==13) {
+		if(keyPressed==13 || keyPressed==10) {
 			var publicKeyModulus = "";
 			var publicKeyExponent = "";
 

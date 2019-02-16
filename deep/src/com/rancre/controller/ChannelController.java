@@ -123,10 +123,12 @@ public class ChannelController {
 				int outputChannelBeforeFollowers = channel.getRacChannelFollowers()-evenFollowersForWeek;
 				if(outputChannelBeforeFollowers > 0) {
 					req.setAttribute("outputChannelBeforeFollowersMark", "+");
+					req.setAttribute("outputChannelBeforeFollowers", CommonUtil.setCommaForInt(outputChannelBeforeFollowers));
+
 				} else if(outputChannelBeforeFollowers < 0) {
 					req.setAttribute("outputChannelBeforeFollowersMark", "-");
+					req.setAttribute("outputChannelBeforeFollowers", CommonUtil.setCommaForInt(outputChannelBeforeFollowers*-1));
 				}
-				req.setAttribute("outputChannelBeforeFollowers", CommonUtil.setCommaForInt(outputChannelBeforeFollowers));
 				
 			} else {
 				req.setAttribute("outputChannelBeforeFollowers", "제공예정");
@@ -197,11 +199,13 @@ public class ChannelController {
 				}
 				
 				// ChannelCost
-				int channelAverageCost = ChannelDAO.getChannelAverageCost(inputChannelNo);
-				if(channelAverageCost==0)
+				int checkCost = ChannelDAO.checkChannelCost(inputChannelNo);
+				if(checkCost >0) {
+					int channelAverageCost = ChannelDAO.getChannelAverageCost(inputChannelNo);
+					req.setAttribute("outputAdEvenPrice",CommonUtil.setCommaForInt(channelAverageCost)+" 원");					
+				} else {
 					req.setAttribute("outputAdEvenPrice","정보없음");
-				else 
-					req.setAttribute("outputAdEvenPrice",CommonUtil.setCommaForInt(channelAverageCost)+" 원");
+				}
 
 				
 				req.setAttribute("outputAdVideoList", adVideoList);

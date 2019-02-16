@@ -149,5 +149,8 @@
 	<select id="getChannelAverageCost"  resultType="int">
 		SELECT round(AVG(racChannelCostPrice),0) FROM rac_channel_cost WHERE racChannelNo = #{inputChannelNo}
 	</select>
-	
+
+	<select id="checkChannelCost"  resultType="int">
+		SELECT count(*) FROM rac_channel_cost WHERE racChannelNo = #{inputChannelNo}
+	</select>	
 </mapper>
