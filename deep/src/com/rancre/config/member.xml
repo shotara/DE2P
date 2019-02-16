@@ -14,7 +14,15 @@
 			WHERE racMemberEmail=#{memberParam}
 		</if>
 	</select>
-		
+	
+    <select id="checkValidMember" parameterType="String" resultType="int">
+		SELECT count(*) FROM rac_member WHERE racMemberEmail=#{memberEmail} AND racMemberStatus=2
+	</select>
+	
+    <select id="changeMemberPassword" parameterType="java.util.HashMap" resultType="int">
+		UPDATE rac_member SET racMemberPassword=#{memberPassword}
+		WHERE racMemberEmail=#{memberEmail}
+	</select>	
 	<!-- MemberController.loginMember() -->
     <select id="getMemberByMemberMail" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Member">
 		SELECT * FROM rac_member WHERE racMemberEmail=#{memberEmail} AND racMemberPassword=#{memberPassword}

@@ -38,7 +38,7 @@
 					</div>
 
 					<div class="pTop3"></div>
-
+					<input type="hidden" id="inputMemberEmail" value="${outputMemberEmail }">
 					<div class="ipt-user-inquiry pTop2">
 						<div class="float-left inquiry-commonTxt">
 							비밀번호<span class="primary-color">*</span>

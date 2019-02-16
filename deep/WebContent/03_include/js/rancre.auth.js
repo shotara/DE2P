@@ -432,7 +432,7 @@ Auth.userInquiry = function(){
 	var memberEmail = "";
 	var action, form_data;
 
-	action = "/member?action=??????Member"; // 이곳 수정 필요
+	action = "/member?action=checkValidMember"; // 이곳 수정 필요
 	memberEmail = $("#inputMemberEmail").val();
 	
 	//encryption
@@ -451,6 +451,7 @@ Auth.userInquiry = function(){
 		success :  function(response){
 			if(response.outputResult == "1"){ //valid email information 
 				alert("인증 메일이 발송되었습니다. 인증메일을 확인해주세요.");
+				location.href = "/";
 			}else{ //invalid email or wrong context  
 				alert("등록되지 않은 이메일이거나 이메일이 양식이 정확하지 않습니다.");
 			}
@@ -491,7 +492,7 @@ Auth.inquiryComplete = function(){
 
 	var memberEmail, memberPassword;
 
-	action = "/member?action=??????Member";  //재설정 필요
+	action = "/member?action=changeMemberPassword";  //재설정 필요
 
 	memberEmail = protectXSS($("#inputMemberEmail").val().trim());
 	memberPassword = protectXSS($("#inputMemberPassword").val().trim());

@@ -171,6 +171,29 @@ public class MemberDAO {
 		}
 	}
 	
+	public static int changeMemberPassword(String inputMemberEmail, String inputMemberPassword) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberEmail", inputMemberEmail);
+			map.put("memberPassword", inputMemberPassword);
+
+			int check = (int)sqlSession.update(namespace + ".changeMemberPassword", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 	public static boolean setMemberImg(int inputMemberNo, int inputUploadNo) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);
@@ -441,4 +464,17 @@ public class MemberDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static int checkValidMember(String inputMemberEmail) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (int)sqlSession.selectOne(namespace + ".checkValidMember", inputMemberEmail);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 }

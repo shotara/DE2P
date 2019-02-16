@@ -137,7 +137,204 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
-		
+
+	public static void getChangeUserInfo(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			HttpSession session = req.getSession();
+
+			String inputEmail = req.getParameter("inputEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputEmail").toString()) : null;				
+	
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputEmail);
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// AES Encrypt
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+			String encryptMemberEmail = EncryptUtil.AES_Encode(inputEmail, aesKey);
+
+			// Check Member Email, Name    			
+			if(MemberDAO.checkValidMember(encryptMemberEmail)==0) {
+				CommonUtil.commonPrintLog("FAIL", className, "Not Member Email Exist", map);
+				jObject.put("outputResult", "-3");
+				res.getWriter().write(jObject.toString());
+				return;
+			}			
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit OK", map);
+			req.setAttribute("outputMemberEmail",inputEmail);
+			req.getRequestDispatcher("/02_page/Auth/inquirycomplete.jsp").forward(req, res);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void checkValidMember(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			HttpSession session = req.getSession();
+
+			String inputMemberEmail = req.getParameter("inputMemberEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberEmail").toString()) : null;				
+	
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputMemberEmail);
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// Get Private key
+			PrivateKey privateKey = null;
+			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+			
+			if(privateKey == null) {
+				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}			
+
+			// RSA Decrypt
+			String decryptMemberEmail = EncryptUtil.RSA_Decode(privateKey, inputMemberEmail);
+				
+			// AES Encrypt
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+			String encryptMemberEmail = EncryptUtil.AES_Encode(decryptMemberEmail, aesKey);
+
+			// Check Member Email, Name    			
+			if(MemberDAO.checkValidMember(encryptMemberEmail)==0) {
+				CommonUtil.commonPrintLog("FAIL", className, "Not Member Email Exist", map);
+				jObject.put("outputResult", "-3");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+	
+			  String host     = "smtp.naver.com";
+			  final String user   = "shotzara@naver.com";
+			  final String password  = "rmlarmla12!";
+	
+			  String to = decryptMemberEmail;
+	
+			  // Get the session object
+			  Properties props = new Properties();
+			  props.put("mail.smtp.host", host);
+			  props.put("mail.smtp.auth", "true");
+	
+			  Session mailSession = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			   protected PasswordAuthentication getPasswordAuthentication() {
+			    return new PasswordAuthentication(user, password);
+			   }
+			  });
+	
+			   MimeMessage message = new MimeMessage(mailSession);
+			   message.setFrom(new InternetAddress(user));
+			   message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+	
+			   // Subject
+			   message.setSubject("[Subject] Java Mail Test");
+			   
+			   // Text
+			   String url = "http://localhost:8080/member?action=getChangeUserInfo&inputEmail="+decryptMemberEmail;
+			   String text = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\r\n" + 
+			   		"<html xmlns='http://www.w3.org/1999/xhtml'>\r\n" + 
+			   		"<head>\r\n" + 
+			   		"<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />\r\n" + 
+			   		"<title>랭크리 이메일 인증</title>\r\n" + 
+			   		"<meta name='viewport' content='width=device-width, initial-scale=1.0' />\r\n" + 
+			   		"</head>\r\n" + 
+			   		"<body style='margin: 0; padding: 0;'>\r\n" + 
+			   		"	<table align='center' border='0' cellpadding='0' cellspacing='0'\r\n" + 
+			   		"		width='600'>\r\n" + 
+			   		"		<tr>\r\n" + 
+			   		"			<td bgcolor='#ffffff' align='center'\r\n" + 
+			   		"				style='font-size: 42px; color: #f11834; font-weight: bold; padding: 40px 0px 0px 0px;'>Rancre\r\n" + 
+			   		"			</td>\r\n" + 
+			   		"		</tr>\r\n" + 
+			   		"		<tr>\r\n" + 
+			   		"			<td bgcolor='#ffffff' style='padding: 40px 30px 60px 30px;'>\r\n" + 
+			   		"				<table border='0' cellpadding='0' cellspacing='0' width='100%'\r\n" + 
+			   		"					align='center'>\r\n" + 
+			   		"					<tr>\r\n" + 
+			   		"						<td align='center' style='font-size:18px;'>안녕하세요! 랭크리입니다.</td>\r\n" + 
+			   		"					</tr>\r\n" + 
+			   		"					<tr>\r\n" + 
+			   		"						<td align='center' style='font-size:18px; padding:10px 0px 0px 0px;'>아래의 인증 URL을 눌러 회원정보를 재설정해주시기 바랍니.</td>\r\n" + 
+			   		"					</tr>\r\n" + 
+			   		"					<tr>\r\n" + 
+			   		"						<td align='center'>&nbsp;</td>\r\n" + 
+			   		"					</tr>\r\n" + 
+			   		"					<tr>\r\n" + 
+			   		"						<td align='center'>&nbsp;</td>\r\n" + 
+			   		"					</tr>\r\n" + 
+			   		"					<tr>\r\n" + 
+			   		"						<td align='center'>"+url +"</td>\r\n" + 
+			   		"					</tr>\r\n" + 
+			   		"					<tr>\r\n" + 
+			   		"						<td align='center'>&nbsp;</td>\r\n" + 
+			   		"					</tr>\r\n" + 
+			   		"					<tr>\r\n" + 
+			   		"						<td align='center'>&nbsp;</td>\r\n" + 
+			   		"					</tr>\r\n" + 
+			   		"					<tr>\r\n" + 
+			   		"						<td align='center' style='font-size:18px;'>이메일 인증을 완료하지 않은 경우, 서비스 이용에 제한이 있을 수 있습니다.\r\n" + 
+			   		"						</td>\r\n" + 
+			   		"					</tr>\r\n" + 
+			   		"				</table>\r\n" + 
+			   		"			</td>\r\n" + 
+			   		"		</tr>\r\n" + 
+			   		"		<tr>\r\n" + 
+			   		"			<td bgcolor='#f11834' style='padding: 30px 30px 30px 30px;'>\r\n" + 
+			   		"				<table border='0' cellpadding='0' cellspacing='0' width='100%'>\r\n" + 
+			   		"					<tr>\r\n" + 
+			   		"						<td align='center' style='color: #ffffff'>랭크리는 더 다양한 채널을 분석하기\r\n" + 
+			   		"							위한 서비스입니다.</td>\r\n" + 
+			   		"					</tr>\r\n" + 
+			   		"				</table>\r\n" + 
+			   		"\r\n" + 
+			   		"			</td>\r\n" + 
+			   		"		</tr>\r\n" + 
+			   		"	</table>\r\n" + 
+			   		"</body>\r\n" + 
+			   		"</html>";
+			   message.setContent(text, "text/html; charset=utf-8");
+			   Transport.send(message);
+			   System.out.println("message sent successfully...");
+			
+			
+			jObject.put("outputResult", "1");	
+			CommonUtil.commonPrintLog("SUCCESS", className, "Check Member OK", map);			
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static void loginMember(HttpServletRequest req, HttpServletResponse res) {
 
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -1311,4 +1508,85 @@ public class MemberController {
 		}
 	}
 
+	public static void changeMemberPassword(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			HttpSession session = req.getSession();
+
+			String inputMemberEmail = req.getParameter("inputMemberEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberEmail").toString()) : null;
+			String inputMemberPassword = req.getParameter("inputMemberPassword") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberPassword").toString()) : null;
+			String inputMemberPasswordConfirm = req.getParameter("inputMemberPasswordConfirm") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberPasswordConfirm").toString()) : null;
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputMemberEmail);
+			parameterList.add(inputMemberPassword);
+			parameterList.add(inputMemberPasswordConfirm);
+			
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// Get Private key
+			PrivateKey privateKey = null;
+			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
+			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
+			
+			if(privateKey == null) {
+				CommonUtil.commonPrintLog("ERROR", className, "PrivateKey is Null", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}		
+         
+			// RSA Decrypt
+			String decryptMemberEmail = EncryptUtil.RSA_Decode(privateKey, inputMemberEmail);
+			String decryptMemberPassword = EncryptUtil.RSA_Decode(privateKey, inputMemberPassword);
+			System.out.println(decryptMemberEmail);
+				
+			// AES Encrypt
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+			String encryptMemberEmail = EncryptUtil.AES_Encode(decryptMemberEmail, aesKey);
+
+			// SHA-256 Encrypt
+			String encryptMemberPassword = EncryptUtil.SHA256_Encode(decryptMemberPassword);			
+			String decryptMemberPasswordConfirm = EncryptUtil.RSA_Decode(privateKey, inputMemberPasswordConfirm);
+
+			// Password and passwordConfirm is not correct
+			if(!(decryptMemberPassword.equals(decryptMemberPasswordConfirm))) {
+				CommonUtil.commonPrintLog("FAIL", className, "Password Not Correct!", map);
+				jObject.put("outputResult", "-3");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			System.out.println(encryptMemberEmail);
+			System.out.println(encryptMemberPassword);
+			// Join member 
+			int check = MemberDAO.changeMemberPassword(encryptMemberEmail, encryptMemberPassword);
+
+			if(check != 1) {
+				CommonUtil.commonPrintLog("FAIL", className, "Change Password Fail", map);
+				jObject.put("outputResult", "-4");
+				res.getWriter().write(jObject.toString());
+				return;
+			}			
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "User Join OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
