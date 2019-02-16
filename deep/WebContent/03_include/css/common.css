@@ -595,6 +595,14 @@ a {
 }
 
 /**********************************/
+/*  nav conversion                */
+/**********************************/
+
+
+
+
+
+/**********************************/
 /*  subnav  */
 /*********************************/
 .subnav {
@@ -644,6 +652,7 @@ a.subnav-link:hover {
 /**********************************/
 /*  join  */
 /*********************************/
+
 .join {
 	padding-right: 240px;
 	padding-left: 240px;
@@ -745,27 +754,10 @@ a.subnav-link:hover {
 }
 
 /**********************************/
-/*  font awesome customize  */
-/*********************************/
-.fa-user-circle-o {
-	color: #000 !important;
-}
-
-.fa-commenting-o {
-	color: #000 !important;
-}
-
-.fa-pencil {
-	color: #000 !important;
-}
-
-.title-text {
-	color: white;
-}
-
-/**********************************/
 /*  login  */
 /*********************************/
+
+
 .login {
 	padding-right: 240px;
 	padding-left: 240px;
@@ -840,6 +832,31 @@ a.subnav-link:hover {
 	border: 1px solid #f11834;
 	outline: none;
 }
+
+/**********************************/
+/*   us  */
+/*********************************/
+
+.ipt-user-inquiry{
+	width: 100%;
+	display: inline-block;
+}
+
+.inquiry-commonTxt {
+	font-weight: bold;
+	padding-bottom: 5px;
+}
+
+.ipt-Inquiry {
+	height: 36px;
+	font-size: 1em;
+	width: 100%;
+	border: 1px solid #b4b4b4;
+	border-radius: 3px;
+	padding-left: 10px;
+}
+
+
 
 /**********************************/
 /*  main - list type using CSS */

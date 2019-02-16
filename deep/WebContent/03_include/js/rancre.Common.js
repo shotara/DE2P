@@ -23,30 +23,30 @@ Common.addList = function (mode, startNo, categoryNo) {
 			success:function(args){   
 				for(var i=0; i<args.rankingList.length; i++) {
 					$('.chnContents').append(
-"							<div id='chnContent' class='w-auto ml-auto'>\r\n" + 
-"							<div class='rankMainRowCnt'>\r\n" + 
-"							<div class='d-inline-block rankMainCnt'>"+args.rankingList[i].outputRankTopNo + "위</div>\r\n" + 
-"							<div class='d-inline-block rankMainDif'>"+args.rankingList[i].outputRankUpDown + "</div>\r\n" + 
-"							</div>\r\n" + 
-"							<div class='rankMainRowImg'>\r\n" + 
-"							<img id='chnListThumbNail'\r\n" + 
-"							style='width: 48px; border-radius: 48px;'\r\n" + 
-"							src='"+args.rankingList[i].outputChannelThumbnail +"'>\r\n" + 
-"							</div>\r\n" + 
-"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelTitle+"</div>\r\n" + 
-"							<div class='ranc-Main-Row2'>"+args.rankingList[i].outputCategoryNo+"</div>\r\n" + 
-"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
-"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
-"							<div class='rankMainRowBtn'>\r\n" + 
-"							<button class='btnChnGo'>\r\n" + 
-"							<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>채널정보\r\n" + 
-"							보기</a>\r\n" + 
-"							</button>\r\n" + 
-"							</div>\r\n" + 
-"							</div>\r\n" + 
-"							<hr\r\n" + 
-"							style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n" + 
-"							</div>"
+							"							<div id='chnContent' class='w-auto ml-auto'>\r\n" + 
+							"							<div class='rankMainRowCnt'>\r\n" + 
+							"							<div class='d-inline-block rankMainCnt'>"+args.rankingList[i].outputRankTopNo + "위</div>\r\n" + 
+							"							<div class='d-inline-block rankMainDif'>"+args.rankingList[i].outputRankUpDown + "</div>\r\n" + 
+							"							</div>\r\n" + 
+							"							<div class='rankMainRowImg'>\r\n" + 
+							"							<img id='chnListThumbNail'\r\n" + 
+							"							style='width: 48px; border-radius: 48px;'\r\n" + 
+							"							src='"+args.rankingList[i].outputChannelThumbnail +"'>\r\n" + 
+							"							</div>\r\n" + 
+							"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelTitle+"</div>\r\n" + 
+							"							<div class='ranc-Main-Row2'>"+args.rankingList[i].outputCategoryNo+"</div>\r\n" + 
+							"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
+							"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
+							"							<div class='rankMainRowBtn'>\r\n" + 
+							"							<button class='btnChnGo'>\r\n" + 
+							"							<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>채널정보\r\n" + 
+							"							보기</a>\r\n" + 
+							"							</button>\r\n" + 
+							"							</div>\r\n" + 
+							"							</div>\r\n" + 
+							"							<hr\r\n" + 
+							"							style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n" + 
+							"							</div>"
 					);
 
 				}
@@ -71,26 +71,26 @@ Common.addList = function (mode, startNo, categoryNo) {
 			success:function(args){   
 				for(var i=0; i<args.rankingList.length; i++) {
 					var content = 
-"						<div id='chnContent' class='w-auto ml-auto'>\r\n" + 
-"						<div class='rankRowImg'>\r\n" + 
-"						<img id='chnListThumbNail'\r\n" + 
-"						style='width: 48px; border-radius: 48px;'\r\n" + 
-"						src='"+args.rankingList[i].outputChannelThumbnail +"'>\r\n" + 
-"						</div>\r\n" + 
-"						<div class='ranc-Row3'>"+args.rankingList[i].outputChannelTitle+"</div>\r\n" + 
-"						<div class='ranc-Row2'>"+args.rankingList[i].outputCategoryNo+"</div>\r\n" + 
-"						<div class='ranc-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
-"						<div class='ranc-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
-"						<div class='rankRowBtn'>\r\n" + 
-"						<button class='btnChnGo'>\r\n" + 
-"						<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>채널정보\r\n" + 
-"						보기</a>\r\n" + 
-"						</button>\r\n" + 
-"						</div>\r\n" + 
-"						</div>\r\n" + 
-"						<hr\r\n" + 
-"						style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n" + 
-"						</div>"
+						"						<div id='chnContent' class='w-auto ml-auto'>\r\n" + 
+						"						<div class='rankRowImg'>\r\n" + 
+						"						<img id='chnListThumbNail'\r\n" + 
+						"						style='width: 48px; border-radius: 48px;'\r\n" + 
+						"						src='"+args.rankingList[i].outputChannelThumbnail +"'>\r\n" + 
+						"						</div>\r\n" + 
+						"						<div class='ranc-Row3'>"+args.rankingList[i].outputChannelTitle+"</div>\r\n" + 
+						"						<div class='ranc-Row2'>"+args.rankingList[i].outputCategoryNo+"</div>\r\n" + 
+						"						<div class='ranc-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
+						"						<div class='ranc-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
+						"						<div class='rankRowBtn'>\r\n" + 
+						"						<button class='btnChnGo'>\r\n" + 
+						"						<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>채널정보\r\n" + 
+						"						보기</a>\r\n" + 
+						"						</button>\r\n" + 
+						"						</div>\r\n" + 
+						"						</div>\r\n" + 
+						"						<hr\r\n" + 
+						"						style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n" + 
+						"						</div>"
 						;
 					switch(categoryNo) {
 					case 2:
@@ -210,26 +210,26 @@ Common.addList = function (mode, startNo, categoryNo) {
 			success:function(args){   
 				for(var i=0; i<args.rankingList.length; i++) {
 					$('.chnContents').append(
-"							<div id='chnContent' class='w-auto ml-auto'>\r\n" + 
-"							<div class='rankRowImg'>\r\n" + 
-"							<img id='chnListThumbNail'\r\n" + 
-"							style='width: 48px; border-radius: 48px;'\r\n" + 
-"							src='"+args.rankingList[i].outputChannelThumbnail +"'>\r\n" + 
-"							</div>\r\n" + 
-"							<div class='ranc-Row3'>"+args.rankingList[i].outputChannelTitle+"</div>\r\n" + 
-"							<div class='ranc-Row2'>"+args.rankingList[i].outputCategoryNo+"</div>\r\n" + 
-"							<div class='ranc-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
-"							<div class='ranc-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
-"							<div class='rankRowBtn'>\r\n" + 
-"							<button class='btnChnGo'>\r\n" + 
-"							<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>채널정보\r\n" + 
-"							보기</a>\r\n" + 
-"							</button>\r\n" + 
-"							</div>\r\n" + 
-"							</div>\r\n" + 
-"							<hr\r\n" + 
-"							style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n" + 
-"							</div>"
+							"							<div id='chnContent' class='w-auto ml-auto'>\r\n" + 
+							"							<div class='rankRowImg'>\r\n" + 
+							"							<img id='chnListThumbNail'\r\n" + 
+							"							style='width: 48px; border-radius: 48px;'\r\n" + 
+							"							src='"+args.rankingList[i].outputChannelThumbnail +"'>\r\n" + 
+							"							</div>\r\n" + 
+							"							<div class='ranc-Row3'>"+args.rankingList[i].outputChannelTitle+"</div>\r\n" + 
+							"							<div class='ranc-Row2'>"+args.rankingList[i].outputCategoryNo+"</div>\r\n" + 
+							"							<div class='ranc-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
+							"							<div class='ranc-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
+							"							<div class='rankRowBtn'>\r\n" + 
+							"							<button class='btnChnGo'>\r\n" + 
+							"							<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>채널정보\r\n" + 
+							"							보기</a>\r\n" + 
+							"							</button>\r\n" + 
+							"							</div>\r\n" + 
+							"							</div>\r\n" + 
+							"							<hr\r\n" + 
+							"							style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n" + 
+							"							</div>"
 					);
 
 				}
@@ -699,59 +699,67 @@ Common.contactUs = function (mode){
 		});
 	}
 }
-	
-	/**************************************/
-	/** contact us(footer) page using     */
-	/**************************************/
-	Common.Like = function (mode, no){
-				
-		if(mode == 1){
-			// 좋아요 
-			var form_data = {
-					inputChannelNo : no
-			};
 
-			$.ajax({
-				type:"POST",
-				url: "/channel?action=addChannelLike",
-				data:form_data,
-				dataType: "json",
-				async : false,
-				success: function(response) {
+/**************************************/
+/** Like channel     */
+/**************************************/
 
-					if(response.outputResult == "1") { 
-						location.reload();
-					} else if(response.outputResult == "-3"){
-						alert("이미 관심채널이 설정 되어있습니다.");
-					}else {
-						alert("알수없는 문제가 발생했습니다.");
-					}
+Common.Like = function (mode, no){
+
+	if(mode == 1){
+		// 좋아요 
+		var form_data = {
+				inputChannelNo : no
+		};
+
+		$.ajax({
+			type:"POST",
+			url: "/channel?action=addChannelLike",
+			data:form_data,
+			dataType: "json",
+			async : false,
+			success: function(response) {
+
+				if(response.outputResult == "1") { 
+					location.reload();
+				} else if(response.outputResult == "-3"){
+					alert("이미 관심채널이 설정 되어있습니다.");
+				}else {
+					alert("알수없는 문제가 발생했습니다.");
 				}
-			});
-		}
-			
-		else if(mode == 2){
-			// 취소 
-			var form_data = {
-					inputChannelNo : no
-			};
-
-			$.ajax({
-				type:"POST",
-				url: "/channel?action=deleteChannelLike",
-				data:form_data,
-				dataType: "json",
-				async : false,
-				success: function(response) {
-
-					if(response.outputResult == "1") { 
-						location.reload();
-					} else if(response.outputResult == "-3"){
-						alert("관심채널이 아닙니다.");
-					}else {
-						alert("알수없는 문제가 발생했습니다.");
-					}
-				}
-			});		
-		}
+			}
+		});
 	}
+
+	else if(mode == 2){
+		// 취소 
+		var form_data = {
+				inputChannelNo : no
+		};
+
+		$.ajax({
+			type:"POST",
+			url: "/channel?action=deleteChannelLike",
+			data:form_data,
+			dataType: "json",
+			async : false,
+			success: function(response) {
+
+				if(response.outputResult == "1") { 
+					location.reload();
+				} else if(response.outputResult == "-3"){
+					alert("관심채널이 아닙니다.");
+				}else {
+					alert("알수없는 문제가 발생했습니다.");
+				}
+			}
+		});		
+	}
+}
+
+
+/******************************/
+/** Common utility            */
+/******************************/
+
+

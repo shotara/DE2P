@@ -68,21 +68,23 @@
 
 					<div class="row">
 						<div class="col login-Redirect">
-							<a href="/index.jsp">아이디 찾기</a>
-						</div>
-						<div class="col login-Redirect">
-							<a href="/index.jsp">비밀번호 찾기</a>
+							<a href="../Auth/userinquiry.jsp">아이디/비밀번호 찾기</a>
 						</div>
 						<div class="col login-Redirect">
 							<a href="../Auth/join.jsp">회원가입</a>
 						</div>
 					</div>
-					
+
 					<div class="pTop5"></div>
 
-					<div class="float-left"><span class="brand-color">Rancre</span><span class="gray-color"> all right reserved.</span></div>
-					<div class="float-right login-Redirect"><a href="#" onclick="Common.contactUs(1)">Contact Us</a></div>
-					
+					<div class="float-left">
+						<span class="brand-color">Rancre</span><span class="gray-color">
+							all right reserved.</span>
+					</div>
+					<div class="float-right login-Redirect">
+						<a href="#" onclick="Common.contactUs(1)">Contact Us</a>
+					</div>
+
 					<div class="pTop5"></div>
 				</div>
 			</div>

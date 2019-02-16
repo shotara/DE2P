@@ -10,126 +10,145 @@
 
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
 <script>
-	var categoryArray = [0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-	
+	var categoryArray = [ 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+
 	function initList(i) {
 		
+		event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+
 		var startNo = categoryArray[i];
-		if(startNo != 0) return; 
-		Common.addList(2,startNo,i);
+		if (startNo != 0)
+			return;
+		Common.addList(2, startNo, i);
 		categoryArray[i] = categoryArray[i] + 20;
+
 		
+
 	}
-	
+
 	function addList2(i) {
-			var startNo = categoryArray[i];
-			Common.addList(2,startNo,i);
-			categoryArray[i] = categoryArray[i] + 20;
-			if(categoryArray[i] >= 890) 
-				switch(i) {
-				case 2:
-					$("#studio .btnListGo").hide();
-					break;
-				case 3:
-					$("#entertain .btnListGo").hide();
-					break;
-				case 4:
-					$("#travel .btnListGo").hide();
-					break;
-				case 5:
-					$("#singdance .btnListGo").hide();
-					break;
-				case 6:
-					$("#tech .btnListGo").hide();
-					break;
-				case 7:
-					$("#education .btnListGo").hide();
-					break;
-				case 8:
-					$("#beauty .btnListGo").hide();
-					break;
-				case 9:
-					$("#daylife .btnListGo").hide();
-					break;
-				case 10:
-					$("#game .btnListGo").hide();
-					break;
-				case 11:
-					$("#sports .btnListGo").hide();
-					break;
-				case 12:
-					$("#food .btnListGo").hide();
-					break;
-				case 13:
-					$("#kids .btnListGo").hide();
-					break;
-				case 14:
-					$("#pet .btnListGo").hide();
-					break;
-				case 15:
-					$("#asmr .btnListGo").hide();
-					break;
-				case 16:
-					$("#habbit .btnListGo").hide();
-					break;
-				}
+		var startNo = categoryArray[i];
+		Common.addList(2, startNo, i);
+		categoryArray[i] = categoryArray[i] + 20;
+		if (categoryArray[i] >= 890)
+			switch (i) {
+			case 2:
+				$("#studio .btnListGo").hide();
+				break;
+			case 3:
+				$("#entertain .btnListGo").hide();
+				break;
+			case 4:
+				$("#travel .btnListGo").hide();
+				break;
+			case 5:
+				$("#singdance .btnListGo").hide();
+				break;
+			case 6:
+				$("#tech .btnListGo").hide();
+				break;
+			case 7:
+				$("#education .btnListGo").hide();
+				break;
+			case 8:
+				$("#beauty .btnListGo").hide();
+				break;
+			case 9:
+				$("#daylife .btnListGo").hide();
+				break;
+			case 10:
+				$("#game .btnListGo").hide();
+				break;
+			case 11:
+				$("#sports .btnListGo").hide();
+				break;
+			case 12:
+				$("#food .btnListGo").hide();
+				break;
+			case 13:
+				$("#kids .btnListGo").hide();
+				break;
+			case 14:
+				$("#pet .btnListGo").hide();
+				break;
+			case 15:
+				$("#asmr .btnListGo").hide();
+				break;
+			case 16:
+				$("#habbit .btnListGo").hide();
+				break;
+			}
 	}
-	
-	$(document).ready(function() { 
-		
-		var url="/main?action=getRankingList";  
-	    var params = {
-	    	startNo : 0,
-	    	mode : 2,
-	    	categoryNo : 2,
-	    };
-	    
-	    $.ajax({      
-	        type:"POST",  
-	        url:url,      
-	        data:params,  
-	        dataType:'json',
-	        success:function(args){   
-	        	for(var i=0; i<args.rankingList.length; i++) {
-					$('#studio .chnContents').append(
-							"<div id='chnContent' class='w-auto ml-auto'>\r\n" + 
-							"							<div class='rankRowImg'>\r\n" + 
-							"								<img id='chnListThumbNail'\r\n" + 
+
+	$(document)
+			.ready(
+					function() {
+
+						var url = "/main?action=getRankingList";
+						var params = {
+							startNo : 0,
+							mode : 2,
+							categoryNo : 2,
+						};
+
+						$
+								.ajax({
+									type : "POST",
+									url : url,
+									data : params,
+									dataType : 'json',
+									success : function(args) {
+										for (var i = 0; i < args.rankingList.length; i++) {
+											$('#studio .chnContents')
+													.append(
+															"<div id='chnContent' class='w-auto ml-auto'>\r\n"
+																	+ "							<div class='rankRowImg'>\r\n"
+																	+ "								<img id='chnListThumbNail'\r\n" + 
 							"									style='width: 48px; border-radius: 48px;'\r\n" + 
-							"									src='"+args.rankingList[i].outputChannelThumbnail +"'>\r\n" + 
-							"							</div>\r\n" + 
-							"							<div class='ranc-Row3'>"+args.rankingList[i].outputChannelTitle+"</div>\r\n" + 
-							"							<div class='ranc-Row2'>"+args.rankingList[i].outputCategoryNo+"</div>\r\n" + 
-							"							<div class='ranc-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
-							"							<div class='ranc-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
-							"							<div class='rankRowBtn'>\r\n" + 
-							"								<button class='btnChnGo'>\r\n" + 
-							"								<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>채널정보\r\n" + 
-							"										보기</a>\r\n" + 
-							"								</button>\r\n" + 
-							"							</div>\r\n" + 
-							"						</div>\r\n" + 
-							"						<hr\r\n" + 
-							"							style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n" + 
-							"					</div>"
-				  );
-	        	}
-	        	
-	        	if(args.rankingList.length <20) $("#studio .btnListGo").hide();
-	        },   
-	        error:function(e){  
-	            alert(e.responseText);  
-	        }  
-	    });  
-		
-	});
+							"									src='"+args.rankingList[i].outputChannelThumbnail +"'>\r\n"
+																	+ "							</div>\r\n"
+																	+ "							<div class='ranc-Row3'>"
+																	+ args.rankingList[i].outputChannelTitle
+																	+ "</div>\r\n"
+																	+ "							<div class='ranc-Row2'>"
+																	+ args.rankingList[i].outputCategoryNo
+																	+ "</div>\r\n"
+																	+ "							<div class='ranc-Row'>"
+																	+ args.rankingList[i].outputChannelFollowers
+																	+ "</div>\r\n"
+																	+ "							<div class='ranc-Row'>"
+																	+ args.rankingList[i].outputChannelViews
+																	+ "</div>\r\n"
+																	+ "							<div class='rankRowBtn'>\r\n"
+																	+ "								<button class='btnChnGo'>\r\n"
+																	+ "								<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="
+																	+ args.rankingList[i].outputChannelNo
+																	+ "'>채널정보\r\n"
+																	+ "										보기</a>\r\n"
+																	+ "								</button>\r\n"
+																	+ "							</div>\r\n"
+																	+ "						</div>\r\n"
+																	+ "						<hr\r\n" + 
+							"							style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n"
+																	+ "					</div>");
+										}
+
+										if (args.rankingList.length < 20)
+											$("#studio .btnListGo").hide();
+									},
+									error : function(e) {
+										alert(e.responseText);
+									}
+								});
+
+					});
 </script>
 </head>
 <body>
 
 	<jsp:include page="/02_page/commonNav.jsp" flush="false" />
 
-	
+
 	<div class="container pTop2 all-channel">
 		<div class="row">
 			<div class="col">
@@ -143,52 +162,81 @@
 
 				<!-- 랭킹페이지 서브 네비 영역  -->
 
-				<div class="subNav-tabs w-auto ml-auto">
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link active" data-tab="studio" href="#studio" onclick="initList(2)">스튜디오</a>
+				<div class="subNav-tabs w-auto ml-auto" id="subNav-Tabs">
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link active" data-tab="studio" href="#studio"
+							onclick="initList(2)">스튜디오</a>
 					</div>
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="entertain" href="#entertain" onclick="initList(3)">엔터</a>
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link" data-tab="entertain" href="#entertain"
+							onclick="initList(3)">엔터</a>
 					</div>
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="travel" href="#travel" onclick="initList(4)">여행</a>
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link" data-tab="travel" href="#travel"
+							onclick="initList(4)">여행</a>
 					</div>
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="singdance" href="#singdance" onclick="initList(5)">노래
-							댄스</a>
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link" data-tab="singdance" href="#singdance"
+							onclick="initList(5)">노래 댄스</a>
 					</div>
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="tech" href="#tech" onclick="initList(6)">테크</a>
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link" data-tab="tech" href="#tech"
+							onclick="initList(6)">테크</a>
 					</div>
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="education" href="#education" onclick="initList(7)">교육(어학)</a>
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link" data-tab="education" href="#education"
+							onclick="initList(7)">교육(어학)</a>
 					</div>
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="beauty" href="#beauty" onclick="initList(8)">뷰티</a>
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link" data-tab="beauty" href="#beauty"
+							onclick="initList(8)">뷰티</a>
 					</div>
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="daylife" href="#daylife" onclick="initList(9)">일상</a>
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link" data-tab="daylife" href="#daylife"
+							onclick="initList(9)">일상</a>
 					</div>
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="game" href="#game" onclick="initList(10)">게임</a>
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link" data-tab="game" href="#game"
+							onclick="initList(10)">게임</a>
 					</div>
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="sports" href="#sports" onclick="initList(11)">운동</a>
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link" data-tab="sports" href="#sports"
+							onclick="initList(11)">운동</a>
 					</div>
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="food" href="#food" onclick="initList(12)">먹방</a>
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link" data-tab="food" href="#food"
+							onclick="initList(12)">먹방</a>
 					</div>
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="kids" href="#kids" onclick="initList(13)">키즈</a>
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link" data-tab="kids" href="#kids"
+							onclick="initList(13)">키즈</a>
 					</div>
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="pet" href="#pet" onclick="initList(14)">반려동물</a>
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link" data-tab="pet" href="#pet"
+							onclick="initList(14)">반려동물</a>
 					</div>
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="asmr" href="#asmr" onclick="initList(15)">ASMR</a>
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link" data-tab="asmr" href="#asmr"
+							onclick="initList(15)">ASMR</a>
 					</div>
-					<div class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="habbit" href="#habbit" onclick="initList(16)">취미</a>
+					<div
+						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
+						<a class="subnav-link" data-tab="habbit" href="#habbit"
+							onclick="initList(16)">취미</a>
 					</div>
 				</div>
 
@@ -216,7 +264,7 @@
 
 					<div class="chnContents">
 						<div class="pt-2"></div>
-					
+
 					</div>
 
 					<div class="pt-4"></div>

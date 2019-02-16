@@ -401,3 +401,129 @@ Auth.logout = function(){
 
 	});
 }
+
+Auth.userInquiry = function(){
+
+	//email check regular expression
+	if(!Auth.checkValue(1)){
+		return false;
+	}
+	
+	var publicKeyModulus = "";
+	var publicKeyExponent = "";
+	var action = "/main?action=getRSAPublicKey";
+
+	$.ajax({
+		type : "POST",
+		url : "/main?action=getRSAPublicKey",
+		dataType : "json",
+		async: false,
+		success: function(response) {
+			publicKeyModulus = response.deepPublicKeyModulus;
+			publicKeyExponent = response.deepPublicKeyExponent;
+		}, error: function(xhr,status,error) {
+			alert(error);
+		}
+	});
+
+	var rsa = new RSAKey();
+	rsa.setPublic(publicKeyModulus, publicKeyExponent);
+	
+	var memberEmail = "";
+	var action, form_data;
+
+	action = "/member?action=??????Member"; // 이곳 수정 필요
+	memberEmail = $("#inputMemberEmail").val();
+	
+	//encryption
+	var encryptMemberEmail  = rsa.encrypt(memberEmail);
+
+	form_data = {
+			inputMemberEmail : encryptMemberEmail
+	};
+	
+	$.ajax({
+		type:"POST",
+		url : action,
+		data : form_data,
+		dataType : "json",
+		async : false,
+		success :  function(response){
+			if(response.outputResult == "1"){ //valid email information 
+				alert("인증 메일이 발송되었습니다. 인증메일을 확인해주세요.");
+			}else{ //invalid email or wrong context  
+				alert("등록되지 않은 이메일이거나 이메일이 양식이 정확하지 않습니다.");
+			}
+		}, error(xhr, status, error){
+			alert("알 수 없는 문제가 발생하였습니다. \n 문제가 지속된다면 전 혼이 나겠네요. \n 고객센터로 조용히 문의바랍니다.");
+		}
+	});
+
+	return false;
+
+}
+
+Auth.inquiryComplete = function(){
+	
+	if(!Auth.checkValue(2)){
+		return false;
+	}//password check
+	
+	//2. 공개키 요청
+	var publicKeyModulus = "";
+	var publicKeyExponent = "";
+
+	$.ajax({
+		type : "POST",
+		url : "/main?action=getRSAPublicKey",
+		dataType : "json",
+		async: false,
+		success: function(response) {
+			publicKeyModulus = response.deepPublicKeyModulus;
+			publicKeyExponent = response.deepPublicKeyExponent;
+		}, error: function(xhr,status,error) {
+			alert(error);
+		}
+	});
+
+	var rsa = new RSAKey();
+	rsa.setPublic(publicKeyModulus, publicKeyExponent);
+
+	var memberEmail, memberPassword;
+
+	action = "/member?action=??????Member";  //재설정 필요
+
+	memberEmail = protectXSS($("#inputMemberEmail").val().trim());
+	memberPassword = protectXSS($("#inputMemberPassword").val().trim());
+	memberPasswordConfirm = protectXSS($("#inputMemberPassword2").val().trim());
+
+	//암호화
+	var encryptMemberEmail = rsa.encrypt(memberEmail);
+	var encryptMemberPassword = rsa.encrypt(memberPassword);
+	var encryptMemberPasswordConfirm = rsa.encrypt(memberPasswordConfirm);
+
+	form_data = {
+			inputMemberPassword : encryptMemberPassword,
+			inputMemberPasswordConfirm : encryptMemberPasswordConfirm,
+			inputMemberEmail : encryptMemberEmail,
+	};
+
+
+	$.ajax({
+		type : "POST",
+		url : action,
+		data : form_data,
+		dataType : "json",
+		success: function(response){
+
+			if(response.outputResult == "1"){
+				alert("비밀번호가 재설정되었습니다. 다시 로그인해주시기 바랍니다.");
+				location.href = "/";
+			}else {
+				alert("알 수 없는 문제가 발생하였습니다. \n 문제가 지속된다면 전 혼이 나겠네요. \n 고객센터로 조용히 문의바랍니다.");
+			}
+		}	
+	});
+
+}
+

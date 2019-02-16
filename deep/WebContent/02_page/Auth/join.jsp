@@ -105,10 +105,7 @@
 
 					<div class="row">
 						<div class="col login-Redirect">
-							<a href="/index.jsp">아이디 찾기</a>
-						</div>
-						<div class="col login-Redirect">
-							<a href="/index.jsp">비밀번호 찾기</a>
+							<a href="../Auth/userinquiry.jsp">아이디/비밀번호 찾기</a>
 						</div>
 						<div class="col login-Redirect">
 							<a href="../Auth/login.jsp">로그인</a>
