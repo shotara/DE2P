@@ -38,9 +38,10 @@ Common.addList = function (mode, startNo, categoryNo) {
 							"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
 							"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
 							"							<div class='rankMainRowBtn'>\r\n" + 
-							"							<button class='btnChnGo'>\r\n" + 
-							"							<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>채널정보\r\n" + 
-							"							보기</a>\r\n" + 
+							"							<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>\r\n"+
+	        			     	"									<button class='btnChnGo'>채널정보\r\n" + 
+	        			     	"										보기</button>\r\n" + 
+	        			      	"								</a>\r\n" + 
 							"							</button>\r\n" + 
 							"							</div>\r\n" + 
 							"							</div>\r\n" + 
@@ -82,10 +83,10 @@ Common.addList = function (mode, startNo, categoryNo) {
 						"						<div class='ranc-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
 						"						<div class='ranc-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
 						"						<div class='rankRowBtn'>\r\n" + 
-						"						<button class='btnChnGo'>\r\n" + 
-						"						<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>채널정보\r\n" + 
-						"						보기</a>\r\n" + 
-						"						</button>\r\n" + 
+						"						<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>\r\n"+
+	        				"									<button class='btnChnGo'>채널정보\r\n" + 
+	        				"										보기</button>\r\n" + 
+	        				"								</a>\r\n" +
 						"						</div>\r\n" + 
 						"						</div>\r\n" + 
 						"						<hr\r\n" + 
@@ -221,10 +222,10 @@ Common.addList = function (mode, startNo, categoryNo) {
 							"							<div class='ranc-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
 							"							<div class='ranc-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
 							"							<div class='rankRowBtn'>\r\n" + 
-							"							<button class='btnChnGo'>\r\n" + 
-							"							<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>채널정보\r\n" + 
-							"							보기</a>\r\n" + 
-							"							</button>\r\n" + 
+							"							<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>\r\n"+
+	        				"									<button class='btnChnGo'>채널정보\r\n" + 
+	        				"										보기</button>\r\n" + 
+	        				"								</a>\r\n" + 
 							"							</div>\r\n" + 
 							"							</div>\r\n" + 
 							"							<hr\r\n" + 

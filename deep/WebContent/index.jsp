@@ -106,11 +106,11 @@
 	        				"							<div class='ranc-Main-Row2'>"+args.rankingList[i].outputCategoryNo+"</div>\r\n" + 
 	        				"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
 	        				"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
-	        				"							<div class='rankMainRowBtn'>\r\n" + 
-	        				"								<button class='btnChnGo'>\r\n" + 
-	        				"								<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>채널정보\r\n" + 
-	        				"										보기</a>\r\n" + 
-	        				"								</button>\r\n" + 
+	        				"							<div class='rankMainRowBtn'>\r\n" +
+	        				"								<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>\r\n"+
+	        				"									<button class='btnChnGo'>채널정보\r\n" + 
+	        				"										보기</button>\r\n" + 
+	        				"								</a>\r\n" + 
 	        				"							</div>\r\n" + 
 	        				"						</div>\r\n" + 
 	        				"						<hr\r\n" + 
