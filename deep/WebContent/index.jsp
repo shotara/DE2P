@@ -114,8 +114,7 @@
 	        				"							</div>\r\n" + 
 	        				"						</div>\r\n" + 
 	        				"						<hr\r\n" + 
-	        				"							style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n" + 
-	        				"					</div>");
+	        				"							style='margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;'>\r\n");
 	        	}
 
 	        },   
