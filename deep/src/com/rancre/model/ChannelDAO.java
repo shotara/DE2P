@@ -714,7 +714,6 @@ public class ChannelDAO {
 	public static ArrayList<Channel> searchChannelList(String inputChannelTitle) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);
-		
 		try {	
 			return (ArrayList)sqlSession.selectList(namespace + ".searchChannelList", inputChannelTitle);
 			
@@ -843,6 +842,23 @@ public class ChannelDAO {
 		
 		try {	
 			return (int)sqlSession.selectOne(namespace + ".checkChannelCost", inputChannelNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int checkChannelBefore(int inputChannelNo,Timestamp beforeDate, Timestamp afterDate) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("beforeDate", beforeDate);
+			map.put("afterDate", afterDate);
+			map.put("inputChannelNo", inputChannelNo);
+			
+			return (int)sqlSession.selectOne(namespace + ".checkChannelBefore", map);
 			
 		} finally {
 			sqlSession.close();

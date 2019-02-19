@@ -616,18 +616,19 @@ public class ChannelController {
 					outputRecomandChannelList.add(tempObject);
 				}
 				
-				CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel Search OK", map);
+				CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel Search init", map);
 				req.setAttribute("outputRecomandChannelList", outputRecomandChannelList);
 				req.getRequestDispatcher("/02_page/Search/ChannelSearch.jsp").forward(req, res);
 				return;
 				
 			} else {
-				PrivateKey privateKey = null;
-				privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
-				session.removeAttribute("PrivateKey"); // 키의 재사용 방지
-				
-				String decryptChannelName = EncryptUtil.RSA_Decode(privateKey, inputChannelName);
-				ArrayList<Channel> channelList = ChannelDAO.searchChannelList(decryptChannelName);
+
+				ArrayList<Channel> channelList = ChannelDAO.searchChannelList(inputChannelName);
+				if(channelList.size()==0) {
+					CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel Search No", map);
+					req.getRequestDispatcher("/02_page/Search/ChannelSearch.jsp").forward(req, res);
+					return;
+				}
 				ArrayList<HashMap<String,Object>> outputSearchChannelList = new ArrayList<HashMap<String,Object>>();
 				for(int i=0; i < channelList.size(); i++) {
 					HashMap<String,Object> tempObject = new HashMap<String,Object>();
@@ -719,11 +720,11 @@ public class ChannelController {
 			}
 			
 			// Region 
-			if(country.indexOf("한국")!=-1) {
+//			if(country.indexOf("한국")!=-1) {
 				inputCountry = "Ko";
-			} else {
-				inputCountry = "En";
-			}
+//			} else {
+//				inputCountry = "En";
+//			}
 			Calendar calendar = Calendar.getInstance();
 			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
 			int check2 = ChannelDAO.addChannel(1,2,"1;", channelTitle, followers, views, checkChannelUrl, thumbnail, inputCountry, inputCreateDate, inputCurrentDate);

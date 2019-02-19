@@ -333,7 +333,7 @@ Auth.login = function(){
 			}else{
 				alert("등록되지 않은 이메일이거나, \n이메일 또는 비밀번호가 잘못되었습니다.");
 			}
-		}, error(xhr, status, error){
+		}, error: function(xhr, status, error){
 			alert("알 수 없는 문제가 발생하였습니다. \n 문제가 지속된다면 전 혼이 나겠네요. \n 고객센터로 조용히 문의바랍니다.");
 		}
 	});
@@ -455,7 +455,7 @@ Auth.userInquiry = function(){
 			}else{ //invalid email or wrong context  
 				alert("등록되지 않은 이메일이거나 이메일이 양식이 정확하지 않습니다.");
 			}
-		}, error(xhr, status, error){
+		}, error: function(xhr, status, error){
 			alert("알 수 없는 문제가 발생하였습니다. \n 문제가 지속된다면 전 혼이 나겠네요. \n 고객센터로 조용히 문의바랍니다.");
 		}
 	});

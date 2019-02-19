@@ -145,8 +145,11 @@ public class MemberController {
 		try {
 			HttpSession session = req.getSession();
 
-			String inputEmail = req.getParameter("inputEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputEmail").toString()) : null;				
-	
+			String sessionPasswordMemberEmail = session.getAttribute("racPasswordMemberEmail") != null ? session.getAttribute("racPasswordMemberEmail").toString() : "";
+			String sessionPasswordCheckValue = session.getAttribute("racPasswordCheckValue") != null ? session.getAttribute("racPasswordCheckValue").toString() : "";
+			String inputEmail = req.getParameter("inputEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputEmail").toString()) : null;
+			String inputCheckValue = req.getParameter("inputCheckValue") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputCheckValue").toString()) : null;
+			
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
@@ -158,6 +161,19 @@ public class MemberController {
 				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
 				jObject.put("outputResult", "-1");
 				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			// 메일/ 회원체크
+			if(!sessionPasswordMemberEmail.equals(inputEmail)) {
+				CommonUtil.commonPrintLog("ERROR", className, "User Permit Fail1", map);
+				req.getRequestDispatcher("/error.jsp").forward(req, res);
+				return;
+			}
+			
+			if(!sessionPasswordCheckValue.equals(inputCheckValue)) {
+				CommonUtil.commonPrintLog("ERROR", className, "User Permit Fail2", map);
+				req.getRequestDispatcher("/error.jsp").forward(req, res);
 				return;
 			}
 			
@@ -173,7 +189,7 @@ public class MemberController {
 				return;
 			}			
 			
-			CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit OK", map);
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get User OK", map);
 			req.setAttribute("outputMemberEmail",inputEmail);
 			req.getRequestDispatcher("/02_page/Auth/inquirycomplete.jsp").forward(req, res);
 			
@@ -255,10 +271,14 @@ public class MemberController {
 			   message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 	
 			   // Subject
-			   message.setSubject("[Subject] Java Mail Test");
+			   message.setSubject("Rancre 비밀번호 찾기 입니다.");
+
+			   String checkValue = Long.toString(System.currentTimeMillis()/1000).substring(0,6);
+			   session.setAttribute("racPasswordCheckValue", checkValue);
+			   session.setAttribute("racPasswordMemberEmail", decryptMemberEmail);
 			   
 			   // Text
-			   String url = "http://localhost:8080/member?action=getChangeUserInfo&inputEmail="+decryptMemberEmail;
+			   String url = "http://localhost:8080/member?action=getChangeUserInfo&inputEmail="+decryptMemberEmail+"&inputCheckValue="+checkValue;
 			   String text = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\r\n" + 
 			   		"<html xmlns='http://www.w3.org/1999/xhtml'>\r\n" + 
 			   		"<head>\r\n" + 
@@ -531,7 +551,7 @@ public class MemberController {
 			}			
 			
 			// Create MemberUid
-			String memberUid = decryptMemberEmail.substring(0,3) + Long.toString(System.currentTimeMillis()/1000).substring(0,4) + decryptMemberEmail.substring(1,4);
+			String memberUid = decryptMemberEmail.substring(0,3) + Long.toString(System.currentTimeMillis()/1000).substring(0,8);
 			int createMemberUid = MemberDAO.addMemberUid(encryptMemberEmail, memberUid);
 			
 			// Create Business 
@@ -567,9 +587,9 @@ public class MemberController {
 			   message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
 			   // Subject
-			   message.setSubject("[Subject] Java Mail Test");
+			   message.setSubject("Rancre에 오신것을 환영합니다!");
 			   
-			   String checkValue = "asd3ff";
+			   String checkValue = Long.toString(System.currentTimeMillis()/1000).substring(0,6);
 			   session.setAttribute("racJoinCheckValue", checkValue);
 			   session.setAttribute("racJoinMemberEmail", decryptMemberEmail);
 			   // Text
@@ -1598,6 +1618,9 @@ public class MemberController {
 				res.getWriter().write(jObject.toString());
 				return;
 			}			
+			
+			session.removeAttribute("racPasswordMemberEmail");
+			session.removeAttribute("racPasswordCheckValue");
 			
 			CommonUtil.commonPrintLog("SUCCESS", className, "User Join OK", map);
 			jObject.put("outputResult", "1");

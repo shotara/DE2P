@@ -71,13 +71,13 @@ public class AdminController {
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 			
-			if(!(sessionMemberNo>0)) {
+			if(!(sessionMemberNo>0) && sessionMemberNo>10) {
 				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
 				jObject.put("outputResult", "-1");
 				res.getWriter().write(jObject.toString());
 				return;
 			}
-			
+
 			/// Check Admin Member 
 
 			JSONArray jChannelArray = new JSONArray();
@@ -535,6 +535,87 @@ public class AdminController {
 			return;
 			
 		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void searchAdmin(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {			
+			HttpSession session = req.getSession();
+			
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			String inputChannelName = req.getParameter("inputChannelName") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelName").toString()) : null;
+			
+			int page = req.getParameter("page") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("page").toString())) : 1;
+			int size = req.getParameter("size") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("size").toString())) : 10;
+			
+			if(page==0) page=1;
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			if(!(sessionMemberNo>0) && sessionMemberNo>10) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			Paging paging = new Paging(page, size);
+			int offset = (paging.getCurrentPageNo() - 1) * paging.getRecordsPerPage();
+			
+			ArrayList<Channel> channelList = ChannelDAO.searchChannelList(inputChannelName);
+			JSONArray jChannelArray = new JSONArray();
+
+			paging.setNumberOfRecords(channelList.size());
+			paging.makePaging();
+			
+			for(int i=0; i<channelList.size();i++) {
+				JSONObject jTempObject = new JSONObject();
+				// channel
+				jTempObject.put("outputChannelNo", channelList.get(i).getRacChannelNo());
+				jTempObject.put("outputChannelTitle", channelList.get(i).getRacChannelTitle());
+				jTempObject.put("outputChannelUrl", channelList.get(i).getRacChannelUrl());
+				jTempObject.put("outputChannelFollowers", channelList.get(i).getRacChannelFollowers());
+				jTempObject.put("outputChannelViews", channelList.get(i).getRacChannelViews());
+				jTempObject.put("outputChannelCategory", channelList.get(i).getRacChannelCategory());
+				// 후기 가져오기
+				jTempObject.put("outputPostscriptCount", 0);
+				// 광고 영상에 대하여 
+				jTempObject.put("outputChannelAdCount", AdminDAO.countChannelAd(channelList.get(i).getRacChannelNo()));
+				// 단가에 대하여  
+				int costCount = AdminDAO.countChannelCost(channelList.get(i).getRacChannelNo());
+				if(costCount != 0) {
+					jTempObject.put("outputChannelCostCount",costCount);
+					jTempObject.put("outputChannelCostEvenPrice", AdminDAO.getChannelCostPrice(channelList.get(i).getRacChannelNo())/costCount);
+
+				} else {
+					jTempObject.put("outputChannelCostCount","미등록");
+					jTempObject.put("outputChannelCostEvenPrice", "0");
+
+				}
+
+				jChannelArray.add(jTempObject);
+			}
+
+			jObject.put("outputChannelList", jChannelArray);
+			jObject.put("firstPageNo", paging.getFirstPageNo());
+			jObject.put("prevPageNo", paging.getPrevPageNo());
+			jObject.put("currentPageNo", paging.getCurrentPageNo());
+			jObject.put("nextPageNo", paging.getNextPageNo());
+			jObject.put("paging", paging);
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel List OK", map);
+			req.setAttribute("result", jObject);
+			req.getRequestDispatcher("/02_page/Admin/channelList.jsp").forward(req, res);
+
+			return;
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

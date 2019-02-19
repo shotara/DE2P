@@ -506,33 +506,36 @@ Common.search = function (mode){
 	else if (mode == 2) {
 		var keyPressed = (event.keyCode ? event.keyCode : event.which);
 		var channelName = protectXSS($("#ipt-Search").val());
-
-		if(keyPressed==13 || keyPressed==10) {
-			var publicKeyModulus = "";
-			var publicKeyExponent = "";
-
-			$.ajax({
-				type : "POST",
-				url : "/main?action=getRSAPublicKey",
-				dataType : "json",
-				async: false,
-				success: function(response) {
-					publicKeyModulus = response.deepPublicKeyModulus;
-					publicKeyExponent = response.deepPublicKeyExponent;
-				}, error: function(xhr,status,error) {
-					alert(error);
-				}
-			});
-
-			var rsa = new RSAKey();
-			rsa.setPublic(publicKeyModulus, publicKeyExponent);
-
-			var encryptChannelName = rsa.encrypt(channelName);
-			$("#inputChannelName").val(encryptChannelName);
-			document.getElementById('searchChannelForm').submit();
-			return; 
-
-		}
+		$("#inputChannelName").val(channelName);
+		 var ua = navigator.userAgent;
+//		 alert(ua.indexOf("windows"));
+//		 alert(ua.indexOf("Mac"));
+//		if(keyPressed==13 || keyPressed==10) {
+//			document.getElementById('searchChannelForm').submit();
+//		}
+//			var publicKeyModulus = "";
+//			var publicKeyExponent = "";
+//			$.ajax({
+//				type : "POST",
+//				url : "/main?action=getRSAPublicKey",
+//				dataType : "json",
+//				async: false,
+//				success: function(response) {
+//					publicKeyModulus = response.deepPublicKeyModulus;
+//					publicKeyExponent = response.deepPublicKeyExponent;
+//					
+//					var rsa = new RSAKey();
+//					rsa.setPublic(publicKeyModulus, publicKeyExponent);
+//
+//					var encryptChannelName = rsa.encrypt(channelName);
+//					$("#inputChannelName").val(encryptChannelName);
+//					document.getElementById('searchChannelForm').submit();
+//					return; 
+//				}, error: function(xhr,status,error) {
+//					alert(error);
+//				}
+//			});
+//		}
 	}
 	else if (mode == 3) { /** modal popup Open **/
 		const modal = document.getElementById('req-Search-Modal');

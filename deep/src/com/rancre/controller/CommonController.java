@@ -199,14 +199,19 @@ public class CommonController {
 					tempObject.put("outputRankTopNo", ranking.get(i).getRacRankTopNo());
 					tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
 
-					int beforRanking = ChannelDAO.getRankBefore(ranking.get(i).getRacChannelNo(),beforeDate,afterDate);
-					
-					if(ranking.get(i).getRacRankTopNo()-beforRanking <0) 
-						tempObject.put("outputRankUpDown", "↑");
-					else if(ranking.get(i).getRacRankTopNo()-beforRanking >0)
-						tempObject.put("outputRankUpDown", "↓");
-					else
-						tempObject.put("outputRankUpDown", "-");
+					int checkBefore  = ChannelDAO.checkChannelBefore(ranking.get(i).getRacChannelNo(),beforeDate,afterDate);
+					if(checkBefore==0) {
+						tempObject.put("outputRankUpDown", "new");
+
+					} else {
+						int beforRanking = ChannelDAO.getRankBefore(ranking.get(i).getRacChannelNo(),beforeDate,afterDate);
+						if(ranking.get(i).getRacRankTopNo()-beforRanking <0) 
+							tempObject.put("outputRankUpDown", "&utrif;"+(ranking.get(i).getRacRankTopNo()-beforRanking)*-1);
+						else if(ranking.get(i).getRacRankTopNo()-beforRanking >0)
+							tempObject.put("outputRankUpDown", "&dtrif;"+(ranking.get(i).getRacRankTopNo()-beforRanking));
+						else
+							tempObject.put("outputRankUpDown", "-");				
+					}
 					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryList(ranking.get(i).getRacChannelCategory()));
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
 					tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));

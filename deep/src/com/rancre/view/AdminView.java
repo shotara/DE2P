@@ -68,6 +68,11 @@ public class AdminView extends HttpServlet{
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				AdminController.getChannelInfo(req,res);
 				break;	
+			case "searchAdmin":
+				map.put("ACTION", "searchAdmin");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				AdminController.searchAdmin(req,res);
+				break;	
 			}
 			
 		} catch (Exception e) {
