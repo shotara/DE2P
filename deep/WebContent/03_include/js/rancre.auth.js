@@ -164,7 +164,7 @@ Auth.businessCheck = function () {
 			success: function(response) {
 
 				if(response.outputResult == "1") {
-					alert("확인되었습니다.");
+					alert("정상 사업자번호 확인되었습니다. (사업자번호 도용 시, 이용제한 등이 있을 수 있습니다.)");
 					var btn = document.getElementById('joinButton');
 					btn.style.background = '#f11834';
 					btn.style.border = '1px solid #f11834';
@@ -172,11 +172,6 @@ Auth.businessCheck = function () {
 					return true;
 				} else if(response.outputResult == "-2") {
 					alert("잘못된 사업자 번호입니다.");
-					var btn = document.getElementById('joinButton');
-					btn.disabled = 'disabled';
-					return false;
-				} else if(response.outputResult == "-1") {
-					alert("이미 사용중인 사업자 번호입니다.");
 					var btn = document.getElementById('joinButton');
 					btn.disabled = 'disabled';
 					return false;

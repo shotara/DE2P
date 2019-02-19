@@ -971,14 +971,14 @@ public class MemberController {
 	        if(checkResult.equals("부가가치세 일반과세자 입니다.")) {
 				String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 				String encryptBusinessNumber = EncryptUtil.AES_Encode(inputCompany, aesKey);
-
-				int check = MemberDAO.checkCompany(encryptBusinessNumber);
-				if(check==0) {
-					jObject.put("outputResult", "1");
-				} else {
-					jObject.put("outputResult", "-1");
-
-				}
+				jObject.put("outputResult", "1");
+//
+//				int check = MemberDAO.checkCompany(encryptBusinessNumber);
+//				if(check==0) {
+//				} else {
+//					jObject.put("outputResult", "-1");
+//
+//				}
 
 	        } else {
 				jObject.put("outputResult", "-2");
