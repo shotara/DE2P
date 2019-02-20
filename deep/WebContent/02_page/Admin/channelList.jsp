@@ -7,10 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
-</head>
-<body>
 
-		<script type ="text/javascript" src="/03_include/js/rancre.Admin.js"></script>
+<script type="text/javascript" src="/03_include/js/rancre.Admin.js"></script>
 
 <style>
 .col1 {
@@ -81,7 +79,13 @@
 }
 
 .content {
-	float: left;
+	text-align: left;
+	display: inline-block;
+	padding-left: 30px;
+}
+
+.admin-top-row {
+	padding-left : 30px;
 }
 
 .page {
@@ -90,54 +94,80 @@
 	text-align: center;
 	margin: 30px;
 }
+
+.admin-top {
+	height : 50px;
+	padding-left : 30px;
+}
+
+.ipt-search-box {
+	width : 100px;
+}
+
+.ipt-search {
+	width : 30%;
+}
+
 </style>
 
-	<div class="col1">채널명</div>
-	<div class="col5">카테고리</div>
-	<div class="col3">조회수</div>
-	<div class="col4">등록 후기 수</div>
-	<div class="col5">식별광고 영상 수</div>
-	<div class="col6">단가등록 수</div>
-	<div class="col7">평균단가</div>
-	<div class="col8"></div>
+</head>
+<body>
 
-	<br />
+	<div class="admin-top">
+		<div class="ipt-search-box">
+			<form action="/admin?action=searchAdmin" method="POST"
+				id="searchAdmin">
+				<input class="ipt-search" id="ipt-Search" type="text"
+					placeholder="다음으로 Rancre 검색"
+					onkeyup="javascript:  Admin.search(2);" /> <input type="hidden"
+					name="inputChannelName" id="inputChannelName" />
+			</form>
+		</div>
 
-	<c:set var="channels" value="${result.outputChannelList}" />
-	<c:set var="paging" value="${result.paging}" />
-	<div class="content">
-		<c:forEach var="item" items="${channels}">
-			<div class="col1">${item.outputChannelTitle}</div>
-			<div class="col5">${item.outputChannelCategory}</div>
-			<div class="col3">${item.outputChannelViews}</div>
-			<div class="col4">${item.outputPostscriptCount}</div>
-			<div class="col5">${item.outputChannelAdCount}</div>
-			<div class="col6">${item.outputChannelCostCount}</div>
-			<div class="col7">${item.outputChannelCostEvenPrice}</div>
-			<div class="col8">
-				<button
-					onclick="location.href='/admin?action=getChannelCost&inputChannelNo=${item.outputChannelNo}&inputPageNo=${paging.currentPageNo}'">단가등록</button>
-				<button
-					onclick="location.href='/admin?action=getChannelInfo&inputChannelNo=${item.outputChannelNo}&inputPageNo=${paging.currentPageNo}'">정보등록</button>
-				<button
-					onclick="location.href='/admin?action=getChannelAdUrl&inputChannelNo=${item.outputChannelNo}&inputPageNo=${paging.currentPageNo}'">광고영상등록</button>
-			</div>
-			<br />
-		</c:forEach>
 	</div>
-	<br />
-	<br />
-	<div class="page" id="page">
-		<input id="finalPageNo" type="hidden" value="${paging.finalPageNo}" />
-		<input id="currentNo" type="hidden" value="${paging.currentPageNo}" />
+
+	<div class="admin-main">
+		<div class="admin-top-row">
+			<div class="col1">채널명</div>
+			<div class="col5">카테고리</div>
+			<div class="col3">조회수</div>
+			<div class="col4">등록 후기 수</div>
+			<div class="col5">식별광고 영상 수</div>
+			<div class="col6">단가등록 수</div>
+			<div class="col7">평균단가</div>
+			<div class="col8"></div>
+		</div>
+		<br />
+
+		<c:set var="channels" value="${result.outputChannelList}" />
+		<c:set var="paging" value="${result.paging}" />
+		<div class="content">
+			<c:forEach var="item" items="${channels}">
+				<div class="col1">${item.outputChannelTitle}</div>
+				<div class="col5">${item.outputChannelCategory}</div>
+				<div class="col3">${item.outputChannelViews}</div>
+				<div class="col4">${item.outputPostscriptCount}</div>
+				<div class="col5">${item.outputChannelAdCount}</div>
+				<div class="col6">${item.outputChannelCostCount}</div>
+				<div class="col7">${item.outputChannelCostEvenPrice}</div>
+				<div class="col8">
+					<button
+						onclick="location.href='/admin?action=getChannelCost&inputChannelNo=${item.outputChannelNo}&inputPageNo=${paging.currentPageNo}'">단가등록</button>
+					<button
+						onclick="location.href='/admin?action=getChannelInfo&inputChannelNo=${item.outputChannelNo}&inputPageNo=${paging.currentPageNo}'">정보등록</button>
+					<button
+						onclick="location.href='/admin?action=getChannelAdUrl&inputChannelNo=${item.outputChannelNo}&inputPageNo=${paging.currentPageNo}'">광고영상등록</button>
+				</div>
+				<br />
+			</c:forEach>
+		</div>
+		<br /> <br />
+		<div class="page" id="page">
+			<input id="finalPageNo" type="hidden" value="${paging.finalPageNo}" />
+			<input id="currentNo" type="hidden" value="${paging.currentPageNo}" />
+		</div>
 	</div>
-	<div class="ipt-search-box">
-		<form action="/admin?action=searchAdmin" method="POST" id="searchAdmin">
-		<input class="ipt-search" id="ipt-Search" type="text" 
-			placeholder="다음으로 Rancre 검색" onkeyup="javascript:  Admin.search(2);" />
-		<input type="hidden" name="inputChannelName" id="inputChannelName"/>	
-		</form>
-	</div>
+
 </body>
 
 <script>
