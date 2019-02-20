@@ -38,7 +38,9 @@
 			<input type="hidden" name="inputPageNo" value="${result.pageNo}"/>
 		</div>
 	</div>
+<br/><br/><br/><br/>
 
+	광고 Type<br/>
 	<select class="ipt-Select-CommercialType" id="commercial-Type" name="inputChannelAdType" >
 		<option value="0" selected >없음</option>
 		<option value="2">영상 콘텐츠</option>
@@ -84,7 +86,8 @@
 		<option value="1">기타</option>
 	</select>
 
-	
+	<br/><br/><br/><br/>
+	광고 카테고리 
 	<select class="ipt-Select-Reach" id="success-itemType" name="inputChannelAdCategory">
 		<option value="0" selected >없음</option>
 		<option value="1">서비스</option>
