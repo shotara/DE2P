@@ -763,4 +763,7 @@ Common.Like = function (mode, no){
 /** Common utility            */
 /******************************/
 
+Common.dontMove = function(){
+	event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+}
 

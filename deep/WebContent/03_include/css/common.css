@@ -290,12 +290,12 @@ a {
 	outline: none;
 }
 
-.commonBtn a {
+a.commonBtn {
 	text-decoration: none !important;
 	color: #f11834 !important;
 }
 
-.commonBtn a:hover {
+a:hover.commonBtn {
 	text-decoration: none !important;
 	color: #f11834 !important;
 }
@@ -412,12 +412,12 @@ a {
 	outline: none;
 }
 
-.common-wide20Reverse-Btn a {
+a.common-wide20Reverse-Btn {
 	text-decoration: none !important;
 	color: #fff !important;
 }
 
-.common-wide20Reverse-Btn a:hover {
+a:hover.common-wide20Reverse-Btn{
 	text-decoration: none !important;
 	color: #fff;
 }
@@ -982,7 +982,7 @@ a.subnav-link:hover {
 
 .ranc-Main-Row {
 	display: inline-block;
-	width: 190px;
+	width: 185px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
@@ -996,7 +996,7 @@ a.subnav-link:hover {
 
 .rankMainRowCnt {
 	display: inline-block;
-	width: 100px;
+	width: 120px;
 	padding-left: 10px;
 }
 
@@ -1007,7 +1007,23 @@ a.subnav-link:hover {
 }
 
 .rankMainCnt {
-	width: 60%;
+	width: 50%;
+}
+
+.rankMainDif {
+	width : 45%;
+}
+
+.rankMainDif.rancUp {
+	color : #f11834;
+}
+
+.rankMainDif.rancDown {
+	color : #80abf0;
+}
+
+.rankMainDif.rancNew {
+	color : #fce980;
 }
 
 .all-channel {
@@ -1150,6 +1166,10 @@ a.subnav-link:hover {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
+}
+
+.detail-tab-area {
+	padding-top : 70px;
 }
 
 /* Float the list items side by side */
@@ -1400,6 +1420,13 @@ ul.sub-tabs li a.active {
 .search-chnInfo .name {
 	font-weight: bold;
 	font-size: 1.2em;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: middle;
+}
+
+.search-chnInfo .category {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
@@ -1787,6 +1814,20 @@ ul.sub-tabs li a.active {
 /**********************************/
 /*  Corp main                CSS */
 /*********************************/
+
+.corp-Top-area {
+	min-height : 150px;
+	padding-top : 20px;
+}
+
+.corp-Middle-area{
+	min-height : 250px;
+}
+
+.corp-MyReview-Contents {
+	min-height : 250px;
+}
+
 .ranc-Corp-Row {
 	display: inline-block;
 }
@@ -1981,12 +2022,12 @@ ul.sub-tabs li a.active {
 
 .none-View-List {
 	height: 350px;
-	padding-top: 100px;
+	padding-top: 60px;
 }
 
 .none-Like-List {
 	height: 350px;
-	padding-top: 100px;
+	padding-top: 60px;
 }
 
 .recommend-channel-list {
@@ -2024,12 +2065,27 @@ ul.sub-tabs li a.active {
 .reco-chnInfo {
 	padding-top: 10px;
 	display: inline-block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 	vertical-align: middle;
 }
 
 .reco-chnInfo .name {
+	width:160px;
 	font-weight: bold;
-	font-size: 1.2em;
+	font-size: 1.1em;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: middle;
+}
+
+.reco-chnInfo .category {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: middle;
 }
 
 /**********************/

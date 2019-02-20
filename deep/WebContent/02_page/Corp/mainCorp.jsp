@@ -137,9 +137,10 @@
 								"								"+like+"\r\n" + 
 								"								</div>\r\n" + 
 								"								<div class='corp-View-Row-DetailGo'>\r\n" + 
-								"									<button class='common-Small-Btn'>\r\n" + 
-								"										<a href='/channel?action=getChannelDetail&inputChannelNo="+ args.outputChannelList[i].outputChannelNo +"'>채널정보 보기</a>\r\n" + 
+								"									<a href='/channel?action=getChannelDetail&inputChannelNo="+ args.outputChannelList[i].outputChannelNo +"'>\r\n" +
+								"										<button class='common-Small-Btn'>채널정보 보기\r\n" + 
 								"									</button>\r\n" + 
+								"									</a>r\n"+
 								"								</div>\r\n" + 
 								"\r\n" + 
 								"							</div>\r\n" + 
@@ -248,9 +249,10 @@
 								"									"+like+"\r\n" + 
 								"								</div>\r\n" + 
 								"								<div class='corp-View-Row-DetailGo'>\r\n" + 
-								"									<button class='common-Small-Btn'>\r\n" + 
-								"										<a href='/channel?action=getChannelDetail&inputChannelNo="+ args.outputChannelList[i].outputChannelNo +"'>채널정보 보기</a>\r\n" + 
-								"									</button>\r\n" + 
+								"									<a href='/channel?action=getChannelDetail&inputChannelNo="+ args.outputChannelList[i].outputChannelNo +"'>
+								"										<button class='common-Small-Btn'>채널정보 보기\r\n" + 
+								"										</button>\r\n" +
+								"									</a>\r\n" + 
 								"								</div>\r\n" + 
 								"\r\n" + 
 								"							</div>\r\n" + 
@@ -337,7 +339,7 @@
 		<div class="row">
 			<div class="col">
 
-				<div class="w100 display-block">
+				<div class="w100 display-block corp-Top-area">
 
 					<div class="corp-Row inline-block float-left">기업명</div>
 					<div class="corp-Row inline-block float-left">아이디</div>
@@ -353,67 +355,69 @@
 
 
 
-				<div class="pTop4 mTop4 inline-block">
+				<div class="corp-Middle-area inline-block">
 					<div class="corp-headerTitle">나의 리뷰 (${outputReviewCount }건)</div>
-				</div>
 
-				<div class="pTop3 row">
-					<div class="col float-left">채널명</div>
-					<div class="col float-left">종합 만족도</div>
-					<div class="col float-left">등록일자</div>
-					<div class="col float-left">상태</div>
-				</div>
-				<hr>
+					<div class="pTop3 row">
+						<div class="col float-left">채널명</div>
+						<div class="col float-left">종합 만족도</div>
+						<div class="col float-left">등록일자</div>
+						<div class="col float-left">상태</div>
+					</div>
 
-				<!-- if non-channel review -->
-				<c:if test="${outputReviewList.size() == 0}">
-				<div class="none-MyReview txt-center">
-					<div class="common-alert-txt">
-						등록한 광고 리뷰가 없습니다. </br> 지금 광고 리뷰를 등록하고 다른 채널의 리뷰를 확인해보세요!
-					</div>
-					<div class="go-write-review">
-						<button class="commonBtn"
-							onclick="location.href='/02_page/Review/review.jsp'">리뷰
-							등록하기</button>
-					</div>
-				</div>
-				</c:if>
-				<!-- end non-channel review -->
-				
-				<!-- if channel review exist -->
-				<c:if test="${outputReviewList.size() != 0}">
-				<div class="corp-MyReview-Contents" id="myReviewContent">
-					<div id="myReviewChild">
-					<c:forEach var="item" items="${outputReviewList}">
-						<div class="corp-MyReview row">
-							<div class="col float-left corp-ChnName">${item.outputChannelTitle}</div>
-							<div class="col float-left corp-ChnSatisfy">${item.outputReviewSatisfy}</div>
-							<div class="col float-left corp-ChnReview-Date">${item.outputReviewCreateDate}</div>
-							<div class="col float-left corp-ChnReivew-Accept">${item.outputReviewStatus}</div>
+					<hr>
+
+					<!-- if non-channel review -->
+					<c:if test="${outputReviewList.size() == 0}">
+						<div class="none-MyReview txt-center">
+							<div class="common-alert-txt">
+								등록한 광고 리뷰가 없습니다. <br /> 지금 광고 리뷰를 등록하고 다른 채널의 리뷰를 확인해보세요!
+							</div>
+							<div class="go-write-review">
+								<button class="common-wide20Reverse-Btn"
+									onclick="location.href='/02_page/Review/review.jsp'">리뷰
+									등록하기</button>
+							</div>
 						</div>
-	
-						<hr
-							style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-					</c:forEach>
-					</div>
-					<div class="pagination-area pTop3">
-						<ul class="common-pagination" id="reviewPaging">
-						</ul>
-					</div>
+					</c:if>
+					<!-- end non-channel review -->
+
+					<!-- if channel review exist -->
+					<c:if test="${outputReviewList.size() != 0}">
+						<div class="corp-MyReview-Contents" id="myReviewContent">
+							<div id="myReviewChild">
+								<c:forEach var="item" items="${outputReviewList}">
+									<div class="corp-MyReview row">
+										<div class="col float-left corp-ChnName">${item.outputChannelTitle}</div>
+										<div class="col float-left corp-ChnSatisfy">${item.outputReviewSatisfy}</div>
+										<div class="col float-left corp-ChnReview-Date">${item.outputReviewCreateDate}</div>
+										<div class="col float-left corp-ChnReivew-Accept">${item.outputReviewStatus}</div>
+									</div>
+
+									<hr
+										style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+								</c:forEach>
+							</div>
+							<div class="pagination-area pTop3">
+								<ul class="common-pagination" id="reviewPaging">
+								</ul>
+							</div>
+						</div>
+					</c:if>
+					<!-- end channel review exist -->
 				</div>
-				</c:if>
-				<!-- end channel review exist -->
+
 
 
 				<!-- start view channel & like channel area start -->
 				<div class="pTop4 inline-block subNav-tabs">
 					<div class="corp-headerTitle subNav-tab">
 						<a class="subnav-link active" data-tab="myViewContent"
-							href="#myViewContent" onclick="">최근 본 채널</a>
+							href="#myViewContent" onclick="Common.dontMove()">최근 본 채널</a>
 					</div>
 					<div class="corp-headerTitle subNav-tab">
 						<a class="subnav-link" data-tab="myLikeContent"
-							href="#myLikeContent" onclick="">나의 관심 채널</a>
+							href="#myLikeContent" onclick="Common.dontMove()">나의 관심 채널</a>
 					</div>
 				</div>
 				<!-- end view channel & like channel area end -->
@@ -430,156 +434,171 @@
 
 				<!-- if exist view channel list -->
 				<c:if test="${outputChannelViewList.size() != 0 }">
-				<div class="subNav-content active corp-MyView-Contents"
-					id="myViewContent">
-					<div id="myViewChild">
-					<c:forEach var="item" items="${outputChannelViewList}">
-					<div class="corp-MyView w100">
-						<div class="corp-View-Row-ChnImg">
-							<img id="corp-View-Row-ThumbNail"
-								style="width: 48px; border-radius: 48px;"
-								src="${item.outputChannelThumbnail }" />
+					<div class="subNav-content active corp-MyView-Contents"
+						id="myViewContent">
+						<div id="myViewChild">
+							<c:forEach var="item" items="${outputChannelViewList}">
+								<div class="corp-MyView w100">
+									<div class="corp-View-Row-ChnImg">
+										<img id="corp-View-Row-ThumbNail"
+											style="width: 48px; border-radius: 48px;"
+											src="${item.outputChannelThumbnail }" />
+									</div>
+									<div class="corp-View-Row-ChnName">${item.outputChannelName}</div>
+									<div class="corp-View-Row-Category">${item.outputChannelCategory}</div>
+									<div class="corp-View-Row-Subscribe">${item.outputChannelFollowers}</div>
+									<div class="corp-View-Row-TotalView">${item.outputChannelViews}</div>
+									<div class="corp-View-Row-Like">
+										<c:if test="${item.outputChannelLike==0}">
+											<button class="commonBtn"
+												onclick="Common.Like(1,${item.outputChannelNo });">관심채널
+												등록</button>
+										</c:if>
+										<c:if test="${item.outputChannelLike!=0}">
+											<button class="commonReverseBtn"
+												onclick="Common.Like(2,${item.outputChannelNo });">관심채널
+												해제</button>
+										</c:if>
+									</div>
+									<div class="corp-View-Row-DetailGo">
+										<a
+											href="/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo }">
+											<button class="commonBtn">채널정보 보기</button>
+										</a>
+									</div>
+
+								</div>
+
+								<hr
+									style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+							</c:forEach>
 						</div>
-						<div class="corp-View-Row-ChnName">${item.outputChannelName}</div>
-						<div class="corp-View-Row-Category">${item.outputChannelCategory}</div>
-						<div class="corp-View-Row-Subscribe">${item.outputChannelFollowers}</div>
-						<div class="corp-View-Row-TotalView">${item.outputChannelViews}</div>
-						<div class="corp-View-Row-Like">
-							<c:if test="${item.outputChannelLike==0}">
-							<button class="commonBtn" onclick="Common.Like(1,${item.outputChannelNo });">관심채널 등록</button>
-							</c:if>
-							<c:if test="${item.outputChannelLike!=0}">
-							<button class="commonReverseBtn" onclick="Common.Like(2,${item.outputChannelNo });">관심채널 해제</button>
-							</c:if>
+						<!-- pagination area -->
+
+						<div class="pagination-area pTop3">
+							<ul class="common-pagination" id="recentPaging">
+							</ul>
 						</div>
-						<div class="corp-View-Row-DetailGo">
-							<button class="commonBtn">
-								<a href="/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo }">채널정보 보기</a>
-							</button>
-						</div>
+
+						<!-- end pagination area -->
 
 					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-					</c:forEach>
-					</div>
-					<!-- pagination area -->
-				
-					<div class="pagination-area pTop3">
-						<ul class="common-pagination" id="recentPaging">
-						</ul>
-					</div>
-
-					<!-- end pagination area -->
-
-				</div>
 				</c:if>
 				<!-- end exist view channel list -->
 
 				<!-- none exist view channel list -->
 				<c:if test="${outputChannelViewList.size() == 0 }">
-				<div class="subNav-content active none-View-List" id="myViewContent">
-					<div class="common-alert-txt txt-center">
-						최근 15일 내 검색한 채널이 없습니다. </br> 이런 채널은 어떤가요?
-					</div>
-					<div class="recommend-channel-list">
-						<c:forEach var="item" items="${outputChannelViewRandom}">
-						<div class="recommend-channel">
-							<div class="reco-chnImg txt-left">
-								<img id="corp-View-Row-ThumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="${item.outputChannelThumbnail }"/>
-							</div>
-							<div class="reco-chnInfo">
-								<div class="name">${item.outputChannelTitle }</div>
-								<div class="category inline-block txt-left">${item.outputChannelCategory }</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn" onclick="location.href='/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo}';">채널정보 보기</button>
-							</div>
+					<div class="subNav-content active none-View-List"
+						id="myViewContent">
+						<div class="common-alert-txt txt-center">
+							최근 15일 내 검색한 채널이 없습니다. </br> 이런 채널은 어떤가요?
 						</div>
-						</c:forEach>
+						<div class="recommend-channel-list">
+							<c:forEach var="item" items="${outputChannelViewRandom}">
+								<div class="recommend-channel">
+									<div class="reco-chnImg txt-left">
+										<img id="corp-View-Row-ThumbNail"
+											style="width: 50px; border-radius: 50px;"
+											src="${item.outputChannelThumbnail }" />
+									</div>
+									<div class="reco-chnInfo">
+										<div class="name">${item.outputChannelTitle }</div>
+										<div class="category inline-block txt-left">${item.outputChannelCategory }</div>
+									</div>
+									<div class="txt-center pTop">
+										<button class="common-wide85Reverse-Btn"
+											onclick="location.href='/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo}';">채널정보
+											보기</button>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
 					</div>
-				</div>
 				</c:if>
 				<!-- none exist view channel list -->
 
 
 				<!-- if exist like channel list -->
 				<c:if test="${outputChannelLikeList.size() != 0 }">
-				<div class="subNav-content corp-MyLike-Contents" id="myLikeContent">
-					<div id="myLikeChild">
-					<c:forEach var="item" items="${outputChannelLikeList}">
-					<div class="corp-MyView w100">
-						<div class="corp-View-Row-ChnImg">
-							<img id="corp-View-Row-ThumbNail"
-								style="width: 48px; border-radius: 48px;"
-								src="${item.outputChannelThumbnail }" />
+					<div class="subNav-content corp-MyLike-Contents" id="myLikeContent">
+						<div id="myLikeChild">
+							<c:forEach var="item" items="${outputChannelLikeList}">
+								<div class="corp-MyView w100">
+									<div class="corp-View-Row-ChnImg">
+										<img id="corp-View-Row-ThumbNail"
+											style="width: 48px; border-radius: 48px;"
+											src="${item.outputChannelThumbnail }" />
+									</div>
+									<div class="corp-View-Row-ChnName">${item.outputChannelName}</div>
+									<div class="corp-View-Row-Category">${item.outputChannelCategory}</div>
+									<div class="corp-View-Row-Subscribe">${item.outputChannelFollowers}</div>
+									<div class="corp-View-Row-TotalView">${item.outputChannelViews}</div>
+									<div class="corp-View-Row-Like">
+										<c:if test="${item.outputChannelLike==0}">
+											<button class="commonBtn"
+												onclick="Common.Like(1,${item.outputChannelNo });">관심채널
+												등록</button>
+										</c:if>
+										<c:if test="${item.outputChannelLike!=0}">
+											<button class="commonReverseBtn"
+												onclick="Common.Like(2,${item.outputChannelNo });">관심채널
+												해제</button>
+										</c:if>
+									</div>
+									<div class="corp-View-Row-DetailGo">
+										<a
+											href="/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo }">
+											<button class="commonBtn">채널정보 보기</button>
+										</a>
+									</div>
+
+								</div>
+
+								<hr
+									style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
+							</c:forEach>
 						</div>
-						<div class="corp-View-Row-ChnName">${item.outputChannelName}</div>
-						<div class="corp-View-Row-Category">${item.outputChannelCategory}</div>
-						<div class="corp-View-Row-Subscribe">${item.outputChannelFollowers}</div>
-						<div class="corp-View-Row-TotalView">${item.outputChannelViews}</div>
-						<div class="corp-View-Row-Like">
-							<c:if test="${item.outputChannelLike==0}">
-							<button class="commonBtn" onclick="Common.Like(1,${item.outputChannelNo });">관심채널 등록</button>
-							</c:if>
-							<c:if test="${item.outputChannelLike!=0}">
-							<button class="commonReverseBtn" onclick="Common.Like(2,${item.outputChannelNo });">관심채널 해제</button>
-							</c:if>
+						<!-- pagination area -->
+
+						<div class="pagination-area pTop3">
+							<ul class="common-pagination" id="likePaging">
+							</ul>
 						</div>
-						<div class="corp-View-Row-DetailGo">
-							<button class="commonBtn">
-								<a href="/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo }">채널정보 보기</a>
-							</button>
-						</div>
+
+						<!-- end pagination area -->
 
 					</div>
-
-					<hr
-						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
-					</c:forEach>
-					</div>
-					<!-- pagination area -->
-
-					<div class="pagination-area pTop3">
-						<ul class="common-pagination" id="likePaging">
-						</ul>
-					</div>
-
-					<!-- end pagination area -->
-
-				</div>
 				</c:if>
 				<!-- end exist like channel list -->
 
 
 				<!-- none like channel list -->
 				<c:if test="${outputChannelLikeList.size() == 0 }">
-				<div class="subNav-content none-Like-List" id="myLikeContent">
-					<div class="common-alert-txt txt-center">
-						관심 채널로 등록한 채널이 없습니다. </br> 이런 채널은 어떤가요?
-					</div>
-					<div class="recommend-channel-list">
-						<c:forEach var="item" items="${outputChannelLikeRandom}">
-						<div class="recommend-channel">
-							<div class="reco-chnImg txt-left">
-								<img id="corp-View-Row-ThumbNail"
-									style="width: 50px; border-radius: 50px;"
-									src="${item.outputChannelThumbnail }" />
-							</div>
-							<div class="reco-chnInfo">
-								<div class="name">${item.outputChannelTitle}</div>
-								<div class="category inline-block txt-left">${item.outputChannelCategory }</div>
-							</div>
-							<div class="txt-center pTop">
-								<button class="common-wide85Reverse-Btn" onclick="location.href='/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo}';">채널정보 보기</button>
-							</div>
+					<div class="subNav-content none-Like-List" id="myLikeContent">
+						<div class="common-alert-txt txt-center">
+							관심 채널로 등록한 채널이 없습니다. </br> 이런 채널은 어떤가요?
 						</div>
-						</c:forEach>
+						<div class="recommend-channel-list">
+							<c:forEach var="item" items="${outputChannelLikeRandom}">
+								<div class="recommend-channel">
+									<div class="reco-chnImg txt-left">
+										<img id="corp-View-Row-ThumbNail"
+											style="width: 50px; border-radius: 50px;"
+											src="${item.outputChannelThumbnail }" />
+									</div>
+									<div class="reco-chnInfo">
+										<div class="name">${item.outputChannelTitle}</div>
+										<div class="category inline-block txt-left">${item.outputChannelCategory }</div>
+									</div>
+									<div class="txt-center pTop">
+										<button class="common-wide85Reverse-Btn"
+											onclick="location.href='/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo}';">채널정보
+											보기</button>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
 					</div>
-				</div>
 				</c:if>
 				<!-- none like channel list -->
 

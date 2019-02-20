@@ -22,7 +22,8 @@
 
 				<div class="w100 ml-auto" id="chn-detail-top">
 					<!-- 채널 썸네일 영역 시작  -->
-					<div class="chnDtlImg d-inline-block" onclick="window.open('https://youtube.com${requestScope.outputChannelUrl }')"">
+					<div class="chnDtlImg d-inline-block"
+						onclick="window.open('https://youtube.com${requestScope.outputChannelUrl }')"">
 						<img id="chnDtlThumbNail"
 							style="width: 80px; border-radius: 80px;"
 							src="${requestScope.outputChannelThumbnail }">
@@ -35,12 +36,12 @@
 						<div class="w-auto ml-auto">
 							<span class="chnDtlName"
 								onclick="window.open('https://youtube.com${requestScope.outputChannelUrl }')"">${requestScope.outputChannelTitle }</span>
-							
+
 						</div>
 						<div class="chnDtlCategory w-auto ml-auto">
 							<span class="chnCategory">${requestScope.outputChannelCategory }</span>
 						</div>
-						
+
 					</div>
 					<!-- 채널 이름 및 카테고리 끝 -->
 
@@ -159,9 +160,9 @@
 								<div class="txt-center inline-block">기업회원으로 로그인하면 이 채널의
 									비즈니스 정보를 확인할 수 있습니다.</div>
 								<div class="pTop txt-center">
-									<button class="commonBtn">
-										<a href="/02_page/Auth/login.jsp">기업회원으로 로그인하기</a>
-									</button>
+									<a href="/02_page/Auth/login.jsp">
+										<button class="common-wide20Reverse-Btn">기업회원으로 로그인하기</button>
+									</a>
 								</div>
 							</div>
 
@@ -180,13 +181,21 @@
 				<!-- 채널 상세 탭 영역 -->
 				<div class="detail-tab-area inline-flex">
 					<div class="float-left sub-tabs" id="subNav-Tabs">
-							<div class="subNav-tab detail-tab d-inline-block"><a data-tab="upload" href="#upload" class="subnav-link active">최근
-									업로드 영상</a></div>
-							<div class="subNav-tab detail-tab d-inline-block"><a data-tab="commercial" href="#commercial" class="subnav-link">이 채널의 광고
-									영상</a></div>
-							<div class="subNav-tab detail-tab d-inline-block"><a data-tab="review" href="#review" class="subnav-link">이 채널의 광고 리뷰</a></div>
-							<!-- 							<div class="subNav-tab"><a data-tab="price" href="#price" class="subnav-link">이 채널의 광고 단가</a></div> -->
-						</ul>
+
+						<div class="subNav-tab detail-tab d-inline-block">
+							<a data-tab="upload" href="#upload" class="subnav-link active"
+								onclick="Common.dontMove();">최근 업로드 영상</a>
+						</div>
+						<div class="subNav-tab detail-tab d-inline-block">
+							<a data-tab="commercial" href="#commercial" class="subnav-link"
+								onclick="Common.dontMove();">이 채널의 비즈니스 콘텐츠</a>
+						</div>
+						<div class="subNav-tab detail-tab d-inline-block">
+							<a data-tab="review" href="#review" class="subnav-link"
+								onclick="Common.dontMove();">이 채널의 비즈니스 리뷰</a>
+						</div>
+						<!-- <div class="subNav-tab detail-tab d-inline-block"><a data-tab="price" href="#price" class="subnav-link">이 채널의 광고 단가</a></div> -->
+
 					</div>
 				</div>
 
@@ -227,26 +236,27 @@
 
 						<div class="pTop"></div>
 
-						<div class="subtab-title inline-block">이 채널을 통해 진행된 광고
-							영상입니다. 채널과 제품, 브랜드의 컨셉이 맞는지 확인해보세요!</div>
-
-						<div class="pTop2"></div>
+						<div class="subtab-title inline-block">이 채널을 통해 진행된 비즈니스
+							콘텐츠입니다. 채널과 제품, 브랜드의 컨셉이 맞는지 확인해보세요!</div>
 
 						<!--  Non-Login Member -->
 						<c:if test="${empty sessionScope.racMemberNo}">
-							<div class="pTop5 txt-center inline-block">이 채널에서 진행된 광고
-								영상이 궁금하신가요?</div>
-							<div class="txt-center inline-block">기업회원으로 로그인하면 이 채널의 광고
-								영상을 확인할 수 있습니다.</div>
-							<div class="pTop txt-center">
-								<button class="commonBtn">
-									<a href="/02_page/Auth/login.jsp">기업회원으로 로그인하기</a>
-								</button>
+							<div class="commercial-non-login-member pTop3">
+								<div class="pTop5 txt-center inline-block">이 채널에서 진행된 영상
+									광고(브랜디드 콘텐츠)가 궁금하신가요?</div>
+								<div class="txt-center inline-block">기업회원으로 로그인하면 이 채널에서
+									제작한 영상 광고를 확인할 수 있습니다.</div>
+								<div class="pTop2 txt-center">
+									<a href="/02_page/Auth/login.jsp">
+										<button class="common-wide20Reverse-Btn">기업회원으로 로그인하기</button>
+									</a>
+								</div>
 							</div>
 						</c:if>
 
+						<!--  Non-Login Member finished-->
+
 						<c:if test="${not empty sessionScope.racMemberNo}">
-							<!--  Non-Login Member finished-->
 
 							<!-- Login Member -->
 							<!-- commercialVideo start -->
@@ -275,21 +285,18 @@
 							<!-- non-commercialVideo start -->
 							<c:if test="${empty requestScope.outputAdVideoList}">
 
-								<div class="non-commercials txt-center">
-
-									<div class="v30"></div>
-
-									<div class="txt-center">
-										<span>아직 이 채널에서 진행한 광고 영상이 없습니다. 혹시 이 채널에서 광고를 집행하였나요?
-										</span>
+								<div class="non-commercials txt-center pTop3">
+									<div class="txt-center pTop5">
+										<span>아직 이 채널에서 진행한 영상 광고(브랜디드 콘텐츠)가 없습니다. <br /> 혹시 이 채널에서
+											광고를 집행하였나요? </span>
 									</div>
 
-									<div class="pTop2"></div>
-
-									<button class="commonBtn">
-										<a class="" href="#">광고 리뷰 쓰기</a>
-									</button>
-
+									<div class="pTop2">
+										<a class="nav-link" href="/02_page/Review/review.jsp"
+											onclick="Auth.loginCheck()">
+											<button class="common-wide20Reverse-Btn">광고 리뷰 쓰기</button>
+										</a>
+									</div>
 								</div>
 							</c:if>
 						</c:if>
@@ -304,18 +311,18 @@
 						<div class="subtab-title inline-block">이 채널을 이용한 광고주들의
 							후기입니다. 채널에 내 광고를 집행하기 전 체크해보세요!</div>
 
-						<div class="pTop2"></div>
-
 						<!--  Non-Login Member -->
 						<c:if test="${empty sessionScope.racMemberNo}">
-							<div class="pTop5 txt-center inline-block">이 채널을 이용한 다른
-								광고주의 리뷰가 궁금하신가요?</div>
-							<div class="txt-center inline-block">기업회원으로 로그인하면 이 채널의 리뷰를
-								확인할 수 있습니다.</div>
-							<div class="pTop txt-center">
-								<button class="commonBtn">
-									<a href="/02_page/Auth/login.jsp">기업회원으로 로그인하기</a>
-								</button>
+							<div class="review-non-login-member pTop3">
+								<div class="pTop5 txt-center inline-block">이 채널을 이용한 다른
+									광고주의 리뷰가 궁금하신가요?</div>
+								<div class="txt-center inline-block">기업회원으로 로그인하면 이 채널의
+									리뷰를 확인할 수 있습니다.</div>
+								<div class="pTop2 txt-center">
+									<a href="/02_page/Auth/login.jsp">
+										<button class="common-wide20Reverse-Btn">기업회원으로 로그인하기</button>
+									</a>
+								</div>
 							</div>
 						</c:if>
 
@@ -329,8 +336,8 @@
 									<c:forEach var="item" items="${requestScope.outputReivewList}">
 										<div class="review">
 											<div class="review-top">
-												<div class="date float-left">최근 1년 이내, 실제 집행된 광고에 대한
-													리뷰입니다.</div>
+												<div class="date float-left">최근 1년 이내, 실제 집행된 광고 영상에
+													대한 리뷰입니다.</div>
 											</div>
 
 											<div class="pTop2 w-100 display-flex"></div>
@@ -378,19 +385,18 @@
 
 							<!-- non review start -->
 							<c:if test="${empty requestScope.outputReivewList}">
-								<div class="non-reviews txt-center">
+								<div class="non-reviews txt-center pTop3">
 
-									<div class="v30"></div>
-
-									<div class="txt-center">
-										<span>아직 이 채널의 광고 리뷰가 없습니다. 이 채널의 광고 리뷰를 작성하시겠어요? </span>
+									<div class="txt-center pTop5">
+										<span>아직 이 채널의 비즈니스 리뷰가 없습니다. <br/>이 채널의 비즈니스 리뷰를 작성하시겠어요? </span>
 									</div>
 
-									<div class="pTop2"></div>
-
-									<button class="commonBtn">
-										<a class="" href="#">광고 리뷰 쓰기</a>
-									</button>
+									<div class="pTop2">
+										<a class="nav-link" href="/02_page/Review/review.jsp"
+											onclick="Auth.loginCheck()">
+											<button class="common-wide20Reverse-Btn">리뷰 쓰기</button>
+										</a>
+									</div>
 
 								</div>
 							</c:if>
