@@ -147,7 +147,7 @@ public class AdminController {
 
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int inputChannelNo = req.getParameter("inputChannelNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelNo").toString())) : 0;
-			int inputChannelCostCategory = req.getParameter("inputChannelCostCategory") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelCostCategory").toString())) : 0;
+			int inputChannelAdType = req.getParameter("inputChannelAdType") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelAdType").toString())) : 0;
 			int inputChannelCostPrice = req.getParameter("inputChannelCostPrice") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelCostPrice").toString())) : 0;
 			Calendar calendar = Calendar.getInstance();
 			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
@@ -155,7 +155,6 @@ public class AdminController {
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
-
 			
 			if(!(sessionMemberNo>0)) {
 				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
@@ -167,7 +166,7 @@ public class AdminController {
 			// Parameter check
 			ArrayList<Object> parameterList = new ArrayList<Object>();
 			parameterList.add(inputChannelNo);
-			parameterList.add(inputChannelCostCategory);
+			parameterList.add(inputChannelAdType);
 			parameterList.add(inputChannelCostPrice);
 
 			if(!CommonUtil.commonParameterCheck(parameterList)) {
@@ -178,7 +177,7 @@ public class AdminController {
 			}
 			
 			// Join member 
-			int check = AdminDAO.addChannelCost(inputChannelNo, inputChannelCostCategory, inputChannelCostPrice, inputCurrentDate);
+			int check = AdminDAO.addChannelCost(inputChannelNo, inputChannelAdType, inputChannelCostPrice, inputCurrentDate);
 
 			if(check != 1) {
 				CommonUtil.commonPrintLog("FAIL", className, "Add Channel Fail", map);
@@ -207,7 +206,6 @@ public class AdminController {
 
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
 			int inputChannelNo = req.getParameter("inputChannelNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelNo").toString())) : 0;
-			int inputChannelAdType = req.getParameter("inputChannelAdType") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelAdType").toString())) : 1;
 			int inputPageNo = req.getParameter("inputPageNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputPageNo").toString())) : 1;
 
 			String[] inputChannelAdUrls = req.getParameterValues("inputChannelAdUrls");
@@ -216,6 +214,21 @@ public class AdminController {
 				if(!inputChannelAdUrls[i].equals(""))
 					channeAdUrls.add(CommonUtil.commonCleanXSS(inputChannelAdUrls[i]));
 			}
+			
+			String[] inputChannelAdCategorys = req.getParameterValues("inputChannelAdCategory");
+			ArrayList<Integer> channeAdCategorys = new ArrayList<Integer>();
+			for(int i=0; i<inputChannelAdCategorys.length;i++) {
+				if(!inputChannelAdCategorys[i].equals("0"))
+					channeAdCategorys.add(Integer.parseInt(CommonUtil.commonCleanXSS(inputChannelAdCategorys[i])));
+			} 
+			
+			String[] inputChannelAdTypes = req.getParameterValues("inputChannelAdType");
+			ArrayList<Integer> channeAdTypes= new ArrayList<Integer>();
+			for(int i=0; i<inputChannelAdTypes.length;i++) {
+				if(!inputChannelAdTypes[i].equals("0"))
+					channeAdTypes.add(Integer.parseInt(CommonUtil.commonCleanXSS(inputChannelAdTypes[i])));
+			} 
+			
 			Calendar calendar = Calendar.getInstance();
 			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
 
@@ -243,7 +256,7 @@ public class AdminController {
 				String nameContent = doc.select("#eow-title").first().attr("title");
 				String thumbContent = doc.select("#watch7-content link[itemprop='thumbnailUrl']").first().attr("href");
 				String dateContent = doc.select("#watch7-content meta[itemprop='datePublished']").first().attr("content") + " 00:00:00";
-				int check = AdminDAO.addChannelAdUrl(inputChannelNo, channeAdUrls.get(i), nameContent, viewsContent, thumbContent, inputChannelAdType, Timestamp.valueOf(dateContent), inputCurrentDate);
+				int check = AdminDAO.addChannelAdUrl(inputChannelNo, channeAdUrls.get(i), nameContent, viewsContent, thumbContent, channeAdTypes.get(i), channeAdCategorys.get(i), Timestamp.valueOf(dateContent), inputCurrentDate);
 				if(check != 1) {
 					CommonUtil.commonPrintLog("FAIL", className, "Add  Channel Ad Url :" + inputChannelAdUrls[i], map);
 				}			

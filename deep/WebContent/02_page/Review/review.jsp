@@ -56,28 +56,28 @@
 							<div class="float-right flow-hidden">
 								<div class="radio-item">
 									<input type="radio" id="commercial-verySatisfy"
-										name="commercial-satisfy" value="0" checked> <label
+										name="commercial-satisfy" value="1" checked> <label
 										for="commercial-verySatisfy">매우 만족</label>
 								</div>
 
 								<div class="radio-item">
 									<input type="radio" id="commercial-Satisfy"
-										name="commercial-satisfy" value="1"> <label
+										name="commercial-satisfy" value="2"> <label
 										for="commercial-Satisfy">만족</label>
 								</div>
 								<div class="radio-item">
 									<input type="radio" id="commercial-normal"
-										name="commercial-satisfy" value="2"> <label
+										name="commercial-satisfy" value="3"> <label
 										for="commercial-normal">보통</label>
 								</div>
 								<div class="radio-item">
 									<input type="radio" id="commercial-unSatisfy"
-										name="commercial-satisfy" value="3"> <label
+										name="commercial-satisfy" value="4"> <label
 										for="commercial-unSatisfy">불만족</label>
 								</div>
 								<div class="radio-item">
 									<input type="radio" id="commercial-veryunSatisfy"
-										name="commercial-satisfy" value="4"> <label
+										name="commercial-satisfy" value="5"> <label
 										for="commercial-veryunSatisfy">매우 불만족</label>
 								</div>
 
@@ -93,16 +93,16 @@
 								1~3년 이내 3년 ~ 5년 이내 등으로 표기됩니다.</div>
 							<div class="inline-flex w100">
 								<select class="ipt-Select-Date" id="commercial-Date1">
-									<option value="1">2019년</option>
-									<option value="2">2018년</option>
-									<option value="3">2017년</option>
-									<option value="4">2016년</option>
-									<option value="5">2015년</option>
-									<option value="6">2014년</option>
-									<option value="7">2013년</option>
-									<option value="8">2012년</option>
-									<option value="9">2011년</option>
-									<option value="10">2010년</option>
+									<option value="10">2019년</option>
+									<option value="9">2018년</option>
+									<option value="8">2017년</option>
+									<option value="7">2016년</option>
+									<option value="6">2015년</option>
+									<option value="5">2014년</option>
+									<option value="4">2013년</option>
+									<option value="3">2012년</option>
+									<option value="2">2011년</option>
+									<option value="1">2010년</option>
 								</select>
 								<div class="pRight"></div>
 								<select class="ipt-Select-Date" id="commercial-Date2">
@@ -133,9 +133,12 @@
 								작성하면 다른 채널의 광고 비용을 확인 할 수 있습니다.</div>
 							<div class="inline-flex w100">
 								<select class="ipt-Select-CommercialType" id="commercial-Type">
-									<option value="0">영상 콘텐츠</option>
-									<option value="1">배너 광고</option>
-									<option value="2">기타</option>
+									<option value="2">영상 콘텐츠</option>
+									<option value="3">배너 광고</option>
+									<option value="4">물품협찬</option>
+									<option value="5">섭외</option>
+									<option value="6">True View</option>
+									<option value="1">기타</option>
 								</select>
 								<div class="pRight"></div>
 								<input class="ipt-Commercial-Price" type="text"
@@ -193,8 +196,8 @@
 								도달률(조회수)을 달성하였나요?</div>
 							<div class="w100">
 								<select class="ipt-Select-Reach" id="success-reach">
-									<option value="0">달성함</option>
-									<option value="1">달성하지 못함</option>
+									<option value="1">달성함</option>
+									<option value="2">달성하지 못함</option>
 								</select>
 							</div>
 
@@ -209,8 +212,8 @@
 								또는 매출)을 달성하였나요?</div>
 							<div class="w100">
 								<select class="ipt-Select-Reach" id="success-convert">
-									<option value="0">달성함</option>
-									<option value="1">달성하지 못함</option>
+									<option value="1">달성함</option>
+									<option value="2">달성하지 못함</option>
 								</select>
 							</div>
 
@@ -225,8 +228,17 @@
 								카테고리를 선택해주세요!</div>
 							<div class="w100">
 								<select class="ipt-Select-Reach" id="success-itemType">
-									<option value="0">달성함</option>
-									<option value="1">달성하지 못함</option>
+									<option value="1">서비스</option>
+									<option value="2">제조/화학</option>
+									<option value="3">의료/제약/복지</option>
+									<option value="4">유통/무역/운송</option>
+									<option value="5">교육업</option>
+									<option value="6">건설업</option>
+									<option value="7">IT/웹/통신</option>
+									<option value="8">미디어/디자인</option>
+									<option value="9">은행/금융업</option>
+									<option value="10">기관/협회</option>
+									<option value="11">기타</option>
 								</select>
 							</div>
 
@@ -241,16 +253,16 @@
 								선택해주세요!</div>
 							<div class="w100">
 								<select class="ipt-Select-Reach" id="success-age">
-									<option value="0">연령무관</option>
-									<option value="1">10대</option>
-									<option value="2">10대 - 20대</option>
-									<option value="3">20대</option>
-									<option value="4">20대 - 30대</option>
-									<option value="5">30대</option>
-									<option value="6">30대 - 40대</option>
-									<option value="7">40대</option>
-									<option value="8">40대 - 50대</option>
-									<option value="9">50대 이상</option>
+									<option value="1">연령무관</option>
+									<option value="2">10대</option>
+									<option value="3">10대 - 20대</option>
+									<option value="4">20대</option>
+									<option value="5">20대 - 30대</option>
+									<option value="6">30대</option>
+									<option value="7">30대 - 40대</option>
+									<option value="8">40대</option>
+									<option value="9">40대 - 50대</option>
+									<option value="10">50대 이상</option>
 								</select>
 							</div>
 
@@ -265,9 +277,9 @@
 								선택해주세요!</div>
 							<div class="w100">
 								<select class="ipt-Select-Reach" id="success-sex">
-									<option value="0">성별무관</option>
-									<option value="1">남성</option>
-									<option value="2">여성</option>
+									<option value="1">성별무관</option>
+									<option value="2">남성</option>
+									<option value="3">여성</option>
 								</select>
 							</div>
 
@@ -282,13 +294,13 @@
 							<div class="float-right">
 								<div class="radio-item">
 									<input type="radio" id="channel-Recommand"
-										name="channel-recommand" value="0" checked> <label
+										name="channel-recommand" value="1" checked> <label
 										for="channel-Recommand">예</label>
 								</div>
 
 								<div class="radio-item">
 									<input type="radio" id="channel-Unrecommand"
-										name="channel-recommand" value="1"> <label
+										name="channel-recommand" value="2"> <label
 										for="channel-Unrecommand">아니오</label>
 								</div>
 
@@ -303,12 +315,12 @@
 							<div class="float-right">
 								<div class="radio-item">
 									<input type="radio" id="channel-Reuse" name="channel-Reuse"
-										value="0" checked> <label for="channel-Reuse">예</label>
+										value="1" checked> <label for="channel-Reuse">예</label>
 								</div>
 
 								<div class="radio-item">
 									<input type="radio" id="channel-Unreuse" name="channel-Reuse"
-										value="1"> <label for="channel-Unreuse">아니오</label>
+										value="2"> <label for="channel-Unreuse">아니오</label>
 								</div>
 
 							</div>

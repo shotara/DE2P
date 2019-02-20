@@ -24,7 +24,7 @@ public class AdminDAO {
 	// Insert Method
 	public static int addChannelCost(
 			int inputChannelNo, 
-			int inputChannelCostCategory,
+			int inputChannelAdType,
 			int inputChannelCostPrice,
 			Timestamp inputCurrentDate) {
 		
@@ -33,7 +33,7 @@ public class AdminDAO {
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("channelNo", inputChannelNo);
-			map.put("channelCostCategory", inputChannelCostCategory);	
+			map.put("channelAdType", inputChannelAdType);	
 			map.put("channelCostPrice", inputChannelCostPrice);	
 			map.put("inputCurrentDate", inputCurrentDate);			
 
@@ -83,6 +83,7 @@ public class AdminDAO {
 			String inputVideoViews,
 			String inputVideoThumbnail,
 			int inputChannelAdType,
+			int inputChannelAdCategory,
 			Timestamp inputVideoCreateDate,
 			Timestamp inputCurrentDate) {
 		
@@ -96,8 +97,10 @@ public class AdminDAO {
 			map.put("videoViews", inputVideoViews);
 			map.put("videoThumbnail", inputVideoThumbnail);	
 			map.put("channelAdType", inputChannelAdType);		
+			map.put("channelAdCategory", inputChannelAdCategory);		
 			map.put("videoCreateDate", inputVideoCreateDate);
 			map.put("inputCurrentDate", inputCurrentDate);	
+			map.put("videoExecuteDate", inputVideoCreateDate);
 
 			int check = (int)sqlSession.insert(namespace + ".addChannelAdUrl", map);
 			

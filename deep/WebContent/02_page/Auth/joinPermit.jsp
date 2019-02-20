@@ -165,16 +165,16 @@ function joinPermit() {
 						<div class="inline-block">
 							<select class="ipt-Select-Join" id="commercial-target-age">
 								<option disabled selected hidden>연령대를 선택해주세요!</option>
-								<option value="0">연령무관</option>
-								<option value="1">10대</option>
-								<option value="2">10대 - 20대</option>
-								<option value="3">20대</option>
-								<option value="4">20대 - 30대</option>
-								<option value="5">30대</option>
-								<option value="6">30대 - 40대</option>
-								<option value="7">40대</option>
-								<option value="8">40대 - 50대</option>
-								<option value="9">50대 이상</option>
+								<option value="1">연령무관</option>
+								<option value="2">10대</option>
+								<option value="3">10대 - 20대</option>
+								<option value="4">20대</option>
+								<option value="5">20대 - 30대</option>
+								<option value="6">30대</option>
+								<option value="7">30대 - 40대</option>
+								<option value="8">40대</option>
+								<option value="9">40대 - 50대</option>
+								<option value="10">50대 이상</option>
 							</select>
 						</div>
 					</div>
@@ -190,9 +190,9 @@ function joinPermit() {
 							<select class="ipt-Select-Join" id="commercial-target-sex">
 								<option disabled selected hidden>연령대를 선택해주세요!</option>
 					
-								<option value="0">성별무관</option>
-								<option value="1">남성</option>
-								<option value="2">여성</option>
+								<option value="1">성별무관</option>
+								<option value="2">남성</option>
+								<option value="3">여성</option>
 							</select>
 						</div>
 
@@ -212,7 +212,7 @@ function joinPermit() {
 
 						<div class="radio-item">
 							<input type="radio" id="commercial-exNo" name="commercial-ex"
-								value="0"> <label for="commercial-exNo">아니오</label>
+								value="2"> <label for="commercial-exNo">아니오</label>
 						</div>
 					</div>
 

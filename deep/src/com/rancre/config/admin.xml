@@ -5,13 +5,13 @@
 <mapper namespace="admin">
 	<!-- Insert -->
 	<select id="addChannelCost" parameterType="java.util.HashMap" resultType="int">
-		INSERT INTO rac_channel_cost(racChannelNo, racChannelCostCategory, racChannelCostPrice, racChannelCostCreateDate)
-		VALUES(#{channelNo}, #{channelCostCategory}, #{channelCostPrice}, #{inputCurrentDate})
+		INSERT INTO rac_channel_cost(racChannelNo, racChannelAdType, racChannelCostPrice, racChannelCostCreateDate)
+		VALUES(#{channelNo}, #{channelAdType}, #{channelCostPrice}, #{inputCurrentDate})
 	</select>	
 	 	
 	 <select id="addChannelAdUrl" parameterType="java.util.HashMap" resultType="int">
-		INSERT INTO rac_channel_ad(racChannelNo, racVideoId, racVideoTitle, racVideoViews, racVideoThumbnail, racChannelAdType, racVideoCreateDate, racVideoUpdateDate, racChannelAdCreateDate)
-		VALUES(#{channelNo}, #{videoId}, #{videoTitle}, #{videoViews}, #{videoThumbnail}, #{channelAdType}, #{videoCreateDate}, #{inputCurrentDate}, #{inputCurrentDate})
+		INSERT INTO rac_channel_ad(racChannelNo, racVideoId, racVideoTitle, racVideoViews, racVideoThumbnail, racChannelAdType, racChannelAdCategory,racVideoCreateDate, racVideoUpdateDate, racChannelAdCreateDate, racChannelAdExecuteDate)
+		VALUES(#{channelNo}, #{videoId}, #{videoTitle}, #{videoViews}, #{videoThumbnail}, #{channelAdType}, #{channelAdCategory}, #{videoCreateDate}, #{inputCurrentDate}, #{inputCurrentDate}, #{videoExecuteDate})
 	</select>			
 
 	<select id="addChannelCategory" parameterType="java.util.HashMap" resultType="int">

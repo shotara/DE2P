@@ -11,7 +11,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	function addCost(no, price, category) {
+	function addCost(no, price, type) {
 		
 		var action, form_data;
 		
@@ -22,7 +22,7 @@
 		form_data = {
 				inputChannelNo : no,
 				inputChannelCostPrice : price,
-				inputChannelCostCategory : category
+				inputChannelAdType : type
 		};
 		
 		$.ajax({
@@ -62,14 +62,19 @@
 			<input type="text" id="costPrice"/>
 			<div class="right">원</div>
 		</div>
-		<div class="cost-channel-category">
-			<div class="left">광고 종류</div>
-			<input type="text" id="costCategory"/>
-		</div>
+	<select class="ipt-Select-CommercialType" id="commercial-Type" name="inputChannelAdType" >
+		<option value="0" selected >없음</option>
+		<option value="2">영상 콘텐츠</option>
+		<option value="3">배너 광고</option>
+		<option value="4">물품협찬</option>
+		<option value="5">섭외</option>
+		<option value="6">True View</option>
+		<option value="1">기타</option>
+	</select>
 	</div>
 	
 	<div class="btn">
-		<button onclick="addCost(${result.outputChannelNo},$('#costPrice').val(),$('#costCategory').val())">단가입력</button>
+		<button onclick="addCost(${result.outputChannelNo},$('#costPrice').val(),$('#commercial-Type').val())">단가입력</button>
 		<button>취소</button>
 	</div>
 </section>
