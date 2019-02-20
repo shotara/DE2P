@@ -51,6 +51,12 @@
 		#{offset}, #{size}
 	</select>
 	
+	<select id="getMemberList" parameterType="java.util.HashMap" resultType="com.rancre.model.domain.Member">
+		SELECT * FROM rac_member WHERE racMemberStatus=#{memberStatus}  
+		LIMIT
+		#{offset}, #{size}
+	</select>
+	
 	<select id="countTotalChannel" resultType="int">
 		SELECT count(*) FROM rac_channel WHERE racChannelStatus=2
 	</select>

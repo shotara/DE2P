@@ -15,6 +15,7 @@ import com.rancre.model.domain.FeedCount;
 import com.rancre.model.domain.FeedHashtag;
 import com.rancre.model.domain.FeedList;
 import com.rancre.model.domain.FeedSeries;
+import com.rancre.model.domain.Member;
 import com.rancre.util.DAOFactory;
 
 public class AdminDAO {
@@ -346,6 +347,23 @@ public class AdminDAO {
 				sqlSession.rollback();
 				return check;
 			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static ArrayList<Member> getMemberList(int memberStatus, int offset, int recordsPerPage) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberStatus", memberStatus);
+			map.put("offset", offset);
+			map.put("size", recordsPerPage);			
+		
+			return (ArrayList) sqlSession.selectList(namespace + ".getMemberList", map);
+			
 		} finally {
 			sqlSession.close();
 		}

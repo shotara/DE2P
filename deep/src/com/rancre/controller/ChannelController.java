@@ -361,6 +361,7 @@ public class ChannelController {
 			HttpSession session = req.getSession();
 
 			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			String sessionMemberUid = session.getAttribute("racMemberUid") != null ? session.getAttribute("racMemberUid").toString() : "";
 			int inputReviewSatisfy = req.getParameter("inputReviewSatisfy") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewSatisfy").toString())) : 0;				
 			int inputReviewDate1 = req.getParameter("inputReviewDate1") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewDate1").toString())) : 0;				
 			int inputReviewDate2 = req.getParameter("inputReviewDate2") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewDate2").toString())) : 0;				
@@ -387,7 +388,7 @@ public class ChannelController {
 			privateKey = (PrivateKey)session.getAttribute("PrivateKey");				
 			session.removeAttribute("PrivateKey"); // 키의 재사용 방지
 			
-			if(!(sessionMemberNo>0)) {
+			if(sessionMemberUid.equals("")) {
 				CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
 				jObject.put("outputResult", "-1");
 				res.getWriter().write(jObject.toString());
@@ -429,6 +430,11 @@ public class ChannelController {
 					inputReviewTargetConvert, inputReviewTargetSex, inputReviewTargetAge, inputReviewRecomand, inputReviewAdAgain, inputReviewDetail, inputCurrentDate);
 			if(check3 !=1) {
 				CommonUtil.commonPrintLog("ERROR", className, "add Review Fail!!", map);
+			}
+			
+			// 회원 가입 후 리뷰 작성 
+			if(!(sessionMemberNo>0)) {
+				session.removeAttribute("racMemberUid");
 			}
 			
 			CommonUtil.commonPrintLog("SUCCESS", className, "Review add OK", map);

@@ -632,4 +632,71 @@ public class AdminController {
 			e.printStackTrace();
 		}
 	}
+
+	public static void getMemberList(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			int page = req.getParameter("page") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("page").toString())) : 1;
+			int size = req.getParameter("size") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("size").toString())) : 10;
+			
+			if(page==0) page=1;
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			if(!(sessionMemberNo>0) && sessionMemberNo>10) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			/// Check Admin Member 
+			JSONArray jChannelArray = new JSONArray();
+			Paging paging = new Paging(page, size);
+			int memberStatus=2;
+			int offset = (paging.getCurrentPageNo() - 1) * paging.getRecordsPerPage();
+
+			ArrayList<Member> memberList = AdminDAO.getMemberList(memberStatus, offset, paging.getRecordsPerPage());
+
+			// bookList 전체 갯수 구하여 numberOfRecords 메소드에 셋팅함 
+			paging.setNumberOfRecords(AdminDAO.countTotalChannel());
+			paging.makePaging();
+			
+			// AES Encrypt
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+			for(int i=0; i<memberList.size();i++) {
+				JSONObject jTempObject = new JSONObject();
+				// channel
+				jTempObject.put("outputMemberNo", memberList.get(i).getRacMemberNo());
+				jTempObject.put("outputMemberStatus", memberList.get(i).getRacMemberStatus());
+				jTempObject.put("outputMemberType", memberList.get(i).getRacMemberType());
+				jTempObject.put("outputMemberEmail", EncryptUtil.AES_Decode(memberList.get(i).getRacMemberEmail(), aesKey));
+
+				jChannelArray.add(jTempObject);
+			}
+
+			jObject.put("outputMemberList", jChannelArray);
+			jObject.put("firstPageNo", paging.getFirstPageNo());
+			jObject.put("prevPageNo", paging.getPrevPageNo());
+			jObject.put("currentPageNo", paging.getCurrentPageNo());
+			jObject.put("nextPageNo", paging.getNextPageNo());
+			jObject.put("paging", paging);
+	
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get Member List OK", map);
+			req.setAttribute("result", jObject);
+			req.getRequestDispatcher("/02_page/Admin/memberList.jsp").forward(req, res);
+
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

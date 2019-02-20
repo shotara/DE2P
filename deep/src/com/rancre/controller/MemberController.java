@@ -278,7 +278,7 @@ public class MemberController {
 			   session.setAttribute("racPasswordMemberEmail", decryptMemberEmail);
 			   
 			   // Text
-			   String url = "http://localhost:8080/member?action=getChangeUserInfo&inputEmail="+decryptMemberEmail+"&inputCheckValue="+checkValue;
+			   String url = "http://rancre.com/member?action=getChangeUserInfo&inputEmail="+decryptMemberEmail+"&inputCheckValue="+checkValue;
 			   String text = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\r\n" + 
 			   		"<html xmlns='http://www.w3.org/1999/xhtml'>\r\n" + 
 			   		"<head>\r\n" + 
@@ -310,9 +310,11 @@ public class MemberController {
 			   		"					<tr>\r\n" + 
 			   		"						<td align='center'>&nbsp;</td>\r\n" + 
 			   		"					</tr>\r\n" + 
-			   		"					<tr>\r\n" + 
-			   		"						<td align='center'>"+url +"</td>\r\n" + 
-			   		"					</tr>\r\n" + 
+					"					<tr>\r\n" + 
+					"						<td align='center'><a href='"+url+"' target=\"_blank\" style=\"width: 120px; padding: 12px 12px; border-radius: 2px; background-color: #f11834;font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #ffffff;text-decoration: none; display: inline-block;\">\r\n" + 
+					"                          회원정보 재설정           \r\n" + 
+					"                      </a></td>\r\n" + 
+					"					</tr>"  +
 			   		"					<tr>\r\n" + 
 			   		"						<td align='center'>&nbsp;</td>\r\n" + 
 			   		"					</tr>\r\n" + 
@@ -593,7 +595,7 @@ public class MemberController {
 			   session.setAttribute("racJoinCheckValue", checkValue);
 			   session.setAttribute("racJoinMemberEmail", decryptMemberEmail);
 			   // Text
-			   String url = "http://localhost:8080/member?action=permitJoin&inputEmail="+decryptMemberEmail+"&inputCheckValue="+checkValue;
+			   String url = "http://rancre.com/member?action=permitJoin&inputEmail="+decryptMemberEmail+"&inputCheckValue="+checkValue;
 			   String text = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\r\n" + 
 			   		"			   <html xmlns='http://www.w3.org/1999/xhtml'>\r\n" + 
 			   		"			   <head>\r\n" + 
@@ -625,9 +627,11 @@ public class MemberController {
 			   		"			   					<tr>\r\n" + 
 			   		"			   						<td align='center'>&nbsp;</td>\r\n" + 
 			   		"			   					</tr>\r\n" + 
-			   		"			   					<tr>\r\n" + 
-			   		"			   						<td align='center'>"+url +"</td>\r\n" + 
-			   		"			   					</tr>\r\n" + 
+			   		"					<tr>\r\n" + 
+			   		"						<td align=\"center\"><a href='"+url+"' target=\"_blank\" style=\"width: 120px; padding: 12px 12px; border-radius: 2px; background-color: #f11834;font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #ffffff;text-decoration: none; display: inline-block;\">\r\n" + 
+			   		"                          이메일 인증하기            \r\n" + 
+			   		"                      </a></td>\r\n" + 
+			   		"					</tr>" +
 			   		"			   					<tr>\r\n" + 
 			   		"			   						<td align='center'>&nbsp;</td>\r\n" + 
 			   		"			   					</tr>\r\n" + 
@@ -1104,7 +1108,7 @@ public class MemberController {
 			session.removeAttribute("racJoinCheckValue");
 			CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit OK", map);
 			MemberUid memberUid = MemberDAO.getMemberUidByEmail(encryptMemberEmail);
-			req.setAttribute("memberUid",memberUid.getRacMemberUid());
+			req.setAttribute("racMemberUid",memberUid.getRacMemberUid());
 			req.getRequestDispatcher("/02_page/Auth/joinPermit.jsp").forward(req, res);
 			return;
 			

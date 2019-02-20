@@ -182,14 +182,28 @@ public class CommonController {
 			Date date = new Date();
 			SimpleDateFormat formatType = new SimpleDateFormat("yyyy-MM-dd");
 			formatType.setTimeZone(TimeZone.getTimeZone("GMT+9"));
-			date.setDate(date.getDate()-1);
-			date.setHours(0);			
-			date.setMinutes(0);
-			date.setSeconds(0);
-			Timestamp beforeDate = new Timestamp(date.getTime());
-			date.setDate(date.getDate()+1);
-			Timestamp afterDate = new Timestamp(date.getTime());
+			Timestamp beforeDate;
+			Timestamp afterDate;
 			
+			// 배치 돈 후 데이트와 배치 돌기 전 데이트 분기
+			if(date.getHours()>6) {
+				date.setDate(date.getDate()-1);
+				date.setHours(date.getHours());			
+				date.setMinutes(0);
+				date.setSeconds(0);
+				beforeDate = new Timestamp(date.getTime());
+				date.setDate(date.getDate()+1);
+				afterDate = new Timestamp(date.getTime());
+			} else {
+				date.setDate(date.getDate()-2);
+				date.setHours(date.getHours());			
+				date.setMinutes(0);
+				date.setSeconds(0);
+				beforeDate = new Timestamp(date.getTime());
+				date.setDate(date.getDate()+1);
+				afterDate = new Timestamp(date.getTime());
+			}
+
 			// 순위 리스트
 			JSONArray rankingList = new JSONArray();
 			if(mode == 1) {
@@ -201,16 +215,16 @@ public class CommonController {
 
 					int checkBefore  = ChannelDAO.checkChannelBefore(ranking.get(i).getRacChannelNo(),beforeDate,afterDate);
 					if(checkBefore==0) {
-						tempObject.put("outputRankUpDown", "new");
+						tempObject.put("outputRankUpDown", " rancNew'>new");
 
 					} else {
 						int beforRanking = ChannelDAO.getRankBefore(ranking.get(i).getRacChannelNo(),beforeDate,afterDate);
 						if(ranking.get(i).getRacRankTopNo()-beforRanking <0) 
-							tempObject.put("outputRankUpDown", "&utrif;"+(ranking.get(i).getRacRankTopNo()-beforRanking)*-1);
+							tempObject.put("outputRankUpDown", " rancUp'>&utrif;"+(ranking.get(i).getRacRankTopNo()-beforRanking)*-1);
 						else if(ranking.get(i).getRacRankTopNo()-beforRanking >0)
-							tempObject.put("outputRankUpDown", "&dtrif;"+(ranking.get(i).getRacRankTopNo()-beforRanking));
+							tempObject.put("outputRankUpDown", " rancDown'>&dtrif;"+(ranking.get(i).getRacRankTopNo()-beforRanking));
 						else
-							tempObject.put("outputRankUpDown", "-");				
+							tempObject.put("outputRankUpDown", "'>-");				
 					}
 					tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryList(ranking.get(i).getRacChannelCategory()));
 					tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
