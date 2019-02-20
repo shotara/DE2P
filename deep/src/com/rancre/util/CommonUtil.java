@@ -505,12 +505,12 @@ public class CommonUtil {
 		Date currentDate = new Date();
 		long newDate = (currentDate.getTime() - date.getTime()) / 1000;  /// 1초 
 
-		if(newDate <3600) return newDate/60 + "분 전";
-		else if (newDate < 3600 * 24) return newDate/3600 + "시간 전";
-		else if (newDate < 3600 * 24 * 7) return newDate/(3600*24) + "일 전";
-		else if (newDate < 3600 * 24 * 7 * 4) return newDate/(3600*24*7) + "주 전";
-		else if (newDate < 3600 * 24 * 365) return newDate/(3600 * 24 * 31) + "개월 전";
-		else return newDate/(3600 * 24 * 365) + "년 전";
+		if(newDate <3600) return Math.round(newDate/60) + "분 전";
+		else if (newDate < 3600 * 24) return Math.round(newDate/3600) + "시간 전";
+		else if (newDate < 3600 * 24 * 7) return Math.round(newDate/(3600*24)) + "일 전";
+		else if (newDate < (3600 * 24 * 7 * 5)-(3600 * 24 *4)) return Math.round(newDate/(3600*24*7)) + "주 전";
+		else if (newDate < 3600 * 24 * 365) return Math.round(newDate/(3600 * 24 * 31)) + "개월 전";
+		else return Math.round(newDate/(3600 * 24 * 365)) + "년 전";
 		
 
 	}

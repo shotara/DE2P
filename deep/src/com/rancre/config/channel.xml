@@ -14,7 +14,7 @@
 			SELECT a.* FROM rac_channel a, (SELECT * FROM rac_channel_category WHERE racCategoryNo = #{categoryNo}) b WHERE b.racChannelNo=a.racChannelNo  ORDER BY a.racChannelFollowers DESC LIMIT #{startNo}, 20
 		</if>
 		<if test="mode == 3" >
-			SELECT * FROM rac_channel ORDER BY racChannelInsertDate DESC LIMIT #{startNo}, 20
+			SELECT * FROM rac_channel WHERE racChannelStatus=2 ORDER BY racChannelInsertDate DESC LIMIT #{startNo}, 20
 		</if>
 	</select>
 	

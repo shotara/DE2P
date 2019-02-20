@@ -1,6 +1,8 @@
  package com.rancre.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.KeyFactory;
@@ -161,7 +163,6 @@ public class ChannelController {
 				}
 				tempObejct.put("outputVideoViews", CommonUtil.setCommaForLong(recentVideoList.get(i).getRacVideoViews()));
 				tempObejct.put("outputVideoCreateDate", CommonUtil.getChannelDetailDate(recentVideoList.get(i).getRacVideoCreateDate()));
-				updateDate = updateDate + CommonUtil.getChannelVideoCreateDate(recentVideoList.get(i).getRacVideoCreateDate());
 				recentViews = (int) (recentViews + recentVideoList.get(i).getRacVideoViews()); 
 				outputRecentVideoList.add(tempObejct);
 				
@@ -169,11 +170,24 @@ public class ChannelController {
 			
 			req.setAttribute("outputChannelRecentViews", recentVideoList.size()!= 0 ? CommonUtil.setCommaForInt(recentViews / recentVideoList.size()) : 0);
 			req.setAttribute("outputRecentVideoList", outputRecentVideoList);
-			if(recentVideoList.size()!=0) {
-				int videoUpdateDate = updateDate/(3600*24)/recentVideoList.size();
-				if(videoUpdateDate<3) req.setAttribute("outputChannelGradePlus", "+");
-				if(videoUpdateDate==0) videoUpdateDate=1;
+			
+			/// 평균 영상 등록 날짜
+			if(recentVideoList.size()>1) {
+				int sumDate=0, countsize=0;;
+				for(int i=1; i<recentVideoList.size(); i++) {
+					int temp=0;
+					temp = CommonUtil.getChannelVideoCreateDate(recentVideoList.get(i).getRacVideoCreateDate()) - CommonUtil.getChannelVideoCreateDate(recentVideoList.get(i-1).getRacVideoCreateDate());
+					sumDate+=temp;
+					if(temp!=0) countsize++;   // 스트리머인 경우 같은날에 여러개 올리는 경우가 있다. 그 경우는 제외한다.
+				}
+				
+				int videoUpdateDate = Math.round(sumDate/(3600*24)/countsize); // 평균  업로드 데이트 계산
+				if(videoUpdateDate<3) req.setAttribute("outputChannelGradePlus", "+"); // 만약 업로드 날짜가 3일 미만이면 랭킹에 +
+				if(videoUpdateDate==0) videoUpdateDate=1; // 업로드 날짜가 하루 미만이면 1일로 
 				req.setAttribute("outputRecentVideoUpdateDate", videoUpdateDate+" 일");
+			} else if(recentVideoList.size() == 1) {
+				int videoUpdateDate = CommonUtil.getChannelVideoCreateDate(recentVideoList.get(0).getRacVideoCreateDate())/(3600*24);  // 영상이 1개면 업로드 한 날과 현재 날짜 기준으로 
+				req.setAttribute("outputRecentVideoUpdateDate", videoUpdateDate+" 일"); 
 			} else {
 				req.setAttribute("outputRecentVideoUpdateDate", "영상이 없습니다.");
 			}
@@ -208,7 +222,6 @@ public class ChannelController {
 					req.setAttribute("outputAdEvenPrice","정보없음");
 				}
 
-				
 				req.setAttribute("outputAdVideoList", adVideoList);
 
 				// Channel Reviews
