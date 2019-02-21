@@ -262,6 +262,7 @@
 							<!-- commercialVideo start -->
 							<c:if test="${not empty requestScope.outputAdVideoList}">
 								<div class="commercialVideos inline-block">
+									<div class="pTop2"></div>
 									<c:forEach var="item" items="${requestScope.outputAdVideoList}">
 										<div class="commercialVideo float-left">
 											<div class="videoThumb">
@@ -287,8 +288,9 @@
 
 								<div class="non-commercials txt-center pTop3">
 									<div class="txt-center pTop5">
-										<span>아직 이 채널에서 진행한 영상 광고(브랜디드 콘텐츠)가 없습니다. <br /> 혹시 이 채널에서
-											광고를 집행하였나요? </span>
+										<span>아직 이 채널에서 진행한 영상 광고(브랜디드 콘텐츠)가 없습니다. <br /> 혹시 이
+											채널에서 광고를 집행하였나요?
+										</span>
 									</div>
 
 									<div class="pTop2">
@@ -388,7 +390,9 @@
 								<div class="non-reviews txt-center pTop3">
 
 									<div class="txt-center pTop5">
-										<span>아직 이 채널의 비즈니스 리뷰가 없습니다. <br/>이 채널의 비즈니스 리뷰를 작성하시겠어요? </span>
+										<span>아직 이 채널의 비즈니스 리뷰가 없습니다. <br />이 채널의 비즈니스 리뷰를
+											작성하시겠어요?
+										</span>
 									</div>
 
 									<div class="pTop2">
