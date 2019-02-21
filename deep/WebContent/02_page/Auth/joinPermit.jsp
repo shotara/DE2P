@@ -101,7 +101,7 @@ function joinPermit() {
 					
 					location.href = "/member?action=goReview&inputMemberUid="+memberUid;
 				}else{   //취소
-					location.href = "/02_page/Auth/login.jsp";
+					location.href = "/";
 				}
 
 			}else if(response.outputResult == "-1"){

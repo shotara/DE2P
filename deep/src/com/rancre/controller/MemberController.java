@@ -144,9 +144,6 @@ public class MemberController {
 
 		try {
 			HttpSession session = req.getSession();
-
-			String sessionPasswordMemberEmail = session.getAttribute("racPasswordMemberEmail") != null ? session.getAttribute("racPasswordMemberEmail").toString() : "";
-			String sessionPasswordCheckValue = session.getAttribute("racPasswordCheckValue") != null ? session.getAttribute("racPasswordCheckValue").toString() : "";
 			String inputEmail = req.getParameter("inputEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputEmail").toString()) : null;
 			String inputCheckValue = req.getParameter("inputCheckValue") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputCheckValue").toString()) : null;
 			
@@ -163,29 +160,15 @@ public class MemberController {
 				res.getWriter().write(jObject.toString());
 				return;
 			}
-
-			// 메일/ 회원체크
-			if(!sessionPasswordMemberEmail.equals(inputEmail)) {
-				CommonUtil.commonPrintLog("ERROR", className, "User Permit Fail1", map);
-				req.getRequestDispatcher("/error.jsp").forward(req, res);
-				return;
-			}
-			
-			if(!sessionPasswordCheckValue.equals(inputCheckValue)) {
-				CommonUtil.commonPrintLog("ERROR", className, "User Permit Fail2", map);
-				req.getRequestDispatcher("/error.jsp").forward(req, res);
-				return;
-			}
 			
 			// AES Encrypt
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 			String encryptMemberEmail = EncryptUtil.AES_Encode(inputEmail, aesKey);
 
 			// Check Member Email, Name    			
-			if(MemberDAO.checkValidMember(encryptMemberEmail)==0) {
+			if(MemberDAO.checkValidMemberByToken(encryptMemberEmail, inputCheckValue)==0) {
 				CommonUtil.commonPrintLog("FAIL", className, "Not Member Email Exist", map);
-				jObject.put("outputResult", "-3");
-				res.getWriter().write(jObject.toString());
+				req.getRequestDispatcher("/error.jsp").forward(req, res);
 				return;
 			}			
 			
@@ -274,8 +257,14 @@ public class MemberController {
 			   message.setSubject("Rancre 비밀번호 찾기 입니다.");
 
 			   String checkValue = Long.toString(System.currentTimeMillis()/1000).substring(0,6);
-			   session.setAttribute("racPasswordCheckValue", checkValue);
-			   session.setAttribute("racPasswordMemberEmail", decryptMemberEmail);
+			   
+			   int check = MemberDAO.setAuthTokenByValidMember(encryptMemberEmail, checkValue);
+				if(check!=1) {
+					CommonUtil.commonPrintLog("ERROR", className, "SET AUTHTOKEN FAIL", map);
+					jObject.put("outputResult", "-4");
+					res.getWriter().write(jObject.toString());
+					return;
+				}	   
 			   
 			   // Text
 			   String url = "http://rancre.com/member?action=getChangeUserInfo&inputEmail="+decryptMemberEmail+"&inputCheckValue="+checkValue;
@@ -543,7 +532,8 @@ public class MemberController {
 			}
 			
 			// Join member 
-			int check = MemberDAO.addMember(inputMemberStatus, inputCurrentDate, encryptMemberEmail, encryptMemberPassword);
+			String authToken = Long.toString(System.currentTimeMillis()/1000).substring(4,10); /// AuthToken
+			int check = MemberDAO.addMember(inputMemberStatus, inputCurrentDate, encryptMemberEmail, encryptMemberPassword, authToken);
 
 			if(check != 1) {
 				CommonUtil.commonPrintLog("FAIL", className, "Add Member Fail", map);
@@ -553,7 +543,7 @@ public class MemberController {
 			}			
 			
 			// Create MemberUid
-			String memberUid = decryptMemberEmail.substring(0,3) + Long.toString(System.currentTimeMillis()/1000).substring(0,8);
+			String memberUid = decryptMemberEmail.substring(0,3) + Long.toString(System.currentTimeMillis()/1000).substring(2,10);
 			int createMemberUid = MemberDAO.addMemberUid(encryptMemberEmail, memberUid);
 			
 			// Create Business 
@@ -591,11 +581,8 @@ public class MemberController {
 			   // Subject
 			   message.setSubject("Rancre에 오신것을 환영합니다!");
 			   
-			   String checkValue = Long.toString(System.currentTimeMillis()/1000).substring(0,6);
-			   session.setAttribute("racJoinCheckValue", checkValue);
-			   session.setAttribute("racJoinMemberEmail", decryptMemberEmail);
 			   // Text
-			   String url = "http://rancre.com/member?action=permitJoin&inputEmail="+decryptMemberEmail+"&inputCheckValue="+checkValue;
+			   String url = "http://rancre.com/member?action=permitJoin&inputEmail="+decryptMemberEmail+"&inputCheckValue="+authToken;
 			   String text = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\r\n" + 
 			   		"			   <html xmlns='http://www.w3.org/1999/xhtml'>\r\n" + 
 			   		"			   <head>\r\n" + 
@@ -1073,8 +1060,6 @@ public class MemberController {
 		try {
 			HttpSession session = req.getSession();
 
-			String sessionJoinEmail = session.getAttribute("racJoinMemberEmail") != null ? session.getAttribute("racJoinMemberEmail").toString() : "";
-			String sessionJoinCheckValue = session.getAttribute("racJoinCheckValue") != null ? session.getAttribute("racJoinCheckValue").toString() : "";
 			String inputEmail = req.getParameter("inputEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputEmail").toString()) : null;
 			String inputCheckValue = req.getParameter("inputCheckValue") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputCheckValue").toString()) : null;
 			
@@ -1082,33 +1067,26 @@ public class MemberController {
 			res.setCharacterEncoding("UTF-8");
 
 			// 메일/ 회원체크
-			if(!sessionJoinEmail.equals(inputEmail)) {
-				CommonUtil.commonPrintLog("ERROR", className, "Join Permit Fail1", map);
-				req.getRequestDispatcher("/error.jsp").forward(req, res);
-				return;
-			}
-
-			if(!sessionJoinCheckValue.equals(inputCheckValue)) {
-				CommonUtil.commonPrintLog("ERROR", className, "Join Permit Fail2", map);
-				req.getRequestDispatcher("/error.jsp").forward(req, res);
-				return;
-			}
-			
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 			String encryptMemberEmail = EncryptUtil.AES_Encode(inputEmail, aesKey);
 			
-			int check = MemberDAO.permitJoin(encryptMemberEmail);
+			int check = MemberDAO.checkMemberAuthToken(encryptMemberEmail, inputCheckValue);
 			if(check!=1) {
+				CommonUtil.commonPrintLog("ERROR", className, "AuthToken not correct!!!", map);
+				req.getRequestDispatcher("/error.jsp").forward(req, res);
+				return;
+			}
+			
+			int check2 = MemberDAO.permitJoin(encryptMemberEmail);
+			if(check2!=1) {
 				CommonUtil.commonPrintLog("ERROR", className, "Join Permit Fail", map);
 				req.getRequestDispatcher("/error.jsp").forward(req, res);
 				return;
 			}
 			
-			session.removeAttribute("racJoinMemberEmail");
-			session.removeAttribute("racJoinCheckValue");
 			CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit OK", map);
 			MemberUid memberUid = MemberDAO.getMemberUidByEmail(encryptMemberEmail);
-			req.setAttribute("racMemberUid",memberUid.getRacMemberUid());
+			req.setAttribute("memberUid",memberUid.getRacMemberUid());
 			req.getRequestDispatcher("/02_page/Auth/joinPermit.jsp").forward(req, res);
 			return;
 			
@@ -1190,7 +1168,7 @@ public class MemberController {
 			
 			String decryptMemberUid = EncryptUtil.RSA_Decode(privateKey, inputMemberUid);
 
-			Member member = MemberDAO.getMemberByMemberUid(inputMemberUid);
+			Member member = MemberDAO.getMemberByMemberUid(decryptMemberUid);
 			
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
 			MemberController.setMemberSession(session, member, decryptMemberUid, aesKey);
@@ -1622,9 +1600,6 @@ public class MemberController {
 				res.getWriter().write(jObject.toString());
 				return;
 			}			
-			
-			session.removeAttribute("racPasswordMemberEmail");
-			session.removeAttribute("racPasswordCheckValue");
 			
 			CommonUtil.commonPrintLog("SUCCESS", className, "User Join OK", map);
 			jObject.put("outputResult", "1");

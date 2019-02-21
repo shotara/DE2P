@@ -77,7 +77,17 @@ public class AdminView extends HttpServlet{
 				map.put("ACTION", "getMemberList");
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				AdminController.getMemberList(req,res);
-				break;					
+				break;			
+			case "getAdminMain":
+				map.put("ACTION", "getAdminMain");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				AdminController.getAdminMain(req,res);
+				break;			
+			case "getPageDom":
+				map.put("ACTION", "getPageDom");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				AdminController.getPageDom(req,res);
+				break;			
 			}
 			
 		} catch (Exception e) {

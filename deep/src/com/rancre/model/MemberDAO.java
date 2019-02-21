@@ -25,7 +25,8 @@ public class MemberDAO {
 			int inputMemberStatus, 
 			Timestamp inputCurrentDate,
 			String encryptMemberEmail, 
-			String encryptMemberPassword) {
+			String encryptMemberPassword,
+			String authToken) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
 		
@@ -35,6 +36,7 @@ public class MemberDAO {
 			map.put("inputCurrentDate", inputCurrentDate);
 			map.put("memberEmail", encryptMemberEmail);
 			map.put("memberPassword", encryptMemberPassword);
+			map.put("memberAuthToken", authToken);
 
 			int check = (int)sqlSession.insert(namespace + ".addMember", map);
 			
@@ -486,6 +488,63 @@ public class MemberDAO {
 		} finally {
 			sqlSession.close();
 		}
+	}
+
+	public static int checkMemberAuthToken(String encryptMemberEmail, String inputCheckValue) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberEmail", encryptMemberEmail);
+			map.put("memberAuthToken", inputCheckValue);
+
+			return (int)sqlSession.selectOne(namespace + ".checkMemberAuthToken", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int setAuthTokenByValidMember(String encryptMemberEmail, String checkValue) {
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberEmail", encryptMemberEmail);
+			map.put("memberAuthToken", checkValue);
+
+
+			int check = (int)sqlSession.update(namespace + ".setAuthTokenByValidMember", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return 1;
+			} else {
+				sqlSession.rollback();
+				return 0;
+			}
+			
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int checkValidMemberByToken(String encryptMemberEmail, String inputCheckValue) {
+			
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("memberEmail", encryptMemberEmail);
+			map.put("memberAuthToken", inputCheckValue);
+
+			return (int)sqlSession.selectOne(namespace + ".checkValidMemberByToken", map);			
+		} finally {
+			sqlSession.close();
+		}
+	
 	}
 
 }

@@ -19,8 +19,12 @@
 		SELECT count(*) FROM rac_member WHERE racMemberEmail=#{memberEmail} AND racMemberStatus=2
 	</select>
 	
+    <select id="checkValidMemberByToken" parameterType="String" resultType="int">
+		SELECT count(*) FROM rac_member WHERE racMemberEmail=#{memberEmail} AND racMemberStatus=2 AND racMemberAuthToken=#{memberAuthToken}
+	</select>
+	
     <select id="changeMemberPassword" parameterType="java.util.HashMap" resultType="int">
-		UPDATE rac_member SET racMemberPassword=#{memberPassword}
+		UPDATE rac_member SET racMemberPassword=#{memberPassword}, racMemberAuthToken=""
 		WHERE racMemberEmail=#{memberEmail}
 	</select>	
 	<!-- MemberController.loginMember() -->
@@ -34,8 +38,8 @@
 	
 	<!-- MemberController.joinMember() -->
     <select id="addMember" parameterType="java.util.HashMap" resultType="int">
-		INSERT INTO rac_member(racMemberStatus, racMemberCreateDate, racMemberEmail, racMemberPassword)
-		VALUES(#{memberStatus}, #{inputCurrentDate}, #{memberEmail}, #{memberPassword})
+		INSERT INTO rac_member(racMemberStatus, racMemberCreateDate, racMemberEmail, racMemberPassword, racMemberAuthToken)
+		VALUES(#{memberStatus}, #{inputCurrentDate}, #{memberEmail}, #{memberPassword}, #{memberAuthToken})
 	</select>
 
     <select id="addMemberUid" parameterType="java.util.HashMap" resultType="int">
@@ -53,7 +57,7 @@
 	</select>	
 	
 	<select id="permitJoin" parameterType="java.util.HashMap" resultType="int">
-		UPDATE rac_member SET racMemberStatus=2
+		UPDATE rac_member SET racMemberStatus=2, racMemberAuthToken=""
 		WHERE racMemberEmail=#{email} AND racMemberStatus=1
 	</select>
 			
@@ -90,6 +94,11 @@
 	<select id="setMemberImg" parameterType="java.util.HashMap" resultType="int">
 		UPDATE deep_member SET deepMemberImage=#{uploadNo}
 		WHERE deepMemberNo=#{memberNo}
+	</select>
+	
+	<select id="setAuthTokenByValidMember" parameterType="java.util.HashMap" resultType="int">
+		UPDATE rac_member SET racMemberAuthToken=#{memberAuthToken}
+		WHERE racMemberEmail=#{memberEmail}
 	</select>
 	
 	<!-- CommonMethod -->
@@ -135,5 +144,9 @@
 	
 	<select id="getMemberUidByEmail" parameterType="String" resultType="com.rancre.model.domain.MemberUid">
 		SELECT a.* FROM rac_member_uid a, rac_member b WHERE b.racMemberEmail=#{inputMemberEmail} AND b.racMemberNo=a.racMemberNo
+	</select>	
+	
+	<select id="checkMemberAuthToken" parameterType="java.util.HashMap" resultType="int">
+		SELECT count(*) FROM rac_member WHERE racMemberEmail=#{memberEmail} AND racMemberAuthToken=#{memberAuthToken}
 	</select>	
 </mapper>

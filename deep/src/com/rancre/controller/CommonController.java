@@ -188,7 +188,7 @@ public class CommonController {
 			// 배치 돈 후 데이트와 배치 돌기 전 데이트 분기
 			if(date.getHours()>6) {
 				date.setDate(date.getDate()-1);
-				date.setHours(date.getHours());			
+				date.setHours(0);			
 				date.setMinutes(0);
 				date.setSeconds(0);
 				beforeDate = new Timestamp(date.getTime());
@@ -196,7 +196,7 @@ public class CommonController {
 				afterDate = new Timestamp(date.getTime());
 			} else {
 				date.setDate(date.getDate()-2);
-				date.setHours(date.getHours());			
+				date.setHours(0);			
 				date.setMinutes(0);
 				date.setSeconds(0);
 				beforeDate = new Timestamp(date.getTime());

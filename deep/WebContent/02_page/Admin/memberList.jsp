@@ -118,13 +118,6 @@
 		<input id="finalPageNo" type="hidden" value="${paging.finalPageNo}" />
 		<input id="currentNo" type="hidden" value="${paging.currentPageNo}" />
 	</div>
-	<div class="ipt-search-box">
-		<form action="/admin?action=searchAdmin" method="POST" id="searchAdmin">
-		<input class="ipt-search" id="ipt-Search" type="text" 
-			placeholder="다음으로 Rancre 검색" onkeyup="javascript:  Admin.search(2);" />
-		<input type="hidden" name="inputChannelName" id="inputChannelName"/>	
-		</form>
-	</div>
 </body>
 
 <script>

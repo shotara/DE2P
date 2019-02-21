@@ -71,7 +71,7 @@ public class AdminController {
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 			
-			if(!(sessionMemberNo>0) && sessionMemberNo>10) {
+			if(!(sessionMemberNo>0) || sessionMemberNo>10) {
 				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
 				jObject.put("outputResult", "-1");
 				res.getWriter().write(jObject.toString());
@@ -156,7 +156,7 @@ public class AdminController {
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 			
-			if(!(sessionMemberNo>0)) {
+			if(!(sessionMemberNo>0) || sessionMemberNo>10) {
 				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
 				jObject.put("outputResult", "-1");
 				res.getWriter().write(jObject.toString());
@@ -208,6 +208,17 @@ public class AdminController {
 			int inputChannelNo = req.getParameter("inputChannelNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelNo").toString())) : 0;
 			int inputPageNo = req.getParameter("inputPageNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputPageNo").toString())) : 1;
 
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			if(!(sessionMemberNo>0) || sessionMemberNo>10) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
 			String[] inputChannelAdUrls = req.getParameterValues("inputChannelAdUrls");
 			ArrayList<String> channeAdUrls = new ArrayList<String>();
 			for(int i=0; i<inputChannelAdUrls.length;i++) {
@@ -232,9 +243,7 @@ public class AdminController {
 			Calendar calendar = Calendar.getInstance();
 			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
 
-			JSONObject jObject = new JSONObject();
-			res.setContentType("application/json");
-			res.setCharacterEncoding("UTF-8");
+
 
 			// Parameter check
 			ArrayList<Object> parameterList = new ArrayList<Object>();
@@ -306,7 +315,12 @@ public class AdminController {
 				return;
 			}
 			
-
+			if(!(sessionMemberNo>0) || sessionMemberNo>10) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
 			String category = "";
 			
 			category = inputCategoryNo + ";";
@@ -414,7 +428,7 @@ public class AdminController {
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 			
-			if(!(sessionMemberNo>0)) {
+			if(!(sessionMemberNo>0) || sessionMemberNo>10) {
 				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
 				jObject.put("outputResult", "-1");
 				res.getWriter().write(jObject.toString());
@@ -479,7 +493,7 @@ public class AdminController {
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 			
-			if(!(sessionMemberNo>0)) {
+			if(!(sessionMemberNo>0) || sessionMemberNo>10) {
 				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
 				jObject.put("outputResult", "-1");
 				res.getWriter().write(jObject.toString());
@@ -523,13 +537,12 @@ public class AdminController {
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 			
-			if(!(sessionMemberNo>0)) {
+			if(!(sessionMemberNo>0) || sessionMemberNo>10) {
 				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
 				jObject.put("outputResult", "-1");
 				res.getWriter().write(jObject.toString());
 				return;
 			}
-			
 			/// Check Admin Member 
 
 
@@ -571,7 +584,7 @@ public class AdminController {
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 			
-			if(!(sessionMemberNo>0) && sessionMemberNo>10) {
+			if(!(sessionMemberNo>0) || sessionMemberNo>10) {
 				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
 				jObject.put("outputResult", "-1");
 				res.getWriter().write(jObject.toString());
@@ -650,7 +663,7 @@ public class AdminController {
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");
 			
-			if(!(sessionMemberNo>0) && sessionMemberNo>10) {
+			if(!(sessionMemberNo>0) || sessionMemberNo>10) {
 				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
 				jObject.put("outputResult", "-1");
 				res.getWriter().write(jObject.toString());
@@ -696,6 +709,103 @@ public class AdminController {
 			return;
 			
 		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void getAdminMain(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+			if(!(sessionMemberNo>0) || sessionMemberNo>10) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// 완료 
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get Admin main OK", map);
+			req.setAttribute("adminToken", "129");
+			req.getRequestDispatcher("/02_page/Admin/view.jsp").forward(req, res);
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void getPageDom(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			int mode = req.getParameter("mode") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("mode").toString())) : 1;
+			String inputUrl = req.getParameter("inputUrl") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputUrl").toString()) : "";
+			
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			if(!(sessionMemberNo>0) || sessionMemberNo>10) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			// Parameter check
+			ArrayList<Object> parameterList = new ArrayList<Object>();
+			parameterList.add(inputUrl);
+
+			if(!CommonUtil.commonParameterCheck(parameterList)) {
+				CommonUtil.commonPrintLog("FAIL", className, "Parameter Missing", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+		
+			// URL 크롤링 
+			String url= inputUrl;
+			Document doc = Jsoup.parse(new URL(url).openStream(), "utf-8", url);
+
+			switch(mode) {
+			case 1:   // Video Detail (Video)
+				String viewsContent = doc.select(".watch-view-count").toString().substring(35, doc.select(".watch-view-count").toString().length()-8).replace(",", "");
+				String nameContent = doc.select("#eow-title").first().attr("title");
+				String thumbContent = doc.select("#watch7-content link[itemprop='thumbnailUrl']").first().attr("href");
+				String dateContent = doc.select("#watch7-content meta[itemprop='datePublished']").first().attr("content") + " 00:00:00";
+
+				break; 
+			case 2:   // Recent Video List (Channel/video)
+				String test = doc.select(".feed-item-container").toString();
+				System.out.println(test);
+				if (test.equals("")) System.out.println("ok");
+				else System.out.println(doc);
+				break;
+			}
+
+			System.out.println(doc);
+			// 완료 
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get URL DOM OK;", map);
+			jObject.put("outputResult", doc);
+			return;
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
