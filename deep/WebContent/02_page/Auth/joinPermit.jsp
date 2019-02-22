@@ -99,9 +99,10 @@ function joinPermit() {
 					rsa2.setPublic(publicKeyModulus, publicKeyExponent);
 					memberUid  = rsa2.encrypt(inputMemberUid);
 					
-					location.href = "/member?action=goReview&inputMemberUid="+memberUid;
+					location.href = "/member?action=goReview&inputMemberUid="+memberUid+"&inputEmail=${inputEmail}&inputCheckValue=${inputCheckValue}";
 				}else{   //취소
-					location.href = "/";
+					alert("dfd");
+					location.href = "/member?action=permitJoin&inputEmail=${inputEmail}&inputCheckValue=${inputCheckValue}";
 				}
 
 			}else if(response.outputResult == "-1"){

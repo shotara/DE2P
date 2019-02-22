@@ -795,14 +795,14 @@ public class AdminController {
 				String test = doc.select(".feed-item-container").toString();
 				System.out.println(test);
 				if (test.equals("")) System.out.println("ok");
-				else System.out.println(doc);
+				else System.out.println(doc.select(".about-stats"));
 				break;
 			}
 
-			System.out.println(doc);
-			// 완료 
+			System.out.println(doc.select(".about-stats"));
+			// 완료 colArr = $('.about-stat','.about-stats');
 			CommonUtil.commonPrintLog("SUCCESS", className, "Get URL DOM OK;", map);
-			jObject.put("outputResult", doc);
+			jObject.put("outputResult", doc.select(".about-stats"));
 			return;
 			
 		} catch (Exception e) {

@@ -77,6 +77,11 @@ public class MemberView extends HttpServlet {
 					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 					MemberController.permitJoin(req,res);
 					break;	
+				case "checkPermitJoin":
+					map.put("ACTION", "checkPermitJoin");
+					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+					MemberController.checkPermitJoin(req,res);
+					break;	
 				case "addMemberAdTarget":
 					map.put("ACTION", "addMemberAdTarget");
 					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);

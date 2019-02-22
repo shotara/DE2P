@@ -582,7 +582,7 @@ public class MemberController {
 			   message.setSubject("Rancre에 오신것을 환영합니다!");
 			   
 			   // Text
-			   String url = "http://rancre.com/member?action=permitJoin&inputEmail="+decryptMemberEmail+"&inputCheckValue="+authToken;
+			   String url = "http://localhost:8080/member?action=checkPermitJoin&inputEmail="+decryptMemberEmail+"&inputCheckValue="+authToken;
 			   String text = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\r\n" + 
 			   		"			   <html xmlns='http://www.w3.org/1999/xhtml'>\r\n" + 
 			   		"			   <head>\r\n" + 
@@ -1076,7 +1076,6 @@ public class MemberController {
 				req.getRequestDispatcher("/error.jsp").forward(req, res);
 				return;
 			}
-			
 			int check2 = MemberDAO.permitJoin(encryptMemberEmail);
 			if(check2!=1) {
 				CommonUtil.commonPrintLog("ERROR", className, "Join Permit Fail", map);
@@ -1085,8 +1084,43 @@ public class MemberController {
 			}
 			
 			CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit OK", map);
+			req.getRequestDispatcher("/index.jsp").forward(req, res);
+			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void checkPermitJoin(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+
+			String inputEmail = req.getParameter("inputEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputEmail").toString()) : null;
+			String inputCheckValue = req.getParameter("inputCheckValue") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputCheckValue").toString()) : null;
+			
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+			// 메일/ 회원체크
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+			String encryptMemberEmail = EncryptUtil.AES_Encode(inputEmail, aesKey);
+			
+			int check = MemberDAO.checkMemberAuthToken(encryptMemberEmail, inputCheckValue);
+			if(check!=1) {
+				CommonUtil.commonPrintLog("ERROR", className, "AuthToken not correct!!!", map);
+				req.getRequestDispatcher("/error.jsp").forward(req, res);
+				return;
+			}
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Join Permit Chek OK", map);
 			MemberUid memberUid = MemberDAO.getMemberUidByEmail(encryptMemberEmail);
 			req.setAttribute("memberUid",memberUid.getRacMemberUid());
+			req.setAttribute("inputEmail",inputEmail);
+			req.setAttribute("inputCheckValue",inputCheckValue);
 			req.getRequestDispatcher("/02_page/Auth/joinPermit.jsp").forward(req, res);
 			return;
 			
@@ -1150,6 +1184,9 @@ public class MemberController {
 			HttpSession session = req.getSession();
 			
 			String inputMemberUid = req.getParameter("inputMemberUid") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputMemberUid").toString()) : null;
+			String inputEmail = req.getParameter("inputEmail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputEmail").toString()) : null;
+			String inputCheckValue = req.getParameter("inputCheckValue") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputCheckValue").toString()) : null;
+
 			
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
@@ -1167,10 +1204,25 @@ public class MemberController {
 			}	
 			
 			String decryptMemberUid = EncryptUtil.RSA_Decode(privateKey, inputMemberUid);
-
 			Member member = MemberDAO.getMemberByMemberUid(decryptMemberUid);
 			
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+			String encryptMemberEmail = EncryptUtil.AES_Encode(inputEmail, aesKey);
+
+			int check = MemberDAO.checkMemberAuthToken(encryptMemberEmail, inputCheckValue);
+			if(check!=1) {
+				CommonUtil.commonPrintLog("ERROR", className, "AuthToken not correct!!!", map);
+				req.getRequestDispatcher("/error.jsp").forward(req, res);
+				return;
+			}
+			
+			int check2 = MemberDAO.permitJoin(encryptMemberEmail);
+			if(check2!=1) {
+				CommonUtil.commonPrintLog("ERROR", className, "Join Permit Fail", map);
+				req.getRequestDispatcher("/error.jsp").forward(req, res);
+				return;
+			}
+			
 			MemberController.setMemberSession(session, member, decryptMemberUid, aesKey);
 
 			CommonUtil.commonPrintLog("SUCCESS", className, "goReview OK", map);
@@ -1610,4 +1662,5 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
+
 }
