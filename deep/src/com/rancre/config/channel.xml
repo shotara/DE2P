@@ -39,13 +39,17 @@
 	</select>
 	
 	<select id="getChannelAdVideoList"  resultType="com.rancre.model.domain.ChannelAd">
-		SELECT * FROM rac_channel_ad WHERE racChannelNo = #{inputChannelNo} ORDER BY racChannelAdNo DESC LIMIT 15
+		SELECT * FROM rac_channel_ad WHERE racChannelNo = #{inputChannelNo} AND racChannelAdStatus=2 ORDER BY racChannelAdNo DESC LIMIT 15
 	</select>
 	
 	<select id="getChannelCost"  resultType="com.rancre.model.domain.ChannelCost">
 		SELECT * FROM rac_channel_cost WHERE racChannelNo = #{inputChannelNo}
 	</select>
 	
+	<select id="getChannelCostByCostNo"  resultType="com.rancre.model.domain.ChannelCost">
+		SELECT * FROM rac_channel_cost WHERE racChannelCostNo = #{inputChannelCostNo}
+	</select>
+		
 	<select id="autoComplete" parameterType="String" resultType="com.rancre.model.domain.Channel">
 		SELECT * FROM rac_channel WHERE racChannelTitle LIKE concat('%',#{inputChannelTitle},'%') AND racChannelStatus=2 AND racChannelRegion="Ko"
 	</select>

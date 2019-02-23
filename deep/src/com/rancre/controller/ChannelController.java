@@ -211,15 +211,6 @@ public class ChannelController {
 
 					adVideoList.add(tempObejct);
 				}
-				
-				// ChannelCost
-				int checkCost = ChannelDAO.checkChannelCost(inputChannelNo);
-				if(checkCost >0) {
-					int channelAverageCost = ChannelDAO.getChannelAverageCost(inputChannelNo);
-					req.setAttribute("outputAdEvenPrice",CommonUtil.setCommaForInt(channelAverageCost)+" 원");					
-				} else {
-					req.setAttribute("outputAdEvenPrice","정보없음");
-				}
 
 				req.setAttribute("outputAdVideoList", adVideoList);
 
@@ -227,6 +218,8 @@ public class ChannelController {
 				ArrayList<Review> reviewList = ChannelDAO.getReviewList(inputChannelNo);
 				ArrayList<HashMap<String,Object>> outputReviewList = new ArrayList<HashMap<String,Object>>();
 				int satisfy = 0;
+				int cost = 0;
+				int correctReviewSize=0;
 				for(int i=0; i<reviewList.size();i++) {
 					HashMap<String,Object> tempObejct = new HashMap<String,Object>();
 					tempObejct.put("outputReviewNo", reviewList.get(i).getRacReviewNo());
@@ -236,7 +229,11 @@ public class ChannelController {
 					tempObejct.put("outputChannelAdType", CommonUtil.getReviewAdType(ChannelDAO.getChannelAd(reviewList.get(i).getRacChannelAdNo()).getRacChannelAdType()));
 					tempObejct.put("outputChannelCostNo", reviewList.get(i).getRacChannelCostNo());
 					tempObejct.put("outputReviewSatisfy", CommonUtil.getReviewSatisfy5(reviewList.get(i).getRacReviewSatisfy()));
-					satisfy = satisfy + reviewList.get(i).getRacReviewSatisfy();
+					if(reviewList.get(i).getRacReviewStatus()!=-1) {
+						satisfy = satisfy + reviewList.get(i).getRacReviewSatisfy();
+						cost += ChannelDAO.getChannelCostByCostNo(reviewList.get(i).getRacChannelCostNo()).getRacChannelCostPrice();
+						correctReviewSize++;
+					}
 					tempObejct.put("outputReviewTargetReach", CommonUtil.getReviewTarget(reviewList.get(i).getRacReviewTargetReach()));
 					tempObejct.put("outputReviewTargetConversion", CommonUtil.getReviewTarget(reviewList.get(i).getRacReviewTargetConversion()));
 					tempObejct.put("outputReviewTargetGender", CommonUtil.getGender(reviewList.get(i).getRacReviewTargetGender()));
@@ -254,8 +251,8 @@ public class ChannelController {
 				}
 				req.setAttribute("outputReivewList", outputReviewList);
 				
-				if(reviewList.size()!=0) {
-					req.setAttribute("outputAdSatisfyRank", CommonUtil.getReviewSatisfy5((int) Math.floor(satisfy/reviewList.size()))); // 리뷰의 점수 평균 
+				if(correctReviewSize!=0) {
+					req.setAttribute("outputAdSatisfyRank", CommonUtil.getReviewSatisfy5((int) Math.floor(satisfy/correctReviewSize))); // 리뷰의 점수 평균 
 				} else {
 					req.setAttribute("outputAdSatisfyRank","정보없음"); // 리뷰의 점수 평균 
 
@@ -264,6 +261,13 @@ public class ChannelController {
 					req.setAttribute("outputAdViews",  CommonUtil.setCommaForInt(Math.round(adViews/channelAdList.size())));
 				} else {
 					req.setAttribute("outputAdViews", "데이터 수집중");
+				}
+				
+				// ChannelCost
+				if(cost >0) {
+					req.setAttribute("outputAdEvenPrice",CommonUtil.setCommaForInt(Math.round(cost/correctReviewSize))+" 원");					
+				} else {
+					req.setAttribute("outputAdEvenPrice","정보없음");
 				}
 			}
 			
@@ -379,7 +383,7 @@ public class ChannelController {
 			int inputReviewRecomand = req.getParameter("inputReviewRecomand") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewRecomand").toString())) : 0;				
 			int inputReviewAdAgain = req.getParameter("inputReviewAdAgain") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewAdAgain").toString())) : 0;				
 			String inputChannelName = req.getParameter("inputChannelName") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelName").toString()) : null;
-			String inputChannelAdUrl = req.getParameter("inputChannelAdUrl") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelAdUrl").toString()) : null;
+			String inputChannelAdUrl = req.getParameter("inputChannelAdUrl") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelAdUrl").toString()) : "";
 			String inputReviewDetail = req.getParameter("inputReviewDetail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputReviewDetail").toString()) : null;
 			Calendar calendar = Calendar.getInstance();
 			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
@@ -417,7 +421,10 @@ public class ChannelController {
 			date.setMonth(inputReviewDate2);
 			date.setDate(1);
 			Timestamp executeDate = new Timestamp(date.getTime());
-			
+			if(!inputChannelAdUrl.equals("")) {
+				inputChannelAdUrl.substring(inputChannelAdUrl.lastIndexOf("watch?v="));
+				System.out.println(inputChannelAdUrl.substring(inputChannelAdUrl.lastIndexOf("watch?v=")));
+			}
 			int check = ChannelDAO.addChannelAd(channel.getRacChannelNo(), decryptChannelAdUrl, inputChannelAdType, inputChannelAdCategory, inputCurrentDate, executeDate);
 			if(check !=1) {
 				CommonUtil.commonPrintLog("ERROR", className, "Add Channel Ad Fail!!", map);

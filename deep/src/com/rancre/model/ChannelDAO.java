@@ -735,6 +735,18 @@ public class ChannelDAO {
 			sqlSession.close();
 		}
 	}
+	
+	public static ChannelCost getChannelCostByCostNo(int inputChannelCostNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (ChannelCost)sqlSession.selectOne(namespace + ".getChannelCostByCostNo", inputChannelCostNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
 
 	public static int checkRankTop(int inputChannelNo) {
 		
@@ -866,5 +878,6 @@ public class ChannelDAO {
 			sqlSession.close();
 		}
 	}
+
 
 }
