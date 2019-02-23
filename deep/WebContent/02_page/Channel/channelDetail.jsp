@@ -362,12 +362,12 @@
 													<div class="stat">${item.outputReviewTargetAge }</div>
 												</div>
 												<div class="review-text w-auto float-left">
-													<c:if test="${ item.outputReviewDetail != 0}">
+													<c:if test="${ item.outputReviewStatus == 2}">
 													<div class="txt">
 														<span>${item.outputReviewDetail }</span>
 													</div>
 													</c:if>
-													<c:if test="${ item.outputReviewDetail == 0}">
+													<c:if test="${ item.outputReviewStatus != 2}">
 													<div class="demo-text">
 															<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
 															<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>

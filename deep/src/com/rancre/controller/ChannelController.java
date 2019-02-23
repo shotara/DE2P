@@ -134,7 +134,7 @@ public class ChannelController {
 				}
 				
 			} else {
-				req.setAttribute("outputChannelBeforeFollowers", "제공예정");
+				req.setAttribute("outputChannelBeforeFollowers", "데이터 수집중");
 
 			}
 
@@ -230,6 +230,7 @@ public class ChannelController {
 				for(int i=0; i<reviewList.size();i++) {
 					HashMap<String,Object> tempObejct = new HashMap<String,Object>();
 					tempObejct.put("outputReviewNo", reviewList.get(i).getRacReviewNo());
+					tempObejct.put("outputReviewStatus", reviewList.get(i).getRacReviewStatus());
 					tempObejct.put("outputChannelNo", reviewList.get(i).getRacChannelNo());
 					tempObejct.put("outputChannelAdNo", reviewList.get(i).getRacChannelAdNo());
 					tempObejct.put("outputChannelAdType", CommonUtil.getReviewAdType(ChannelDAO.getChannelAd(reviewList.get(i).getRacChannelAdNo()).getRacChannelAdType()));
