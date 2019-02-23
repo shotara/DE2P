@@ -60,6 +60,7 @@ public class ChannelDAO {
 
 	public static int addChannelCost(
 			int racChannelNo, 
+			int inputChannelAdType,
 			int commercialPrice, 
 			Timestamp inputCurrentDate) {
 		
@@ -68,6 +69,7 @@ public class ChannelDAO {
 		try {	
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("channelNo", racChannelNo);
+			map.put("channelAdType", inputChannelAdType);
 			map.put("channelCostPrice", commercialPrice);			
 			map.put("inputCurrentDate", inputCurrentDate);			
 

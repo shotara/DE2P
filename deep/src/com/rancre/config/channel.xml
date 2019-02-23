@@ -68,8 +68,8 @@
 	</select>	
 
     <select id="addChannelCost" parameterType="java.util.HashMap" resultType="int">
-		INSERT INTO rac_channel_cost(racChannelNo, racChannelCostPrice, racChannelCostCreateDate)
-		VALUES(#{channelNo}, #{channelCostPrice}, #{inputCurrentDate})
+		INSERT INTO rac_channel_cost(racChannelNo, racChannelAdType, racChannelCostPrice, racChannelCostCreateDate)
+		VALUES(#{channelNo}, #{channelAdType}, #{channelCostPrice}, #{inputCurrentDate})
 	</select>		
 
     <select id="addReview" parameterType="java.util.HashMap" resultType="int">

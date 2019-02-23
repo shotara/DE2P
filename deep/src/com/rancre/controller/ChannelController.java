@@ -260,10 +260,10 @@ public class ChannelController {
 					req.setAttribute("outputAdSatisfyRank","정보없음"); // 리뷰의 점수 평균 
 
 				}
-				if(channelAdList.size()!=0) {
+				if(channelAdList.size()!=0 && adViews!=0) {
 					req.setAttribute("outputAdViews",  CommonUtil.setCommaForInt(Math.round(adViews/channelAdList.size())));
 				} else {
-					req.setAttribute("outputAdViews", "정보없음");
+					req.setAttribute("outputAdViews", "데이터 수집중");
 				}
 			}
 			
@@ -370,7 +370,7 @@ public class ChannelController {
 			int inputReviewDate1 = req.getParameter("inputReviewDate1") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewDate1").toString())) : 0;				
 			int inputReviewDate2 = req.getParameter("inputReviewDate2") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewDate2").toString())) : 0;				
 			int inputChannelAdType = req.getParameter("inputChannelAdType") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelAdType").toString())) : 0;				
-			int commercialPrice = req.getParameter("commercialPrice") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("commercialPrice").toString())) : 0;				
+			int inputChannelCostPrice = req.getParameter("inputChannelCostPrice") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelCostPrice").toString())) : 0;				
 			int inputReviewTargetReach = req.getParameter("inputReviewTargetReach") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewTargetReach").toString())) : 0;				
 			int inputReviewTargetConvert = req.getParameter("inputReviewTargetConvert") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewTargetConvert").toString())) : 0;				
 			int inputChannelAdCategory = req.getParameter("inputChannelAdCategory") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelAdCategory").toString())) : 0;				
@@ -424,7 +424,7 @@ public class ChannelController {
 			}
 			int channelAdNo = ChannelDAO.getChannelAdLastOne();
 			
-			int check2 = ChannelDAO.addChannelCost(channel.getRacChannelNo(), commercialPrice, inputCurrentDate);
+			int check2 = ChannelDAO.addChannelCost(channel.getRacChannelNo(), inputChannelAdType, inputChannelCostPrice, inputCurrentDate);
 			if(check2 !=1) {
 				CommonUtil.commonPrintLog("ERROR", className, "add Channel Cost Fail!!", map);
 			}	

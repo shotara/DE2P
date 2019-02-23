@@ -372,7 +372,6 @@ Common.review = function (mode){
 		var commercialPrice = $("#Input-Commercial-Price").val();
 		var commercialUrl = $("#Input-Commercial-Url").val();
 		var channelText = protectXSS($("#Input-Commercial-Text").val());
-
 		var targetReach = $("#success-reach").val();
 		var targetConvert = $("#success-convert").val();
 		var targetType = $("#success-itemType").val();
