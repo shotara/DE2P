@@ -259,8 +259,10 @@ public class ChannelController {
 				}
 				if(channelAdList.size()!=0 && adViews!=0) {
 					req.setAttribute("outputAdViews",  CommonUtil.setCommaForInt(Math.round(adViews/channelAdList.size())));
-				} else {
+				} else if(reviewList.size()!=0){
 					req.setAttribute("outputAdViews", "데이터 수집중");
+				} else {
+					req.setAttribute("outputAdViews", "정보없음");
 				}
 				
 				// ChannelCost
@@ -382,9 +384,9 @@ public class ChannelController {
 			int inputReviewTargetSex = req.getParameter("inputReviewTargetSex") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewTargetSex").toString())) : 0;				
 			int inputReviewRecomand = req.getParameter("inputReviewRecomand") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewRecomand").toString())) : 0;				
 			int inputReviewAdAgain = req.getParameter("inputReviewAdAgain") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewAdAgain").toString())) : 0;				
-			String inputChannelName = req.getParameter("inputChannelName") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelName").toString()) : null;
+			String inputChannelName = req.getParameter("inputChannelName") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelName").toString()) : "";
 			String inputChannelAdUrl = req.getParameter("inputChannelAdUrl") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelAdUrl").toString()) : "";
-			String inputReviewDetail = req.getParameter("inputReviewDetail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputReviewDetail").toString()) : null;
+			String inputReviewDetail = req.getParameter("inputReviewDetail") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputReviewDetail").toString()) : "";
 			Calendar calendar = Calendar.getInstance();
 			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
 
@@ -421,9 +423,10 @@ public class ChannelController {
 			date.setMonth(inputReviewDate2);
 			date.setDate(1);
 			Timestamp executeDate = new Timestamp(date.getTime());
-			if(!inputChannelAdUrl.equals("")) {
-				inputChannelAdUrl.substring(inputChannelAdUrl.lastIndexOf("watch?v="));
-				System.out.println(inputChannelAdUrl.substring(inputChannelAdUrl.lastIndexOf("watch?v=")));
+			System.out.println(decryptChannelAdUrl);
+			System.out.println(!decryptChannelAdUrl.equals(""));
+			if(!decryptChannelAdUrl.equals("")) {
+				decryptChannelAdUrl = decryptChannelAdUrl.substring(decryptChannelAdUrl.lastIndexOf("watch?v="));
 			}
 			int check = ChannelDAO.addChannelAd(channel.getRacChannelNo(), decryptChannelAdUrl, inputChannelAdType, inputChannelAdCategory, inputCurrentDate, executeDate);
 			if(check !=1) {

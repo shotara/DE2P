@@ -16,6 +16,7 @@ import com.rancre.model.domain.FeedHashtag;
 import com.rancre.model.domain.FeedList;
 import com.rancre.model.domain.FeedSeries;
 import com.rancre.model.domain.Member;
+import com.rancre.model.domain.Video;
 import com.rancre.util.DAOFactory;
 
 public class AdminDAO {
@@ -363,6 +364,30 @@ public class AdminDAO {
 			map.put("size", recordsPerPage);			
 		
 			return (ArrayList) sqlSession.selectList(namespace + ".getMemberList", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static int checkVideo(String inputVideoId) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			return (int) sqlSession.selectOne(namespace + ".checkVideo", inputVideoId);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static Video getVideoById(String inputVideoId) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			return (Video) sqlSession.selectOne(namespace + ".getVideoById", inputVideoId);
 			
 		} finally {
 			sqlSession.close();

@@ -80,4 +80,12 @@
 	<select id="getChannelCategory" parameterType="int"  resultType="com.rancre.model.domain.ChannelCategory">
 		SELECT * FROM rac_channel_category WHERE racChannelNo=#{channelNo}
 	</select>	
+	
+	<select id="checkVideo" parameterType="String"  resultType="int">
+		SELECT count(*) FROM rac_video WHERE racVideoId=#{inputVideoId}
+	</select>	
+		
+	<select id="getVideoById" parameterType="String"  resultType="com.rancre.model.domain.Video">
+		SELECT * FROM rac_video WHERE racVideoId=#{inputVideoId}
+	</select>	
 </mapper>
