@@ -308,6 +308,7 @@ a:hover.commonBtn {
 	height: 36px;
 	background-color: #f11834;
 	color: #fff;
+	cursor : pointer;
 }
 
 .commonReverseBtn:focus {
@@ -334,10 +335,12 @@ a:hover.commonBtn {
 	background-color: #f11834;
 	color: #fff;
 	font-weight: bold;
+	cursor : pointer;
 }
 
 .common-wide-Btn:focus {
 	outline: none;
+	cursor : pointer;
 }
 
 .common-wide-Btn a {
@@ -455,6 +458,7 @@ a:hover.common-wide20Reverse-Btn {
 	height: 36px;
 	background-color: #fd8090;
 	color: #fff;
+	cursor : pointer;
 }
 
 .company-disable-Btn {
@@ -479,6 +483,7 @@ a:hover.common-wide20Reverse-Btn {
 	height: 36px;
 	color: #f11834;
 	background: #ffffff;
+	cursor : pointer;
 }
 
 .btnListGo {
@@ -489,6 +494,7 @@ a:hover.common-wide20Reverse-Btn {
 	height: 36px;
 	color: #f11834;
 	background: #ffffff;
+	cursor : pointer;
 }
 
 .btnListGo:focus {
@@ -546,6 +552,7 @@ a:hover.common-wide20Reverse-Btn {
 	font-size: 1em;
 	height: 30px;
 	color: #f11834;
+	cursor : pointer;
 }
 
 .common-Small-Btn:focus {
@@ -570,6 +577,7 @@ a:hover.common-wide20Reverse-Btn {
 	height: 30px;
 	background-color: #f11834;
 	color: #fff;
+	cursor : pointer;
 }
 
 .common-Small-Reverse-Btn:focus {
@@ -1013,7 +1021,7 @@ a.subnav-link:hover {
 }
 
 .rankMainDif.rancNew {
-	color: #fce980;
+	color: #e0be03;
 }
 
 .all-channel {

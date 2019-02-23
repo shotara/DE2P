@@ -335,8 +335,9 @@
 							<!-- channel reivew start -->
 							<c:if test="${not empty requestScope.outputReivewList}">
 								<div class="reviews">
+									<div class="pTop2"></div>
 									<c:forEach var="item" items="${requestScope.outputReivewList}">
-										<div class="review pTop2">
+										<div class="review">
 											<div class="review-top">
 												<div class="date float-left">최근 1년 이내, 실제 집행된 광고 영상에
 													대한 리뷰입니다.</div>
@@ -388,7 +389,7 @@
 											</div>
 
 										</div>
-
+										<div class="pTop2"></div>
 									</c:forEach>
 								</div>
 							</c:if>
