@@ -233,9 +233,9 @@ public class ChannelController {
 					tempObejct.put("outputReviewNo", reviewList.get(i).getRacReviewNo());
 					tempObejct.put("outputChannelNo", reviewList.get(i).getRacChannelNo());
 					tempObejct.put("outputChannelAdNo", reviewList.get(i).getRacChannelAdNo());
-					tempObejct.put("outputChannelAdType", ChannelDAO.getChannelAd(reviewList.get(i).getRacChannelAdNo()).getRacChannelAdType());
+					tempObejct.put("outputChannelAdType", CommonUtil.getReviewAdType(ChannelDAO.getChannelAd(reviewList.get(i).getRacChannelAdNo()).getRacChannelAdType()));
 					tempObejct.put("outputChannelCostNo", reviewList.get(i).getRacChannelCostNo());
-					tempObejct.put("outputReviewSatisfy", reviewList.get(i).getRacReviewSatisfy());
+					tempObejct.put("outputReviewSatisfy", CommonUtil.getReviewSatisfy5(reviewList.get(i).getRacReviewSatisfy()));
 					satisfy = satisfy + reviewList.get(i).getRacReviewSatisfy();
 					tempObejct.put("outputReviewTargetReach", CommonUtil.getReviewTarget(reviewList.get(i).getRacReviewTargetReach()));
 					tempObejct.put("outputReviewTargetConversion", CommonUtil.getReviewTarget(reviewList.get(i).getRacReviewTargetConversion()));
@@ -243,7 +243,11 @@ public class ChannelController {
 					tempObejct.put("outputReviewTargetAge", CommonUtil.getAge(reviewList.get(i).getRacReviewTargetAge()));
 					tempObejct.put("outputReviewRecomand", CommonUtil.getRecomand(reviewList.get(i).getRacReviewRecomand()));
 					tempObejct.put("outputReviewAdAgain", CommonUtil.getRecomand(reviewList.get(i).getRacReviewAdAgain()));
-					tempObejct.put("outputReviewDetail", reviewList.get(i).getRacReviewDetail());
+					if(reviewList.get(i).getRacReviewStatus()==2) {
+						tempObejct.put("outputReviewDetail", reviewList.get(i).getRacReviewDetail());						
+					} else {
+						tempObejct.put("outputReviewDetail", "no");				
+					}
 					tempObejct.put("outputReviewCreateDate", CommonUtil.getChannelDetailDate(reviewList.get(i).getRacReviewCreateDate()));
 
 					outputReviewList.add(tempObejct);

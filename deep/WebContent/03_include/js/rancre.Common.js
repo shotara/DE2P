@@ -371,7 +371,7 @@ Common.review = function (mode){
 		var commercialType = $("#commercial-Type").val();
 		var commercialPrice = $("#Input-Commercial-Price").val();
 		var commercialUrl = $("#Input-Commercial-Url").val();
-		var channelText = $("#Input-Commercial-Text").val();
+		var channelText = protectXSS($("#Input-Commercial-Text").val());
 
 		var targetReach = $("#success-reach").val();
 		var targetConvert = $("#success-convert").val();
@@ -383,7 +383,6 @@ Common.review = function (mode){
 
 		var encryptChannelName = rsa.encrypt(channelName);
 		var encryptCommercialUrl = rsa.encrypt(commercialUrl);
-		var encryptChannelText = rsa.encrypt(channelText);
 
 		var form_data = {
 				inputChannelName : encryptChannelName,
@@ -393,7 +392,7 @@ Common.review = function (mode){
 				inputChannelAdType : commercialType,
 				inputChannelCostPrice : commercialPrice,
 				inputChannelAdUrl : encryptCommercialUrl,
-				inputReviewDetail : encryptChannelText,
+				inputReviewDetail : channelText,
 				inputReviewTargetReach : targetReach,
 				inputReviewTargetConvert : targetConvert,
 				inputChannelAdCategory : targetType,

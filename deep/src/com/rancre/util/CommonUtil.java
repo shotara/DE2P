@@ -501,6 +501,42 @@ public class CommonUtil {
 		}
 	}
 	
+	public static String getReviewSatisfy5(int no) {
+		switch(no) {
+		case 1:
+			return "매우 만족";
+		case 2:
+			return "만족";
+		case 3:
+			return "보통";
+		case 4:
+			return "불만족";
+		case 5:
+			return "매우 불만족";
+		default:
+			return "보통";
+		}
+	}
+	
+	public static String getReviewAdType(int no) {
+		switch(no) {
+		case 1:
+			return "기타";
+		case 2:
+			return "영상 콘텐츠";
+		case 3:
+			return "배너 광고";
+		case 4:
+			return "물품협찬";
+		case 5:
+			return "섭외";
+		case 6:
+			return "True View";
+		default:
+			return "기타";
+		}
+	}	
+
 	public static String getChannelDetailDate(Timestamp date) {
 		Date currentDate = new Date();
 		long newDate = (currentDate.getTime() - date.getTime()) / 1000;  /// 1초 
