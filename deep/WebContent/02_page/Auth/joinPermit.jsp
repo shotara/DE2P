@@ -98,10 +98,10 @@ function joinPermit() {
 					var rsa2 = new RSAKey();
 					rsa2.setPublic(publicKeyModulus, publicKeyExponent);
 					memberUid  = rsa2.encrypt(inputMemberUid);
-					
+					alert("회원가입이 완료되었습니다!\n(자동로그인 되었습니다.)");
 					location.href = "/member?action=goReview&inputMemberUid="+memberUid+"&inputEmail=${inputEmail}&inputCheckValue=${inputCheckValue}";
 				}else{   //취소
-					alert("dfd");
+					alert("회원가입이 완료되었습니다!\n다시 로그인 해주세요.");
 					location.href = "/member?action=permitJoin&inputEmail=${inputEmail}&inputCheckValue=${inputCheckValue}";
 				}
 

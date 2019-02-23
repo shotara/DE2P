@@ -143,7 +143,6 @@ public class ChannelController {
 			ArrayList<Video> recentVideoList = ChannelDAO.getRecentVieoList(inputChannelNo);
 			ArrayList<HashMap<String,Object>> outputRecentVideoList = new ArrayList<HashMap<String,Object>>();
 			int recentViews = 0;
-			int updateDate = 0;
 			for(int i=0; i < recentVideoList.size(); i++) {
 				HashMap<String,Object> tempObejct = new HashMap<String,Object>();
 				tempObejct.put("outputVideoNo", recentVideoList.get(i).getRacVideoNo());
@@ -246,7 +245,7 @@ public class ChannelController {
 					if(reviewList.get(i).getRacReviewStatus()==2) {
 						tempObejct.put("outputReviewDetail", reviewList.get(i).getRacReviewDetail());						
 					} else {
-						tempObejct.put("outputReviewDetail", "no");				
+						tempObejct.put("outputReviewDetail", 0);				
 					}
 					tempObejct.put("outputReviewCreateDate", CommonUtil.getChannelDetailDate(reviewList.get(i).getRacReviewCreateDate()));
 
@@ -255,7 +254,7 @@ public class ChannelController {
 				req.setAttribute("outputReivewList", outputReviewList);
 				
 				if(reviewList.size()!=0) {
-					req.setAttribute("outputAdSatisfyRank", Math.round(satisfy/reviewList.size()*10)/10); // 리뷰의 점수 평균 
+					req.setAttribute("outputAdSatisfyRank", CommonUtil.getReviewSatisfy5((int) Math.floor(satisfy/reviewList.size()))); // 리뷰의 점수 평균 
 				} else {
 					req.setAttribute("outputAdSatisfyRank","정보없음"); // 리뷰의 점수 평균 
 

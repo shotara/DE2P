@@ -362,10 +362,21 @@
 													<div class="stat">${item.outputReviewTargetAge }</div>
 												</div>
 												<div class="review-text w-auto float-left">
+													<c:if test="${ item.outputReviewDetail != 0}">
 													<div class="txt">
 														<span>${item.outputReviewDetail }</span>
 													</div>
-
+													</c:if>
+													<c:if test="${ item.outputReviewDetail == 0}">
+													<div class="demo-text">
+															<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
+															<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
+															<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
+															<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
+															<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
+															<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
+													</div>
+													</c:if>
 													<div class="pTop2 display-flex"></div>
 
 													<div class="bottom-txt row w-100">
@@ -379,57 +390,6 @@
 										</div>
 
 									</c:forEach>
-
-									<!-- temp review before accept -->
-
-									<div class="review pTop2">
-										<div class="review-top">
-											<div class="date float-left">최근 1년 이내, 실제 집행된 광고 영상에 대한
-												리뷰입니다.</div>
-										</div>
-
-										<div class="pTop2 w-100 display-flex"></div>
-
-										<div class="review-detail">
-											<div class="review-row float-left">
-												<div class="idx">광고 만족도</div>
-												<div class="idx">광고 타입</div>
-												<div class="idx">목표 도달률</div>
-												<div class="idx">목표 전환률</div>
-												<div class="idx">타깃 성별</div>
-												<div class="idx">타깃 연령</div>
-											</div>
-											<div class="review-stat float-left">
-												<div class="stat">${item.outputReviewSatisfy }</div>
-												<div class="stat">${item.outputChannelAdType }</div>
-												<div class="stat">${item.outputReviewTargetReach }</div>
-												<div class="stat">${item.outputReviewTargetConversion }</div>
-												<div class="stat">${item.outputReviewTargetGender }</div>
-												<div class="stat">${item.outputReviewTargetAge }</div>
-											</div>
-											<div class="review-text w-auto float-left">
-												<div class="demo-text">
-														<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
-														<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
-														<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
-														<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
-														<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
-														<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
-												</div>
-
-												<div class="pTop2 display-flex"></div>
-
-												<div class="bottom-txt row w-100">
-													<div class="col-6 recommend float-left">이 채널을 다른
-														마케터에게도 추천하나요?</div>
-													<div class="col answer float-left">${item.outputReviewAdAgain }</div>
-												</div>
-											</div>
-										</div>
-
-									</div>
-
-									<!-- temp review before accept finished -->
 								</div>
 							</c:if>
 							<!-- channel review finished -->
