@@ -335,9 +335,8 @@
 							<!-- channel reivew start -->
 							<c:if test="${not empty requestScope.outputReivewList}">
 								<div class="reviews">
-									<div class="pTop2"></div>
 									<c:forEach var="item" items="${requestScope.outputReivewList}">
-										<div class="review">
+										<div class="review pTop2">
 											<div class="review-top">
 												<div class="date float-left">최근 1년 이내, 실제 집행된 광고 영상에
 													대한 리뷰입니다.</div>
@@ -409,14 +408,13 @@
 												<div class="stat">${item.outputReviewTargetAge }</div>
 											</div>
 											<div class="review-text w-auto float-left">
-												<div class="demo-cover">
-													<div class="demo-text">
-														<p>랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요!</p>
-														<p>랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요!</p>
-														<p>랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요!</p>
-														<p>랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요!</p>
-														<p>랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요!</p>
-													</div>
+												<div class="demo-text">
+														<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
+														<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
+														<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
+														<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
+														<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
+														<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
 												</div>
 
 												<div class="pTop2 display-flex"></div>
