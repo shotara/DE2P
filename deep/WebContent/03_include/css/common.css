@@ -6,7 +6,7 @@
 /*  rancre common CSS  */
 /*********************************/
 body {
-	font-family : -apple-system, 'Nanum Gothic', sans-serif !important;
+	font-family: -apple-system, 'Nanum Gothic', sans-serif !important;
 }
 
 * {
@@ -283,7 +283,7 @@ a {
 	height: 36px;
 	color: #f11834;
 	cursor: pointer;
-	background : #ffffff;
+	background: #ffffff;
 }
 
 .commonBtn:focus {
@@ -417,7 +417,7 @@ a.common-wide20Reverse-Btn {
 	color: #fff !important;
 }
 
-a:hover.common-wide20Reverse-Btn{
+a:hover.common-wide20Reverse-Btn {
 	text-decoration: none !important;
 	color: #fff;
 }
@@ -478,7 +478,7 @@ a:hover.common-wide20Reverse-Btn{
 	font-size: 1em;
 	height: 36px;
 	color: #f11834;
-	background : #ffffff;
+	background: #ffffff;
 }
 
 .btnListGo {
@@ -488,7 +488,7 @@ a:hover.common-wide20Reverse-Btn{
 	font-size: 1em;
 	height: 36px;
 	color: #f11834;
-	background : #ffffff;
+	background: #ffffff;
 }
 
 .btnListGo:focus {
@@ -598,10 +598,6 @@ a:hover.common-wide20Reverse-Btn{
 /*  nav conversion                */
 /**********************************/
 
-
-
-
-
 /**********************************/
 /*  subnav  */
 /*********************************/
@@ -638,35 +634,34 @@ a.subnav-link:hover {
 	display: block;
 }
 
-.all-channel-tab{
-	flex-basis : 0;
-	-ms-flex-positive : 1;
-	flex-grow :1;
-	max-width : 100%;
-	position :relative;
-	min-height : 1px;
-	padding-right : 13px;
-	padding-left : 13px;
+.all-channel-tab {
+	flex-basis: 0;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+	max-width: 100%;
+	position: relative;
+	min-height: 1px;
+	padding-right: 13px;
+	padding-left: 13px;
 }
 
 .detail-tab {
-	flex-basis : 0;
-	-ms-flex-positive : 1;
-	flex-grow :1;
-	max-width : 100%;
-	position :relative;
-	min-height : 1px;
-	padding-right : 13px;
+	flex-basis: 0;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+	max-width: 100%;
+	position: relative;
+	min-height: 1px;
+	padding-right: 13px;
 }
 
 .detail-tab .subnav-link.active {
-	font-weight : bold;
+	font-weight: bold;
 }
 
 /**********************************/
 /*  join  */
 /*********************************/
-
 .join {
 	padding-right: 240px;
 	padding-left: 240px;
@@ -770,8 +765,6 @@ a.subnav-link:hover {
 /**********************************/
 /*  login  */
 /*********************************/
-
-
 .login {
 	padding-right: 240px;
 	padding-left: 240px;
@@ -850,8 +843,7 @@ a.subnav-link:hover {
 /**********************************/
 /*   us  */
 /*********************************/
-
-.ipt-user-inquiry{
+.ipt-user-inquiry {
 	width: 100%;
 	display: inline-block;
 }
@@ -869,8 +861,6 @@ a.subnav-link:hover {
 	border-radius: 3px;
 	padding-left: 10px;
 }
-
-
 
 /**********************************/
 /*  main - list type using CSS */
@@ -956,7 +946,7 @@ a.subnav-link:hover {
 	text-decoration: none;
 	color: #f11834;
 	outline: none;
-	background : #ffffff;
+	background: #ffffff;
 }
 
 .chnDtlGo:hover {
@@ -1011,27 +1001,27 @@ a.subnav-link:hover {
 }
 
 .rankMainDif {
-	width : 45%;
+	width: 45%;
 }
 
 .rankMainDif.rancUp {
-	color : #f11834;
+	color: #f11834;
 }
 
 .rankMainDif.rancDown {
-	color : #80abf0;
+	color: #80abf0;
 }
 
 .rankMainDif.rancNew {
-	color : #fce980;
+	color: #fce980;
 }
 
 .all-channel {
-	min-height : 700px;
+	min-height: 700px;
 }
 
 #myTabContent {
-	min-height : 300px;
+	min-height: 300px;
 }
 
 /**********************************/
@@ -1077,68 +1067,63 @@ a.subnav-link:hover {
 }
 
 .chn-basic-info {
-	vertical-align : middle;
+	vertical-align: middle;
 }
 
 .chnDtlImg {
 	display: inline-block;
 	width: 80px;
 	margin-right: 40px;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .chnDtlName {
 	font-weight: bold;
 	font-size: 1.5em;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 /** 채널 바로 가기 **/
-
 .chn-redirect {
-	vertical-align : middle;
-	overflow:hidden;
+	vertical-align: middle;
+	overflow: hidden;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
 }
 
 .chn-redirect-Btn {
-	margin-top :22px;
-	margin-right : 45px;
+	margin-top: 22px;
+	margin-right: 45px;
 }
 
-
 /** 관심채널 설정 전 **/
-
 .chn-like-area {
-	vertical-align : middle;
-	overflow:hidden;
+	vertical-align: middle;
+	overflow: hidden;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
 }
 
 .chn-like-Btn {
-	margin-top :22px;
-	margin-right : 22px;
+	margin-top: 22px;
+	margin-right: 22px;
 }
 
 /** 관심채널 설정 된 '후'  **/
-
 .chn-liked-area {
-	vertical-align : middle;
-	overflow:hidden;
+	vertical-align: middle;
+	overflow: hidden;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
 }
 
 .chn-liked-Btn {
-	margin-top :22px;
-	margin-right : 22px;
+	margin-top: 22px;
+	margin-right: 22px;
 }
-
 
 .detail .title {
 	width: 210px;
@@ -1148,16 +1133,15 @@ a.subnav-link:hover {
 }
 
 /*  channel detail page top area    */
-
 #chn-detail-top {
-	overflow : hidden;
-	padding-top : 20px;
-	height : 140px;
+	overflow: hidden;
+	padding-top: 20px;
+	height: 140px;
 }
 
 #chn-detail-middle {
-	overflow : hidden;
-	height : 300px;
+	overflow: hidden;
+	height: 300px;
 }
 
 /* 채널 디테일 sub tabs*/
@@ -1169,7 +1153,7 @@ a.subnav-link:hover {
 }
 
 .detail-tab-area {
-	padding-top : 70px;
+	padding-top: 70px;
 }
 
 /* Float the list items side by side */
@@ -1280,8 +1264,32 @@ ul.sub-tabs li a.active {
 
 .review-text .txt {
 	min-height: 150px;
-	width: 710px;
+	width: 680px;
 	position: relative;
+}
+
+.review-text .demo-cover {
+	min-height: 150px;
+	width: 680px;
+	position: relative;
+	content: '';
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(256,256,256, 0.9);
+	z-index: 1;
+	filter: blur(6px);
+	-webkit-filter: blur(6px);
+	-moz-filter: blur(6px);
+	-o-filter: blur(6px);
+	filter: url(#blur);
+}
+
+.demo-cover .demo-text{
+	width: 100%;
+	height: 100%;
+	z-index: -10;
 }
 
 /**********************************/
@@ -1301,7 +1309,7 @@ ul.sub-tabs li a.active {
 }
 
 #searchChannelForm {
-	display : inline-block;
+	display: inline-block;
 }
 
 .search-Keyword input[type="text"] {
@@ -1409,7 +1417,7 @@ ul.sub-tabs li a.active {
 
 .search-chnInfo {
 	padding-top: 10px;
-	width : 160px;
+	width: 160px;
 	display: inline-block;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -1439,7 +1447,7 @@ ul.sub-tabs li a.active {
 .search-reco-channel-list {
 	padding-top: 30px;
 	display: inline-block;
-	padding-bottom : 100px;
+	padding-bottom: 100px;
 }
 
 .search-reco-channel {
@@ -1552,7 +1560,6 @@ ul.sub-tabs li a.active {
 	outline: none;
 }
 
-
 /*************************************************/
 /* The contact US Modal (background)             */
 /*************************************************/
@@ -1602,17 +1609,17 @@ ul.sub-tabs li a.active {
 }
 
 .ipt-contact-us-text {
-	height : 180px;
-	border : 1px solid #b4b4b4;
-	border-radius : 3px;
-	padding-left : 5px;
-	padding-right : 5px;
-	spellcheck : false;
+	height: 180px;
+	border: 1px solid #b4b4b4;
+	border-radius: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	spellcheck: false;
 }
 
 .ipt-contact-us-text:focus {
-	border : 1px solid #f11834;
-	outline : none;
+	border: 1px solid #f11834;
+	outline: none;
 }
 
 .ipt-contact-us-email {
@@ -1814,18 +1821,17 @@ ul.sub-tabs li a.active {
 /**********************************/
 /*  Corp main                CSS */
 /*********************************/
-
 .corp-Top-area {
-	min-height : 150px;
-	padding-top : 20px;
+	min-height: 150px;
+	padding-top: 20px;
 }
 
-.corp-Middle-area{
-	min-height : 250px;
+.corp-Middle-area {
+	min-height: 250px;
 }
 
 .corp-MyReview-Contents {
-	min-height : 250px;
+	min-height: 250px;
 }
 
 .ranc-Corp-Row {
@@ -2072,7 +2078,7 @@ ul.sub-tabs li a.active {
 }
 
 .reco-chnInfo .name {
-	width:160px;
+	width: 160px;
 	font-weight: bold;
 	font-size: 1.1em;
 	text-overflow: ellipsis;
