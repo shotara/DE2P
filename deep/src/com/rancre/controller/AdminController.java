@@ -35,8 +35,10 @@ import com.rancre.model.FeedDAO;
 import com.rancre.model.MemberDAO;
 import com.rancre.model.UploadDAO;
 import com.rancre.model.domain.Channel;
+import com.rancre.model.domain.ChannelAd;
 import com.rancre.model.domain.ChannelCategory;
 import com.rancre.model.domain.ChannelCost;
+import com.rancre.model.domain.Company;
 import com.rancre.model.domain.Feed;
 import com.rancre.model.domain.FeedComment;
 import com.rancre.model.domain.FeedCount;
@@ -46,6 +48,7 @@ import com.rancre.model.domain.FeedSeries;
 import com.rancre.model.domain.Member;
 import com.rancre.model.domain.MemberFavorite;
 import com.rancre.model.domain.Paging;
+import com.rancre.model.domain.Review;
 import com.rancre.model.domain.Upload;
 import com.rancre.util.CommonUtil;
 import com.rancre.util.EncryptUtil;
@@ -691,7 +694,10 @@ public class AdminController {
 				jTempObject.put("outputMemberStatus", memberList.get(i).getRacMemberStatus());
 				jTempObject.put("outputMemberType", memberList.get(i).getRacMemberType());
 				jTempObject.put("outputMemberEmail", EncryptUtil.AES_Decode(memberList.get(i).getRacMemberEmail(), aesKey));
-
+				Company company = AdminDAO.getCompany(memberList.get(i).getRacMemberNo());
+				jTempObject.put("outputCompanyName", EncryptUtil.AES_Decode(company.getRacCompanyName(), aesKey));
+				jTempObject.put("outputCompanyBusinessNo", EncryptUtil.AES_Decode(company.getRacCompanyBusinessNo(), aesKey));
+				
 				jChannelArray.add(jTempObject);
 			}
 
@@ -806,6 +812,92 @@ public class AdminController {
 			return;
 			
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void getReviewList(HttpServletRequest req, HttpServletResponse res) {
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			// 1 - 미승인, 2 - 승인
+			int mode = req.getParameter("mode") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("mode").toString())) : 1;
+			int page = req.getParameter("page") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("page").toString())) : 1;
+			int size = req.getParameter("size") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("size").toString())) : 10;
+			
+			if(page==0) page=1;
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			if(!(sessionMemberNo>0) || sessionMemberNo>10) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+
+			/// Check Admin Member 
+			JSONArray outputReviewArray = new JSONArray();
+			Paging paging = new Paging(page, size);
+			int memberStatus=2;
+			int offset = (paging.getCurrentPageNo() - 1) * paging.getRecordsPerPage();
+
+			ArrayList<Review> reviewList = AdminDAO.getReviewList(mode, offset, paging.getRecordsPerPage());
+
+			// bookList 전체 갯수 구하여 numberOfRecords 메소드에 셋팅함 
+			paging.setNumberOfRecords(AdminDAO.countTotalChannel());
+			paging.makePaging();
+			
+			// AES Encrypt
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+			for(int i=0; i<reviewList.size();i++) {
+				HashMap<String,Object> tempObejct = new HashMap<String,Object>();
+				tempObejct.put("outputReviewNo", reviewList.get(i).getRacReviewNo());
+				tempObejct.put("outputReviewStatus", reviewList.get(i).getRacReviewStatus());
+				tempObejct.put("outputChannelNo", reviewList.get(i).getRacChannelNo());
+				Channel channel = ChannelDAO.getChannelByNo(reviewList.get(i).getRacChannelNo());
+				tempObejct.put("outputChannelTitle", channel.getRacChannelTitle());
+				tempObejct.put("outputChannelAdNo", reviewList.get(i).getRacChannelAdNo());
+				ChannelAd channelAd = ChannelDAO.getChannelAd(reviewList.get(i).getRacChannelAdNo());
+				tempObejct.put("outputVideoId", channelAd.getRacVideoId());
+				if(channelAd.getRacVideoTitle().length()>20) 
+					tempObejct.put("outputVideoTitle", channelAd.getRacVideoTitle().substring(0, 20));
+				else 
+					tempObejct.put("outputVideoTitle", channelAd.getRacVideoTitle());
+				tempObejct.put("outputChannelAdType", CommonUtil.getReviewAdType(channelAd.getRacChannelAdType()));
+				tempObejct.put("outputChannelCostNo", ChannelDAO.getChannelCostByCostNo(reviewList.get(i).getRacChannelCostNo()).getRacChannelCostPrice());
+				tempObejct.put("outputReviewSatisfy", CommonUtil.getReviewSatisfy5(reviewList.get(i).getRacReviewSatisfy()));
+				tempObejct.put("outputReviewTargetReach", CommonUtil.getReviewTarget(reviewList.get(i).getRacReviewTargetReach()));
+				tempObejct.put("outputReviewTargetConversion", CommonUtil.getReviewTarget(reviewList.get(i).getRacReviewTargetConversion()));
+				tempObejct.put("outputReviewTargetGender", CommonUtil.getGender(reviewList.get(i).getRacReviewTargetGender()));
+				tempObejct.put("outputReviewTargetAge", CommonUtil.getAge(reviewList.get(i).getRacReviewTargetAge()));
+				tempObejct.put("outputReviewRecomand", CommonUtil.getRecomand(reviewList.get(i).getRacReviewRecomand()));
+				tempObejct.put("outputReviewAdAgain", CommonUtil.getRecomand(reviewList.get(i).getRacReviewAdAgain()));
+				tempObejct.put("outputReviewDetail", reviewList.get(i).getRacReviewDetail());						
+				tempObejct.put("outputReviewCreateDate", CommonUtil.getChannelDetailDate(reviewList.get(i).getRacReviewCreateDate()));
+
+				outputReviewArray.add(tempObejct);
+			}
+
+			jObject.put("outputReviewList", outputReviewArray);
+			jObject.put("firstPageNo", paging.getFirstPageNo());
+			jObject.put("prevPageNo", paging.getPrevPageNo());
+			jObject.put("currentPageNo", paging.getCurrentPageNo());
+			jObject.put("nextPageNo", paging.getNextPageNo());
+			jObject.put("paging", paging);
+	
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get Review List OK", map);
+			req.setAttribute("result", jObject);
+			req.getRequestDispatcher("/02_page/Admin/reviewList.jsp").forward(req, res);
+
+			return;
+			
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}

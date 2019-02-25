@@ -88,4 +88,14 @@
 	<select id="getVideoById" parameterType="String"  resultType="com.rancre.model.domain.Video">
 		SELECT * FROM rac_video WHERE racVideoId=#{inputVideoId}
 	</select>	
+		
+	<select id="getCompany" parameterType="int"  resultType="com.rancre.model.domain.Company">
+		SELECT * FROM rac_company WHERE racMemberNo=#{inputMemberNo}
+	</select>	
+	
+	<select id="getReviewList" parameterType="java.util.HashMap"  resultType="com.rancre.model.domain.Review">
+		SELECT * FROM rac_review WHERE racReviewStatus=#{reviewStatus}
+		LIMIT
+		#{offset}, #{size}
+	</select>	
 </mapper>

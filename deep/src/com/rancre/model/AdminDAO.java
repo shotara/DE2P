@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.rancre.model.domain.Channel;
 import com.rancre.model.domain.ChannelCategory;
 import com.rancre.model.domain.ChannelCost;
+import com.rancre.model.domain.Company;
 import com.rancre.model.domain.Feed;
 import com.rancre.model.domain.FeedComment;
 import com.rancre.model.domain.FeedCount;
@@ -16,6 +17,7 @@ import com.rancre.model.domain.FeedHashtag;
 import com.rancre.model.domain.FeedList;
 import com.rancre.model.domain.FeedSeries;
 import com.rancre.model.domain.Member;
+import com.rancre.model.domain.Review;
 import com.rancre.model.domain.Video;
 import com.rancre.util.DAOFactory;
 
@@ -388,6 +390,35 @@ public class AdminDAO {
 		
 		try {
 			return (Video) sqlSession.selectOne(namespace + ".getVideoById", inputVideoId);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static Company getCompany(int inputMemberNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			return (Company) sqlSession.selectOne(namespace + ".getCompany", inputMemberNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static ArrayList<Review> getReviewList(int inputReviewStatus, int offset, int recordsPerPage) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("reviewStatus", inputReviewStatus);
+			map.put("offset", offset);
+			map.put("size", recordsPerPage);			
+		
+			return (ArrayList) sqlSession.selectList(namespace + ".getReviewList", map);
 			
 		} finally {
 			sqlSession.close();
