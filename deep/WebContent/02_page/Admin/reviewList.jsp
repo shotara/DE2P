@@ -73,7 +73,7 @@
 }
 
 .col8 {
-	width: 300px;
+	width: 580px;
 	float: left;
 	text-align: center;
 	border-right: 1px solid;
@@ -92,25 +92,27 @@
 }
 </style>
 
-	<div class="col1">멤버넘버</div>
-	<div class="col5">멤버상태</div>
-	<div class="col3">멤버타입</div>
-	<div class="col4">멤버아이디</div>
-	<div class="col5">회사명</div>
-	<div class="col3">사업자번호</div>
+	<div class="col1">리뷰넘버</div>
+	<div class="col5">리뷰상태</div>
+	<div class="col3">채널명</div>
+	<div class="col4">영상명</div>
+	<div class="col5">광고타입</div>
+	<div class="col5">광고단가</div>
+	<div class="col8">후기내용</div>
 
 	<br />
 
-	<c:set var="members" value="${result.outputMemberList}" />
+	<c:set var="reviews" value="${result.outputReviewList}" />
 	<c:set var="paging" value="${result.paging}" />
 	<div class="content">
-		<c:forEach var="item" items="${members}">
-			<div class="col1">${item.outputMemberNo}</div>
-			<div class="col5">${item.outputMemberStatus}</div>
-			<div class="col3">${item.outputMemberType}</div>
-			<div class="col4">${item.outputMemberEmail}</div>
-			<div class="col5">${item.outputCompanyName}</div>
-			<div class="col3">${item.outputCompanyBusinessNo}</div>
+		<c:forEach var="item" items="${reviews}">
+			<div class="col1"><a href="/admin?action=getReview&inputReviewNo=${item.outputReviewNo}">${item.outputReviewNo}</a></div>
+			<div class="col5">${item.outputReviewStatus}</div>
+			<div class="col3"><a href="/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelTitle}"  target="_blank">${item.outputChannelTitle}</a></div>
+			<div class="col4"><a href="https://www.youtube.com/watch?v=${item.outputVideoId}"  target="_blank">${item.outputVideoTitle}</a></div>
+			<div class="col5">${item.outputChannelAdType}</div>
+			<div class="col5">${item.outputChannelCostNo}</div>
+			<div class="col8">${item.outputReviewDetail}</div>
 			<br />
 		</c:forEach>
 	</div>

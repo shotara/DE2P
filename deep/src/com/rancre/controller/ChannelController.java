@@ -423,10 +423,8 @@ public class ChannelController {
 			date.setMonth(inputReviewDate2);
 			date.setDate(1);
 			Timestamp executeDate = new Timestamp(date.getTime());
-			System.out.println(decryptChannelAdUrl);
-			System.out.println(!decryptChannelAdUrl.equals(""));
 			if(!decryptChannelAdUrl.equals("")) {
-				decryptChannelAdUrl = decryptChannelAdUrl.substring(decryptChannelAdUrl.lastIndexOf("watch?v="));
+				decryptChannelAdUrl = decryptChannelAdUrl.substring(decryptChannelAdUrl.lastIndexOf("watch?v=")+8);
 			}
 			int check = ChannelDAO.addChannelAd(channel.getRacChannelNo(), decryptChannelAdUrl, inputChannelAdType, inputChannelAdCategory, inputCurrentDate, executeDate);
 			if(check !=1) {
