@@ -16,6 +16,15 @@
 		alert("로그인이 필요합니다.");
 		location.href = "/02_page/Auth/login.jsp"
 	}
+	
+	$(function() {
+	      $('#Input-Commercial-Text').keyup(function (e){
+	          var content = $(this).val();
+	          $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+	          $('#counter').html(content.length + '/500');
+	      });
+	      $('#Input-Commercial-Text').keyup();
+	});
 </script>
 </head>
 <body>
@@ -43,7 +52,7 @@
 								입력해주세요!</div>
 							<div class="channel-autocomplete">
 								<input class="ipt-Common-Review" type="text"
-									id="Input-Channel-Name" placeholder="Ex) 와썹맨, Dana " required
+									id="Input-Channel-Name" placeholder="Ex) 와썹맨, Dana " maxlength = "30" required
 									onkeyup="Common.review(5)" />
 							</div>
 						</div>
@@ -142,7 +151,7 @@
 								</select>
 								<div class="pRight"></div>
 								<input class="ipt-Commercial-Price" type="text"
-									id="Input-Commercial-Price" placeholder="10,000,000" required />
+									id="Input-Commercial-Price" placeholder="10,000,000" maxlength="12" required />
 
 							</div>
 
@@ -156,7 +165,7 @@
 								검증에만 사용되며, 입력한 리뷰와 연동되지 않습니다.</div>
 							<input class="ipt-Common-Review" type="text"
 								id="Input-Commercial-Url"
-								placeholder="http://youtube.com/example" required />
+								placeholder="http://youtube.com/example" maxlength ="50" required />
 						</div>
 
 
@@ -166,10 +175,11 @@
 								채널 리뷰<span class="primary-color">*</span>
 							</div>
 							<div class="txt-left review-commonSubTxt">모든 리뷰는 익명처리되며,
-								심사를 거쳐 수정될 수 있습니다.</div>
+								심사를 거쳐 수정될 수 있습니다.
+								 <span id="counter" class="float-right">###</span></div>
 							<textarea class="w100 review-TextArea" col="1" row="1"
 								id="Input-Commercial-Text"
-								placeholder="광고 리뷰를 등록하고, 다른 채널의 광고 이용 리뷰를 확인해보세요!"></textarea>
+								placeholder="광고 리뷰를 등록하고, 다른 채널의 광고 이용 리뷰를 확인해보세요!" maxlength="500"></textarea>
 						</div>
 
 						<div class="pTop2 flow-hidden">
