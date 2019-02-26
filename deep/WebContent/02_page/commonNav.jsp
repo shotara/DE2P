@@ -28,7 +28,7 @@
 				<li class="nav-item active"><a class="nav-link" href="#"
 					onclick="Common.search(3)">채널수집요청</a></li>
 				<li class="nav-item active"><a class="nav-link"
-					href="/02_page/Review/review.jsp" onclick="Auth.loginCheck()">리뷰등록</a></li>
+					href="/channel?action=getReviewPage" onclick="Auth.loginCheck()">리뷰등록</a></li>
 				<c:if test="${empty sessionScope.racMemberNo}">
 					<li class="nav-item active"><a class="nav-link"
 						href="/02_page/Auth/login.jsp">로그인</a></li>

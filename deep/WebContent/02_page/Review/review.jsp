@@ -53,7 +53,7 @@
 							<div class="channel-autocomplete">
 								<input class="ipt-Common-Review" type="text"
 									id="Input-Channel-Name" placeholder="Ex) 와썹맨, Dana " maxlength = "30" required
-									onkeyup="Common.review(5)" />
+									onkeyup="Common.review(5)" value="${requestScope.outputChannelTitle }" />
 							</div>
 						</div>
 

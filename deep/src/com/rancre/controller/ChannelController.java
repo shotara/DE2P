@@ -31,6 +31,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import com.rancre.config.GlobalValue;
+import com.rancre.model.AdminDAO;
 import com.rancre.model.ChannelDAO;
 import com.rancre.model.FeedDAO;
 import com.rancre.model.MemberDAO;
@@ -414,7 +415,7 @@ public class ChannelController {
 			
 			String decryptChannelName = EncryptUtil.RSA_Decode(privateKey, inputChannelName);
 			String decryptChannelAdUrl = EncryptUtil.RSA_Decode(privateKey, inputChannelAdUrl);
-
+			
 			/// 리뷰를 등록하려면?  채널 연결, 채널애드, 채널코스트, 리뷰 연결
 			Channel channel = ChannelDAO.getChannelByTitle(decryptChannelName);
 			
@@ -423,10 +424,23 @@ public class ChannelController {
 			date.setMonth(inputReviewDate2);
 			date.setDate(1);
 			Timestamp executeDate = new Timestamp(date.getTime());
+			String viewsContent ="0";
+			String nameContent = "";
+			String thumbContent="";
+			String dateContent="2010-01-01 00:00:00";
+			
 			if(!decryptChannelAdUrl.equals("")) {
 				decryptChannelAdUrl = decryptChannelAdUrl.substring(decryptChannelAdUrl.lastIndexOf("watch?v=")+8);
+				String url= "https://www.youtube.com/watch?v=" + decryptChannelAdUrl;
+				Document doc = Jsoup.parse(new URL(url).openStream(), "utf-8", url);
+				
+				viewsContent = doc.select(".watch-view-count").toString().substring(35, doc.select(".watch-view-count").toString().length()-8).replace(",", "");
+				nameContent = doc.select("#eow-title").first().attr("title");
+				thumbContent = doc.select("#watch7-content link[itemprop='thumbnailUrl']").first().attr("href");
+				dateContent = doc.select("#watch7-content meta[itemprop='datePublished']").first().attr("content") + " 00:00:00";
 			}
-			int check = ChannelDAO.addChannelAd(channel.getRacChannelNo(), decryptChannelAdUrl, inputChannelAdType, inputChannelAdCategory, inputCurrentDate, executeDate);
+
+			int check = ChannelDAO.addChannelAd(channel.getRacChannelNo(), decryptChannelAdUrl, nameContent, viewsContent, thumbContent, inputChannelAdType, inputChannelAdCategory, dateContent, inputCurrentDate, executeDate);
 			if(check !=1) {
 				CommonUtil.commonPrintLog("ERROR", className, "Add Channel Ad Fail!!", map);
 			}
@@ -774,5 +788,41 @@ public class ChannelController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
+	}
+
+	public static void getReviewPage(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+	
+		try{
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			int inputChannelNo = req.getParameter("inputChannelNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelNo").toString())) : 0;
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			// Member check
+			if(!(sessionMemberNo>0)) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Member", map);
+				jObject.put("outputResult", "-2");
+				req.getRequestDispatcher("/02_page/Auth/login.jsp").forward(req, res);
+				return;
+			}
+			
+			if(inputChannelNo>0) {
+				Channel channel = ChannelDAO.getChannelByNo(inputChannelNo);
+				req.setAttribute("outputChannelTitle", channel.getRacChannelTitle());
+			}
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel Review Page OK", map);
+			req.getRequestDispatcher("/02_page/Review/review.jsp").forward(req, res);
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -294,7 +294,7 @@
 									</div>
 
 									<div class="pTop2">
-										<a class="nav-link" href="/02_page/Review/review.jsp"
+										<a class="nav-link" href="/channel?action=getReviewPage&inputChannelNo=${requestScope.outputChannelNo }"
 											onclick="Auth.loginCheck()">
 											<button class="common-wide20Reverse-Btn">광고 리뷰 쓰기</button>
 										</a>
@@ -406,7 +406,7 @@
 									</div>
 
 									<div class="pTop2">
-										<a class="nav-link" href="/02_page/Review/review.jsp"
+										<a class="nav-link" href="/channel?action=getReviewPage&inputChannelNo=${requestScope.outputChannelNo }"
 											onclick="Auth.loginCheck()">
 											<button class="common-wide20Reverse-Btn">리뷰 쓰기</button>
 										</a>

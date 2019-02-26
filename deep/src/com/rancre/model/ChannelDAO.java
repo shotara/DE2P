@@ -27,9 +27,13 @@ public class ChannelDAO {
 
 	public static int addChannelAd(
 			int racChannelNo, 
-			String decryptChannelAdUrl, 
+			String decryptChannelAdUrl,
+			String inputVideoTitle,
+			String inputVideoViews,
+			String inputVideoThumbanil,
 			int inputChannelAdType,
 			int inputChannelAdCategory, 
+			String inputCreateDate,
 			Timestamp inputCurrentDate,
 			Timestamp executeDate) {
 		
@@ -39,8 +43,12 @@ public class ChannelDAO {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("channelNo", racChannelNo);
 			map.put("videoId", decryptChannelAdUrl);	
+			map.put("videoTitle", inputVideoTitle);	
+			map.put("videoViews", inputVideoViews);	
+			map.put("videoThumbnail", inputVideoThumbanil);	
 			map.put("channelAdType", inputChannelAdType);
 			map.put("channelAdCategory", inputChannelAdCategory);			
+			map.put("createtDate", inputCreateDate);			
 			map.put("inputCurrentDate", inputCurrentDate);			
 			map.put("executeDate", executeDate);			
 
