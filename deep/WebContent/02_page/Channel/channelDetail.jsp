@@ -215,7 +215,7 @@
 								items="${requestScope.outputRecentVideoList}">
 								<div class="upload-Video pBottom float-left">
 									<div class="videoThumb">
-										<img style="width: 210px" src="${item.outputVideoThumbnail}"
+										<img style="width: 210px; height: 118.14px;" src="${item.outputVideoThumbnail}"
 											onclick="window.open('https://www.youtube.com/watch?v=${item.outputVideoId}')">
 									</div>
 									<div class="detail">
@@ -266,7 +266,7 @@
 									<c:forEach var="item" items="${requestScope.outputAdVideoList}">
 										<div class="commercialVideo float-left">
 											<div class="videoThumb">
-												<img style="width: 210px" src="${item.outputVideoThumbnail}"
+												<img style="width: 210px; height: 118.14px;" src="${item.outputVideoThumbnail}"
 													onclick="window.open('https://www.youtube.com/watch?v=${item.outputVideoId}')">
 											</div>
 											<div class="detail">
