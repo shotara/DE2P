@@ -459,6 +459,45 @@ Common.review = function (mode){
 		});
 	} else if(mode==6) {
 		alert("epgpt");
+	} else if(mode==7){ //channel Name search popup open
+		const modal = document.getElementById('get-ChannelName-Modal');
+		const modal_content = document.getElementById('get-ChannelName-Modal-Content');
+		modal.style.display = 'block';
+		modal_content.style.display = 'block';
+		
+		var channelName = protectXSS($("#Input-Channel-Name").val());
+		$("#ipt-Modal-ChannelName").val(channelName);
+		
+		$("#ipt-Modal-ChannelName").autocomplete({
+			source : function(request, response) {
+				$.ajax({
+					type : 'post',
+					url : "/channel?action=autoCompleteChannel",
+					dataType : "json",
+					async : true,
+					data : {
+						inputChannelTitle : channelName
+					},
+					success : function(data) {
+						//서버에서 json 데이터 response 후 목록에 뿌려주기 위함, 한글 데이터가 지금 깨지고 있는 것 같은데 확인 필
+						response($.map(data.outputResult, function(item) {
+							return {
+								label : item.outputChannelTitle,
+								value : item.outputChannelTitle,
+							}
+						}));
+					}
+				});
+			},
+			//조회를 위한 최소글자수 1로 해야함 한글자짜리 활성화 된 채널 2개 존재함 유튜브 채널 타이틀 정책 쓰레기임 한글자가 뭐냐 ex, '벨'이라는 유튜버 있음 
+			minLength : 1
+		});
+		
+	} else if(mode==8){ //channel name search popup close
+		const modal = document.getElementById('get-ChannelName-Modal');
+		const modal_content = document.getElementById('get-ChannelName-Modal-Content');
+		modal.style.display = 'none';
+		modal_content.style.display = 'none';
 	}
 };
 

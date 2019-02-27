@@ -308,7 +308,7 @@ a:hover.commonBtn {
 	height: 36px;
 	background-color: #f11834;
 	color: #fff;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .commonReverseBtn:focus {
@@ -335,12 +335,12 @@ a:hover.commonBtn {
 	background-color: #f11834;
 	color: #fff;
 	font-weight: bold;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .common-wide-Btn:focus {
 	outline: none;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .common-wide-Btn a {
@@ -458,7 +458,7 @@ a:hover.common-wide20Reverse-Btn {
 	height: 36px;
 	background-color: #fd8090;
 	color: #fff;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .company-disable-Btn {
@@ -483,7 +483,7 @@ a:hover.common-wide20Reverse-Btn {
 	height: 36px;
 	color: #f11834;
 	background: #ffffff;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .btnListGo {
@@ -494,7 +494,7 @@ a:hover.common-wide20Reverse-Btn {
 	height: 36px;
 	color: #f11834;
 	background: #ffffff;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .btnListGo:focus {
@@ -552,7 +552,7 @@ a:hover.common-wide20Reverse-Btn {
 	font-size: 1em;
 	height: 30px;
 	color: #f11834;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .common-Small-Btn:focus {
@@ -577,7 +577,7 @@ a:hover.common-wide20Reverse-Btn {
 	height: 30px;
 	background-color: #f11834;
 	color: #fff;
-	cursor : pointer;
+	cursor: pointer;
 }
 
 .common-Small-Reverse-Btn:focus {
@@ -990,6 +990,10 @@ a.subnav-link:hover {
 .ranc-Main-Row2 {
 	display: inline-block;
 	width: 200px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: middle;
 }
 
 .rankMainRowCnt {
@@ -1276,15 +1280,15 @@ ul.sub-tabs li a.active {
 	position: relative;
 }
 
-.review-text .demo-text{
+.review-text .demo-text {
 	height: 190px;
 	width: 680px;
 	position: relative;
-	overflow : hidden;
+	overflow: hidden;
 }
 
-.p-txt{
-	margin-bottom : 10px;
+.p-txt {
+	margin-bottom: 10px;
 }
 
 /**********************************/
@@ -1714,6 +1718,21 @@ ul.sub-tabs li a.active {
 	outline: none;
 }
 
+.ipt-ChannelName-Review {
+	height: 36px;
+	font-size: 1em;
+	width: 75%;
+	border: 1px solid #b4b4b4;
+	border-radius: 3px;
+	padding-left: 10px;
+	spellcheck: false;
+}
+
+.ipt-ChannelName-Review:focus {
+	border: 1px solid #f11834;
+	outline: none;
+}
+
 .ipt-Common-Review {
 	height: 36px;
 	font-size: 1em;
@@ -1799,6 +1818,117 @@ ul.sub-tabs li a.active {
 .ipt-Select-Reach:focus {
 	border: 1px solid #f11834;
 	outline: none;
+}
+
+/********************************/
+/* review modal popup using     */
+/********************************/
+.review-search-channelName-modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1001; /* Sit on top */
+	padding-top: 200px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.review-search-channelName-modal-content {
+	display: none;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	border-radius: 5px;
+	width: 35%;
+	min-height: 200px;
+}
+
+/* The Close Button */
+.contact-us-modal-close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.contact-us-modal-close:hover, .contact-us-modal-close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.contact-us-modal-title {
+	font-size: 1.5em;
+	font-wieght: bold;
+}
+
+.ipt-contact-us-text {
+	height: 180px;
+	border: 1px solid #b4b4b4;
+	border-radius: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	spellcheck: false;
+}
+
+.ipt-contact-us-text:focus {
+	border: 1px solid #f11834;
+	outline: none;
+}
+
+.ipt-Modal-channelName {
+	height: 36px;
+	font-size: 1em;
+	width: 75%;
+	border: 1px solid #b4b4b4;
+	border-radius: 3px;
+	padding-left: 10px;
+	spellcheck: false;
+}
+
+.ipt-Modal-channelName:focus {
+	border: 1px solid #f11834;
+	outline: none;
+}
+
+.review-channel-input-area {
+	overflow: hidden;
+}
+
+.review-channel-output-area {
+	border : 1px solid #b4b4b4;
+	overflow : auto;
+	margin-top : 20px;
+	height : 150px;
+}
+
+.review-channelName-radio {
+	display: block;
+	width: 100%;
+	margin :0;
+}
+
+.review-channelName-radio>input { /* HIDE RADIO */
+	visibility: hidden; /* Makes input not-clickable */
+	position: absolute; /* Remove input from document flow */
+}
+
+.review-channelName-radio>input+div { /* DIV STYLES */
+	cursor: pointer;
+	height : 36px;
+	padding-left : 10px;
+	padding-top : 5px;
+}
+
+.review-channelName-radio>input:checked+div { /* (RADIO CHECKED) DIV STYLES */
+	border: 1px solid #f11834;
+	height : 36px;
 }
 
 /********************************/
