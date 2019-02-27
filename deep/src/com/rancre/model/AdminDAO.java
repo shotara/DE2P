@@ -196,6 +196,29 @@ public class AdminDAO {
 		}
 	}
 
+	public static int setReviewStatus(int inputReviewNo, int inputReviewStatus) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("reviewNo", inputReviewNo);
+			map.put("reviewStatus", inputReviewStatus);			
+
+			int check = (int)sqlSession.update(namespace + ".setReviewStatus", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 	// Delete Method
 	public static int deleteFeedLike(int inputFeedNo, int inputMemberNo) {
 		
@@ -419,6 +442,18 @@ public class AdminDAO {
 			map.put("size", recordsPerPage);			
 		
 			return (ArrayList) sqlSession.selectList(namespace + ".getReviewList", map);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static Review getReview(int inputReviewNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			return (Review) sqlSession.selectOne(namespace + ".getReview", inputReviewNo);
 			
 		} finally {
 			sqlSession.close();

@@ -391,6 +391,8 @@ public class ChannelController {
 			Calendar calendar = Calendar.getInstance();
 			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
 
+			if(inputReviewDetail.length() > 1000) inputReviewDetail = inputReviewDetail.substring(0, 1000);
+			
 			JSONObject jObject = new JSONObject();
 			res.setContentType("application/json");
 			res.setCharacterEncoding("UTF-8");

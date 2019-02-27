@@ -30,6 +30,11 @@
 		WHERE racChannelNo=#{channelNo}
 	</select>
 
+	<select id="setReviewStatus" parameterType="java.util.HashMap" resultType="int">
+		UPDATE rac_review SET racReviewStatus=#{reviewStatus}
+		WHERE racReviewNo=#{reviewNo}
+	</select>
+	
 	<select id="setRankCategoryCategory" parameterType="java.util.HashMap" resultType="int">
 		UPDATE rac_rank_category SET racChannelCategory=#{category}
 		WHERE racChannelNo=#{channelNo} AND racChannelInsertDate <![CDATA[>]]> #{inputCurrentDate} 
@@ -92,7 +97,11 @@
 	<select id="getCompany" parameterType="int"  resultType="com.rancre.model.domain.Company">
 		SELECT * FROM rac_company WHERE racMemberNo=#{inputMemberNo}
 	</select>	
-	
+		
+	<select id="getReview" parameterType="int"  resultType="com.rancre.model.domain.Review">
+		SELECT * FROM rac_review WHERE racReviewNo=#{inputReviewNo}
+	</select>	
+		
 	<select id="getReviewList" parameterType="java.util.HashMap"  resultType="com.rancre.model.domain.Review">
 		SELECT * FROM rac_review WHERE racReviewStatus=#{reviewStatus}
 		LIMIT

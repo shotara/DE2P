@@ -51,7 +51,7 @@
 		<h1>채널 단가 등록</h1>
 		<div class="cost-channel-title">
 			<div class="left">채널명</div>
-			<div class="right">${result.outputChannelTitle}</div>
+			<div class="right"><a href="/channel?action=getChannelDetail&inputChannelNo=${result.outputChannelNo}"  target="_blank">${result.outputChannelTitle}</a></div>
 		</div>
 		<div class="cost-channel-url">
 			<div class="left">채널아이디</div>

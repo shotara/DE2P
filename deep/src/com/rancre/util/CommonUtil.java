@@ -484,6 +484,8 @@ public class CommonUtil {
 		case 2:
 			return "승인";
 		case 3:
+			return "반려";
+		case -1:
 			return "삭제";
 		default:
 			return "검토중";

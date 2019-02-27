@@ -69,7 +69,7 @@ public class ChannelDAO {
 	public static int addChannelCost(
 			int racChannelNo, 
 			int inputChannelAdType,
-			int commercialPrice, 
+			long commercialPrice, 
 			Timestamp inputCurrentDate) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);

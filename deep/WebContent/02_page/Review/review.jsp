@@ -151,7 +151,7 @@
 								</select>
 								<div class="pRight"></div>
 								<input class="ipt-Commercial-Price" type="text"
-									id="Input-Commercial-Price" placeholder="10,000,000" maxlength="12" required />
+									id="Input-Commercial-Price" placeholder="10,000,000" maxlength="9" required />
 
 							</div>
 
@@ -179,7 +179,7 @@
 								 <span id="counter" class="float-right">###</span></div>
 							<textarea class="w100 review-TextArea" col="1" row="1"
 								id="Input-Commercial-Text"
-								placeholder="광고 리뷰를 등록하고, 다른 채널의 광고 이용 리뷰를 확인해보세요!" maxlength="500"></textarea>
+								placeholder="광고 리뷰를 등록하고, 다른 채널의 광고 이용 리뷰를 확인해보세요!" maxlength="1000"></textarea>
 						</div>
 
 						<div class="pTop2 flow-hidden">

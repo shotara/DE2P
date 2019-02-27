@@ -118,3 +118,29 @@ Admin.search = function (mode){
 }
 
 
+Admin.review = function(mode, reviewNo) {
+
+	var form_data = {
+			inputReviewNo : reviewNo,
+			inputReviewStatus : mode
+	};
+
+	$.ajax({
+		type:"POST",
+		url: "/admin?action=setReviewStatus",
+		data:form_data,
+		dataType: "json",
+		async : false,
+		success: function(response) {
+
+			if(response.outputResult == "1") { 
+				alert("상태 변경완료.");
+				location.href = "/admin?action=getAdminMain";
+			} else {
+				alert("알수없는 문제가 발생했습니다.");
+			}
+		}
+	});
+	return; 
+}
+

@@ -93,6 +93,16 @@ public class AdminView extends HttpServlet{
 				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 				AdminController.getReviewList(req,res);
 				break;	
+			case "getReview":
+				map.put("ACTION", "getReview");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				AdminController.getReview(req,res);
+				break;	
+			case "setReviewStatus":
+				map.put("ACTION", "setReviewStatus");
+				CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+				AdminController.setReviewStatus(req,res);
+				break;
 			}
 			
 		} catch (Exception e) {

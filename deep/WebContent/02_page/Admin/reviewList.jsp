@@ -108,7 +108,7 @@
 		<c:forEach var="item" items="${reviews}">
 			<div class="col1"><a href="/admin?action=getReview&inputReviewNo=${item.outputReviewNo}">${item.outputReviewNo}</a></div>
 			<div class="col5">${item.outputReviewStatus}</div>
-			<div class="col3"><a href="/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelTitle}"  target="_blank">${item.outputChannelTitle}</a></div>
+			<div class="col3"><a href="/channel?action=getChannelDetail&inputChannelNo=${item.outputChannelNo}"  target="_blank">${item.outputChannelTitle}</a></div>
 			<div class="col4"><a href="https://www.youtube.com/watch?v=${item.outputVideoId}"  target="_blank">${item.outputVideoTitle}</a></div>
 			<div class="col5">${item.outputChannelAdType}</div>
 			<div class="col5">${item.outputChannelCostNo}</div>

@@ -858,7 +858,7 @@ public class AdminController {
 			for(int i=0; i<reviewList.size();i++) {
 				HashMap<String,Object> tempObejct = new HashMap<String,Object>();
 				tempObejct.put("outputReviewNo", reviewList.get(i).getRacReviewNo());
-				tempObejct.put("outputReviewStatus", reviewList.get(i).getRacReviewStatus());
+				tempObejct.put("outputReviewStatus", CommonUtil.getReviewStatus(reviewList.get(i).getRacReviewStatus()));
 				tempObejct.put("outputChannelNo", reviewList.get(i).getRacChannelNo());
 				Channel channel = ChannelDAO.getChannelByNo(reviewList.get(i).getRacChannelNo());
 				tempObejct.put("outputChannelTitle", channel.getRacChannelTitle());
@@ -898,6 +898,115 @@ public class AdminController {
 			return;
 			
 		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void getReview(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			int inputReviewNo = req.getParameter("inputReviewNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewNo").toString())) : 0;
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			if(!(sessionMemberNo>0) || sessionMemberNo>10) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			/// Check Admin Member 
+
+
+			// Get Review
+			Review review = AdminDAO.getReview(inputReviewNo);
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+
+			Member member = MemberDAO.getMemberByMemberNo(review.getRacMemberNo());
+			jObject.put("outputMemberName", EncryptUtil.AES_Decode(member.getRacMemberEmail(), aesKey));
+			Company company = AdminDAO.getCompany(review.getRacMemberNo());
+			jObject.put("outputCompanyName", EncryptUtil.AES_Decode(company.getRacCompanyName(), aesKey));
+
+			jObject.put("outputReviewNo", review.getRacReviewNo());
+			jObject.put("outputReviewStatus", CommonUtil.getReviewStatus(review.getRacReviewStatus()));
+			jObject.put("outputChannelNo", review.getRacChannelNo());
+			Channel channel = ChannelDAO.getChannelByNo(review.getRacChannelNo());
+			jObject.put("outputChannelTitle", channel.getRacChannelTitle());
+			jObject.put("outputChannelUrl", channel.getRacChannelUrl());
+			jObject.put("outputChannelAdNo", review.getRacChannelAdNo());
+			ChannelAd channelAd = ChannelDAO.getChannelAd(review.getRacChannelAdNo());
+			jObject.put("outputVideoId", channelAd.getRacVideoId());
+			jObject.put("outputVideoTitle", channelAd.getRacVideoTitle());
+			jObject.put("outputChannelAdType", CommonUtil.getReviewAdType(channelAd.getRacChannelAdType()));
+			jObject.put("outputChannelCostNo", ChannelDAO.getChannelCostByCostNo(review.getRacChannelCostNo()).getRacChannelCostPrice());
+			jObject.put("outputReviewSatisfy", CommonUtil.getReviewSatisfy5(review.getRacReviewSatisfy()));
+			jObject.put("outputReviewTargetReach", CommonUtil.getReviewTarget(review.getRacReviewTargetReach()));
+			jObject.put("outputReviewTargetConversion", CommonUtil.getReviewTarget(review.getRacReviewTargetConversion()));
+			jObject.put("outputReviewTargetGender", CommonUtil.getGender(review.getRacReviewTargetGender()));
+			jObject.put("outputReviewTargetAge", CommonUtil.getAge(review.getRacReviewTargetAge()));
+			jObject.put("outputReviewRecomand", CommonUtil.getRecomand(review.getRacReviewRecomand()));
+			jObject.put("outputReviewAdAgain", CommonUtil.getRecomand(review.getRacReviewAdAgain()));
+			jObject.put("outputReviewDetail", review.getRacReviewDetail());						
+			jObject.put("outputReviewCreateDate", review.getRacReviewCreateDate());
+
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get Review OK", map);
+			req.setAttribute("result", jObject);
+			req.getRequestDispatcher("/02_page/Admin/review.jsp").forward(req, res);
+
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void setReviewStatus(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			HttpSession session = req.getSession();
+
+			int sessionMemberNo = session.getAttribute("racMemberNo") != null ? Integer.parseInt(session.getAttribute("racMemberNo").toString()) : 0;
+			int inputReviewNo = req.getParameter("inputReviewNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewNo").toString())) : 0;
+			int inputReviewStatus = req.getParameter("inputReviewStatus") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputReviewStatus").toString())) : 0;
+
+			
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+
+			if(!(sessionMemberNo>0) || sessionMemberNo>10) {
+				CommonUtil.commonPrintLog("FAIL", className, "No Admin Member", map);
+				jObject.put("outputResult", "-1");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			int check = AdminDAO.setReviewStatus(inputReviewNo, inputReviewStatus);
+			if(check!=1) {
+				CommonUtil.commonPrintLog("ERROR", className, "SET REVIEW StATUS EErrrorr", map);
+				jObject.put("outputResult", "-2");
+				res.getWriter().write(jObject.toString());
+				return;
+			}
+			
+			
+			// 완료 
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get Admin main OK", map);
+			jObject.put("outputResult", "1");
+			res.getWriter().write(jObject.toString());
+			return;
+
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
