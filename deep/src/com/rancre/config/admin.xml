@@ -21,7 +21,7 @@
 					
 	<!-- Update -->
 	<select id="setChannelInfo" parameterType="java.util.HashMap" resultType="int">
-		UPDATE rac_channel SET racChannelCategory=#{category}, racMcnNo=#{mcnNo}, racChannelUpdateDate=#{inputCurrentDate}
+		UPDATE rac_channel SET racChannelCategory=#{category}, racMcnNo=#{mcnNo}, racChannelRegion=#{region}, racChannelUpdateDate=#{inputCurrentDate}
 		WHERE racChannelNo=#{channelNo}
 	</select>
 
@@ -104,6 +104,12 @@
 		
 	<select id="getReviewList" parameterType="java.util.HashMap"  resultType="com.rancre.model.domain.Review">
 		SELECT * FROM rac_review WHERE racReviewStatus=#{reviewStatus}
+		LIMIT
+		#{offset}, #{size}
+	</select>	
+	
+	<select id="getChannelEtcList" parameterType="java.util.HashMap"  resultType="com.rancre.model.domain.Channel">
+		SELECT * FROM rac_channel WHERE racChannelCategory="1;" AND racChannelRegion = "Ko" AND racChannelStatus=2 ORDER BY racChannelViews DESC
 		LIMIT
 		#{offset}, #{size}
 	</select>	

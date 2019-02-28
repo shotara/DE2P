@@ -124,6 +124,7 @@ public class AdminDAO {
 			int inputChannelNo, 
 			String inputCategory, 
 			int inputMcnNo,
+			String inputRegion,
 			Timestamp inputCurrentDate) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
@@ -132,6 +133,7 @@ public class AdminDAO {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("channelNo", inputChannelNo);
 			map.put("category", inputCategory);			
+			map.put("region", inputRegion);			
 			map.put("mcnNo", inputMcnNo);			
 			map.put("inputCurrentDate", inputCurrentDate);			
 
@@ -454,6 +456,22 @@ public class AdminDAO {
 		
 		try {
 			return (Review) sqlSession.selectOne(namespace + ".getReview", inputReviewNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static ArrayList<Channel> getChannelEtcList(int offset, int recordsPerPage) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("offset", offset);
+			map.put("size", recordsPerPage);			
+		
+			return (ArrayList) sqlSession.selectList(namespace + ".getChannelEtcList", map);
 			
 		} finally {
 			sqlSession.close();

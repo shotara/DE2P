@@ -12,6 +12,7 @@ public class Channel {
 	private long racChannelViews;
 	private String racChannelUrl;
 	private String racChannelThumbnail;
+	private String racChannelRegion;
 	private Timestamp racChannelCreateDate;
 	private Timestamp racChannelUpdateDate;
 	private Timestamp racChannelInsertDate;
@@ -93,6 +94,14 @@ public class Channel {
 		this.racChannelThumbnail = racChannelThumbnail;
 	}
 
+	public String getRacChannelRegion() {
+		return racChannelRegion;
+	}
+
+	public void setRacChannelRegion(String racChannelRegion) {
+		this.racChannelRegion = racChannelRegion;
+	}
+
 	public Timestamp getRacChannelCreateDate() {
 		return racChannelCreateDate;
 	}
@@ -119,8 +128,8 @@ public class Channel {
 
 	public Channel(int racChannelNo, int racMemberNo, int racChannelStatus, String racChannelCategory,
 			String racChannelTitle, int racChannelFollowers, long racChannelViews, String racChannelUrl,
-			String racChannelThumbnail, Timestamp racChannelCreateDate, Timestamp racChannelUpdateDate,
-			Timestamp racChannelInsertDate) {
+			String racChannelThumbnail, String racChannelRegion, Timestamp racChannelCreateDate,
+			Timestamp racChannelUpdateDate, Timestamp racChannelInsertDate) {
 		super();
 		this.racChannelNo = racChannelNo;
 		this.racMemberNo = racMemberNo;
@@ -131,8 +140,10 @@ public class Channel {
 		this.racChannelViews = racChannelViews;
 		this.racChannelUrl = racChannelUrl;
 		this.racChannelThumbnail = racChannelThumbnail;
+		this.racChannelRegion = racChannelRegion;
 		this.racChannelCreateDate = racChannelCreateDate;
 		this.racChannelUpdateDate = racChannelUpdateDate;
 		this.racChannelInsertDate = racChannelInsertDate;
-	}	
+	}
+
 }

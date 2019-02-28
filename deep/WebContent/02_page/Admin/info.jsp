@@ -11,7 +11,7 @@
 
 </head>
 <script type="text/javascript">
-	function addInfo(no, mcn, category, category2, category3) {
+	function addInfo(no, mcn, category, category2, category3, region) {
 		
 		var action, form_data;
 		
@@ -24,7 +24,8 @@
 				inputMcnNo : mcn,
 				inputCategoryNo : category,
 				inputCategoryNo2 : category2,
-				inputCategoryNo3 : category3
+				inputCategoryNo3 : category3,
+				inputChannelRegion : region
 		};
 		
 		$.ajax({
@@ -130,10 +131,14 @@
 			    <option value="19">기타</option>
 			</select>
 		</div>
+		<div class="info-channel-region">
+			<div class="left">국가</div>
+			<input type="text" id="region" value="${result.outputChannelRegion}"/>
+		</div>
 	</div>
 	
 	<div class="btn">
-		<button onclick="addInfo(${result.outputChannelNo},$('#mcnNo').val(),$('#category').val(),$('#category2').val(),$('#category3').val())">정보입력</button>
+		<button onclick="addInfo(${result.outputChannelNo},$('#mcnNo').val(),$('#category').val(),$('#category2').val(),$('#category3').val(),$('#region').val())">정보입력</button>
 		<button>취소</button>
 	</div>
 	<div class="btn">
