@@ -1298,7 +1298,8 @@ ul.sub-tabs li a.active {
 }
 
 .p-txt {
-	margin-bottom: 10px;
+	text-align : center;
+	vertical-align : center;
 }
 
 /**********************************/

@@ -372,11 +372,6 @@
 													<c:if test="${ item.outputReviewStatus != 2}">
 													<div class="demo-text">
 															<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
-															<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
-															<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
-															<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
-															<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
-															<p class="p-txt">랭크리에서 이 리뷰에 대한 판단을 진행중입니다. 잠시만 기다려주세요! </p>
 													</div>
 													</c:if>
 													<div class="pTop2 display-flex"></div>
