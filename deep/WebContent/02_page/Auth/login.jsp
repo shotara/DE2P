@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<title>랭크리 : 로그인</title>
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
 <jsp:include page="/02_page/commonContactUs.jsp" flush="true" />
 
