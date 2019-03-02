@@ -108,7 +108,7 @@ Common.addList = function (mode, startNo, categoryNo) {
 						$("#tech .chnContents").append(content);
 						break;
 					case 7:
-						$("#education .chnContents").append(content);
+						$("#issue .chnContents").append(content);
 						break;
 					case 8:
 						$("#beauty .chnContents").append(content);
@@ -158,7 +158,7 @@ Common.addList = function (mode, startNo, categoryNo) {
 						$("#tech .btnListGo").hide();
 						break;
 					case 7:
-						$("#education .btnListGo").hide();
+						$("#issue .btnListGo").hide();
 						break;
 					case 8:
 						$("#beauty .btnListGo").hide();
@@ -250,7 +250,7 @@ Common.addList = function (mode, startNo, categoryNo) {
 						$("#tech .btnListGo").hide();
 						break;
 					case 7:
-						$("#education .btnListGo").hide();
+						$("#issue .btnListGo").hide();
 						break;
 					case 8:
 						$("#beauty .btnListGo").hide();
