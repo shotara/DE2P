@@ -231,10 +231,9 @@ public class MemberController {
 				return;
 			}
 			
-	
-			  String host     = "smtp.naver.com";
-			  final String user   = "shotzara@naver.com";
-			  final String password  = "rmlarmla12!";
+			  String host     = "smtp.daum.net";
+			  final String user   = "admin@rancre.com";
+			  final String password  = "rlgusn12!";
 	
 			  String to = decryptMemberEmail;
 	
@@ -242,7 +241,9 @@ public class MemberController {
 			  Properties props = new Properties();
 			  props.put("mail.smtp.host", host);
 			  props.put("mail.smtp.auth", "true");
-	
+			  props.put("mail.smtp.port","465");
+			  props.put("mail.smtp.socketFactory.port", "465");
+			  props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 			  Session mailSession = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 			   protected PasswordAuthentication getPasswordAuthentication() {
 			    return new PasswordAuthentication(user, password);
@@ -250,7 +251,7 @@ public class MemberController {
 			  });
 	
 			   MimeMessage message = new MimeMessage(mailSession);
-			   message.setFrom(new InternetAddress(user));
+			   message.setFrom(new InternetAddress("admin@rancre.com"));
 			   message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 	
 			   // Subject
@@ -555,16 +556,19 @@ public class MemberController {
 			
 			// 완료 
 
-			  String host     = "smtp.naver.com";
-			  final String user   = "shotzara@naver.com";
-			  final String password  = "rmlarmla12!";
-
+			  String host     = "smtp.daum.net";
+			  final String user   = "admin@rancre.com";
+			  final String password  = "rlgusn12!";
+	
 			  String to = decryptMemberEmail;
-
+	
 			  // Get the session object
 			  Properties props = new Properties();
 			  props.put("mail.smtp.host", host);
 			  props.put("mail.smtp.auth", "true");
+			  props.put("mail.smtp.port","465");
+			  props.put("mail.smtp.socketFactory.port", "465");
+			  props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
 			  Session mailSession = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 			   protected PasswordAuthentication getPasswordAuthentication() {
