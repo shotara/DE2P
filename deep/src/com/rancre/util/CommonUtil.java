@@ -351,27 +351,27 @@ public class CommonUtil {
 		
 		switch(categoryNo) {
 		case 2:
-			return "#스튜디오";
+			return "#스튜디오/엔터";
 		case 3:
-			return "#엔터";
+			return "#예능/토크";
 		case 4:
-			return "#여행";
+			return "#미사용";
 		case 5:
 			return "#노래 댄스";
 		case 6:
-			return "#테크";
+			return "#테크/교육";
 		case 7:
-			return "#교육(어학)";
+			return "#시사/이슈";
 		case 8:
 			return "#뷰티";
 		case 9:
-			return "#일상";
+			return "#여행/일상";
 		case 10:
 			return "#게임";
 		case 11:
 			return "#스포츠";
 		case 12:
-			return "#먹방";
+			return "#먹방/쿡방";
 		case 13:
 			return "#키즈";
 		case 14:
@@ -379,7 +379,7 @@ public class CommonUtil {
 		case 15:
 			return "#ASMR";
 		case 16:
-			return "#취미";
+			return "#취미/예술";
 		case 17:
 			return "#리뷰어";
 		case 18:

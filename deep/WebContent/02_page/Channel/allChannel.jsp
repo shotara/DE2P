@@ -254,7 +254,7 @@
 
 				<!-- 로우 끝  -->
 
-				<!-- 스튜디오 영역 시작 -->
+				<!-- 스튜디오/엔터 영역 시작 -->
 
 				<div class="subNav-content active" id="studio">
 
@@ -269,10 +269,10 @@
 						<button class="btnListGo" onclick="addList2(2)">더보기</button>
 					</div>
 				</div>
-				<!--  스튜디오 콘텐츠 영역 끝  -->
+				<!--  스튜디오/엔터 콘텐츠 영역 끝  -->
 
 
-				<!-- 엔터영역 시작  -->
+				<!-- 예능/토크 영역 시작  -->
 
 
 				<div class="subNav-content" id="entertain">
@@ -289,11 +289,11 @@
 				</div>
 
 
-				<!-- 엔터영역 끝  -->
+				<!-- 예능/토크 영역 끝  -->
 
 
 
-				<!-- 여행영역 시작  -->
+<!-- 				일상/여행 시작 
 
 
 				<div class="subNav-content" id="travel">
@@ -305,13 +305,13 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList2(4)">더보기</button>
+						<button class="btnListGo" onclick="addList2(9)">더보기</button>
 					</div>
 
 				</div>
 
-
-				<!-- 여행영역 끝  -->
+ -->
+				<!-- 일상/여행 영역 끝  -->
 
 
 
@@ -337,7 +337,7 @@
 
 
 
-				<!-- 테크 영역 시작  -->
+				<!-- 테크/어학 영역 시작  -->
 
 
 				<div class="subNav-content" id="tech">
@@ -353,11 +353,11 @@
 
 				</div>
 
-				<!-- 테크 영역 끝  -->
+				<!-- 테크/어학 영역 끝  -->
 
 
 
-				<!-- 교육(어학) 시작  -->
+				<!-- 시사/이슈 시작  -->
 
 
 				<div class="subNav-content" id="issue">
@@ -374,7 +374,7 @@
 
 				</div>
 
-				<!-- 교육(어학) 끝   -->
+				<!-- 시사/이슈 끝   -->
 
 
 				<!-- 뷰티  시작  -->
@@ -502,7 +502,7 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(14)">더보기</button>
+						<button class="btnListGo" onclick="addList2(14)">더보기</button>
 					</div>
 
 				</div>
@@ -521,14 +521,14 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(15)">더보기</button>
+						<button class="btnListGo" onclick="addList2(15)">더보기</button>
 					</div>
 
 				</div>
 
 				<!-- ASMR   끝   -->
 
-				<!-- 취미  시작  -->
+				<!-- 취미/예술  시작  -->
 
 
 				<div class="subNav-content" id="habbit">
@@ -540,12 +540,12 @@
 					<div class="pt-4"></div>
 
 					<div class="rankBottom txt-center">
-						<button class="btnListGo" onclick="addList(16)">더보기</button>
+						<button class="btnListGo" onclick="addList2(16)">더보기</button>
 					</div>
 
 				</div>
 
-				<!-- 취미  끝   -->
+				<!-- 취/예술   끝   -->
 
 			</div>
 		</div>
