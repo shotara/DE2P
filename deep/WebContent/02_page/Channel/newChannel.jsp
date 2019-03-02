@@ -9,6 +9,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>랭크리 : 새로운 채널</title>
 <meta name="description" content="랭크리는 유튜브 채널의 비즈니스 정보를 제공합니다. 유튜브 채널 마케팅을 고민하고 있다면 랭크리에서 채널정보를 확인하세요" >
+<link rel="canonical" href="http://www.rancre.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="랭크리 : 유튜브 채널의 비즈니스 정보를 한곳에서">
+<meta property="og:description" content="랭크리는 유튜브 채널의 비즈니스 정보를 제공합니다. 유튜브 채널 마케팅을 고민하고 있다면 랭크리에서 채널정보를 확인하세요">
+<meta property="og:url" content="http://www.rancre.com/02_page/Channel/newChannel.jsp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="랭크리 : 유튜브 채널의 비즈니스 정보를 한곳에서">
+<meta name="twitter:description" content="랭크리는 유튜브 채널의 비즈니스 정보를 제공합니다. 유튜브 채널 마케팅을 고민하고 있다면 랭크리에서 채널정보를 확인하세요">
+<meta name="twitter:url" content="http://www.rancre.com/02_page/Channel/newChannel.jsp">
+<meta name="robots" content="index,follow">
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
 
 </head>
