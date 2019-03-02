@@ -49,7 +49,7 @@
 				$("#tech .btnListGo").hide();
 				break;
 			case 7:
-				$("#education .btnListGo").hide();
+				$("#issue .btnListGo").hide();
 				break;
 			case 8:
 				$("#beauty .btnListGo").hide();
@@ -167,42 +167,37 @@
 					<div
 						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link active" data-tab="studio" href="#studio"
-							onclick="initList(2)">스튜디오</a>
+							onclick="initList(2)">스튜디오/엔터</a>
 					</div>
 					<div
 						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="entertain" href="#entertain"
-							onclick="initList(3)">엔터</a>
+							onclick="initList(3)">예능/토크</a>
 					</div>
 					<div
 						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="travel" href="#travel"
-							onclick="initList(4)">여행</a>
+						<a class="subnav-link" data-tab="daylife" href="#daylife"
+							onclick="initList(9)">여행/일상</a>
 					</div>
 					<div
 						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="singdance" href="#singdance"
-							onclick="initList(5)">노래 댄스</a>
+							onclick="initList(5)">노래/댄스</a>
 					</div>
 					<div
 						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="tech" href="#tech"
-							onclick="initList(6)">테크</a>
+							onclick="initList(6)">테크/교육</a>
 					</div>
 					<div
 						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="education" href="#education"
-							onclick="initList(7)">교육(어학)</a>
+						<a class="subnav-link" data-tab="issue" href="#issue"
+							onclick="initList(7)">시사/이슈</a>
 					</div>
 					<div
 						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="beauty" href="#beauty"
 							onclick="initList(8)">뷰티</a>
-					</div>
-					<div
-						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
-						<a class="subnav-link" data-tab="daylife" href="#daylife"
-							onclick="initList(9)">일상</a>
 					</div>
 					<div
 						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
@@ -217,7 +212,7 @@
 					<div
 						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="food" href="#food"
-							onclick="initList(12)">먹방</a>
+							onclick="initList(12)">먹방/쿡방</a>
 					</div>
 					<div
 						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
@@ -237,7 +232,7 @@
 					<div
 						class="subNav-tab all-channel-tab w-auto ml-auto d-inline-block">
 						<a class="subnav-link" data-tab="habbit" href="#habbit"
-							onclick="initList(16)">취미</a>
+							onclick="initList(16)">취미/예술</a>
 					</div>
 				</div>
 
@@ -365,7 +360,7 @@
 				<!-- 교육(어학) 시작  -->
 
 
-				<div class="subNav-content" id="education">
+				<div class="subNav-content" id="issue">
 
 					<div class="chnContents">
 						<div class="pt-2"></div>

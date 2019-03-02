@@ -649,8 +649,7 @@ a.subnav-link:hover {
 	max-width: 100%;
 	position: relative;
 	min-height: 1px;
-	padding-right: 13px;
-	padding-left: 13px;
+	padding-right: 17px;
 }
 
 .detail-tab {
@@ -909,8 +908,8 @@ a.subnav-link:hover {
 
 .ranc-Row3 {
 	display: inline-block;
-	width: 190px;
-	margin-right: 18px;
+	width: 195px;
+	margin-right: 21px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
@@ -919,7 +918,7 @@ a.subnav-link:hover {
 
 .ranc-Row {
 	display: inline-block;
-	width: 198px;
+	width: 190px;
 	margin-right: 10px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -929,8 +928,8 @@ a.subnav-link:hover {
 
 .ranc-Row2 {
 	display: inline-block;
-	width: 230px;
-	margin-right: 10px;
+	width: 235px;
+	margin-right: 13px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
@@ -985,11 +984,22 @@ a.subnav-link:hover {
 	white-space: nowrap;
 	overflow: hidden;
 	vertical-align: middle;
+	margin-right : 10px;
 }
 
 .ranc-Main-Row2 {
 	display: inline-block;
-	width: 200px;
+	width: 210px;
+	margin-right : 10px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: middle;
+}
+
+.ranc-Main-Row3 {
+	display: inline-block;
+	width: 170px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
@@ -1902,16 +1912,16 @@ ul.sub-tabs li a.active {
 }
 
 .review-channel-output-area {
-	border : 1px solid #b4b4b4;
-	overflow : auto;
-	margin-top : 20px;
-	height : 150px;
+	border: 1px solid #b4b4b4;
+	overflow: auto;
+	margin-top: 20px;
+	height: 150px;
 }
 
 .review-channelName-radio {
 	display: block;
 	width: 100%;
-	margin :0;
+	margin: 0;
 }
 
 .review-channelName-radio>input { /* HIDE RADIO */
@@ -1921,14 +1931,15 @@ ul.sub-tabs li a.active {
 
 .review-channelName-radio>input+div { /* DIV STYLES */
 	cursor: pointer;
-	height : 36px;
-	padding-left : 10px;
-	padding-top : 5px;
+	height: 36px;
+	padding-left: 10px;
+	padding-top: 5px;
 }
 
-.review-channelName-radio>input:checked+div { /* (RADIO CHECKED) DIV STYLES */
+.review-channelName-radio>input:checked+div {
+	/* (RADIO CHECKED) DIV STYLES */
 	border: 1px solid #f11834;
-	height : 36px;
+	height: 36px;
 }
 
 /********************************/

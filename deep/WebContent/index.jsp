@@ -36,8 +36,8 @@
 				<div class="rankMainRowImg"></div>
 				<div class="ranc-Main-Row">채널명</div>
 				<div class="ranc-Main-Row2">카테고리</div>
-				<div class="ranc-Main-Row">총구독자수</div>
-				<div class="ranc-Main-Row">총조회수</div>
+				<div class="ranc-Main-Row3">총구독자수</div>
+				<div class="ranc-Main-Row3">총조회수</div>
 				<div class="rankMainRowBtn"></div>
 
 				<hr>
@@ -104,8 +104,8 @@
 	        				"							</div>\r\n" + 
 	        				"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelTitle+"</div>\r\n" + 
 	        				"							<div class='ranc-Main-Row2'>"+args.rankingList[i].outputCategoryNo+"</div>\r\n" + 
-	        				"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
-	        				"							<div class='ranc-Main-Row'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
+	        				"							<div class='ranc-Main-Row3'>"+args.rankingList[i].outputChannelFollowers+"</div>\r\n" + 
+	        				"							<div class='ranc-Main-Row3'>"+args.rankingList[i].outputChannelViews+"</div>\r\n" + 
 	        				"							<div class='rankMainRowBtn'>\r\n" +
 	        				"								<a class='chnDtlGo' href='/channel?action=getChannelDetail&inputChannelNo="+args.rankingList[i].outputChannelNo+"'>\r\n"+
 	        				"									<button class='btnChnGo'>채널정보\r\n" + 
