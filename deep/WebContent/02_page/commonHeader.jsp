@@ -1,6 +1,10 @@
 <%@ page import="com.rancre.config.GlobalValue" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<head>
+<meta name="naver-site-verification" content="3fc481e51e2f8bf387c5d086b464bfaa5e617850"/>
+</head>
+
 <!-- CSS -->
 <link type="text/css" href="/03_include/css/common.css" rel="stylesheet" />
 <link type="text/css" href="/03_include/css/bootstrap.css" rel="stylesheet" />
