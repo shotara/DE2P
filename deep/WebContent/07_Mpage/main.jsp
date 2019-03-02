@@ -9,12 +9,17 @@
 <title>Rancre : 유튜브 채널 정보 플랫폼</title>
 <jsp:include page="/07_Mpage/commonMobileHeader.jsp" flush="true" />
 </head>
-<body>
+<body class="mbody">
 
 <section id="mHeader">
 	<div>
-	
+		<div class=""><i class="fas fa-bars"></i></div>
 	</div>
+</section>
+
+<section id ="m-Main-Channel-List">
+<div>	채널정보 테스트 <span class="glyphicon glyphicon-chevron-right"></span></div>
+	
 </section>
 
 </body>
