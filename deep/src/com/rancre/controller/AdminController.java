@@ -215,7 +215,7 @@ public class AdminController {
 	
 			CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel List OK", map);
 			req.setAttribute("result", jObject);
-			req.getRequestDispatcher("/02_page/Admin/channelList.jsp").forward(req, res);
+			req.getRequestDispatcher("/02_page/Admin/channelEtcList.jsp").forward(req, res);
 
 			return;
 			
@@ -974,7 +974,8 @@ public class AdminController {
 			jObject.put("currentPageNo", paging.getCurrentPageNo());
 			jObject.put("nextPageNo", paging.getNextPageNo());
 			jObject.put("paging", paging);
-	
+			jObject.put("mode", mode);
+
 			CommonUtil.commonPrintLog("SUCCESS", className, "Get Review List OK", map);
 			req.setAttribute("result", jObject);
 			req.getRequestDispatcher("/02_page/Admin/reviewList.jsp").forward(req, res);

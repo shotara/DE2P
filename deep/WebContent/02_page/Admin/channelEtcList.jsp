@@ -183,10 +183,10 @@
 							if ((start - 10) == 0)
 								$("#page")
 										.append(
-												"<a href='/admin?action=getChannelList&page=1&size=30'>이전</a> ");
+												"<a href='/admin?action=getChannelEtcList&page=1&size=30'>이전</a> ");
 							else
 								$("#page").append(
-										"<a href='/admin?action=getChannelList&page="
+										"<a href='/admin?action=getChannelEtcList&page="
 												+ (start - 10)
 												+ "&size=30'>이전</a> ");
 						}
@@ -195,7 +195,7 @@
 							for (var i = start; i < total && i < finalPage; i++) {
 								var input = ""
 								if ((i + 1) != current) {
-									input = "<a href='/admin?action=getChannelList&page="
+									input = "<a href='/admin?action=getChannelEtcList&page="
 											+ (i + 1)
 											+ "&size=30'>"
 											+ (i + 1)
@@ -210,7 +210,7 @@
 									&& i + 1 < finalPage; i++) {
 								var input = ""
 								if ((i) != current) {
-									input = "<a href='/admin?action=getChannelList&page="
+									input = "<a href='/admin?action=getChannelEtcList&page="
 											+ (i)
 											+ "&size=30'>"
 											+ (i)
@@ -224,7 +224,7 @@
 
 						if (total < finalPage)
 							$("#page").append(
-									"<a href='/admin?action=getChannelList&page="
+									"<a href='/admin?action=getChannelEtcList&page="
 											+ total + "&size=30'>다음</a> ");
 
 					});

@@ -357,7 +357,7 @@ public class CommonUtil {
 		case 4:
 			return "#미사용";
 		case 5:
-			return "#노래 댄스";
+			return "#노래/댄스";
 		case 6:
 			return "#테크/교육";
 		case 7:
