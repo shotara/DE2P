@@ -27,15 +27,17 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active"><a class="nav-link" href="#"
 					onclick="Common.search(3)">채널수집요청</a></li>
-				<li class="nav-item active"><a class="nav-link"
-					href="/channel?action=getReviewPage" onclick="Auth.loginCheck()">리뷰등록</a></li>
 				<c:if test="${empty sessionScope.racMemberNo}">
+					<li class="nav-item active"><a class="nav-link"
+						href="/02_page/Auth/login.jsp" onclick="Auth.loginCheck()">리뷰등록</a></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="/02_page/Auth/login.jsp">로그인</a></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="/02_page/Auth/join.jsp">회원가입</a></li>
 				</c:if>
 				<c:if test="${not empty sessionScope.racMemberNo}">
+					<li class="nav-item active"><a class="nav-link"
+						href="/channel?action=getReviewPage">리뷰등록</a></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="/member?action=getMypage">기업홈</a></li>
 					<li class="nav-item active"><a class="nav-link" href="#"
@@ -64,9 +66,7 @@
 			</div>
 
 			<div class="pTop">
-				<span>채널 URL </span><span class="primary-color">*</span> 
-				
-				<input
+				<span>채널 URL </span><span class="primary-color">*</span> <input
 					class="ipt-req-search-channel" id="ipt-Req-Search-Channel"
 					placeholder="https://www.youtube.com/user/example" type="email" />
 
