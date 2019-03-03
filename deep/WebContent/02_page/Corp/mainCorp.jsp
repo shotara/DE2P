@@ -6,8 +6,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>랭크리 : 기업회원 홈</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="subject" content="랭크리 : 유튜브 채널의 비즈니스 정보를 한곳에서">
+<link rel="canonical" href="http://rancre.com">
 <meta name="description" content="랭크리는 유튜브 채널의 비즈니스 정보를 제공합니다. 유튜브 채널 마케팅을 고민하고 있다면 랭크리에서 채널정보를 확인하세요" >
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
 <script>

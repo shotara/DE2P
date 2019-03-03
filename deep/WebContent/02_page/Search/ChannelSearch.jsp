@@ -6,9 +6,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<title>랭크리 : 유튜브 채널의 비즈니스 정보를 한곳에서</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>랭크리 : 채널 검색</title>
 <meta name="description" content="랭크리는 유튜브 채널의 비즈니스 정보를 제공합니다. 유튜브 채널 마케팅을 고민하고 있다면 랭크리에서 채널정보를 확인하세요" >
+<meta name="keywords" content="유튜브 광고, 유튜브 채널, 유튜브 채널정보, 유튜브 비즈니스, 유튜브 랭킹, 유튜브 리뷰, 유튜브 분석, 유튜브 trueview, 유튜브 채널검색, 랭크리, 유튜브 채널추천, 인플루엔서, 소셜광고">
+<link rel="canonical" href="http://rancre.com">
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
 
 </head>
