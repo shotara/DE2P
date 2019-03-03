@@ -146,7 +146,7 @@
 								<div id="" class="col w-auto d-inline-block txt-center"><span>300</span><span>개</span></div><!-- 최근 영상의 평균 싫어요수를 계산(최근 영상 15개에 대한) 주석은 개발 후 삭제 필 -->
 								<div id="" class="col w-auto d-inline-block txt-center"><span>2,000</span><span>개</span></div> <!-- 최근 영상의 평균 댓글수를 계산(최근 영상 15개에 대한) 주석은 개발 후 삭제 필 -->
 								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdViews }</div> 
-								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdSatisfyRank }</div>
+								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdSatisfyRank }<span>/5점</span></div> <!-- 정보 없을 경우, 정보없음 텍스트 표기 점수 있을경우 /5점 텍스트 표기 -->
 							</div>
 
 						</div>
