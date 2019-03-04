@@ -9,6 +9,9 @@ public class Video {
 	private String racVideoId;
 	private String racVideoTitle;
 	private long racVideoViews;
+	private int racVideoLikeCount;
+	private int racVideoDisLikeCount;
+	private int racVideoCommentCount;
 	private String racVideoThumbnail;
 	private Timestamp racVideoCreateDate;
 	private Timestamp racVideoUpdateDate;
@@ -52,6 +55,24 @@ public class Video {
 	public void setRacVideoViews(long racVideoViews) {
 		this.racVideoViews = racVideoViews;
 	}
+	public int getRacVideoLikeCount() {
+		return racVideoLikeCount;
+	}
+	public void setRacVideoLikeCount(int racVideoLikeCount) {
+		this.racVideoLikeCount = racVideoLikeCount;
+	}
+	public int getRacVideoDisLikeCount() {
+		return racVideoDisLikeCount;
+	}
+	public void setRacVideoDisLikeCount(int racVideoDisLikeCount) {
+		this.racVideoDisLikeCount = racVideoDisLikeCount;
+	}
+	public int getRacVideoCommentCount() {
+		return racVideoCommentCount;
+	}
+	public void setRacVideoCommentCount(int racVideoCommentCount) {
+		this.racVideoCommentCount = racVideoCommentCount;
+	}
 	public String getRacVideoThumbnail() {
 		return racVideoThumbnail;
 	}
@@ -71,7 +92,8 @@ public class Video {
 		this.racVideoUpdateDate = racVideoUpdateDate;
 	}
 	public Video(int racVideoNo, int racChannelNo, int racVideoStatus, String racVideoId, String racVideoTitle,
-			long racVideoViews, String racVideoThumbnail, Timestamp racVideoCreateDate, Timestamp racVideoUpdateDate) {
+			long racVideoViews, int racVideoLikeCount, int racVideoDisLikeCount, int racVideoCommentCount,
+			String racVideoThumbnail, Timestamp racVideoCreateDate, Timestamp racVideoUpdateDate) {
 		super();
 		this.racVideoNo = racVideoNo;
 		this.racChannelNo = racChannelNo;
@@ -79,9 +101,13 @@ public class Video {
 		this.racVideoId = racVideoId;
 		this.racVideoTitle = racVideoTitle;
 		this.racVideoViews = racVideoViews;
+		this.racVideoLikeCount = racVideoLikeCount;
+		this.racVideoDisLikeCount = racVideoDisLikeCount;
+		this.racVideoCommentCount = racVideoCommentCount;
 		this.racVideoThumbnail = racVideoThumbnail;
 		this.racVideoCreateDate = racVideoCreateDate;
 		this.racVideoUpdateDate = racVideoUpdateDate;
 	}
+
 	
 }

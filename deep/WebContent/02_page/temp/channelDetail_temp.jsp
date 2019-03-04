@@ -102,7 +102,7 @@
 						<div id="" class="col w-auto d-inline-block txt-center">
 							<span>${requestScope.outputChannelFollowers }</span>
 						</div>
-						<div id="" class="col w-auto d-inline-block txt-center">+ 2,321/일</div> <!-- 총 기간 대비 구독자 수 증가 폭 총 구독자수 / 채널 오픈 일자 (개발 후 삭제) -->
+						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelEntireIncrementFollowers }</div>
 						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelBeforeFollowersMark }${requestScope.outputChannelBeforeFollowers }</div>
 						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelViews }</div>
 						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelRecentViews }</div>
@@ -141,12 +141,12 @@
 
 							<div class="row w-auto ml-auto">
 								<div id="" class="col w-auto d-inline-block txt-center">
-									<span>10,000,000</span><span>개</span> <!-- 최근 영상의 평균 좋아요수를 계산(최근 영상 15개에 대한) 주석은 개발 후 삭제 필-->
+									<span>${requestScope.outputChannelRecentLikeCount }</span><span>개</span> 
 								</div>
-								<div id="" class="col w-auto d-inline-block txt-center"><span>300</span><span>개</span></div><!-- 최근 영상의 평균 싫어요수를 계산(최근 영상 15개에 대한) 주석은 개발 후 삭제 필 -->
-								<div id="" class="col w-auto d-inline-block txt-center"><span>2,000</span><span>개</span></div> <!-- 최근 영상의 평균 댓글수를 계산(최근 영상 15개에 대한) 주석은 개발 후 삭제 필 -->
+								<div id="" class="col w-auto d-inline-block txt-center"><span>${requestScope.outputChannelRecentDisLikeCount }</span><span>개</span></div>
+								<div id="" class="col w-auto d-inline-block txt-center"><span>${requestScope.outputChannelRecentCommentCount }</span><span>개</span></div> 
 								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdViews }</div> 
-								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdSatisfyRank }<span>/5점</span></div> <!-- 정보 없을 경우, 정보없음 텍스트 표기 점수 있을경우 /5점 텍스트 표기 -->
+								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdSatisfyRank }</div> <!-- 정보 없을 경우, 정보없음 텍스트 표기 점수 있을경우 /5점 텍스트 표기 -->
 							</div>
 
 						</div>

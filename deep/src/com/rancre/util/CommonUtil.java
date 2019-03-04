@@ -506,17 +506,17 @@ public class CommonUtil {
 	public static String getReviewSatisfy5(int no) {
 		switch(no) {
 		case 1:
-			return "매우 만족";
+			return "5";
 		case 2:
-			return "만족";
+			return "4";
 		case 3:
-			return "보통";
+			return "3";
 		case 4:
-			return "불만족";
+			return "2";
 		case 5:
-			return "매우 불만족";
+			return "1";
 		default:
-			return "보통";
+			return "3";
 		}
 	}
 	

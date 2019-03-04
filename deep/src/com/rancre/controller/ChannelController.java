@@ -69,7 +69,6 @@ public class ChannelController {
 			int inputChannelNo = req.getParameter("inputChannelNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputChannelNo").toString())) : 0;
 			
 			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
-
 			// Channel Detail
 			Channel channel = ChannelDAO.getChannelByNo(inputChannelNo);
 			String channelFollowers = CommonUtil.setCommaForInt(channel.getRacChannelFollowers());
@@ -81,30 +80,42 @@ public class ChannelController {
 			date.setHours(0);
 			Timestamp currentTime = new Timestamp(date.getTime());
 
-			if(channelFollowers.equals("-1")) channelFollowers="비공개";
-			if(ChannelDAO.checkRankTop(inputChannelNo)>0) {
-				req.setAttribute("outputChannelGrade", "A");
-				RankCategory categoryRanking = ChannelDAO.getRankCategory(inputChannelNo, currentTime);
-				req.setAttribute("outputChannelCategoryRank", categoryRanking.getRacRankCategoryRanking());
-				req.setAttribute("outputChannelCategoryName", CommonUtil.getChannelCategoryName(categoryRanking.getRacCategoryNo()));
+			// 총 구독자수 , 생성일 부터 지금까지 
+			int entireFollower = channel.getRacChannelFollowers();
+			Timestamp createDate = channel.getRacChannelCreateDate();
+			Long entireDate = (date.getTime() - createDate.getTime())/(1000*60*60*24);  // 현재시간 - 생성일 
 
-			} else if(ChannelDAO.checkRankCategory(inputChannelNo, currentTime)>0) {
-				req.setAttribute("outputChannelGrade", "B");
-				RankCategory categoryRanking = ChannelDAO.getRankCategory(inputChannelNo, currentTime);
-				req.setAttribute("outputChannelCategoryRank", categoryRanking.getRacRankCategoryRanking());
-				req.setAttribute("outputChannelCategoryName", CommonUtil.getChannelCategoryName(categoryRanking.getRacCategoryNo()));
+//			if(ChannelDAO.checkRankTop(inputChannelNo)>0) {
+//				req.setAttribute("outputChannelGrade", "A");
+//				RankCategory categoryRanking = ChannelDAO.getRankCategory(inputChannelNo, currentTime);
+//				req.setAttribute("outputChannelCategoryRank", categoryRanking.getRacRankCategoryRanking());
+//				req.setAttribute("outputChannelCategoryName", CommonUtil.getChannelCategoryName(categoryRanking.getRacCategoryNo()));
+//
+//			} else if(ChannelDAO.checkRankCategory(inputChannelNo, currentTime)>0) {
+//				req.setAttribute("outputChannelGrade", "B");
+//				RankCategory categoryRanking = ChannelDAO.getRankCategory(inputChannelNo, currentTime);
+//				req.setAttribute("outputChannelCategoryRank", categoryRanking.getRacRankCategoryRanking());
+//				req.setAttribute("outputChannelCategoryName", CommonUtil.getChannelCategoryName(categoryRanking.getRacCategoryNo()));
+//
+//			} else {
+//				req.setAttribute("outputChannelGrade", "C");
+//				req.setAttribute("outputChannelCategoryRank", "200+");
+//				String tempCategory = CommonUtil.getChannelCategoryList(channel.getRacChannelCategory());
+//				if(tempCategory.indexOf(",")!=-1) tempCategory=tempCategory.substring(0, tempCategory.indexOf(","));
+//				
+//				req.setAttribute("outputChannelCategoryName", tempCategory);
+//			}
+
+			if(channelFollowers.equals("-1")) {
+				channelFollowers="비공개";
+				req.setAttribute("outputChannelEntireIncrementFollowers", "비공개");
 
 			} else {
-				req.setAttribute("outputChannelGrade", "C");
-				req.setAttribute("outputChannelCategoryRank", "200+");
-				String tempCategory = CommonUtil.getChannelCategoryList(channel.getRacChannelCategory());
-				if(tempCategory.indexOf(",")!=-1) tempCategory=tempCategory.substring(0, tempCategory.indexOf(","));
-				
-				req.setAttribute("outputChannelCategoryName", tempCategory);
+				req.setAttribute("outputChannelEntireIncrementFollowers", "+ "+entireFollower/entireDate+"/일");
+
 			}
-			
 			req.setAttribute("outputChannelFollowers", channelFollowers);
-			req.setAttribute("outputChannelBeforeFollowers", 0);
+			req.setAttribute("outputChannelBeforeFollowers", "비공개");
 			req.setAttribute("outputChannelViews", CommonUtil.setCommaForLong(channel.getRacChannelViews()));
 			req.setAttribute("outputChannelTitle", channel.getRacChannelTitle());
 			req.setAttribute("outputChannelCategory", CommonUtil.getChannelCategoryList(channel.getRacChannelCategory()));
@@ -144,6 +155,10 @@ public class ChannelController {
 			ArrayList<Video> recentVideoList = ChannelDAO.getRecentVieoList(inputChannelNo);
 			ArrayList<HashMap<String,Object>> outputRecentVideoList = new ArrayList<HashMap<String,Object>>();
 			int recentViews = 0;
+			int recentLike = 0;
+			int recentDisLike = 0;
+			int recentComment = 0;
+			
 			for(int i=0; i < recentVideoList.size(); i++) {
 				HashMap<String,Object> tempObejct = new HashMap<String,Object>();
 				tempObejct.put("outputVideoNo", recentVideoList.get(i).getRacVideoNo());
@@ -164,33 +179,39 @@ public class ChannelController {
 				tempObejct.put("outputVideoViews", CommonUtil.setCommaForLong(recentVideoList.get(i).getRacVideoViews()));
 				tempObejct.put("outputVideoCreateDate", CommonUtil.getChannelDetailDate(recentVideoList.get(i).getRacVideoCreateDate()));
 				recentViews = (int) (recentViews + recentVideoList.get(i).getRacVideoViews()); 
+				recentLike += recentVideoList.get(i).getRacVideoLikeCount();
+				recentDisLike += recentVideoList.get(i).getRacVideoDisLikeCount();
+				recentComment += recentVideoList.get(i).getRacVideoCommentCount();
 				outputRecentVideoList.add(tempObejct);
 				
 			}
 			
 			req.setAttribute("outputChannelRecentViews", recentVideoList.size()!= 0 ? CommonUtil.setCommaForInt(recentViews / recentVideoList.size()) : 0);
+			req.setAttribute("outputChannelRecentLikeCount", recentVideoList.size()!= 0 ? CommonUtil.setCommaForInt(recentLike / recentVideoList.size()) : 0);
+			req.setAttribute("outputChannelRecentDisLikeCount", recentVideoList.size()!= 0 ? CommonUtil.setCommaForInt(recentDisLike / recentVideoList.size()) : 0);
+			req.setAttribute("outputChannelRecentCommentCount", recentVideoList.size()!= 0 ? CommonUtil.setCommaForInt(recentComment / recentVideoList.size()) : 0);
 			req.setAttribute("outputRecentVideoList", outputRecentVideoList);
 			
-			/// 평균 영상 등록 날짜
-			if(recentVideoList.size()>1) {
-				int sumDate=0, countsize=0;;
-				for(int i=1; i<recentVideoList.size(); i++) {
-					int temp=0;
-					temp = CommonUtil.getChannelVideoCreateDate(recentVideoList.get(i).getRacVideoCreateDate()) - CommonUtil.getChannelVideoCreateDate(recentVideoList.get(i-1).getRacVideoCreateDate());
-					sumDate+=temp;
-					if(temp!=0) countsize++;   // 스트리머인 경우 같은날에 여러개 올리는 경우가 있다. 그 경우는 제외한다.
-				}
-				
-				int videoUpdateDate = Math.round(sumDate/(3600*24)/countsize); // 평균  업로드 데이트 계산
-				if(videoUpdateDate<3) req.setAttribute("outputChannelGradePlus", "+"); // 만약 업로드 날짜가 3일 미만이면 랭킹에 +
-				if(videoUpdateDate==0) videoUpdateDate=1; // 업로드 날짜가 하루 미만이면 1일로 
-				req.setAttribute("outputRecentVideoUpdateDate", videoUpdateDate+" 일");
-			} else if(recentVideoList.size() == 1) {
-				int videoUpdateDate = CommonUtil.getChannelVideoCreateDate(recentVideoList.get(0).getRacVideoCreateDate())/(3600*24);  // 영상이 1개면 업로드 한 날과 현재 날짜 기준으로 
-				req.setAttribute("outputRecentVideoUpdateDate", videoUpdateDate+" 일"); 
-			} else {
-				req.setAttribute("outputRecentVideoUpdateDate", "영상이 없습니다.");
-			}
+//			/// 평균 영상 등록 날짜
+//			if(recentVideoList.size()>1) {
+//				int sumDate=0, countsize=0;;
+//				for(int i=1; i<recentVideoList.size(); i++) {
+//					int temp=0;
+//					temp = CommonUtil.getChannelVideoCreateDate(recentVideoList.get(i).getRacVideoCreateDate()) - CommonUtil.getChannelVideoCreateDate(recentVideoList.get(i-1).getRacVideoCreateDate());
+//					sumDate+=temp;
+//					if(temp!=0) countsize++;   // 스트리머인 경우 같은날에 여러개 올리는 경우가 있다. 그 경우는 제외한다.
+//				}
+//				
+//				int videoUpdateDate = Math.round(sumDate/(3600*24)/countsize); // 평균  업로드 데이트 계산
+//				if(videoUpdateDate<3) req.setAttribute("outputChannelGradePlus", "+"); // 만약 업로드 날짜가 3일 미만이면 랭킹에 +
+//				if(videoUpdateDate==0) videoUpdateDate=1; // 업로드 날짜가 하루 미만이면 1일로 
+//				req.setAttribute("outputRecentVideoUpdateDate", videoUpdateDate+" 일");
+//			} else if(recentVideoList.size() == 1) {
+//				int videoUpdateDate = CommonUtil.getChannelVideoCreateDate(recentVideoList.get(0).getRacVideoCreateDate())/(3600*24);  // 영상이 1개면 업로드 한 날과 현재 날짜 기준으로 
+//				req.setAttribute("outputRecentVideoUpdateDate", videoUpdateDate+" 일"); 
+//			} else {
+//				req.setAttribute("outputRecentVideoUpdateDate", "영상이 없습니다.");
+//			}
 			
 			// Channel Ad part
 			if(sessionMemberNo>0) {
@@ -253,7 +274,7 @@ public class ChannelController {
 				req.setAttribute("outputReivewList", outputReviewList);
 				
 				if(correctReviewSize!=0) {
-					req.setAttribute("outputAdSatisfyRank", CommonUtil.getReviewSatisfy5((int) Math.floor(satisfy/correctReviewSize))); // 리뷰의 점수 평균 
+					req.setAttribute("outputAdSatisfyRank", CommonUtil.getReviewSatisfy5((int) Math.floor(satisfy/correctReviewSize))+"<span>/5점</span>"); // 리뷰의 점수 평균 
 				} else {
 					req.setAttribute("outputAdSatisfyRank","정보없음"); // 리뷰의 점수 평균 
 
@@ -287,7 +308,8 @@ public class ChannelController {
 			res.setCharacterEncoding("UTF-8");
 			
 			CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel Detail OK", map);
-			req.getRequestDispatcher("/02_page/Channel/channelDetail.jsp").forward(req, res);
+			req.getRequestDispatcher("/02_page/temp/channelDetail_temp.jsp").forward(req, res);
+//			req.getRequestDispatcher("/02_page/Channel/channelDetail.jsp").forward(req, res);
 			return;
 			
 		} catch(Exception e) {
