@@ -140,7 +140,7 @@
 								"								"+like+"\r\n" + 
 								"								</div>\r\n" + 
 								"								<div class='corp-View-Row-DetailGo'>\r\n" + 
-								"									<a href='/channel?action=getChannelDetail&inputChannelNo="+ args.outputChannelList[i].outputChannelNo +"'>\r\n" +
+								"									<a href='/channel?action=getChannelDetail&inputChannelNo="+ args.outputChannelList[i].outputChannelNo +"'>\n" +
 								"										<button class='common-Small-Btn'>채널정보 보기\r\n" + 
 								"									</button>\r\n" + 
 								"									</a>r\n"+
@@ -252,7 +252,7 @@
 								"									"+like+"\r\n" + 
 								"								</div>\r\n" + 
 								"								<div class='corp-View-Row-DetailGo'>\r\n" + 
-								"									<a href='/channel?action=getChannelDetail&inputChannelNo="+ args.outputChannelList[i].outputChannelNo +"'>
+								"									<a href='/channel?action=getChannelDetail&inputChannelNo="+ args.outputChannelList[i].outputChannelNo +"'>\n" +
 								"										<button class='common-Small-Btn'>채널정보 보기\r\n" + 
 								"										</button>\r\n" +
 								"									</a>\r\n" + 

@@ -85,26 +85,29 @@ public class ChannelController {
 			Timestamp createDate = channel.getRacChannelCreateDate();
 			Long entireDate = (date.getTime() - createDate.getTime())/(1000*60*60*24);  // 현재시간 - 생성일 
 
-//			if(ChannelDAO.checkRankTop(inputChannelNo)>0) {
-//				req.setAttribute("outputChannelGrade", "A");
-//				RankCategory categoryRanking = ChannelDAO.getRankCategory(inputChannelNo, currentTime);
-//				req.setAttribute("outputChannelCategoryRank", categoryRanking.getRacRankCategoryRanking());
-//				req.setAttribute("outputChannelCategoryName", CommonUtil.getChannelCategoryName(categoryRanking.getRacCategoryNo()));
-//
-//			} else if(ChannelDAO.checkRankCategory(inputChannelNo, currentTime)>0) {
-//				req.setAttribute("outputChannelGrade", "B");
-//				RankCategory categoryRanking = ChannelDAO.getRankCategory(inputChannelNo, currentTime);
-//				req.setAttribute("outputChannelCategoryRank", categoryRanking.getRacRankCategoryRanking());
-//				req.setAttribute("outputChannelCategoryName", CommonUtil.getChannelCategoryName(categoryRanking.getRacCategoryNo()));
-//
-//			} else {
-//				req.setAttribute("outputChannelGrade", "C");
-//				req.setAttribute("outputChannelCategoryRank", "200+");
-//				String tempCategory = CommonUtil.getChannelCategoryList(channel.getRacChannelCategory());
-//				if(tempCategory.indexOf(",")!=-1) tempCategory=tempCategory.substring(0, tempCategory.indexOf(","));
-//				
-//				req.setAttribute("outputChannelCategoryName", tempCategory);
-//			}
+			
+/*			// 랭크리 등급
+			if(ChannelDAO.checkRankTop(inputChannelNo)>0) {
+				req.setAttribute("outputChannelGrade", "A");
+				RankCategory categoryRanking = ChannelDAO.getRankCategory(inputChannelNo, currentTime);
+				req.setAttribute("outputChannelCategoryRank", categoryRanking.getRacRankCategoryRanking());
+				req.setAttribute("outputChannelCategoryName", CommonUtil.getChannelCategoryName(categoryRanking.getRacCategoryNo()));
+
+			} else if(ChannelDAO.checkRankCategory(inputChannelNo, currentTime)>0) {
+				req.setAttribute("outputChannelGrade", "B");
+				RankCategory categoryRanking = ChannelDAO.getRankCategory(inputChannelNo, currentTime);
+				req.setAttribute("outputChannelCategoryRank", categoryRanking.getRacRankCategoryRanking());
+				req.setAttribute("outputChannelCategoryName", CommonUtil.getChannelCategoryName(categoryRanking.getRacCategoryNo()));
+
+			} else {
+				req.setAttribute("outputChannelGrade", "C");
+				req.setAttribute("outputChannelCategoryRank", "200+");
+				String tempCategory = CommonUtil.getChannelCategoryList(channel.getRacChannelCategory());
+				if(tempCategory.indexOf(",")!=-1) tempCategory=tempCategory.substring(0, tempCategory.indexOf(","));
+				
+				req.setAttribute("outputChannelCategoryName", tempCategory);
+			}
+*/
 
 			if(channelFollowers.equals("-1")) {
 				channelFollowers="비공개";
@@ -192,26 +195,27 @@ public class ChannelController {
 			req.setAttribute("outputChannelRecentCommentCount", recentVideoList.size()!= 0 ? CommonUtil.setCommaForInt(recentComment / recentVideoList.size()) : 0);
 			req.setAttribute("outputRecentVideoList", outputRecentVideoList);
 			
-//			/// 평균 영상 등록 날짜
-//			if(recentVideoList.size()>1) {
-//				int sumDate=0, countsize=0;;
-//				for(int i=1; i<recentVideoList.size(); i++) {
-//					int temp=0;
-//					temp = CommonUtil.getChannelVideoCreateDate(recentVideoList.get(i).getRacVideoCreateDate()) - CommonUtil.getChannelVideoCreateDate(recentVideoList.get(i-1).getRacVideoCreateDate());
-//					sumDate+=temp;
-//					if(temp!=0) countsize++;   // 스트리머인 경우 같은날에 여러개 올리는 경우가 있다. 그 경우는 제외한다.
-//				}
-//				
-//				int videoUpdateDate = Math.round(sumDate/(3600*24)/countsize); // 평균  업로드 데이트 계산
-//				if(videoUpdateDate<3) req.setAttribute("outputChannelGradePlus", "+"); // 만약 업로드 날짜가 3일 미만이면 랭킹에 +
-//				if(videoUpdateDate==0) videoUpdateDate=1; // 업로드 날짜가 하루 미만이면 1일로 
-//				req.setAttribute("outputRecentVideoUpdateDate", videoUpdateDate+" 일");
-//			} else if(recentVideoList.size() == 1) {
-//				int videoUpdateDate = CommonUtil.getChannelVideoCreateDate(recentVideoList.get(0).getRacVideoCreateDate())/(3600*24);  // 영상이 1개면 업로드 한 날과 현재 날짜 기준으로 
-//				req.setAttribute("outputRecentVideoUpdateDate", videoUpdateDate+" 일"); 
-//			} else {
-//				req.setAttribute("outputRecentVideoUpdateDate", "영상이 없습니다.");
-//			}
+/*			/// 평균 영상 등록 날짜
+			if(recentVideoList.size()>1) {
+				int sumDate=0, countsize=0;;
+				for(int i=1; i<recentVideoList.size(); i++) {
+					int temp=0;
+					temp = CommonUtil.getChannelVideoCreateDate(recentVideoList.get(i).getRacVideoCreateDate()) - CommonUtil.getChannelVideoCreateDate(recentVideoList.get(i-1).getRacVideoCreateDate());
+					sumDate+=temp;
+					if(temp!=0) countsize++;   // 스트리머인 경우 같은날에 여러개 올리는 경우가 있다. 그 경우는 제외한다.
+				}
+				
+				int videoUpdateDate = Math.round(sumDate/(3600*24)/countsize); // 평균  업로드 데이트 계산
+				if(videoUpdateDate<3) req.setAttribute("outputChannelGradePlus", "+"); // 만약 업로드 날짜가 3일 미만이면 랭킹에 +
+				if(videoUpdateDate==0) videoUpdateDate=1; // 업로드 날짜가 하루 미만이면 1일로 
+				req.setAttribute("outputRecentVideoUpdateDate", videoUpdateDate+" 일");
+			} else if(recentVideoList.size() == 1) {
+				int videoUpdateDate = CommonUtil.getChannelVideoCreateDate(recentVideoList.get(0).getRacVideoCreateDate())/(3600*24);  // 영상이 1개면 업로드 한 날과 현재 날짜 기준으로 
+				req.setAttribute("outputRecentVideoUpdateDate", videoUpdateDate+" 일"); 
+			} else {
+				req.setAttribute("outputRecentVideoUpdateDate", "영상이 없습니다.");
+			}
+*/
 			
 			// Channel Ad part
 			if(sessionMemberNo>0) {
@@ -308,8 +312,7 @@ public class ChannelController {
 			res.setCharacterEncoding("UTF-8");
 			
 			CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel Detail OK", map);
-			req.getRequestDispatcher("/02_page/temp/channelDetail_temp.jsp").forward(req, res);
-//			req.getRequestDispatcher("/02_page/Channel/channelDetail.jsp").forward(req, res);
+			req.getRequestDispatcher("/02_page/Channel/channelDetail.jsp").forward(req, res);
 			return;
 			
 		} catch(Exception e) {
@@ -668,7 +671,7 @@ public class ChannelController {
 			res.setCharacterEncoding("UTF-8");
 			if(inputChannelName.equals("")) {
 				Calendar calendar = Calendar.getInstance();
-				calendar.set(calendar.HOUR_OF_DAY,4);
+				calendar.set(calendar.HOUR_OF_DAY,0);
 				calendar.set(calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH) -1);
 				Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
 				ArrayList<Channel> recomandChannelList = ChannelDAO.getRecomandChannel(inputCurrentDate, 16);

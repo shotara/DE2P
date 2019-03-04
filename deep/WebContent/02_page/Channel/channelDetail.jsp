@@ -6,21 +6,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>랭크리 : 유튜브 채널의 비즈니스 정보를 한곳에서</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="subject" content="랭크리 : 유튜브 채널의 비즈니스 정보를 한곳에서">
-<meta name="keywords" content="유튜브 광고, 유튜브 채널, 유튜브 채널정보, 유튜브 비즈니스, 유튜브 랭킹, 유튜브 리뷰, 유튜브 분석, 유튜브 trueview, 유튜브 채널검색, 랭크리, 유튜브 채널추천, 인플루엔서, 소셜광고">
+<title>랭크리 : 채널정보</title>
 <meta name="description" content="랭크리는 유튜브 채널의 비즈니스 정보를 제공합니다. 유튜브 채널 마케팅을 고민하고 있다면 랭크리에서 채널정보를 확인하세요" >
-<link rel="canonical" href="http://rancre.com">
-<meta property="og:type" content="website">
-<meta property="og:title" content="랭크리 : 유튜브 채널의 비즈니스 정보를 한곳에서">
-<meta property="og:description" content="랭크리는 유튜브 채널의 비즈니스 정보를 제공합니다. 유튜브 채널 마케팅을 고민하고 있다면 랭크리에서 채널정보를 확인하세요">
-<meta property="og:url" content="http://rancre.com/">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="랭크리 : 유튜브 채널의 비즈니스 정보를 한곳에서">
-<meta name="twitter:description" content="랭크리는 유튜브 채널의 비즈니스 정보를 제공합니다. 유튜브 채널 마케팅을 고민하고 있다면 랭크리에서 채널정보를 확인하세요">
-<meta name="twitter:url" content="http://rancre.com/">
-<meta name="robots" content="index,follow">
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
 
 </head>
@@ -89,14 +77,17 @@
 					<hr
 						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 
-					<!-- 채널 스텟 - 종합순위/총구독자수/차주대비/총조회수/최근평균조회수 시작 기본노출정보 -->
+					<!-- 채널 스텟 - 총구독자수/총기간대비구독자수/지난주대비구독자수/총조회수/최근영상의평균조회수 시작 기본노출정보 -->
 
 					<div class="row w-auto ml-auto">
 						<div class="col w-auto d-inline-block txt-center">
-							<span class="font-weight-bold">랭크리 등급</span>
+							<span class="font-weight-bold">총 구독자수</span>
 						</div>
 						<div class="col w-auto d-inline-block txt-center">
-							<span class="font-weight-bold">총 구독자수</span>
+							<span class="font-weight-bold">총 기간 대비 구독자수</span>
+						</div>
+						<div class="col w-auto d-inline-block txt-center">
+							<span class="font-weight-bold">지난주 대비 구독자수</span>
 						</div>
 						<div class="col w-auto d-inline-block txt-center">
 							<span class="font-weight-bold">총 조회수</span>
@@ -104,47 +95,45 @@
 						<div class="col w-auto d-inline-block txt-center">
 							<span class="font-weight-bold">최근 영상의 평균 조회수</span>
 						</div>
-						<div class="col w-auto d-inline-block txt-center">
-							<span class="font-weight-bold">평균 업로드 일자</span>
-						</div>
 					</div>
 					<div class="pt-3"></div>
 
 					<div class="row w-auto ml-auto">
 						<div id="" class="col w-auto d-inline-block txt-center">
-							<span>${requestScope.outputChannelGrade }${requestScope.outputChannelGradePlus }</span>
+							<span>${requestScope.outputChannelFollowers }</span>
 						</div>
-						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelFollowers }</div>
+						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelEntireIncrementFollowers }</div>
+						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelBeforeFollowersMark }${requestScope.outputChannelBeforeFollowers }</div>
 						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelViews }</div>
 						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelRecentViews }</div>
-						<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputRecentVideoUpdateDate }</div>
 					</div>
 
-					<!-- 채널 스텟 - 종합순위/총구독자수/차주대비/총조회수/최근평균조회수 끝 -->
+					<!-- 채널 스텟 - 총구독자수/총기간대비구독자수/지난주대비구독자수/총조회수/최근영상의평균조회수 끝 -->
 
 					<hr
 						style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa; box-shadow: 0 0px 2px 0px #fafafa;">
 
 					<c:if test="${not empty sessionScope.racMemberNo}">
-						<!-- 채널 스탯 - 광고만족도/광고평균조회수/단가/카테고리 시작 로그인시 노출 정보  -->
+					
+						<!-- 채널 스탯 - 영상의평균좋아요/영상의평균싫어요/영상의평균댓글수/광고영상의평균조회수/광고만족도 시작 로그인시 노출 정보  -->
 
 						<div class="chnDtlInfo">
 
 							<div class="row chnDtlRow w-auto ml-auto">
 								<div class="col w-auto d-inline-block txt-center">
-									<span class="font-weight-bold">카테고리 순위</span>
+									<span class="font-weight-bold">영상의 평균 좋아요</span>
 								</div>
 								<div class="col w-auto d-inline-block txt-center">
-									<span class="font-weight-bold">지난주 대비 구독자수</span>
+									<span class="font-weight-bold">영상의 평균 싫어요</span>
+								</div>
+								<div class="col w-auto d-inline-block txt-center">
+									<span class="font-weight-bold">영상의 평균 댓글수</span>
+								</div>
+								<div class="col w-auto d-inline-block txt-center">
+									<span class="font-weight-bold">광고 영상의 평균 조회수</span>
 								</div>
 								<div class="col w-auto d-inline-block txt-center">
 									<span class="font-weight-bold">광고 만족도</span>
-								</div>
-								<div class="col w-auto d-inline-block txt-center">
-									<span class="font-weight-bold">광고 영상 평균 조회수</span>
-								</div>
-								<div class="col w-auto d-inline-block txt-center">
-									<span class="font-weight-bold">평균 광고 단가</span>
 								</div>
 							</div>
 
@@ -152,23 +141,23 @@
 
 							<div class="row w-auto ml-auto">
 								<div id="" class="col w-auto d-inline-block txt-center">
-									<span>${requestScope.outputChannelCategoryRank }위</span><span>(${requestScope.outputChannelCategoryName })</span>
+									<span>${requestScope.outputChannelRecentLikeCount }</span><span>개</span> 
 								</div>
-								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputChannelBeforeFollowersMark }${requestScope.outputChannelBeforeFollowers }</div>
-								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdSatisfyRank }</div>
-								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdViews }</div>
-								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdEvenPrice }</div>
+								<div id="" class="col w-auto d-inline-block txt-center"><span>${requestScope.outputChannelRecentDisLikeCount }</span><span>개</span></div>
+								<div id="" class="col w-auto d-inline-block txt-center"><span>${requestScope.outputChannelRecentCommentCount }</span><span>개</span></div> 
+								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdViews }</div> 
+								<div id="" class="col w-auto d-inline-block txt-center">${requestScope.outputAdSatisfyRank }</div> <!-- 정보 없을 경우, 정보없음 텍스트 표기 점수 있을경우 /5점 텍스트 표기 -->
 							</div>
 
 						</div>
 
-						<!-- 채널 스탯 - 광고만족도/광고평균조회수/단가/카테고리 끝 -->
+						<!-- 채널 스탯 - 영상의평균좋아요/영상의평균싫어요/영상의평균댓글수/광고영상의평균조회수/광고만족도 끝 -->
 					</c:if>
 					<c:if test="${empty sessionScope.racMemberNo}">
 						<!-- 비로그인 시 채널 스텟 가리기 -->
 						<div class="chnDtlCover w-100">
 							<div class="pTop3 pBottom">
-								<div class="txt-center inline-block">이 채널의 광고 만족도, 광고 가격,
+								<div class="txt-center inline-block">이 채널의 광고 만족도, 영상에 대한 반응도,
 									후기가 궁금하신가요?</div>
 								<div class="txt-center inline-block">기업회원으로 로그인하면 이 채널의
 									비즈니스 정보를 확인할 수 있습니다.</div>

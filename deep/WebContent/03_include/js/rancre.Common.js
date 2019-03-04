@@ -457,9 +457,7 @@ Common.review = function (mode){
 			//조회를 위한 최소글자수 1로 해야함 한글자짜리 활성화 된 채널 2개 존재함 유튜브 채널 타이틀 정책 쓰레기임 한글자가 뭐냐 ex, '벨'이라는 유튜버 있음 
 			minLength : 1
 		});
-	} else if(mode==6) {
-		alert("epgpt");
-	} else if(mode==7){ //channel Name search popup open
+	} else if(mode==6) { //channel Name search popup open
 		const modal = document.getElementById('get-ChannelName-Modal');
 		const modal_content = document.getElementById('get-ChannelName-Modal-Content');
 		modal.style.display = 'block';
