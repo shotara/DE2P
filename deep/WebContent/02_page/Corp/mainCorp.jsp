@@ -143,7 +143,7 @@
 								"									<a href='/channel?action=getChannelDetail&inputChannelNo="+ args.outputChannelList[i].outputChannelNo +"'>\n" +
 								"										<button class='common-Small-Btn'>채널정보 보기\r\n" + 
 								"									</button>\r\n" + 
-								"									</a>r\n"+
+								"									</a>\n"+
 								"								</div>\r\n" + 
 								"\r\n" + 
 								"							</div>\r\n" + 
