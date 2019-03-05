@@ -346,23 +346,23 @@ Auth.loginCheck = function(){
 		dataType : "json",
 		async : false,
 		success : function(response){
+			
 			if(response.outputResult == "1"){
 				check1 = true; //Status - login
-			}else if(response.outputResult == "-1"){
+			} else if(response.outputResult == "-1"){
 				//login needed
-				if(mode == 1){
-					var check2 = confirm("로그인이 필요합니다.\n로그인하시겠습니까?");
 
-					if(!check2){//don't want to login
-						check1 = false;
-					}else{//Move to login page
-						location.href="/main?action=goPage&page=login";
-						check1 = false;
-					}
-				}else {
+				var check2 = confirm("로그인이 필요합니다.\n로그인하시겠습니까?");
+
+				if(!check2){//don't want to login
 					check1 = false;
+				}else{//Move to login page
+					location.href="/member?action=loginPage";
+					check1 = false;
+				
 				}
 			}
+			
 		}, error : function(xhr, status, error){
 			alert(error);
 		}	

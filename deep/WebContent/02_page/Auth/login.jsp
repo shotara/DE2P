@@ -34,7 +34,7 @@
 						style="margin-top: 1.5rem; margin-bottom: 1rem; border: 0; border-top: 1px solid #fafafa;">
 
 					<div class="pTop2">
-						<span>더 많은 채널의 광고 리뷰가 궁금하신가요? </br> 지금 랭크리에서 2,342개 채널의 광고 효과를
+						<span>더 많은 채널의 광고 리뷰가 궁금하신가요? </br> 지금 랭크리에서 ${outputValidChannel}개 채널의 광고 효과를
 							확인해보세요!
 						</span>
 					</div>

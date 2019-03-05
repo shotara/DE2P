@@ -90,6 +90,16 @@ public class ChannelView extends HttpServlet {
 					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 					ChannelController.getReviewPage(req,res);
 					break;
+				case "allChannel":
+					map.put("ACTION", "allChannel");
+					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+					ChannelController.allChannel(req,res);
+					break;
+				case "newChannel":
+					map.put("ACTION", "newChannel");
+					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+					ChannelController.newChannel(req,res);
+					break;
 				default:
 					CommonUtil.commonPrintLog("ERROR", this.getClass().getSimpleName(), "Incorrect Action Parameter (action : " + action + ")", map);
 			}

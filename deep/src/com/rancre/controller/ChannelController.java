@@ -851,4 +851,32 @@ public class ChannelController {
 			e.printStackTrace();
 		}
 	}
+
+	public static void allChannel(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get allChannel OK", map);
+			req.getRequestDispatcher("/02_page/Channel/allChannel.jsp").forward(req, res);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void newChannel(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get newChannel OK", map);
+			req.getRequestDispatcher("/02_page/Channel/newChannel.jsp").forward(req, res);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -127,6 +127,16 @@ public class MemberView extends HttpServlet {
 					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 					MemberController.changeMemberPassword(req,res);				
 					break;	
+				case "loginPage":
+					map.put("ACTION", "loginPage");
+					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+					MemberController.loginPage(req,res);
+					break;
+				case "joinPage":
+					map.put("ACTION", "joinPage");
+					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+					MemberController.joinPage(req,res);				
+					break;	
 			}
 			
 		} catch (Exception e) {

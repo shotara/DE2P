@@ -887,5 +887,17 @@ public class ChannelDAO {
 		}
 	}
 
+	public static int getValidChannelCount() {
+
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (int)sqlSession.selectOne(namespace + ".getValidChannelCount");
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 
 }

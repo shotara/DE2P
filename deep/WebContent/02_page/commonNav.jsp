@@ -18,9 +18,9 @@
 					href="/index.jsp">채널100 <span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
-					href="/02_page/Channel/allChannel.jsp">모든채널</a></li>
+					href="/channel?action=allChannel">모든채널</a></li>
 				<li class="nav-item active"><a class="nav-link"
-					href="/02_page/Channel/newChannel.jsp">새로운채널</a></li>
+					href="/channel?action=newChannel">새로운채널</a></li>
 				<li class="nav-item active"><a class="nav-link"
 					href="/channel?action=searchChannel&inputChannelName=">검색</a></li>
 			</ul>
@@ -29,11 +29,11 @@
 					onclick="Common.search(3)">채널수집요청</a></li>
 				<c:if test="${empty sessionScope.racMemberNo}">
 					<li class="nav-item active"><a class="nav-link"
-						href="/02_page/Auth/login.jsp" onclick="Auth.loginCheck()">리뷰등록</a></li>
+						href="javascript:Auth.loginCheck();">리뷰등록</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="/02_page/Auth/login.jsp">로그인</a></li>
+						href="/member?action=loginPage">로그인</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="/02_page/Auth/join.jsp">회원가입</a></li>
+						href="/member?action=joinPage">회원가입</a></li>
 				</c:if>
 				<c:if test="${not empty sessionScope.racMemberNo}">
 					<li class="nav-item active"><a class="nav-link"

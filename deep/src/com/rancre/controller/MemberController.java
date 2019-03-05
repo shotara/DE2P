@@ -1667,4 +1667,48 @@ public class MemberController {
 		}
 	}
 
+	public static void loginPage(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			HttpSession session = req.getSession();
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			int validChannelCount = ChannelDAO.getValidChannelCount();
+
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get login OK", map);
+			req.setAttribute("outputValidChannel",validChannelCount);
+			req.getRequestDispatcher("/02_page/Auth/login.jsp").forward(req, res);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void joinPage(HttpServletRequest req, HttpServletResponse res) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		try {
+			HttpSession session = req.getSession();
+
+			JSONObject jObject = new JSONObject();
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			int validChannelCount = ChannelDAO.getValidChannelCount();
+
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get join OK", map);
+			req.setAttribute("outputValidChannel",validChannelCount);
+			req.getRequestDispatcher("/02_page/Auth/join.jsp").forward(req, res);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

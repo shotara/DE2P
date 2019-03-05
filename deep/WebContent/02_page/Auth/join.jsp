@@ -28,7 +28,7 @@
 					<div class="login-brand">Rancre</div>
 
 					<div>
-						<span>더 많은 채널의 광고 리뷰가 궁금하신가요? </br> 지금 랭크리에서 2,342개 채널의 광고 효과를
+						<span>더 많은 채널의 광고 리뷰가 궁금하신가요? </br> 지금 랭크리에서 ${outputValidChannel}개 채널의 광고 효과를
 							확인해보세요!
 						</span>
 					</div>
