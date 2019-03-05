@@ -7,11 +7,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<title>랭크리 : 리뷰 작성하기</title>
+<meta name="description" content="랭크리는 유튜브 채널의 비즈니스 정보를 제공합니다. 유튜브 채널 마케팅을 고민하고 있다면 랭크리에서 채널정보를 확인하세요" >
 <jsp:include page="/02_page/commonHeader.jsp" flush="true" />
 <jsp:include page="/02_page/commonContactUs.jsp" flush="true" />
-<jsp:include page="/02_page/Review/reviewModal.jsp" flush="true" />
-
 <script>
 	var sessionCheck = "${sessionScope.racMemberUid}";
 	if (sessionCheck == "") {
@@ -52,11 +51,10 @@
 							</div>
 							<div class="txt-left review-commonSubTxt">광고한 채널의 이름을
 								입력해주세요!</div>
-							<div class="channel-autocomplete inline-flex">
-								<input class="ipt-ChannelName-Review float-left" type="text"
+							<div class="channel-autocomplete">
+								<input class="ipt-Common-Review" type="text"
 									id="Input-Channel-Name" placeholder="Ex) 와썹맨, Dana " maxlength = "30" required
 									onkeyup="Common.review(5)" value="${requestScope.outputChannelTitle }" />
-									<button class="common-wide20Reverse-Btn float-right" onclick="Common.review(7)">검색</button>
 							</div>
 						</div>
 

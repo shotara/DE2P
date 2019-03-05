@@ -522,7 +522,6 @@ public class ChannelController {
 			
 				jArray.add(tempObject);
 			}
-			
 			CommonUtil.commonPrintLog("SUCCESS", className, "Auto Complete OK", map);
 			jObject.put("outputResult", jArray);
 			res.getWriter().write(jObject.toString());

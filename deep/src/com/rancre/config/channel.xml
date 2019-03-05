@@ -51,7 +51,14 @@
 	</select>
 		
 	<select id="autoComplete" parameterType="String" resultType="com.rancre.model.domain.Channel">
-		SELECT * FROM rac_channel WHERE racChannelTitle LIKE concat('%',#{inputChannelTitle},'%') AND racChannelStatus=2 AND racChannelRegion="Ko"
+		SELECT * FROM (
+		(SELECT * FROM rac_channel WHERE racChannelTitle LIKE concat(#{inputChannelTitle},'%') AND racChannelStatus=2 AND racChannelRegion="Ko")
+		UNION
+		(SELECT * FROM rac_channel WHERE racChannelTitle LIKE concat('%',#{inputChannelTitle}) AND racChannelStatus=2 AND racChannelRegion="Ko")
+		UNION
+		(SELECT * FROM rac_channel WHERE racChannelTitle LIKE concat('%',#{inputChannelTitle},'%') AND racChannelStatus=2 AND racChannelRegion="Ko")
+		) as a;
+	
 	</select>
 	
 	<select id="getChannelByTitle" parameterType="String" resultType="com.rancre.model.domain.Channel">
