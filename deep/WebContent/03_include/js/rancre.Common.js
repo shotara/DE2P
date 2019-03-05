@@ -466,6 +466,7 @@ Common.review = function (mode){
 	} else if(mode==6) { //channel Name search popup open
 		const modal = document.getElementById('get-ChannelName-Modal');
 		const modal_content = document.getElementById('get-ChannelName-Modal-Content');
+		$("#review-body").addClass('modal-body-popup');
 		modal.style.display = 'block';
 		modal_content.style.display = 'block';
 		
@@ -536,6 +537,7 @@ Common.review = function (mode){
 			async : false,
 			success: function(response) {
 	            $(".review-channel-output-area").empty();
+	            $("#review-body").addClass('modal-body-popup');
 
 				for(var i=0; i<response.outputResult.length; i++) {
 					$('.review-channel-output-area').append(
@@ -558,6 +560,7 @@ Common.review = function (mode){
 
 		const modal = document.getElementById('get-ChannelName-Modal');
 		const modal_content = document.getElementById('get-ChannelName-Modal-Content');
+		$("#review-body").removeClass('modal-body-popup');
 		modal.style.display = 'none';
 		modal_content.style.display = 'none';
 		
@@ -566,6 +569,7 @@ Common.review = function (mode){
 		const modal_content = document.getElementById('get-ChannelName-Modal-Content');
 		modal.style.display = 'none';
 		modal_content.style.display = 'none';
+		$("#review-body").removeClass('modal-body-popup');
 		
 	} else if(mode==10){ //select radio
 		$("#ipt-Modal-ChannelName").val($("input[name='chn-name-radio']:checked").val());
@@ -656,6 +660,7 @@ Common.search = function (mode){
 	else if (mode == 3) { /** modal popup Open **/
 		const modal = document.getElementById('req-Search-Modal');
 		const modal_content = document.getElementById('req-Search-Modal-Content');
+		$('body').addClass('modal-body-popup');
 		modal.style.display = 'block';
 		modal_content.style.display = 'block';
 
@@ -671,6 +676,7 @@ Common.search = function (mode){
 		const modal_content = document.getElementById('req-Search-Modal-Content');
 		modal.style.display = 'none';
 		modal_content.style.display = 'none';
+		$('body').removeClass('modal-body-popup');
 		// When the user clicks on <span> (x), close the modal
 	}
 	else if (mode == 5) { /**request channel search **/
@@ -730,6 +736,7 @@ Common.search = function (mode){
 					if(response.outputResult == "1") { /** 정상적으로 채널이 수집되었을 경우 **/ 
 						alert("채널 수집이 정상적으로 요청되었습니다.랭크리에서 채널 정보가 노출되기까지 최대 24시간이 걸릴 수 있습니다.");
 						location.href = "/";
+						$('body').removeClass('modal-body-popup');
 					} else if(response.outputResult == "-1"){
 						alert("이미 존재하는 채널입니다. 검색을 통해서 채널을 확인해보세요!");
 					}else {
