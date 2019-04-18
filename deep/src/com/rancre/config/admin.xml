@@ -19,9 +19,14 @@
 		VALUES(#{channelNo}, #{categoryNo})
 	</select>		
 					
+	<select id="addCurator" parameterType="java.util.HashMap" resultType="int">
+		INSERT INTO rac_curator(racMemberNo, racChannelNo, racCuratorContent, racCuratorCreateDate)
+		VALUES(#{memberNo}, #{channelNo}, #{curatorContent}, #{inputCurrentDate})
+	</select>		
+	
 	<!-- Update -->
 	<select id="setChannelInfo" parameterType="java.util.HashMap" resultType="int">
-		UPDATE rac_channel SET racChannelCategory=#{category}, racMcnNo=#{mcnNo}, racChannelRegion=#{region}, racChannelUpdateDate=#{inputCurrentDate}
+		UPDATE rac_channel SET racChannelCategory=#{category}, racMcnNo=#{mcnNo}, racCuratorNo=#{curatorNo}, racChannelRegion=#{region}, racChannelUpdateDate=#{inputCurrentDate}
 		WHERE racChannelNo=#{channelNo}
 	</select>
 
@@ -39,7 +44,12 @@
 		UPDATE rac_rank_category SET racChannelCategory=#{category}
 		WHERE racChannelNo=#{channelNo} AND racChannelInsertDate <![CDATA[>]]> #{inputCurrentDate} 
 	</select>
-				
+	
+	<select id="setCurator" parameterType="java.util.HashMap" resultType="int">
+		UPDATE rac_curator SET racCuratorContent=#{curatorContent}
+		WHERE racCuratorNo=#{curatorNo}
+	</select>			
+	
 	<!-- Delete -->
 	<select id="deleteFeedLike" parameterType="java.util.HashMap" resultType="int">
 		DELETE FROM deep_feed_like WHERE deepFeedNo=#{feedNo} AND deepMemberNo=#{memberNo}
@@ -72,6 +82,10 @@
 	
 	<select id="countChannelCost" parameterType="int"  resultType="int">
 		SELECT count(*) FROM rac_channel_cost WHERE racChannelNo=#{channelNo}
+	</select>
+		
+	<select id="getCuratorByChannel" parameterType="int"  resultType="com.rancre.model.domain.Curator">
+		SELECT * FROM rac_curator WHERE racChannelNo=#{inputChannelNo}
 	</select>
 	
 	<select id="getChannelCostPrice" parameterType="int"  resultType="int">

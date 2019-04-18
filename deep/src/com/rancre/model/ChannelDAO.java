@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.rancre.model.domain.Channel;
 import com.rancre.model.domain.ChannelAd;
 import com.rancre.model.domain.ChannelCost;
+import com.rancre.model.domain.Curator;
 import com.rancre.model.domain.Feed;
 import com.rancre.model.domain.FeedComment;
 import com.rancre.model.domain.FeedCount;
@@ -893,6 +894,18 @@ public class ChannelDAO {
 		
 		try {	
 			return (int)sqlSession.selectOne(namespace + ".getValidChannelCount");
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public static Curator getCurator(int racCuratorNo) {
+
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {	
+			return (Curator)sqlSession.selectOne(namespace + ".getCurator", racCuratorNo);
 			
 		} finally {
 			sqlSession.close();

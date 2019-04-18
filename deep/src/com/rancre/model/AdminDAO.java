@@ -10,6 +10,7 @@ import com.rancre.model.domain.Channel;
 import com.rancre.model.domain.ChannelCategory;
 import com.rancre.model.domain.ChannelCost;
 import com.rancre.model.domain.Company;
+import com.rancre.model.domain.Curator;
 import com.rancre.model.domain.Feed;
 import com.rancre.model.domain.FeedComment;
 import com.rancre.model.domain.FeedCount;
@@ -119,11 +120,42 @@ public class AdminDAO {
 			sqlSession.close();
 		}
 	}	
+	
+	public static int addCurator(
+			int sessionMemberNo,
+			int inputChannelNo, 
+			String inputCuratorContent,
+			Timestamp inputCurrentDate) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("channelNo", inputChannelNo);
+			map.put("memberNo", sessionMemberNo);			
+			map.put("curatorContent", inputCuratorContent);			
+			map.put("inputCurrentDate", inputCurrentDate);			
+
+			int check = (int)sqlSession.insert(namespace + ".addCurator", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 	// Update Method
 	public static int setChannelInfo(
 			int inputChannelNo, 
 			String inputCategory, 
 			int inputMcnNo,
+			int inputCuratorNo,
 			String inputRegion,
 			Timestamp inputCurrentDate) {
 		
@@ -134,6 +166,7 @@ public class AdminDAO {
 			map.put("channelNo", inputChannelNo);
 			map.put("category", inputCategory);			
 			map.put("region", inputRegion);			
+			map.put("curatorNo", inputCuratorNo);			
 			map.put("mcnNo", inputMcnNo);			
 			map.put("inputCurrentDate", inputCurrentDate);			
 
@@ -150,7 +183,7 @@ public class AdminDAO {
 			sqlSession.close();
 		}
 	}
-	
+
 	public static int setRankTopCategory(int inputChannelNo, String category) {
 		
 		SqlSession sqlSession = DAOFactory.getSqlSession(false);
@@ -220,7 +253,30 @@ public class AdminDAO {
 			sqlSession.close();
 		}
 	}
-	
+
+	public static int setCurator(int inputCuratorNo, String inputCuratorContent) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(false);
+		
+		try {	
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("curatorNo", inputCuratorNo);
+			map.put("curatorContent", inputCuratorContent);			
+
+			int check = (int)sqlSession.update(namespace + ".setCurator", map);
+			
+			if(check == 1) {
+				sqlSession.commit();
+				return check;
+			} else {
+				sqlSession.rollback();
+				return check;
+			}
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 	// Delete Method
 	public static int deleteFeedLike(int inputFeedNo, int inputMemberNo) {
 		
@@ -477,5 +533,18 @@ public class AdminDAO {
 			sqlSession.close();
 		}
 	}
+
+	public static Curator getCuratorByChannel(int inputChannelNo) {
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try {
+			return (Curator) sqlSession.selectOne(namespace + ".getCuratorByChannel", inputChannelNo);
+			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 
 }

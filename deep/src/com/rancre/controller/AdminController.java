@@ -380,7 +380,9 @@ public class AdminController {
 			int inputCategoryNo2 = req.getParameter("inputCategoryNo2") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputCategoryNo2").toString())) : 0;
 			int inputCategoryNo3 = req.getParameter("inputCategoryNo3") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputCategoryNo3").toString())) : 0;
 			int inputMcnNo = req.getParameter("inputMcnNo") != "" ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputMcnNo").toString())) : 0;
+			int inputCuratorNo = req.getParameter("inputCuratorNo") != "" ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("inputCuratorNo").toString())) : 0;
 			String inputChannelRegion = req.getParameter("inputChannelRegion") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputChannelRegion").toString()) : "";
+			String inputCuratorContent = req.getParameter("inputCuratorContent") != null ? CommonUtil.commonCleanXSS(req.getParameter("inputCuratorContent").toString()) : "";
 
 			Calendar calendar = Calendar.getInstance();
 			Timestamp inputCurrentDate = new java.sql.Timestamp(calendar.getTime().getTime());
@@ -413,9 +415,22 @@ public class AdminController {
 			if(inputCategoryNo2 != 1) category += inputCategoryNo2 + ";";
 			if(inputCategoryNo3 != 1) category += inputCategoryNo3 + ";";
 
+			/// curator 추가 ? 
+			if(!inputCuratorContent.equals("")) {
+				if(inputCuratorNo==0) {
+					// add
+					int checkCu = AdminDAO.addCurator(sessionMemberNo, inputChannelNo, inputCuratorContent, inputCurrentDate);
+					inputCuratorNo = AdminDAO.getCuratorByChannel(inputChannelNo).getRacCuratorNo();
+				} else {
+					// set
+					int checkCu = AdminDAO.setCurator(inputCuratorNo, inputCuratorContent);
+					inputCuratorNo = AdminDAO.getCuratorByChannel(inputChannelNo).getRacCuratorNo();
+
+				}
+			}
 			
 			Channel channel = ChannelDAO.getChannelByNo(inputChannelNo);			
-			int check = AdminDAO.setChannelInfo(inputChannelNo, category, inputMcnNo, inputChannelRegion, inputCurrentDate);
+			int check = AdminDAO.setChannelInfo(inputChannelNo, category, inputMcnNo,  inputCuratorNo, inputChannelRegion, inputCurrentDate);
 			if(check != 1) {
 				CommonUtil.commonPrintLog("FAIL", className, "Add  Channel Info", map);
 			}		
@@ -553,6 +568,17 @@ public class AdminController {
 			jObject.put("outputChannelUrl", channel.getRacChannelUrl());
 			jObject.put("outputChannelCategory", CommonUtil.getChannelCategoryList(channel.getRacChannelCategory()));
 			jObject.put("outputChannelRegion", channel.getRacChannelRegion());
+			
+			// Curator 
+			if(channel.getRacCuratorNo() != 0) {
+				jObject.put("outputChannelCurator", ChannelDAO.getCurator(channel.getRacCuratorNo()).getRacCuratorContent());
+				jObject.put("outputChannelCuratorNo", channel.getRacCuratorNo());
+
+			} else {
+				jObject.put("outputChannelCurator", "작성된 큐레이션이 없습니다.");
+				jObject.put("outputChannelCuratorNo", channel.getRacCuratorNo());
+			}
+			
 			jObject.put("pageNo", inputPageNo);
 			CommonUtil.commonPrintLog("SUCCESS", className, "Get Channel info OK", map);
 			req.setAttribute("result", jObject);

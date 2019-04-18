@@ -268,7 +268,7 @@ public class MemberController {
 				}	   
 			   
 			   // Text
-			   String url = "http://rancre.com/member?action=getChangeUserInfo&inputEmail="+decryptMemberEmail+"&inputCheckValue="+checkValue;
+			   String url = "https://www.rancre.com/member?action=getChangeUserInfo&inputEmail="+decryptMemberEmail+"&inputCheckValue="+checkValue;
 			   String text = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\r\n" + 
 			   		"<html xmlns='http://www.w3.org/1999/xhtml'>\r\n" + 
 			   		"<head>\r\n" + 
@@ -586,7 +586,7 @@ public class MemberController {
 			   message.setSubject("Rancre에 오신것을 환영합니다!");
 			   
 			   // Text
-			   String url = "http://rancre.com/member?action=checkPermitJoin&inputEmail="+decryptMemberEmail+"&inputCheckValue="+authToken;
+			   String url = "https://www.rancre.com/member?action=checkPermitJoin&inputEmail="+decryptMemberEmail+"&inputCheckValue="+authToken;
 			   String text = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>\r\n" + 
 			   		"			   <html xmlns='http://www.w3.org/1999/xhtml'>\r\n" + 
 			   		"			   <head>\r\n" + 

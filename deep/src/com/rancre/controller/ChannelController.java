@@ -127,6 +127,14 @@ public class ChannelController {
 			req.setAttribute("outputChannelNo", inputChannelNo);
 			req.setAttribute("outputChannelUrl", channel.getRacChannelUrl());
 
+			
+			// Curator 
+			if(channel.getRacCuratorNo() != 0) {
+				req.setAttribute("outputChannelCurator", ChannelDAO.getCurator(channel.getRacCuratorNo()).getRacCuratorContent());
+			} else {
+				req.setAttribute("outputChannelCurator", "작성된 큐레이션이 없습니다.");
+			}
+			
 			// 전날짜 7일 평균 
 			date.setDate(date.getDate()-6);
 			date.setMinutes(0);

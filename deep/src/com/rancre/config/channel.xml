@@ -172,4 +172,8 @@
 	<select id="getValidChannelCount"  resultType="int">
 		SELECT count(*) FROM rac_channel WHERE racChannelStatus=2 AND racChannelRegion="Ko"
 	</select>	
+	
+	<select id="getCurator"  resultType="com.rancre.model.domain.Curator">
+		SELECT * FROM rac_curator WHERE racCuratorNo=#{racCuratorNo}
+	</select>
 </mapper>

@@ -11,7 +11,7 @@
 
 </head>
 <script type="text/javascript">
-	function addInfo(no, mcn, category, category2, category3, region) {
+	function addInfo(no, mcn, category, category2, category3, region, curatorNo, curator) {
 		
 		var action, form_data;
 		
@@ -25,7 +25,9 @@
 				inputCategoryNo : category,
 				inputCategoryNo2 : category2,
 				inputCategoryNo3 : category3,
-				inputChannelRegion : region
+				inputChannelRegion : region,
+				inputCuratorNo : curatorNo,
+				inputCuratorContent : curator
 		};
 		
 		$.ajax({
@@ -135,10 +137,17 @@
 			<div class="left">국가</div>
 			<input type="text" id="region" value="${result.outputChannelRegion}"/>
 		</div>
+			<div class="info-channel-curator">
+			<div class="left">큐레이션</div>
+			<input type="hidden" id="curatorNo" value="${result.outputChannelCuratorNo}"/>
+			현재 큐레이션 : ${result.outputChannelCurator}<br/>
+			수정할 큐레이션 <input type="text" id="curator"/>
+			
+		</div>
 	</div>
 	
 	<div class="btn">
-		<button onclick="addInfo(${result.outputChannelNo},$('#mcnNo').val(),$('#category').val(),$('#category2').val(),$('#category3').val(),$('#region').val())">정보입력</button>
+		<button onclick="addInfo(${result.outputChannelNo},$('#mcnNo').val(),$('#category').val(),$('#category2').val(),$('#category3').val(),$('#region').val(), $('#curatorNo').val(), $('#curator').val())">정보입력</button>
 		<button>취소</button>
 	</div>
 	<div class="btn">
