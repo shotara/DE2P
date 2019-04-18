@@ -12,16 +12,7 @@
 </head>
 <body class="mbody">
 
-	<section id="mHeader">
-	<div class="rac_m_header">
-		<div class="rac_m_headBrand">
-			<a class="w100 commonA" href="/07_Mpage/main.jsp"><span
-				class="color-white rac-brand">Rancre</span></a>
-		</div>
-	</div>
-	<a href="/07_Mpage/commonSide.jsp" class="rac_m_sideMenu"> <span
-		class="color-white"><i class="fas fa-bars fa-lg"></i></span>
-	</a> </section>
+	<jsp:include page="/07_Mpage/commonMHead.jsp" flush="true" />
 
 	<section id="m-Main-Channel-List">
 
@@ -285,18 +276,17 @@
 				</div>
 			</div>
 
-			<div class="text-center">
-				채널 더보기 <i class="fas fa-angle-down"></i>
+			<div class="text-center rac_m_more_channel">
+				<a class="commonA" href="#">채널 더보기 <i class="fas fa-angle-down"></i></a>
 			</div>
 
 		</div>
 
-
-
-
 	</div>
 
 	</section>
+	
+	<jsp:include page="/07_Mpage/commonMFooter.jsp" flush="true" />
 
 </body>
 </html>
