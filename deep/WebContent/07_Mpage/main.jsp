@@ -17,12 +17,10 @@
 	<section id="m-Main-Channel-List">
 
 	<div class="rac_m_Top100">
-		<div class="rac_m_Top100_Top commonMborder">
+		<div class="rac_m_Top100_Top">
 			<p class="title">채널 100</p>
 			<span class="content">채널 종합 순위입니다.</span>
 		</div>
-
-		<div class="commonSpace"></div>
 
 		<div class="rac_m_Top100_Contents">
 			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
@@ -35,7 +33,7 @@
 						<span>1</span>
 					</div>
 					<div class="mark">
-						<span>-</span>
+						<i class="icon-minus"></i>
 					</div>
 				</div>
 				<div class="title_sub">
@@ -43,11 +41,11 @@
 						<span>MBCentertainment</span>
 					</div>
 					<div class="view">
-						<span>구독자</span><span>518만명</span>
+						<span>구독자</span><span>100만명</span>
 					</div>
 				</div>
 				<div class="icon">
-					<span class="glyphicon glyphicon-chevron-right"></span>
+					<i class="icon-right-open-mini"></i>
 				</div>
 			</div>
 			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
@@ -60,7 +58,7 @@
 						<span>2</span>
 					</div>
 					<div class="mark">
-						<span>&#x25BE;1</span>
+						<span>1<i class="icon-down-micro"></i></span>
 					</div>
 				</div>
 				<div class="title_sub">
@@ -68,11 +66,11 @@
 						<span>MBCentertainment</span>
 					</div>
 					<div class="view">
-						<span>구독자</span><span>518만명</span>
+						<span>구독자</span><span>99만명</span>
 					</div>
 				</div>
 				<div class="icon">
-					<span class="glyphicon glyphicon-chevron-right"></span>
+					<i class="icon-right-open-mini"></i>
 				</div>
 			</div>
 			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
@@ -85,7 +83,7 @@
 						<span>3</span>
 					</div>
 					<div class="mark">
-						<span>-</span>
+						<i class="icon-minus"></i>
 					</div>
 				</div>
 				<div class="title_sub">
@@ -93,11 +91,11 @@
 						<span>MBCentertainment</span>
 					</div>
 					<div class="view">
-						<span>구독자</span><span>518만명</span>
+						<span>구독자</span><span>98만명</span>
 					</div>
 				</div>
 				<div class="icon">
-					<span class="glyphicon glyphicon-chevron-right"></span>
+					<i class="icon-right-open-mini"></i>
 				</div>
 			</div>
 			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
@@ -110,7 +108,7 @@
 						<span>4</span>
 					</div>
 					<div class="mark">
-						<span>&#x25B4;1</span>
+						<span>1<i class="icon-down-micro"></i></span>
 					</div>
 				</div>
 				<div class="title_sub">
@@ -118,11 +116,11 @@
 						<span>MBCentertainment</span>
 					</div>
 					<div class="view">
-						<span>구독자</span><span>518만명</span>
+						<span>구독자</span><span>97만명</span>
 					</div>
 				</div>
 				<div class="icon">
-					<span class="glyphicon glyphicon-chevron-right"></span>
+					<i class="icon-right-open-mini"></i>
 				</div>
 			</div>
 			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
@@ -135,7 +133,7 @@
 						<span>5</span>
 					</div>
 					<div class="mark">
-						<span>&#x25B4;1</span>
+						<span>1<i class="icon-up-micro"></i></span>
 					</div>
 				</div>
 				<div class="title_sub">
@@ -143,11 +141,11 @@
 						<span>MBCentertainment</span>
 					</div>
 					<div class="view">
-						<span>구독자</span><span>518만명</span>
+						<span>구독자</span><span>90만명</span>
 					</div>
 				</div>
 				<div class="icon">
-					<span class="glyphicon glyphicon-chevron-right"></span>
+					<i class="icon-right-open-mini"></i>
 				</div>
 			</div>
 			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
@@ -160,7 +158,7 @@
 						<span>6</span>
 					</div>
 					<div class="mark">
-						<span>-</span>
+						<span><i class="icon-minus"></i></span>
 					</div>
 				</div>
 				<div class="title_sub">
@@ -168,11 +166,11 @@
 						<span>MBCentertainment</span>
 					</div>
 					<div class="view">
-						<span>구독자</span><span>518만명</span>
+						<span>구독자</span><span>88만명</span>
 					</div>
 				</div>
 				<div class="icon">
-					<span class="glyphicon glyphicon-chevron-right"></span>
+					<i class="icon-right-open-mini"></i>
 				</div>
 			</div>
 			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
@@ -185,7 +183,7 @@
 						<span>7</span>
 					</div>
 					<div class="mark">
-						<span>-</span>
+						<span><i class="icon-minus"></i></span>
 					</div>
 				</div>
 				<div class="title_sub">
@@ -193,11 +191,11 @@
 						<span>MBCentertainment</span>
 					</div>
 					<div class="view">
-						<span>구독자</span><span>518만명</span>
+						<span>구독자</span><span>88만명</span>
 					</div>
 				</div>
 				<div class="icon">
-					<span class="glyphicon glyphicon-chevron-right"></span>
+					<i class="icon-right-open-mini"></i>
 				</div>
 			</div>
 			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
@@ -210,7 +208,7 @@
 						<span>8</span>
 					</div>
 					<div class="mark">
-						<span>-</span>
+						<span><i class="icon-minus"></i></span>
 					</div>
 				</div>
 				<div class="title_sub">
@@ -218,11 +216,11 @@
 						<span>MBCentertainment</span>
 					</div>
 					<div class="view">
-						<span>구독자</span><span>518만명</span>
+						<span>구독자</span><span>88만명</span>
 					</div>
 				</div>
 				<div class="icon">
-					<span class="glyphicon glyphicon-chevron-right"></span>
+					<i class="icon-right-open-mini"></i>
 				</div>
 			</div>
 			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
@@ -235,7 +233,7 @@
 						<span>9</span>
 					</div>
 					<div class="mark">
-						<span>-</span>
+						<span><i class="icon-minus"></i></span>
 					</div>
 				</div>
 				<div class="title_sub">
@@ -243,11 +241,11 @@
 						<span>MBCentertainment</span>
 					</div>
 					<div class="view">
-						<span>구독자</span><span>518만명</span>
+						<span>구독자</span><span>88만명</span>
 					</div>
 				</div>
 				<div class="icon">
-					<span class="glyphicon glyphicon-chevron-right"></span>
+					<i class="icon-right-open-mini"></i>
 				</div>
 			</div>
 			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
@@ -260,7 +258,7 @@
 						<span>10</span>
 					</div>
 					<div class="mark">
-						<span>&#x25B4;2</span>
+						<span>2<i class="icon-up-micro"></i></span>
 					</div>
 				</div>
 				<div class="title_sub">
@@ -268,11 +266,11 @@
 						<span>MBCentertainment</span>
 					</div>
 					<div class="view">
-						<span>구독자</span><span>518만명</span>
+						<span>구독자</span><span>88만명</span>
 					</div>
 				</div>
 				<div class="icon">
-					<span class="glyphicon glyphicon-chevron-right"></span>
+					<i class="icon-right-open-mini"></i>
 				</div>
 			</div>
 

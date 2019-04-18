@@ -7,10 +7,14 @@
 	<div class="rac_m_header">
 		<div class="rac_m_headBrand">
 			<a class="w100 commonA" href="/07_Mpage/main.jsp"><span
-				class="color-white rac-brand">Rancre</span></a>
+				class="color-primary rac-brand">RANCRE</span></a>
 		</div>
+		<a href="/07_Mpage/commonSide.jsp" class="rac_m_search"> <i
+			class="icon-search"></i>
+		</a>
+		<a href="/07_Mpage/commonSide.jsp" class="rac_m_sideMenu"> <i
+			class="icon-menu"></i>
+		</a>
 	</div>
-	<a href="/07_Mpage/commonSide.jsp" class="rac_m_sideMenu"> <span
-		class="color-white"><i class="fas fa-bars fa-lg"></i></span>
-	</a>
+
 </section>
