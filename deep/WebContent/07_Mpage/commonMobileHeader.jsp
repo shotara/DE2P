@@ -42,3 +42,4 @@
 
 <script type ="text/javascript" src="/03_include/js/rancre.Common.js"></script>
 <script type ="text/javascript" src="/03_include/js/rancre.auth.js"></script>
+<script type ="text/javascript" src="/03_include/js/rancre.CommonMobile.js"></script>

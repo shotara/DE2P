@@ -9,6 +9,20 @@
 	content="width=device-width, initial-scale=1.0, mininum-scale=1.0, maximun-scale=1.0, user-scalable=no">
 <title>Rancre : 유튜브 채널 정보 플랫폼</title>
 <jsp:include page="/07_Mpage/commonMobileHeader.jsp" flush="true" />
+
+<script>
+	function mobileAddList() {
+
+		var startNo = $("#rac_m_startNo").val();
+
+		CommonM.addList(1, startNo, 0);
+
+		$("#rac_m_startNo").val(startNo * 1 + 10);
+		if (startNo >= 90)
+			$(".rac_m_bottom").hide();
+	}
+</script>
+
 </head>
 <body class="mbody">
 
@@ -274,8 +288,13 @@
 				</div>
 			</div>
 
-			<div class="text-center rac_m_more_channel">
-				<a class="commonA" href="#">채널 더보기 <i class="fas fa-angle-down"></i></a>
+			<div class="rac_m_bottom">
+				<div class="rac_m_more_channel">
+					<button class="commonMobileBtn" onclick="mobileAddList()">
+						채널 더보기 <i class="icon-down-open-mini"></i>
+					</button>
+					<input type="hidden" id="rac_m_startNo">
+				</div>
 			</div>
 
 		</div>
@@ -283,7 +302,7 @@
 	</div>
 
 	</section>
-	
+
 	<jsp:include page="/07_Mpage/commonMFooter.jsp" flush="true" />
 
 </body>

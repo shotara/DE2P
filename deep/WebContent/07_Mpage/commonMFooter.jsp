@@ -4,21 +4,16 @@
 	pageEncoding="UTF-8"%>
 
 <footer class="rac-m-Footer">
-	<div class="container">
-		<div class="pt-3"></div>
-		<div class="w-auto">
-			<div class="float-left">
-				<a class="footer-brand" href="/index.jsp">Rancre</a>
-			</div>
-			<div class="float-right mTop">
-				<a class="common-white-A" href="#" onclick="Common.contactUs(1)">contact
-					us</a>
-			</div>
-			<div class="txt-center pTop4">
-				<span class="footer-detail">Rancre 는 채널 추천 서비스로 여러분에게 새로운 채널을
-					추천해주고 싶어 만들었어요! <br/> 더 많은 채널을 보여주도록 노력할게요!
-				</span>
-			</div>
-		</div>
+	<div class="rac-m-footer-info">
+		랭크리는 유튜브 채널 추천을 위해<br/>만들어진 서비스입니다.
 	</div>
+	<ul class="m-footer-content">
+		<li class="m-footer-list-first">
+			<a class="commonA" href="/index.jsp">RANCRE</a>
+		</li>
+		<li class="m-footer-list">
+			<a class="commonA" href="#" onclick="Common.contactUs(1)">contact
+				us</a>
+		</li>
+	</ul>
 </footer>
