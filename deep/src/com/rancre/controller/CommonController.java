@@ -274,7 +274,92 @@ public class CommonController {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void getMRankingMain(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+	
+		try{
+			HttpSession session = req.getSession();
 
+			int startNo = req.getParameter("startNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("startNo").toString())) : 0;
+			int categoryNo = req.getParameter("categoryNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("categoryNo").toString())) : 0;
+			JSONObject jMainObject = new JSONObject();
+			
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+			
+			Date date = new Date();
+			SimpleDateFormat formatType = new SimpleDateFormat("yyyy-MM-dd");
+			formatType.setTimeZone(TimeZone.getTimeZone("GMT+9"));
+			Timestamp beforeDate;
+			Timestamp afterDate;
+			
+			// 배치 돈 후 데이트와 배치 돌기 전 데이트 분기
+			if(date.getHours()>6) {
+				date.setDate(date.getDate()-1);
+				date.setHours(0);			
+				date.setMinutes(0);
+				date.setSeconds(0);
+				beforeDate = new Timestamp(date.getTime());
+				date.setDate(date.getDate()+1);
+				afterDate = new Timestamp(date.getTime());
+			} else {
+				date.setDate(date.getDate()-2);
+				date.setHours(0);			
+				date.setMinutes(0);
+				date.setSeconds(0);
+				beforeDate = new Timestamp(date.getTime());
+				date.setDate(date.getDate()+1);
+				afterDate = new Timestamp(date.getTime());
+			}
+
+			// 순위 리스트
+		JSONArray rankingList = new JSONArray();
+			ArrayList<RankTop> ranking = ChannelDAO.getRankingList(startNo);
+			for(int i=0; i<ranking.size(); i++) {
+				JSONObject tempObject = new JSONObject();
+				tempObject.put("outputRankTopNo", ranking.get(i).getRacRankTopNo());
+				tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
+
+				int checkBefore  = ChannelDAO.checkChannelBefore(ranking.get(i).getRacChannelNo(),beforeDate,afterDate);
+				if(checkBefore==0) {
+					tempObject.put("outputRankUpDown", "new");
+
+				} else {
+					int beforRanking = ChannelDAO.getRankBefore(ranking.get(i).getRacChannelNo(),beforeDate,afterDate);
+					if(ranking.get(i).getRacRankTopNo()-beforRanking <0) 
+						tempObject.put("outputRankUpDown", "<span>"+(ranking.get(i).getRacRankTopNo()-beforRanking)*-1+"<i class=\"icon-down-micro\"></i></span>");
+					else if(ranking.get(i).getRacRankTopNo()-beforRanking >0)
+						tempObject.put("outputRankUpDown", "<span>"+(ranking.get(i).getRacRankTopNo()-beforRanking)+"<i class=\"icon-up-micro\"></i></span>");
+					else
+						tempObject.put("outputRankUpDown", "<i class=\"icon-minus\"></i>");				
+				}
+				tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryList(ranking.get(i).getRacChannelCategory()));
+				tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
+				tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));
+				tempObject.put("outputChannelFollowers", CommonUtil.setMobileFollower(ranking.get(i).getRacChannelFollowers()));
+				tempObject.put("outputChannelThumbnail", ranking.get(i).getRacChannelThumbnail());
+				
+				rankingList.add(tempObject);
+			
+			}
+
+			jMainObject.put("rankingList", rankingList);
+			
+			
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get MRankingMain OK", map);
+			res.getWriter().write(jMainObject.toString());
+//			req.getRequestDispatcher("/index.jsp").forward(req, res);
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void contactUs(HttpServletRequest req, HttpServletResponse res) {
 
 		HashMap<String, String> map = new HashMap<String, String>();

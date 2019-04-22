@@ -66,6 +66,11 @@ public class CommonView extends HttpServlet {
 					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 					CommonController.getRankingList(req,res);
 					break;	
+				case "getMRankingMain":
+					map.put("ACTION", "getMRankingMain");
+					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
+					CommonController.getMRankingMain(req,res);
+					break;	
 				case "contactUs":
 					map.put("ACTION", "contactUs");
 					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);

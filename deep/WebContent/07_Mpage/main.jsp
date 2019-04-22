@@ -15,14 +15,62 @@
 
 		var startNo = $("#rac_m_startNo").val();
 
-		CommonM.addList(1, startNo, 0);
+		CommonM.addList(startNo, 0);
 
 		$("#rac_m_startNo").val(startNo * 1 + 10);
 		if (startNo >= 90)
 			$(".rac_m_bottom").hide();
 	}
-</script>
+	
+	$(document).ready(function() { 
+		
+		$("#rac_m_startNo").val(10);
+		var url="/main?action=getMRankingMain";  
+	    var params = {
+	    	startNo : 0
+	    };
+	    
+	    $.ajax({      
+	        type:"POST",  
+	        url:url,      
+	        data:params,  
+	        dataType:'json',
+	        success:function(args){   
+	        	for(var i=0; i<args.rankingList.length; i++) {
+	        		$('.rac_m_Top100_Contents').append("		<div class='content' onclick='CommonM.m_chn_Detail_Go()'>\n" + 
+	        				"		<div class='img'>\n" + 
+	        				"			<img style='width: 100%;'\n" + 
+	        				"				src='"+args.rankingList[i].outputChannelThumbnail + "'>\n" + 
+	        				"		</div>\n" + 
+	        				"		<div class='diff'>\n" + 
+	        				"			<div class='count'>\n" + 
+	        				"				<span>"+args.rankingList[i].outputRankTopNo + "</span>\n" + 
+	        				"			</div>\n" + 
+	        				"			<div class='mark'>\n" + args.rankingList[i].outputRankUpDown + 
+	        				"			</div>\n" + 
+	        				"		</div>\n" + 
+	        				"		<div class='title_sub'>\n" + 
+	        				"			<div class='title'>\n" + 
+	        				"				<span>"+args.rankingList[i].outputChannelTitle+"</span>\n" + 
+	        				"			</div>\n" + 
+	        				"			<div class='view'>\n" + 
+	        				"				<span>구독자</span><span>"+args.rankingList[i].outputChannelFollowers+"</span>\n" + 
+	        				"			</div>\n" + 
+	        				"		</div>\n" + 
+	        				"		<div class='icon'>\n" + 
+	        				"			<i class='icon-right-open-mini'></i>\n" + 
+	        				"		</div>\n" + 
+	        				"	</div>");
+	        	}
 
+	        },   
+	        error:function(e){  
+	            alert(e.responseText);  
+	        }  
+	    });  
+		
+	});
+</script>
 </head>
 <body class="mbody">
 
@@ -37,268 +85,20 @@
 		</div>
 
 		<div class="rac_m_Top100_Contents">
-			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
-				<div class="img">
-					<img style="width: 100%;"
-						src="https://yt3.ggpht.com/-ETl6ep3WnbQ/AAAAAAAAAAI/AAAAAAAAAAA/lMRgJfLKEE0/s240-c-k-no-mo-rj-c0xffffff/photo.jpg">
-				</div>
-				<div class="diff">
-					<div class="count">
-						<span>1</span>
-					</div>
-					<div class="mark">
-						<i class="icon-minus"></i>
-					</div>
-				</div>
-				<div class="title_sub">
-					<div class="title">
-						<span>MBCentertainment</span>
-					</div>
-					<div class="view">
-						<span>구독자</span><span>100만명</span>
-					</div>
-				</div>
-				<div class="icon">
-					<i class="icon-right-open-mini"></i>
-				</div>
-			</div>
-			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
-				<div class="img">
-					<img style="width: 100%;"
-						src="https://yt3.ggpht.com/-ETl6ep3WnbQ/AAAAAAAAAAI/AAAAAAAAAAA/lMRgJfLKEE0/s240-c-k-no-mo-rj-c0xffffff/photo.jpg">
-				</div>
-				<div class="diff">
-					<div class="count">
-						<span>2</span>
-					</div>
-					<div class="mark">
-						<span>1<i class="icon-down-micro"></i></span>
-					</div>
-				</div>
-				<div class="title_sub">
-					<div class="title">
-						<span>MBCentertainment</span>
-					</div>
-					<div class="view">
-						<span>구독자</span><span>99만명</span>
-					</div>
-				</div>
-				<div class="icon">
-					<i class="icon-right-open-mini"></i>
-				</div>
-			</div>
-			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
-				<div class="img">
-					<img style="width: 100%;"
-						src="https://yt3.ggpht.com/-ETl6ep3WnbQ/AAAAAAAAAAI/AAAAAAAAAAA/lMRgJfLKEE0/s240-c-k-no-mo-rj-c0xffffff/photo.jpg">
-				</div>
-				<div class="diff">
-					<div class="count">
-						<span>3</span>
-					</div>
-					<div class="mark">
-						<i class="icon-minus"></i>
-					</div>
-				</div>
-				<div class="title_sub">
-					<div class="title">
-						<span>MBCentertainment</span>
-					</div>
-					<div class="view">
-						<span>구독자</span><span>98만명</span>
-					</div>
-				</div>
-				<div class="icon">
-					<i class="icon-right-open-mini"></i>
-				</div>
-			</div>
-			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
-				<div class="img">
-					<img style="width: 100%;"
-						src="https://yt3.ggpht.com/-ETl6ep3WnbQ/AAAAAAAAAAI/AAAAAAAAAAA/lMRgJfLKEE0/s240-c-k-no-mo-rj-c0xffffff/photo.jpg">
-				</div>
-				<div class="diff">
-					<div class="count">
-						<span>4</span>
-					</div>
-					<div class="mark">
-						<span>1<i class="icon-down-micro"></i></span>
-					</div>
-				</div>
-				<div class="title_sub">
-					<div class="title">
-						<span>MBCentertainment</span>
-					</div>
-					<div class="view">
-						<span>구독자</span><span>97만명</span>
-					</div>
-				</div>
-				<div class="icon">
-					<i class="icon-right-open-mini"></i>
-				</div>
-			</div>
-			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
-				<div class="img">
-					<img style="width: 100%;"
-						src="https://yt3.ggpht.com/-ETl6ep3WnbQ/AAAAAAAAAAI/AAAAAAAAAAA/lMRgJfLKEE0/s240-c-k-no-mo-rj-c0xffffff/photo.jpg">
-				</div>
-				<div class="diff">
-					<div class="count">
-						<span>5</span>
-					</div>
-					<div class="mark">
-						<span>1<i class="icon-up-micro"></i></span>
-					</div>
-				</div>
-				<div class="title_sub">
-					<div class="title">
-						<span>MBCentertainment</span>
-					</div>
-					<div class="view">
-						<span>구독자</span><span>90만명</span>
-					</div>
-				</div>
-				<div class="icon">
-					<i class="icon-right-open-mini"></i>
-				</div>
-			</div>
-			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
-				<div class="img">
-					<img style="width: 100%;"
-						src="https://yt3.ggpht.com/-ETl6ep3WnbQ/AAAAAAAAAAI/AAAAAAAAAAA/lMRgJfLKEE0/s240-c-k-no-mo-rj-c0xffffff/photo.jpg">
-				</div>
-				<div class="diff">
-					<div class="count">
-						<span>6</span>
-					</div>
-					<div class="mark">
-						<span><i class="icon-minus"></i></span>
-					</div>
-				</div>
-				<div class="title_sub">
-					<div class="title">
-						<span>MBCentertainment</span>
-					</div>
-					<div class="view">
-						<span>구독자</span><span>88만명</span>
-					</div>
-				</div>
-				<div class="icon">
-					<i class="icon-right-open-mini"></i>
-				</div>
-			</div>
-			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
-				<div class="img">
-					<img style="width: 100%;"
-						src="https://yt3.ggpht.com/-ETl6ep3WnbQ/AAAAAAAAAAI/AAAAAAAAAAA/lMRgJfLKEE0/s240-c-k-no-mo-rj-c0xffffff/photo.jpg">
-				</div>
-				<div class="diff">
-					<div class="count">
-						<span>7</span>
-					</div>
-					<div class="mark">
-						<span><i class="icon-minus"></i></span>
-					</div>
-				</div>
-				<div class="title_sub">
-					<div class="title">
-						<span>MBCentertainment</span>
-					</div>
-					<div class="view">
-						<span>구독자</span><span>88만명</span>
-					</div>
-				</div>
-				<div class="icon">
-					<i class="icon-right-open-mini"></i>
-				</div>
-			</div>
-			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
-				<div class="img">
-					<img style="width: 100%;"
-						src="https://yt3.ggpht.com/-ETl6ep3WnbQ/AAAAAAAAAAI/AAAAAAAAAAA/lMRgJfLKEE0/s240-c-k-no-mo-rj-c0xffffff/photo.jpg">
-				</div>
-				<div class="diff">
-					<div class="count">
-						<span>8</span>
-					</div>
-					<div class="mark">
-						<span><i class="icon-minus"></i></span>
-					</div>
-				</div>
-				<div class="title_sub">
-					<div class="title">
-						<span>MBCentertainment</span>
-					</div>
-					<div class="view">
-						<span>구독자</span><span>88만명</span>
-					</div>
-				</div>
-				<div class="icon">
-					<i class="icon-right-open-mini"></i>
-				</div>
-			</div>
-			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
-				<div class="img">
-					<img style="width: 100%;"
-						src="https://yt3.ggpht.com/-ETl6ep3WnbQ/AAAAAAAAAAI/AAAAAAAAAAA/lMRgJfLKEE0/s240-c-k-no-mo-rj-c0xffffff/photo.jpg">
-				</div>
-				<div class="diff">
-					<div class="count">
-						<span>9</span>
-					</div>
-					<div class="mark">
-						<span><i class="icon-minus"></i></span>
-					</div>
-				</div>
-				<div class="title_sub">
-					<div class="title">
-						<span>MBCentertainment</span>
-					</div>
-					<div class="view">
-						<span>구독자</span><span>88만명</span>
-					</div>
-				</div>
-				<div class="icon">
-					<i class="icon-right-open-mini"></i>
-				</div>
-			</div>
-			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
-				<div class="img">
-					<img style="width: 100%;"
-						src="https://yt3.ggpht.com/-ETl6ep3WnbQ/AAAAAAAAAAI/AAAAAAAAAAA/lMRgJfLKEE0/s240-c-k-no-mo-rj-c0xffffff/photo.jpg">
-				</div>
-				<div class="diff">
-					<div class="count">
-						<span>10</span>
-					</div>
-					<div class="mark">
-						<span>2<i class="icon-up-micro"></i></span>
-					</div>
-				</div>
-				<div class="title_sub">
-					<div class="title">
-						<span>MBCentertainment</span>
-					</div>
-					<div class="view">
-						<span>구독자</span><span>88만명</span>
-					</div>
-				</div>
-				<div class="icon">
-					<i class="icon-right-open-mini"></i>
-				</div>
+			
 			</div>
 
-			<div class="rac_m_bottom">
-				<div class="rac_m_more_channel">
-					<button class="commonMobileBtn" onclick="mobileAddList()">
-						채널 더보기 <i class="icon-down-open-mini"></i>
-					</button>
-					<input type="hidden" id="rac_m_startNo">
-				</div>
-			</div>
 
 		</div>
 
+		<div class="rac_m_bottom">
+			<div class="rac_m_more_channel">
+				<button class="commonMobileBtn" onclick="mobileAddList()">
+					채널 더보기 <i class="icon-down-open-mini"></i>
+				</button>
+				<input type="hidden" id="rac_m_startNo">
+			</div>
+		</div>
 	</div>
 
 	</section>

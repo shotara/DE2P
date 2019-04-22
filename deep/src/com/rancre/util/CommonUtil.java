@@ -589,5 +589,10 @@ public class CommonUtil {
 			return "기타";
 		}
 	}
+
+	public static String setMobileFollower(int racChannelFollowers) {
+		int result = racChannelFollowers/10000;
+		return String.format("%,d", result)+"만";
+	}
 	
 }
