@@ -56,11 +56,6 @@ public class CommonView extends HttpServlet {
 					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
 					CommonController.getRSAPublicKey(req, res);
 					break;
-				case "getMyPage":
-					map.put("ACTION", "getMyPage");
-					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);
-					CommonController.getMyPage(req,res);
-					break;					
 				case "getRankingList":
 					map.put("ACTION", "getRankingList");
 					CommonUtil.commonPrintLog("REQUEST", this.getClass().getSimpleName(), "User Request In", map);

@@ -33,14 +33,9 @@ import org.json.simple.JSONObject;
 
 import com.rancre.config.GlobalValue;
 import com.rancre.model.ChannelDAO;
-import com.rancre.model.FeedDAO;
 import com.rancre.model.MemberDAO;
 import com.rancre.model.UploadDAO;
-import com.rancre.model.domain.FeedHashtag;
-import com.rancre.model.domain.FeedList;
-import com.rancre.model.domain.FeedSeries;
 import com.rancre.model.domain.Member;
-import com.rancre.model.domain.MemberFavorite;
 import com.rancre.model.domain.RankCategory;
 import com.rancre.model.domain.RankTop;
 import com.rancre.model.domain.Upload;
@@ -99,8 +94,8 @@ public class CommonController {
 			
 			// JSON 오브젝트에 저장한 후 리턴
 			JSONObject jObject = new JSONObject();
-			jObject.put("deepPublicKeyModulus", publicKeyModulus);
-			jObject.put("deepPublicKeyExponent", publicKeyExponent);
+			jObject.put("racPublicKeyModulus", publicKeyModulus);
+			jObject.put("racPublicKeyExponent", publicKeyExponent);
 
 			HttpSession session = req.getSession();
 			session.setAttribute("PrivateKey", privateKey);				
@@ -115,53 +110,6 @@ public class CommonController {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public static void getMyPage(HttpServletRequest req, HttpServletResponse res) {
-		
-		HashMap<String, String> map = new HashMap<String, String>();
-	
-		try{
-			HttpSession session = req.getSession();
-
-			int sessionMemberNo = session.getAttribute("deepMemberNo") != null ? Integer.parseInt(session.getAttribute("deepMemberNo").toString()) : 0;
-			
-			JSONObject jObject = new JSONObject();
-			res.setContentType("application/json");
-			res.setCharacterEncoding("UTF-8");
-			
-			// 회원인지 확인
-			if(!(sessionMemberNo>0)) {
-				CommonUtil.commonPrintLog("ERROR", className, "No Member", map);
-				jObject.put("outputResult", "-1");
-				res.getWriter().write(jObject.toString());
-				return;
-			}
-			
-			// 회정정보를 가져온다
-//			Member memberNo = MemberDAO.getMemberByMemberNo(sessionMemberNo);
-//			jObject.put("outputMemberLevel", memberNo.getDeepMemberLevel());
-//			jObject.put("outputMemberMajor", memberNo.getDeepMemberMajor());
-//			jObject.put("outputMemberCareer", memberNo.getDeepMemberCareer());
-//			jObject.put("outputMemberEmail", memberNo.getDeepMemberEmail());
-//			jObject.put("outputMemberName", memberNo.getDeepMemberName());
-//			jObject.put("outputMemberImage", MemberController.getMemberImage(memberNo.getDeepMemberImage()));
-//
-//			// Blog/Feed 정보
-			
-			// 팔로우 수			
-			
-			res.setContentType("application/json");
-			res.setCharacterEncoding("UTF-8");
-			
-			CommonUtil.commonPrintLog("SUCCESS", className, "My Page OK", map);
-			res.getWriter().write(jObject.toString());
-//			req.getRequestDispatcher("/index.jsp").forward(req, res);
-			return;
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}	
 	}
 
 	public static void getRankingList(HttpServletRequest req, HttpServletResponse res) {

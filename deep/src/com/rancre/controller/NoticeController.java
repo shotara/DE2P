@@ -11,11 +11,8 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.rancre.model.FeedDAO;
-import com.rancre.model.FollowDAO;
 import com.rancre.model.MemberDAO;
 import com.rancre.model.NoticeDAO;
-import com.rancre.model.domain.FollowMember;
 import com.rancre.model.domain.Notice;
 import com.rancre.util.CommonUtil;
 import com.rancre.util.EncryptUtil;

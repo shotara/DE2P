@@ -5,7 +5,7 @@
          xmlns:web="http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
 
-	<servlet>
+  	<servlet>
 		<servlet-name>AdminView</servlet-name>
 		<servlet-class>com.rancre.view.AdminView</servlet-class>
 	</servlet>
@@ -14,17 +14,7 @@
 		<servlet-name>AdminView</servlet-name>
 		<url-pattern>/admin</url-pattern>
 	</servlet-mapping>
-	         
-	<servlet>
-		<servlet-name>BlogView</servlet-name>
-		<servlet-class>com.rancre.view.BlogView</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>BlogView</servlet-name>
-		<url-pattern>/blog</url-pattern>
-	</servlet-mapping>
- 	
+	           
  	<servlet>
 		<servlet-name>ChannelView</servlet-name>
 		<servlet-class>com.rancre.view.ChannelView</servlet-class>
@@ -43,26 +33,6 @@
 	<servlet-mapping>
 		<servlet-name>CommonView</servlet-name>
 		<url-pattern>/main</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>FeedView</servlet-name>
-		<servlet-class>com.rancre.view.FeedView</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>FeedView</servlet-name>
-		<url-pattern>/feed</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>FollowView</servlet-name>
-		<servlet-class>com.rancre.view.FollowView</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>FollowView</servlet-name>
-		<url-pattern>/follow</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

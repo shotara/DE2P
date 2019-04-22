@@ -44,8 +44,6 @@
 <!-- Bootstraps -->
 <!-- js -->
 <script type ="text/javascript" src="/03_include/js/bootstrap.min.js"></script>
-<script type ="text/javascript" src="/03_include/js/deep.Common.js"></script>
-<script type ="text/javascript" src="/03_include/js/deep.Feed.js"></script>
 <script type ="text/javascript" src="/03_include/js/encrypt.rsa.js"></script>
 <script type ="text/javascript" src="/03_include/js/encrypt.aes.js"></script>
 <script type ="text/javascript" src="/03_include/js/encrypt.jsbn.js"></script>

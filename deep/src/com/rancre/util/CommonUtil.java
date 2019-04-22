@@ -299,36 +299,6 @@ public class CommonUtil {
 		
 		return list;
 	}
-
-	public static String getCategoryName(int deepCategoryNo) {
-		
-		switch(deepCategoryNo) {
-		case 1:
-			return "Database";
-		case 2:
-			return "Language";
-		case 3:
-			return "Server";
-		case 4:
-			return "etc..";
-		default:
-			return "All";
-		}
-	}
-
-	public static String getFeedTypeName(int deepFeedType) {
-		
-		switch(deepFeedType) {
-		case 1:
-			return "일반문서";
-		case 2:
-			return "번역문서";
-		case 3:
-			return "광고";
-		default:
-			return "일반문서";
-		}
-	}
 	
 	public static String splitString(String str, int mode) {
 		

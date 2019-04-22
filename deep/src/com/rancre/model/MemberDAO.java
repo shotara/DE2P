@@ -11,7 +11,6 @@ import com.rancre.model.domain.ChannelLike;
 import com.rancre.model.domain.ChannelView;
 import com.rancre.model.domain.Company;
 import com.rancre.model.domain.Member;
-import com.rancre.model.domain.MemberFavorite;
 import com.rancre.model.domain.MemberUid;
 import com.rancre.model.domain.Review;
 import com.rancre.util.DAOFactory;
@@ -303,17 +302,6 @@ public class MemberDAO {
 		}
 	}
 	
-	public static MemberFavorite getMemberFavorite(int inputMemberNo) {
-		
-		SqlSession sqlSession = DAOFactory.getSqlSession(true);
-		
-		try {	
-			return (MemberFavorite)sqlSession.selectOne(namespace + ".getMemberFavorite", inputMemberNo);
-			
-		} finally {
-			sqlSession.close();
-		}
-	}
 
 	public static int getMemberNoByMemberUid(String inputMemberUid) {
 		

@@ -49,8 +49,8 @@ function joinPermit() {
 		dataType : "json",
 		async: false,
 		success: function(response) {
-			publicKeyModulus = response.deepPublicKeyModulus;
-			publicKeyExponent = response.deepPublicKeyExponent;
+			publicKeyModulus = response.racPublicKeyModulus;
+			publicKeyExponent = response.racPublicKeyExponent;
 		}, error: function(xhr,status,error) {
 			alert(error);
 		}
@@ -90,8 +90,8 @@ function joinPermit() {
 						dataType : "json",
 						async: false,
 						success: function(response) {
-							publicKeyModulus = response.deepPublicKeyModulus;
-							publicKeyExponent = response.deepPublicKeyExponent;
+							publicKeyModulus = response.racPublicKeyModulus;
+							publicKeyExponent = response.racPublicKeyExponent;
 						}, error: function(xhr,status,error) {
 							alert(error);
 						}

@@ -51,10 +51,6 @@
 	</select>			
 	
 	<!-- Delete -->
-	<select id="deleteFeedLike" parameterType="java.util.HashMap" resultType="int">
-		DELETE FROM deep_feed_like WHERE deepFeedNo=#{feedNo} AND deepMemberNo=#{memberNo}
-	</select>
-	
 	<select id="deleteChannelCategory" parameterType="java.util.HashMap" resultType="int">
 		DELETE FROM rac_channel_category WHERE racChannelNo=#{channelNo} AND racCategoryNo=#{categoryNo}
 	</select>

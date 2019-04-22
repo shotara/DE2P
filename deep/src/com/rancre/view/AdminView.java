@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.rancre.controller.AdminController;
-import com.rancre.controller.FeedController;
 import com.rancre.util.CommonUtil;
 
 public class AdminView extends HttpServlet{
