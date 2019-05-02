@@ -59,6 +59,6 @@
 .icon-up-micro:before { content: '\e804'; } /* '' */
 .icon-down-micro:before { content: '\e805'; } /* '' */
 .icon-menu:before { content: '\e806'; font-size:24px; color:#5F5F5F; } /* '' */
-.icon-cancel:before { content: '\e807'; } /* '' */
+.icon-cancel:before { content: '\e807'; font-size:24px; color:#5F5F5F; } /* '' */
 .icon-down-open-mini:before { content: '\e808'; } /* '' */
 .icon-up-open-mini:before { content: '\e809'; } /* '' */

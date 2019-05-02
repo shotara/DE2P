@@ -159,7 +159,48 @@ body.mbody {
 	width: 50%;
 }
 
+/**********************************/
+/*  rancre side menu using CSS    */
+/**********************************/
+
+.rac_m_side_top {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	max-width: 768px;
+	height: 56px;
+	margin: 0 auto;
+	background-color: #fff;
+	z-index: 100;
+}
+
+.rac_m_top_exit {
+	padding-top: 15px;
+	padding-right: 15px;
+	top: 0;
+	left: 0;
+	border: 0;
+	cursor: pointer;
+	float: right
+}
+
+.rac_m_non_login {
+	
+}
+
+.rac_m_side_user {
+	padding-top: 15px;
+	padding-left: 30px;
+	top: 0;
+	left: 0;
+	border: 0;
+	float:left;
+}
+
+
+
 /* rancre middle       */
+
 .rac_m_Top100 {
 	width: 100%;
 	background: #fff;
@@ -203,10 +244,9 @@ body.mbody {
 	display: table-cell;
 	vertical-align: middle;
 	width: 40px;
-	padding-left: 0;
+	padding-left: 15px;
 	padding-top: 3px;
 	text-align: left;
-	margin-left: -20px;
 }
 
 .rac_m_Top100_Contents .content .diff .count {
@@ -224,6 +264,8 @@ body.mbody {
 	vertical-align: middle;
 	padding-left: 5px;
 	text-align: left;
+	min-width : 190px;
+	overflow : hidden;
 }
 
 .rac_m_Top100_Contents .content .icon {
