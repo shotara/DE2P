@@ -40,7 +40,7 @@ body.mbody {
 	cursor: pointer;
 	text-decoration: none;
 	outline: none;
-	color: #000;
+	color:#333;
 }
 
 .commonA:hover, commonA:active, commonA:visited, commonA:focus {
@@ -174,6 +174,7 @@ body.mbody {
 .rac_m_top_exit {
 	padding-top: 15px;
 	padding-right: 15px;
+	padding-bottom : 15px;
 	top: 0;
 	left: 0;
 	border: 0;
@@ -187,8 +188,9 @@ body.mbody {
 
 
 .rac_m_side_dimmed {
-	z-index : 101;
-	position : absolute;
+	z-index: 101;
+	position: absolute;
+	width: 100%;
 	top:0;
 	left:0;
 	right:0;
@@ -197,11 +199,11 @@ body.mbody {
 }
 
 .rac_m_side_menu {
-	display :none;
-	height : 100%;
-	width : 100%;
-	z-index : 100;
-	position : fixed;
+	display:none;
+	height: 100%;
+	width: 100%;
+	z-index: 100;
+	position: fixed;
 	top:0;
 	right:0;
 	left:0;
@@ -210,10 +212,10 @@ body.mbody {
 
 .rac_m_side_domain {
 	position:absolute;
-	width : 65%;
-	height : 100%;
-	background : #fff;
-	z-index : 102;
+	width: 70%;
+	height: 100%;
+	background: #fff;
+	z-index: 102;
 	top:0;
 	right:0;
 }
@@ -331,6 +333,18 @@ body.mbody {
 	text-align: center;
 	vertical-align: middle;
 }
+
+/*****************************/
+/* Rancre mobile login  ******/
+/*****************************/
+
+.rac_m_login_top {
+	position : absolute;
+	top : 100px;
+	text-align : center;
+	width : 100%;
+}
+
 
 /*****************************/
 /* Rancre mobile search ******/

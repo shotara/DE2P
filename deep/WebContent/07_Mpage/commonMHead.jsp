@@ -17,14 +17,14 @@
 	</div>
 
 	<div class="rac_m_side_menu" id="rac_m_Side_menu">
-		<div class="rac_m_side_dimmed"></div>
-		<div class="rac_m_side_domain">
+		<div class="rac_m_side_dimmed" onclick="CommonM.m_clk_s_menu(2)"></div>
+		<div class="rac_m_side_domain" id="rac_m_Side_domain">
 			<i class="icon-cancel rac_m_top_exit" id="rac_m_Side_close"
 				onclick="CommonM.m_clk_s_menu(2)"></i>
 			<div class="rac_m_side_user commonMBorder">
-				<div class="rac_m_non_login" onclick="m_go_login()">
+				<div class="rac_m_non_login">
 					<p class="color-primary">RANCRE</p>
-					<p class="w100">로그인</p>
+					<a class="commonA" href="/07_Mpage/Auth/MLogin.jsp"><p class="w100">로그인</p></a>
 				</div>
 			</div>
 			<ul class="rac_m_side_menu_ul">
