@@ -12,17 +12,16 @@
 	<section id="mSideMenu">
 	<div class="rac_m_side_top">
 		<a href="/07_Mpage/main.jsp" class="rac_m_top_exit"> <i
-			class="icon-cancel"></i>
+			class="icon-cancel rac_m_top_exit"></i>
 		</a>
 	</div>
 	<div class="rac_m_side_profile">
 
 		<!-- non-login-session -->
 
-		<div class="rac_m_non_login">
-			<a href="/07_Mpage/Auth/MLogin.jsp" class="rac_m_side_user"> <i
-				class="icon-user"></i> <span>로그인하기</span> <i class="icon-right-open-mini"></i>
-			</a>
+		<div class="rac_m_non_login" onclick="m_go_login()">
+			<i class="icon-user"></i> <span>로그인하기</span> <i
+				class="icon-right-open-mini"></i> 
 		</div>
 
 		<!-- non-login-session-end -->
@@ -32,7 +31,7 @@
 		<!-- login-session exist-end -->
 
 	</div>
-	
+
 	<div class="rac_m_side_menu">
 		<ul class="side_menu">
 			<li>채널 100</li>

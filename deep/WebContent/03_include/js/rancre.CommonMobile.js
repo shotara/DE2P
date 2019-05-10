@@ -58,3 +58,14 @@ CommonM.addList = function(startNo, categoryNo){
 CommonM.m_chn_Detail_Go = function(no) {
 	
 }
+
+
+CommonM.m_clk_s_menu = function(mode){
+	if(mode == 1){ //open side menu
+		const side_open = document.getElementById('rac_m_Side_menu');
+		side_open.style.display = 'block';
+	}else if(mode == 2){ //close side menu
+		const side_close = document.getElementById('rac_m_Side_menu');
+		side_close.style.display = 'none';
+	} 
+}

@@ -57,6 +57,14 @@ body.mbody {
 	border-bottom: 1px solid #f2f2f2;
 }
 
+.display_cell{
+	display:table-cell;
+}
+
+.vertical-middle {
+	vertical-align:middle;
+}
+
 /**********************************/
 /*  rancre Mobile Btn CSS        */
 /**********************************/
@@ -163,17 +171,6 @@ body.mbody {
 /*  rancre side menu using CSS    */
 /**********************************/
 
-.rac_m_side_top {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	max-width: 768px;
-	height: 56px;
-	margin: 0 auto;
-	background-color: #fff;
-	z-index: 100;
-}
-
 .rac_m_top_exit {
 	padding-top: 15px;
 	padding-right: 15px;
@@ -185,19 +182,65 @@ body.mbody {
 }
 
 .rac_m_non_login {
-	
+	display:table;
+}
+
+
+.rac_m_side_dimmed {
+	z-index : 101;
+	position : absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background : rgba(0,0,0,0.4);
+}
+
+.rac_m_side_menu {
+	display :none;
+	height : 100%;
+	width : 100%;
+	z-index : 100;
+	position : fixed;
+	top:0;
+	right:0;
+	left:0;
+	bottom:0;
+}
+
+.rac_m_side_domain {
+	position:absolute;
+	width : 65%;
+	height : 100%;
+	background : #fff;
+	z-index : 102;
+	top:0;
+	right:0;
 }
 
 .rac_m_side_user {
+	position : absolute;
+	top: 30px;
 	padding-top: 15px;
-	padding-left: 30px;
-	top: 0;
+	padding-left: 40px;
+	width : 100%;
+	border-bottom : 1px solid #eee;
 	left: 0;
 	border: 0;
 	float:left;
 }
 
+.rac_m_side_menu_ul{
+	position:absolute;
+	top : 150px;
+}
 
+.rac_m_side_menu_li {
+	list-style : none;
+	padding-bottom: 10px;
+	left : 0;
+	padding-left : 0;
+}
 
 /* rancre middle       */
 
