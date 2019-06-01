@@ -69,3 +69,16 @@ CommonM.m_clk_s_menu = function(mode){
 		side_close.style.display = 'none';
 	} 
 }
+
+CommonM.move_m_List = function(mode){
+	if(mode==1){//move mainList, channel 100
+		location.href = "/main";
+	}else if(mode==2){//move all channel list
+		location.href = "/07_Mpage/Channel/allMChannel.jsp";
+	}else if(mode==3){//move new channel list
+		location.href = "/07_Mpage/Channel/newMChannel.jsp";
+	}else if(mode==4){//move search page
+		location.href = "/07_Mpage/Search/commonSearch.jsp";
+	}
+}
+

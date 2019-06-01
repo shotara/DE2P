@@ -84,22 +84,19 @@
 			<span class="content">채널 종합 순위입니다.</span>
 		</div>
 
-		<div class="rac_m_Top100_Contents">
-			
-			</div>
+		<div class="rac_m_Top100_Contents"></div>
 
 
-		</div>
+	</div>
 
-		<div class="rac_m_bottom">
-			<div class="rac_m_more_channel">
-				<button class="commonMobileBtn" onclick="mobileAddList()">
-					채널 더보기 <i class="icon-down-open-mini"></i>
-				</button>
-				<input type="hidden" id="rac_m_startNo">
-			</div>
+	<div class="rac_m_bottom">
+		<div class="rac_m_more_channel">
+			<button class="commonMobileBtn" onclick="mobileAddList()">
+				more</button>
+			<input type="hidden" id="rac_m_startNo">
 		</div>
 	</div>
+
 
 	</section>
 

@@ -28,10 +28,10 @@
 				</div>
 			</div>
 			<ul class="rac_m_side_menu_ul">
-				<li class="rac_m_side_menu_li">채널 100</li>
-				<li class="rac_m_side_menu_li">모든 채널</li>
-				<li class="rac_m_side_menu_li">새로운 채널</li>
-				<li class="rac_m_side_menu_li">검색</li>
+				<li class="rac_m_side_menu_li" onclick="CommonM.move_m_List(1)">채널 100</li>
+				<li class="rac_m_side_menu_li" onclick="CommonM.move_m_List(2)">모든 채널</li>
+				<li class="rac_m_side_menu_li" onclick="CommonM.move_m_List(3)">새로운 채널</li>
+				<li class="rac_m_side_menu_li" onclick="CommonM.move_m_List(4)">검색</li>
 			</ul>
 
 		</div>
