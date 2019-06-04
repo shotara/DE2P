@@ -82,3 +82,93 @@ CommonM.move_m_List = function(mode){
 	}
 }
 
+CommonM.addCategory = function(startNo, categoryNo){
+
+	if(startNo>=200) return -1;
+
+	var url="/channel?action=getMCategoryList";  
+	var params = {
+			startNo : startNo,
+			categoryNo : categoryNo
+	};
+
+	$.ajax({      
+		type:"POST",  
+		url:url,      
+		data:params,  
+		dataType:'json',
+		success:function(args){   
+			for(var i=0; i<args.rankingList.length; i++) {
+				$('.rac_m_AllChannel_Contents').append("		<div class='content' onclick='CommonM.m_chn_Detail_Go("+args.rankingList[i].outputChannelNo+")'>\n" + 
+        				"		<div class='img'>\n" + 
+        				"			<img style='width: 100%;'\n" + 
+        				"				src='"+args.rankingList[i].outputChannelThumbnail + "'>\n" + 
+        				"		</div>\n" + 
+        				"		<div class='title_sub'>\n" + 
+        				"			<div class='title'>\n" + 
+        				"				<span>"+args.rankingList[i].outputChannelTitle+"</span>\n" + 
+        				"			</div>\n" + 
+        				"			<div class='view'>\n" + 
+        				"				<span>구독자</span><span>"+args.rankingList[i].outputChannelFollowers+"</span>\n" + 
+        				"			</div>\n" + 
+        				"		</div>\n" + 
+        				"		<div class='icon'>\n" + 
+        				"			<i class='icon-right-open-mini'></i>\n" + 
+        				"		</div>\n" + 
+        				"	</div>");
+			}
+		},   
+		error:function(e){  
+			alert(e.responseText);  
+		}  
+	});  
+
+	if(startNo>=190) 		
+		$(".rac_m_bottom").hide();
+}
+
+CommonM.addNew = function(startNo, categoryNo){
+
+	if(startNo>=200) return -1;
+
+	var url="/channel?action=getMNewList";  
+	var params = {
+			startNo : startNo,
+			categoryNo : categoryNo
+	};
+
+	$.ajax({      
+		type:"POST",  
+		url:url,      
+		data:params,  
+		dataType:'json',
+		success:function(args){   
+			for(var i=0; i<args.rankingList.length; i++) {
+				$('.rac_m_NewChannel_Contents').append("		<div class='content' onclick='CommonM.m_chn_Detail_Go("+args.rankingList[i].outputChannelNo+")'>\n" + 
+        				"		<div class='img'>\n" + 
+        				"			<img style='width: 100%;'\n" + 
+        				"				src='"+args.rankingList[i].outputChannelThumbnail + "'>\n" + 
+        				"		</div>\n" + 
+        				"		<div class='title_sub'>\n" + 
+        				"			<div class='title'>\n" + 
+        				"				<span>"+args.rankingList[i].outputChannelTitle+"</span>\n" + 
+        				"			</div>\n" + 
+        				"			<div class='view'>\n" + 
+        				"				<span>구독자</span><span>"+args.rankingList[i].outputChannelFollowers+"</span>\n" + 
+        				"			</div>\n" + 
+        				"		</div>\n" + 
+        				"		<div class='icon'>\n" + 
+        				"			<i class='icon-right-open-mini'></i>\n" + 
+        				"		</div>\n" + 
+        				"	</div>");
+			}
+		},   
+		error:function(e){  
+			alert(e.responseText);  
+		}  
+	});  
+
+	if(startNo>=190) 		
+		$(".rac_m_bottom").hide();
+}
+

@@ -882,4 +882,102 @@ public class ChannelController {
 			e.printStackTrace();
 		}
 	}
+
+	public static void getMCategoryList(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+	
+		try{
+			HttpSession session = req.getSession();
+
+			int startNo = req.getParameter("startNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("startNo").toString())) : 0;
+			int categoryNo = req.getParameter("categoryNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("categoryNo").toString())) : 0;
+			JSONObject jMainObject = new JSONObject();
+			
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+
+			// 순위 리스트
+			JSONArray rankingList = new JSONArray();
+			ArrayList<RankCategory> ranking = ChannelDAO.getRankingList2(2, startNo, categoryNo);
+			for(int i=0; i<ranking.size(); i++) {
+				JSONObject tempObject = new JSONObject();
+				tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
+				// 카테고리 가져오기
+				tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryList(ranking.get(i).getRacChannelCategory()));
+				tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
+				// 13자리 
+				tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));
+				String channelFollowers = CommonUtil.setCommaForInt(ranking.get(i).getRacChannelFollowers());
+				if(channelFollowers.equals("-1")) channelFollowers="비공개";
+				req.setAttribute("outputChannelFollowers", channelFollowers);
+				tempObject.put("outputChannelFollowers", channelFollowers);
+				tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(ranking.get(i).getRacChannelViews()));
+				tempObject.put("outputChannelVideoCount", CommonUtil.setCommaForInt(ranking.get(i).getRacChannelVideoCount()));
+				tempObject.put("outputChannelThumbnail", ranking.get(i).getRacChannelThumbnail());
+				
+				rankingList.add(tempObject);
+			}
+	
+			jMainObject.put("rankingList", rankingList);
+			
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get MCategory OK", map);
+			res.getWriter().write(jMainObject.toString());
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void getMNewList(HttpServletRequest req, HttpServletResponse res) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+	
+		try{
+			HttpSession session = req.getSession();
+
+			int startNo = req.getParameter("startNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("startNo").toString())) : 0;
+			int categoryNo = req.getParameter("categoryNo") != null ? Integer.parseInt(CommonUtil.commonCleanXSS(req.getParameter("categoryNo").toString())) : 0;
+			JSONObject jMainObject = new JSONObject();
+			
+			String aesKey = EncryptUtil.AES_getKey(req.getRealPath("") + File.separator + "META-INF" + File.separator + "keys.xml");
+
+			// 순위 리스트
+			JSONArray rankingList = new JSONArray();
+			ArrayList<RankCategory> ranking = ChannelDAO.getRankingList2(3, startNo, categoryNo);
+			for(int i=0; i<ranking.size(); i++) {
+				JSONObject tempObject = new JSONObject();
+				tempObject.put("outputChannelNo", ranking.get(i).getRacChannelNo());
+				// 카테고리 가져오기
+				tempObject.put("outputCategoryNo", CommonUtil.getChannelCategoryList(ranking.get(i).getRacChannelCategory()));
+				tempObject.put("outputChannelUrl", ranking.get(i).getRacChannelUrl());
+				// 13자리 
+				tempObject.put("outputChannelTitle", CommonUtil.splitString(ranking.get(i).getRacChannelTitle(), 2));
+				String channelFollowers = CommonUtil.setCommaForInt(ranking.get(i).getRacChannelFollowers());
+				if(channelFollowers.equals("-1")) channelFollowers="비공개";
+				req.setAttribute("outputChannelFollowers", channelFollowers);
+				tempObject.put("outputChannelFollowers", channelFollowers);
+				tempObject.put("outputChannelViews", CommonUtil.setCommaForLong(ranking.get(i).getRacChannelViews()));
+				tempObject.put("outputChannelVideoCount", CommonUtil.setCommaForInt(ranking.get(i).getRacChannelVideoCount()));
+				tempObject.put("outputChannelThumbnail", ranking.get(i).getRacChannelThumbnail());
+				
+				rankingList.add(tempObject);
+			}
+	
+			jMainObject.put("rankingList", rankingList);
+			
+			res.setContentType("application/json");
+			res.setCharacterEncoding("UTF-8");
+			
+			CommonUtil.commonPrintLog("SUCCESS", className, "Get MNew OK", map);
+			res.getWriter().write(jMainObject.toString());
+			return;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

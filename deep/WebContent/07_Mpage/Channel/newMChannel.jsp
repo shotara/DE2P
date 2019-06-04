@@ -15,10 +15,10 @@
 
 		var startNo = $("#rac_m_startNo").val();
 
-		CommonM.addList(startNo, 0);
+		CommonM.addNew(startNo, 0);
 
-		$("#rac_m_startNo").val(startNo * 1 + 10);
-		if (startNo >= 90)
+		$("#rac_m_startNo").val(startNo * 1 + 20);
+		if (startNo >= 190)
 			$(".rac_m_bottom").hide();
 	}
 
@@ -26,8 +26,8 @@
 			.ready(
 					function() {
 
-						$("#rac_m_startNo").val(10);
-						var url = "/main?action=getMRankingMain";
+						$("#rac_m_startNo").val(20);
+						var url = "/channel?action=getMNewList";
 						var params = {
 							startNo : 0
 						};
@@ -40,7 +40,7 @@
 									dataType : 'json',
 									success : function(args) {
 										for (var i = 0; i < args.rankingList.length; i++) {
-											$('.rac_m_Top100_Contents')
+											$('.rac_m_NewChannel_Contents')
 													.append(
 															"		<div class='content' onclick='CommonM.m_chn_Detail_Go()'>\n"
 																	+ "		<div class='img'>\n"
@@ -48,16 +48,6 @@
 																	+ "				src='"
 																	+ args.rankingList[i].outputChannelThumbnail
 																	+ "'>\n"
-																	+ "		</div>\n"
-																	+ "		<div class='diff'>\n"
-																	+ "			<div class='count'>\n"
-																	+ "				<span>"
-																	+ args.rankingList[i].outputRankTopNo
-																	+ "</span>\n"
-																	+ "			</div>\n"
-																	+ "			<div class='mark'>\n"
-																	+ args.rankingList[i].outputRankUpDown
-																	+ "			</div>\n"
 																	+ "		</div>\n"
 																	+ "		<div class='title_sub'>\n"
 																	+ "			<div class='title'>\n"
@@ -100,81 +90,6 @@
 
 		<div class="rac_m_NewChannel_Contents">
 
-			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
-				<div class="img">
-					<img style="width: 100%;"
-						src="https://yt3.ggpht.com/-ER3aAD9oRp4/AAAAAAAAAAI/AAAAAAAAAAA/SEWfrewKsAE/s240-c-k-no-mo-rj-c0xffffff/photo.jpg">
-				</div>
-
-				<div class="title_sub">
-					<div class="title">
-						<span>페이지명이 이곳에 노출</span>
-					</div>
-					<div class="view">
-						<span>구독자</span><span>288만</span>
-					</div>
-				</div>
-				<div class="icon">
-					<i class="icon-right-open-mini"></i>
-				</div>
-			</div>
-
-			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
-				<div class="img">
-					<img style="width: 100%;"
-						src="https://yt3.ggpht.com/-ER3aAD9oRp4/AAAAAAAAAAI/AAAAAAAAAAA/SEWfrewKsAE/s240-c-k-no-mo-rj-c0xffffff/photo.jpg">
-				</div>
-
-				<div class="title_sub">
-					<div class="title">
-						<span>페이지명이 이곳에 노출</span>
-					</div>
-					<div class="view">
-						<span>구독자</span><span>288만</span>
-					</div>
-				</div>
-				<div class="icon">
-					<i class="icon-right-open-mini"></i>
-				</div>
-			</div>
-
-			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
-				<div class="img">
-					<img style="width: 100%;"
-						src="https://yt3.ggpht.com/-ER3aAD9oRp4/AAAAAAAAAAI/AAAAAAAAAAA/SEWfrewKsAE/s240-c-k-no-mo-rj-c0xffffff/photo.jpg">
-				</div>
-
-				<div class="title_sub">
-					<div class="title">
-						<span>페이지명이 이곳에 노출</span>
-					</div>
-					<div class="view">
-						<span>구독자</span><span>288만</span>
-					</div>
-				</div>
-				<div class="icon">
-					<i class="icon-right-open-mini"></i>
-				</div>
-			</div>
-
-			<div class="content" onclick="CommonM.m_chn_Detail_Go()">
-				<div class="img">
-					<img style="width: 100%;"
-						src="https://yt3.ggpht.com/-ER3aAD9oRp4/AAAAAAAAAAI/AAAAAAAAAAA/SEWfrewKsAE/s240-c-k-no-mo-rj-c0xffffff/photo.jpg">
-				</div>
-
-				<div class="title_sub">
-					<div class="title">
-						<span>페이지명이 이곳에 노출</span>
-					</div>
-					<div class="view">
-						<span>구독자</span><span>288만</span>
-					</div>
-				</div>
-				<div class="icon">
-					<i class="icon-right-open-mini"></i>
-				</div>
-			</div>
 
 		</div>
 
