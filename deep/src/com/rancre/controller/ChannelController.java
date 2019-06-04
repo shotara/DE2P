@@ -764,8 +764,8 @@ public class ChannelController {
 			String country = doc.select(".country-inline").toString();
 			int followers, views = 0;
 			String createDate, inputCountry;
-			String channelTitle = doc.select("#watch-container meta[itemprop='name']").first().attr("content");
-			String thumbnail = doc.select("#watch-container link[itemprop='thumbnailUrl']").first().attr("href");
+			String channelTitle = doc.select("meta[itemprop='name']").first().attr("content");
+			String thumbnail = doc.select("link[itemprop='thumbnailUrl']").first().attr("href");
 			Timestamp inputCreateDate = null;
 			
 			// Followers
